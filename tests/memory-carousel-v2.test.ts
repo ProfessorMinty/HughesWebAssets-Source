@@ -24,8 +24,10 @@ describe("Photo Album V2 memory carousel", () => {
     expect([...mount.querySelectorAll(".hrv-v2-memory__slide")]).toEqual(originalSlides);
 
     vi.advanceTimersByTime(920);
-    expect([...mount.querySelectorAll<HTMLButtonElement>(".hrv-v2-memory__slide")].map((slide) => slide.dataset.slot).sort())
-      .toEqual(["-2", "-1", "0", "1", "2"]);
+    const slots = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-v2-memory__slide")]
+      .map((slide) => Number(slide.dataset.slot))
+      .sort((a, b) => a - b);
+    expect(slots).toEqual([-2, -1, 0, 1, 2]);
 
     carousel.destroy();
     vi.useRealTimers();
