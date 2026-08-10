@@ -12,7 +12,7 @@ describe("Photo Album V2 memory carousel", () => {
       [photo("1"), photo("2"), photo("3"), photo("4"), photo("5"), photo("6")],
     );
 
-    const originalSlides = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-v2-memory__slide")];
+    const originalSlides = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-carousel__slide")];
     expect(originalSlides).toHaveLength(5);
     expect(originalSlides.map((slide) => slide.dataset.slot)).toEqual(["-2", "-1", "0", "1", "2"]);
 
@@ -21,10 +21,10 @@ describe("Photo Album V2 memory carousel", () => {
 
     const movingCenter = mount.querySelector<HTMLButtonElement>('[data-slot="0"]')?.dataset.photoId;
     expect(movingCenter).not.toBe(initialCenter);
-    expect([...mount.querySelectorAll(".hrv-v2-memory__slide")]).toEqual(originalSlides);
+    expect([...mount.querySelectorAll(".hrv-carousel__slide")]).toEqual(originalSlides);
 
-    vi.advanceTimersByTime(1_001);
-    const slots = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-v2-memory__slide")]
+    vi.advanceTimersByTime(821);
+    const slots = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-carousel__slide")]
       .map((slide) => Number(slide.dataset.slot))
       .sort((a, b) => a - b);
     expect(slots).toEqual([-2, -1, 0, 1, 2]);
@@ -38,7 +38,7 @@ describe("Photo Album V2 memory carousel", () => {
     const mount = document.createElement("div");
     document.body.append(mount);
     const carousel = new MemoryCarouselV2(mount, [photo("1"), photo("2"), photo("3")]);
-    const pause = mount.querySelector<HTMLButtonElement>(".hrv-v2-memory__pause")!;
+    const pause = mount.querySelector<HTMLButtonElement>(".hrv-carousel__pause")!;
     const initialCenter = mount.querySelector<HTMLButtonElement>('[data-slot="0"]')?.dataset.photoId;
 
     pause.click();
