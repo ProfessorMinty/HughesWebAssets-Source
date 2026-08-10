@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6fbfa" />
+    <title>Hughes Room Views Classroom Explorations</title>
+  </head>
+  <body>
+    <div id="hrv-classroom-explorations-root">
+      <div data-hrv-native-fallback>
+        <h1>Classroom Explorations</h1>
+        <p>Explore our current Summer Bloom Adoption Project while the museum view loads.</p>
+        <p><a href="https://rmhughes.edublogs.org/zinnia-page/">Open the Summer Bloom Adoption Project</a></p>
+      </div>
+    </div>
+    <script type="module">
+      import { mountClassroomExplorationsHub } from "/src/entry.ts";
+      mountClassroomExplorationsHub(document.querySelector("#hrv-classroom-explorations-root"), {
+        manifestUrl: "/hub.manifest.json",
+      });
+    </script>
+  </body>
+</html>
