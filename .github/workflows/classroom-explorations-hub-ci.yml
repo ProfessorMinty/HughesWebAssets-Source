@@ -3,7 +3,7 @@ name: Classroom Explorations Hub CI
 on:
   push:
     branches:
-      - feature/classroom-explorations-hub-v1
+      - feature/classroom-explorations-hub-v1-mainline
   pull_request:
     paths:
       - 'apps/classroom-explorations-hub/**'
