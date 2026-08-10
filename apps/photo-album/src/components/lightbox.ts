@@ -1,6 +1,46 @@
 import type { PhotoRecord } from "../types";
 import { createElement, createIconButton } from "../utils/dom";
 
+interface InlineStyleValue {
+  property: string;
+  value: string;
+  priority: string;
+}
+
+interface PageScrollState {
+  x: number;
+  y: number;
+  html: InlineStyleValue[];
+  body: InlineStyleValue[];
+}
+
+const HTML_LOCK_PROPERTIES = ["overflow", "overscroll-behavior", "scroll-behavior"];
+const BODY_LOCK_PROPERTIES = [
+  "position",
+  "top",
+  "left",
+  "width",
+  "height",
+  "overflow",
+  "overscroll-behavior",
+  "touch-action",
+];
+
+function captureStyles(element: HTMLElement, properties: readonly string[]): InlineStyleValue[] {
+  return properties.map((property) => ({
+    property,
+    value: element.style.getPropertyValue(property),
+    priority: element.style.getPropertyPriority(property),
+  }));
+}
+
+function restoreStyles(element: HTMLElement, styles: readonly InlineStyleValue[]): void {
+  for (const style of styles) {
+    if (style.value) element.style.setProperty(style.property, style.value, style.priority);
+    else element.style.removeProperty(style.property);
+  }
+}
+
 export class PhotoLightbox {
   private readonly dialog: HTMLDialogElement;
   private readonly image: HTMLImageElement;
@@ -12,6 +52,7 @@ export class PhotoLightbox {
   private returnFocus: HTMLElement | null = null;
   private returnToIndex: ((index: number) => void) | null = null;
   private pointerStartX: number | null = null;
+  private pageScrollState: PageScrollState | null = null;
 
   constructor(root: HTMLElement) {
     this.dialog = document.createElement("dialog");
@@ -53,6 +94,8 @@ export class PhotoLightbox {
       if (event.target === this.dialog) this.close();
     });
     this.dialog.addEventListener("keydown", (event) => this.onKeyDown(event));
+    this.dialog.addEventListener("wheel", (event) => event.preventDefault(), { passive: false });
+    this.dialog.addEventListener("touchmove", (event) => event.preventDefault(), { passive: false });
     media.addEventListener("pointerdown", (event) => {
       this.pointerStartX = event.clientX;
     });
@@ -86,10 +129,15 @@ export class PhotoLightbox {
     this.returnFocus = returnFocus;
     this.returnToIndex = returnToIndex ?? null;
     this.render();
-    document.documentElement.classList.add("hrv-lightbox-open");
-    if (typeof this.dialog.showModal === "function") this.dialog.showModal();
-    else this.dialog.setAttribute("open", "");
-    this.dialog.querySelector<HTMLButtonElement>(".hrv-lightbox__close")?.focus();
+    this.lockPageScroll();
+    try {
+      if (typeof this.dialog.showModal === "function") this.dialog.showModal();
+      else this.dialog.setAttribute("open", "");
+    } catch (error) {
+      this.unlockPageScroll();
+      throw error;
+    }
+    this.dialog.querySelector<HTMLButtonElement>(".hrv-lightbox__close")?.focus({ preventScroll: true });
   }
 
   close(): void {
@@ -147,11 +195,63 @@ export class PhotoLightbox {
   }
 
   private finishClose(): void {
-    document.documentElement.classList.remove("hrv-lightbox-open");
-    if (this.returnFocus?.isConnected) this.returnFocus.focus();
+    const position = this.unlockPageScroll();
+    if (this.returnFocus?.isConnected) this.returnFocus.focus({ preventScroll: true });
     else this.returnToIndex?.(this.index);
+    if (position) this.restorePagePosition(position);
     this.returnFocus = null;
     this.returnToIndex = null;
+  }
+
+  private lockPageScroll(): void {
+    if (this.pageScrollState) return;
+    const html = document.documentElement;
+    const body = document.body;
+    const x = window.scrollX;
+    const y = window.scrollY;
+    this.pageScrollState = {
+      x,
+      y,
+      html: captureStyles(html, HTML_LOCK_PROPERTIES),
+      body: captureStyles(body, BODY_LOCK_PROPERTIES),
+    };
+
+    html.classList.add("hrv-lightbox-open");
+    body.classList.add("hrv-lightbox-open");
+    html.style.setProperty("overflow", "hidden", "important");
+    html.style.setProperty("overscroll-behavior", "none", "important");
+    html.style.setProperty("scroll-behavior", "auto", "important");
+    body.style.setProperty("position", "fixed", "important");
+    body.style.setProperty("top", `${-y}px`, "important");
+    body.style.setProperty("left", `${-x}px`, "important");
+    body.style.setProperty("width", "100%", "important");
+    body.style.setProperty("height", "100%", "important");
+    body.style.setProperty("overflow", "hidden", "important");
+    body.style.setProperty("overscroll-behavior", "none", "important");
+    body.style.setProperty("touch-action", "none", "important");
+  }
+
+  private unlockPageScroll(): { x: number; y: number } | null {
+    const state = this.pageScrollState;
+    if (!state) return null;
+    this.pageScrollState = null;
+    const html = document.documentElement;
+    const body = document.body;
+
+    restoreStyles(body, state.body);
+    restoreStyles(html, state.html);
+    html.classList.remove("hrv-lightbox-open");
+    body.classList.remove("hrv-lightbox-open");
+    this.restorePagePosition(state);
+    return { x: state.x, y: state.y };
+  }
+
+  private restorePagePosition(position: { x: number; y: number }): void {
+    const html = document.documentElement;
+    const scrollBehavior = captureStyles(html, ["scroll-behavior"]);
+    html.style.setProperty("scroll-behavior", "auto", "important");
+    window.scrollTo(position.x, position.y);
+    restoreStyles(html, scrollBehavior);
   }
 
   private onKeyDown(event: KeyboardEvent): void {

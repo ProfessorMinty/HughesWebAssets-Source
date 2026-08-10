@@ -8,11 +8,11 @@ This repository contains source and build infrastructure only. Nothing here depl
 
 The current foundation provides:
 
-- a large featured-memory carousel drawn from the current-year manifest;
+- a positional featured-memory carousel with persistent previous/current/next slides;
 - current-year album discovery with stable per-album visual identities;
 - individual album routes and a View All route with multi-album filters;
-- a bounded, windowed image grid suitable for collections much larger than the 138-photo rehearsal;
-- an accessible lightbox with previous/next, Escape, focus return, focus trapping, and swipe gestures;
+- a stable native image grid with eager first rows and lazy-loaded remaining gallery derivatives;
+- a host-hardened lightbox with contain geometry, exact page scroll restoration, previous/next, Escape, focus return, focus trapping, and swipe gestures;
 - an Open Full Size action that uses only the manifest's sanitized `fullSizeUrl` derivative;
 - loading, retry, empty, partial-data, and last-known-good states;
 - responsive layout, visible keyboard focus, and reduced-motion behavior;
@@ -25,7 +25,7 @@ The current foundation provides:
 apps/photo-album/
   public/                 stable classic bootstrap loader
   src/assets/             code-owned visual assets
-  src/components/         carousel, virtual grid, lightbox
+  src/components/         carousel, stable photo grid, lightbox
   src/data/               Worker manifest client and adapter
   src/domain/             album grouping and theme projection
   src/runtime/            app route ownership
@@ -90,7 +90,7 @@ To stage the current permanent browser release after a successful build:
 npm run stage:photo-album-release
 ```
 
-Release `2026.08.10.1` is committed at `releases/photo-album/2026.08.10.1/`. Published release directories are immutable; future source changes receive a new release identifier.
+Releases `2026.08.10.1` and `2026.08.10.2` are committed under `releases/photo-album/`. Published release directories are immutable; future source changes receive a new release identifier.
 
 Fixtures are test-only and use a non-resolving `.test` host. They are not production or historical content.
 
@@ -120,4 +120,4 @@ The previous-years route is a permanent honest placeholder until a historical ma
 
 ## Architecture notes
 
-See `docs/architecture.md` for lifecycle, security, performance, manifest, and intentionally open integration seams.
+See `docs/architecture.md` for lifecycle, security, performance, manifest, and intentionally open integration seams. See `docs/ui-conventions.md` for the typography and host-isolation conventions future Hughes Room Views applications must inherit.

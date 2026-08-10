@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Album host-interference QA</title>
+    <style>
+      body {
+        margin: 0;
+        color: #222;
+        background: #ececec;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        overflow-y: scroll;
+      }
+
+      .host-preamble {
+        display: grid;
+        min-height: 760px;
+        padding: 40px;
+        place-items: center;
+        background: linear-gradient(#eeeeee, #dddddd);
+      }
+
+      body p,
+      body a,
+      body button,
+      body span,
+      body strong {
+        font-size: 12px !important;
+        line-height: 1.1 !important;
+      }
+
+      body button {
+        min-width: 90px !important;
+        min-height: 28px !important;
+        padding: 20px !important;
+        text-transform: uppercase !important;
+      }
+
+      body img {
+        width: 100% !important;
+        height: 260px !important;
+        max-height: none !important;
+        object-fit: cover !important;
+      }
+
+      body dialog {
+        width: 640px !important;
+        height: 55vh !important;
+        max-width: 640px !important;
+        max-height: 55vh !important;
+        padding: 30px !important;
+        overflow: auto !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="host-preamble" aria-hidden="true">Legacy WordPress theme content before the application island</div>
+    <div id="hrv-photo-album">Loading classroom memories…</div>
+    <script>
+      const motionMode = new URLSearchParams(location.search).get("motion");
+      if (motionMode === "full" || motionMode === "reduce") {
+        const nativeMatchMedia = window.matchMedia.bind(window);
+        window.matchMedia = (query) => query.includes("prefers-reduced-motion")
+          ? {
+              matches: motionMode === "reduce",
+              media: query,
+              onchange: null,
+              addListener() {},
+              removeListener() {},
+              addEventListener() {},
+              removeEventListener() {},
+              dispatchEvent() { return true; },
+            }
+          : nativeMatchMedia(query);
+      }
+    </script>
+    <script type="module">
+      import { mountPhotoAlbum } from "/src/entry.ts";
+
+      mountPhotoAlbum(document.querySelector("#hrv-photo-album"), {
+        manifestUrl: "https://hrv-photo-album.drminty17.workers.dev/manifest.json",
+        layout: "viewport",
+      });
+    </script>
+  </body>
+</html>

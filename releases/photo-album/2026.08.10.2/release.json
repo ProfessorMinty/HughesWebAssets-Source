@@ -1,0 +1,33 @@
+{
+  "application": "hughes-room-views-photo-album",
+  "releaseId": "2026.08.10.2",
+  "manifestContract": 1,
+  "sourceRepository": "ProfessorMinty/HughesWebAssets-Source",
+  "artifacts": [
+    {
+      "path": "bootstrap.js",
+      "bytes": 1711,
+      "sha256": "c04997502c1c97c3ff9377ec260eb780d4030b5da2262416da467f724224a09d"
+    },
+    {
+      "path": "index.html",
+      "bytes": 498,
+      "sha256": "b8fee2e47f5d0957636fc14253edefc030c9910bbf776bc0a6b14b9e4fc1fe71"
+    },
+    {
+      "path": "assets/photo-album.css",
+      "bytes": 23729,
+      "sha256": "160070fad03ac6278829fa3de6fd5efdce5b840d342b49852b316d79550dc1f7"
+    },
+    {
+      "path": "assets/photo-album.js",
+      "bytes": 33772,
+      "sha256": "3a98423fca49e09d8388b427c74145a6e60d6298a1c7b3707c355cf9b2753309"
+    },
+    {
+      "path": "assets/photo-album.js.map",
+      "bytes": 89919,
+      "sha256": "e828d16a28cf7c2217ee55521d925940c13664bf8f57265f8468ee0ca3e4358a"
+    }
+  ]
+}

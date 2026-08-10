@@ -58,6 +58,12 @@ export class CarouselController {
     return this.position;
   }
 
+  photoAtOffset(offset: number): PhotoRecord | null {
+    if (this.photos.length === 0) return null;
+    const position = (this.position + offset + this.photos.length) % this.photos.length;
+    return this.photos[position] ?? null;
+  }
+
   next(): void {
     this.move("next");
   }
@@ -116,14 +122,18 @@ export class CarouselController {
 export class HeroCarousel {
   private readonly controller: CarouselController;
   private readonly stage: HTMLElement;
+  private readonly previousSlide: HTMLButtonElement;
+  private readonly previousImage: HTMLImageElement;
+  private readonly currentSlide: HTMLButtonElement;
   private readonly currentImage: HTMLImageElement;
-  private readonly incomingImage: HTMLImageElement;
+  private readonly nextSlide: HTMLButtonElement;
+  private readonly nextImage: HTMLImageElement;
   private readonly status: HTMLElement;
   private readonly motionQuery: MediaQueryList;
   private readonly intersectionObserver: IntersectionObserver | null;
   private transitionTimer: number | null = null;
   private visible = true;
-  private interacting = false;
+  private focusWithin = false;
 
   constructor(
     mount: HTMLElement,
@@ -151,17 +161,12 @@ export class HeroCarousel {
     carousel.setAttribute("aria-roledescription", "carousel");
     carousel.setAttribute("aria-label", "Featured classroom memories");
 
-    const stage = createElement("button", "hrv-carousel__stage");
-    stage.type = "button";
-    this.stage = stage;
-    this.currentImage = createElement("img", "hrv-carousel__image hrv-carousel__image--current");
-    this.currentImage.alt = "";
-    this.currentImage.decoding = "async";
-    this.currentImage.fetchPriority = "high";
-    this.incomingImage = createElement("img", "hrv-carousel__image hrv-carousel__image--incoming");
-    this.incomingImage.alt = "";
-    this.incomingImage.decoding = "async";
-    this.stage.append(this.currentImage, this.incomingImage);
+    this.stage = createElement("div", "hrv-carousel__stage");
+    this.stage.setAttribute("aria-label", "Previous, current, and next featured memories");
+    [this.previousSlide, this.previousImage] = this.createSlide("previous");
+    [this.currentSlide, this.currentImage] = this.createSlide("current");
+    [this.nextSlide, this.nextImage] = this.createSlide("next");
+    this.stage.append(this.previousSlide, this.currentSlide, this.nextSlide);
 
     const controls = createElement("div", "hrv-carousel__controls");
     const previous = createIconButton("Previous featured memory", "←", "hrv-icon-button");
@@ -180,34 +185,31 @@ export class HeroCarousel {
 
     const initial = this.controller.current;
     if (initial) {
-      this.currentImage.src = initial.galleryUrl;
-      this.stage.dataset.currentPhotoId = initial.id;
-      this.stage.setAttribute("aria-label", "Open featured memory");
-      this.updateStatus();
+      this.renderTriplet();
     }
 
-    this.stage.addEventListener("click", () => {
+    this.currentSlide.addEventListener("click", () => {
       const current = this.controller.current;
       if (current) onOpen?.(current);
     });
+    this.previousSlide.addEventListener("click", () => this.requestMove("previous"));
+    this.nextSlide.addEventListener("click", () => this.requestMove("next"));
 
-    previous.addEventListener("click", () => this.controller.previous());
-    next.addEventListener("click", () => this.controller.next());
+    previous.addEventListener("click", () => this.requestMove("previous"));
+    next.addEventListener("click", () => this.requestMove("next"));
     carousel.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        this.controller.previous();
+        this.requestMove("previous");
       }
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        this.controller.next();
+        this.requestMove("next");
       }
     });
-    carousel.addEventListener("pointerenter", () => this.setInteracting(true));
-    carousel.addEventListener("pointerleave", () => this.setInteracting(false));
-    carousel.addEventListener("focusin", () => this.setInteracting(true));
+    carousel.addEventListener("focusin", () => this.setFocusWithin(true));
     carousel.addEventListener("focusout", (event) => {
-      if (!carousel.contains(event.relatedTarget as Node | null)) this.setInteracting(false);
+      if (!carousel.contains(event.relatedTarget as Node | null)) this.setFocusWithin(false);
     });
 
     const onMotionChange = (event: MediaQueryListEvent): void => {
@@ -240,17 +242,63 @@ export class HeroCarousel {
 
   private readonly onVisibilityChange = (): void => this.syncPlayback();
 
-  private setInteracting(interacting: boolean): void {
-    this.interacting = interacting;
+  private createSlide(position: "previous" | "current" | "next"): [HTMLButtonElement, HTMLImageElement] {
+    const slide = createElement("button", `hrv-carousel__slide hrv-carousel__slide--${position}`);
+    slide.type = "button";
+    slide.dataset.position = position;
+    const image = createElement("img", "hrv-carousel__image");
+    image.alt = "";
+    image.decoding = "async";
+    image.loading = position === "current" ? "eager" : "lazy";
+    image.fetchPriority = position === "current" ? "high" : "low";
+    slide.append(image);
+    return [slide, image];
+  }
+
+  private requestMove(direction: CarouselDirection): void {
+    if (this.transitionTimer !== null) return;
+    if (direction === "next") this.controller.next();
+    else this.controller.previous();
+  }
+
+  private setFocusWithin(focusWithin: boolean): void {
+    this.focusWithin = focusWithin;
     this.syncPlayback();
   }
 
   private syncPlayback(): void {
-    this.controller.setPaused(this.interacting || !this.visible || document.hidden);
+    this.controller.setPaused(this.focusWithin || !this.visible || document.hidden);
   }
 
   private updateStatus(): void {
     this.status.textContent = `Memory ${this.controller.currentPosition + 1} of ${this.controller.length}`;
+  }
+
+  private renderTriplet(): void {
+    const previous = this.controller.photoAtOffset(-1);
+    const current = this.controller.current;
+    const next = this.controller.photoAtOffset(1);
+    if (!previous || !current || !next) return;
+
+    this.updateSlide(this.previousSlide, this.previousImage, previous, "Show previous featured memory");
+    this.updateSlide(this.currentSlide, this.currentImage, current, "Open featured memory");
+    this.updateSlide(this.nextSlide, this.nextImage, next, "Show next featured memory");
+    const hasMultiplePhotos = this.controller.length > 1;
+    this.previousSlide.hidden = !hasMultiplePhotos;
+    this.nextSlide.hidden = !hasMultiplePhotos;
+    this.stage.dataset.currentPhotoId = current.id;
+    this.updateStatus();
+  }
+
+  private updateSlide(
+    slide: HTMLButtonElement,
+    image: HTMLImageElement,
+    photo: PhotoRecord,
+    label: string,
+  ): void {
+    image.src = photo.galleryUrl;
+    slide.dataset.photoId = photo.id;
+    slide.setAttribute("aria-label", label);
   }
 
   private showChange(change: CarouselChange): void {
@@ -258,23 +306,21 @@ export class HeroCarousel {
     this.status.textContent = `Memory ${change.position + 1} of ${change.total}`;
 
     if (prefersReducedMotion()) {
-      this.currentImage.src = change.current.galleryUrl;
+      this.renderTriplet();
       return;
     }
 
-    if (this.transitionTimer !== null) window.clearTimeout(this.transitionTimer);
-    this.incomingImage.src = change.current.galleryUrl;
-    this.incomingImage.classList.remove("is-next", "is-previous");
-    this.incomingImage.classList.add(change.direction === "next" ? "is-next" : "is-previous");
     this.stage.classList.remove("is-moving-next", "is-moving-previous");
     void this.stage.offsetWidth;
     this.stage.classList.add(change.direction === "next" ? "is-moving-next" : "is-moving-previous");
 
     this.transitionTimer = window.setTimeout(() => {
-      this.currentImage.src = change.current.galleryUrl;
+      this.stage.classList.add("is-resetting");
       this.stage.classList.remove("is-moving-next", "is-moving-previous");
-      this.incomingImage.removeAttribute("src");
+      this.renderTriplet();
+      void this.stage.offsetWidth;
+      this.stage.classList.remove("is-resetting");
       this.transitionTimer = null;
-    }, 620);
+    }, 560);
   }
 }

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Album lightbox aspect-ratio QA</title>
+    <style>
+      body {
+        margin: 0;
+        background: #dddddd;
+        font: 12px/1 Arial, sans-serif;
+        overflow-y: scroll;
+      }
+
+      .host-filler {
+        min-height: 1200px;
+        background: linear-gradient(#eeeeee, #cccccc);
+      }
+
+      body img {
+        width: 100% !important;
+        height: 220px !important;
+        max-height: none !important;
+        object-fit: cover !important;
+      }
+
+      body dialog {
+        width: 600px !important;
+        height: 50vh !important;
+        max-width: 600px !important;
+        max-height: 50vh !important;
+        padding: 40px !important;
+        overflow: auto !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="host-filler" aria-hidden="true"></div>
+    <div id="hrv-photo-album" class="hrv-photo-album">
+      <button id="open-lightbox" class="hrv-button" type="button">Open synthetic lightbox cases</button>
+    </div>
+    <script type="module">
+      import "/src/styles/photo-album.css";
+      import { PhotoLightbox } from "/src/components/lightbox.ts";
+
+      const imageUrl = (width, height, color) => {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="100%" height="100%" fill="${color}"/><path d="M0 ${height} L${width} 0" stroke="white" stroke-width="24"/></svg>`;
+        return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+      };
+      const cases = [
+        ["Very wide 24:5", 2400, 500, "#5f7f6b"],
+        ["Ordinary 4:3", 1600, 1200, "#7c6b9d"],
+        ["Portrait 3:4", 900, 1200, "#b07652"],
+        ["Tall phone 9:16", 900, 1600, "#52789b"],
+        ["Landscape 16:9", 1600, 900, "#8a6f58"],
+      ].map(([name, width, height, color], index) => ({
+        id: `qa-${index}`,
+        revision: "qa",
+        albumId: "qa",
+        albumName: name,
+        name: `${name}.svg`,
+        alt: name,
+        galleryUrl: imageUrl(width, height, color),
+        fullSizeUrl: null,
+      }));
+
+      const root = document.querySelector("#hrv-photo-album");
+      const trigger = document.querySelector("#open-lightbox");
+      const lightbox = new PhotoLightbox(root);
+      trigger.addEventListener("click", () => lightbox.open(cases, 0, trigger));
+    </script>
+  </body>
+</html>

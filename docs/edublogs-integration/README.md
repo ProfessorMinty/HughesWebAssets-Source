@@ -13,7 +13,7 @@ The commit-SHA replacement is intentionally performed after publication because 
 Current permanent release directory:
 
 ```text
-releases/photo-album/2026.08.10.1/
+releases/photo-album/2026.08.10.2/
 ```
 
 This directory is immutable after publication. Future changes receive a new release identifier.

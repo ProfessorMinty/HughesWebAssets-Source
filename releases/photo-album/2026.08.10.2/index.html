@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f3eb" />
     <title>Hughes Room Views Photo Album</title>
+    <script type="module" crossorigin src="/assets/photo-album.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/photo-album.css">
   </head>
   <body>
     <div id="hrv-photo-album">Loading classroom memories…</div>
-    <script type="module">
-      import { mountPhotoAlbum } from "/src/entry.ts";
-
-      mountPhotoAlbum(document.querySelector("#hrv-photo-album"), {
-        manifestUrl: "https://hrv-photo-album.drminty17.workers.dev/manifest.json",
-        layout: "viewport",
-      });
-    </script>
   </body>
 </html>

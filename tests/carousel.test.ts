@@ -32,17 +32,44 @@ describe("featured-memory carousel", () => {
     vi.useRealTimers();
   });
 
-  it("supports left and right keyboard navigation", () => {
+  it("renders real previous, current, and next positions and supports keyboard navigation", () => {
+    vi.useFakeTimers();
     const mount = document.createElement("div");
     document.body.append(mount);
-    const carousel = new HeroCarousel(mount, [photo("1"), photo("2")], "2099–00");
+    const carousel = new HeroCarousel(mount, [photo("1"), photo("2"), photo("3")], "2099–00");
     const region = mount.querySelector<HTMLElement>('[aria-roledescription="carousel"]')!;
     const stage = mount.querySelector<HTMLElement>(".hrv-carousel__stage")!;
+    expect(stage.querySelectorAll(".hrv-carousel__slide")).toHaveLength(3);
+    expect(stage.querySelector('[data-position="previous"]')).not.toBeNull();
+    expect(stage.querySelector('[data-position="current"]')).not.toBeNull();
+    expect(stage.querySelector('[data-position="next"]')).not.toBeNull();
     const initial = stage.dataset.currentPhotoId;
     region.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }));
     expect(stage.dataset.currentPhotoId).not.toBe(initial);
+    expect(stage.classList.contains("is-moving-next")).toBe(true);
+    vi.advanceTimersByTime(560);
+    expect(stage.classList.contains("is-moving-next")).toBe(false);
+    expect(stage.querySelector<HTMLElement>('[data-position="current"]')?.dataset.photoId).toBe(stage.dataset.currentPhotoId);
     region.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true }));
     expect(stage.dataset.currentPhotoId).toBe(initial);
     carousel.destroy();
+    vi.useRealTimers();
+  });
+
+  it("continues autoplay while the pointer rests over the carousel", () => {
+    vi.useFakeTimers();
+    const mount = document.createElement("div");
+    document.body.append(mount);
+    const carousel = new HeroCarousel(mount, [photo("1"), photo("2"), photo("3")], "2099–00");
+    const region = mount.querySelector<HTMLElement>('[aria-roledescription="carousel"]')!;
+    const stage = mount.querySelector<HTMLElement>(".hrv-carousel__stage")!;
+    const initial = stage.dataset.currentPhotoId;
+
+    region.dispatchEvent(new PointerEvent("pointerenter", { bubbles: true }));
+    vi.advanceTimersByTime(7_001);
+
+    expect(stage.dataset.currentPhotoId).not.toBe(initial);
+    carousel.destroy();
+    vi.useRealTimers();
   });
 });

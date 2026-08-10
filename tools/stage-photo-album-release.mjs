@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const releaseId = process.argv[2];
 if (!releaseId || !/^\d{4}\.\d{2}\.\d{2}\.\d+$/.test(releaseId)) {
-  throw new Error("Provide a release identifier such as 2026.08.10.1.");
+  throw new Error("Provide a release identifier such as 2026.08.10.2.");
 }
 
 const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));

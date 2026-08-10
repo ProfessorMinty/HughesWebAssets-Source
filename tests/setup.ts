@@ -55,6 +55,9 @@ if (typeof HTMLDialogElement !== "undefined") {
 
 afterEach(() => {
   document.documentElement.className = "";
+  document.documentElement.removeAttribute("style");
+  document.body.className = "";
+  document.body.removeAttribute("style");
   document.body.replaceChildren();
   window.location.hash = "";
   window.localStorage.clear();

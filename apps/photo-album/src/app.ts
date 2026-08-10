@@ -5,7 +5,7 @@ import constellationOrnamentUrl from "./assets/ornament-constellation.svg?url";
 import woodlandOrnamentUrl from "./assets/ornament-woodland.svg?url";
 import { HeroCarousel } from "./components/carousel";
 import { PhotoLightbox } from "./components/lightbox";
-import { VirtualPhotoGrid } from "./components/virtual-grid";
+import { PhotoGrid } from "./components/photo-grid";
 import type { PhotoAlbumOptions } from "./config";
 import { DEFAULT_MANIFEST_URL } from "./config";
 import { loadManifest } from "./data/manifest";
@@ -373,7 +373,7 @@ export class PhotoAlbumApp {
     const mount = createElement("section", "hrv-gallery");
     mount.setAttribute("aria-label", "Photos");
     this.main.append(mount);
-    const grid = new VirtualPhotoGrid(mount, photos, {
+    const grid = new PhotoGrid(mount, photos, {
       emptyMessage,
       onOpen: (index, button) => this.lightbox?.open(photos, index, button, (returnIndex) => grid.focusItem(returnIndex)),
     });
