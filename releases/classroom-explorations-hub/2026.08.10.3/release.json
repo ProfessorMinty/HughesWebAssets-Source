@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0",
+  "release": "2026.08.10.3",
+  "pageSystem": "classroom-explorations-hub",
+  "contentVersion": "2026.08.10.2",
+  "sourceCommit": "7a7ad1d17979913bb9e3355955cea399a9af32e2",
+  "assets": {
+    "bootstrap": "bootstrap.js",
+    "script": "assets/classroom-explorations-hub.js",
+    "style": "assets/classroom-explorations-hub.css",
+    "manifest": "hub.manifest.json"
+  },
+  "rollbackRelease": "2026.08.10.2"
+}
