@@ -69,6 +69,16 @@
   transform-origin: center;
 }
 
+.hrv-photo-album .hrv-carousel__controls {
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+}
+
+.hrv-photo-album .hrv-carousel__pause[aria-pressed="true"] {
+  color: #fff;
+  background: #5f6f8e;
+  box-shadow: 0 9px 24px rgb(61 69 91 / 24%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hrv-photo-album .hrv-carousel__stage {
     transition: opacity 240ms ease !important;
