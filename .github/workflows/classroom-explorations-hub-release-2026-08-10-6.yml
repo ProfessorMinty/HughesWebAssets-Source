@@ -1,0 +1,63 @@
+name: Build Classroom Explorations Hub 2026.08.10.6
+
+on:
+  push:
+    branches:
+      - feature/hub-museum-magic-2026-08-10-6
+    paths:
+      - ".github/workflows/classroom-explorations-hub-release-2026-08-10-6.yml"
+      - "apps/classroom-explorations-hub/**"
+      - "schemas/classroom-explorations-hub.schema.json"
+      - "tests/classroom-explorations-hub.test.ts"
+      - "tools/build-classroom-explorations-hub.mjs"
+      - "tools/verify-classroom-explorations-hub-dist.mjs"
+      - "tools/stage-classroom-explorations-hub-release.mjs"
+      - "vite.hub.config.ts"
+      - "package.json"
+      - "package-lock.json"
+
+permissions:
+  contents: write
+
+jobs:
+  verify-build-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify and build magical Hub museum
+        run: npm run check:hub
+
+      - name: Stage immutable release
+        shell: bash
+        run: |
+          if [ -d "releases/classroom-explorations-hub/2026.08.10.6" ]; then
+            echo "Release 2026.08.10.6 already exists; verification completed."
+            exit 0
+          fi
+          HRV_SOURCE_COMMIT="$(git rev-parse HEAD)" npm run stage:hub-release -- 2026.08.10.6 2026.08.10.5
+
+      - name: Commit immutable release
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/classroom-explorations-hub/2026.08.10.6
+          if git diff --cached --quiet; then
+            echo "No release changes to commit."
+            exit 0
+          fi
+          git commit -m "Stage Classroom Explorations Hub release 2026.08.10.6 [skip hub release]"
+          git push

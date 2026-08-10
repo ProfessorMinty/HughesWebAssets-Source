@@ -24,11 +24,56 @@ for (const signature of ["data-release-manifest", "data-route", "data-path", "da
 if (!compat.includes("html.hrv-route-classroom-explorations-ready body.page-id-17")) failures.push("host compatibility is not ready-gated");
 if (!compat.includes("h1.entry-title") || !compat.includes("#secondary") || !compat.includes(".entry-content")) failures.push("host compatibility lost required shell rules");
 
-for (const signature of ["hub-wrap", "Museum at a Glance", "Featured Exhibit Hall", "Learning Lantern", "Archive Gallery", "Learning Archive", "Previous School Years", "Zinnia Greenhouse"]) {
+for (const signature of [
+  "hub-wrap",
+  "Museum at a Glance",
+  "Featured Exhibit Hall",
+  "Learning Lantern",
+  "Archive Gallery",
+  "Learning Archive",
+  "Previous School Years",
+  "Zinnia Greenhouse",
+  "museum-now-floor",
+  "museum-lantern-zone",
+  "museum-archive-floor",
+  "theater-room",
+  "greenhouse-room",
+  "lantern-room",
+  "archive-portal-room",
+  "archive-empty-scene",
+  "museum-magic-06",
+]) {
   if (!runtime.includes(signature)) failures.push(`runtime is missing museum signature: ${signature}`);
 }
 
-for (const signature of [".sky", ".parade", ".hub-hero", ".hero-badge", ".beam", ".zinnia-feature", ".lantern-feature", ".museum-divider", ".exhibit-gallery", ".learning-gallery", ".hub-foot", "prefers-reduced-motion", "hrvHubConfetti"]) {
+for (const signature of [
+  ".sky",
+  ".parade",
+  ".hub-hero",
+  ".hero-badge",
+  ".beam",
+  ".zinnia-feature",
+  ".lantern-feature",
+  ".museum-divider",
+  ".exhibit-gallery",
+  ".learning-gallery",
+  ".hub-foot",
+  ".museum-now-floor",
+  ".museum-lantern-zone",
+  ".museum-archive-floor",
+  ".theater-room",
+  ".greenhouse-room",
+  ".lantern-room",
+  ".archive-portal-room",
+  ".archive-empty-scene",
+  ".hero-magic",
+  ".comets",
+  "hrvMagicComets",
+  "hrvCompassBreathe",
+  "hrvMuseumArrive",
+  "prefers-reduced-motion",
+  "hrvHubConfetti",
+]) {
   if (!css.includes(signature)) failures.push(`production CSS is missing museum signature: ${signature}`);
 }
 
@@ -41,4 +86,4 @@ if (manifest.records?.length !== 4) failures.push("launch museum manifest must c
 if (manifest.records?.some((record) => record.schoolYear === "2025-2026" && ["exploration", "twwl"].includes(record.type))) failures.push("legacy prior-year cards leaked into current Hub manifest");
 
 if (failures.length) throw new Error(`[classroom-explorations-hub] dist verification failed:\n- ${failures.join("\n- ")}`);
-console.log("[classroom-explorations-hub] dist verification passed: museum and repository release contract are locked.");
+console.log("[classroom-explorations-hub] dist verification passed: release contract, backed-up museum identity, and .6 full-page magic composition are locked.");
