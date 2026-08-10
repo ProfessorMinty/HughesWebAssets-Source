@@ -62,25 +62,18 @@ The Hub Swapper will eventually implement these operations:
 7. Generated manifests are never directly edited.
 8. Production releases are immutable.
 
-## Navigation ownership
+## Navigation ownership and legacy state
 
-The legacy Footer Left Exploration Helper is retired architecture.
+The old floating Exploration Helper is **retired historical architecture**. It previously downloaded the Hub and scraped visible links to infer Exploration/TWWL membership. The permanent architecture does not preserve or replace that behavior.
 
-It previously downloaded the Hub and scraped visible links to infer Exploration/TWWL membership. The permanent Hub architecture does not preserve or replace that behavior.
+Current live-state verification supersedes earlier migration notes: **the Exploration Helper is no longer present as a live Hub dependency. The only remaining legacy Hub surface that must be replaced at cutover is the page 17 HTML already preserved in backup.**
 
-Future Exploration/TWWL child pages will own their own appropriate navigation components, including Back/Up navigation to Classroom Explorations and sibling navigation when designed for that page family.
+Therefore:
 
-At Hub cutover:
-
-- remove the `#hrvExplorationNav` markup and its Exploration Helper script from Footer Left;
-- preserve the separate Posts Helper;
-- preserve the separate automatic header-scroll script unless later modernization explicitly replaces it;
 - do not rebuild a manifest-driven floating Exploration Helper;
-- do not restore permanent localStorage hide state for the retired helper.
-
-The Center widget's `.hrv-floating-return-nav` CSS is shared with the Posts Helper, so do **not** remove the shared floating-nav CSS during Hub cutover. Cleanup can happen later after Posts navigation has its own permanent architecture.
-
-Footer Right remains independent of the Hub and is not part of this cutover.
+- do not add any Hub-specific Footer Left dependency;
+- do not alter Footer Left, Footer Right, Center/global CSS, or unrelated widget behavior as part of Hub cutover;
+- future Exploration/TWWL child pages will own their own appropriate Back/Up and sibling-navigation components when those page families are modernized.
 
 ## Visual and animation ownership
 
@@ -97,6 +90,8 @@ into scoped CSS effects. This keeps visual presets data-driven for the future Hu
 
 All motion must honor `prefers-reduced-motion`.
 
+The Hub follows the shared Source-repository UI conventions: 18px desktop body baseline, 17px narrow/mobile body baseline, readable UI/secondary text, scoped host-resistant typography, and no styling of unrelated Edublogs document surfaces.
+
 ## Hybrid page contract
 
 The live page must use:
@@ -108,6 +103,34 @@ The live page must use:
 The repository bootstrap must remain fallback-first: preflight stylesheet, runtime, and manifest before taking visual ownership; restore the exact fallback if any required asset fails.
 
 The JavaScript loader uses `data-layout="viewport"`. The Edublogs page template must be **Full Width** so the theme does not reserve a sidebar beside the repository experience.
+
+## Current immutable release
+
+The first permanent Hub release is:
+
+```text
+2026.08.10.2
+```
+
+It is stored under:
+
+```text
+releases/classroom-explorations-hub/2026.08.10.2/
+```
+
+Its `release.json` records source commit:
+
+```text
+98f58e6bacfb0c275e3ccafe9e7c3d69bf620ea7
+```
+
+The release was promoted to `main` in merge commit:
+
+```text
+42d251fff66e038d6ca383a0262e0fe87b1a032a
+```
+
+The Edublogs JavaScript integration example is pinned to that immutable commit and release. Never substitute mutable `@main` delivery.
 
 ## Build and release
 
@@ -130,7 +153,7 @@ releases/classroom-explorations-hub/<release>/
   release.json
 ```
 
-Release directories are immutable. Replace `__IMMUTABLE_COMMIT_SHA__` and `__RELEASE__` in the Edublogs JavaScript example only after the release commit is published. Never use mutable `@main` delivery.
+Release directories are immutable. Never modify `2026.08.10.2` in place. Any future source/content change that requires a browser release gets a new release identifier.
 
 ## Cutover boundary
 
@@ -145,22 +168,21 @@ Repository preparation may happen before live authorization. Until `GO HUB CUTOV
 
 At cutover:
 
-1. retain the already-preserved legacy page 17 HTML as rollback evidence;
-2. use the captured Footer Left widget source as rollback evidence;
-3. set page 17 to Full Width;
-4. replace legacy page 17 content with the semantic Hub mount/fallback;
-5. install the tiny fallback CSS and immutable loader;
-6. remove only the retired Exploration Helper portion of Footer Left, preserving Posts Helper and automatic scroll;
-7. leave Center/global CSS and Footer Right untouched for this cutover;
+1. confirm page 17 still matches the known HTML-only legacy state;
+2. retain the already-preserved legacy page 17 HTML as the rollback point;
+3. confirm immutable release assets are reachable;
+4. set page 17 to Full Width;
+5. replace legacy page 17 content with the semantic Hub mount/fallback;
+6. install the tiny fallback CSS and pinned immutable loader;
+7. make no Hub-related widget/global-CSS changes because there are no remaining live Hub-specific dependencies there;
 8. validate signed out on desktop and mobile, keyboard navigation, reduced motion, normal runtime load, and fallback behavior.
 
 ## Minimum rollback
 
-Rollback restores:
+Rollback requires only the surfaces changed by this cutover:
 
-1. the preserved legacy page 17 HTML;
-2. the previous page-template value if it was changed;
-3. the preserved Footer Left widget source if the Exploration Helper removal must be reversed;
-4. removal/disablement of the new Hub three-box integration.
+1. restore the preserved legacy page 17 HTML;
+2. restore the previous page-template value if it was changed;
+3. remove/disable the new Hub page-local hybrid integration.
 
-No Exploration/TWWL permalink changes, WordPress reparenting, archive conversion, Photo Album changes, Cloudflare changes, or Drive changes are part of this Hub cutover.
+No widget restoration, Exploration/TWWL permalink changes, WordPress reparenting, archive conversion, Photo Album changes, Cloudflare changes, or Drive changes are part of this Hub cutover.
