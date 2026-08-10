@@ -1,0 +1,46 @@
+/* Classroom Explorations route-local Amadeus compatibility.
+   These rules activate only after the immutable Hub release has mounted successfully. */
+
+html.hrv-route-classroom-explorations-ready body.page-id-17 h1.entry-title,
+html.hrv-route-classroom-explorations-ready body.page-id-17 .entry-header h1.entry-title,
+html.hrv-route-classroom-explorations-ready body.page-id-17 article h1.entry-title {
+  display: none !important;
+}
+
+html.hrv-route-classroom-explorations-ready body.page-id-17 .content-area,
+html.hrv-route-classroom-explorations-ready body.page-id-17 #primary,
+html.hrv-route-classroom-explorations-ready body.page-id-17 .site-main {
+  width: 100% !important;
+  max-width: none !important;
+  float: none !important;
+}
+
+html.hrv-route-classroom-explorations-ready body.page-id-17 .widget-area,
+html.hrv-route-classroom-explorations-ready body.page-id-17 #secondary {
+  display: none !important;
+}
+
+html.hrv-route-classroom-explorations-ready body.page-id-17 .hentry,
+html.hrv-route-classroom-explorations-ready body.page-id-17 article.page {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html.hrv-route-classroom-explorations-ready body.page-id-17 .entry-header,
+html.hrv-route-classroom-explorations-ready body.page-id-17 .entry-footer,
+html.hrv-route-classroom-explorations-ready body.page-id-17 .edit-link {
+  display: none !important;
+}
+
+html.hrv-route-classroom-explorations-ready body.page-id-17 .entry-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}

@@ -1,16 +1,52 @@
-<div id="hrv-classroom-explorations-root" aria-label="Classroom Explorations Hub">
-  <section class="hrv-hub-native-museum" data-hrv-native-fallback aria-labelledby="hrv-hub-fallback-title">
+<!--
+  Classroom Explorations Hub permanent Edublogs route shell.
+  Production rule: paste this complete block into page 17 Custom HTML.
+  Do not add a separate Hub CSS or JavaScript Enhancement loader.
+  Immutable Hub release: 2026.08.10.5 at d509e13518243f8de469d2dc2f3e3c12fd848968.
+-->
+
+<style>
+  #hrv-classroom-explorations-root { display:block; box-sizing:border-box; max-width:100%; }
+  #hrv-classroom-explorations-root .hrv-hub-native-museum { box-sizing:border-box; max-width:920px; margin:1.25rem auto 2rem; padding:1rem; color:#102033; font:16px/1.6 system-ui,"Segoe UI",Arial,sans-serif; }
+  #hrv-classroom-explorations-root .hrv-hub-native-hero,
+  #hrv-classroom-explorations-root .hrv-hub-native-card,
+  #hrv-classroom-explorations-root .hrv-hub-native-footer { box-sizing:border-box; border:1px solid #e3edf7; border-radius:20px; background:#fff; padding:1rem 1.1rem; margin-top:1rem; box-shadow:0 10px 28px rgba(13,38,76,.08); }
+  #hrv-classroom-explorations-root .hrv-hub-native-hero { margin-top:0; background:linear-gradient(135deg,#fff,#f6fbff 50%,#eefaf2); }
+  #hrv-classroom-explorations-root .hrv-hub-native-kicker { display:inline-block; margin:0 0 .35rem; padding:.3rem .6rem; border-radius:999px; background:#edf7ff; color:#235a80; font-size:.78rem; font-weight:800; }
+  #hrv-classroom-explorations-root .hrv-hub-native-museum h1,
+  #hrv-classroom-explorations-root .hrv-hub-native-museum h2,
+  #hrv-classroom-explorations-root .hrv-hub-native-museum h3 { color:#102033; }
+  #hrv-classroom-explorations-root .hrv-hub-native-museum h1 { margin:.2rem 0; font-size:clamp(2rem,5vw,3.1rem); }
+  #hrv-classroom-explorations-root .hrv-hub-native-museum h2,
+  #hrv-classroom-explorations-root .hrv-hub-native-museum h3 { margin:.25rem 0 .45rem; }
+  #hrv-classroom-explorations-root .hrv-hub-native-chips { display:flex; flex-wrap:wrap; gap:.4rem; }
+  #hrv-classroom-explorations-root .hrv-hub-native-chips span { padding:.3rem .6rem; border-radius:999px; background:#167c45; color:#fff; font-size:.8rem; font-weight:800; }
+  #hrv-classroom-explorations-root .hrv-hub-native-button { display:inline-flex; min-height:44px; align-items:center; padding:.6rem .9rem; border-radius:10px; background:#167c45; color:#fff; font-weight:800; text-decoration:none; }
+  #hrv-classroom-explorations-root .hrv-hub-native-status { display:inline-flex; padding:.45rem .7rem; border:1px solid #dfd5f4; border-radius:10px; color:#5a2ea5; }
+  #hrv-classroom-explorations-root .hrv-hub-native-footer { text-align:center; font-weight:800; background:linear-gradient(135deg,#f6fbff,#eefaf2); }
+  #hrv-classroom-explorations-root [data-hrv-native-status][data-state="failed"] { color:#8a1c1c; font-weight:700; }
+  #hrv-classroom-explorations-root a:focus-visible { outline:3px solid #146f92; outline-offset:3px; }
+</style>
+
+<div
+  id="hrv-classroom-explorations-root"
+  data-hrv-page="classroom-explorations"
+  data-hrv-page-system="classroom-explorations-hub"
+  data-hrv-release-channel="production"
+  data-hrv-schema="1.0"
+  data-hrv-state="native"
+  aria-label="Classroom Explorations Hub">
+
+  <section class="hrv-hub-native-museum" data-hrv-fallback data-hrv-native-fallback aria-labelledby="hrv-hub-fallback-title">
     <header class="hrv-hub-native-hero">
-      <div class="hrv-hub-native-compass" aria-hidden="true">🧭</div>
-      <div>
-        <p class="hrv-hub-native-kicker">Museum Entrance • Greenhouse Glow • Discovery Hub</p>
-        <h1 id="hrv-hub-fallback-title">Classroom Explorations</h1>
-        <p>Launchpads for curiosity—STEM adventures, field notes, and student-made discoveries.</p>
-        <p class="hrv-hub-native-chips"><span>Inquiry</span><span>Teamwork</span><span>Creativity</span><span>Real-World Science</span></p>
-      </div>
+      <p class="hrv-hub-native-kicker">Museum Entrance • Greenhouse Glow • Discovery Hub</p>
+      <h1 id="hrv-hub-fallback-title">Classroom Explorations</h1>
+      <p>Launchpads for curiosity—STEM adventures, field notes, and student-made discoveries.</p>
+      <p class="hrv-hub-native-chips"><span>Inquiry</span><span>Teamwork</span><span>Creativity</span><span>Real-World Science</span></p>
+      <p data-hrv-native-status role="status">Opening the interactive discovery museum…</p>
     </header>
 
-    <section class="hrv-hub-native-card hrv-hub-native-current">
+    <section class="hrv-hub-native-card">
       <p class="hrv-hub-native-kicker">Featured Exhibit Hall</p>
       <h2>Current Exploration</h2>
       <h3>Summer Bloom Adoption Project</h3>
@@ -18,20 +54,30 @@
       <p><a class="hrv-hub-native-button" href="https://rmhughes.edublogs.org/zinnia-page/">Explore Now</a></p>
     </section>
 
-    <section class="hrv-hub-native-card hrv-hub-native-learning">
+    <section class="hrv-hub-native-card">
       <p class="hrv-hub-native-kicker">Learning Lantern</p>
       <h2>This Week We Learned</h2>
       <p>The first approved 2026–2027 classroom recap is coming soon.</p>
       <strong class="hrv-hub-native-status">Coming Soon</strong>
     </section>
 
-    <section class="hrv-hub-native-card hrv-hub-native-archive">
+    <section class="hrv-hub-native-card">
       <p class="hrv-hub-native-kicker">Museum Archives</p>
       <h2>Last Year Content</h2>
       <p>The 2025–2026 archive is being converted to the permanent Classroom Explorations system and will be linked here when ready.</p>
     </section>
 
     <footer class="hrv-hub-native-footer">✦ <span>Pack your curiosity—adventures await.</span> ✦</footer>
-    <noscript><p class="hrv-hub-native-noscript">JavaScript is off, so this museum fallback remains available and the current Zinnia project can still be opened above.</p></noscript>
+    <noscript><p>JavaScript is off, so this readable museum fallback remains available and the current Zinnia project can still be opened above.</p></noscript>
   </section>
 </div>
+
+<script
+  src="https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d509e13518243f8de469d2dc2f3e3c12fd848968/releases/classroom-explorations-hub/2026.08.10.5/bootstrap.js"
+  data-mount="hrv-classroom-explorations-root"
+  data-route="classroom-explorations"
+  data-path="/classroom-explorations/"
+  data-release-manifest="https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d509e13518243f8de469d2dc2f3e3c12fd848968/releases/classroom-explorations-hub/2026.08.10.5/release.json"
+  data-layout="viewport"
+  data-timeout="12000">
+</script>

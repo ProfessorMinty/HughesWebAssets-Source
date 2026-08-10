@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "release": "2026.08.10.5",
+  "pageSystem": "classroom-explorations-hub",
+  "contentVersion": "2026.08.10.4",
+  "sourceCommit": "361849615cc136dfe6bde4027030782637f31d31",
+  "minimumBootstrapVersion": "0.2.0",
+  "deploymentReady": true,
+  "route": {
+    "id": "classroom-explorations",
+    "path": "/classroom-explorations/",
+    "mount": "hrv-classroom-explorations-root",
+    "pageSystem": "classroom-explorations-hub",
+    "schemaVersion": "1.0"
+  },
+  "assets": {
+    "bootstrap": {
+      "path": "bootstrap.js",
+      "type": "classic",
+      "sha256": "2be65936217e34d0245c384961fe8560aafd2b28a9e347d41c1659aae2ba0e8a"
+    },
+    "compatStyle": {
+      "path": "host-compat.css",
+      "sha256": "30a120407781b0e0e6001f051f8fbd598ac593104556bf03bf46405d62171381"
+    },
+    "script": {
+      "path": "assets/classroom-explorations-hub.js",
+      "type": "module",
+      "sha256": "6a077e670f6c8fe711694fef01260409709fab5efbd3efafe9e7894e41134f50"
+    },
+    "style": {
+      "path": "assets/classroom-explorations-hub.css",
+      "sha256": "c6f4b3249c874ac67f49fe25a53940dd2de7863dee2c1e9f84fd19751be6ae45"
+    },
+    "content": {
+      "path": "hub.manifest.json",
+      "schemaVersion": "1.0",
+      "sha256": "ef3334696b47f233170514018398ee879809265716db7c94569dafafb0b3ecc0"
+    }
+  },
+  "rollbackRelease": "2026.08.10.4"
+}
