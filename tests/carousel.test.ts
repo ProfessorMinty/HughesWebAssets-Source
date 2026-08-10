@@ -68,35 +68,15 @@ describe("featured-memory carousel", () => {
     vi.useRealTimers();
   });
 
-  it("continues autoplay while the pointer rests over the carousel", () => {
+  it("keeps autoplay running after pointer-created focus", () => {
     vi.useFakeTimers();
     const mount = document.createElement("div");
     document.body.append(mount);
     const carousel = new HeroCarousel(mount, [photo("1"), photo("2"), photo("3")], "2099–00");
-    const region = mount.querySelector<HTMLElement>('[aria-roledescription="carousel"]')!;
     const stage = mount.querySelector<HTMLElement>(".hrv-carousel__stage")!;
-    const initial = stage.dataset.currentPhotoId;
-
-    region.dispatchEvent(new PointerEvent("pointerenter", { bubbles: true }));
-    vi.advanceTimersByTime(7_001);
-
-    expect(stage.dataset.currentPhotoId).not.toBe(initial);
-    carousel.destroy();
-    vi.useRealTimers();
-  });
-
-  it("does not let pointer-created focus freeze autoplay", async () => {
-    vi.useFakeTimers();
-    const mount = document.createElement("div");
-    document.body.append(mount);
-    const carousel = new HeroCarousel(mount, [photo("1"), photo("2"), photo("3")], "2099–00");
-    const region = mount.querySelector<HTMLElement>('[aria-roledescription="carousel"]')!;
     const nextButton = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-icon-button")].at(-1)!;
-    const stage = mount.querySelector<HTMLElement>(".hrv-carousel__stage")!;
 
-    region.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
     nextButton.focus();
-    await Promise.resolve();
     const focusedPosition = stage.dataset.currentPhotoId;
     vi.advanceTimersByTime(7_001);
 
@@ -105,20 +85,23 @@ describe("featured-memory carousel", () => {
     vi.useRealTimers();
   });
 
-  it("pauses autoplay for keyboard focus and resumes after focus leaves", () => {
+  it("provides an explicit pause and resume control", () => {
     vi.useFakeTimers();
     const mount = document.createElement("div");
     document.body.append(mount);
     const carousel = new HeroCarousel(mount, [photo("1"), photo("2"), photo("3")], "2099–00");
-    const region = mount.querySelector<HTMLElement>('[aria-roledescription="carousel"]')!;
     const stage = mount.querySelector<HTMLElement>(".hrv-carousel__stage")!;
+    const pause = mount.querySelector<HTMLButtonElement>(".hrv-carousel__pause")!;
     const initial = stage.dataset.currentPhotoId;
 
-    region.focus();
-    vi.advanceTimersByTime(7_001);
+    pause.click();
+    expect(pause.getAttribute("aria-pressed")).toBe("true");
+    expect(pause.getAttribute("aria-label")).toContain("Resume");
+    vi.advanceTimersByTime(14_000);
     expect(stage.dataset.currentPhotoId).toBe(initial);
 
-    region.blur();
+    pause.click();
+    expect(pause.getAttribute("aria-pressed")).toBe("false");
     vi.advanceTimersByTime(7_001);
     expect(stage.dataset.currentPhotoId).not.toBe(initial);
 
