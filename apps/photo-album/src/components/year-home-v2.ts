@@ -1,21 +1,8 @@
-import constellationOrnamentUrl from "../assets/ornament-constellation.svg?url";
-import discoveryOrnamentUrl from "../assets/ornament-discovery.svg?url";
-import gardenOrnamentUrl from "../assets/ornament-garden.svg?url";
-import harvestOrnamentUrl from "../assets/ornament-harvest.svg?url";
-import woodlandOrnamentUrl from "../assets/ornament-woodland.svg?url";
 import type { PhotoYearDescriptor } from "../data/year-catalog";
 import type { PhotoAlbumRoute } from "../runtime/router-v2";
 import type { AlbumCollection, AlbumViewModel, PhotoAlbumManifest, PhotoRecord } from "../types";
 import { createElement } from "../utils/dom";
 import { MemoryCarouselV2 } from "./memory-carousel-v2";
-
-const ORNAMENT_URLS = {
-  harvest: harvestOrnamentUrl,
-  discovery: discoveryOrnamentUrl,
-  woodland: woodlandOrnamentUrl,
-  garden: gardenOrnamentUrl,
-  constellation: constellationOrnamentUrl,
-} as const;
 
 export interface YearHomeOptions {
   manifest: PhotoAlbumManifest;
@@ -190,12 +177,6 @@ export class YearHomeV2 {
     } else {
       media.append(createElement("span", "hrv-album-card__placeholder", "A new memory is on its way"));
     }
-
-    const ornament = createElement("img", "hrv-album-card__ornament");
-    ornament.src = ORNAMENT_URLS[album.theme];
-    ornament.alt = "";
-    ornament.setAttribute("aria-hidden", "true");
-    media.append(ornament);
 
     const body = createElement("span", "hrv-album-card__body");
     body.append(
