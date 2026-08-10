@@ -3,8 +3,6 @@ import type { HubManifest, HubMountOptions, HubRecord } from "./types";
 
 const DEFAULT_MANIFEST_URL = "./hub.manifest.json";
 const ROOT_CLASS = "hrv-explorations-hub";
-const ARCHIVE_HASH_PREFIX = "#hrv-explorations/archive/";
-const HOME_HASH = "#hrv-explorations";
 const mounted = new WeakMap<HTMLElement, HubController>();
 
 function element<K extends keyof HTMLElementTagNameMap>(tag: K, className?: string, text?: string): HTMLElementTagNameMap[K] {
@@ -26,6 +24,13 @@ function safeExternalLink(url: string | null): string | null {
 
 function schoolYearDisplay(manifest: HubManifest, id: string): string {
   return manifest.schoolYears.find((year) => year.id === id)?.display ?? id.replace("-", "–");
+}
+
+function applyRecordVisualState(node: HTMLElement, record: HubRecord): void {
+  node.dataset.recordId = record.id;
+  node.dataset.theme = record.theme;
+  node.dataset.animation = record.animation;
+  node.dataset.status = record.status;
 }
 
 function assertManifest(value: unknown): asserts value is HubManifest {
@@ -57,8 +62,7 @@ function createAction(label: string, href: string, className = "hrv-hub-button")
 
 function createMedia(record: HubRecord, modifier = ""): HTMLElement {
   const media = element("div", `hrv-hub-media ${modifier}`.trim());
-  media.dataset.theme = record.theme;
-  media.dataset.animation = record.animation;
+  applyRecordVisualState(media, record);
   if (record.imageUrl) {
     const image = element("img");
     image.src = record.imageUrl;
@@ -77,7 +81,7 @@ function createMedia(record: HubRecord, modifier = ""): HTMLElement {
 function createArchiveCard(record: HubRecord): HTMLElement {
   const article = element("article", "hrv-hub-archive-card");
   article.dataset.type = record.type;
-  article.dataset.recordId = record.id;
+  applyRecordVisualState(article, record);
   article.append(createMedia(record, "hrv-hub-archive-card__media"));
 
   const body = element("div", "hrv-hub-archive-card__body");
@@ -101,7 +105,6 @@ function createArchiveCard(record: HubRecord): HTMLElement {
 class HubController {
   private manifest: HubManifest | null = null;
   private destroyed = false;
-  private readonly onHashChange = () => this.renderRoute();
 
   constructor(private readonly root: HTMLElement, private readonly options: HubMountOptions) {}
 
@@ -111,8 +114,7 @@ class HubController {
     try {
       this.manifest = await loadManifest(this.options.manifestUrl ?? DEFAULT_MANIFEST_URL);
       if (this.destroyed) return;
-      window.addEventListener("hashchange", this.onHashChange);
-      this.renderRoute();
+      this.renderHome();
     } catch (error) {
       if (!this.destroyed) this.renderFailure(error instanceof Error ? error.message : "The Hub could not be loaded.");
     }
@@ -120,7 +122,6 @@ class HubController {
 
   destroy(): void {
     this.destroyed = true;
-    window.removeEventListener("hashchange", this.onHashChange);
     this.root.replaceChildren();
     this.root.classList.remove(ROOT_CLASS);
     delete this.root.dataset.layout;
@@ -153,17 +154,6 @@ class HubController {
     this.root.replaceChildren(state);
   }
 
-  private renderRoute(): void {
-    if (!this.manifest) return;
-    this.root.removeAttribute("aria-busy");
-    const hash = window.location.hash;
-    if (hash.startsWith(ARCHIVE_HASH_PREFIX)) {
-      this.renderArchive(hash.slice(ARCHIVE_HASH_PREFIX.length));
-    } else {
-      this.renderHome();
-    }
-  }
-
   private renderShell(main: HTMLElement): void {
     const skip = createAction("Skip to Hub content", "#hrv-explorations-main", "hrv-hub-skip-link");
     const shell = element("div", "hrv-hub-shell");
@@ -173,12 +163,13 @@ class HubController {
 
   private renderHome(): void {
     const manifest = this.manifest!;
+    this.root.removeAttribute("aria-busy");
     const year = manifest.page.currentSchoolYear;
     const currentExploration = manifest.records.find((record) => record.schoolYear === year && record.type === "exploration" && record.status === "current");
     const currentTwwl = manifest.records.find((record) => record.schoolYear === year && record.type === "twwl" && ["current", "coming-soon"].includes(record.status));
     const video = manifest.records.find((record) => record.schoolYear === year && record.type === "video" && record.status === "current");
-    const pastExplorations = manifest.records.filter((record) => record.schoolYear === year && record.type === "exploration" && ["past", "archived"].includes(record.status));
-    const pastTwwl = manifest.records.filter((record) => record.schoolYear === year && record.type === "twwl" && ["past", "archived"].includes(record.status));
+    const pastExplorations = manifest.records.filter((record) => record.schoolYear === year && record.type === "exploration" && record.status === "past");
+    const pastTwwl = manifest.records.filter((record) => record.schoolYear === year && record.type === "twwl" && record.status === "past");
     const doorways = manifest.records.filter((record) => record.type === "archive-doorway").sort((a, b) => b.schoolYear.localeCompare(a.schoolYear));
 
     const main = element("main", "hrv-hub-main");
@@ -186,7 +177,7 @@ class HubController {
     main.append(this.createHero(manifest));
     if (video) main.append(this.createVideo(video));
     if (currentExploration) main.append(this.createCurrentExploration(currentExploration));
-    if (currentTwwl) main.append(this.createCurrentTwwl(currentTwwl, doorways[0]));
+    if (currentTwwl) main.append(this.createCurrentTwwl(currentTwwl));
     main.append(this.createCurrentArchiveSection("Past Explorations", "Completed explorations from this school year will gather here.", pastExplorations, "exploration"));
     main.append(this.createCurrentArchiveSection("Past This Week We Learned", "Approved learning recaps from this school year will gather here.", pastTwwl, "twwl"));
     main.append(this.createArchiveDoorways(doorways));
@@ -196,6 +187,7 @@ class HubController {
 
   private createHero(manifest: HubManifest): HTMLElement {
     const hero = element("header", "hrv-hub-hero");
+    hero.dataset.theme = manifest.page.theme;
     const compass = element("div", "hrv-hub-compass");
     compass.setAttribute("aria-hidden", "true");
     compass.innerHTML = '<span class="hrv-hub-compass__ring"></span><span class="hrv-hub-compass__needle">◆</span>';
@@ -213,6 +205,7 @@ class HubController {
 
   private createVideo(record: HubRecord): HTMLElement {
     const section = element("section", "hrv-hub-section hrv-hub-video");
+    applyRecordVisualState(section, record);
     section.append(element("p", "hrv-hub-eyebrow", "Welcome Theater"), element("h2", "hrv-hub-section__title", record.title), element("p", "hrv-hub-section__lead", record.summary));
     const embedUrl = record.media?.embedUrl;
     if (embedUrl?.startsWith("https://www.youtube-nocookie.com/embed/")) {
@@ -231,6 +224,7 @@ class HubController {
 
   private createCurrentExploration(record: HubRecord): HTMLElement {
     const section = element("section", "hrv-hub-feature hrv-hub-feature--exploration");
+    applyRecordVisualState(section, record);
     const copy = element("div", "hrv-hub-feature__copy");
     copy.append(element("p", "hrv-hub-eyebrow", "Current Exploration"), element("h2", "hrv-hub-feature__title", record.title), element("p", "hrv-hub-feature__summary", record.summary));
     if (record.learningPoints?.length) {
@@ -244,8 +238,9 @@ class HubController {
     return section;
   }
 
-  private createCurrentTwwl(record: HubRecord, archiveDoorway?: HubRecord): HTMLElement {
+  private createCurrentTwwl(record: HubRecord): HTMLElement {
     const section = element("section", "hrv-hub-feature hrv-hub-feature--twwl");
+    applyRecordVisualState(section, record);
     const copy = element("div", "hrv-hub-feature__copy");
     copy.append(element("p", "hrv-hub-eyebrow", "This Week We Learned"), element("h2", "hrv-hub-feature__title", record.title), element("p", "hrv-hub-feature__summary", record.summary));
     const actions = element("div", "hrv-hub-actions");
@@ -257,7 +252,6 @@ class HubController {
       const href = safeExternalLink(record.pageUrl);
       if (href) actions.append(createAction("Read this recap", href));
     }
-    if (archiveDoorway?.archiveSchoolYear) actions.append(createAction("Open previous learning", `${ARCHIVE_HASH_PREFIX}${archiveDoorway.archiveSchoolYear}`, "hrv-hub-button hrv-hub-button--secondary"));
     copy.append(actions);
     section.append(copy, createMedia(record, "hrv-hub-feature__media"));
     return section;
@@ -278,73 +272,26 @@ class HubController {
 
   private createArchiveDoorways(records: HubRecord[]): HTMLElement {
     const section = element("section", "hrv-hub-section hrv-hub-archive-doorways");
-    section.append(element("p", "hrv-hub-eyebrow", "Archive Gallery"), element("h2", "hrv-hub-section__title", "Previous school years"), element("p", "hrv-hub-section__lead", "Completed classroom work stays easy to revisit without competing with what is happening now."));
+    section.append(
+      element("p", "hrv-hub-eyebrow", "Last Year"),
+      element("h2", "hrv-hub-section__title", "Previous school years"),
+      element("p", "hrv-hub-section__lead", "Completed classroom work stays easy to revisit without competing with what is happening now."),
+    );
     const grid = element("div", "hrv-hub-door-grid");
     for (const record of records) {
       const card = element("article", "hrv-hub-door");
+      applyRecordVisualState(card, record);
       card.append(element("span", "hrv-hub-door__emoji", record.emoji), element("h3", "hrv-hub-door__title", record.title), element("p", "hrv-hub-door__summary", record.summary));
-      if (record.archiveSchoolYear) card.append(createAction(`Enter ${schoolYearDisplay(this.manifest!, record.archiveSchoolYear)} archive`, `${ARCHIVE_HASH_PREFIX}${record.archiveSchoolYear}`));
+      const href = safeExternalLink(record.pageUrl);
+      if (href) {
+        card.append(createAction(`Enter ${schoolYearDisplay(this.manifest!, record.archiveSchoolYear ?? record.schoolYear)} archive`, href));
+      } else {
+        const pending = element("span", "hrv-hub-coming-soon", "Archive conversion coming soon");
+        pending.setAttribute("role", "status");
+        card.append(pending);
+      }
       grid.append(card);
     }
-    section.append(grid);
-    return section;
-  }
-
-  private renderArchive(year: string): void {
-    const manifest = this.manifest!;
-    const knownYear = manifest.schoolYears.find((item) => item.id === year && item.status === "archived");
-    if (!knownYear) {
-      window.location.hash = HOME_HASH;
-      return;
-    }
-    const explorationRecords = manifest.records.filter((record) => record.schoolYear === year && record.type === "exploration" && ["past", "archived"].includes(record.status)).sort((a, b) => a.order - b.order);
-    const twwlRecords = manifest.records.filter((record) => record.schoolYear === year && record.type === "twwl" && ["past", "archived"].includes(record.status)).sort((a, b) => a.order - b.order);
-
-    const main = element("main", "hrv-hub-main hrv-hub-archive-view");
-    main.id = "hrv-explorations-main";
-    const header = element("header", "hrv-hub-archive-hero");
-    header.append(createAction("← Back to current year", HOME_HASH, "hrv-hub-text-link"), element("p", "hrv-hub-eyebrow", "School-year archive"), element("h1", "hrv-hub-archive-hero__title", `${knownYear.display} Explorations Archive`), element("p", "hrv-hub-archive-hero__summary", "A preserved gallery of completed Explorations and weekly learning from this school year."));
-    main.append(header);
-
-    const searchWrap = element("div", "hrv-hub-search");
-    const label = element("label", "hrv-hub-search__label", "Search this archive");
-    label.htmlFor = "hrv-hub-archive-search";
-    const input = element("input", "hrv-hub-search__input");
-    input.id = "hrv-hub-archive-search";
-    input.type = "search";
-    input.placeholder = "Try owls, spiders, mushrooms…";
-    searchWrap.append(label, input);
-    main.append(searchWrap);
-
-    const explorationSection = this.createArchiveGroup("Past Explorations", "Exploration Hall", explorationRecords);
-    const twwlSection = this.createArchiveGroup("Past This Week We Learned", "Learning Gallery", twwlRecords);
-    main.append(explorationSection, twwlSection, this.createFooter());
-    this.renderShell(main);
-
-    const cards = [...main.querySelectorAll<HTMLElement>(".hrv-hub-archive-card")];
-    input.addEventListener("input", () => {
-      const query = input.value.trim().toLocaleLowerCase();
-      cards.forEach((card) => {
-        const haystack = card.textContent?.toLocaleLowerCase() ?? "";
-        card.hidden = query !== "" && !haystack.includes(query);
-      });
-    });
-  }
-
-  private createArchiveGroup(title: string, eyebrow: string, records: HubRecord[]): HTMLElement {
-    const section = element("section", "hrv-hub-section hrv-hub-archive-group");
-    section.append(element("p", "hrv-hub-eyebrow", eyebrow), element("h2", "hrv-hub-section__title", title));
-    if (records.length === 0) {
-      section.append(element("p", "hrv-hub-empty", "No verified records are available for this section."));
-      return section;
-    }
-    const grid = element("div", "hrv-hub-card-grid");
-    grid.setAttribute("role", "list");
-    records.forEach((record) => {
-      const card = createArchiveCard(record);
-      card.setAttribute("role", "listitem");
-      grid.append(card);
-    });
     section.append(grid);
     return section;
   }
