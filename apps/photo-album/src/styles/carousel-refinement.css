@@ -1,0 +1,86 @@
+.hrv-photo-album .hrv-carousel__stage {
+  transition: opacity 240ms ease;
+}
+
+.hrv-photo-album .hrv-carousel__slide {
+  filter: saturate(.9) brightness(.97);
+  transform: translateZ(0) scale(.92);
+  transition:
+    left 920ms cubic-bezier(.22, .82, .18, 1),
+    width 920ms cubic-bezier(.22, .82, .18, 1),
+    height 920ms cubic-bezier(.22, .82, .18, 1),
+    top 920ms cubic-bezier(.22, .82, .18, 1),
+    opacity 660ms ease,
+    box-shadow 920ms ease,
+    transform 920ms cubic-bezier(.22, .82, .18, 1),
+    filter 920ms ease;
+  will-change: left, top, width, height, transform, opacity;
+}
+
+.hrv-photo-album .hrv-carousel__slide--previous {
+  filter: saturate(.86) brightness(.94);
+  transform: perspective(1000px) rotateY(4deg) scale(.92);
+  transform-origin: right center;
+}
+
+.hrv-photo-album .hrv-carousel__slide--current {
+  filter: saturate(1) brightness(1);
+  transform: perspective(1000px) rotateY(0deg) scale(1);
+  transform-origin: center;
+}
+
+.hrv-photo-album .hrv-carousel__slide--next {
+  filter: saturate(.86) brightness(.94);
+  transform: perspective(1000px) rotateY(-4deg) scale(.92);
+  transform-origin: left center;
+}
+
+.hrv-photo-album .hrv-carousel__stage.is-moving-next .hrv-carousel__slide--previous {
+  filter: saturate(.72) brightness(.9);
+  transform: translateX(-10%) perspective(1000px) rotateY(8deg) scale(.84);
+}
+
+.hrv-photo-album .hrv-carousel__stage.is-moving-next .hrv-carousel__slide--current {
+  filter: saturate(.86) brightness(.94);
+  transform: perspective(1000px) rotateY(4deg) scale(.92);
+  transform-origin: right center;
+}
+
+.hrv-photo-album .hrv-carousel__stage.is-moving-next .hrv-carousel__slide--next {
+  filter: saturate(1) brightness(1);
+  transform: perspective(1000px) rotateY(0deg) scale(1);
+  transform-origin: center;
+}
+
+.hrv-photo-album .hrv-carousel__stage.is-moving-previous .hrv-carousel__slide--next {
+  filter: saturate(.72) brightness(.9);
+  transform: translateX(10%) perspective(1000px) rotateY(-8deg) scale(.84);
+}
+
+.hrv-photo-album .hrv-carousel__stage.is-moving-previous .hrv-carousel__slide--current {
+  filter: saturate(.86) brightness(.94);
+  transform: perspective(1000px) rotateY(-4deg) scale(.92);
+  transform-origin: left center;
+}
+
+.hrv-photo-album .hrv-carousel__stage.is-moving-previous .hrv-carousel__slide--previous {
+  filter: saturate(1) brightness(1);
+  transform: perspective(1000px) rotateY(0deg) scale(1);
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hrv-photo-album .hrv-carousel__stage {
+    transition: opacity 240ms ease !important;
+  }
+
+  .hrv-photo-album .hrv-carousel__stage.is-reduced-fading {
+    opacity: .22;
+  }
+
+  .hrv-photo-album .hrv-carousel__slide {
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
