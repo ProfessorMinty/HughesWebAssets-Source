@@ -72,7 +72,8 @@ Hub-specific behavior that the museum still needs must be moved into the permane
 - neutralize the Amadeus article/card shell where it prevents the full-width museum;
 - make the page-17 content lane full width and remove the sidebar lane for this route;
 - contain compatibility behavior to page 17 / the Hub root;
-- keep the semantic fallback recognizable as Classroom Explorations rather than a bare error box.
+- keep the semantic fallback recognizable as Classroom Explorations rather than a bare error box;
+- restore the useful automatic scroll below the Amadeus header as a page-local Hub behavior, while skipping anchors/admin/customizer, respecting reduced motion, and never fighting a visitor who has already begun scrolling.
 
 These responsibilities belong in the page-local Edublogs compatibility bridge or repository-scoped Hub package, not in recreated global widgets.
 
@@ -87,8 +88,7 @@ Also do not restore:
 - fake public-looking celebration counts;
 - permanent helper-hide localStorage state;
 - Hub membership inferred from rendered DOM scraping;
-- broad global CSS rescue rules merely because the deleted widgets once contained them;
-- the old forced auto-scroll unless a later verified requirement explicitly reinstates it.
+- broad global CSS rescue rules merely because the deleted widgets once contained them.
 
 A local optional Celebrate animation is allowed. It must not imply shared state and must honor reduced motion.
 
