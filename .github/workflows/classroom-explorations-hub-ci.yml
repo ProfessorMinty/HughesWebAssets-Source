@@ -1,0 +1,40 @@
+name: Classroom Explorations Hub CI
+
+on:
+  push:
+    branches:
+      - feature/classroom-explorations-hub-v1
+  pull_request:
+    paths:
+      - 'apps/classroom-explorations-hub/**'
+      - 'schemas/classroom-explorations-hub.schema.json'
+      - 'tools/build-classroom-explorations-hub.mjs'
+      - 'tools/stage-classroom-explorations-hub-release.mjs'
+      - 'tests/classroom-explorations-hub.test.ts'
+      - 'vite.hub.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-hub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test and build Hub
+        run: npm run check:hub
