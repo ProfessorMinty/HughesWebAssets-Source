@@ -14,14 +14,14 @@ const root = resolve(new URL("..", import.meta.url).pathname);
 const dist = resolve(root, "dist/classroom-explorations-hub");
 const target = resolve(root, `releases/classroom-explorations-hub/${version}`);
 
-const required = {
-  bootstrap: resolve(dist, "bootstrap.js"),
-  script: resolve(dist, "assets/classroom-explorations-hub.js"),
-  style: resolve(dist, "assets/classroom-explorations-hub.css"),
-  content: resolve(dist, "hub.manifest.json"),
-};
-
-await Promise.all(Object.values(required).map((file) => stat(file)));
+const requiredFiles = [
+  resolve(dist, "bootstrap.js"),
+  resolve(dist, "host-compat.css"),
+  resolve(dist, "assets/classroom-explorations-hub.js"),
+  resolve(dist, "assets/classroom-explorations-hub.css"),
+  resolve(dist, "hub.manifest.json")
+];
+await Promise.all(requiredFiles.map((file) => stat(file)));
 
 try {
   await access(target, constants.F_OK);
@@ -33,8 +33,9 @@ try {
 await mkdir(target, { recursive: true });
 await cp(dist, target, { recursive: true, force: false });
 
-async function sha256(file) {
-  return createHash("sha256").update(await readFile(file)).digest("hex");
+async function digest(relativePath) {
+  const bytes = await readFile(resolve(target, relativePath));
+  return createHash("sha256").update(bytes).digest("hex");
 }
 
 const manifest = JSON.parse(await readFile(resolve(target, "hub.manifest.json"), "utf8"));
@@ -54,25 +55,11 @@ const release = {
     schemaVersion: "1.0"
   },
   assets: {
-    bootstrap: {
-      path: "bootstrap.js",
-      type: "classic",
-      sha256: await sha256(resolve(target, "bootstrap.js"))
-    },
-    script: {
-      path: "assets/classroom-explorations-hub.js",
-      type: "module",
-      sha256: await sha256(resolve(target, "assets/classroom-explorations-hub.js"))
-    },
-    style: {
-      path: "assets/classroom-explorations-hub.css",
-      sha256: await sha256(resolve(target, "assets/classroom-explorations-hub.css"))
-    },
-    content: {
-      path: "hub.manifest.json",
-      schemaVersion: manifest.schemaVersion,
-      sha256: await sha256(resolve(target, "hub.manifest.json"))
-    }
+    bootstrap: { path: "bootstrap.js", type: "classic", sha256: await digest("bootstrap.js") },
+    compatStyle: { path: "host-compat.css", sha256: await digest("host-compat.css") },
+    script: { path: "assets/classroom-explorations-hub.js", type: "module", sha256: await digest("assets/classroom-explorations-hub.js") },
+    style: { path: "assets/classroom-explorations-hub.css", sha256: await digest("assets/classroom-explorations-hub.css") },
+    content: { path: "hub.manifest.json", schemaVersion: manifest.schemaVersion, sha256: await digest("hub.manifest.json") }
   },
   rollbackRelease
 };
