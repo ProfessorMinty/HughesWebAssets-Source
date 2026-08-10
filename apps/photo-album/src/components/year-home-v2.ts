@@ -1,21 +1,8 @@
-import atomUrl from "../assets/ornament-discovery.svg?url";
-import flowerUrl from "../assets/ornament-garden.svg?url";
-import pumpkinUrl from "../assets/ornament-harvest.svg?url";
-import constellationUrl from "../assets/ornament-constellation.svg?url";
-import mushroomUrl from "../assets/ornament-woodland.svg?url";
 import type { PhotoYearDescriptor } from "../data/year-catalog";
 import type { PhotoAlbumRoute } from "../runtime/router-v2";
-import type { AlbumCollection, AlbumTheme, AlbumViewModel, PhotoAlbumManifest, PhotoRecord } from "../types";
+import type { AlbumCollection, AlbumViewModel, PhotoAlbumManifest, PhotoRecord } from "../types";
 import { createElement } from "../utils/dom";
 import { MemoryCarouselV2 } from "./memory-carousel-v2";
-
-const ORNAMENTS: Record<AlbumTheme, string> = {
-  harvest: pumpkinUrl,
-  discovery: atomUrl,
-  woodland: mushroomUrl,
-  garden: flowerUrl,
-  constellation: constellationUrl,
-};
 
 export interface YearHomeOptions {
   manifest: PhotoAlbumManifest;
@@ -197,15 +184,9 @@ export class YearHomeV2 {
       media.append(createElement("span", "hrv-v2-album-card__placeholder", "A memory is on its way"));
     }
 
-    const ornamentLeft = createElement("img", "hrv-v2-album-card__ornament hrv-v2-album-card__ornament--left");
-    const ornamentRight = createElement("img", "hrv-v2-album-card__ornament hrv-v2-album-card__ornament--right");
-    ornamentLeft.src = ORNAMENTS[album.theme];
-    ornamentRight.src = ORNAMENTS[album.theme];
-    ornamentLeft.alt = "";
-    ornamentRight.alt = "";
-    ornamentLeft.setAttribute("aria-hidden", "true");
-    ornamentRight.setAttribute("aria-hidden", "true");
-    media.append(ornamentLeft, ornamentRight);
+    const frame = createElement("span", "hrv-v2-album-card__frame");
+    frame.setAttribute("aria-hidden", "true");
+    media.append(frame);
 
     const body = createElement("span", "hrv-v2-album-card__body");
     body.append(
@@ -215,8 +196,11 @@ export class YearHomeV2 {
         "hrv-v2-album-card__count",
         `${album.photos.length} ${album.photos.length === 1 ? "photo" : "photos"}`,
       ),
+      createElement("span", "hrv-v2-album-card__action", "View album  ›"),
     );
-    card.append(media, body);
+
+    // Replace the text node created by createLink. The card presentation owns all visible copy.
+    card.replaceChildren(media, body);
     return card;
   }
 
