@@ -1,6 +1,6 @@
 import "./styles/photo-album.css";
-import "./styles/carousel-refinement.css";
-import { PhotoAlbumApp } from "./app";
+import "./styles/photo-album-v2.css";
+import { PhotoAlbumAppV2 } from "./app-v2";
 import type { PhotoAlbumOptions } from "./config";
 
 export interface MountedPhotoAlbum {
@@ -21,7 +21,7 @@ export function mountPhotoAlbum(
   const existing = mountedApps.get(target);
   if (existing) return existing;
 
-  const app = new PhotoAlbumApp(target, options);
+  const app = new PhotoAlbumAppV2(target, options);
   const mounted: MountedPhotoAlbum = {
     ready: app.start(),
     destroy: () => {
