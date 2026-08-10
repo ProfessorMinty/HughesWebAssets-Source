@@ -1,0 +1,62 @@
+name: Stage Photo Album V2 Preview 2026.08.10.10
+
+on:
+  push:
+    branches:
+      - photo-album-home-v2-rebuild
+    paths:
+      - ".github/workflows/photo-album-v2-preview-2026-08-10-10.yml"
+      - "apps/photo-album/**"
+      - "tests/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tools/stage-photo-album-release.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  verify-build-stage-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out V2 rebuild branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Typecheck and build
+        run: npm run build
+
+      - name: Stage isolated preview
+        shell: bash
+        run: |
+          if [ -d "releases/photo-album/2026.08.10.10" ]; then
+            echo "Preview 2026.08.10.10 already exists; verification completed."
+            exit 0
+          fi
+          node tools/stage-photo-album-release.mjs 2026.08.10.10
+
+      - name: Commit isolated preview
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/photo-album/2026.08.10.10
+          if git diff --cached --quiet; then
+            echo "No preview changes to commit."
+            exit 0
+          fi
+          git commit -m "Stage Photo Album V2 preview 2026.08.10.10"
+          git push
