@@ -33,7 +33,6 @@ const runtimeMuseumSignatures = [
   "Archive Gallery",
   "Learning Archive",
   "Previous School Years",
-  "Pack your curiosity",
   "Zinnia Greenhouse",
 ];
 for (const signature of runtimeMuseumSignatures) {
@@ -65,6 +64,8 @@ if (runtime.includes("hrv-hub-feature--exploration") || runtime.includes("hrv-hu
 
 if (manifest.contentVersion !== "2026.08.10.4") failures.push("generated manifest contentVersion is not the museum rebuild version");
 if (manifest.page?.museum?.kicker !== "Museum Entrance • Greenhouse Glow • Discovery Hub") failures.push("generated manifest lost the museum entrance identity");
+if (manifest.page?.museum?.footer !== "Pack your curiosity—adventures await.") failures.push("generated manifest lost the museum footer identity");
+if (JSON.stringify(manifest.page?.museum?.pillars) !== JSON.stringify(["Inquiry", "Teamwork", "Creativity", "Real-World Science"])) failures.push("generated manifest lost the original learning pillars");
 if (manifest.records?.length !== 4) failures.push("launch museum manifest must contain exactly four records");
 if (manifest.records?.some((record) => record.schoolYear === "2025-2026" && ["exploration", "twwl"].includes(record.type))) failures.push("legacy 2025-2026 cards leaked back into the current Hub manifest");
 
