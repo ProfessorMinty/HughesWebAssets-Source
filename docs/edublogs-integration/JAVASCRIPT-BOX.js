@@ -1,6 +1,46 @@
 (function () {
   "use strict";
 
+  var TEMPORARY_BANNER_ID = "hrv-photo-album-construction-banner";
+
+  function ensureTemporaryConstructionBanner(mount) {
+    var albumsSection = mount.querySelector(".hrv-albums-section");
+    var existing = mount.querySelector("#" + TEMPORARY_BANNER_ID);
+
+    if (!albumsSection) {
+      if (existing) existing.remove();
+      return;
+    }
+
+    if (existing && existing.nextElementSibling === albumsSection) {
+      return;
+    }
+
+    if (existing) existing.remove();
+
+    var banner = document.createElement("div");
+    banner.id = TEMPORARY_BANNER_ID;
+    banner.className = "hrv-notice hrv-photo-album-construction-banner";
+    banner.setAttribute("role", "status");
+    banner.textContent =
+      "🚧 Photo Album Under Construction · We’re still putting the finishing touches on the full Photo Album. In the meantime, enjoy these pretty pictures while we finish building it!";
+
+    albumsSection.parentNode.insertBefore(banner, albumsSection);
+  }
+
+  function watchForTemporaryConstructionBanner(mount) {
+    ensureTemporaryConstructionBanner(mount);
+
+    var observer = new MutationObserver(function () {
+      ensureTemporaryConstructionBanner(mount);
+    });
+
+    observer.observe(mount, {
+      childList: true,
+      subtree: true
+    });
+  }
+
   function loadHughesRoomViewsPhotoAlbum() {
     var mount = document.getElementById("hrv-photo-album");
 
@@ -12,16 +52,18 @@
     }
 
     if (mount.getAttribute("data-hrv-page-loader") === "started") {
+      watchForTemporaryConstructionBanner(mount);
       return;
     }
 
-    var releaseCommit = "__IMMUTABLE_COMMIT_SHA__";
+    var releaseCommit = "e555716fea82082c12629d135f861c1190816f5a";
     var releaseBase =
       "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
       releaseCommit +
-      "/releases/photo-album/2026.08.10.5/";
+      "/releases/photo-album/2026.08.10.10/";
 
     mount.setAttribute("data-hrv-page-loader", "started");
+    watchForTemporaryConstructionBanner(mount);
 
     var loader = document.createElement("script");
     loader.src = releaseBase + "bootstrap.js";
