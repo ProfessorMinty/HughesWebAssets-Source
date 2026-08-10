@@ -19,7 +19,7 @@
     var releaseBase =
       "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
       releaseCommit +
-      "/releases/photo-album/2026.08.10.3/";
+      "/releases/photo-album/2026.08.10.4/";
 
     mount.setAttribute("data-hrv-page-loader", "started");
 
