@@ -18,8 +18,15 @@ export interface CarouselControllerOptions {
   onChange?: (change: CarouselChange) => void;
 }
 
-const CAROUSEL_TRANSITION_MS = 920;
-const REDUCED_FADE_HALF_MS = 240;
+const CAROUSEL_TRANSITION_MS = 780;
+const REDUCED_FADE_HALF_MS = 180;
+const INITIAL_SLOTS = [-2, -1, 0, 1, 2] as const;
+
+interface CarouselSlideView {
+  button: HTMLButtonElement;
+  image: HTMLImageElement;
+  slot: number;
+}
 
 function shuffled<T>(items: readonly T[], random: () => number): T[] {
   const result = [...items];
@@ -119,16 +126,13 @@ export class CarouselController {
 export class HeroCarousel {
   private readonly controller: CarouselController;
   private readonly stage: HTMLElement;
-  private readonly previousSlide: HTMLButtonElement;
-  private readonly previousImage: HTMLImageElement;
-  private readonly currentSlide: HTMLButtonElement;
-  private readonly currentImage: HTMLImageElement;
-  private readonly nextSlide: HTMLButtonElement;
-  private readonly nextImage: HTMLImageElement;
+  private readonly slides: CarouselSlideView[] = [];
   private readonly status: HTMLElement;
   private readonly pauseButton: HTMLButtonElement;
+  private readonly onOpen: ((photo: PhotoRecord) => void) | undefined;
   private transitionTimer: number | null = null;
   private userPaused = false;
+  private transitioning = false;
 
   constructor(
     mount: HTMLElement,
@@ -136,6 +140,8 @@ export class HeroCarousel {
     schoolYear: string,
     onOpen?: (photo: PhotoRecord) => void,
   ) {
+    this.onOpen = onOpen;
+
     mount.classList.add("hrv-hero");
     mount.setAttribute("aria-labelledby", "hrv-featured-title");
 
@@ -157,11 +163,13 @@ export class HeroCarousel {
     carousel.setAttribute("aria-label", "Featured classroom memories");
 
     this.stage = createElement("div", "hrv-carousel__stage");
-    this.stage.setAttribute("aria-label", "Previous, current, and next featured memories");
-    [this.previousSlide, this.previousImage] = this.createSlide("previous");
-    [this.currentSlide, this.currentImage] = this.createSlide("current");
-    [this.nextSlide, this.nextImage] = this.createSlide("next");
-    this.stage.append(this.previousSlide, this.currentSlide, this.nextSlide);
+    this.stage.setAttribute("aria-label", "Featured memory carousel");
+
+    for (const slot of INITIAL_SLOTS) {
+      const view = this.createSlide(slot);
+      this.slides.push(view);
+      this.stage.append(view.button);
+    }
 
     const controls = createElement("div", "hrv-carousel__controls");
     const previous = createIconButton("Previous featured memory", "←", "hrv-icon-button");
@@ -175,6 +183,7 @@ export class HeroCarousel {
     this.status = createElement("p", "hrv-carousel__status");
     this.status.setAttribute("aria-live", "polite");
     controls.append(previous, this.status, this.pauseButton, next);
+
     carousel.append(this.stage, controls);
     mount.append(copy, carousel);
 
@@ -182,17 +191,11 @@ export class HeroCarousel {
       onChange: (change) => this.showChange(change),
     });
 
-    const initial = this.controller.current;
-    if (initial) {
-      this.renderTriplet();
-    }
+    this.renderInitialTrack();
 
-    this.currentSlide.addEventListener("click", () => {
-      const current = this.controller.current;
-      if (current) onOpen?.(current);
-    });
-    this.previousSlide.addEventListener("click", () => this.requestMove("previous"));
-    this.nextSlide.addEventListener("click", () => this.requestMove("next"));
+    for (const view of this.slides) {
+      view.button.addEventListener("click", () => this.onSlideClick(view));
+    }
 
     previous.addEventListener("click", () => this.requestMove("previous"));
     next.addEventListener("click", () => this.requestMove("next"));
@@ -221,21 +224,41 @@ export class HeroCarousel {
 
   private readonly onVisibilityChange = (): void => this.syncPlayback();
 
-  private createSlide(position: "previous" | "current" | "next"): [HTMLButtonElement, HTMLImageElement] {
-    const slide = createElement("button", `hrv-carousel__slide hrv-carousel__slide--${position}`);
-    slide.type = "button";
-    slide.dataset.position = position;
+  private createSlide(slot: number): CarouselSlideView {
+    const button = createElement("button", "hrv-carousel__slide");
+    button.type = "button";
+
     const image = createElement("img", "hrv-carousel__image");
     image.alt = "";
     image.decoding = "async";
-    image.loading = position === "current" ? "eager" : "lazy";
-    image.fetchPriority = position === "current" ? "high" : "low";
-    slide.append(image);
-    return [slide, image];
+    image.loading = slot === 0 ? "eager" : "lazy";
+    image.fetchPriority = slot === 0 ? "high" : "low";
+
+    button.append(image);
+
+    const view: CarouselSlideView = { button, image, slot };
+    this.applySlot(view, slot);
+    return view;
+  }
+
+  private onSlideClick(view: CarouselSlideView): void {
+    if (this.transitioning) return;
+    if (view.slot === 0) {
+      const current = this.controller.current;
+      if (current) this.onOpen?.(current);
+      return;
+    }
+    if (view.slot === -1) {
+      this.requestMove("previous");
+      return;
+    }
+    if (view.slot === 1) {
+      this.requestMove("next");
+    }
   }
 
   private requestMove(direction: CarouselDirection): void {
-    if (this.transitionTimer !== null) return;
+    if (this.transitioning) return;
     if (direction === "next") this.controller.next();
     else this.controller.previous();
   }
@@ -255,70 +278,112 @@ export class HeroCarousel {
     this.controller.setPaused(this.userPaused || document.hidden);
   }
 
+  private renderInitialTrack(): void {
+    const hasMultiplePhotos = this.controller.length > 1;
+
+    for (let index = 0; index < this.slides.length; index += 1) {
+      const view = this.slides[index];
+      const slot = INITIAL_SLOTS[index];
+      if (!view || slot === undefined) continue;
+      this.applySlot(view, slot);
+      const photo = this.controller.photoAtOffset(slot);
+      if (photo) this.updateSlidePhoto(view, photo);
+      view.button.hidden = !hasMultiplePhotos && slot !== 0;
+    }
+
+    this.pauseButton.hidden = !hasMultiplePhotos;
+    const current = this.controller.current;
+    if (current) this.stage.dataset.currentPhotoId = current.id;
+    this.updateStatus();
+  }
+
   private updateStatus(): void {
     this.status.textContent = `Memory ${this.controller.currentPosition + 1} of ${this.controller.length}`;
   }
 
-  private renderTriplet(): void {
-    const previous = this.controller.photoAtOffset(-1);
-    const current = this.controller.current;
-    const next = this.controller.photoAtOffset(1);
-    if (!previous || !current || !next) return;
-
-    this.updateSlide(this.previousSlide, this.previousImage, previous, "Show previous featured memory");
-    this.updateSlide(this.currentSlide, this.currentImage, current, "Open featured memory");
-    this.updateSlide(this.nextSlide, this.nextImage, next, "Show next featured memory");
-    const hasMultiplePhotos = this.controller.length > 1;
-    this.previousSlide.hidden = !hasMultiplePhotos;
-    this.nextSlide.hidden = !hasMultiplePhotos;
-    this.pauseButton.hidden = !hasMultiplePhotos;
-    this.stage.dataset.currentPhotoId = current.id;
-    this.updateStatus();
+  private updateSlidePhoto(view: CarouselSlideView, photo: PhotoRecord): void {
+    if (view.image.src !== photo.galleryUrl) {
+      view.image.src = photo.galleryUrl;
+    }
+    view.button.dataset.photoId = photo.id;
   }
 
-  private updateSlide(
-    slide: HTMLButtonElement,
-    image: HTMLImageElement,
-    photo: PhotoRecord,
-    label: string,
-  ): void {
-    image.src = photo.galleryUrl;
-    slide.dataset.photoId = photo.id;
-    slide.setAttribute("aria-label", label);
+  private applySlot(view: CarouselSlideView, slot: number): void {
+    view.slot = slot;
+    view.button.dataset.slot = String(slot);
+
+    const isOuter = Math.abs(slot) > 1;
+    view.button.tabIndex = isOuter ? -1 : 0;
+
+    if (isOuter) {
+      view.button.setAttribute("aria-hidden", "true");
+      view.button.removeAttribute("aria-label");
+      return;
+    }
+
+    view.button.removeAttribute("aria-hidden");
+    if (slot === 0) {
+      view.button.setAttribute("aria-label", "Open featured memory");
+    } else if (slot < 0) {
+      view.button.setAttribute("aria-label", "Show previous featured memory");
+    } else {
+      view.button.setAttribute("aria-label", "Show next featured memory");
+    }
   }
 
   private showChange(change: CarouselChange): void {
     this.stage.dataset.currentPhotoId = change.current.id;
     this.status.textContent = `Memory ${change.position + 1} of ${change.total}`;
-    this.stage.classList.remove(
-      "is-moving-next",
-      "is-moving-previous",
-      "is-reduced-fading",
-    );
 
     if (prefersReducedMotion()) {
-      void this.stage.offsetWidth;
-      this.stage.classList.add("is-reduced-fading");
-      this.transitionTimer = window.setTimeout(() => {
-        this.renderTriplet();
-        this.stage.classList.remove("is-reduced-fading");
-        this.transitionTimer = window.setTimeout(() => {
-          this.transitionTimer = null;
-        }, REDUCED_FADE_HALF_MS);
-      }, REDUCED_FADE_HALF_MS);
+      this.showReducedChange();
       return;
     }
 
-    void this.stage.offsetWidth;
-    this.stage.classList.add(change.direction === "next" ? "is-moving-next" : "is-moving-previous");
+    this.transitioning = true;
+    this.stage.classList.add("is-traveling");
+
+    const delta = change.direction === "next" ? -1 : 1;
+    for (const view of this.slides) {
+      this.applySlot(view, view.slot + delta);
+    }
 
     this.transitionTimer = window.setTimeout(() => {
-      this.stage.classList.add("is-resetting");
-      this.stage.classList.remove("is-moving-next", "is-moving-previous");
-      this.renderTriplet();
-      void this.stage.offsetWidth;
-      this.stage.classList.remove("is-resetting");
-      this.transitionTimer = null;
+      this.finishTrackMove(change.direction);
     }, CAROUSEL_TRANSITION_MS);
+  }
+
+  private finishTrackMove(direction: CarouselDirection): void {
+    this.stage.classList.add("is-recycling");
+
+    const outgoingSlot = direction === "next" ? -3 : 3;
+    const recycledSlot = direction === "next" ? 2 : -2;
+    const outgoing = this.slides.find((view) => view.slot === outgoingSlot);
+    const recycledPhoto = this.controller.photoAtOffset(recycledSlot);
+
+    if (outgoing && recycledPhoto) {
+      this.updateSlidePhoto(outgoing, recycledPhoto);
+      this.applySlot(outgoing, recycledSlot);
+      void outgoing.button.offsetWidth;
+    }
+
+    this.stage.classList.remove("is-traveling");
+    this.stage.classList.remove("is-recycling");
+    this.transitioning = false;
+    this.transitionTimer = null;
+  }
+
+  private showReducedChange(): void {
+    this.transitioning = true;
+    this.stage.classList.add("is-reduced-fading");
+
+    this.transitionTimer = window.setTimeout(() => {
+      this.renderInitialTrack();
+      this.stage.classList.remove("is-reduced-fading");
+      this.transitionTimer = window.setTimeout(() => {
+        this.transitioning = false;
+        this.transitionTimer = null;
+      }, REDUCED_FADE_HALF_MS);
+    }, REDUCED_FADE_HALF_MS);
   }
 }
