@@ -7,7 +7,7 @@
     "dev": "vite --config vite.config.ts",
     "dev:hub": "node tools/build-classroom-explorations-hub.mjs && vite --config vite.hub.config.ts",
     "build": "tsc --noEmit && vite build --config vite.config.ts",
-    "build:hub": "node tools/build-classroom-explorations-hub.mjs && tsc --noEmit && vite build --config vite.hub.config.ts",
+    "build:hub": "node tools/build-classroom-explorations-hub.mjs && tsc --noEmit && vite build --config vite.hub.config.ts && node tools/verify-classroom-explorations-hub-dist.mjs",
     "stage:photo-album-release": "node tools/stage-photo-album-release.mjs 2026.08.10.5",
     "stage:hub-release": "node tools/stage-classroom-explorations-hub-release.mjs",
     "preview": "vite preview --config vite.config.ts",

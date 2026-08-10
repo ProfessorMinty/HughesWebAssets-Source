@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { fileURLToPath } from "node:url";
 
 const appRoot = fileURLToPath(new URL("./apps/classroom-explorations-hub", import.meta.url));
+const entry = fileURLToPath(new URL("./apps/classroom-explorations-hub/src/entry.ts", import.meta.url));
 
 export default defineConfig({
   root: appRoot,
@@ -12,7 +13,10 @@ export default defineConfig({
     sourcemap: true,
     target: "es2022",
     rollupOptions: {
+      input: entry,
+      preserveEntrySignatures: "exports-only",
       output: {
+        format: "es",
         entryFileNames: "assets/classroom-explorations-hub.js",
         chunkFileNames: "assets/[name]-[hash].js",
         assetFileNames: (assetInfo) =>
