@@ -1,11 +1,58 @@
+/* Classroom Explorations Hub page-local compatibility + truthful fallback.
+   This replaces the Hub-relevant shell rules that previously lived in deleted global widgets. */
+
+body.page-id-17 h1.entry-title,
+body.page-id-17 .entry-header h1.entry-title {
+  display: none !important;
+}
+
+body.page-id-17 .content-area {
+  width: 100% !important;
+  max-width: none !important;
+  float: none !important;
+}
+
+body.page-id-17 .widget-area {
+  display: none !important;
+}
+
+body.page-id-17 .hentry,
+body.page-id-17 article.page {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.page-id-17 .entry-header,
+body.page-id-17 .entry-footer,
+body.page-id-17 .edit-link {
+  display: none !important;
+}
+
+body.page-id-17 .entry-content {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
 #hrv-classroom-explorations-root {
   display: block;
-  width: 100%;
-  max-width: 100%;
   box-sizing: border-box;
+  width: 100vw;
+  max-width: none !important;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
 }
 
 #hrv-classroom-explorations-root [data-hrv-native-fallback] {
+  box-sizing: border-box;
   max-width: 860px;
   margin: 1rem auto;
   padding: 1.25rem;
@@ -14,6 +61,7 @@
   background: #fbfaf6;
   color: #173044;
   line-height: 1.55;
+  box-shadow: 0 14px 38px rgba(23, 48, 68, 0.10);
 }
 
 #hrv-classroom-explorations-root [data-hrv-native-fallback] a {
@@ -25,4 +73,11 @@
 #hrv-classroom-explorations-root [data-hrv-native-fallback] a:focus-visible {
   outline: 3px solid #146f92;
   outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  #hrv-classroom-explorations-root [data-hrv-native-fallback] {
+    width: calc(100% - 24px);
+    margin: 12px auto;
+  }
 }
