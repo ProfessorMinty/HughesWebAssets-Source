@@ -1,0 +1,6 @@
+node_modules/
+# Transient local build output. Immutable browser releases are committed under releases/.
+dist/
+.vite/
+coverage/
+*.log

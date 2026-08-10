@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "albumId": "photo-album-fixture-year",
+  "schoolYear": "2099-00",
+  "source": {
+    "type": "fixture",
+    "rootFolderId": "fixture-root",
+    "rootFolderName": "Fixture Current"
+  },
+  "generatedAt": "2099-08-10T00:00:00.000Z",
+  "albums": [
+    {
+      "id": "fixture-garden",
+      "name": "Fixture Garden",
+      "photoCount": 2
+    },
+    {
+      "id": "fixture-science",
+      "name": "Fixture Science Museum",
+      "photoCount": 2
+    }
+  ],
+  "photos": [
+    {
+      "id": "fixture-photo-1",
+      "revision": "2099-08-09T12:00:00.000Z",
+      "albumId": "fixture-garden",
+      "albumName": "Fixture Garden",
+      "name": "fixture-1.jpg",
+      "alt": "",
+      "url": "https://photos.example.test/media/derivatives/gallery/fixture-photo-1/revision.jpg",
+      "fullSizeUrl": "https://photos.example.test/media/derivatives/full/fixture-photo-1/revision.jpg"
+    },
+    {
+      "id": "fixture-photo-2",
+      "revision": "2099-08-09T12:01:00.000Z",
+      "albumId": "fixture-garden",
+      "albumName": "Fixture Garden",
+      "name": "fixture-2.jpg",
+      "alt": "A fixture garden photograph",
+      "url": "https://photos.example.test/media/derivatives/gallery/fixture-photo-2/revision.jpg",
+      "fullSizeUrl": "https://photos.example.test/media/derivatives/full/fixture-photo-2/revision.jpg"
+    },
+    {
+      "id": "fixture-photo-3",
+      "revision": "2099-08-09T12:02:00.000Z",
+      "albumId": "fixture-science",
+      "albumName": "Fixture Science Museum",
+      "name": "fixture-3.jpg",
+      "alt": "",
+      "url": "https://photos.example.test/media/derivatives/gallery/fixture-photo-3/revision.jpg",
+      "fullSizeUrl": "https://photos.example.test/media/derivatives/full/fixture-photo-3/revision.jpg"
+    },
+    {
+      "id": "fixture-photo-4",
+      "revision": "2099-08-09T12:03:00.000Z",
+      "albumId": "fixture-science",
+      "albumName": "Fixture Science Museum",
+      "name": "fixture-4.jpg",
+      "alt": "",
+      "url": "https://photos.example.test/media/derivatives/gallery/fixture-photo-4/revision.jpg",
+      "fullSizeUrl": "https://photos.example.test/media/derivatives/full/fixture-photo-4/revision.jpg"
+    }
+  ]
+}
