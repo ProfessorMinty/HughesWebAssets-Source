@@ -14,6 +14,7 @@ export default defineConfig({
     target: "es2022",
     rollupOptions: {
       input: entry,
+      preserveEntrySignatures: "exports-only",
       output: {
         format: "es",
         entryFileNames: "assets/classroom-explorations-hub.js",
