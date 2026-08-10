@@ -1,596 +1,604 @@
 /*
- * Photo Album current-year shelf refinement
+ * Photo Album V2 environmental album shelf
  *
- * Scope: current-year album shelf and album cards only.
- * The hero carousel is intentionally untouched by this layer.
- *
- * Goal: move album cards from a shared pastel "flavor" treatment to
- * subject-led environmental art direction while preserving one shared,
- * accessible component structure underneath.
+ * No decorative SVG/image badges are used by this layer. Theme identity is
+ * integrated into the card architecture itself: edge trim, material, framing,
+ * and atmosphere. The photographs remain the primary content.
  */
 
-.hrv-albums-section {
+.hrv-photo-album-v2 .hrv-albums-section {
   position: relative;
-  width: min(100% - 40px, 1460px);
-  margin-top: clamp(46px, 5vw, 78px);
-  margin-bottom: clamp(58px, 7vw, 104px);
-  padding: clamp(58px, 6vw, 88px) clamp(28px, 5vw, 66px) clamp(66px, 7vw, 100px);
-  overflow: hidden;
-  border: 1px solid rgb(70 86 77 / 10%);
-  border-radius: clamp(32px, 4vw, 52px);
-  background:
-    radial-gradient(circle at 7% 12%, rgb(211 226 211 / 78%) 0 8%, transparent 27%),
-    radial-gradient(circle at 94% 17%, rgb(231 216 238 / 62%) 0 7%, transparent 29%),
-    radial-gradient(circle at 78% 91%, rgb(241 217 190 / 52%) 0 9%, transparent 28%),
-    linear-gradient(135deg, rgb(255 253 248 / 96%), rgb(245 244 235 / 96%) 54%, rgb(247 239 236 / 94%));
-  box-shadow:
-    0 34px 80px rgb(55 68 60 / 8%),
-    inset 0 1px 0 rgb(255 255 255 / 88%);
   isolation: isolate;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(72px, 7vw, 118px) clamp(44px, 6vw, 118px) clamp(88px, 8vw, 138px);
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 6% 18%, rgb(191 229 222 / 28%), transparent 26%),
+    radial-gradient(circle at 94% 13%, rgb(204 205 241 / 28%), transparent 27%),
+    radial-gradient(circle at 76% 88%, rgb(186 221 238 / 22%), transparent 31%),
+    linear-gradient(180deg, #f7fbfc 0%, #eff7f8 48%, #f5f8fb 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 88%);
 }
 
-.hrv-albums-section::before,
-.hrv-albums-section::after {
+.hrv-photo-album-v2 .hrv-albums-section::before,
+.hrv-photo-album-v2 .hrv-albums-section::after {
   position: absolute;
   z-index: -1;
   content: "";
   pointer-events: none;
 }
 
-.hrv-albums-section::before {
-  width: 430px;
-  height: 430px;
-  right: -150px;
-  top: -205px;
-  border: 1px solid rgb(103 119 109 / 8%);
+.hrv-photo-album-v2 .hrv-albums-section::before {
+  width: min(54vw, 940px);
+  height: min(54vw, 940px);
+  top: -58%;
+  right: -18%;
+  border: 1px solid rgb(95 136 145 / 7%);
   border-radius: 50%;
   box-shadow:
-    0 0 0 48px rgb(255 255 255 / 12%),
-    0 0 0 102px rgb(120 140 126 / 4%);
+    0 0 0 86px rgb(255 255 255 / 10%),
+    0 0 0 172px rgb(92 132 142 / 3%);
 }
 
-.hrv-albums-section::after {
+.hrv-photo-album-v2 .hrv-albums-section::after {
   inset: 0;
-  opacity: .32;
+  opacity: .24;
   background-image:
-    radial-gradient(circle, rgb(74 100 84 / 18%) 0 1.1px, transparent 1.5px),
-    radial-gradient(circle, rgb(141 107 153 / 14%) 0 1px, transparent 1.45px);
-  background-position: 0 0, 42px 38px;
-  background-size: 104px 104px, 137px 137px;
-  mask-image: linear-gradient(110deg, black, transparent 34%, transparent 68%, black);
+    radial-gradient(circle, rgb(63 111 115 / 20%) 0 1px, transparent 1.45px),
+    radial-gradient(circle, rgb(111 93 153 / 15%) 0 1px, transparent 1.45px);
+  background-position: 18px 14px, 70px 62px;
+  background-size: 128px 128px, 177px 177px;
+  mask-image: linear-gradient(105deg, black, transparent 30%, transparent 68%, black);
 }
 
-.hrv-albums-section .hrv-section-heading {
+.hrv-photo-album-v2 .hrv-albums-section .hrv-section-heading {
   position: relative;
-  z-index: 1;
-  margin-bottom: clamp(32px, 4vw, 48px);
+  z-index: 2;
+  width: 100%;
+  margin: 0 0 clamp(42px, 4vw, 64px);
 }
 
-.hrv-album-row {
+.hrv-photo-album-v2 .hrv-albums-section .hrv-section-title {
+  color: #28464d !important;
+}
+
+.hrv-photo-album-v2 .hrv-albums-section .hrv-eyebrow {
+  color: #497b78 !important;
+}
+
+.hrv-photo-album-v2 .hrv-album-row {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 3vw, 34px);
+  gap: clamp(34px, 3.4vw, 62px);
+  width: 100%;
 }
 
-.hrv-album-card {
-  --theme-deep: #46614f;
-  --theme-mid: #8da08d;
-  --theme-light: #edf1ea;
-  --theme-paper: #fffdf8;
-  --theme-ink: #27372f;
-  --theme-line: rgb(69 91 76 / 22%);
-  --theme-glow: rgb(117 145 124 / 24%);
+.hrv-photo-album-v2 .hrv-album-card {
+  --theme-deep: #345d62;
+  --theme-mid: #6b9697;
+  --theme-soft: #e5f0f0;
+  --theme-body: #f9fcfc;
+  --theme-ink: #203d43;
+  --theme-line: rgb(51 91 96 / 24%);
+  --theme-shadow: rgb(40 72 77 / 17%);
   position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-rows: minmax(255px, auto) minmax(138px, auto);
+  grid-template-rows: minmax(310px, auto) minmax(132px, auto);
   min-width: 0;
-  min-height: 420px;
-  overflow: hidden;
-  border: 1px solid var(--theme-line);
-  border-radius: 32px;
+  min-height: 468px;
+  overflow: visible;
+  border: 0;
+  border-radius: 30px;
   color: var(--theme-ink) !important;
-  background: var(--theme-paper);
-  box-shadow:
-    0 22px 54px rgb(48 63 54 / 12%),
-    inset 0 1px 0 rgb(255 255 255 / 78%);
+  background: transparent;
+  box-shadow: 0 28px 68px var(--theme-shadow);
   transform: translateZ(0);
-  transition:
-    transform 220ms cubic-bezier(.2, .72, .2, 1),
-    box-shadow 220ms ease,
-    border-color 220ms ease;
+  transition: transform 220ms cubic-bezier(.2, .72, .2, 1), box-shadow 220ms ease;
 }
 
-.hrv-album-card:is(:hover, :focus-visible) {
-  border-color: color-mix(in srgb, var(--theme-deep) 44%, transparent);
-  box-shadow:
-    0 32px 72px rgb(48 63 54 / 18%),
-    0 0 0 1px color-mix(in srgb, var(--theme-deep) 18%, transparent),
-    inset 0 1px 0 rgb(255 255 255 / 82%);
+.hrv-photo-album-v2 .hrv-album-card::before,
+.hrv-photo-album-v2 .hrv-album-card::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+/* Theme trim occupies the outside edge, not the photograph's reading area. */
+.hrv-photo-album-v2 .hrv-album-card::before {
+  z-index: 6;
+  inset: -18px;
+  border-radius: 40px;
+}
+
+.hrv-photo-album-v2 .hrv-album-card::after {
+  z-index: -1;
+  inset: -12px;
+  border-radius: 40px;
+  background: color-mix(in srgb, var(--theme-soft) 70%, transparent);
+  filter: blur(20px);
+  opacity: .52;
+}
+
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) {
   transform: translateY(-7px);
+  box-shadow: 0 38px 82px color-mix(in srgb, var(--theme-shadow) 82%, transparent);
 }
 
-.hrv-album-card:focus-visible {
+.hrv-photo-album-v2 .hrv-album-card:focus-visible {
   outline: 4px solid #fff;
-  outline-offset: 3px;
+  outline-offset: 8px;
 }
 
-.hrv-album-card__media {
+.hrv-photo-album-v2 .hrv-album-card__media {
   position: relative;
+  z-index: 1;
   display: block;
   min-height: 0;
-  aspect-ratio: 1.86;
+  aspect-ratio: 1.92;
   overflow: hidden;
-  background: var(--theme-light);
+  border: 1px solid var(--theme-line);
+  border-bottom: 0;
+  border-radius: 30px 30px 0 0;
+  background: var(--theme-soft);
   isolation: isolate;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 64%);
 }
 
-.hrv-album-card__media::before,
-.hrv-album-card__media::after {
+.hrv-photo-album-v2 .hrv-album-card__media::before,
+.hrv-photo-album-v2 .hrv-album-card__media::after {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   inset: 0;
   content: "";
   pointer-events: none;
 }
 
-.hrv-album-card__media::before {
-  border: 1px solid rgb(255 255 255 / 68%);
-  box-shadow: inset 0 0 0 10px rgb(255 255 255 / 8%);
+.hrv-photo-album-v2 .hrv-album-card__media::before {
+  border: 1px solid rgb(255 255 255 / 58%);
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 11px rgb(255 255 255 / 6%);
 }
 
-.hrv-album-card__media::after {
-  opacity: 1;
-  background: linear-gradient(180deg, transparent 54%, rgb(20 28 23 / 18%));
-  transform: none;
-  transition: opacity 220ms ease;
+.hrv-photo-album-v2 .hrv-album-card__media::after {
+  background: linear-gradient(180deg, transparent 58%, rgb(17 34 36 / 20%));
 }
 
-.hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__media::after {
-  opacity: .72;
-  animation: none;
+.hrv-photo-album-v2 .hrv-album-card__image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  filter: saturate(1.04) contrast(1.02);
+  transition: transform 680ms cubic-bezier(.2, .72, .2, 1), filter 360ms ease;
 }
 
-.hrv-album-card__image {
-  filter: saturate(1.04) contrast(1.015);
-  transition:
-    transform 680ms cubic-bezier(.2, .72, .2, 1),
-    filter 360ms ease;
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__image {
+  filter: saturate(1.09) contrast(1.035);
+  transform: scale(1.04);
 }
 
-.hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__image {
-  filter: saturate(1.08) contrast(1.025);
-  transform: scale(1.045);
+/* SVG-era ornament/frame elements are intentionally absent from the design. */
+.hrv-photo-album-v2 .hrv-album-card__ornament,
+.hrv-photo-album-v2 .hrv-album-card__frame {
+  display: none !important;
 }
 
-.hrv-album-card__ornament {
-  position: absolute;
-  z-index: 4;
-  width: clamp(96px, 9vw, 132px) !important;
-  height: clamp(96px, 9vw, 132px) !important;
-  padding: 14px !important;
-  border: 1px solid rgb(255 255 255 / 72%);
-  background: color-mix(in srgb, var(--theme-deep) 88%, transparent);
-  filter: drop-shadow(0 11px 18px rgb(27 35 30 / 22%));
-  object-fit: contain;
-  transition: transform 420ms cubic-bezier(.2, .72, .2, 1);
-}
-
-.hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__ornament {
-  transform: translateY(-3px) rotate(-2deg) scale(1.035);
-}
-
-.hrv-album-card__body {
+.hrv-photo-album-v2 .hrv-album-card__body {
   position: relative;
+  z-index: 2;
   display: flex;
-  min-height: 138px;
+  min-height: 132px;
   flex-direction: column;
   justify-content: center;
-  padding: 26px 30px 28px;
   gap: 7px;
   overflow: hidden;
+  padding: 25px 30px 27px;
+  border: 1px solid var(--theme-line);
+  border-top: 0;
+  border-radius: 0 0 30px 30px;
   color: var(--theme-ink);
-  background: var(--theme-paper);
-  isolation: isolate;
+  background: var(--theme-body);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 74%);
 }
 
-.hrv-album-card__body::before,
-.hrv-album-card__body::after {
+.hrv-photo-album-v2 .hrv-album-card__body::before,
+.hrv-photo-album-v2 .hrv-album-card__body::after {
   position: absolute;
-  z-index: -1;
   content: "";
   pointer-events: none;
 }
 
-.hrv-album-card__title {
+.hrv-photo-album-v2 .hrv-album-card__title {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   overflow: visible;
   color: inherit !important;
-  font-size: clamp(24px, 2.1vw, 31px) !important;
-  line-height: 1.08 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(26px, 1.9vw, 34px) !important;
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.06 !important;
   text-overflow: clip;
 }
 
-.hrv-album-card__count {
+.hrv-photo-album-v2 .hrv-album-card__count {
   position: relative;
-  z-index: 1;
-  color: color-mix(in srgb, var(--theme-ink) 72%, white) !important;
+  z-index: 2;
+  color: color-mix(in srgb, var(--theme-ink) 70%, white) !important;
   font-size: 16px !important;
-  font-weight: 760;
+  font-weight: 720;
   letter-spacing: .01em;
 }
 
-.hrv-album-card[data-theme="woodland"] {
-  --theme-deep: #4c6547;
-  --theme-mid: #80906b;
-  --theme-light: #dce5d5;
-  --theme-paper: #f3eddd;
-  --theme-ink: #2f3d2d;
-  --theme-line: rgb(74 91 59 / 30%);
-  --theme-glow: rgb(100 130 78 / 28%);
-  border-radius: 34px 18px 34px 18px;
+/* --------------------------------------------------------------------------
+   HARVEST: winding green edge growth + pumpkin clusters.
+   The trim wraps the card edge and never becomes a badge.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] {
+  --theme-deep: #6b6a34;
+  --theme-mid: #a76532;
+  --theme-soft: #f4dfc7;
+  --theme-body: #fff8ef;
+  --theme-ink: #5b3627;
+  --theme-line: rgb(133 83 48 / 30%);
+  --theme-shadow: rgb(125 78 45 / 18%);
 }
 
-.hrv-album-card[data-theme="woodland"] .hrv-album-card__media::before {
-  inset: 13px;
-  border: 1px dashed rgb(242 239 216 / 82%);
-  border-radius: 24px 10px 24px 10px;
-  box-shadow:
-    inset 0 0 0 4px rgb(66 87 57 / 13%),
-    0 0 0 1px rgb(42 62 39 / 18%);
-}
-
-.hrv-album-card[data-theme="woodland"] .hrv-album-card__media::after {
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"]::before {
   background:
-    radial-gradient(ellipse at 10% 92%, rgb(58 82 52 / 58%) 0 7%, transparent 26%),
-    radial-gradient(ellipse at 88% 6%, rgb(84 104 65 / 30%) 0 5%, transparent 24%),
-    linear-gradient(180deg, transparent 54%, rgb(32 48 29 / 25%));
+    /* pumpkin cluster, lower left */
+    radial-gradient(ellipse 42px 31px at 9% 92%, #d66f2c 0 65%, #a84e1f 66% 74%, transparent 76%),
+    radial-gradient(ellipse 33px 27px at 5.5% 92%, #ee8a3b 0 66%, #c46125 67% 75%, transparent 77%),
+    radial-gradient(ellipse 30px 25px at 13.2% 93%, #c85d23 0 67%, #963f19 68% 75%, transparent 77%),
+    /* pumpkin cluster, upper right */
+    radial-gradient(ellipse 27px 21px at 96% 9%, #e27a31 0 66%, #a94c1d 67% 74%, transparent 76%),
+    radial-gradient(ellipse 22px 18px at 92.5% 7%, #f09243 0 66%, #c75d24 67% 74%, transparent 76%),
+    /* ivy leaves */
+    radial-gradient(ellipse 19px 10px at 2.5% 67%, #446f45 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 10px at 5% 55%, #547e4b 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 10px at 8% 42%, #3f6941 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 10px at 12% 29%, #5b824c 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 10px at 18% 18%, #416943 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 10px at 82% 91%, #4d7444 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 10px at 88% 83%, #3e6940 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 10px at 93% 72%, #597f4c 0 72%, transparent 75%),
+    /* winding vine arcs */
+    radial-gradient(ellipse 300px 185px at -3% 6%, transparent 63%, rgb(65 101 58 / 82%) 63.6% 65%, transparent 65.8%),
+    radial-gradient(ellipse 360px 220px at 103% 98%, transparent 64%, rgb(65 101 58 / 78%) 64.5% 65.8%, transparent 66.5%);
+  filter: drop-shadow(0 8px 12px rgb(65 76 42 / 16%));
 }
 
-.hrv-album-card[data-theme="woodland"] .hrv-album-card__ornament {
-  right: 24px;
-  bottom: 18px;
-  border-radius: 48% 52% 44% 56% / 55% 44% 56% 45%;
-  background: rgb(69 94 62 / 90%);
-  transform: rotate(7deg);
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__media {
+  border-color: rgb(148 92 47 / 32%);
 }
 
-.hrv-album-card[data-theme="woodland"] .hrv-album-card__body {
-  padding-right: 150px;
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__media::before {
+  inset: 11px;
+  border: 1px solid rgb(255 238 208 / 78%);
+  border-radius: 21px 21px 8px 8px;
+  box-shadow: inset 0 0 0 5px rgb(124 77 37 / 8%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__body {
   background:
-    linear-gradient(90deg, rgb(84 105 69 / 8%) 1px, transparent 1px) 24px 0 / 28px 100%,
-    linear-gradient(#f6f1e3, #ece4d2);
+    radial-gradient(circle at 94% 24%, rgb(219 128 59 / 10%), transparent 22%),
+    linear-gradient(135deg, #fffaf3, #fff2e2);
 }
 
-.hrv-album-card[data-theme="woodland"] .hrv-album-card__body::before {
-  width: 128px;
-  height: 128px;
-  right: 22px;
-  bottom: -62px;
-  border: 1px solid rgb(76 101 71 / 18%);
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__body::after {
+  width: 180px;
+  height: 64px;
+  right: -44px;
+  bottom: -38px;
+  border: 1px solid rgb(85 112 65 / 14%);
   border-radius: 50%;
-  box-shadow: 0 0 0 17px rgb(76 101 71 / 6%);
+  transform: rotate(-10deg);
 }
 
-.hrv-album-card[data-theme="woodland"] .hrv-album-card__title {
-  font-family: Georgia, "Times New Roman", serif !important;
+/* --------------------------------------------------------------------------
+   WOODLAND: mossy edge, fern rhythm, restrained mushroom forms.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] {
+  --theme-deep: #3f664d;
+  --theme-mid: #6f8b64;
+  --theme-soft: #dce9df;
+  --theme-body: #f4f8f2;
+  --theme-ink: #2e4a38;
+  --theme-line: rgb(65 102 76 / 28%);
+  --theme-shadow: rgb(54 87 66 / 17%);
 }
 
-.hrv-album-card[data-theme="harvest"] {
-  --theme-deep: #9b552d;
-  --theme-mid: #c98142;
-  --theme-light: #efd3a9;
-  --theme-paper: #f7e4c8;
-  --theme-ink: #532f20;
-  --theme-line: rgb(133 72 36 / 28%);
-  --theme-glow: rgb(205 126 60 / 30%);
-  border-radius: 24px 38px 24px 38px;
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"]::before {
+  background:
+    /* mushroom stems and caps, bottom right */
+    linear-gradient(#e5d6b7, #bca784) 94.5% 91% / 11px 46px no-repeat,
+    linear-gradient(#eadfc8, #bba884) 88.5% 94% / 9px 37px no-repeat,
+    radial-gradient(ellipse 39px 22px at 94.5% 87%, #a56d4d 0 67%, #714532 68% 75%, transparent 77%),
+    radial-gradient(ellipse 30px 18px at 88.5% 91%, #c18b5c 0 67%, #875739 68% 75%, transparent 77%),
+    /* fern-like leaf rhythm */
+    radial-gradient(ellipse 18px 8px at 4% 81%, #4f7758 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 8px at 6% 70%, #64865d 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 8px at 8% 59%, #46704f 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 8px at 10% 48%, #62835b 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 8px at 13% 38%, #4b7352 0 72%, transparent 75%),
+    radial-gradient(ellipse 18px 8px at 17% 29%, #688961 0 72%, transparent 75%),
+    radial-gradient(ellipse 340px 190px at -3% 96%, transparent 64%, rgb(62 104 73 / 74%) 64.6% 65.9%, transparent 66.6%);
+  filter: drop-shadow(0 8px 13px rgb(38 73 49 / 14%));
 }
 
-.hrv-album-card[data-theme="harvest"] .hrv-album-card__media::before {
-  inset: 12px;
-  border: 2px solid rgb(255 235 199 / 78%);
-  border-radius: 14px 28px 14px 28px;
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] .hrv-album-card__media::before {
+  inset: 10px;
+  border: 1px solid rgb(219 236 220 / 74%);
+  border-radius: 20px 20px 7px 7px;
   box-shadow:
-    inset 0 0 0 5px rgb(130 69 34 / 10%),
-    0 0 0 1px rgb(100 49 24 / 18%);
+    inset 0 0 0 5px rgb(49 86 60 / 9%),
+    inset 0 -36px 48px rgb(39 72 46 / 8%);
 }
 
-.hrv-album-card[data-theme="harvest"] .hrv-album-card__media::after {
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] .hrv-album-card__body {
   background:
-    radial-gradient(ellipse at 12% 10%, rgb(235 146 57 / 26%) 0 7%, transparent 23%),
-    radial-gradient(ellipse at 90% 86%, rgb(127 67 31 / 34%) 0 6%, transparent 24%),
-    linear-gradient(180deg, transparent 48%, rgb(74 38 19 / 27%));
+    radial-gradient(circle at 90% 70%, rgb(68 112 78 / 9%), transparent 25%),
+    linear-gradient(135deg, #f8fbf6, #edf5ee);
 }
 
-.hrv-album-card[data-theme="harvest"] .hrv-album-card__ornament {
-  right: 20px;
-  bottom: 12px;
-  border-radius: 42% 58% 48% 52% / 50% 44% 56% 50%;
-  background: rgb(163 84 39 / 92%);
-  transform: rotate(-8deg);
-}
-
-.hrv-album-card[data-theme="harvest"] .hrv-album-card__body {
-  padding-right: 152px;
-  background:
-    repeating-linear-gradient(0deg, rgb(129 71 37 / 5%) 0 1px, transparent 1px 12px),
-    linear-gradient(135deg, #faecd6, #f0d2a8);
-}
-
-.hrv-album-card[data-theme="harvest"] .hrv-album-card__body::before {
-  width: 250px;
-  height: 120px;
-  right: -98px;
-  bottom: -72px;
-  border: 2px solid rgb(151 78 37 / 13%);
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] .hrv-album-card__body::before {
+  width: 170px;
+  height: 170px;
+  right: -70px;
+  bottom: -98px;
+  border: 1px solid rgb(55 94 65 / 12%);
   border-radius: 50%;
-  transform: rotate(-12deg);
+  box-shadow: 0 0 0 18px rgb(55 94 65 / 4%);
 }
 
-.hrv-album-card[data-theme="harvest"] .hrv-album-card__title {
-  text-shadow: 0 1px 0 rgb(255 248 234 / 60%);
+/* --------------------------------------------------------------------------
+   DISCOVERY: technical architecture, not a science icon.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] {
+  --theme-deep: #1d5270;
+  --theme-mid: #3c83a7;
+  --theme-soft: #d9ebf3;
+  --theme-body: #102f44;
+  --theme-ink: #f4fbff;
+  --theme-line: rgb(88 170 207 / 44%);
+  --theme-shadow: rgb(18 59 81 / 24%);
+  border-radius: 24px;
 }
 
-.hrv-album-card[data-theme="discovery"] {
-  --theme-deep: #29486e;
-  --theme-mid: #4f79a6;
-  --theme-light: #d2e0ea;
-  --theme-paper: #19354f;
-  --theme-ink: #f5fbff;
-  --theme-line: rgb(79 126 169 / 46%);
-  --theme-glow: rgb(67 134 190 / 30%);
-  border-radius: 20px;
-  box-shadow:
-    0 22px 58px rgb(25 53 79 / 20%),
-    inset 0 0 0 1px rgb(154 205 238 / 10%);
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__media::before {
-  inset: 12px;
-  border: 1px solid rgb(184 226 249 / 58%);
-  border-radius: 10px;
-  background:
-    linear-gradient(90deg, rgb(190 227 246 / 14%) 1px, transparent 1px) 0 0 / 42px 42px,
-    linear-gradient(rgb(190 227 246 / 14%) 1px, transparent 1px) 0 0 / 42px 42px;
-  box-shadow:
-    inset 0 0 0 5px rgb(7 29 49 / 16%),
-    0 0 0 1px rgb(22 67 103 / 28%);
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__media::after {
-  background:
-    radial-gradient(circle at 18% 18%, rgb(124 210 238 / 33%) 0 1.5%, transparent 12%),
-    radial-gradient(circle at 82% 28%, rgb(126 171 255 / 27%) 0 1.2%, transparent 10%),
-    linear-gradient(180deg, transparent 52%, rgb(6 23 39 / 42%));
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__ornament {
-  right: 22px;
-  bottom: 18px;
-  border: 1px solid rgb(174 225 249 / 62%);
-  border-radius: 18px;
-  background: rgb(17 56 86 / 92%);
-  box-shadow:
-    inset 0 0 0 4px rgb(117 193 230 / 10%),
-    0 10px 20px rgb(5 22 37 / 24%);
-  transform: rotate(0deg);
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__body {
-  padding-right: 154px;
-  background:
-    linear-gradient(90deg, rgb(129 196 229 / 9%) 1px, transparent 1px) 0 0 / 28px 28px,
-    linear-gradient(rgb(129 196 229 / 9%) 1px, transparent 1px) 0 0 / 28px 28px,
-    radial-gradient(circle at 72% 36%, rgb(66 139 184 / 22%), transparent 24%),
-    linear-gradient(135deg, #193a57, #132d46);
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__body::before {
-  width: 168px;
-  height: 168px;
-  right: 17px;
-  bottom: -85px;
-  border: 1px solid rgb(134 202 236 / 21%);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 18px rgb(134 202 236 / 5%),
-    0 0 0 44px rgb(134 202 236 / 3%);
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__count {
-  color: rgb(213 235 246 / 78%) !important;
-}
-
-.hrv-album-card[data-theme="discovery"] .hrv-album-card__title {
-  font-family: Georgia, "Times New Roman", serif !important;
-  text-shadow: 0 2px 18px rgb(3 18 31 / 30%);
-}
-
-.hrv-album-card[data-theme="garden"] {
-  --theme-deep: #8c4963;
-  --theme-mid: #c86f8d;
-  --theme-light: #f0d7df;
-  --theme-paper: #faedf0;
-  --theme-ink: #553141;
-  --theme-line: rgb(143 72 99 / 26%);
-  --theme-glow: rgb(205 102 139 / 26%);
-  border-radius: 38px 38px 26px 26px;
-}
-
-.hrv-album-card[data-theme="garden"] .hrv-album-card__media::before {
-  inset: 12px 13px;
-  border: 1px solid rgb(255 239 243 / 88%);
-  border-radius: 28px 28px 16px 16px;
-  box-shadow:
-    inset 0 0 0 5px rgb(135 64 91 / 8%),
-    0 0 0 1px rgb(117 57 80 / 15%);
-}
-
-.hrv-album-card[data-theme="garden"] .hrv-album-card__media::after {
-  background:
-    radial-gradient(circle at 8% 12%, rgb(255 213 225 / 40%) 0 4%, transparent 18%),
-    radial-gradient(circle at 92% 78%, rgb(226 127 157 / 30%) 0 5%, transparent 20%),
-    linear-gradient(180deg, transparent 52%, rgb(74 34 50 / 22%));
-}
-
-.hrv-album-card[data-theme="garden"] .hrv-album-card__ornament {
-  right: 22px;
-  bottom: 14px;
-  border-radius: 50%;
-  background: rgb(167 82 111 / 90%);
-  transform: rotate(8deg);
-}
-
-.hrv-album-card[data-theme="garden"] .hrv-album-card__body {
-  padding-right: 152px;
-  background:
-    radial-gradient(circle at 84% 72%, rgb(216 116 150 / 10%) 0 8%, transparent 9%),
-    radial-gradient(circle at 89% 58%, rgb(216 116 150 / 8%) 0 5%, transparent 6%),
-    radial-gradient(circle at 76% 58%, rgb(216 116 150 / 7%) 0 5%, transparent 6%),
-    linear-gradient(135deg, #fff5f6, #f6dfe6);
-}
-
-.hrv-album-card[data-theme="garden"] .hrv-album-card__body::before {
-  width: 154px;
-  height: 154px;
-  right: -15px;
-  bottom: -87px;
-  border: 1px solid rgb(152 75 101 / 13%);
-  border-radius: 50%;
-  box-shadow: 0 0 0 15px rgb(152 75 101 / 4%);
-}
-
-.hrv-album-card[data-theme="constellation"] {
-  --theme-deep: #4c4a8a;
-  --theme-mid: #766db2;
-  --theme-light: #d7d5ef;
-  --theme-paper: #28294f;
-  --theme-ink: #fbf9ff;
-  --theme-line: rgb(118 109 178 / 44%);
-  --theme-glow: rgb(121 111 195 / 28%);
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"]::before {
+  inset: -10px;
   border-radius: 30px;
+  opacity: .9;
+  background:
+    linear-gradient(#79cce9, #79cce9) left 8px top 8px / 66px 2px no-repeat,
+    linear-gradient(#79cce9, #79cce9) left 8px top 8px / 2px 66px no-repeat,
+    linear-gradient(#79cce9, #79cce9) right 8px top 8px / 66px 2px no-repeat,
+    linear-gradient(#79cce9, #79cce9) right 8px top 8px / 2px 66px no-repeat,
+    linear-gradient(#79cce9, #79cce9) left 8px bottom 8px / 66px 2px no-repeat,
+    linear-gradient(#79cce9, #79cce9) left 8px bottom 8px / 2px 66px no-repeat,
+    linear-gradient(#79cce9, #79cce9) right 8px bottom 8px / 66px 2px no-repeat,
+    linear-gradient(#79cce9, #79cce9) right 8px bottom 8px / 2px 66px no-repeat,
+    repeating-linear-gradient(90deg, rgb(101 187 221 / 18%) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(0deg, rgb(101 187 221 / 14%) 0 1px, transparent 1px 48px);
+  filter: drop-shadow(0 9px 16px rgb(18 59 81 / 20%));
 }
 
-.hrv-album-card[data-theme="constellation"] .hrv-album-card__media::before {
-  inset: 12px;
-  border: 1px solid rgb(220 216 255 / 50%);
-  border-radius: 20px;
-  background-image:
-    radial-gradient(circle, rgb(255 255 255 / 52%) 0 1px, transparent 1.5px),
-    radial-gradient(circle, rgb(203 190 255 / 48%) 0 1.2px, transparent 1.7px);
-  background-position: 10px 11px, 45px 39px;
-  background-size: 69px 69px, 103px 103px;
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__media {
+  border-color: rgb(99 186 222 / 48%);
+  border-radius: 24px 24px 0 0;
+  background: #0d2b40;
 }
 
-.hrv-album-card[data-theme="constellation"] .hrv-album-card__media::after {
-  background: linear-gradient(180deg, rgb(31 30 72 / 4%), rgb(20 19 53 / 34%));
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__media::before {
+  inset: 11px;
+  border: 1px solid rgb(172 226 247 / 52%);
+  border-radius: 12px 12px 4px 4px;
+  background:
+    repeating-linear-gradient(90deg, rgb(174 224 244 / 10%) 0 1px, transparent 1px 42px),
+    repeating-linear-gradient(0deg, rgb(174 224 244 / 10%) 0 1px, transparent 1px 42px);
+  box-shadow: inset 0 0 0 5px rgb(4 29 45 / 13%);
 }
 
-.hrv-album-card[data-theme="constellation"] .hrv-album-card__ornament {
-  right: 22px;
-  bottom: 16px;
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__media::after {
+  background:
+    radial-gradient(circle at 16% 18%, rgb(103 212 245 / 24%), transparent 15%),
+    linear-gradient(180deg, transparent 55%, rgb(3 20 31 / 42%));
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__body {
+  border-color: rgb(79 151 184 / 45%);
+  border-radius: 0 0 24px 24px;
+  background:
+    repeating-linear-gradient(90deg, rgb(112 192 225 / 7%) 0 1px, transparent 1px 32px),
+    repeating-linear-gradient(0deg, rgb(112 192 225 / 7%) 0 1px, transparent 1px 32px),
+    radial-gradient(circle at 84% 40%, rgb(55 129 166 / 18%), transparent 25%),
+    linear-gradient(135deg, #12374f, #0e2b3f);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__count {
+  color: rgb(208 235 246 / 78%) !important;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__body::after {
+  width: 142px;
+  height: 142px;
+  right: 24px;
+  bottom: -92px;
+  border: 1px solid rgb(112 199 232 / 18%);
   border-radius: 50%;
-  background: rgb(59 56 116 / 92%);
-  transform: rotate(-5deg);
+  box-shadow:
+    0 0 0 18px rgb(112 199 232 / 4%),
+    0 0 0 42px rgb(112 199 232 / 2%);
 }
 
-.hrv-album-card[data-theme="constellation"] .hrv-album-card__body {
-  padding-right: 152px;
+/* --------------------------------------------------------------------------
+   GARDEN: stems and blossoms growing around the edge, not a flower badge.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] {
+  --theme-deep: #7e4964;
+  --theme-mid: #b86e8d;
+  --theme-soft: #f0dce5;
+  --theme-body: #fff7fa;
+  --theme-ink: #5b3547;
+  --theme-line: rgb(138 79 105 / 26%);
+  --theme-shadow: rgb(111 64 84 / 17%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"]::before {
   background:
-    radial-gradient(circle at 18% 24%, rgb(255 255 255 / 42%) 0 1px, transparent 1.5px) 0 0 / 61px 61px,
-    radial-gradient(circle at 75% 60%, rgb(181 170 255 / 34%) 0 1px, transparent 1.5px) 0 0 / 93px 93px,
-    linear-gradient(135deg, #30315c, #222343);
+    /* upper-right zinnia cluster */
+    radial-gradient(circle 18px at 92% 6%, #d7668e 0 68%, transparent 71%),
+    radial-gradient(circle 18px at 96% 10%, #c85680 0 68%, transparent 71%),
+    radial-gradient(circle 18px at 88% 10%, #e07c9c 0 68%, transparent 71%),
+    radial-gradient(circle 18px at 92% 14%, #b94d78 0 68%, transparent 71%),
+    radial-gradient(circle 10px at 92% 10%, #e3b34e 0 70%, transparent 73%),
+    /* lower-left blossom */
+    radial-gradient(circle 16px at 6% 91%, #dc7898 0 68%, transparent 71%),
+    radial-gradient(circle 16px at 10% 94%, #c55b82 0 68%, transparent 71%),
+    radial-gradient(circle 16px at 2.5% 95%, #e58aa5 0 68%, transparent 71%),
+    radial-gradient(circle 9px at 6% 95%, #dfb754 0 70%, transparent 73%),
+    /* leaves */
+    radial-gradient(ellipse 20px 10px at 3% 73%, #4f7959 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 10px at 6% 60%, #618866 0 72%, transparent 75%),
+    radial-gradient(ellipse 20px 10px at 91% 28%, #507a59 0 72%, transparent 75%),
+    radial-gradient(ellipse 19px 10px at 95% 39%, #688c68 0 72%, transparent 75%),
+    /* stems */
+    radial-gradient(ellipse 310px 185px at -3% 101%, transparent 64%, rgb(72 115 79 / 72%) 64.6% 65.8%, transparent 66.5%),
+    radial-gradient(ellipse 290px 175px at 103% -2%, transparent 64%, rgb(72 115 79 / 70%) 64.6% 65.8%, transparent 66.5%);
+  filter: drop-shadow(0 8px 13px rgb(99 63 78 / 14%));
 }
 
-.hrv-album-card[data-theme="constellation"] .hrv-album-card__count {
-  color: rgb(225 222 248 / 76%) !important;
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] .hrv-album-card__media::before {
+  inset: 10px;
+  border: 1px solid rgb(255 232 241 / 74%);
+  border-radius: 21px 21px 8px 8px;
+  box-shadow: inset 0 0 0 5px rgb(128 66 92 / 7%);
 }
 
-.hrv-album-card:not([data-theme="woodland"]):not([data-theme="harvest"]):not([data-theme="discovery"]):not([data-theme="garden"]):not([data-theme="constellation"]) .hrv-album-card__body {
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] .hrv-album-card__body {
   background:
-    radial-gradient(circle at 85% 34%, var(--theme-glow), transparent 23%),
-    linear-gradient(135deg, #fffdf8, var(--theme-light));
+    radial-gradient(circle at 90% 68%, rgb(206 99 136 / 8%), transparent 25%),
+    linear-gradient(135deg, #fffafd, #fbeef4);
 }
 
-@media (max-width: 920px) {
-  .hrv-albums-section {
-    width: min(100% - 28px, 760px);
-    padding-inline: clamp(20px, 5vw, 34px);
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] .hrv-album-card__body::before {
+  width: 160px;
+  height: 160px;
+  right: -50px;
+  bottom: -100px;
+  border: 1px solid rgb(138 75 102 / 11%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 17px rgb(138 75 102 / 4%);
+}
+
+/* --------------------------------------------------------------------------
+   CONSTELLATION: quiet observatory language for any future matching album.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] {
+  --theme-deep: #4d527d;
+  --theme-mid: #7777a7;
+  --theme-soft: #dfe3f1;
+  --theme-body: #252b50;
+  --theme-ink: #fbfbff;
+  --theme-line: rgb(119 128 183 / 38%);
+  --theme-shadow: rgb(43 48 91 / 22%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"]::before {
+  background:
+    radial-gradient(circle 2px at 6% 18%, rgb(255 255 255 / 80%) 0 70%, transparent 75%),
+    radial-gradient(circle 1.5px at 12% 9%, rgb(208 214 255 / 72%) 0 70%, transparent 75%),
+    radial-gradient(circle 2px at 91% 16%, rgb(255 255 255 / 78%) 0 70%, transparent 75%),
+    radial-gradient(circle 1.5px at 96% 29%, rgb(204 210 255 / 72%) 0 70%, transparent 75%),
+    radial-gradient(ellipse 300px 170px at 0 0, transparent 65%, rgb(147 157 218 / 44%) 65.5% 66.2%, transparent 67%),
+    radial-gradient(ellipse 320px 180px at 100% 100%, transparent 65%, rgb(147 157 218 / 40%) 65.5% 66.2%, transparent 67%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] .hrv-album-card__body {
+  background:
+    radial-gradient(circle at 18% 22%, rgb(255 255 255 / 32%) 0 1px, transparent 1.5px) 0 0 / 62px 62px,
+    radial-gradient(circle at 76% 63%, rgb(176 183 246 / 28%) 0 1px, transparent 1.5px) 0 0 / 91px 91px,
+    linear-gradient(135deg, #30365e, #222846);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] .hrv-album-card__count {
+  color: rgb(224 227 247 / 76%) !important;
+}
+
+/* Unknown themes remain clean and professional rather than inventing a motif. */
+.hrv-photo-album-v2 .hrv-album-card:not([data-theme="woodland"]):not([data-theme="harvest"]):not([data-theme="discovery"]):not([data-theme="garden"]):not([data-theme="constellation"]) .hrv-album-card__body {
+  background: linear-gradient(135deg, #fbfefe, #edf5f5);
+}
+
+@media (max-width: 1080px) {
+  .hrv-photo-album-v2 .hrv-albums-section {
+    padding-inline: clamp(28px, 5vw, 56px);
   }
 
-  .hrv-album-row {
+  .hrv-photo-album-v2 .hrv-album-row {
     grid-template-columns: 1fr;
+    gap: 42px;
   }
 
-  .hrv-album-card {
-    grid-template-rows: minmax(240px, auto) minmax(130px, auto);
+  .hrv-photo-album-v2 .hrv-album-card {
+    grid-template-rows: minmax(300px, auto) minmax(128px, auto);
   }
 }
 
-@media (max-width: 620px) {
-  .hrv-albums-section {
-    width: min(100% - 20px, 560px);
-    margin-top: 34px;
-    margin-bottom: 54px;
-    padding: 44px 16px 52px;
-    border-radius: 28px;
+@media (max-width: 720px) {
+  .hrv-photo-album-v2 .hrv-albums-section {
+    padding: 54px 18px 68px;
   }
 
-  .hrv-albums-section .hrv-section-heading {
+  .hrv-photo-album-v2 .hrv-albums-section .hrv-section-heading {
     align-items: flex-start;
-    margin-bottom: 28px;
+    margin-bottom: 34px;
   }
 
-  .hrv-album-row {
-    gap: 22px;
+  .hrv-photo-album-v2 .hrv-album-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
   }
 
-  .hrv-album-card {
-    grid-template-rows: minmax(205px, auto) minmax(124px, auto);
-    min-height: 350px;
-    border-radius: 26px;
+  .hrv-photo-album-v2 .hrv-album-card {
+    grid-template-rows: minmax(220px, auto) minmax(118px, auto);
+    min-height: 360px;
+    border-radius: 24px;
   }
 
-  .hrv-album-card__media {
-    aspect-ratio: 1.55;
+  .hrv-photo-album-v2 .hrv-album-card::before {
+    inset: -10px;
   }
 
-  .hrv-album-card__body,
-  .hrv-album-card[data-theme="woodland"] .hrv-album-card__body,
-  .hrv-album-card[data-theme="harvest"] .hrv-album-card__body,
-  .hrv-album-card[data-theme="discovery"] .hrv-album-card__body,
-  .hrv-album-card[data-theme="garden"] .hrv-album-card__body,
-  .hrv-album-card[data-theme="constellation"] .hrv-album-card__body {
-    min-height: 124px;
-    padding: 22px 112px 22px 22px;
+  .hrv-photo-album-v2 .hrv-album-card__media {
+    aspect-ratio: 1.5;
+    border-radius: 24px 24px 0 0;
   }
 
-  .hrv-album-card__ornament {
-    right: 14px !important;
-    bottom: 11px !important;
-    width: 88px !important;
-    height: 88px !important;
-    padding: 11px !important;
+  .hrv-photo-album-v2 .hrv-album-card__body,
+  .hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__body {
+    min-height: 118px;
+    padding: 22px 24px 23px;
+    border-radius: 0 0 24px 24px;
   }
 
-  .hrv-album-card__title {
-    font-size: clamp(22px, 7vw, 27px) !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hrv-album-card,
-  .hrv-album-card__image,
-  .hrv-album-card__ornament {
-    transition: none !important;
-  }
-
-  .hrv-album-card:is(:hover, :focus-visible),
-  .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__image,
-  .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__ornament {
-    transform: none !important;
+  .hrv-photo-album-v2 .hrv-album-card__title {
+    font-size: clamp(23px, 7vw, 29px) !important;
   }
 }
