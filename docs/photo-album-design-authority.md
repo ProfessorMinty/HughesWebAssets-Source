@@ -40,10 +40,10 @@ The center image is always the dominant photograph. Previous and next memories r
 
 The carousel draws from the current-year photo pool and uses a randomized in-memory order for the visit. It should:
 
-- rotate automatically while the hero is visible and the page is active;
+- rotate automatically while the page is active;
 - keep rotating when a mouse pointer happens to rest over it;
-- not become permanently paused merely because a pointer click left focus on a carousel control;
-- pause for intentional keyboard focus so keyboard users are not fighting moving content;
+- not become silently or permanently paused because focus, theme behavior, or viewport-observer state changed;
+- provide a visible Pause/Resume control instead of relying on invisible autoplay-pause heuristics;
 - reset its autoplay clock after manual Previous/Next navigation;
 - allow Previous, Next, side-preview clicks, and arrow-key navigation;
 - open the current center image in the lightbox;
