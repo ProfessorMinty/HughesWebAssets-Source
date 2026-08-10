@@ -1,6 +1,7 @@
 import "./styles/photo-album.css";
 import "./styles/carousel-refinement.css";
 import "./styles/photo-album-home.css";
+import "./styles/album-card-refinement.css";
 import { PhotoAlbumAppV2 } from "./app-v2";
 import type { PhotoAlbumOptions } from "./config";
 
