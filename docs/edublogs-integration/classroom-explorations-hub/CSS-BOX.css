@@ -1,10 +1,77 @@
-/* Intentionally empty for Classroom Explorations Hub release 2026.08.10.5+
+/* Hughes Room Views · Classroom Explorations Hub · Edublogs CSS tab
+   Native fallback readability only. Enhanced museum presentation is repository-owned. */
 
-The proven production contract uses one Custom HTML route shell containing the
-semantic fallback, tiny fallback styling, and direct immutable bootstrap script.
+#hrv-classroom-explorations-root.hrv-native-fallback {
+  box-sizing: border-box;
+  width: min(54rem, calc(100% - 2rem));
+  max-width: 54rem;
+  margin: 2rem auto;
+  padding: 1.25rem;
+  color: #263746;
+  background: #ffffff;
+  border: 1px solid #dbe7ef;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(13, 38, 76, 0.08);
+  font-family: "Nunito Sans", system-ui, "Segoe UI", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
 
-Amadeus compatibility is release-owned in host-compat.css and activates only
-after the repository runtime reaches the route-ready state.
+#hrv-classroom-explorations-root.hrv-native-fallback [data-hrv-native-status] {
+  margin: 1rem 0 1.25rem;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid #167c45;
+  border-radius: 0 10px 10px 0;
+  background: #eef8f1;
+  color: #294b39;
+}
 
-Do not paste legacy Hub CSS here.
-*/
+#hrv-classroom-explorations-root.hrv-native-fallback [data-hrv-native-status][data-state="failed"] {
+  border-left-color: #9b2c2c;
+  background: #fff2f2;
+  color: #7e2424;
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback :where(h1, h2, h3) {
+  color: #173a43;
+  font-family: "Nunito Sans", system-ui, "Segoe UI", Arial, sans-serif;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback h1 {
+  margin: 0.2rem 0 0.65rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.05;
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback h2 {
+  margin-top: 1.5rem;
+  font-size: 1.35rem;
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback h3 {
+  margin: 0.35rem 0;
+  font-size: 1.15rem;
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback a {
+  color: #146f92;
+  font-weight: 800;
+  text-underline-offset: 0.18em;
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback a:focus-visible {
+  outline: 3px solid #146f92;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  #hrv-classroom-explorations-root.hrv-native-fallback {
+    width: calc(100% - 1rem);
+    margin: 0.75rem auto 1.5rem;
+    padding: 1rem;
+    font-size: 17px;
+  }
+}

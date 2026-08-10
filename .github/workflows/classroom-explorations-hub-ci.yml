@@ -7,8 +7,11 @@ on:
   pull_request:
     paths:
       - 'apps/classroom-explorations-hub/**'
+      - 'docs/classroom-explorations-hub.md'
+      - 'docs/edublogs-integration/classroom-explorations-hub/**'
       - 'schemas/classroom-explorations-hub.schema.json'
       - 'tools/build-classroom-explorations-hub.mjs'
+      - 'tools/verify-classroom-explorations-hub-dist.mjs'
       - 'tools/stage-classroom-explorations-hub-release.mjs'
       - 'tests/classroom-explorations-hub.test.ts'
       - 'vite.hub.config.ts'
