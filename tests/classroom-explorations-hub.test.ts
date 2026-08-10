@@ -9,18 +9,19 @@ interface RecordShape {
   schoolYear: string;
   pageUrl: string | null;
   completeness: string;
-  notice?: string;
+  archiveSchoolYear?: string;
 }
 
 async function source() {
   const path = resolve(process.cwd(), "apps/classroom-explorations-hub/content/hub.source.json");
   return JSON.parse(await readFile(path, "utf8")) as {
+    contentVersion: string;
     page: { routeUrl: string; currentSchoolYear: string };
     records: RecordShape[];
   };
 }
 
-describe("Classroom Explorations Hub v1 contract", () => {
+describe("Classroom Explorations Hub v1 launch contract", () => {
   it("preserves the permanent Edublogs route", async () => {
     const manifest = await source();
     expect(manifest.page.routeUrl).toBe("https://rmhughes.edublogs.org/classroom-explorations/");
@@ -37,30 +38,36 @@ describe("Classroom Explorations Hub v1 contract", () => {
     expect(twwlSlot[0]?.pageUrl).toBeNull();
   });
 
-  it("preserves verified 2025-2026 history by content type", async () => {
+  it("launches with empty current-year past collections", async () => {
     const manifest = await source();
-    const historical = manifest.records.filter((record) => record.schoolYear === "2025-2026");
-    const explorationIds = historical.filter((record) => record.type === "exploration").map((record) => record.id).sort();
-    const twwlIds = historical.filter((record) => record.type === "twwl").map((record) => record.id).sort();
-    expect(explorationIds).toEqual([
-      "caterpillars-in-the-classroom",
-      "great-barrier-reef",
-      "mushrooms",
-    ]);
-    expect(twwlIds).toEqual([
-      "autumn-spiders-gentle-web-artists",
-      "bats-dont-go-bump-in-the-night",
-      "botany-lets-talk-about-tubers",
-      "silent-wings-wise-eyes-learning-about-owls",
-      "traditions-of-russian-winter",
-    ]);
+    const currentYear = manifest.page.currentSchoolYear;
+    const pastCurrentYear = manifest.records.filter((record) =>
+      record.schoolYear === currentYear &&
+      ["exploration", "twwl"].includes(record.type) &&
+      ["past", "archived"].includes(record.status),
+    );
+    expect(pastCurrentYear).toEqual([]);
   });
 
-  it("truthfully labels Tubers as incomplete", async () => {
+  it("represents prior-year content only as one archive doorway at launch", async () => {
     const manifest = await source();
-    const tubers = manifest.records.find((record) => record.id === "botany-lets-talk-about-tubers");
-    expect(tubers?.completeness).toBe("incomplete");
-    expect(tubers?.notice).toBeTruthy();
+    const priorYear = manifest.records.filter((record) => record.schoolYear === "2025-2026");
+    expect(priorYear).toHaveLength(1);
+    expect(priorYear[0]).toMatchObject({
+      id: "archive-2025-2026",
+      type: "archive-doorway",
+      status: "coming-soon",
+      archiveSchoolYear: "2025-2026",
+      pageUrl: null,
+    });
+  });
+
+  it("does not embed legacy 2025-2026 page records in the launch Hub", async () => {
+    const manifest = await source();
+    const legacyContent = manifest.records.filter((record) =>
+      record.schoolYear === "2025-2026" && ["exploration", "twwl"].includes(record.type),
+    );
+    expect(legacyContent).toEqual([]);
   });
 
   it("has stable unique record ids", async () => {
