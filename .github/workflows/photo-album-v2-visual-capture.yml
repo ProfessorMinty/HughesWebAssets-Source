@@ -29,6 +29,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+        with:
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -59,13 +61,16 @@ jobs:
           "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=5000 --window-size=1440,1000 --screenshot=qa/photo-album/v2/desktop.png http://127.0.0.1:4174/
           "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=7600 --window-size=1440,1000 --screenshot=qa/photo-album/v2/desktop-mid-travel.png http://127.0.0.1:4174/
           "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=5000 --window-size=390,844 --screenshot=qa/photo-album/v2/phone.png http://127.0.0.1:4174/
+          base64 -w 0 qa/photo-album/v2/desktop.png > qa/photo-album/v2/desktop.png.b64
+          base64 -w 0 qa/photo-album/v2/desktop-mid-travel.png > qa/photo-album/v2/desktop-mid-travel.png.b64
+          base64 -w 0 qa/photo-album/v2/phone.png > qa/photo-album/v2/phone.png.b64
 
       - name: Commit QA captures
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa/photo-album/v2/*.png
+          git add qa/photo-album/v2/*.png qa/photo-album/v2/*.b64
           if git diff --cached --quiet; then
             exit 0
           fi
