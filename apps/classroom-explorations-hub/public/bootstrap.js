@@ -75,9 +75,10 @@
     return url;
   }
 
-  function loadStyle(url) {
+  function loadStyle(url, marker) {
     return new Promise(function (resolve, reject) {
-      var existing = document.querySelector('link[data-hrv-repository-style="classroom-explorations-hub"]');
+      var selector = 'link[data-hrv-repository-style="' + marker + '"]';
+      var existing = document.querySelector(selector);
       if (existing && existing.href === url && existing.sheet) {
         resolve(existing);
         return;
@@ -85,18 +86,18 @@
 
       var link = document.createElement("link");
       var timer = window.setTimeout(function () {
-        reject(new Error("Hub stylesheet timed out."));
+        reject(new Error(marker + " stylesheet timed out."));
       }, timeoutMs);
       link.rel = "stylesheet";
       link.href = url;
-      link.setAttribute("data-hrv-repository-style", "classroom-explorations-hub");
+      link.setAttribute("data-hrv-repository-style", marker);
       link.addEventListener("load", function () {
         window.clearTimeout(timer);
         resolve(link);
       }, { once: true });
       link.addEventListener("error", function () {
         window.clearTimeout(timer);
-        reject(new Error("Hub stylesheet failed to load: " + url));
+        reject(new Error(marker + " stylesheet failed to load: " + url));
       }, { once: true });
       document.head.appendChild(link);
     });
@@ -200,7 +201,8 @@
       if (!release.assets) throw new Error("Hub release asset map is missing.");
 
       var releaseBase = new URL("./", releaseUrl).href;
-      var styleUrl = resolveReleaseAsset(releaseBase, release.assets.style, "stylesheet");
+      var compatStyleUrl = resolveReleaseAsset(releaseBase, release.assets.compatStyle, "host compatibility stylesheet");
+      var styleUrl = resolveReleaseAsset(releaseBase, release.assets.style, "museum stylesheet");
       var runtimeUrl = resolveReleaseAsset(releaseBase, release.assets.script, "runtime");
       var contentUrl = resolveReleaseAsset(releaseBase, release.assets.content, "content manifest");
 
@@ -211,12 +213,13 @@
       status("Opening the Classroom Explorations museum…");
 
       return Promise.all([
-        loadStyle(styleUrl),
+        loadStyle(compatStyleUrl, "classroom-explorations-host-compat"),
+        loadStyle(styleUrl, "classroom-explorations-hub"),
         import(runtimeUrl),
         fetchJson(contentUrl, "Hub content manifest")
       ]).then(function (parts) {
-        var runtime = parts[1];
-        var manifest = parts[2];
+        var runtime = parts[2];
+        var manifest = parts[3];
         validateContentManifest(manifest);
         return { release: release, runtime: runtime, manifest: manifest };
       });
