@@ -126,11 +126,9 @@ export class HeroCarousel {
   private readonly nextSlide: HTMLButtonElement;
   private readonly nextImage: HTMLImageElement;
   private readonly status: HTMLElement;
-  private readonly intersectionObserver: IntersectionObserver | null;
+  private readonly pauseButton: HTMLButtonElement;
   private transitionTimer: number | null = null;
-  private visible = true;
-  private keyboardFocusWithin = false;
-  private pointerFocusGuard = false;
+  private userPaused = false;
 
   constructor(
     mount: HTMLElement,
@@ -168,9 +166,15 @@ export class HeroCarousel {
     const controls = createElement("div", "hrv-carousel__controls");
     const previous = createIconButton("Previous featured memory", "←", "hrv-icon-button");
     const next = createIconButton("Next featured memory", "→", "hrv-icon-button");
+    this.pauseButton = createIconButton(
+      "Pause featured memories",
+      "Ⅱ",
+      "hrv-icon-button hrv-carousel__pause",
+    );
+    this.pauseButton.setAttribute("aria-pressed", "false");
     this.status = createElement("p", "hrv-carousel__status");
     this.status.setAttribute("aria-live", "polite");
-    controls.append(previous, this.status, next);
+    controls.append(previous, this.status, this.pauseButton, next);
     carousel.append(this.stage, controls);
     mount.append(copy, carousel);
 
@@ -192,6 +196,8 @@ export class HeroCarousel {
 
     previous.addEventListener("click", () => this.requestMove("previous"));
     next.addEventListener("click", () => this.requestMove("next"));
+    this.pauseButton.addEventListener("click", () => this.togglePaused());
+
     carousel.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
@@ -203,43 +209,12 @@ export class HeroCarousel {
       }
     });
 
-    carousel.addEventListener("pointerdown", () => {
-      this.pointerFocusGuard = true;
-      this.keyboardFocusWithin = false;
-      this.syncPlayback();
-      queueMicrotask(() => {
-        this.pointerFocusGuard = false;
-      });
-    });
-    carousel.addEventListener("focusin", () => {
-      if (this.pointerFocusGuard) return;
-      this.keyboardFocusWithin = true;
-      this.syncPlayback();
-    });
-    carousel.addEventListener("focusout", (event) => {
-      if (!carousel.contains(event.relatedTarget as Node | null)) {
-        this.keyboardFocusWithin = false;
-        this.syncPlayback();
-      }
-    });
-
-    if ("IntersectionObserver" in window) {
-      this.intersectionObserver = new IntersectionObserver((entries) => {
-        this.visible = entries[0]?.isIntersecting ?? true;
-        this.syncPlayback();
-      }, { threshold: 0.25 });
-      this.intersectionObserver.observe(mount);
-    } else {
-      this.intersectionObserver = null;
-    }
-
     document.addEventListener("visibilitychange", this.onVisibilityChange);
-    this.controller.start();
+    this.syncPlayback();
   }
 
   destroy(): void {
     this.controller.destroy();
-    this.intersectionObserver?.disconnect();
     document.removeEventListener("visibilitychange", this.onVisibilityChange);
     if (this.transitionTimer !== null) window.clearTimeout(this.transitionTimer);
   }
@@ -265,8 +240,19 @@ export class HeroCarousel {
     else this.controller.previous();
   }
 
+  private togglePaused(): void {
+    this.userPaused = !this.userPaused;
+    this.pauseButton.textContent = this.userPaused ? "▶" : "Ⅱ";
+    this.pauseButton.setAttribute("aria-pressed", String(this.userPaused));
+    this.pauseButton.setAttribute(
+      "aria-label",
+      this.userPaused ? "Resume featured memories" : "Pause featured memories",
+    );
+    this.syncPlayback();
+  }
+
   private syncPlayback(): void {
-    this.controller.setPaused(this.keyboardFocusWithin || !this.visible || document.hidden);
+    this.controller.setPaused(this.userPaused || document.hidden);
   }
 
   private updateStatus(): void {
@@ -285,6 +271,7 @@ export class HeroCarousel {
     const hasMultiplePhotos = this.controller.length > 1;
     this.previousSlide.hidden = !hasMultiplePhotos;
     this.nextSlide.hidden = !hasMultiplePhotos;
+    this.pauseButton.hidden = !hasMultiplePhotos;
     this.stage.dataset.currentPhotoId = current.id;
     this.updateStatus();
   }
