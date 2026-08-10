@@ -11,7 +11,7 @@ interface MemorySlide {
 }
 
 const INITIAL_SLOTS = [-2, -1, 0, 1, 2] as const;
-const TRAVEL_MS = 1_000;
+const TRAVEL_MS = 820;
 const SWIPE_THRESHOLD_PX = 48;
 
 function shuffled<T>(items: readonly T[], random: () => number = Math.random): T[] {
@@ -27,6 +27,7 @@ function shuffled<T>(items: readonly T[], random: () => number = Math.random): T
 
 export class MemoryCarouselV2 {
   private readonly photos: PhotoRecord[];
+  private readonly shell: HTMLElement;
   private readonly stage: HTMLElement;
   private readonly slides: MemorySlide[] = [];
   private readonly status: HTMLElement;
@@ -46,16 +47,16 @@ export class MemoryCarouselV2 {
   ) {
     this.photos = shuffled(photos);
     this.onOpen = onOpen;
+    this.shell = mount;
 
-    const shell = createElement("div", "hrv-v2-memory");
-    const glass = createElement("div", "hrv-v2-memory__glass");
-    const aura = createElement("div", "hrv-v2-memory__aura");
-    aura.setAttribute("aria-hidden", "true");
+    this.shell.classList.add("hrv-carousel");
+    this.shell.tabIndex = 0;
+    this.shell.setAttribute("role", "region");
+    this.shell.setAttribute("aria-roledescription", "carousel");
+    this.shell.setAttribute("aria-label", "Featured classroom memories");
 
-    this.stage = createElement("div", "hrv-v2-memory__stage");
-    this.stage.setAttribute("role", "region");
-    this.stage.setAttribute("aria-roledescription", "carousel");
-    this.stage.setAttribute("aria-label", "Featured classroom memories");
+    this.stage = createElement("div", "hrv-carousel__stage");
+    this.stage.setAttribute("aria-label", "Featured memory carousel");
 
     for (const slot of INITIAL_SLOTS) {
       const slide = this.createSlide(slot);
@@ -63,28 +64,27 @@ export class MemoryCarouselV2 {
       this.stage.append(slide.button);
     }
 
-    const controls = createElement("div", "hrv-v2-memory__controls");
-    const previous = createIconButton("Previous featured memory", "←", "hrv-v2-memory__arrow");
-    const next = createIconButton("Next featured memory", "→", "hrv-v2-memory__arrow");
-    this.pauseButton = createIconButton("Pause featured memories", "Ⅱ", "hrv-v2-memory__pause");
+    const controls = createElement("div", "hrv-carousel__controls");
+    const previous = createIconButton("Previous featured memory", "←", "hrv-icon-button");
+    const next = createIconButton("Next featured memory", "→", "hrv-icon-button");
+    this.pauseButton = createIconButton(
+      "Pause featured memories",
+      "Ⅱ",
+      "hrv-icon-button hrv-carousel__pause",
+    );
     this.pauseButton.setAttribute("aria-pressed", "false");
-    this.status = createElement("p", "hrv-v2-memory__status");
+    this.status = createElement("p", "hrv-carousel__status");
+    this.status.setAttribute("aria-live", "polite");
     controls.append(previous, this.status, this.pauseButton, next);
 
-    const hint = createElement("p", "hrv-v2-memory__hint", "Featured memories");
-    hint.setAttribute("aria-hidden", "true");
-
-    glass.append(aura, this.stage, hint, controls);
-    shell.append(glass);
-    mount.append(shell);
-
+    this.shell.append(this.stage, controls);
     this.renderInitialTrack();
 
     previous.addEventListener("click", () => this.move("previous"));
     next.addEventListener("click", () => this.move("next"));
     this.pauseButton.addEventListener("click", () => this.togglePause());
 
-    this.stage.addEventListener("keydown", (event) => {
+    this.shell.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         this.move("previous");
@@ -134,12 +134,13 @@ export class MemoryCarouselV2 {
   }
 
   private createSlide(slot: number): MemorySlide {
-    const button = createElement("button", "hrv-v2-memory__slide");
+    const button = createElement("button", "hrv-carousel__slide");
     button.type = "button";
-    const image = createElement("img", "hrv-v2-memory__image");
+    const image = createElement("img", "hrv-carousel__image");
     image.alt = "";
     image.decoding = "async";
-    image.loading = Math.abs(slot) <= 1 ? "eager" : "lazy";
+    image.loading = slot === 0 ? "eager" : "lazy";
+    image.fetchPriority = slot === 0 ? "high" : "low";
     button.append(image);
 
     const slide = { button, image, slot };
@@ -251,8 +252,8 @@ export class MemoryCarouselV2 {
 
   private updateStatus(): void {
     this.status.textContent = this.photos.length > 0
-      ? `${this.position + 1} / ${this.photos.length}`
-      : "0 / 0";
+      ? `Memory ${this.position + 1} of ${this.photos.length}`
+      : "Memory 0 of 0";
   }
 
   private startAutoplay(): void {
