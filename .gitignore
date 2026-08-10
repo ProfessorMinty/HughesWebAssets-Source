@@ -4,3 +4,5 @@ dist/
 .vite/
 coverage/
 *.log
+# Generated from the friendly Hub source before development/build.
+apps/classroom-explorations-hub/public/hub.manifest.json
