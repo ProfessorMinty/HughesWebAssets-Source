@@ -1,4 +1,5 @@
 import "./styles/photo-album.css";
+import "./styles/carousel-refinement.css";
 import { PhotoAlbumApp } from "./app";
 import type { PhotoAlbumOptions } from "./config";
 
