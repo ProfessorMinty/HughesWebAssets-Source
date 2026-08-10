@@ -147,7 +147,6 @@
   line-height: 1.7 !important;
 }
 
-/* Glass memory carousel */
 .hrv-v2-memory {
   position: relative;
   width: 100%;
@@ -278,9 +277,9 @@
   transform-origin: center center;
   will-change: transform, opacity, filter;
   transition:
-    transform 920ms cubic-bezier(.2, .78, .18, 1) !important,
-    opacity 650ms ease !important,
-    filter 760ms ease !important,
+    transform 920ms cubic-bezier(.2, .78, .18, 1),
+    opacity 650ms ease,
+    filter 760ms ease,
     box-shadow 920ms ease !important;
 }
 
@@ -448,7 +447,6 @@
   text-align: center;
 }
 
-/* Empty current-year hero keeps the same glass language and foregrounds the archive at launch. */
 .hrv-v2-memory-empty {
   position: relative;
   display: grid;
@@ -506,7 +504,6 @@
   line-height: 1.6 !important;
 }
 
-/* Shared year albums */
 .hrv-v2-albums {
   width: min(calc(100% - 48px), 1320px);
   margin: 0 auto;
@@ -595,26 +592,11 @@
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
-.hrv-v2-album-card[data-theme="harvest"] {
-  --album-accent: #d79045;
-  --album-wash: #fff0d8;
-}
-.hrv-v2-album-card[data-theme="discovery"] {
-  --album-accent: #7485cb;
-  --album-wash: #edf0ff;
-}
-.hrv-v2-album-card[data-theme="woodland"] {
-  --album-accent: #6f8a67;
-  --album-wash: #edf5e9;
-}
-.hrv-v2-album-card[data-theme="garden"] {
-  --album-accent: #c77891;
-  --album-wash: #fff0f5;
-}
-.hrv-v2-album-card[data-theme="constellation"] {
-  --album-accent: #8876b7;
-  --album-wash: #f1edff;
-}
+.hrv-v2-album-card[data-theme="harvest"] { --album-accent: #d79045; --album-wash: #fff0d8; }
+.hrv-v2-album-card[data-theme="discovery"] { --album-accent: #7485cb; --album-wash: #edf0ff; }
+.hrv-v2-album-card[data-theme="woodland"] { --album-accent: #6f8a67; --album-wash: #edf5e9; }
+.hrv-v2-album-card[data-theme="garden"] { --album-accent: #c77891; --album-wash: #fff0f5; }
+.hrv-v2-album-card[data-theme="constellation"] { --album-accent: #8876b7; --album-wash: #f1edff; }
 
 .hrv-v2-album-card:is(:hover, :focus-visible) {
   border-color: color-mix(in srgb, var(--album-accent) 48%, white);
@@ -752,7 +734,6 @@
   font-size: 17px !important;
 }
 
-/* Compact permanent year doorway */
 .hrv-v2-year-doorway {
   display: flex;
   align-items: center;
@@ -842,7 +823,6 @@
   text-underline-offset: 3px;
 }
 
-/* Year chooser */
 .hrv-v2-years {
   width: min(calc(100% - 48px), 1120px);
   margin: 0 auto;
@@ -950,15 +930,12 @@
   line-height: 1.55 !important;
 }
 
-/* Important product rule: V2 does not silently switch the carousel into a no-motion mode.
-   The legacy stylesheet contains a broad OS reduced-motion rule. These declarations restore
-   the explicitly user-controlled V2 carousel travel even when that older rule is present. */
 @media (prefers-reduced-motion: reduce) {
   .hrv-photo-album-v2 .hrv-v2-memory__slide {
     transition:
-      transform 920ms cubic-bezier(.2, .78, .18, 1) !important,
-      opacity 650ms ease !important,
-      filter 760ms ease !important,
+      transform 920ms cubic-bezier(.2, .78, .18, 1),
+      opacity 650ms ease,
+      filter 760ms ease,
       box-shadow 920ms ease !important;
   }
   .hrv-photo-album-v2 .hrv-v2-memory__stage.is-recycling .hrv-v2-memory__slide {
@@ -972,22 +949,14 @@
     min-height: 0;
     padding: clamp(38px, 6vw, 62px);
   }
-  .hrv-v2-hero__copy {
-    max-width: 760px;
-  }
-  .hrv-v2-hero__title {
-    max-width: 760px;
-  }
-  .hrv-v2-hero__copyline {
-    max-width: 690px;
-  }
+  .hrv-v2-hero__copy { max-width: 760px; }
+  .hrv-v2-hero__title { max-width: 760px; }
+  .hrv-v2-hero__copyline { max-width: 690px; }
   .hrv-v2-memory {
     width: min(100%, 960px);
     margin-inline: auto;
   }
-  .hrv-v2-album-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .hrv-v2-album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 720px) {
@@ -998,12 +967,8 @@
     gap: 28px;
     border-radius: 30px;
   }
-  .hrv-v2-hero__copy {
-    padding-inline: 6px;
-  }
-  .hrv-v2-hero__title {
-    font-size: clamp(42px, 12vw, 58px) !important;
-  }
+  .hrv-v2-hero__copy { padding-inline: 6px; }
+  .hrv-v2-hero__title { font-size: clamp(42px, 12vw, 58px) !important; }
   .hrv-v2-hero__copyline {
     margin-top: 18px !important;
     font-size: 17px !important;
@@ -1024,29 +989,19 @@
     height: 78%;
     border-radius: 18px;
   }
-  .hrv-v2-memory__slide[data-slot="-3"] {
-    transform: translate3d(-150%, 0, -150px) scale(.62);
-  }
-  .hrv-v2-memory__slide[data-slot="-2"] {
-    transform: translate3d(-110%, 0, -110px) scale(.66);
-  }
+  .hrv-v2-memory__slide[data-slot="-3"] { transform: translate3d(-150%, 0, -150px) scale(.62); }
+  .hrv-v2-memory__slide[data-slot="-2"] { transform: translate3d(-110%, 0, -110px) scale(.66); }
   .hrv-v2-memory__slide[data-slot="-1"] {
     opacity: .61;
     transform: translate3d(-58%, 0, -52px) rotateY(4deg) scale(.73);
   }
-  .hrv-v2-memory__slide[data-slot="0"] {
-    transform: translate3d(0, 0, 48px) scale(1);
-  }
+  .hrv-v2-memory__slide[data-slot="0"] { transform: translate3d(0, 0, 48px) scale(1); }
   .hrv-v2-memory__slide[data-slot="1"] {
     opacity: .61;
     transform: translate3d(58%, 0, -52px) rotateY(-4deg) scale(.73);
   }
-  .hrv-v2-memory__slide[data-slot="2"] {
-    transform: translate3d(110%, 0, -110px) scale(.66);
-  }
-  .hrv-v2-memory__slide[data-slot="3"] {
-    transform: translate3d(150%, 0, -150px) scale(.62);
-  }
+  .hrv-v2-memory__slide[data-slot="2"] { transform: translate3d(110%, 0, -110px) scale(.66); }
+  .hrv-v2-memory__slide[data-slot="3"] { transform: translate3d(150%, 0, -150px) scale(.62); }
   .hrv-v2-memory__hint {
     top: 18px;
     padding: 7px 13px;
@@ -1065,15 +1020,9 @@
     align-items: flex-start;
     flex-direction: column;
   }
-  .hrv-v2-section-title {
-    font-size: clamp(36px, 10vw, 48px) !important;
-  }
-  .hrv-v2-album-grid {
-    grid-template-columns: 1fr;
-  }
-  .hrv-v2-album-card__media {
-    aspect-ratio: 1.65 / 1;
-  }
+  .hrv-v2-section-title { font-size: clamp(36px, 10vw, 48px) !important; }
+  .hrv-v2-album-grid { grid-template-columns: 1fr; }
+  .hrv-v2-album-card__media { aspect-ratio: 1.65 / 1; }
   .hrv-v2-year-doorway {
     width: calc(100% - 24px);
     margin: 4px auto 0;
@@ -1082,7 +1031,5 @@
     width: calc(100% - 24px);
     padding-top: 58px;
   }
-  .hrv-v2-years__grid {
-    grid-template-columns: 1fr;
-  }
+  .hrv-v2-years__grid { grid-template-columns: 1fr; }
 }
