@@ -1,4 +1,4 @@
-name: Stage Photo Album V2 preview 2026.08.10.6
+name: Stage Photo Album V2 preview 2026.08.10.7
 
 on:
   push:
@@ -42,13 +42,13 @@ jobs:
         run: npm run build
 
       - name: Stage preview release
-        run: node tools/stage-photo-album-release.mjs 2026.08.10.6
+        run: node tools/stage-photo-album-release.mjs 2026.08.10.7
 
       - name: Commit preview artifacts to rebuild branch
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add releases/photo-album/2026.08.10.6
-          git commit -m "Stage Photo Album V2 preview 2026.08.10.6"
+          git add releases/photo-album/2026.08.10.7
+          git commit -m "Stage Photo Album V2 preview 2026.08.10.7"
           git push origin HEAD:photo-album-home-v2-rebuild
