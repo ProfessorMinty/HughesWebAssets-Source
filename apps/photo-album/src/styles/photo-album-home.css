@@ -1,13 +1,43 @@
-/* Photo Album V2 surgical presentation bridge.
-   The visual chassis is the proven Codex .5 presentation from photo-album.css
-   plus carousel-refinement.css. This file intentionally does NOT redesign it.
+/*
+ * Photo Album V2 presentation bridge
+ *
+ * Desktop calibration target: a 1920x911 Chrome content viewport.
+ * The page is intentionally full-bleed at desktop sizes. Content may align to
+ * comfortable internal gutters, but the visual environment itself must never
+ * read as a centered card floating in a beige WordPress canvas.
+ *
+ * Carousel mechanics remain owned by memory-carousel-v2.ts and
+ * carousel-refinement.css. This layer only supplies presentation.
+ */
 
-   V2 owns only the two requested visible upgrades:
-   1. preserve the physical five-slot carousel travel at all times;
-   2. replace the old La-Croix-level album accents with real subject frames.
-*/
+body:has(> #hrv-photo-album) {
+  background: #eef6f7 !important;
+}
 
-/* Programmatic route focus should not paint a purple rectangle around the hero title. */
+.hrv-photo-album-v2 {
+  background:
+    radial-gradient(circle at 12% 4%, rgb(219 244 244 / 82%), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgb(226 224 250 / 72%), transparent 31%),
+    linear-gradient(180deg, #f8fcfd 0%, #eef7f7 50%, #f4f7fb 100%) !important;
+}
+
+.hrv-photo-album-v2 .hrv-site-header {
+  border-bottom-color: rgb(55 82 83 / 12%);
+  background: rgb(247 252 252 / 90%);
+  box-shadow: 0 8px 30px rgb(38 66 70 / 7%);
+}
+
+.hrv-photo-album-v2 .hrv-site-header__inner {
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(24px, 4vw, 72px);
+}
+
+.hrv-photo-album-v2 .hrv-main {
+  background: transparent;
+}
+
+/* Programmatic route focus should not paint a rectangle around editorial headings. */
 .hrv-photo-album-v2 .hrv-hero__title:focus,
 .hrv-photo-album-v2 .hrv-hero__title:focus-visible,
 .hrv-photo-album-v2 .hrv-v2-years__title:focus,
@@ -16,8 +46,101 @@
   box-shadow: none !important;
 }
 
-/* The .5 base had a decorative white sweep across the stage. It can read as a
-   flash during photo travel, so V2 keeps the glass shell but removes the sweep. */
+/* ---------- Full-bleed desktop hero ---------- */
+
+.hrv-photo-album-v2 .hrv-hero {
+  width: 100%;
+  max-width: none;
+  min-height: calc(100dvh - 74px);
+  margin: 0;
+  padding: clamp(40px, 4vw, 74px) clamp(44px, 6vw, 118px);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  grid-template-columns: minmax(360px, .72fr) minmax(680px, 1.28fr);
+  align-items: center;
+  gap: clamp(42px, 5vw, 98px);
+  background:
+    radial-gradient(circle at 7% 18%, rgb(255 255 255 / 98%) 0 4%, transparent 28%),
+    radial-gradient(circle at 90% 14%, rgb(196 226 244 / 56%), transparent 34%),
+    radial-gradient(circle at 74% 92%, rgb(215 203 245 / 46%), transparent 36%),
+    radial-gradient(circle at 26% 88%, rgb(190 229 215 / 42%), transparent 31%),
+    linear-gradient(128deg, #f7fcfc 0%, #eaf5f5 43%, #edf1fa 73%, #f5f3fb 100%);
+}
+
+.hrv-photo-album-v2 .hrv-hero::before {
+  width: min(42vw, 760px);
+  height: min(42vw, 760px);
+  top: -44%;
+  right: -14%;
+  border-color: rgb(255 255 255 / 54%);
+  box-shadow:
+    0 0 0 74px rgb(255 255 255 / 9%),
+    0 0 0 150px rgb(113 160 181 / 4%);
+}
+
+.hrv-photo-album-v2 .hrv-hero::after {
+  opacity: .38;
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 88%) 0 1.2px, transparent 1.7px),
+    radial-gradient(circle, rgb(126 173 190 / 48%) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgb(160 137 203 / 38%) 0 1px, transparent 1.5px);
+  background-size: 122px 122px, 171px 171px, 213px 213px;
+  background-position: 12% 26%, 74% 18%, 84% 78%;
+  mask-image: linear-gradient(90deg, black, transparent 36%, transparent 72%, black);
+}
+
+.hrv-photo-album-v2 .hrv-hero__copy {
+  width: auto;
+  max-width: 620px;
+  margin: 0;
+  text-align: left;
+}
+
+.hrv-photo-album-v2 .hrv-hero__title {
+  max-width: 620px;
+  color: #254148 !important;
+  font-size: clamp(58px, 4.4vw, 86px) !important;
+  line-height: .96 !important;
+}
+
+.hrv-photo-album-v2 .hrv-hero__description {
+  max-width: 560px;
+  margin: 24px 0 0 !important;
+  color: #506a6f !important;
+  font-size: clamp(17px, 1.05vw, 20px) !important;
+  line-height: 1.68 !important;
+}
+
+.hrv-photo-album-v2 .hrv-hero .hrv-eyebrow {
+  color: #3f7774 !important;
+}
+
+/* ---------- Carousel keeps its physical V2 travel, now allowed to breathe ---------- */
+
+.hrv-photo-album-v2 .hrv-carousel {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 13px;
+  border-color: rgb(255 255 255 / 86%);
+  background: rgb(255 255 255 / 44%);
+  box-shadow:
+    0 34px 90px rgb(44 76 87 / 18%),
+    0 0 64px rgb(126 161 205 / 12%),
+    inset 0 1px 0 #fff;
+}
+
+.hrv-photo-album-v2 .hrv-carousel__stage {
+  aspect-ratio: 1.86;
+  min-height: 0;
+  touch-action: pan-y;
+  background:
+    radial-gradient(circle at 50% 46%, rgb(255 255 255 / 82%), transparent 35%),
+    linear-gradient(135deg, #dce9eb, #e4e8f2 54%, #d9e7e5);
+}
+
+/* The old decorative sweep looked like a flash while photos travelled. */
 .hrv-photo-album-v2 .hrv-carousel__stage::after {
   content: none !important;
   animation: none !important;
@@ -25,14 +148,7 @@
   transform: none !important;
 }
 
-.hrv-photo-album-v2 .hrv-carousel__stage {
-  touch-action: pan-y;
-}
-
-/* V2 has no hidden reduced-motion carousel branch. These declarations are
-   deliberately more specific than the legacy media-query rules so the visible
-   five-slot travel remains the same physical animation for every visitor.
-   Pause/Resume is the explicit user-facing motion control. */
+/* No hidden reduced-motion carousel branch. Pause/Resume is the visible control. */
 .hrv-photo-album-v2 .hrv-carousel__slide {
   transition:
     transform 780ms cubic-bezier(.22, .78, .2, 1),
@@ -47,87 +163,30 @@
 
 .hrv-photo-album-v2 .hrv-carousel__pause[aria-pressed="true"] {
   color: #fff;
-  background: #5f6f8e;
-  box-shadow: 0 9px 24px rgb(61 69 91 / 24%);
+  background: #4f6f86;
+  box-shadow: 0 9px 24px rgb(45 70 89 / 24%);
 }
 
-/* ---------- Strong subject identity, same Codex card geometry ---------- */
+/* ---------- Previous-year doorway is a full-width continuation, not a floating pill ---------- */
 
-.hrv-photo-album-v2 .hrv-album-card__media {
-  isolation: isolate;
+.hrv-photo-album-v2 .hrv-prior-year {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(34px, 4vw, 58px) clamp(44px, 6vw, 118px);
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 92% 12%, rgb(255 255 255 / 15%), transparent 26%),
+    linear-gradient(118deg, #365c61 0%, #4b6874 48%, #625f84 100%);
+  box-shadow: none;
 }
 
-.hrv-photo-album-v2 .hrv-album-card__frame {
-  position: absolute;
-  z-index: 3;
-  inset: 0;
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  pointer-events: none;
-  object-fit: fill !important;
-  opacity: .98;
-  filter: drop-shadow(0 3px 7px rgb(34 42 38 / 22%));
-  transform: scale(1.002);
-  transform-origin: center;
-  transition: transform 420ms cubic-bezier(.2, .72, .2, 1), filter 260ms ease;
+.hrv-photo-album-v2 .hrv-prior-year__copy {
+  display: block;
 }
 
-.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__frame {
-  filter:
-    drop-shadow(0 4px 9px rgb(34 42 38 / 26%))
-    drop-shadow(0 0 8px color-mix(in srgb, var(--album-accent) 36%, transparent));
-  transform: scale(1.012);
-}
-
-/* Keep the photographs dominant while letting each subject visibly own its card. */
-.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] {
-  --album-accent: #c9793f;
-  --album-wash: #f6dfc6;
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] {
-  --album-accent: #687fc4;
-  --album-wash: #dce5f8;
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] {
-  --album-accent: #758e62;
-  --album-wash: #e2ead8;
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] {
-  --album-accent: #c86787;
-  --album-wash: #f5d9e3;
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] {
-  --album-accent: #766bb6;
-  --album-wash: #e1def4;
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__body {
-  background: linear-gradient(135deg, #fffdfa, #f7e1ca);
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__body {
-  background: linear-gradient(135deg, #fff, #e5ebfa);
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] .hrv-album-card__body {
-  background: linear-gradient(135deg, #fffefb, #e6eddf);
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] .hrv-album-card__body {
-  background: linear-gradient(135deg, #fffdfd, #f5dfe7);
-}
-
-.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] .hrv-album-card__body {
-  background: linear-gradient(135deg, #fff, #e6e2f6);
-}
-
-/* ---------- Honest zero-photo state inside the unchanged Codex hero ---------- */
+/* ---------- Honest zero-photo state ---------- */
 
 .hrv-photo-album-v2 .hrv-v2-memory-empty-wrap {
   min-height: 390px;
@@ -143,7 +202,7 @@
   border-radius: 25px;
   background:
     radial-gradient(circle at 50% 32%, rgb(255 255 255 / 78%), transparent 31%),
-    linear-gradient(135deg, #dce9e7, #e5e8f4 54%, #dce8e5);
+    linear-gradient(135deg, #dcebed, #e5e8f4 54%, #dceae7);
   text-align: center;
 }
 
@@ -154,8 +213,8 @@
   place-items: center;
   border-radius: 50%;
   color: #fff;
-  background: linear-gradient(145deg, #6a8b77, #8b76a7);
-  box-shadow: 0 12px 30px rgb(90 107 95 / 20%);
+  background: linear-gradient(145deg, #527c7c, #776d9c);
+  box-shadow: 0 12px 30px rgb(65 93 98 / 20%);
 }
 
 .hrv-photo-album-v2 .hrv-v2-memory-empty__copy {
@@ -164,7 +223,7 @@
 
 .hrv-photo-album-v2 .hrv-v2-memory-empty__title {
   margin: 0 !important;
-  color: #2f4337 !important;
+  color: #29434a !important;
   font-family: Georgia, "Times New Roman", serif !important;
   font-size: clamp(30px, 3vw, 44px) !important;
   font-weight: 500;
@@ -175,14 +234,14 @@
 .hrv-photo-album-v2 .hrv-v2-memory-empty__text {
   max-width: 470px;
   margin: 10px auto 0 !important;
-  color: var(--hrv-muted) !important;
+  color: #5b7075 !important;
   font-size: var(--text-secondary) !important;
 }
 
-/* ---------- Year index remains V2 architecture, styled in the same family ---------- */
+/* ---------- Year index remains V2 architecture, styled in the same cool family ---------- */
 
 .hrv-photo-album-v2 .hrv-v2-years {
-  width: min(100% - 40px, 1100px);
+  width: min(100% - 80px, 1320px);
   margin: 0 auto;
   padding: clamp(64px, 8vw, 100px) 0 clamp(80px, 10vw, 130px);
 }
@@ -194,7 +253,7 @@
 
 .hrv-photo-album-v2 .hrv-v2-years__title {
   margin: 0 !important;
-  color: #2f4337 !important;
+  color: #29434a !important;
   font-family: Georgia, "Times New Roman", serif !important;
   font-size: var(--text-heading-medium) !important;
   font-weight: 500;
@@ -205,7 +264,7 @@
 .hrv-photo-album-v2 .hrv-v2-years__copy {
   max-width: 650px;
   margin-top: 14px !important;
-  color: var(--hrv-muted) !important;
+  color: #60757a !important;
 }
 
 .hrv-photo-album-v2 .hrv-v2-years__grid {
@@ -221,16 +280,16 @@
   min-height: 108px;
   padding: 22px 24px;
   gap: 15px;
-  border: 1px solid var(--hrv-border);
+  border: 1px solid rgb(61 92 98 / 15%);
   border-radius: 24px;
-  background: rgb(255 253 249 / 88%);
-  box-shadow: 0 15px 42px rgb(49 67 57 / 9%);
+  background: rgb(255 255 255 / 78%);
+  box-shadow: 0 15px 42px rgb(39 70 75 / 9%);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .hrv-photo-album-v2 .hrv-v2-year-card:is(:hover, :focus-visible) {
   transform: translateY(-4px);
-  box-shadow: 0 22px 50px rgb(49 67 57 / 15%);
+  box-shadow: 0 22px 50px rgb(39 70 75 / 15%);
 }
 
 .hrv-photo-album-v2 .hrv-v2-year-card__spark {
@@ -241,7 +300,7 @@
   place-items: center;
   border-radius: 50%;
   color: #fff;
-  background: linear-gradient(145deg, #5d826b, #8e77ae);
+  background: linear-gradient(145deg, #527a7c, #756b9c);
 }
 
 .hrv-photo-album-v2 .hrv-v2-year-card__label {
@@ -254,18 +313,66 @@
 
 .hrv-photo-album-v2 .hrv-v2-year-card__kind {
   align-self: start;
-  color: var(--hrv-muted) !important;
+  color: #64777c !important;
   font-size: var(--text-small) !important;
   font-weight: 670;
 }
 
 .hrv-photo-album-v2 .hrv-v2-year-card__arrow {
   grid-row: 1 / span 2;
+  color: #607c81 !important;
   font-size: 30px !important;
-  color: #687a70 !important;
+}
+
+@media (max-width: 1280px) {
+  .hrv-photo-album-v2 .hrv-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding-top: clamp(44px, 6vw, 70px);
+    padding-bottom: clamp(48px, 7vw, 82px);
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__copy {
+    max-width: 780px;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__title {
+    max-width: 760px;
+  }
+
+  .hrv-photo-album-v2 .hrv-carousel {
+    width: min(100%, 1050px);
+  }
 }
 
 @media (max-width: 720px) {
+  .hrv-photo-album-v2 .hrv-site-header__inner {
+    padding-inline: 12px;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero {
+    width: 100%;
+    margin: 0;
+    padding: 34px 16px 28px;
+    gap: 28px;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__title {
+    font-size: clamp(44px, 13vw, 62px) !important;
+  }
+
+  .hrv-photo-album-v2 .hrv-carousel {
+    padding: 8px;
+  }
+
+  .hrv-photo-album-v2 .hrv-carousel__stage {
+    aspect-ratio: 1.42;
+  }
+
+  .hrv-photo-album-v2 .hrv-prior-year {
+    padding: 32px 24px;
+  }
+
   .hrv-photo-album-v2 .hrv-v2-memory-empty-wrap,
   .hrv-photo-album-v2 .hrv-v2-memory-empty {
     min-height: 62vw;
