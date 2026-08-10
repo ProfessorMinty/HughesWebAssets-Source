@@ -11,7 +11,7 @@ interface MemorySlide {
 }
 
 const INITIAL_SLOTS = [-2, -1, 0, 1, 2] as const;
-const TRAVEL_MS = 920;
+const TRAVEL_MS = 1_000;
 const SWIPE_THRESHOLD_PX = 48;
 
 function shuffled<T>(items: readonly T[], random: () => number = Math.random): T[] {
