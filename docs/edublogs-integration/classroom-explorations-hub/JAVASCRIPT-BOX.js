@@ -19,3 +19,51 @@
   };
   document.head.appendChild(script);
 })();
+
+(function restoreClassroomExplorationsAutoScroll() {
+  "use strict";
+
+  var DELAY_MS = 700;
+  var EXTRA_OFFSET = 12;
+
+  function shouldSkip() {
+    if (window.location.hash) return true;
+    if (window.location.href.indexOf("customize.php") !== -1) return true;
+    if (document.body && document.body.classList.contains("wp-admin")) return true;
+    if (window.scrollY > 40) return true;
+    return false;
+  }
+
+  function fixedTopOffset() {
+    var offset = 0;
+    var adminBar = document.getElementById("wpadminbar");
+    if (adminBar && window.getComputedStyle(adminBar).position === "fixed") {
+      offset += adminBar.offsetHeight || 0;
+    }
+    return offset;
+  }
+
+  function scrollToMuseum() {
+    if (shouldSkip()) return;
+    var target = document.getElementById("hrv-classroom-explorations-root");
+    if (!target) return;
+
+    var targetY = window.scrollY + target.getBoundingClientRect().top - fixedTopOffset() - EXTRA_OFFSET;
+    if (targetY <= 40) return;
+
+    window.scrollTo({
+      top: Math.max(0, targetY),
+      behavior: window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+    });
+  }
+
+  function schedule() {
+    window.setTimeout(scrollToMuseum, DELAY_MS);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", schedule, { once: true });
+  } else {
+    schedule();
+  }
+})();
