@@ -1,4 +1,5 @@
 import "./styles/hub.css";
+import "./styles/experience.css";
 import type { HubManifest, HubMountOptions, HubRecord } from "./types";
 
 const DEFAULT_MANIFEST_URL = "./hub.manifest.json";
