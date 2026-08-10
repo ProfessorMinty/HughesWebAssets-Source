@@ -1,8 +1,21 @@
+import constellationFrameUrl from "../assets/frame-constellation.svg?url";
+import discoveryFrameUrl from "../assets/frame-discovery.svg?url";
+import gardenFrameUrl from "../assets/frame-garden.svg?url";
+import harvestFrameUrl from "../assets/frame-harvest.svg?url";
+import woodlandFrameUrl from "../assets/frame-woodland.svg?url";
 import type { PhotoYearDescriptor } from "../data/year-catalog";
 import type { PhotoAlbumRoute } from "../runtime/router-v2";
 import type { AlbumCollection, AlbumViewModel, PhotoAlbumManifest, PhotoRecord } from "../types";
 import { createElement } from "../utils/dom";
 import { MemoryCarouselV2 } from "./memory-carousel-v2";
+
+const FRAME_URLS = {
+  harvest: harvestFrameUrl,
+  discovery: discoveryFrameUrl,
+  woodland: woodlandFrameUrl,
+  garden: gardenFrameUrl,
+  constellation: constellationFrameUrl,
+} as const;
 
 export interface YearHomeOptions {
   manifest: PhotoAlbumManifest;
@@ -16,10 +29,6 @@ export interface YearHomeOptions {
 
 function yearLabel(year: string): string {
   return year.replace(/-/g, "–");
-}
-
-function yearHomeRoute(kind: "current" | "archive", schoolYear: string): PhotoAlbumRoute {
-  return kind === "current" ? { name: "home" } : { name: "year", schoolYear };
 }
 
 function yearAllRoute(kind: "current" | "archive", schoolYear: string): PhotoAlbumRoute {
@@ -40,49 +49,47 @@ export class YearHomeV2 {
   constructor(mount: HTMLElement, options: YearHomeOptions) {
     const { manifest, collection, kind } = options;
     const label = yearLabel(manifest.schoolYear);
-    const page = createElement("div", "hrv-v2-home");
-    page.dataset.yearKind = kind;
-    page.dataset.schoolYear = manifest.schoolYear;
 
-    const hero = createElement("section", "hrv-v2-hero");
-    hero.setAttribute("aria-labelledby", "hrv-v2-home-title");
-    const copy = createElement("div", "hrv-v2-hero__copy");
+    const hero = createElement("section", "hrv-hero");
+    hero.setAttribute("aria-labelledby", "hrv-featured-title");
+
+    const copy = createElement("div", "hrv-hero__copy");
     const eyebrow = createElement(
       "p",
-      "hrv-v2-eyebrow",
+      "hrv-eyebrow",
       kind === "current" ? `${label} classroom memories` : `${label} memory archive`,
     );
     const title = createElement(
       "h1",
-      "hrv-v2-hero__title",
+      "hrv-hero__title",
       kind === "current" ? "Step inside a year of wonder" : "Step back into a year of wonder",
     );
-    title.id = "hrv-v2-home-title";
+    title.id = "hrv-featured-title";
     title.tabIndex = -1;
     const description = createElement(
       "p",
-      "hrv-v2-hero__copyline",
+      "hrv-hero__description",
       kind === "current"
-        ? "A living window into field trips, discoveries, gardens, experiments, and the small classroom moments worth keeping."
+        ? "A growing gallery of discoveries, field trips, gardens, and small moments worth remembering."
         : "Revisit the photographs, explorations, field trips, and classroom moments that made this school year its own story.",
     );
     copy.append(eyebrow, title, description);
 
-    const memoryMount = createElement("div", "hrv-v2-hero__memory");
+    const memoryMount = createElement("div");
     if (collection.photos.length > 0) {
       this.carousel = new MemoryCarouselV2(memoryMount, collection.photos, (photo) => {
         options.openPhoto(collection.photos, photo);
       });
     } else {
       this.carousel = null;
+      memoryMount.classList.add("hrv-carousel", "hrv-v2-memory-empty-wrap");
       memoryMount.append(this.createEmptyMemory(options));
     }
-    hero.append(copy, memoryMount);
-    page.append(hero);
 
-    page.append(this.createAlbumSection(options));
-    page.append(this.createYearDoorway(options));
-    mount.append(page);
+    hero.append(copy, memoryMount);
+    mount.append(hero);
+    mount.append(this.createAlbumSection(options));
+    mount.append(this.createYearDoorway(options));
   }
 
   destroy(): void {
@@ -95,7 +102,7 @@ export class YearHomeV2 {
     glow.setAttribute("aria-hidden", "true");
     const copy = createElement("div", "hrv-v2-memory-empty__copy");
     copy.append(
-      createElement("p", "hrv-v2-eyebrow", "The first memory is still ahead"),
+      createElement("p", "hrv-eyebrow", "The first memory is still ahead"),
       createElement("h2", "hrv-v2-memory-empty__title", "This year is just getting started."),
       createElement(
         "p",
@@ -110,7 +117,7 @@ export class YearHomeV2 {
         options.createLink(
           `Explore ${options.previousYear.label} memories`,
           { name: "year", schoolYear: options.previousYear.schoolYear },
-          "hrv-v2-button hrv-v2-button--glass",
+          "hrv-button hrv-button--ghost",
         ),
       );
     }
@@ -120,19 +127,19 @@ export class YearHomeV2 {
   private createAlbumSection(options: YearHomeOptions): HTMLElement {
     const { manifest, collection, kind } = options;
     const label = yearLabel(manifest.schoolYear);
-    const section = createElement("section", "hrv-v2-albums");
-    section.setAttribute("aria-labelledby", "hrv-v2-albums-title");
+    const section = createElement("section", "hrv-section hrv-albums-section");
+    section.setAttribute("aria-labelledby", "hrv-current-albums-title");
 
-    const heading = createElement("div", "hrv-v2-section-heading");
+    const heading = createElement("div", "hrv-section-heading");
     const headingCopy = createElement("div");
     headingCopy.append(
-      createElement("p", "hrv-v2-eyebrow", kind === "current" ? "Choose an adventure" : "Open an old chapter"),
-      createElement("h2", "hrv-v2-section-title", kind === "current" ? `Current year · ${label}` : `${label} albums`),
+      createElement("p", "hrv-eyebrow", kind === "current" ? "Choose an adventure" : "Open an old chapter"),
+      createElement("h2", "hrv-section-title", kind === "current" ? `Current year · ${label}` : `${label} albums`),
     );
-    headingCopy.querySelector("h2")!.id = "hrv-v2-albums-title";
+    headingCopy.querySelector("h2")!.id = "hrv-current-albums-title";
     heading.append(
       headingCopy,
-      options.createLink("View All Photos", yearAllRoute(kind, manifest.schoolYear), "hrv-v2-button hrv-v2-button--primary"),
+      options.createLink("View All Photos", yearAllRoute(kind, manifest.schoolYear), "hrv-button hrv-button--ghost"),
     );
     section.append(heading);
 
@@ -140,7 +147,7 @@ export class YearHomeV2 {
       section.append(
         createElement(
           "p",
-          "hrv-v2-albums__empty",
+          "hrv-empty__copy",
           kind === "current"
             ? "Albums will appear here as this school year begins."
             : "No albums are published for this archived year yet.",
@@ -149,11 +156,11 @@ export class YearHomeV2 {
       return section;
     }
 
-    const grid = createElement("div", "hrv-v2-album-grid");
+    const row = createElement("div", "hrv-album-row");
     for (const album of collection.albums) {
-      grid.append(this.createAlbumCard(album, manifest.schoolYear, kind, options));
+      row.append(this.createAlbumCard(album, manifest.schoolYear, kind, options));
     }
-    section.append(grid);
+    section.append(row);
     return section;
   }
 
@@ -166,87 +173,84 @@ export class YearHomeV2 {
     const card = options.createLink(
       album.name,
       yearAlbumRoute(kind, schoolYear, album.id),
-      "hrv-v2-album-card",
+      "hrv-album-card",
     );
     card.dataset.theme = album.theme;
     card.setAttribute("aria-label", `Open ${album.name}, ${album.photos.length} photos`);
 
-    const media = createElement("span", "hrv-v2-album-card__media");
+    const media = createElement("span", "hrv-album-card__media");
     const cover = album.photos[0];
     if (cover) {
-      const image = createElement("img", "hrv-v2-album-card__image");
+      const image = createElement("img", "hrv-album-card__image");
       image.src = cover.galleryUrl;
       image.alt = "";
       image.loading = "lazy";
       image.decoding = "async";
       media.append(image);
     } else {
-      media.append(createElement("span", "hrv-v2-album-card__placeholder", "A memory is on its way"));
+      media.append(createElement("span", "hrv-album-card__placeholder", "A new memory is on its way"));
     }
 
-    const frame = createElement("span", "hrv-v2-album-card__frame");
+    const frame = createElement("img", "hrv-album-card__frame");
+    frame.src = FRAME_URLS[album.theme];
+    frame.alt = "";
     frame.setAttribute("aria-hidden", "true");
     media.append(frame);
 
-    const body = createElement("span", "hrv-v2-album-card__body");
+    const body = createElement("span", "hrv-album-card__body");
     body.append(
-      createElement("strong", "hrv-v2-album-card__title", album.name),
+      createElement("strong", "hrv-album-card__title", album.name),
       createElement(
         "span",
-        "hrv-v2-album-card__count",
+        "hrv-album-card__count",
         `${album.photos.length} ${album.photos.length === 1 ? "photo" : "photos"}`,
       ),
-      createElement("span", "hrv-v2-album-card__action", "View album  ›"),
     );
 
-    // Replace the text node created by createLink. The card presentation owns all visible copy.
     card.replaceChildren(media, body);
     return card;
   }
 
   private createYearDoorway(options: YearHomeOptions): HTMLElement {
-    const { manifest, kind, previousYear, currentYear } = options;
-    const doorway = createElement("section", "hrv-v2-year-doorway");
+    const { kind, previousYear, currentYear } = options;
+    const prior = createElement("section", "hrv-prior-year");
+    const copy = createElement("div");
 
     if (kind === "current") {
       if (previousYear) {
-        const copy = createElement("div", "hrv-v2-year-doorway__copy");
         copy.append(
-          createElement("span", "hrv-v2-year-doorway__jewel", "✦"),
-          createElement("strong", "hrv-v2-year-doorway__title", `${previousYear.label} Memories`),
-          createElement("span", "hrv-v2-year-doorway__subtitle", "View Previous Year"),
+          createElement("p", "hrv-eyebrow", "The story continues backward"),
+          createElement("h2", "hrv-prior-year__title", `${previousYear.label} Memories`),
+          createElement("p", "hrv-prior-year__copy", "Step back into the photographs and classroom adventures from the previous school year."),
         );
-        doorway.append(
+        prior.append(
           copy,
           options.createLink(
-            "›",
+            "Explore previous year",
             { name: "year", schoolYear: previousYear.schoolYear },
-            "hrv-v2-year-doorway__action",
+            "hrv-button hrv-button--light",
           ),
         );
       } else {
-        doorway.append(
-          createElement("strong", "hrv-v2-year-doorway__title", "Previous Year Memories"),
-          options.createLink("Browse Years", { name: "years" }, "hrv-v2-year-doorway__text-link"),
+        copy.append(
+          createElement("p", "hrv-eyebrow", "The story continues backward"),
+          createElement("h2", "hrv-prior-year__title", "Previous Year Memories"),
+          createElement("p", "hrv-prior-year__copy", "Historical albums will appear here as their year manifests are published."),
         );
+        prior.append(copy, options.createLink("Browse years", { name: "years" }, "hrv-button hrv-button--light"));
       }
-      return doorway;
+      return prior;
     }
 
-    const copy = createElement("div", "hrv-v2-year-doorway__copy");
     copy.append(
-      createElement("span", "hrv-v2-year-doorway__jewel", "✦"),
-      createElement("strong", "hrv-v2-year-doorway__title", `${currentYear.label} Memories`),
-      createElement("span", "hrv-v2-year-doorway__subtitle", "Return to the current year"),
+      createElement("p", "hrv-eyebrow", "Return to the present"),
+      createElement("h2", "hrv-prior-year__title", `${currentYear.label} Memories`),
+      createElement("p", "hrv-prior-year__copy", "Return to the current school year and the newest classroom memories."),
     );
-    doorway.append(
+    prior.append(
       copy,
-      options.createLink("›", yearHomeRoute("current", currentYear.schoolYear), "hrv-v2-year-doorway__action"),
+      options.createLink("Return to current year", { name: "home" }, "hrv-button hrv-button--light"),
     );
-
-    const allYears = options.createLink("All years", { name: "years" }, "hrv-v2-year-doorway__text-link");
-    allYears.setAttribute("aria-label", `Browse all Photo Album years from ${yearLabel(manifest.schoolYear)}`);
-    doorway.append(allYears);
-    return doorway;
+    return prior;
   }
 }
