@@ -1,8 +1,21 @@
+import constellationFrameUrl from "../assets/frame-constellation.svg?url";
+import discoveryFrameUrl from "../assets/frame-discovery.svg?url";
+import gardenFrameUrl from "../assets/frame-garden.svg?url";
+import harvestFrameUrl from "../assets/frame-harvest.svg?url";
+import woodlandFrameUrl from "../assets/frame-woodland.svg?url";
 import type { PhotoYearDescriptor } from "../data/year-catalog";
 import type { PhotoAlbumRoute } from "../runtime/router-v2";
 import type { AlbumCollection, AlbumViewModel, PhotoAlbumManifest, PhotoRecord } from "../types";
 import { createElement } from "../utils/dom";
 import { MemoryCarouselV2 } from "./memory-carousel-v2";
+
+const FRAME_URLS = {
+  harvest: harvestFrameUrl,
+  discovery: discoveryFrameUrl,
+  woodland: woodlandFrameUrl,
+  garden: gardenFrameUrl,
+  constellation: constellationFrameUrl,
+} as const;
 
 export interface YearHomeOptions {
   manifest: PhotoAlbumManifest;
@@ -75,12 +88,38 @@ export class YearHomeV2 {
 
     hero.append(copy, memoryMount);
     mount.append(hero);
+    if (kind === "current") {
+      mount.append(this.createComingSoonPanel());
+    }
     mount.append(this.createAlbumSection(options));
     mount.append(this.createYearDoorway(options));
   }
 
   destroy(): void {
     this.carousel?.destroy();
+  }
+
+  private createComingSoonPanel(): HTMLElement {
+    const panel = createElement("aside", "hrv-photo-album-preview");
+    panel.setAttribute("aria-labelledby", "hrv-photo-album-preview-title");
+
+    const copy = createElement("div", "hrv-photo-album-preview__copy");
+    copy.append(
+      createElement("p", "hrv-eyebrow", "A little more magic is on the way"),
+      createElement("h2", "hrv-photo-album-preview__title", "The refreshed Photo Album is coming soon."),
+      createElement(
+        "p",
+        "hrv-photo-album-preview__text",
+        "We’re putting the finishing touches on the full experience. In the meantime, enjoy this preview and explore the rest of Hughes Room Views.",
+      ),
+    );
+    copy.querySelector("h2")!.id = "hrv-photo-album-preview-title";
+
+    const link = createElement("a", "hrv-button hrv-button--ghost", "Explore Hughes Room Views");
+    link.href = "/";
+
+    panel.append(copy, link);
+    return panel;
   }
 
   private createEmptyMemory(options: YearHomeOptions): HTMLElement {
@@ -188,7 +227,12 @@ export class YearHomeV2 {
       ),
     );
 
-    card.replaceChildren(media, body);
+    const frame = createElement("img", "hrv-album-card__frame");
+    frame.src = FRAME_URLS[album.theme];
+    frame.alt = "";
+    frame.setAttribute("aria-hidden", "true");
+
+    card.replaceChildren(media, body, frame);
     return card;
   }
 
