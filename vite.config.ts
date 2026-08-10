@@ -5,6 +5,7 @@ const appRoot = fileURLToPath(new URL("./apps/photo-album", import.meta.url));
 
 export default defineConfig({
   root: appRoot,
+  base: "./",
   publicDir: "public",
   build: {
     outDir: fileURLToPath(new URL("./dist/photo-album", import.meta.url)),

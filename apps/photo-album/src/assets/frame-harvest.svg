@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" fill="none">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0bc"/><stop offset=".45" stop-color="#d79a51"/><stop offset="1" stop-color="#a86132"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="20" y="20" width="960" height="610" rx="54" stroke="url(#gold)" stroke-width="7" opacity=".82"/>
+  <rect x="35" y="35" width="930" height="580" rx="44" stroke="#fff3cd" stroke-width="2" opacity=".72"/>
+  <g stroke="url(#gold)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity=".9">
+    <path d="M48 188C91 151 121 112 137 63M63 168c41 6 76-7 103-39M91 120c-21-8-39-25-49-47"/>
+    <path d="M952 462c-43 37-73 76-89 125m74-105c-41-6-76 7-103 39m75 9c21 8 39 25 49 47"/>
+  </g>
+  <g filter="url(#glow)">
+    <g transform="translate(52 36)">
+      <ellipse cx="70" cy="66" rx="44" ry="34" fill="#e99143" opacity=".94"/>
+      <ellipse cx="55" cy="66" rx="25" ry="34" stroke="#fff2bd" stroke-width="4" opacity=".75"/>
+      <ellipse cx="85" cy="66" rx="25" ry="34" stroke="#b75d2e" stroke-width="4" opacity=".7"/>
+      <path d="M70 32c-3-18 9-28 23-31" stroke="#8a663b" stroke-width="8" stroke-linecap="round"/>
+      <path d="M91 2c21-2 36 8 45 26-23 5-39-4-45-26Z" fill="#8faa63"/>
+    </g>
+    <g transform="translate(806 488) scale(.78)">
+      <ellipse cx="70" cy="66" rx="44" ry="34" fill="#e99143" opacity=".94"/>
+      <ellipse cx="55" cy="66" rx="25" ry="34" stroke="#fff2bd" stroke-width="4" opacity=".75"/>
+      <ellipse cx="85" cy="66" rx="25" ry="34" stroke="#b75d2e" stroke-width="4" opacity=".7"/>
+      <path d="M70 32c-3-18 9-28 23-31" stroke="#8a663b" stroke-width="8" stroke-linecap="round"/>
+      <path d="M91 2c21-2 36 8 45 26-23 5-39-4-45-26Z" fill="#8faa63"/>
+    </g>
+  </g>
+  <g fill="#fff4cf" opacity=".85">
+    <circle cx="180" cy="74" r="5"/><circle cx="202" cy="57" r="3"/><circle cx="823" cy="572" r="4"/><circle cx="795" cy="590" r="3"/>
+  </g>
+</svg>

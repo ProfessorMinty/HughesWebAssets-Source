@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" fill="none">
+  <defs>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9efff"/><stop offset=".42" stop-color="#8294df"/><stop offset="1" stop-color="#655ab2"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect x="20" y="20" width="960" height="610" rx="54" stroke="url(#blue)" stroke-width="7" opacity=".85"/>
+  <rect x="35" y="35" width="930" height="580" rx="44" stroke="#e9f6ff" stroke-width="2" opacity=".7"/>
+  <g stroke="#d8ecff" stroke-width="3" opacity=".72">
+    <path d="M92 98 180 72l67 55 78-26M746 545l75-58 86 31"/>
+    <circle cx="92" cy="98" r="6" fill="#fff"/><circle cx="180" cy="72" r="5" fill="#fff"/><circle cx="247" cy="127" r="5" fill="#fff"/><circle cx="325" cy="101" r="4" fill="#fff"/>
+    <circle cx="746" cy="545" r="5" fill="#fff"/><circle cx="821" cy="487" r="6" fill="#fff"/><circle cx="907" cy="518" r="4" fill="#fff"/>
+  </g>
+  <g transform="translate(55 390)" filter="url(#glow)" stroke="url(#blue)">
+    <circle cx="83" cy="83" r="44" stroke-width="8" opacity=".85"/>
+    <circle cx="83" cy="83" r="15" stroke-width="7"/>
+    <g stroke-width="8"><path d="M83 12v20M83 134v20M12 83h20M134 83h20M33 33l14 14M119 119l14 14M133 33l-14 14M47 119l-14 14"/></g>
+  </g>
+  <g transform="translate(763 53)" filter="url(#glow)" stroke="#ecf8ff" stroke-width="5">
+    <circle cx="70" cy="70" r="8" fill="#fff" stroke="none"/>
+    <ellipse cx="70" cy="70" rx="58" ry="21"/>
+    <ellipse cx="70" cy="70" rx="58" ry="21" transform="rotate(60 70 70)"/>
+    <ellipse cx="70" cy="70" rx="58" ry="21" transform="rotate(120 70 70)"/>
+  </g>
+  <g fill="#fff" opacity=".86"><circle cx="390" cy="61" r="4"/><circle cx="420" cy="82" r="3"/><circle cx="676" cy="577" r="5"/><circle cx="706" cy="557" r="3"/></g>
+</svg>

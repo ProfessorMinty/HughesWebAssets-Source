@@ -1,0 +1,282 @@
+/* Photo Album V2 surgical presentation bridge.
+   The visual chassis is the proven Codex .5 presentation from photo-album.css
+   plus carousel-refinement.css. This file intentionally does NOT redesign it.
+
+   V2 owns only the two requested visible upgrades:
+   1. preserve the physical five-slot carousel travel at all times;
+   2. replace the old La-Croix-level album accents with real subject frames.
+*/
+
+/* Programmatic route focus should not paint a purple rectangle around the hero title. */
+.hrv-photo-album-v2 .hrv-hero__title:focus,
+.hrv-photo-album-v2 .hrv-hero__title:focus-visible,
+.hrv-photo-album-v2 .hrv-v2-years__title:focus,
+.hrv-photo-album-v2 .hrv-v2-years__title:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* The .5 base had a decorative white sweep across the stage. It can read as a
+   flash during photo travel, so V2 keeps the glass shell but removes the sweep. */
+.hrv-photo-album-v2 .hrv-carousel__stage::after {
+  content: none !important;
+  animation: none !important;
+  background: none !important;
+  transform: none !important;
+}
+
+.hrv-photo-album-v2 .hrv-carousel__stage {
+  touch-action: pan-y;
+}
+
+/* V2 has no hidden reduced-motion carousel branch. These declarations are
+   deliberately more specific than the legacy media-query rules so the visible
+   five-slot travel remains the same physical animation for every visitor.
+   Pause/Resume is the explicit user-facing motion control. */
+.hrv-photo-album-v2 .hrv-carousel__slide {
+  transition:
+    transform 780ms cubic-bezier(.22, .78, .2, 1),
+    opacity 520ms ease,
+    filter 620ms ease,
+    box-shadow 780ms ease !important;
+}
+
+.hrv-photo-album-v2 .hrv-carousel__stage.is-recycling .hrv-carousel__slide {
+  transition: none !important;
+}
+
+.hrv-photo-album-v2 .hrv-carousel__pause[aria-pressed="true"] {
+  color: #fff;
+  background: #5f6f8e;
+  box-shadow: 0 9px 24px rgb(61 69 91 / 24%);
+}
+
+/* ---------- Strong subject identity, same Codex card geometry ---------- */
+
+.hrv-photo-album-v2 .hrv-album-card__media {
+  isolation: isolate;
+}
+
+.hrv-photo-album-v2 .hrv-album-card__frame {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  pointer-events: none;
+  object-fit: fill !important;
+  opacity: .98;
+  filter: drop-shadow(0 3px 7px rgb(34 42 38 / 22%));
+  transform: scale(1.002);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(.2, .72, .2, 1), filter 260ms ease;
+}
+
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__frame {
+  filter:
+    drop-shadow(0 4px 9px rgb(34 42 38 / 26%))
+    drop-shadow(0 0 8px color-mix(in srgb, var(--album-accent) 36%, transparent));
+  transform: scale(1.012);
+}
+
+/* Keep the photographs dominant while letting each subject visibly own its card. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] {
+  --album-accent: #c9793f;
+  --album-wash: #f6dfc6;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] {
+  --album-accent: #687fc4;
+  --album-wash: #dce5f8;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] {
+  --album-accent: #758e62;
+  --album-wash: #e2ead8;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] {
+  --album-accent: #c86787;
+  --album-wash: #f5d9e3;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] {
+  --album-accent: #766bb6;
+  --album-wash: #e1def4;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fffdfa, #f7e1ca);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fff, #e5ebfa);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fffefb, #e6eddf);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fffdfd, #f5dfe7);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fff, #e6e2f6);
+}
+
+/* ---------- Honest zero-photo state inside the unchanged Codex hero ---------- */
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty-wrap {
+  min-height: 390px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty {
+  display: grid;
+  min-height: 390px;
+  padding: clamp(34px, 5vw, 58px);
+  place-items: center;
+  align-content: center;
+  gap: 17px;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 50% 32%, rgb(255 255 255 / 78%), transparent 31%),
+    linear-gradient(135deg, #dce9e7, #e5e8f4 54%, #dce8e5);
+  text-align: center;
+}
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty__glow {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(145deg, #6a8b77, #8b76a7);
+  box-shadow: 0 12px 30px rgb(90 107 95 / 20%);
+}
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty__copy {
+  max-width: 500px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty__title {
+  margin: 0 !important;
+  color: #2f4337 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(30px, 3vw, 44px) !important;
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.05 !important;
+}
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty__text {
+  max-width: 470px;
+  margin: 10px auto 0 !important;
+  color: var(--hrv-muted) !important;
+  font-size: var(--text-secondary) !important;
+}
+
+/* ---------- Year index remains V2 architecture, styled in the same family ---------- */
+
+.hrv-photo-album-v2 .hrv-v2-years {
+  width: min(100% - 40px, 1100px);
+  margin: 0 auto;
+  padding: clamp(64px, 8vw, 100px) 0 clamp(80px, 10vw, 130px);
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__heading {
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__title {
+  margin: 0 !important;
+  color: #2f4337 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: var(--text-heading-medium) !important;
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.04 !important;
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__copy {
+  max-width: 650px;
+  margin-top: 14px !important;
+  color: var(--hrv-muted) !important;
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  min-height: 108px;
+  padding: 22px 24px;
+  gap: 15px;
+  border: 1px solid var(--hrv-border);
+  border-radius: 24px;
+  background: rgb(255 253 249 / 88%);
+  box-shadow: 0 15px 42px rgb(49 67 57 / 9%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card:is(:hover, :focus-visible) {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgb(49 67 57 / 15%);
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card__spark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  grid-row: 1 / span 2;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(145deg, #5d826b, #8e77ae);
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card__label {
+  align-self: end;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px !important;
+  font-weight: 600;
+  line-height: 1.05 !important;
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card__kind {
+  align-self: start;
+  color: var(--hrv-muted) !important;
+  font-size: var(--text-small) !important;
+  font-weight: 670;
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card__arrow {
+  grid-row: 1 / span 2;
+  font-size: 30px !important;
+  color: #687a70 !important;
+}
+
+@media (max-width: 720px) {
+  .hrv-photo-album-v2 .hrv-v2-memory-empty-wrap,
+  .hrv-photo-album-v2 .hrv-v2-memory-empty {
+    min-height: 62vw;
+  }
+
+  .hrv-photo-album-v2 .hrv-v2-years {
+    width: calc(100% - 24px);
+    padding-top: 48px;
+  }
+
+  .hrv-photo-album-v2 .hrv-v2-years__grid {
+    grid-template-columns: 1fr;
+  }
+}

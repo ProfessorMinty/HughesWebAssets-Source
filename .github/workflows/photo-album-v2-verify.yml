@@ -1,0 +1,41 @@
+name: Verify Photo Album V2 rebuild
+
+on:
+  push:
+    branches:
+      - photo-album-home-v2-rebuild
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "apps/photo-album/**"
+      - "tests/**"
+      - "vite.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/photo-album-v2-verify.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test-typecheck-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Typecheck and production build
+        run: npm run build
