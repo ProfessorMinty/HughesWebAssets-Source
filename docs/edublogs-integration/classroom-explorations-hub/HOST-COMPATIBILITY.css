@@ -1,0 +1,33 @@
+/* Classroom Explorations Hub page-scoped Amadeus compatibility layer.
+   This replaces the Hub-relevant shell behavior that previously lived in deleted global widgets.
+   Keep every selector gated by the Hub mount so unrelated routes are untouched. */
+
+body:has(#hrv-classroom-explorations-root) h1.entry-title,
+body:has(#hrv-classroom-explorations-root) .entry-header h1.entry-title,
+body:has(#hrv-classroom-explorations-root) article h1.entry-title {
+  display: none !important;
+}
+
+body:has(#hrv-classroom-explorations-root) .hentry,
+body:has(#hrv-classroom-explorations-root) article.page {
+  max-width: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body:has(#hrv-classroom-explorations-root) .entry-content {
+  max-width: none !important;
+  overflow: visible !important;
+}
+
+body:has(#hrv-classroom-explorations-root) .entry-content > #hrv-classroom-explorations-root {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+body:has(#hrv-classroom-explorations-root) .entry-footer {
+  position: relative;
+  z-index: 2;
+}
