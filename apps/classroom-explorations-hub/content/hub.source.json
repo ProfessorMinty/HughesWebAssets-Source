@@ -1,13 +1,21 @@
 {
   "schemaVersion": "1.0",
-  "contentVersion": "2026.08.10.2",
+  "contentVersion": "2026.08.10.4",
   "page": {
     "id": "classroom-explorations-hub",
     "title": "Classroom Explorations",
-    "summary": "A museum-style doorway into current classroom explorations, This Week We Learned recaps, and school-year archives.",
+    "summary": "Launchpads for curiosity—STEM adventures, field notes, and student-made discoveries.",
     "routeUrl": "https://rmhughes.edublogs.org/classroom-explorations/",
     "currentSchoolYear": "2026-2027",
-    "theme": "discovery-museum"
+    "theme": "caterpillar",
+    "museum": {
+      "kicker": "Museum Entrance • Greenhouse Glow • Discovery Hub",
+      "pillars": ["Inquiry", "Teamwork", "Creativity", "Real-World Science"],
+      "oathTitle": "Exploration Oath",
+      "oath": "We observe closely, ask brave questions, test ideas safely, and share what we learn.",
+      "footer": "Pack your curiosity—adventures await.",
+      "dividerImageUrl": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/94559b9ac4b8db60ea21e9b31cd9f98ba8c9b147/Divider2Actual.png"
+    }
   },
   "schoolYears": [
     {
@@ -43,6 +51,9 @@
         "kind": "youtube",
         "sourceUrl": "https://www.youtube.com/watch?v=AR1cSKxxSmU"
       },
+      "presentation": {
+        "sectionKicker": "Welcome Theater"
+      },
       "completeness": "complete"
     },
     {
@@ -54,9 +65,9 @@
       "summary": "Step into the zinnia greenhouse as students raise mystery seedlings, observe their growth, and discover what each unique bloom becomes.",
       "pageUrl": "https://rmhughes.edublogs.org/zinnia-page/",
       "imageUrl": "https://images.squarespace-cdn.com/content/v1/65397b8c01ff584e2d7834e3/ee61742a-ec98-449f-9475-53a345566da7/IMG_2850.jpg?format=750w",
-      "imageAlt": "Featured image for the Summer Bloom Adoption Project.",
+      "imageAlt": "Pink zinnia blooms from the Summer Bloom Adoption Project.",
       "emoji": "🌸",
-      "theme": "garden-green",
+      "theme": "zinnia-greenhouse",
       "animation": "garden-glow",
       "order": 10,
       "dates": {},
@@ -65,6 +76,12 @@
         "Observation journals and field notes",
         "Mystery bloom reveals"
       ],
+      "presentation": {
+        "sectionKicker": "Featured Exhibit Hall",
+        "slotLabel": "Current Exploration",
+        "visualBadge": "Zinnia Greenhouse",
+        "actionLabel": "Explore Now"
+      },
       "completeness": "complete"
     },
     {
@@ -78,10 +95,16 @@
       "imageUrl": null,
       "imageAlt": null,
       "emoji": "📚",
-      "theme": "learning-purple",
+      "theme": "learning-lantern",
       "animation": "lantern-soft",
       "order": 20,
       "dates": {},
+      "presentation": {
+        "sectionKicker": "Learning Lantern",
+        "slotLabel": "This Week We Learned",
+        "visualBadge": "Learning Lantern",
+        "statusLabel": "Coming Soon"
+      },
       "completeness": "not-applicable"
     },
     {
@@ -100,6 +123,13 @@
       "order": 90,
       "dates": {},
       "archiveSchoolYear": "2025-2026",
+      "presentation": {
+        "sectionKicker": "Last Year",
+        "slotLabel": "2025–2026 Archive",
+        "visualBadge": "Museum Archive",
+        "actionLabel": "Enter Archive",
+        "statusLabel": "Archive conversion coming soon"
+      },
       "completeness": "not-applicable"
     }
   ]
