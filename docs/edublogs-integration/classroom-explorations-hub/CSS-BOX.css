@@ -1,5 +1,13 @@
 /* Hughes Room Views · Classroom Explorations Hub · Edublogs CSS tab
-   Native fallback readability only. Enhanced museum presentation is repository-owned. */
+   CONSTRUCTION HOLD · 2026-08-10
+
+   Permanent rule: enhanced museum presentation remains repository-owned.
+   Temporary hold exception: after the repository museum mounts, this page-local
+   CSS hides every unfinished section below the current Zinnia exhibit and places
+   one large construction notice at the cutoff. Remove this hold layer only after
+   the lower museum has passed visual, motion, responsive, and signed-out review. */
+
+/* ---------- Native fallback readability ---------- */
 
 #hrv-classroom-explorations-root.hrv-native-fallback {
   box-sizing: border-box;
@@ -27,9 +35,9 @@
 }
 
 #hrv-classroom-explorations-root.hrv-native-fallback [data-hrv-native-status][data-state="failed"] {
-  border-left-color: #9b2c2c;
-  background: #fff2f2;
-  color: #7e2424;
+  border-left-color: #c58a22;
+  background: #fff7e8;
+  color: #76531b;
 }
 
 #hrv-classroom-explorations-root.hrv-native-fallback :where(h1, h2, h3) {
@@ -67,11 +75,104 @@
   outline-offset: 3px;
 }
 
+#hrv-classroom-explorations-root.hrv-native-fallback .hrv-hub-hold-notice {
+  margin: 1.25rem 0;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  text-align: center;
+  border: 3px solid #e0a72c;
+  border-radius: 20px;
+  background:
+    repeating-linear-gradient(-45deg, rgba(255, 197, 61, 0.08) 0 14px, rgba(255,255,255,0.92) 14px 28px),
+    #fffaf0;
+  box-shadow: 0 16px 34px rgba(94, 67, 17, 0.14);
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback .hrv-hub-hold-notice h2 {
+  margin: 0.3rem 0 0.7rem;
+  color: #694600;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+}
+
+#hrv-classroom-explorations-root.hrv-native-fallback .hrv-hub-hold-icon {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+}
+
+/* ---------- Temporary enhanced-museum construction curtain ---------- */
+
+/* Keep exactly the approved upper experience:
+   museum entrance + Welcome Theater + current Zinnia exhibit. */
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.museum-lantern-zone,
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.museum-threshold,
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.museum-archive-floor,
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.archive-portal-room,
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.hub-foot,
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.confetti {
+  display: none !important;
+}
+
+/* The construction sign is deliberately host-owned only for the temporary hold.
+   It is inserted visually after the approved Now Floor without modifying .6. */
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.museum-now-floor::after {
+  content: "🚧  MUSEUM EXPANSION UNDER CONSTRUCTION  🚧\AThe entrance, Welcome Theater, and Summer Bloom Adoption Project remain open. The deeper galleries are temporarily closed while we rebuild them with more magic, stronger hierarchy, and properly working motion.";
+  box-sizing: border-box;
+  display: block;
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: clamp(1.1rem, 2vw, 1.8rem) 0 0;
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+  white-space: pre-line;
+  text-align: center;
+  color: #fff8df;
+  font-family: "Nunito Sans", system-ui, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 800;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  border: 2px solid rgba(255, 211, 92, 0.9);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(101, 62, 8, 0.96), rgba(73, 39, 90, 0.96)),
+    #4f3512;
+  box-shadow:
+    0 24px 58px rgba(21, 17, 37, 0.32),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+html.hrv-route-classroom-explorations-ready
+#hrv-classroom-explorations-root:not(.hrv-native-fallback)
+.museum-now-floor {
+  margin-bottom: clamp(2rem, 5vw, 4rem) !important;
+}
+
 @media (max-width: 640px) {
   #hrv-classroom-explorations-root.hrv-native-fallback {
     width: calc(100% - 1rem);
     margin: 0.75rem auto 1.5rem;
     padding: 1rem;
     font-size: 17px;
+  }
+
+  html.hrv-route-classroom-explorations-ready
+  #hrv-classroom-explorations-root:not(.hrv-native-fallback)
+  .museum-now-floor::after {
+    margin-top: 1rem;
+    padding: 1.25rem 1rem;
+    border-radius: 18px;
+    font-size: 1rem;
   }
 }
