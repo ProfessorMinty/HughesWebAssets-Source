@@ -94,6 +94,14 @@ for (const forbidden of ["@keyframes", ".aurora", ".hub-hero", ".zinnia-feature"
   if (cssBox.includes(forbidden)) failures.push(`Edublogs CSS box leaked repository presentation: ${forbidden}`);
 }
 
+try {
+  // Parse the exact Edublogs JavaScript tab as classic script syntax during CI.
+  // Dynamic import() is supported by the Node version used in the workflow.
+  new Function(jsBox);
+} catch (error) {
+  failures.push(`Edublogs JavaScript loader has invalid syntax: ${error?.message || error}`);
+}
+
 for (const signature of [
   "__HRV_CLASSROOM_EXPLORATIONS_PAGE_LOADER__",
   "page-local-0.3.0",
