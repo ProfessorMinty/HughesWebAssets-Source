@@ -1,7 +1,7 @@
 (function loadClassroomExplorationsHubRelease() {
   "use strict";
 
-  var releaseBase = "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@__IMMUTABLE_COMMIT_SHA__/releases/classroom-explorations-hub/__RELEASE__/";
+  var releaseBase = "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@42d251fff66e038d6ca383a0262e0fe87b1a032a/releases/classroom-explorations-hub/2026.08.10.2/";
   var script = document.createElement("script");
   script.src = releaseBase + "bootstrap.js";
   script.async = true;
