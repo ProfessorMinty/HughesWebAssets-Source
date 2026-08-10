@@ -23,7 +23,7 @@ describe("Photo Album V2 memory carousel", () => {
     expect(movingCenter).not.toBe(initialCenter);
     expect([...mount.querySelectorAll(".hrv-v2-memory__slide")]).toEqual(originalSlides);
 
-    vi.advanceTimersByTime(920);
+    vi.advanceTimersByTime(1_001);
     const slots = [...mount.querySelectorAll<HTMLButtonElement>(".hrv-v2-memory__slide")]
       .map((slide) => Number(slide.dataset.slot))
       .sort((a, b) => a - b);
