@@ -14,10 +14,12 @@ export interface CarouselChange {
 
 export interface CarouselControllerOptions {
   intervalMs?: number;
-  reducedMotion?: boolean;
   random?: () => number;
   onChange?: (change: CarouselChange) => void;
 }
+
+const CAROUSEL_TRANSITION_MS = 920;
+const REDUCED_FADE_HALF_MS = 240;
 
 function shuffled<T>(items: readonly T[], random: () => number): T[] {
   const result = [...items];
@@ -36,13 +38,11 @@ export class CarouselController {
   private readonly onChange: ((change: CarouselChange) => void) | undefined;
   private position = 0;
   private timer: number | null = null;
-  private reducedMotion: boolean;
   private paused = false;
 
   constructor(photos: readonly PhotoRecord[], options: CarouselControllerOptions = {}) {
     this.photos = shuffled(photos, options.random ?? Math.random);
     this.intervalMs = options.intervalMs ?? CAROUSEL_INTERVAL_MS;
-    this.reducedMotion = options.reducedMotion ?? false;
     this.onChange = options.onChange;
   }
 
@@ -74,24 +74,21 @@ export class CarouselController {
 
   start(): void {
     this.stop();
-    if (this.photos.length < 2 || this.reducedMotion || this.paused) return;
-    this.timer = window.setInterval(() => this.next(), this.intervalMs);
+    if (this.photos.length < 2 || this.paused) return;
+    this.timer = window.setTimeout(() => {
+      this.timer = null;
+      this.next();
+    }, this.intervalMs);
   }
 
   stop(): void {
-    if (this.timer !== null) window.clearInterval(this.timer);
+    if (this.timer !== null) window.clearTimeout(this.timer);
     this.timer = null;
   }
 
   setPaused(paused: boolean): void {
     this.paused = paused;
     if (paused) this.stop();
-    else this.start();
-  }
-
-  setReducedMotion(reducedMotion: boolean): void {
-    this.reducedMotion = reducedMotion;
-    if (reducedMotion) this.stop();
     else this.start();
   }
 
@@ -129,11 +126,11 @@ export class HeroCarousel {
   private readonly nextSlide: HTMLButtonElement;
   private readonly nextImage: HTMLImageElement;
   private readonly status: HTMLElement;
-  private readonly motionQuery: MediaQueryList;
   private readonly intersectionObserver: IntersectionObserver | null;
   private transitionTimer: number | null = null;
   private visible = true;
-  private focusWithin = false;
+  private keyboardFocusWithin = false;
+  private pointerFocusGuard = false;
 
   constructor(
     mount: HTMLElement,
@@ -177,9 +174,7 @@ export class HeroCarousel {
     carousel.append(this.stage, controls);
     mount.append(copy, carousel);
 
-    this.motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     this.controller = new CarouselController(photos, {
-      reducedMotion: this.motionQuery.matches,
       onChange: (change) => this.showChange(change),
     });
 
@@ -207,16 +202,26 @@ export class HeroCarousel {
         this.requestMove("next");
       }
     });
-    carousel.addEventListener("focusin", () => this.setFocusWithin(true));
-    carousel.addEventListener("focusout", (event) => {
-      if (!carousel.contains(event.relatedTarget as Node | null)) this.setFocusWithin(false);
-    });
 
-    const onMotionChange = (event: MediaQueryListEvent): void => {
-      this.controller.setReducedMotion(event.matches);
-    };
-    this.motionQuery.addEventListener("change", onMotionChange);
-    carousel.addEventListener("hrv:destroy", () => this.motionQuery.removeEventListener("change", onMotionChange));
+    carousel.addEventListener("pointerdown", () => {
+      this.pointerFocusGuard = true;
+      this.keyboardFocusWithin = false;
+      this.syncPlayback();
+      queueMicrotask(() => {
+        this.pointerFocusGuard = false;
+      });
+    });
+    carousel.addEventListener("focusin", () => {
+      if (this.pointerFocusGuard) return;
+      this.keyboardFocusWithin = true;
+      this.syncPlayback();
+    });
+    carousel.addEventListener("focusout", (event) => {
+      if (!carousel.contains(event.relatedTarget as Node | null)) {
+        this.keyboardFocusWithin = false;
+        this.syncPlayback();
+      }
+    });
 
     if ("IntersectionObserver" in window) {
       this.intersectionObserver = new IntersectionObserver((entries) => {
@@ -237,7 +242,6 @@ export class HeroCarousel {
     this.intersectionObserver?.disconnect();
     document.removeEventListener("visibilitychange", this.onVisibilityChange);
     if (this.transitionTimer !== null) window.clearTimeout(this.transitionTimer);
-    this.stage.closest(".hrv-carousel")?.dispatchEvent(new Event("hrv:destroy"));
   }
 
   private readonly onVisibilityChange = (): void => this.syncPlayback();
@@ -261,13 +265,8 @@ export class HeroCarousel {
     else this.controller.previous();
   }
 
-  private setFocusWithin(focusWithin: boolean): void {
-    this.focusWithin = focusWithin;
-    this.syncPlayback();
-  }
-
   private syncPlayback(): void {
-    this.controller.setPaused(this.focusWithin || !this.visible || document.hidden);
+    this.controller.setPaused(this.keyboardFocusWithin || !this.visible || document.hidden);
   }
 
   private updateStatus(): void {
@@ -304,13 +303,25 @@ export class HeroCarousel {
   private showChange(change: CarouselChange): void {
     this.stage.dataset.currentPhotoId = change.current.id;
     this.status.textContent = `Memory ${change.position + 1} of ${change.total}`;
+    this.stage.classList.remove(
+      "is-moving-next",
+      "is-moving-previous",
+      "is-reduced-fading",
+    );
 
     if (prefersReducedMotion()) {
-      this.renderTriplet();
+      void this.stage.offsetWidth;
+      this.stage.classList.add("is-reduced-fading");
+      this.transitionTimer = window.setTimeout(() => {
+        this.renderTriplet();
+        this.stage.classList.remove("is-reduced-fading");
+        this.transitionTimer = window.setTimeout(() => {
+          this.transitionTimer = null;
+        }, REDUCED_FADE_HALF_MS);
+      }, REDUCED_FADE_HALF_MS);
       return;
     }
 
-    this.stage.classList.remove("is-moving-next", "is-moving-previous");
     void this.stage.offsetWidth;
     this.stage.classList.add(change.direction === "next" ? "is-moving-next" : "is-moving-previous");
 
@@ -321,6 +332,6 @@ export class HeroCarousel {
       void this.stage.offsetWidth;
       this.stage.classList.remove("is-resetting");
       this.transitionTimer = null;
-    }, 560);
+    }, CAROUSEL_TRANSITION_MS);
   }
 }
