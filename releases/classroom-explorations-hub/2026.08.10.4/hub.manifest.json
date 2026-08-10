@@ -10,7 +10,12 @@
     "theme": "caterpillar",
     "museum": {
       "kicker": "Museum Entrance • Greenhouse Glow • Discovery Hub",
-      "pillars": ["Inquiry", "Teamwork", "Creativity", "Real-World Science"],
+      "pillars": [
+        "Inquiry",
+        "Teamwork",
+        "Creativity",
+        "Real-World Science"
+      ],
       "oathTitle": "Exploration Oath",
       "oath": "We observe closely, ask brave questions, test ideas safely, and share what we learn.",
       "footer": "Pack your curiosity—adventures await.",
@@ -49,7 +54,8 @@
       "dates": {},
       "media": {
         "kind": "youtube",
-        "sourceUrl": "https://www.youtube.com/watch?v=AR1cSKxxSmU"
+        "sourceUrl": "https://www.youtube.com/watch?v=AR1cSKxxSmU",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/AR1cSKxxSmU"
       },
       "presentation": {
         "sectionKicker": "Welcome Theater"

@@ -1,6 +1,14 @@
 export type HubRecordType = "exploration" | "twwl" | "archive-doorway" | "video";
 export type HubRecordStatus = "current" | "past" | "archived" | "coming-soon";
 
+export interface HubPresentation {
+  sectionKicker?: string;
+  slotLabel?: string;
+  visualBadge?: string;
+  actionLabel?: string;
+  statusLabel?: string;
+}
+
 export interface HubRecord {
   id: string;
   type: HubRecordType;
@@ -17,6 +25,8 @@ export interface HubRecord {
   order: number;
   dates: { start?: string; end?: string; published?: string };
   learningPoints?: string[];
+  tags?: string[];
+  presentation?: HubPresentation;
   archiveSchoolYear?: string;
   completeness: "complete" | "incomplete" | "not-applicable";
   notice?: string;
@@ -37,6 +47,14 @@ export interface HubManifest {
     routeUrl: string;
     currentSchoolYear: string;
     theme: string;
+    museum: {
+      kicker: string;
+      pillars: string[];
+      oathTitle: string;
+      oath: string;
+      footer: string;
+      dividerImageUrl: string;
+    };
   };
   schoolYears: Array<{
     id: string;

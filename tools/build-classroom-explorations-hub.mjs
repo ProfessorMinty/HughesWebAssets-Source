@@ -15,6 +15,10 @@ function fail(message) {
   throw new Error(`[classroom-explorations-hub] ${message}`);
 }
 
+function assertNonEmptyString(value, label) {
+  if (typeof value !== "string" || value.trim() === "") fail(`${label} must be a non-empty string.`);
+}
+
 function assertHttps(value, label, { nullable = false } = {}) {
   if (value === null && nullable) return;
   if (typeof value !== "string" || !value.startsWith("https://")) fail(`${label} must be HTTPS${nullable ? " or null" : ""}.`);
@@ -48,11 +52,27 @@ function sortRecords(records) {
   });
 }
 
+function validateMuseum(page) {
+  const museum = page?.museum;
+  if (!museum || typeof museum !== "object") fail("page.museum is required so the renderer cannot drift from the approved museum identity.");
+  for (const field of ["kicker", "oathTitle", "oath", "footer"]) assertNonEmptyString(museum[field], `page.museum.${field}`);
+  if (!Array.isArray(museum.pillars) || museum.pillars.length < 1) fail("page.museum.pillars must contain at least one learning pillar.");
+  museum.pillars.forEach((pillar, index) => assertNonEmptyString(pillar, `page.museum.pillars[${index}]`));
+  assertHttps(museum.dividerImageUrl, "page.museum.dividerImageUrl");
+}
+
+function validatePresentation(record) {
+  if (record.presentation === undefined) return;
+  if (!record.presentation || typeof record.presentation !== "object") fail(`${record.id}.presentation must be an object when present.`);
+  for (const [key, value] of Object.entries(record.presentation)) assertNonEmptyString(value, `${record.id}.presentation.${key}`);
+}
+
 function validateAndNormalize(source) {
   if (source?.schemaVersion !== "1.0") fail("schemaVersion must be 1.0.");
   if (source?.page?.id !== "classroom-explorations-hub") fail("Unexpected page id.");
   assertHttps(source.page.routeUrl, "page.routeUrl");
   if (!SCHOOL_YEAR.test(source.page.currentSchoolYear)) fail("Invalid currentSchoolYear.");
+  validateMuseum(source.page);
 
   const years = new Set();
   let currentYearCount = 0;
@@ -78,7 +98,9 @@ function validateAndNormalize(source) {
     if (!ALLOWED_STATUSES.has(record.status)) fail(`Unsupported status on ${record.id}.`);
     if (!years.has(record.schoolYear)) fail(`Unknown schoolYear on ${record.id}.`);
     if (!Number.isInteger(record.order) || record.order < 0) fail(`Invalid order on ${record.id}.`);
-    if (typeof record.summary !== "string" || record.summary.trim() === "") fail(`Missing summary on ${record.id}.`);
+    assertNonEmptyString(record.title, `${record.id}.title`);
+    assertNonEmptyString(record.summary, `${record.id}.summary`);
+    validatePresentation(record);
 
     assertHttps(record.pageUrl, `${record.id}.pageUrl`, { nullable: true });
     assertHttps(record.imageUrl, `${record.id}.imageUrl`, { nullable: true });
@@ -131,7 +153,7 @@ async function main() {
     await mkdir(dirname(output), { recursive: true });
     await writeFile(output, text, "utf8");
   }
-  console.log(`[classroom-explorations-hub] wrote deterministic runtime manifest with ${runtime.records.length} records.`);
+  console.log(`[classroom-explorations-hub] wrote deterministic museum manifest with ${runtime.records.length} records.`);
 }
 
 await main();
