@@ -1,5 +1,5 @@
 import "./styles/photo-album.css";
-import "./styles/photo-album-v2.css";
+import "./styles/photo-album-home.css";
 import { PhotoAlbumAppV2 } from "./app-v2";
 import type { PhotoAlbumOptions } from "./config";
 
