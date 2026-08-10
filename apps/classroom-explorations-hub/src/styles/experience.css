@@ -1,3 +1,67 @@
+.hrv-explorations-hub {
+  --text-body: 18px;
+  --text-ui: 17px;
+  --text-secondary: 16px;
+  --text-small: 15px;
+  --text-eyebrow: 15px;
+  --text-heading-small: 22px;
+  --text-heading-medium: clamp(36px, 4vw, 58px);
+  --text-heading-large: clamp(48px, 5.5vw, 78px);
+  font-size: var(--text-body) !important;
+}
+
+.hrv-explorations-hub :where(h1, h2, h3, p, ul, li, a, span, strong) {
+  font-family: inherit !important;
+}
+
+.hrv-explorations-hub :where(p, li) {
+  font-size: var(--text-body) !important;
+  line-height: 1.55 !important;
+}
+
+.hrv-explorations-hub .hrv-hub-eyebrow {
+  font-size: var(--text-eyebrow) !important;
+  line-height: 1.4 !important;
+}
+
+.hrv-explorations-hub .hrv-hub-hero__title {
+  font-size: var(--text-heading-large) !important;
+  line-height: 0.98 !important;
+}
+
+.hrv-explorations-hub .hrv-hub-section__title,
+.hrv-explorations-hub .hrv-hub-feature__title {
+  font-size: var(--text-heading-medium) !important;
+}
+
+.hrv-explorations-hub .hrv-hub-archive-card__title,
+.hrv-explorations-hub .hrv-hub-door__title {
+  font-size: var(--text-heading-small) !important;
+}
+
+.hrv-explorations-hub .hrv-hub-hero__summary,
+.hrv-explorations-hub .hrv-hub-section__lead,
+.hrv-explorations-hub .hrv-hub-feature__summary,
+.hrv-explorations-hub .hrv-hub-archive-card__summary,
+.hrv-explorations-hub .hrv-hub-door__summary,
+.hrv-explorations-hub .hrv-hub-empty,
+.hrv-explorations-hub .hrv-hub-state__copy {
+  font-size: var(--text-secondary) !important;
+}
+
+.hrv-explorations-hub .hrv-hub-button,
+.hrv-explorations-hub .hrv-hub-text-link,
+.hrv-explorations-hub .hrv-hub-coming-soon,
+.hrv-explorations-hub .hrv-hub-skip-link {
+  font-size: var(--text-ui) !important;
+  line-height: 1.35 !important;
+  text-transform: none !important;
+}
+
+.hrv-explorations-hub .hrv-hub-notice {
+  font-size: var(--text-small) !important;
+}
+
 .hrv-explorations-hub[data-layout="viewport"] .hrv-hub-shell {
   position: relative;
   overflow: hidden;
@@ -190,4 +254,17 @@
   0%, 62%, 100% { transform: translateX(-58%) rotate(10deg); opacity: 0; }
   72% { opacity: .75; }
   86% { transform: translateX(58%) rotate(10deg); opacity: 0; }
+}
+
+@media (max-width: 620px) {
+  .hrv-explorations-hub {
+    --text-body: 17px;
+    --text-ui: 16px;
+    --text-secondary: 16px;
+    --text-small: 15px;
+    --text-eyebrow: 15px;
+    --text-heading-small: 21px;
+    --text-heading-medium: clamp(32px, 9vw, 44px);
+    --text-heading-large: clamp(42px, 12vw, 60px);
+  }
 }
