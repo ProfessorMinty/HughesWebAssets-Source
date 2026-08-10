@@ -15,6 +15,7 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'tsconfig.json'
+      - '.github/workflows/classroom-explorations-hub-ci.yml'
 
 permissions:
   contents: read
@@ -38,3 +39,11 @@ jobs:
 
       - name: Test and build Hub
         run: npm run check:hub
+
+      - name: Upload verified Hub build
+        uses: actions/upload-artifact@v4
+        with:
+          name: classroom-explorations-hub-build
+          path: dist/classroom-explorations-hub
+          if-no-files-found: error
+          retention-days: 7
