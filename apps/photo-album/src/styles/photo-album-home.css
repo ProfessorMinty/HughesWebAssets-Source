@@ -1,1011 +1,282 @@
-/* Hughes Room Views Photo Album year-home presentation
-   Visual authority: B1Pro glass / airy contemporary foundation with restrained C1Pro subject ornament.
-   This file is the sole owner of .hrv-v2-* home/year presentation selectors. */
+/* Photo Album V2 surgical presentation bridge.
+   The visual chassis is the proven Codex .5 presentation from photo-album.css
+   plus carousel-refinement.css. This file intentionally does NOT redesign it.
 
-.hrv-photo-album-v2 {
-  --v2-ink: #23354e;
-  --v2-muted: #61718a;
-  --v2-blue: #7898f0;
-  --v2-cyan: #84dce8;
-  --v2-lilac: #9a86e6;
-  --v2-pink: #d99abb;
-  --v2-rim: rgb(255 255 255 / 88%);
-  --v2-glass: rgb(255 255 255 / 46%);
-  --v2-glass-strong: rgb(255 255 255 / 66%);
-  --v2-shadow: 0 30px 90px rgb(65 84 126 / 18%);
-  background:
-    radial-gradient(circle at 8% 4%, rgb(255 255 255 / 96%) 0 8%, transparent 28%),
-    radial-gradient(circle at 86% 8%, rgb(128 224 236 / 34%), transparent 28%),
-    radial-gradient(circle at 67% 25%, rgb(162 145 235 / 22%), transparent 34%),
-    linear-gradient(180deg, #eefbfe 0%, #f6f7ff 42%, #fbf9f6 72%, #f7f3eb 100%) !important;
-}
+   V2 owns only the two requested visible upgrades:
+   1. preserve the physical five-slot carousel travel at all times;
+   2. replace the old La-Croix-level album accents with real subject frames.
+*/
 
-.hrv-photo-album-v2 .hrv-site-header {
-  border-bottom: 1px solid rgb(135 157 194 / 16%);
-  background: rgb(249 253 255 / 62%);
-  box-shadow: 0 12px 44px rgb(73 96 143 / 8%);
-  backdrop-filter: blur(22px) saturate(1.18);
-  -webkit-backdrop-filter: blur(22px) saturate(1.18);
-}
-
-.hrv-photo-album-v2 .hrv-brand__mark {
-  background: linear-gradient(145deg, #74d5df, #8c80e5 60%, #b181d8);
-  box-shadow:
-    0 8px 22px rgb(95 111 194 / 28%),
-    0 0 18px rgb(116 214 226 / 22%);
-}
-
-.hrv-v2-home {
-  position: relative;
-  overflow: clip;
-  padding-bottom: clamp(74px, 8vw, 120px);
-}
-
-.hrv-v2-home::before,
-.hrv-v2-home::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-  border-radius: 50%;
-}
-
-.hrv-v2-home::before {
-  width: 680px;
-  height: 680px;
-  top: -20px;
-  right: -260px;
-  background: radial-gradient(circle, rgb(120 220 235 / 20%), transparent 67%);
-  filter: blur(5px);
-}
-
-.hrv-v2-home::after {
-  width: 560px;
-  height: 560px;
-  top: 470px;
-  left: -270px;
-  background: radial-gradient(circle, rgb(167 143 233 / 14%), transparent 67%);
-  filter: blur(8px);
-}
-
-/* ---------- Hero ---------- */
-
-.hrv-v2-hero {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(300px, .78fr) minmax(610px, 1.32fr);
-  align-items: center;
-  width: min(calc(100% - 48px), 1440px);
-  min-height: 610px;
-  margin: 28px auto 0;
-  padding: clamp(42px, 5.2vw, 78px);
-  gap: clamp(42px, 5vw, 78px);
-  overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 88%);
-  border-radius: 46px;
-  background:
-    radial-gradient(circle at 78% 34%, rgb(134 226 237 / 30%), transparent 31%),
-    radial-gradient(circle at 90% 72%, rgb(169 146 235 / 24%), transparent 34%),
-    radial-gradient(circle at 18% 100%, rgb(188 207 255 / 20%), transparent 38%),
-    linear-gradient(125deg, rgb(255 255 255 / 73%), rgb(239 250 255 / 54%) 48%, rgb(242 239 255 / 55%));
-  box-shadow:
-    0 38px 110px rgb(72 93 138 / 14%),
-    inset 0 1px 0 rgb(255 255 255 / 100%),
-    inset 0 -1px 0 rgb(132 157 197 / 9%);
-  backdrop-filter: blur(18px) saturate(1.14);
-  -webkit-backdrop-filter: blur(18px) saturate(1.14);
-}
-
-.hrv-v2-hero::before,
-.hrv-v2-hero::after {
-  position: absolute;
-  content: "";
-  pointer-events: none;
-}
-
-.hrv-v2-hero::before {
-  inset: 0;
-  opacity: .62;
-  background:
-    radial-gradient(circle at 9% 22%, rgb(255 255 255 / 94%) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 88% 19%, rgb(135 219 238 / 80%) 0 1.1px, transparent 1.9px),
-    radial-gradient(circle at 71% 80%, rgb(181 148 238 / 72%) 0 1.2px, transparent 1.9px),
-    radial-gradient(circle at 57% 15%, rgb(255 255 255 / 92%) 0 1px, transparent 1.8px);
-  background-size: 128px 128px, 163px 163px, 149px 149px, 186px 186px;
-  mask-image: linear-gradient(90deg, transparent 2%, black 18%, black 95%, transparent);
-}
-
-.hrv-v2-hero::after {
-  width: 520px;
-  height: 520px;
-  top: 50%;
-  right: 7%;
-  border: 1px solid rgb(255 255 255 / 28%);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 42px rgb(122 213 229 / 4%),
-    0 0 0 86px rgb(146 135 226 / 3%);
-  transform: translateY(-50%);
-}
-
-.hrv-v2-hero__copy,
-.hrv-v2-hero__memory {
-  position: relative;
-  z-index: 2;
-  min-width: 0;
-}
-
-.hrv-v2-eyebrow {
-  margin: 0 0 13px !important;
-  color: #536f93 !important;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: 15px !important;
-  font-weight: 850;
-  line-height: 1.35 !important;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-}
-
-.hrv-v2-hero__title {
-  max-width: 610px;
-  margin: 0 !important;
-  outline: none !important;
-  color: var(--v2-ink) !important;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: clamp(50px, 5vw, 80px) !important;
-  font-weight: 735;
-  line-height: .98 !important;
-  letter-spacing: -.055em;
-  text-wrap: balance;
-}
-
-.hrv-v2-hero__title:focus,
-.hrv-v2-hero__title:focus-visible {
+/* Programmatic route focus should not paint a purple rectangle around the hero title. */
+.hrv-photo-album-v2 .hrv-hero__title:focus,
+.hrv-photo-album-v2 .hrv-hero__title:focus-visible,
+.hrv-photo-album-v2 .hrv-v2-years__title:focus,
+.hrv-photo-album-v2 .hrv-v2-years__title:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
 
-.hrv-v2-hero__copyline {
-  max-width: 530px;
-  margin: 25px 0 0 !important;
-  color: var(--v2-muted) !important;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: 18px !important;
-  line-height: 1.72 !important;
+/* The .5 base had a decorative white sweep across the stage. It can read as a
+   flash during photo travel, so V2 keeps the glass shell but removes the sweep. */
+.hrv-photo-album-v2 .hrv-carousel__stage::after {
+  content: none !important;
+  animation: none !important;
+  background: none !important;
+  transform: none !important;
 }
 
-/* ---------- Featured-memory glass object ---------- */
-
-.hrv-v2-memory {
-  position: relative;
-  width: 100%;
-  min-width: 0;
-  isolation: isolate;
-}
-
-.hrv-v2-memory::before,
-.hrv-v2-memory::after {
-  position: absolute;
-  z-index: -2;
-  content: "";
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(30px);
-}
-
-.hrv-v2-memory::before {
-  width: 68%;
-  height: 62%;
-  left: 4%;
-  top: 22%;
-  background: rgb(97 218 232 / 31%);
-}
-
-.hrv-v2-memory::after {
-  width: 68%;
-  height: 66%;
-  right: 0;
-  top: 15%;
-  background: rgb(154 126 229 / 27%);
-}
-
-.hrv-v2-memory__glass {
-  position: relative;
-  padding: 17px 17px 13px;
-  overflow: visible;
-  border: 1px solid rgb(255 255 255 / 96%);
-  border-radius: 38px;
-  background:
-    linear-gradient(145deg, rgb(255 255 255 / 66%), rgb(232 249 255 / 36%) 48%, rgb(238 232 255 / 39%));
-  box-shadow:
-    0 38px 94px rgb(66 84 129 / 28%),
-    0 0 54px rgb(105 213 232 / 18%),
-    0 0 78px rgb(154 127 229 / 14%),
-    inset 0 1px 0 #fff,
-    inset 0 -1px 0 rgb(112 142 192 / 13%);
-  backdrop-filter: blur(34px) saturate(1.28);
-  -webkit-backdrop-filter: blur(34px) saturate(1.28);
-}
-
-.hrv-v2-memory__glass::before,
-.hrv-v2-memory__glass::after {
-  position: absolute;
-  content: "";
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-.hrv-v2-memory__glass::before {
-  z-index: 8;
-  inset: 5px;
-  border: 1px solid rgb(255 255 255 / 62%);
-  box-shadow:
-    inset 0 0 30px rgb(255 255 255 / 24%),
-    inset 0 1px 10px rgb(255 255 255 / 62%),
-    0 0 0 1px rgb(116 167 215 / 6%);
-}
-
-.hrv-v2-memory__glass::after {
-  z-index: 9;
-  inset: 2px 13% auto;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 100%) 50%, transparent);
-  box-shadow: 0 4px 18px rgb(255 255 255 / 70%);
-}
-
-.hrv-v2-memory__aura {
-  position: absolute;
-  z-index: -1;
-  inset: 8% 5% -5%;
-  pointer-events: none;
-  border-radius: 44%;
-  background:
-    radial-gradient(circle at 27% 45%, rgb(82 222 236 / 44%), transparent 43%),
-    radial-gradient(circle at 72% 45%, rgb(156 124 232 / 39%), transparent 48%),
-    radial-gradient(circle at 51% 48%, rgb(255 255 255 / 44%), transparent 42%);
-  filter: blur(25px);
-}
-
-.hrv-v2-memory__stage {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  aspect-ratio: 2.12 / 1;
-  min-height: 330px;
-  overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 78%);
-  border-radius: 28px;
-  outline: none;
-  background:
-    radial-gradient(circle at 50% 47%, rgb(255 255 255 / 86%), transparent 30%),
-    radial-gradient(circle at 16% 26%, rgb(117 223 235 / 25%), transparent 34%),
-    radial-gradient(circle at 84% 74%, rgb(173 143 235 / 25%), transparent 36%),
-    linear-gradient(135deg, rgb(213 240 247 / 91%), rgb(231 236 252 / 94%) 53%, rgb(229 225 248 / 94%));
-  box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 62%),
-    inset 0 -26px 72px rgb(84 106 157 / 8%),
-    0 1px 0 #fff;
-  perspective: 1450px;
-  perspective-origin: 50% 48%;
+.hrv-photo-album-v2 .hrv-carousel__stage {
   touch-action: pan-y;
 }
 
-.hrv-v2-memory__stage::before,
-.hrv-v2-memory__stage::after {
-  position: absolute;
-  content: "";
-  pointer-events: none;
-}
-
-.hrv-v2-memory__stage::before {
-  z-index: 0;
-  inset: 0;
-  opacity: .72;
-  background:
-    radial-gradient(circle at 18% 24%, rgb(255 255 255 / 96%) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 83% 26%, rgb(127 222 239 / 85%) 0 1.1px, transparent 1.9px),
-    radial-gradient(circle at 72% 80%, rgb(190 151 240 / 80%) 0 1.2px, transparent 2px),
-    radial-gradient(circle at 48% 13%, rgb(255 255 255 / 90%) 0 1px, transparent 1.8px);
-  background-size: 108px 108px, 151px 151px, 139px 139px, 181px 181px;
-}
-
-.hrv-v2-memory__stage::after {
-  z-index: 8;
-  inset: 0;
-  border-radius: inherit;
-  box-shadow:
-    inset 0 0 38px rgb(255 255 255 / 24%),
-    inset 0 0 0 1px rgb(255 255 255 / 22%);
-}
-
-.hrv-v2-memory__slide {
-  position: absolute;
-  z-index: 1;
-  top: 8%;
-  left: 16%;
-  width: 68%;
-  height: 84%;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  border: 1px solid rgb(255 255 255 / 86%) !important;
-  border-radius: 25px;
-  opacity: 0;
-  background: #cddce7;
-  box-shadow: 0 18px 42px rgb(48 64 102 / 23%);
-  cursor: default;
-  transform-origin: 50% 55%;
-  will-change: transform, opacity, filter, box-shadow;
+/* V2 has no hidden reduced-motion carousel branch. These declarations are
+   deliberately more specific than the legacy media-query rules so the visible
+   five-slot travel remains the same physical animation for every visitor.
+   Pause/Resume is the explicit user-facing motion control. */
+.hrv-photo-album-v2 .hrv-carousel__slide {
   transition:
-    transform 980ms cubic-bezier(.18, .78, .16, 1),
-    opacity 720ms ease,
-    filter 820ms ease,
-    box-shadow 980ms ease !important;
+    transform 780ms cubic-bezier(.22, .78, .2, 1),
+    opacity 520ms ease,
+    filter 620ms ease,
+    box-shadow 780ms ease !important;
 }
 
-.hrv-v2-memory__image {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  transform: scale(1.02);
-  transition: transform 980ms cubic-bezier(.18, .78, .16, 1) !important;
-}
-
-.hrv-v2-memory__slide[data-slot="-3"] {
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(-118%, 0, -220px) rotateY(12deg) scale(.62);
-}
-
-.hrv-v2-memory__slide[data-slot="-2"] {
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(-96%, 0, -170px) rotateY(10deg) scale(.66);
-}
-
-.hrv-v2-memory__slide[data-slot="-1"] {
-  z-index: 2;
-  opacity: .58;
-  filter: saturate(.7) brightness(.86) contrast(.96) blur(.15px);
-  cursor: pointer;
-  transform: translate3d(-56%, 0, -86px) rotateY(6.5deg) scale(.74);
-  box-shadow: 0 15px 34px rgb(53 69 105 / 17%);
-}
-
-.hrv-v2-memory__slide[data-slot="0"] {
-  z-index: 5;
-  opacity: 1;
-  filter: saturate(1.08) brightness(1.02) contrast(1.02);
-  cursor: zoom-in;
-  transform: translate3d(0, 0, 70px) rotateY(0) scale(1);
-  box-shadow:
-    0 31px 68px rgb(44 61 105 / 34%),
-    0 0 0 2px rgb(255 255 255 / 58%),
-    0 0 34px rgb(91 220 235 / 25%),
-    0 0 58px rgb(155 126 231 / 19%);
-}
-
-.hrv-v2-memory__slide[data-slot="0"] .hrv-v2-memory__image {
-  transform: scale(1.005);
-}
-
-.hrv-v2-memory__slide[data-slot="1"] {
-  z-index: 2;
-  opacity: .58;
-  filter: saturate(.7) brightness(.86) contrast(.96) blur(.15px);
-  cursor: pointer;
-  transform: translate3d(56%, 0, -86px) rotateY(-6.5deg) scale(.74);
-  box-shadow: 0 15px 34px rgb(53 69 105 / 17%);
-}
-
-.hrv-v2-memory__slide[data-slot="2"] {
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(96%, 0, -170px) rotateY(-10deg) scale(.66);
-}
-
-.hrv-v2-memory__slide[data-slot="3"] {
-  z-index: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(118%, 0, -220px) rotateY(-12deg) scale(.62);
-}
-
-.hrv-v2-memory__stage.is-traveling .hrv-v2-memory__slide[data-slot="0"] {
-  box-shadow:
-    0 32px 72px rgb(44 61 105 / 36%),
-    0 0 0 2px rgb(255 255 255 / 66%),
-    0 0 44px rgb(83 224 238 / 32%),
-    0 0 72px rgb(157 124 235 / 25%);
-}
-
-.hrv-v2-memory__stage.is-recycling .hrv-v2-memory__slide {
+.hrv-photo-album-v2 .hrv-carousel__stage.is-recycling .hrv-carousel__slide {
   transition: none !important;
 }
 
-.hrv-v2-memory__hint {
+.hrv-photo-album-v2 .hrv-carousel__pause[aria-pressed="true"] {
+  color: #fff;
+  background: #5f6f8e;
+  box-shadow: 0 9px 24px rgb(61 69 91 / 24%);
+}
+
+/* ---------- Strong subject identity, same Codex card geometry ---------- */
+
+.hrv-photo-album-v2 .hrv-album-card__media {
+  isolation: isolate;
+}
+
+.hrv-photo-album-v2 .hrv-album-card__frame {
   position: absolute;
-  z-index: 10;
-  top: 4px;
-  left: 50%;
-  margin: 0 !important;
-  padding: 7px 18px;
-  border: 1px solid rgb(255 255 255 / 88%);
-  border-radius: 999px;
-  color: #455875 !important;
-  background: rgb(255 255 255 / 62%);
-  box-shadow:
-    0 8px 24px rgb(70 87 130 / 16%),
-    inset 0 1px 0 #fff;
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  font-size: 15px !important;
-  font-weight: 760;
-  line-height: 1.2 !important;
-  transform: translateX(-50%);
-}
-
-.hrv-v2-memory__controls {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 12px;
-  gap: 11px;
-}
-
-.hrv-v2-memory__arrow,
-.hrv-v2-memory__pause {
-  display: grid;
-  width: 44px !important;
-  min-width: 44px !important;
-  height: 44px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  place-items: center;
-  border: 1px solid rgb(255 255 255 / 90%) !important;
-  border-radius: 50%;
-  color: #4e6080 !important;
-  background: rgb(255 255 255 / 64%);
-  box-shadow:
-    0 9px 24px rgb(72 89 132 / 15%),
-    inset 0 1px 0 #fff;
-  backdrop-filter: blur(13px);
-  -webkit-backdrop-filter: blur(13px);
-  cursor: pointer;
-  transition: transform 170ms ease, box-shadow 170ms ease, background-color 170ms ease;
-}
-
-.hrv-v2-memory__arrow:is(:hover, :focus-visible),
-.hrv-v2-memory__pause:is(:hover, :focus-visible) {
-  background: rgb(255 255 255 / 92%);
-  box-shadow:
-    0 11px 28px rgb(70 87 130 / 20%),
-    0 0 19px rgb(117 211 230 / 14%);
-  transform: translateY(-2px);
-}
-
-.hrv-v2-memory__pause[aria-pressed="true"] {
-  color: white !important;
-  background: linear-gradient(145deg, #7899df, #8e79d7);
-}
-
-.hrv-v2-memory__status {
-  min-width: 76px;
-  margin: 0 !important;
-  color: #697891 !important;
-  font-size: 15px !important;
-  font-weight: 720;
-  line-height: 1.2 !important;
-  text-align: center;
-}
-
-/* ---------- Empty current-year hero ---------- */
-
-.hrv-v2-memory-empty {
-  position: relative;
-  display: grid;
-  min-height: 410px;
-  padding: clamp(34px, 5vw, 60px);
-  place-items: center;
-  align-content: center;
-  gap: 18px;
-  overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 90%);
-  border-radius: 38px;
-  background:
-    radial-gradient(circle at 50% 30%, rgb(255 255 255 / 90%), transparent 30%),
-    radial-gradient(circle at 18% 80%, rgb(105 219 233 / 26%), transparent 35%),
-    radial-gradient(circle at 82% 76%, rgb(159 129 231 / 24%), transparent 36%),
-    rgb(255 255 255 / 44%);
-  box-shadow:
-    0 34px 90px rgb(65 83 126 / 20%),
-    0 0 50px rgb(116 213 230 / 13%),
-    inset 0 1px 0 #fff;
-  backdrop-filter: blur(28px) saturate(1.18);
-  -webkit-backdrop-filter: blur(28px) saturate(1.18);
-  text-align: center;
-}
-
-.hrv-v2-memory-empty__glow {
-  display: grid;
-  width: 68px;
-  height: 68px;
-  place-items: center;
-  border: 1px solid rgb(255 255 255 / 88%);
-  border-radius: 50%;
-  color: white;
-  background: linear-gradient(145deg, #74d5df, #8b80e2 64%, #b181d8);
-  box-shadow:
-    0 16px 38px rgb(86 105 176 / 26%),
-    0 0 38px rgb(105 220 234 / 28%);
-}
-
-.hrv-v2-memory-empty__copy { max-width: 480px; }
-.hrv-v2-memory-empty__title {
-  margin: 0 !important;
-  color: var(--v2-ink) !important;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: clamp(31px, 3.2vw, 46px) !important;
-  font-weight: 735;
-  line-height: 1.05 !important;
-  letter-spacing: -.038em;
-}
-.hrv-v2-memory-empty__text {
-  margin: 12px auto 0 !important;
-  color: var(--v2-muted) !important;
-  font-size: 17px !important;
-  line-height: 1.62 !important;
-}
-
-/* ---------- Current / archived album shelf ---------- */
-
-.hrv-v2-albums {
-  width: min(calc(100% - 48px), 1320px);
-  margin: 0 auto;
-  padding: clamp(78px, 8vw, 116px) 0 54px;
-}
-
-.hrv-v2-section-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  margin-bottom: 31px;
-  gap: 28px;
-}
-
-.hrv-v2-section-title {
-  margin: 0 !important;
-  color: #283a52 !important;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: clamp(39px, 4vw, 59px) !important;
-  font-weight: 705;
-  line-height: 1.02 !important;
-  letter-spacing: -.047em;
-}
-
-.hrv-v2-button {
-  display: inline-flex;
-  min-height: 49px !important;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 22px !important;
-  border: 1px solid rgb(255 255 255 / 82%);
-  border-radius: 999px;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: 16px !important;
-  font-weight: 780;
-  line-height: 1.2 !important;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 170ms ease, box-shadow 170ms ease, filter 170ms ease;
-}
-
-.hrv-v2-button:is(:hover, :focus-visible) { transform: translateY(-2px); }
-
-.hrv-v2-button--primary {
-  color: white !important;
-  background: linear-gradient(135deg, #7397ed 0%, #8787e4 55%, #a27bd9 100%);
-  box-shadow:
-    0 14px 34px rgb(98 109 195 / 27%),
-    0 0 28px rgb(111 213 232 / 16%),
-    inset 0 1px 0 rgb(255 255 255 / 60%);
-}
-
-.hrv-v2-button--primary:is(:hover, :focus-visible) {
-  box-shadow:
-    0 18px 40px rgb(98 109 195 / 32%),
-    0 0 34px rgb(111 213 232 / 22%),
-    inset 0 1px 0 rgb(255 255 255 / 68%);
-}
-
-.hrv-v2-button--glass {
-  color: #405879 !important;
-  background: rgb(255 255 255 / 62%);
-  box-shadow: 0 11px 30px rgb(76 94 132 / 14%), inset 0 1px 0 #fff;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-}
-
-.hrv-v2-album-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 21px;
-}
-
-.hrv-v2-album-card {
-  --album-accent: #7b8fbc;
-  --album-deep: #52668e;
-  --album-wash: #eef2fb;
-  position: relative;
-  display: block;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--album-accent) 30%, white);
-  border-radius: 27px;
-  color: #243447 !important;
-  background:
-    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--album-accent) 17%, transparent), transparent 34%),
-    linear-gradient(150deg, rgb(255 255 255 / 94%), color-mix(in srgb, var(--album-wash) 76%, white));
-  box-shadow:
-    0 19px 45px rgb(59 75 107 / 13%),
-    inset 0 1px 0 rgb(255 255 255 / 94%);
-  text-decoration: none;
-  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
-}
-
-.hrv-v2-album-card[data-theme="harvest"] { --album-accent: #d7984e; --album-deep: #a45f31; --album-wash: #fff0d9; }
-.hrv-v2-album-card[data-theme="discovery"] { --album-accent: #7d8fd5; --album-deep: #5d67b3; --album-wash: #edf1ff; }
-.hrv-v2-album-card[data-theme="woodland"] { --album-accent: #83a06d; --album-deep: #617950; --album-wash: #eff6e9; }
-.hrv-v2-album-card[data-theme="garden"] { --album-accent: #d1849e; --album-deep: #ae607f; --album-wash: #fff0f5; }
-.hrv-v2-album-card[data-theme="constellation"] { --album-accent: #9184d0; --album-deep: #695daf; --album-wash: #f1eeff; }
-
-.hrv-v2-album-card:is(:hover, :focus-visible) {
-  border-color: color-mix(in srgb, var(--album-accent) 54%, white);
-  box-shadow:
-    0 27px 58px rgb(58 73 105 / 20%),
-    0 0 30px color-mix(in srgb, var(--album-accent) 18%, transparent),
-    inset 0 1px 0 #fff;
-  transform: translateY(-7px);
-}
-
-.hrv-v2-album-card__media {
-  position: relative;
-  display: block;
-  aspect-ratio: 1.47 / 1;
-  overflow: hidden;
-  border-bottom: 1px solid color-mix(in srgb, var(--album-accent) 46%, white);
-  background: color-mix(in srgb, var(--album-wash) 72%, white);
-}
-
-.hrv-v2-album-card__media::after {
-  position: absolute;
-  z-index: 2;
+  z-index: 3;
   inset: 0;
-  content: "";
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 54%, color-mix(in srgb, var(--album-deep) 15%, transparent)),
-    radial-gradient(circle at 12% 12%, rgb(255 255 255 / 50%), transparent 22%);
-}
-
-.hrv-v2-album-card__image {
   display: block !important;
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
-  object-fit: cover !important;
-  object-position: center !important;
-  filter: saturate(.98) contrast(1.01);
-  transition: transform 520ms cubic-bezier(.2, .72, .2, 1), filter 300ms ease;
+  pointer-events: none;
+  object-fit: fill !important;
+  opacity: .98;
+  filter: drop-shadow(0 3px 7px rgb(34 42 38 / 22%));
+  transform: scale(1.002);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(.2, .72, .2, 1), filter 260ms ease;
 }
 
-.hrv-v2-album-card:hover .hrv-v2-album-card__image,
-.hrv-v2-album-card:focus-visible .hrv-v2-album-card__image {
-  filter: saturate(1.06) contrast(1.02);
-  transform: scale(1.045);
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__frame {
+  filter:
+    drop-shadow(0 4px 9px rgb(34 42 38 / 26%))
+    drop-shadow(0 0 8px color-mix(in srgb, var(--album-accent) 36%, transparent));
+  transform: scale(1.012);
 }
 
-.hrv-v2-album-card__placeholder {
+/* Keep the photographs dominant while letting each subject visibly own its card. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] {
+  --album-accent: #c9793f;
+  --album-wash: #f6dfc6;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] {
+  --album-accent: #687fc4;
+  --album-wash: #dce5f8;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] {
+  --album-accent: #758e62;
+  --album-wash: #e2ead8;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] {
+  --album-accent: #c86787;
+  --album-wash: #f5d9e3;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] {
+  --album-accent: #766bb6;
+  --album-wash: #e1def4;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="harvest"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fffdfa, #f7e1ca);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="discovery"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fff, #e5ebfa);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="woodland"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fffefb, #e6eddf);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="garden"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fffdfd, #f5dfe7);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme="constellation"] .hrv-album-card__body {
+  background: linear-gradient(135deg, #fff, #e6e2f6);
+}
+
+/* ---------- Honest zero-photo state inside the unchanged Codex hero ---------- */
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty-wrap {
+  min-height: 390px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-memory-empty {
   display: grid;
-  width: 100%;
-  height: 100%;
+  min-height: 390px;
+  padding: clamp(34px, 5vw, 58px);
   place-items: center;
-  padding: 24px;
-  color: #6d7280;
-  font-size: 16px !important;
+  align-content: center;
+  gap: 17px;
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 50% 32%, rgb(255 255 255 / 78%), transparent 31%),
+    linear-gradient(135deg, #dce9e7, #e5e8f4 54%, #dce8e5);
   text-align: center;
 }
 
-.hrv-v2-album-card__frame {
-  position: absolute;
-  z-index: 4;
-  inset: 5px;
-  display: block;
-  pointer-events: none;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  filter: drop-shadow(0 3px 6px rgb(25 35 58 / 16%));
-  opacity: .95;
-}
-
-.hrv-v2-album-card[data-theme="harvest"] .hrv-v2-album-card__frame { background-image: url("../assets/frame-harvest.svg"); }
-.hrv-v2-album-card[data-theme="discovery"] .hrv-v2-album-card__frame { background-image: url("../assets/frame-discovery.svg"); }
-.hrv-v2-album-card[data-theme="woodland"] .hrv-v2-album-card__frame { background-image: url("../assets/frame-woodland.svg"); }
-.hrv-v2-album-card[data-theme="garden"] .hrv-v2-album-card__frame { background-image: url("../assets/frame-garden.svg"); }
-.hrv-v2-album-card[data-theme="constellation"] .hrv-v2-album-card__frame { background-image: url("../assets/frame-constellation.svg"); }
-
-.hrv-v2-album-card__body {
-  position: relative;
+.hrv-photo-album-v2 .hrv-v2-memory-empty__glow {
   display: grid;
-  min-height: 128px;
-  padding: 20px 21px 21px;
-  gap: 6px;
-  align-content: start;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(145deg, #6a8b77, #8b76a7);
+  box-shadow: 0 12px 30px rgb(90 107 95 / 20%);
 }
 
-.hrv-v2-album-card__body::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  opacity: .58;
-  background:
-    radial-gradient(circle at 92% 18%, color-mix(in srgb, var(--album-accent) 18%, transparent), transparent 28%),
-    linear-gradient(90deg, transparent, rgb(255 255 255 / 34%), transparent);
+.hrv-photo-album-v2 .hrv-v2-memory-empty__copy {
+  max-width: 500px;
 }
 
-.hrv-v2-album-card__title,
-.hrv-v2-album-card__count,
-.hrv-v2-album-card__action {
-  position: relative;
-  z-index: 1;
-}
-
-.hrv-v2-album-card__title {
-  color: #28384d !important;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 780;
-  line-height: 1.18 !important;
-  letter-spacing: -.025em;
-}
-
-.hrv-v2-album-card__count {
-  color: #68768c !important;
-  font-size: 15px !important;
-  font-weight: 650;
-}
-
-.hrv-v2-album-card__action {
-  justify-self: start;
-  margin-top: 5px;
-  padding: 6px 11px;
-  border: 1px solid color-mix(in srgb, var(--album-accent) 26%, white);
-  border-radius: 999px;
-  color: var(--album-deep) !important;
-  background: color-mix(in srgb, var(--album-wash) 55%, white);
-  font-size: 14px !important;
-  font-weight: 760;
-  line-height: 1.2 !important;
-}
-
-.hrv-v2-albums__empty {
+.hrv-photo-album-v2 .hrv-v2-memory-empty__title {
   margin: 0 !important;
-  padding: 34px;
-  border: 1px solid rgb(255 255 255 / 78%);
-  border-radius: 26px;
-  color: #69778c !important;
-  background: rgb(255 255 255 / 48%);
-  box-shadow: 0 17px 42px rgb(65 81 108 / 9%);
-  font-size: 17px !important;
+  color: #2f4337 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(30px, 3vw, 44px) !important;
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.05 !important;
 }
 
-/* ---------- Previous / current year doorway ---------- */
+.hrv-photo-album-v2 .hrv-v2-memory-empty__text {
+  max-width: 470px;
+  margin: 10px auto 0 !important;
+  color: var(--hrv-muted) !important;
+  font-size: var(--text-secondary) !important;
+}
 
-.hrv-v2-year-doorway {
-  display: flex;
+/* ---------- Year index remains V2 architecture, styled in the same family ---------- */
+
+.hrv-photo-album-v2 .hrv-v2-years {
+  width: min(100% - 40px, 1100px);
+  margin: 0 auto;
+  padding: clamp(64px, 8vw, 100px) 0 clamp(80px, 10vw, 130px);
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__heading {
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__title {
+  margin: 0 !important;
+  color: #2f4337 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: var(--text-heading-medium) !important;
+  font-weight: 500;
+  letter-spacing: -.04em;
+  line-height: 1.04 !important;
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__copy {
+  max-width: 650px;
+  margin-top: 14px !important;
+  color: var(--hrv-muted) !important;
+}
+
+.hrv-photo-album-v2 .hrv-v2-years__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hrv-photo-album-v2 .hrv-v2-year-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  width: min(calc(100% - 48px), 430px);
-  min-height: 78px;
-  margin: 8px max(24px, calc((100% - 1320px) / 2)) 0 auto;
-  padding: 13px 13px 13px 17px;
-  gap: 13px;
-  border: 1px solid rgb(255 255 255 / 88%);
+  min-height: 108px;
+  padding: 22px 24px;
+  gap: 15px;
+  border: 1px solid var(--hrv-border);
   border-radius: 24px;
-  color: #32445d;
-  background:
-    radial-gradient(circle at 0 0, rgb(121 222 235 / 22%), transparent 42%),
-    linear-gradient(135deg, rgb(255 255 255 / 72%), rgb(239 239 255 / 62%));
-  box-shadow:
-    0 19px 48px rgb(68 84 123 / 14%),
-    0 0 26px rgb(136 139 229 / 8%),
-    inset 0 1px 0 #fff;
-  backdrop-filter: blur(18px) saturate(1.15);
-  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  background: rgb(255 253 249 / 88%);
+  box-shadow: 0 15px 42px rgb(49 67 57 / 9%);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.hrv-v2-year-doorway__copy {
-  display: grid;
-  min-width: 0;
-  flex: 1;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  column-gap: 10px;
+.hrv-photo-album-v2 .hrv-v2-year-card:is(:hover, :focus-visible) {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgb(49 67 57 / 15%);
 }
 
-.hrv-v2-year-doorway__jewel {
+.hrv-photo-album-v2 .hrv-v2-year-card__spark {
   display: grid;
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   grid-row: 1 / span 2;
   place-items: center;
-  border: 1px solid rgb(255 255 255 / 72%);
   border-radius: 50%;
-  color: white;
-  background: linear-gradient(145deg, #74d6df, #897fe0 62%, #b37bd2);
-  box-shadow:
-    0 8px 21px rgb(88 105 174 / 24%),
-    0 0 18px rgb(105 216 231 / 18%);
+  color: #fff;
+  background: linear-gradient(145deg, #5d826b, #8e77ae);
 }
 
-.hrv-v2-year-doorway__title {
-  overflow: hidden;
-  color: #30435b !important;
-  font-size: 16px !important;
-  font-weight: 790;
-  line-height: 1.2 !important;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.hrv-photo-album-v2 .hrv-v2-year-card__label {
+  align-self: end;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px !important;
+  font-weight: 600;
+  line-height: 1.05 !important;
 }
 
-.hrv-v2-year-doorway__subtitle {
-  color: #748199 !important;
-  font-size: 14px !important;
-  font-weight: 620;
-  line-height: 1.2 !important;
+.hrv-photo-album-v2 .hrv-v2-year-card__kind {
+  align-self: start;
+  color: var(--hrv-muted) !important;
+  font-size: var(--text-small) !important;
+  font-weight: 670;
 }
 
-.hrv-v2-year-doorway__action {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid rgb(255 255 255 / 82%);
-  border-radius: 50%;
-  color: #556889 !important;
-  background: rgb(255 255 255 / 72%);
-  box-shadow: 0 8px 22px rgb(74 90 129 / 14%);
-  font-size: 25px !important;
-  line-height: 1 !important;
-  transition: transform 170ms ease, box-shadow 170ms ease;
-}
-
-.hrv-v2-year-doorway__action:is(:hover, :focus-visible) {
-  transform: translateX(2px);
-  box-shadow: 0 10px 26px rgb(74 90 129 / 20%);
-}
-
-.hrv-v2-year-doorway__text-link {
-  color: #64728c !important;
-  font-size: 14px !important;
-  font-weight: 720;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 1180px) {
-  .hrv-v2-hero {
-    grid-template-columns: minmax(270px, .72fr) minmax(500px, 1.28fr);
-    gap: 38px;
-    padding: 46px;
-  }
-
-  .hrv-v2-hero__title { font-size: clamp(46px, 5vw, 68px) !important; }
-  .hrv-v2-memory__stage { min-height: 300px; }
-  .hrv-v2-album-grid { gap: 16px; }
-  .hrv-v2-album-card__title { font-size: 18px !important; }
-}
-
-@media (max-width: 980px) {
-  .hrv-v2-hero {
-    grid-template-columns: 1fr;
-    width: min(calc(100% - 34px), 820px);
-    padding: 44px 34px 36px;
-    gap: 36px;
-  }
-
-  .hrv-v2-hero__copy {
-    width: min(100%, 680px);
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .hrv-v2-hero__copyline { margin-inline: auto !important; }
-  .hrv-v2-hero__memory { width: min(100%, 760px); margin-inline: auto; }
-  .hrv-v2-memory__stage { min-height: 320px; }
-  .hrv-v2-album-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hrv-photo-album-v2 .hrv-v2-year-card__arrow {
+  grid-row: 1 / span 2;
+  font-size: 30px !important;
+  color: #687a70 !important;
 }
 
 @media (max-width: 720px) {
-  .hrv-v2-home { padding-bottom: 76px; }
-
-  .hrv-v2-hero {
-    width: calc(100% - 20px);
-    margin-top: 10px;
-    padding: 34px 18px 24px;
-    border-radius: 30px;
+  .hrv-photo-album-v2 .hrv-v2-memory-empty-wrap,
+  .hrv-photo-album-v2 .hrv-v2-memory-empty {
+    min-height: 62vw;
   }
 
-  .hrv-v2-hero__copy { text-align: left; }
-  .hrv-v2-hero__title { font-size: clamp(44px, 13vw, 62px) !important; }
-  .hrv-v2-hero__copyline { margin-inline: 0 !important; font-size: 17px !important; }
-
-  .hrv-v2-memory__glass { padding: 10px 10px 10px; border-radius: 28px; }
-  .hrv-v2-memory__stage { min-height: 60vw; border-radius: 21px; }
-  .hrv-v2-memory__slide {
-    top: 7%;
-    left: 10%;
-    width: 80%;
-    height: 86%;
-    border-radius: 20px;
-  }
-  .hrv-v2-memory__slide[data-slot="-1"] { transform: translate3d(-62%, 0, -74px) rotateY(7deg) scale(.72); }
-  .hrv-v2-memory__slide[data-slot="1"] { transform: translate3d(62%, 0, -74px) rotateY(-7deg) scale(.72); }
-  .hrv-v2-memory__slide[data-slot="-2"] { transform: translate3d(-106%, 0, -150px) rotateY(10deg) scale(.64); }
-  .hrv-v2-memory__slide[data-slot="2"] { transform: translate3d(106%, 0, -150px) rotateY(-10deg) scale(.64); }
-  .hrv-v2-memory__slide[data-slot="-3"] { transform: translate3d(-132%, 0, -200px) rotateY(12deg) scale(.58); }
-  .hrv-v2-memory__slide[data-slot="3"] { transform: translate3d(132%, 0, -200px) rotateY(-12deg) scale(.58); }
-  .hrv-v2-memory__hint { top: 2px; padding: 6px 13px; font-size: 14px !important; }
-
-  .hrv-v2-albums {
-    width: 100%;
-    padding-top: 70px;
+  .hrv-photo-album-v2 .hrv-v2-years {
+    width: calc(100% - 24px);
+    padding-top: 48px;
   }
 
-  .hrv-v2-section-heading {
-    width: calc(100% - 28px);
-    margin-inline: auto;
-    align-items: flex-start;
-    flex-direction: column;
+  .hrv-photo-album-v2 .hrv-v2-years__grid {
+    grid-template-columns: 1fr;
   }
-
-  .hrv-v2-section-title { font-size: clamp(36px, 10vw, 50px) !important; }
-
-  .hrv-v2-album-grid {
-    display: flex;
-    margin-inline: 0;
-    padding: 4px 14px 24px;
-    gap: 15px;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-  .hrv-v2-album-grid::-webkit-scrollbar { display: none; }
-  .hrv-v2-album-card { flex: 0 0 min(82vw, 340px); scroll-snap-align: start; }
-
-  .hrv-v2-year-doorway {
-    width: calc(100% - 28px);
-    margin: 4px 14px 0;
-  }
-}
-
-@media (max-width: 430px) {
-  .hrv-v2-hero__title { font-size: clamp(42px, 13vw, 56px) !important; }
-  .hrv-v2-memory__controls { gap: 8px; }
-  .hrv-v2-memory__arrow,
-  .hrv-v2-memory__pause { width: 42px !important; min-width: 42px !important; height: 42px !important; }
-  .hrv-v2-memory__status { min-width: 62px; font-size: 14px !important; }
-  .hrv-v2-button { font-size: 15px !important; }
 }
