@@ -1,9 +1,9 @@
-html.hrv-page-classroom-explorations-ready body #page {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #page {
   overflow-x: clip !important;
 }
 
-html.hrv-page-classroom-explorations-ready body #content.site-content.container,
-html.hrv-page-classroom-explorations-ready body .site-content {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #content.site-content.container,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .site-content {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
@@ -15,11 +15,11 @@ html.hrv-page-classroom-explorations-ready body .site-content {
   overflow: visible !important;
 }
 
-html.hrv-page-classroom-explorations-ready body #primary.content-area,
-html.hrv-page-classroom-explorations-ready body .content-area,
-html.hrv-page-classroom-explorations-ready body #main.site-main,
-html.hrv-page-classroom-explorations-ready body .site-main,
-html.hrv-page-classroom-explorations-ready body .entry-content {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #primary.content-area,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .content-area,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #main.site-main,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .site-main,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .entry-content {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
@@ -32,16 +32,16 @@ html.hrv-page-classroom-explorations-ready body .entry-content {
   overflow: visible !important;
 }
 
-html.hrv-page-classroom-explorations-ready body .widget-area,
-html.hrv-page-classroom-explorations-ready body #secondary,
-html.hrv-page-classroom-explorations-ready body .entry-header,
-html.hrv-page-classroom-explorations-ready body .entry-footer,
-html.hrv-page-classroom-explorations-ready body .edit-link {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .widget-area,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #secondary,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .entry-header,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .entry-footer,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .edit-link {
   display: none !important;
 }
 
-html.hrv-page-classroom-explorations-ready body .hentry,
-html.hrv-page-classroom-explorations-ready body article.page {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .hentry,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) article.page {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
@@ -52,7 +52,7 @@ html.hrv-page-classroom-explorations-ready body article.page {
   overflow: visible !important;
 }
 
-html.hrv-page-classroom-explorations-ready body #hrv-classroom-explorations-root {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #hrv-classroom-explorations-root {
   display: block !important;
   width: 100vw !important;
   max-width: none !important;
