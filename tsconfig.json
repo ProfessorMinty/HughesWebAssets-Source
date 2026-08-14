@@ -15,5 +15,5 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true
   },
-  "include": ["apps/**/*.ts", "tests/**/*.ts", "vite.config.ts", "vite.hub.config.ts", "vitest.config.ts"]
+  "include": ["apps/**/*.ts", "tests/**/*.ts", "vite.config.ts", "vitest.config.ts"]
 }

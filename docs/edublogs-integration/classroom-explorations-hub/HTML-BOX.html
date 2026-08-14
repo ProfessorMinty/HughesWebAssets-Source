@@ -1,47 +1,7 @@
-<!-- Hughes Room Views · Classroom Explorations Hub · Edublogs HTML tab
-     CONSTRUCTION HOLD · 2026-08-10
-     Semantic mount + truthful native fallback only.
-     Repository launch code does NOT belong in this HTML surface. -->
-<section
-  id="hrv-classroom-explorations-root"
-  class="hrv-native-fallback"
-  data-hrv-page="classroom-explorations"
-  data-hrv-page-system="classroom-explorations-hub"
-  data-hrv-release-channel="production"
-  data-hrv-schema="1.0"
-  data-hrv-state="native"
-  aria-labelledby="hrv-classroom-explorations-title">
-
-  <header>
-    <p><strong>Hughes Room Views Discovery Museum</strong></p>
-    <h1 id="hrv-classroom-explorations-title">Classroom Explorations</h1>
-    <p>Launchpads for curiosity—STEM adventures, field notes, and student-made discoveries.</p>
-  </header>
-
-  <div class="hrv-hub-hold-notice" role="status" aria-live="polite">
-    <p class="hrv-hub-hold-icon" aria-hidden="true">🚧 🧭 🚧</p>
-    <h2>Museum Expansion Under Construction</h2>
-    <p>We are rebuilding the deeper Classroom Explorations galleries to make them more magical, easier to explore, and worthy of the museum entrance.</p>
-    <p><strong>The entrance, Welcome Theater, and current Zinnia exhibit remain open while the rest of the museum is being polished.</strong></p>
+<section id="hrv-classroom-explorations-root" data-hrv-page="hrv-page:classroom-explorations" aria-labelledby="hrv-classroom-explorations-fallback-title">
+  <div class="hrv-page-unavailable" role="status" data-hrv-fallback-status>
+    <h1 id="hrv-classroom-explorations-fallback-title">Classroom Explorations</h1>
+    <p>The classroom museum is temporarily unavailable. Please try again soon.</p>
   </div>
-
-  <p data-hrv-native-status data-state="native" role="status" aria-live="polite">
-    The readable Classroom Explorations guide is available while the enhanced museum checks its pinned repository release.
-  </p>
-
-  <div data-hrv-fallback>
-    <h2>Current Exploration</h2>
-    <h3>Summer Bloom Adoption Project</h3>
-    <p>Step into the zinnia greenhouse as students raise mystery seedlings, observe their growth, and discover what each unique bloom becomes.</p>
-    <p><a href="https://rmhughes.edublogs.org/zinnia-page/">Open the Summer Bloom Adoption Project</a></p>
-
-    <h2>This Week We Learned</h2>
-    <p>The first approved 2026–2027 classroom recap is coming soon.</p>
-
-    <p><strong>The remaining museum galleries are intentionally closed during the current construction hold.</strong></p>
-  </div>
-
-  <noscript>
-    JavaScript is disabled. The readable Classroom Explorations guide and current Zinnia project link remain available while the museum expansion is under construction.
-  </noscript>
+  <noscript><p>JavaScript is required to open the Classroom Explorations museum.</p></noscript>
 </section>

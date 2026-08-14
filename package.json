@@ -5,17 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.ts",
-    "dev:hub": "node tools/build-classroom-explorations-hub.mjs && vite --config vite.hub.config.ts",
     "build": "tsc --noEmit && vite build --config vite.config.ts",
-    "build:hub": "node tools/build-classroom-explorations-hub.mjs && tsc --noEmit && vite build --config vite.hub.config.ts && node tools/verify-classroom-explorations-hub-dist.mjs",
+    "build:hub:content": "node tools/build-classroom-explorations-hub-content.mjs",
+    "build:hub:runtime": "node tools/build-classroom-explorations-hub-runtime.mjs",
+    "build:hub:preview": "node tools/build-classroom-explorations-hub-preview.mjs",
+    "build:hub": "npm run build:hub:content && npm run build:hub:runtime && npm run build:hub:preview && node tools/verify-classroom-explorations-hub.mjs",
     "stage:photo-album-release": "node tools/stage-photo-album-release.mjs 2026.08.10.5",
-    "stage:hub-release": "node tools/stage-classroom-explorations-hub-release.mjs",
+    "stage:hub-publication": "node tools/stage-classroom-explorations-hub-publication.mjs",
     "preview": "vite preview --config vite.config.ts",
-    "preview:hub": "vite preview --config vite.hub.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:hub": "node tools/test-classroom-explorations-hub.mjs",
     "check": "npm run test && npm run build",
-    "check:hub": "npm run test && npm run build:hub"
+    "check:hub": "npm run test:hub && npm run build:hub"
   },
   "devDependencies": {
     "@types/node": "26.2.0",

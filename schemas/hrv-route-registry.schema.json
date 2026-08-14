@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hughes-room-views.invalid/schemas/hrv-route-registry.schema.json",
+  "title": "Hughes Room Views route registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "site", "routes"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "site": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "origin"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "origin": { "type": "string", "pattern": "^https://" }
+      }
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ref", "wordpressPageId", "slug", "path", "kind", "state"],
+        "properties": {
+          "ref": { "type": "string", "pattern": "^hrv-route:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "wordpressPageId": { "type": "integer", "minimum": 1 },
+          "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "path": { "type": "string", "pattern": "^/[a-z0-9-]+/$" },
+          "kind": { "enum": ["hub", "exploration", "twwl", "archive", "page"] },
+          "state": { "enum": ["published", "unpublished", "retired"] }
+        }
+      }
+    }
+  }
+}

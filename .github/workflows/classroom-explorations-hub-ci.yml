@@ -1,52 +1,50 @@
 name: Classroom Explorations Hub CI
-
 on:
   push:
-    branches:
-      - feature/classroom-explorations-hub-v1-mainline
+    branches: [main]
+    paths:
+      - 'apps/classroom-explorations-hub/**'
+      - 'registry/hrv-routes.source.json'
+      - 'schemas/hrv-page-envelope.schema.json'
+      - 'schemas/hrv-route-registry.schema.json'
+      - 'schemas/classroom-explorations-hub.source.schema.json'
+      - 'schemas/classroom-explorations-hub.runtime.schema.json'
+      - 'tools/*classroom-explorations-hub*.mjs'
+      - 'tools/lib/json-schema-lite.mjs'
+      - 'tools/lib/classroom-explorations-hub-contract.mjs'
+      - 'tools/lib/classroom-explorations-hub-operations.mjs'
+      - 'docs/classroom-explorations-hub.md'
+      - 'docs/edublogs-integration/classroom-explorations-hub/**'
+      - '.github/workflows/classroom-explorations-hub-ci.yml'
   pull_request:
     paths:
       - 'apps/classroom-explorations-hub/**'
-      - 'docs/classroom-explorations-hub.md'
-      - 'docs/edublogs-integration/classroom-explorations-hub/**'
-      - 'schemas/classroom-explorations-hub.schema.json'
-      - 'tools/build-classroom-explorations-hub.mjs'
-      - 'tools/verify-classroom-explorations-hub-dist.mjs'
-      - 'tools/stage-classroom-explorations-hub-release.mjs'
-      - 'tests/classroom-explorations-hub.test.ts'
-      - 'vite.hub.config.ts'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig.json'
-      - '.github/workflows/classroom-explorations-hub-ci.yml'
-
+      - 'registry/hrv-routes.source.json'
+      - 'schemas/**classroom-explorations-hub**'
+      - 'schemas/hrv-page-envelope.schema.json'
+      - 'schemas/hrv-route-registry.schema.json'
+      - 'tools/*classroom-explorations-hub*.mjs'
+      - 'tools/lib/json-schema-lite.mjs'
+      - 'tools/lib/classroom-explorations-hub-contract.mjs'
+      - 'tools/lib/classroom-explorations-hub-operations.mjs'
 permissions:
   contents: read
-
 jobs:
   verify-hub:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node 24
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Test and build Hub
-        run: npm run check:hub
-
-      - name: Upload verified Hub build
-        uses: actions/upload-artifact@v4
-        with:
-          name: classroom-explorations-hub-build
-          path: dist/classroom-explorations-hub
-          if-no-files-found: error
-          retention-days: 7
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Syntax check browser runtime
+        run: |
+          node --check apps/classroom-explorations-hub/src/bootstrap.js
+          node --check apps/classroom-explorations-hub/src/runtime.js
+      - name: Contract tests
+        run: node tools/test-classroom-explorations-hub.mjs
+      - name: Build deterministic content and runtime artifacts
+        run: |
+          node tools/build-classroom-explorations-hub-content.mjs
+          node tools/build-classroom-explorations-hub-runtime.mjs
+          node tools/verify-classroom-explorations-hub.mjs

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "site": {
+    "id": "hrv-edublogs",
+    "origin": "https://rmhughes.edublogs.org"
+  },
+  "routes": [
+    {
+      "ref": "hrv-route:classroom-explorations",
+      "wordpressPageId": 17,
+      "slug": "classroom-explorations",
+      "path": "/classroom-explorations/",
+      "kind": "hub",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:zinnia",
+      "wordpressPageId": 2463,
+      "slug": "zinnia-page",
+      "path": "/zinnia-page/",
+      "kind": "exploration",
+      "state": "published"
+    }
+  ]
+}

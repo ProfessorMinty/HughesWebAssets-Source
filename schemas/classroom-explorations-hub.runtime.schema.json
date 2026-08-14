@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hughes-room-views.invalid/schemas/classroom-explorations-hub.runtime.schema.json",
+  "title": "Classroom Explorations Hub browser runtime manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["runtimeSchemaVersion", "snapshotId", "page", "current", "galleries", "archives"],
+  "properties": {
+    "runtimeSchemaVersion": { "const": "1.0" },
+    "snapshotId": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "page": {"type":"object","additionalProperties":false,"required":["id","type","href","currentSchoolYear","schoolYearLabel","copy"],"properties":{"id":{"const":"hrv-page:classroom-explorations"},"type":{"const":"classroom-explorations-hub"},"href":{"type":"string","pattern":"^https://"},"currentSchoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"schoolYearLabel":{"type":"string","minLength":1},"copy":{"type":"object"}}},
+    "current": {"type":"object","additionalProperties":false,"required":["exploration","twwl","featuredMedia"],"properties":{"exploration":{"type":"object","additionalProperties":false,"required":["id","title","summary","href","image","learningPoints","tags"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"title":{"type":"string","minLength":1},"summary":{"type":"string","minLength":1},"href":{"type":"string","pattern":"^https://"},"image":{"type":"object","additionalProperties":false,"required":["src","alt"],"properties":{"src":{"type":"string","pattern":"^https://"},"alt":{"type":"string","minLength":1}}},"learningPoints":{"type":"array","items":{"type":"string","minLength":1}},"tags":{"type":"array","items":{"type":"string","minLength":1}}}},"twwl":{"type":"object","additionalProperties":false,"required":["id","state"],"properties":{"id":{"type":"string","minLength":1},"state":{"enum":["coming-soon","published"]},"content":{"type":"object"}}},"featuredMedia":{"type":"object","additionalProperties":false,"required":["id","kind","title","embedUrl"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"kind":{"const":"youtube"},"title":{"type":"string","minLength":1},"embedUrl":{"type":"string","pattern":"^https://www\\.youtube-nocookie\\.com/embed/"}}}}},
+    "galleries": {"type":"object","additionalProperties":false,"required":["pastExplorations","pastTwwl"],"properties":{"pastExplorations":{"type":"array","items":{"type":"object"}},"pastTwwl":{"type":"array","items":{"type":"object"}}}},
+    "archives": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","schoolYear","label","state","href"],"properties":{"id":{"type":"string","minLength":1},"schoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"label":{"type":"string","minLength":1},"state":{"enum":["coming-soon","published"]},"href":{"type":["string","null"]}}}}
+  }
+}
