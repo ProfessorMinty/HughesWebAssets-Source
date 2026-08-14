@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "preservedAt": "2026-08-14",
+  "purpose": "Restoration anchor for the exact Classroom Explorations page-17 integration that remained installed while the clean-sheet repository rebuild and /asdf-test/ preview work occurred.",
+  "wordpress": {
+    "pageId": 17,
+    "title": "Classroom Explorations",
+    "slug": "classroom-explorations",
+    "path": "/classroom-explorations/",
+    "url": "https://rmhughes.edublogs.org/classroom-explorations/",
+    "template": "page_fullwidth.php",
+    "templateEvidence": "ProfessorMinty/HughesEDUBlogsBackupsRepo 2026-08-04_03-38-08_backup/pages/classroom-explorations-17.json"
+  },
+  "installedDoorwayState": {
+    "sourceCommit": "5dd5be636227d224e42faf79489f73b5122ac86b",
+    "html": {
+      "path": "docs/edublogs-integration/classroom-explorations-hub/HTML-BOX.html",
+      "blobSha": "46363f1d01c9098b1910fde1e11e090af4d52f8f"
+    },
+    "css": {
+      "path": "docs/edublogs-integration/classroom-explorations-hub/CSS-BOX.css",
+      "blobSha": "6c1296807439bad933c53fd229242e5e79ea2f49"
+    },
+    "javascript": {
+      "path": "docs/edublogs-integration/classroom-explorations-hub/JAVASCRIPT-BOX.js",
+      "blobSha": "f6dce536cc10c3aee63f58098c1859c291a32f40"
+    }
+  },
+  "restorationRule": "Restore the three exact files from sourceCommit above together with WordPress page ID 17 using page_fullwidth.php. Do not mix individual blocks from different Hub generations.",
+  "notes": [
+    "The current environment cannot write to or inspect the private Edublogs editor surfaces directly.",
+    "The prior clean-sheet implementation explicitly did not modify live page 17; only /asdf-test/ was used for the rejected preview. Therefore this immutable source commit remains the restoration anchor for the installed page-17 three-box state.",
+    "The August 4 Edublogs backup independently confirms page ID 17, slug classroom-explorations, published status, route, and page_fullwidth.php template."
+  ]
+}
