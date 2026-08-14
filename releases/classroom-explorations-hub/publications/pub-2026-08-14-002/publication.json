@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0",
+  "publicationId": "pub-2026-08-14-002",
+  "pageId": "hrv-page:classroom-explorations",
+  "pageType": "classroom-explorations-hub",
+  "sourceRevision": "f6e228283be601a63ab3f458f6b5209981c803fa",
+  "previousKnownGoodPublication": null,
+  "runtime": {
+    "version": "2026.08.14.2",
+    "runtimeSchemaVersion": "1.0",
+    "bootstrap": {
+      "path": "../../runtime/2026.08.14.2/bootstrap.js",
+      "sha256": "3bf8dae8913f07e340480b2f3294f54807f7108d7e1b92d2d28dcfa767eb5f7a"
+    },
+    "script": {
+      "path": "../../runtime/2026.08.14.2/runtime.js",
+      "sha256": "9f491637a2e4ab7fb9d881419f985ad7ceb38f462867ac2c5929aba3b14e05eb"
+    },
+    "style": {
+      "path": "../../runtime/2026.08.14.2/hub.css",
+      "sha256": "2ac36137969ca5f42fac76ccbd444211e8980a455ff009f6ee151f4b285d41ff"
+    },
+    "hostCompat": {
+      "path": "../../runtime/2026.08.14.2/host-compat.css",
+      "sha256": "b4c03b6be3289c5160f9c75ca88d443f3324ad7c952e3128936e90ffd6ebb08f"
+    }
+  },
+  "content": {
+    "snapshotId": "sha256:94fd2b8a66f5ce35ac5a761add569554f5f5dc7d1e63ac4354b8aa3e72070cd0",
+    "runtimeSchemaVersion": "1.0",
+    "manifest": {
+      "path": "../../content/94fd2b8a66f5ce35ac5a761add569554f5f5dc7d1e63ac4354b8aa3e72070cd0/manifest.json",
+      "sha256": "247e2bc74c5d0b024bf469f6fd2704a42a2515a4383b17b24b757697c0c72aec"
+    }
+  }
+}
