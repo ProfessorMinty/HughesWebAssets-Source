@@ -32,7 +32,7 @@ for (const required of [
 for (const match of css.matchAll(/([^{}]+)\{[^{}]*\}/g)) {
   const selectorBlock = match[1].trim();
   if (!selectorBlock || selectorBlock.startsWith("@")) continue;
-  for (const selector of selectorBlock.split(",").map((value) => value.trim()).filter(Boolean)) {
+  for (const selector of selectorBlock.split(/,\s*\n/).map((value) => value.trim()).filter(Boolean)) {
     assert(selector.startsWith(scope), `Host compatibility selector escaped approved Hub host scope: ${selector}`);
   }
 }
