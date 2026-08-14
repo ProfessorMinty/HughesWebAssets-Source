@@ -4,27 +4,600 @@
   "title": "Classroom Explorations Hub authoring data",
   "type": "object",
   "additionalProperties": false,
-  "required": ["copy", "schoolYears", "explorations", "twwl", "media", "composition"],
+  "required": [
+    "copy",
+    "schoolYears",
+    "explorations",
+    "twwl",
+    "media",
+    "composition"
+  ],
   "properties": {
     "copy": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["hero", "welcome", "currentExploration", "currentTwwl", "pastExplorations", "pastTwwl", "archives", "footer"],
+      "required": [
+        "hero",
+        "welcome",
+        "currentExploration",
+        "currentTwwl",
+        "pastExplorations",
+        "pastTwwl",
+        "archives",
+        "footer"
+      ],
       "properties": {
-        "hero": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title","intro","invitation"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"intro":{"type":"string","minLength":1},"invitation":{"type":"string","minLength":1}}},
-        "welcome": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title","summary"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"summary":{"type":"string","minLength":1}}},
-        "currentExploration": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1}}},
-        "currentTwwl": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title","comingSoonTitle","comingSoonBody"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"comingSoonTitle":{"type":"string","minLength":1},"comingSoonBody":{"type":"string","minLength":1}}},
-        "pastExplorations": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title","emptyText"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"emptyText":{"type":"string","minLength":1}}},
-        "pastTwwl": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title","emptyText"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"emptyText":{"type":"string","minLength":1}}},
-        "archives": {"type":"object","additionalProperties":false,"required":["nodeId","eyebrow","title","intro"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"eyebrow":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"intro":{"type":"string","minLength":1}}},
-        "footer": {"type":"object","additionalProperties":false,"required":["nodeId","text"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"text":{"type":"string","minLength":1}}}
+        "hero": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title",
+            "intro",
+            "invitation",
+            "pillars",
+            "oathTitle",
+            "oathBody"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "intro": {
+              "type": "string",
+              "minLength": 1
+            },
+            "invitation": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pillars": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "oathTitle": {
+              "type": "string",
+              "minLength": 1
+            },
+            "oathBody": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "welcome": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title",
+            "summary"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "currentExploration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "currentTwwl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title",
+            "comingSoonTitle",
+            "comingSoonBody"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "comingSoonTitle": {
+              "type": "string",
+              "minLength": 1
+            },
+            "comingSoonBody": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "pastExplorations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title",
+            "emptyText"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "emptyText": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "pastTwwl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title",
+            "emptyText"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "emptyText": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "archives": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "eyebrow",
+            "title",
+            "intro"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "eyebrow": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "intro": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "footer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nodeId",
+            "text"
+          ],
+          "properties": {
+            "nodeId": {
+              "type": "string",
+              "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
       }
     },
-    "schoolYears": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["id","label"],"properties":{"id":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"label":{"type":"string","minLength":1}}}},
-    "explorations": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","schoolYear","title","summary","routeRef","image","learningPoints","tags"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"schoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"title":{"type":"string","minLength":1},"summary":{"type":"string","minLength":1},"routeRef":{"type":"string","pattern":"^hrv-route:[a-z0-9]+(?:-[a-z0-9]+)*$"},"image":{"type":"object","additionalProperties":false,"required":["kind","alt"],"properties":{"kind":{"enum":["external-url","managed-asset"]},"url":{"type":"string","minLength":1},"assetRef":{"type":"string","minLength":1},"alt":{"type":"string","minLength":1}}},"learningPoints":{"type":"array","items":{"type":"string","minLength":1}},"tags":{"type":"array","items":{"type":"string","minLength":1}}}}},
-    "twwl": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","schoolYear","title","summary","routeRef","tags"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"schoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"title":{"type":"string","minLength":1},"summary":{"type":"string","minLength":1},"routeRef":{"type":"string","pattern":"^hrv-route:[a-z0-9]+(?:-[a-z0-9]+)*$"},"tags":{"type":"array","items":{"type":"string","minLength":1}}}}},
-    "media": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","kind","sourceUrl","title","association"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"kind":{"enum":["youtube"]},"sourceUrl":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"association":{"type":"object","additionalProperties":false,"required":["kind"],"properties":{"kind":{"enum":["hub","exploration"]},"contentId":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}}}}}},
-    "composition": {"type":"object","additionalProperties":false,"required":["nodeId","currentSchoolYear","currentExplorationId","currentTwwl","featuredMediaId","pastExplorationIds","pastTwwlIds","previousYears"],"properties":{"nodeId":{"type":"string","pattern":"^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"},"currentSchoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"currentExplorationId":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"currentTwwl":{"type":"object","additionalProperties":false,"required":["id","state"],"properties":{"id":{"type":"string","pattern":"^hub-slot:[a-z0-9]+(?:-[a-z0-9]+)*$"},"state":{"enum":["coming-soon","published"]},"contentId":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}}},"featuredMediaId":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"pastExplorationIds":{"type":"array","items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},"pastTwwlIds":{"type":"array","items":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"}},"previousYears":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","schoolYear","state","routeRef"],"properties":{"id":{"type":"string","pattern":"^hub-archive:[0-9]{4}-[0-9]{4}$"},"schoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"state":{"enum":["coming-soon","published"]},"routeRef":{"type":["string","null"]}}}}}}
+    "schoolYears": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{4}$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "explorations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "schoolYear",
+          "title",
+          "summary",
+          "routeRef",
+          "image",
+          "learningPoints",
+          "tags"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "schoolYear": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{4}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "routeRef": {
+            "type": "string",
+            "pattern": "^hrv-route:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "alt"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "external-url",
+                  "managed-asset"
+                ]
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "assetRef": {
+                "type": "string",
+                "minLength": 1
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "learningPoints": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "twwl": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "schoolYear",
+          "title",
+          "summary",
+          "routeRef",
+          "tags"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "schoolYear": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{4}$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "routeRef": {
+            "type": "string",
+            "pattern": "^hrv-route:[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "image": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "alt"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "external-url",
+                  "managed-asset"
+                ]
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "assetRef": {
+                "type": "string",
+                "minLength": 1
+              },
+              "alt": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "sourceUrl",
+          "title",
+          "association"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "kind": {
+            "enum": [
+              "youtube"
+            ]
+          },
+          "sourceUrl": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "association": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "hub",
+                  "exploration"
+                ]
+              },
+              "contentId": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nodeId",
+        "currentSchoolYear",
+        "currentExplorationId",
+        "currentTwwl",
+        "featuredMediaId",
+        "pastExplorationIds",
+        "pastTwwlIds",
+        "previousYears"
+      ],
+      "properties": {
+        "nodeId": {
+          "type": "string",
+          "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "currentSchoolYear": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{4}$"
+        },
+        "currentExplorationId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "currentTwwl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "state"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^hub-slot:[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "state": {
+              "enum": [
+                "coming-soon",
+                "published"
+              ]
+            },
+            "contentId": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
+          }
+        },
+        "featuredMediaId": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "pastExplorationIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "pastTwwlIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "previousYears": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "schoolYear",
+              "state",
+              "routeRef"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^hub-archive:[0-9]{4}-[0-9]{4}$"
+              },
+              "schoolYear": {
+                "type": "string",
+                "pattern": "^[0-9]{4}-[0-9]{4}$"
+              },
+              "state": {
+                "enum": [
+                  "coming-soon",
+                  "published"
+                ]
+              },
+              "routeRef": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -6,7 +6,7 @@ const root = resolve(new URL("..", import.meta.url).pathname);
 const css = await readFile(resolve(root, "apps/classroom-explorations-hub/src/host-compat.css"), "utf8");
 const scope = "html.hrv-page-classroom-explorations-ready body ";
 
-assert(!css.includes("page-id-17"), "Host compatibility must not depend on live WordPress page 17 so the approved test page can prove the same runtime.");
+assert(!css.includes("page-id-17"), "Host compatibility must activate from application-ready state rather than a hard-coded page class.");
 
 for (const required of [
   "#content.site-content.container",
@@ -20,7 +20,9 @@ for (const required of [
   "width: 100vw !important",
   "left: 50% !important",
   "margin-left: -50vw !important",
-  "margin-right: -50vw !important"
+  "margin-right: -50vw !important",
+  "background: transparent !important",
+  "overflow-x: clip !important"
 ]) {
   assert(css.includes(required), `Host compatibility is missing required breakout/reset contract: ${required}`);
 }
@@ -33,4 +35,4 @@ for (const match of css.matchAll(/([^{}]+)\{[^{}]*\}/g)) {
   }
 }
 
-console.log("[hub host compat] ready-state scoping + Amadeus ancestor reset + viewport breakout contract passed");
+console.log("[hub host compat] ready-state scoping + Amadeus surface reset + viewport breakout contract passed");

@@ -20,6 +20,70 @@
       "path": "/zinnia-page/",
       "kind": "exploration",
       "state": "published"
+    },
+    {
+      "ref": "hrv-route:great-barrier-reef",
+      "wordpressPageId": 1518,
+      "slug": "exploration-great-barrier-reef",
+      "path": "/exploration-great-barrier-reef/",
+      "kind": "exploration",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:mushrooms",
+      "wordpressPageId": 413,
+      "slug": "exploration-mushrooms",
+      "path": "/exploration-mushrooms/",
+      "kind": "exploration",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:caterpillars-historical",
+      "wordpressPageId": 691,
+      "slug": "exploration-cats-in-the-classroom",
+      "path": "/exploration-cats-in-the-classroom/",
+      "kind": "exploration",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:tubers",
+      "wordpressPageId": 1549,
+      "slug": "botany-lets-talk-about-tubers",
+      "path": "/botany-lets-talk-about-tubers/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:russian-winter",
+      "wordpressPageId": 1043,
+      "slug": "the-traditions-of-russian-winter",
+      "path": "/the-traditions-of-russian-winter/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:owls",
+      "wordpressPageId": 954,
+      "slug": "silent-wings-wise-eyes-learning-about-owls",
+      "path": "/silent-wings-wise-eyes-learning-about-owls/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:bats",
+      "wordpressPageId": 906,
+      "slug": "bats-dont-go-bump-in-the-night",
+      "path": "/bats-dont-go-bump-in-the-night/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:spiders",
+      "wordpressPageId": 886,
+      "slug": "autumn-spiders-gentle-web-artists",
+      "path": "/autumn-spiders-gentle-web-artists/",
+      "kind": "twwl",
+      "state": "published"
     }
   ]
 }

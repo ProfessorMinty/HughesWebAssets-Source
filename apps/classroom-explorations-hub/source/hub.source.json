@@ -9,55 +9,69 @@
     "copy": {
       "hero": {
         "nodeId": "hub-node:hero",
-        "eyebrow": "Classroom Museum Entrance",
+        "eyebrow": "Museum Entrance • Discovery Hub",
         "title": "Classroom Explorations",
-        "intro": "A museum lobby for the projects, questions, observations, and discoveries growing out of our classroom.",
-        "invitation": "Come in, look around, and follow your curiosity."
+        "intro": "Launchpads for curiosity—STEM adventures, field notes, and student-made discoveries.",
+        "invitation": "Come in, look around, and follow your curiosity.",
+        "pillars": [
+          "Inquiry",
+          "Teamwork",
+          "Creativity",
+          "Real-World Science"
+        ],
+        "oathTitle": "Exploration Oath",
+        "oathBody": "We observe closely, ask brave questions, test ideas safely, and share what we learn."
       },
       "welcome": {
         "nodeId": "hub-node:welcome",
-        "eyebrow": "Orientation Theater",
+        "eyebrow": "Welcome Theater",
         "title": "Welcome to Classroom Explorations",
         "summary": "A quick tour of how we explore, document, and share discoveries."
       },
       "currentExploration": {
         "nodeId": "hub-node:current-exploration",
-        "eyebrow": "Now Showing",
+        "eyebrow": "Featured Exhibit Hall",
         "title": "Current Exploration"
       },
       "currentTwwl": {
         "nodeId": "hub-node:current-twwl",
-        "eyebrow": "Learning Now",
+        "eyebrow": "Learning Lantern",
         "title": "This Week We Learned",
         "comingSoonTitle": "The next learning exhibit is being prepared.",
         "comingSoonBody": "When the first approved 2026–2027 classroom recap is ready, it will open here."
       },
       "pastExplorations": {
         "nodeId": "hub-node:past-explorations",
-        "eyebrow": "This School Year",
+        "eyebrow": "Archive Gallery",
         "title": "Past Explorations",
-        "emptyText": "The gallery cases are ready. Past 2026–2027 explorations will appear here after they leave the Current Exploration spotlight."
+        "emptyText": "The gallery cases are ready for classroom explorations worth revisiting."
       },
       "pastTwwl": {
         "nodeId": "hub-node:past-twwl",
-        "eyebrow": "This School Year",
-        "title": "Past This Week We Learned",
-        "emptyText": "This archive will grow as new weekly learning exhibits are published during the school year."
+        "eyebrow": "Learning Archive",
+        "title": "Past “This Week We Learned”",
+        "emptyText": "Past learning displays will appear here as the museum collection grows."
       },
       "archives": {
         "nodeId": "hub-node:archives",
-        "eyebrow": "Museum Time Gallery",
+        "eyebrow": "Museum Archives",
         "title": "Previous School Years",
-        "intro": "Older classroom adventures belong to their own school-year galleries, preserving the story without mixing years together."
+        "intro": "Older classroom adventures can be revisited by school year as the museum archive grows."
       },
       "footer": {
         "nodeId": "hub-node:footer",
-        "text": "The museum keeps growing as the classroom discovers something new."
+        "text": "Pack your curiosity—adventures await."
       }
     },
     "schoolYears": [
-      { "id": "2026-2027", "label": "2026–2027" },
-      { "id": "2025-2026", "label": "2025–2026" }
+      {
+        "id": "2026-2027",
+        "label": "2026–2027"
+      },
+      {
+        "id": "2025-2026",
+        "label": "2025–2026"
+      }
     ],
     "explorations": [
       {
@@ -76,17 +90,163 @@
           "Observation journals and field notes",
           "Mystery bloom reveals"
         ],
-        "tags": ["Zinnias", "Plant Care", "Observation"]
+        "tags": [
+          "Zinnias",
+          "Plant Care",
+          "Observation"
+        ]
+      },
+      {
+        "id": "great-barrier-reef",
+        "schoolYear": "2025-2026",
+        "title": "Great Barrier Reef",
+        "summary": "Coral reefs, ocean habitats, and marine life.",
+        "routeRef": "hrv-route:great-barrier-reef",
+        "image": {
+          "kind": "external-url",
+          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/SeaTurt.png",
+          "alt": "Sea turtle illustration used on the historical Great Barrier Reef Hub card."
+        },
+        "learningPoints": [],
+        "tags": [
+          "Coral Reefs",
+          "Ocean Habitats",
+          "Marine Life"
+        ]
+      },
+      {
+        "id": "mushrooms",
+        "schoolYear": "2025-2026",
+        "title": "Mushrooms",
+        "summary": "Fungi, forest floors, and life cycles.",
+        "routeRef": "hrv-route:mushrooms",
+        "image": {
+          "kind": "external-url",
+          "url": "https://rmhughes.edublogs.org/files/2025/10/Mushroom-Banner.jpg",
+          "alt": "Mushroom banner used on the historical Mushrooms Hub card."
+        },
+        "learningPoints": [],
+        "tags": [
+          "Fungi",
+          "Forest Floor",
+          "Life Cycles"
+        ]
+      },
+      {
+        "id": "caterpillars-in-the-classroom-historical",
+        "schoolYear": "2025-2026",
+        "title": "Caterpillars in the Classroom",
+        "summary": "Life cycles, metamorphosis, and butterflies.",
+        "routeRef": "hrv-route:caterpillars-historical",
+        "image": {
+          "kind": "external-url",
+          "url": "https://rmhughes.edublogs.org/files/2025/10/CaterpillarBanner.jpg",
+          "alt": "Caterpillar banner used on the historical Caterpillars in the Classroom Hub card."
+        },
+        "learningPoints": [],
+        "tags": [
+          "Life Cycle",
+          "Metamorphosis",
+          "Butterflies"
+        ]
       }
     ],
-    "twwl": [],
+    "twwl": [
+      {
+        "id": "botany-lets-talk-about-tubers",
+        "schoolYear": "2025-2026",
+        "title": "Botany: Let’s Talk About Tubers",
+        "summary": "This week we’re digging into botany as we learn about tubers, how they grow, and why these underground plant parts are so important.",
+        "routeRef": "hrv-route:tubers",
+        "image": {
+          "kind": "external-url",
+          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Tubers.png",
+          "alt": "Botany illustration used for the historical Tubers learning feature."
+        },
+        "tags": [
+          "Botany",
+          "Tubers",
+          "Plant Parts"
+        ]
+      },
+      {
+        "id": "traditions-of-russian-winter",
+        "schoolYear": "2025-2026",
+        "title": "The Traditions of Russian Winter",
+        "summary": "We explored winter traditions, celebrations, and life in cold snowy climates.",
+        "routeRef": "hrv-route:russian-winter",
+        "image": {
+          "kind": "external-url",
+          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Russian.png",
+          "alt": "Winter illustration used on the historical Russian Winter learning card."
+        },
+        "tags": [
+          "Winter",
+          "Russia",
+          "Traditions"
+        ]
+      },
+      {
+        "id": "silent-wings-wise-eyes-learning-about-owls",
+        "schoolYear": "2025-2026",
+        "title": "Silent Wings, Wise Eyes: Learning About Owls",
+        "summary": "We learned about owls, their special adaptations, and what makes them expert nighttime hunters.",
+        "routeRef": "hrv-route:owls",
+        "image": {
+          "kind": "external-url",
+          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Owl.png",
+          "alt": "Owl illustration used on the historical owl learning card."
+        },
+        "tags": [
+          "Owls",
+          "Birds",
+          "Nocturnal"
+        ]
+      },
+      {
+        "id": "bats-dont-go-bump-in-the-night",
+        "schoolYear": "2025-2026",
+        "title": "Bats Don’t Go Bump in the Night",
+        "summary": "We explored echolocation, nocturnal adaptations, and why bats are helpful, not spooky.",
+        "routeRef": "hrv-route:bats",
+        "image": {
+          "kind": "external-url",
+          "url": "https://rmhughes.edublogs.org/files/2025/10/BatBanner.jpg",
+          "alt": "Bat banner used on the historical bat learning card."
+        },
+        "tags": [
+          "Bats",
+          "Sound",
+          "Nocturnal"
+        ]
+      },
+      {
+        "id": "autumn-spiders-gentle-web-artists",
+        "schoolYear": "2025-2026",
+        "title": "Autumn Spiders: Gentle Web Artists",
+        "summary": "We explored webs, silk, and how spiders help our ecosystem.",
+        "routeRef": "hrv-route:spiders",
+        "image": {
+          "kind": "external-url",
+          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Spider.png",
+          "alt": "Spider illustration used on the historical autumn spiders learning card."
+        },
+        "tags": [
+          "Spiders",
+          "Webs",
+          "Observation"
+        ]
+      }
+    ],
     "media": [
       {
         "id": "welcome-classroom-explorations",
         "kind": "youtube",
         "sourceUrl": "https://www.youtube.com/watch?v=AR1cSKxxSmU",
         "title": "Welcome to Classroom Explorations",
-        "association": { "kind": "hub" }
+        "association": {
+          "kind": "hub"
+        }
       }
     ],
     "composition": {
@@ -98,8 +258,18 @@
         "state": "coming-soon"
       },
       "featuredMediaId": "welcome-classroom-explorations",
-      "pastExplorationIds": [],
-      "pastTwwlIds": [],
+      "pastExplorationIds": [
+        "great-barrier-reef",
+        "mushrooms",
+        "caterpillars-in-the-classroom-historical"
+      ],
+      "pastTwwlIds": [
+        "botany-lets-talk-about-tubers",
+        "traditions-of-russian-winter",
+        "silent-wings-wise-eyes-learning-about-owls",
+        "bats-dont-go-bump-in-the-night",
+        "autumn-spiders-gentle-web-artists"
+      ],
       "previousYears": [
         {
           "id": "hub-archive:2025-2026",

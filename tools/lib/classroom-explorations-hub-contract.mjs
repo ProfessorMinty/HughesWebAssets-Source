@@ -12,31 +12,44 @@ export class HubContractError extends Error {
 export function canonicalJson(value) {
   const normalize = (input) => {
     if (Array.isArray(input)) return input.map(normalize);
-    if (input && typeof input === "object") return Object.fromEntries(Object.keys(input).sort().map((key) => [key, normalize(input[key])]));
+    if (input && typeof input === "object") {
+      return Object.fromEntries(Object.keys(input).sort().map((key) => [key, normalize(input[key])]));
+    }
     return input;
   };
   return JSON.stringify(normalize(value));
 }
 
-export function sha256Text(text) { return createHash("sha256").update(text).digest("hex"); }
-export function sriSha256(text) { return `sha256-${createHash("sha256").update(text).digest("base64")}`; }
+export function sha256Text(text) {
+  return createHash("sha256").update(text).digest("hex");
+}
+
+export function sriSha256(text) {
+  return `sha256-${createHash("sha256").update(text).digest("base64")}`;
+}
 
 function indexById(items, code) {
   const map = new Map();
   for (const item of items) {
-    if (map.has(item.id)) throw new HubContractError(code, `Duplicate stable id: ${item.id}`, { id: item.id });
+    if (map.has(item.id)) {
+      throw new HubContractError(code, `Duplicate stable id: ${item.id}`, { id: item.id });
+    }
     map.set(item.id, item);
   }
   return map;
 }
 
 export function validateAuthoringCompatibility(source) {
-  if (!source || source.schemaVersion !== "1.0" || source.page?.type !== "classroom-explorations-hub") throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported Hub authoring schema or page type.");
+  if (!source || source.schemaVersion !== "1.0" || source.page?.type !== "classroom-explorations-hub") {
+    throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported Hub authoring schema or page type.");
+  }
   return true;
 }
 
 export function validateRouteRegistryCompatibility(registry) {
-  if (!registry || registry.schemaVersion !== "1.0") throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported route registry schema.");
+  if (!registry || registry.schemaVersion !== "1.0") {
+    throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported route registry schema.");
+  }
   return true;
 }
 
@@ -44,98 +57,259 @@ export function validateRouteRegistry(registry) {
   validateRouteRegistryCompatibility(registry);
   const refs = new Set();
   const pageIds = new Set();
+
   for (const route of registry.routes) {
-    if (refs.has(route.ref)) throw new HubContractError("HUB_ROUTE_REF_DUPLICATE", `Duplicate route ref ${route.ref}.`);
+    if (refs.has(route.ref)) {
+      throw new HubContractError("HUB_ROUTE_REF_DUPLICATE", `Duplicate route ref ${route.ref}.`);
+    }
     refs.add(route.ref);
-    if (pageIds.has(route.wordpressPageId)) throw new HubContractError("HUB_ROUTE_PAGE_ID_MISMATCH", `WordPress page ID ${route.wordpressPageId} is assigned more than once.`);
+
+    if (pageIds.has(route.wordpressPageId)) {
+      throw new HubContractError(
+        "HUB_ROUTE_PAGE_ID_MISMATCH",
+        `WordPress page ID ${route.wordpressPageId} is assigned more than once.`
+      );
+    }
     pageIds.add(route.wordpressPageId);
+
     const expectedPath = `/${route.slug}/`;
-    if (route.path !== expectedPath) throw new HubContractError("HUB_ROUTE_PAGE_ID_MISMATCH", `Route ${route.ref} path does not agree with its slug.`, { expectedPath, actualPath: route.path });
+    if (route.path !== expectedPath) {
+      throw new HubContractError(
+        "HUB_ROUTE_PAGE_ID_MISMATCH",
+        `Route ${route.ref} path does not agree with its slug.`,
+        { expectedPath, actualPath: route.path }
+      );
+    }
   }
 }
 
 export function normalizeYouTube(sourceUrl) {
   const url = new URL(sourceUrl);
   let id = "";
-  if (url.hostname === "youtu.be") id = url.pathname.replace(/^\//, "").split("/")[0] || "";
+
+  if (url.hostname === "youtu.be") {
+    id = url.pathname.replace(/^\//, "").split("/")[0] || "";
+  }
+
   if (url.hostname.endsWith("youtube.com")) {
     if (url.pathname === "/watch") id = url.searchParams.get("v") || "";
-    else if (url.pathname.startsWith("/shorts/") || url.pathname.startsWith("/embed/")) id = url.pathname.split("/")[2] || "";
+    else if (url.pathname.startsWith("/shorts/") || url.pathname.startsWith("/embed/")) {
+      id = url.pathname.split("/")[2] || "";
+    }
   }
-  if (!/^[A-Za-z0-9_-]{11}$/.test(id)) throw new HubContractError("HUB_EXTERNAL_MEDIA_UNSUPPORTED", `Unsupported YouTube URL: ${sourceUrl}`);
+
+  if (!/^[A-Za-z0-9_-]{11}$/.test(id)) {
+    throw new HubContractError("HUB_EXTERNAL_MEDIA_UNSUPPORTED", `Unsupported YouTube URL: ${sourceUrl}`);
+  }
+
   return `https://www.youtube-nocookie.com/embed/${id}`;
+}
+
+function validateImageReference(ownerId, image) {
+  if (!image) return;
+
+  if (image.kind === "external-url") {
+    if (!image.url || !image.url.startsWith("https://")) {
+      throw new HubContractError("HUB_MEDIA_REF_INVALID", `${ownerId} external image must be HTTPS.`);
+    }
+    const host = new URL(image.url).hostname;
+    if (/^(drive|docs)\.google\.com$/i.test(host)) {
+      throw new HubContractError("HUB_MEDIA_REF_INVALID", `${ownerId} must not expose a Google Drive/Docs URL.`);
+    }
+    return;
+  }
+
+  if (!image.assetRef) {
+    throw new HubContractError("HUB_MEDIA_REF_INVALID", `${ownerId} managed asset requires assetRef.`);
+  }
+
+  throw new HubContractError(
+    "HUB_MEDIA_REF_UNRESOLVED",
+    "Managed HRV assets are reserved by the contract but no permanent asset resolver is authorized yet.",
+    { assetRef: image.assetRef }
+  );
 }
 
 export function validateHubSemantics(source, registry) {
   validateAuthoringCompatibility(source);
   validateRouteRegistry(registry);
+
   const routes = new Map(registry.routes.map((route) => [route.ref, route]));
   const years = indexById(source.data.schoolYears, "HUB_SCHOOL_YEAR_DUPLICATE");
   const explorations = indexById(source.data.explorations, "HUB_CONTENT_ID_DUPLICATE");
   const twwl = indexById(source.data.twwl, "HUB_CONTENT_ID_DUPLICATE");
   const media = indexById(source.data.media, "HUB_MEDIA_ID_DUPLICATE");
+
   const allIds = [...explorations.keys(), ...twwl.keys(), ...media.keys()];
-  if (new Set(allIds).size !== allIds.length) throw new HubContractError("HUB_CONTENT_ID_DUPLICATE", "Stable IDs must be unique across Hub content species.");
-  const editableIds = [...Object.values(source.data.copy).map((block) => block.nodeId), source.data.composition.nodeId].filter(Boolean);
-  if (new Set(editableIds).size !== editableIds.length) throw new HubContractError("HUB_EDITABLE_NODE_DUPLICATE", "Editable node IDs must be stable and unique.");
-  if (!routes.has(source.page.routeRef)) throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `Unknown Hub route ref ${source.page.routeRef}.`);
+  if (new Set(allIds).size !== allIds.length) {
+    throw new HubContractError("HUB_CONTENT_ID_DUPLICATE", "Stable IDs must be unique across Hub content species.");
+  }
+
+  const editableIds = [
+    ...Object.values(source.data.copy).map((block) => block.nodeId),
+    source.data.composition.nodeId
+  ].filter(Boolean);
+
+  if (new Set(editableIds).size !== editableIds.length) {
+    throw new HubContractError("HUB_EDITABLE_NODE_DUPLICATE", "Editable node IDs must be stable and unique.");
+  }
+
+  if (!routes.has(source.page.routeRef)) {
+    throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `Unknown Hub routeRef}.`);
+  }
+
   const comp = source.data.composition;
-  if (!years.has(comp.currentSchoolYear)) throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `Unknown current school year ${comp.currentSchoolYear}.`);
-  if (!comp.currentExplorationId) throw new HubContractError("HUB_CURRENT_EXPLORATION_MISSING", "Hub composition requires a Current Exploration reference.");
+
+  if (!years.has(comp.currentSchoolYear)) {
+    throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `Unknown current school year ${comp.currentSchoolYear}.`);
+  }
+
+  if (!comp.currentExplorationId) {
+    throw new HubContractError("HUB_CURRENT_EXPLORATION_MISSING", "Hub composition requires a Current Exploration reference.");
+  }
+
   const current = explorations.get(comp.currentExplorationId);
-  if (!current) throw new HubContractError("HUB_CURRENT_EXPLORATION_UNKNOWN", `Unknown current Exploration ${comp.currentExplorationId}.`);
-  if (current.schoolYear !== comp.currentSchoolYear) throw new HubContractError("HUB_CURRENT_EXPLORATION_YEAR_MISMATCH", "Current Exploration does not belong to currentSchoolYear.");
+  if (!current) {
+    throw new HubContractError(
+      "HUB_CURRENT_EXPLORATION_UNKNOWN",
+      `Unknown current Exploration ${comp.currentExplorationId}.`
+    );
+  }
+
+  if (current.schoolYear !== comp.currentSchoolYear) {
+    throw new HubContractError(
+      "HUB_CURRENT_EXPLORATION_YEAR_MISMATCH",
+      "Current Exploration does not belong to currentSchoolYear."
+    );
+  }
+
   for (const item of [...source.data.explorations, ...source.data.twwl]) {
-    if (!years.has(item.schoolYear)) throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `${item.id} uses unknown school year ${item.schoolYear}.`);
-    if (!routes.has(item.routeRef)) throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `${item.id} uses unknown route ref ${item.routeRef}.`);
+    if (!years.has(item.schoolYear)) {
+      throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `${item.id} uses unknown school year ${item.schoolYear}.`);
+    }
+    if (!routes.has(item.routeRef)) {
+      throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `${item.id} uses unknown route ref ${item.routeRef}.`);
+    }
   }
-  if (comp.currentTwwl.state === "coming-soon" && comp.currentTwwl.contentId !== undefined) throw new HubContractError("HUB_CURRENT_TWWL_INVALID_STATE", "Coming-soon TWWL slot must not contain a contentId.");
+
+  if (comp.currentTwwl.state === "coming-soon" && comp.currentTwwl.contentId !== undefined) {
+    throw new HubContractError(
+      "HUB_CURRENT_TWWL_INVALID_STATE",
+      "Coming-soon TWWL slot must not contain a contentId."
+    );
+  }
+
   if (comp.currentTwwl.state === "published") {
-    if (!comp.currentTwwl.contentId) throw new HubContractError("HUB_CURRENT_TWWL_INVALID_STATE", "Published TWWL slot requires contentId.");
+    if (!comp.currentTwwl.contentId) {
+      throw new HubContractError("HUB_CURRENT_TWWL_INVALID_STATE", "Published TWWL slot requires contentId.");
+    }
+
     const item = twwl.get(comp.currentTwwl.contentId);
-    if (!item) throw new HubContractError("HUB_CURRENT_TWWL_UNKNOWN", `Unknown current TWWL ${comp.currentTwwl.contentId}.`);
-    if (item.schoolYear !== comp.currentSchoolYear) throw new HubContractError("HUB_CURRENT_TWWL_INVALID_STATE", "Current TWWL does not belong to currentSchoolYear.");
+    if (!item) {
+      throw new HubContractError("HUB_CURRENT_TWWL_UNKNOWN", `Unknown current TWWL ${comp.currentTwwl.contentId}.`);
+    }
+
+    if (item.schoolYear !== comp.currentSchoolYear) {
+      throw new HubContractError(
+        "HUB_CURRENT_TWWL_INVALID_STATE",
+        "Current TWWL does not belong to currentSchoolYear."
+      );
+    }
   }
+
   const featured = media.get(comp.featuredMediaId);
-  if (!featured) throw new HubContractError("HUB_FEATURED_VIDEO_UNKNOWN", `Unknown featured media ${comp.featuredMediaId}.`);
-  if (featured.association.kind === "exploration" && featured.association.contentId !== comp.currentExplorationId) throw new HubContractError("HUB_FEATURED_VIDEO_RELATION_MISMATCH", "Featured exploration media must point to the Current Exploration.");
+  if (!featured) {
+    throw new HubContractError("HUB_FEATURED_VIDEO_UNKNOWN", `Unknown featured media ${comp.featuredMediaId}.`);
+  }
+
+  if (
+    featured.association.kind === "exploration" &&
+    featured.association.contentId !== comp.currentExplorationId
+  ) {
+    throw new HubContractError(
+      "HUB_FEATURED_VIDEO_RELATION_MISMATCH",
+      "Featured exploration media must point to the Current Exploration."
+    );
+  }
+
+  const archiveYears = new Set();
+  for (const archive of comp.previousYears) {
+    if (archive.schoolYear === comp.currentSchoolYear || !years.has(archive.schoolYear)) {
+      throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `Invalid archive school year ${archive.schoolYear}.`);
+    }
+
+    if (archiveYears.has(archive.schoolYear)) {
+      throw new HubContractError("HUB_ARCHIVE_YEAR_DUPLICATE", `Duplicate archive school year ${archive.schoolYear}.`);
+    }
+    archiveYears.add(archive.schoolYear);
+
+    if (archive.state === "published" && !archive.routeRef) {
+      throw new HubContractError(
+        "HUB_ARCHIVE_ROUTE_MISSING",
+        `Published archive ${archive.schoolYear} requires a routeRef.`
+      );
+    }
+
+    if (archive.routeRef && !routes.has(archive.routeRef)) {
+      throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `Unknown archive route ref ${archive.routeRef}.`);
+    }
+  }
+
+  const visibleYears = new Set([comp.currentSchoolYear, ...archiveYears]);
   const seenPlacement = new Set([comp.currentExplorationId]);
+
   const validateGallery = (ids, map, kind) => {
     const local = new Set();
+
     for (const id of ids) {
-      if (local.has(id)) throw new HubContractError("HUB_GALLERY_DUPLICATE_ID", `Duplicate ${kind} gallery id ${id}.`);
+      if (local.has(id)) {
+        throw new HubContractError("HUB_GALLERY_DUPLICATE_ID", `Duplicate ${kind} gallery id ${id}.`);
+      }
       local.add(id);
+
       const item = map.get(id);
-      if (!item) throw new HubContractError("HUB_GALLERY_UNKNOWN_CONTENT", `Unknown ${kind} gallery id ${id}.`);
-      if (item.schoolYear !== comp.currentSchoolYear) throw new HubContractError("HUB_GALLERY_YEAR_MISMATCH", `${id} is not part of the current school year.`);
-      if (seenPlacement.has(id)) throw new HubContractError("HUB_CONTENT_PLACED_MULTIPLE_TIMES", `${id} is placed in contradictory Hub locations.`);
+      if (!item) {
+        throw new HubContractError("HUB_GALLERY_UNKNOWN_CONTENT", `Unknown ${kind} gallery id ${id}.`);
+      }
+
+      if (!visibleYears.has(item.schoolYear)) {
+        throw new HubContractError(
+          "HUB_GALLERY_YEAR_MISMATCH",
+          `${id} belongs to ${item.schoolYear}, which is not the current school year or a declared previous-year relationship.`
+        );
+      }
+
+      if (seenPlacement.has(id)) {
+        throw new HubContractError(
+          "HUB_CONTENT_PLACED_MULTIPLE_TIMES",
+          `${id} is placed in contradictory Hub locations.`
+        );
+      }
       seenPlacement.add(id);
     }
   };
+
   validateGallery(comp.pastExplorationIds, explorations, "exploration");
-  if (comp.currentTwwl.state === "published") seenPlacement.add(comp.currentTwwl.contentId);
+
+  if (comp.currentTwwl.state === "published") {
+    seenPlacement.add(comp.currentTwwl.contentId);
+  }
+
   validateGallery(comp.pastTwwlIds, twwl, "twwl");
-  const archiveYears = new Set();
-  for (const archive of comp.previousYears) {
-    if (archive.schoolYear === comp.currentSchoolYear || !years.has(archive.schoolYear)) throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `Invalid archive school year ${archive.schoolYear}.`);
-    if (archiveYears.has(archive.schoolYear)) throw new HubContractError("HUB_ARCHIVE_YEAR_DUPLICATE", `Duplicate archive school year ${archive.schoolYear}.`);
-    archiveYears.add(archive.schoolYear);
-    if (archive.state === "published" && !archive.routeRef) throw new HubContractError("HUB_ARCHIVE_ROUTE_MISSING", `Published archive ${archive.schoolYear} requires a routeRef.`);
-    if (archive.routeRef && !routes.has(archive.routeRef)) throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `Unknown archive route ref ${archive.routeRef}.`);
-  }
+
   const relationshipIds = [comp.currentTwwl.id, ...comp.previousYears.map((item) => item.id)];
-  if (new Set(relationshipIds).size !== relationshipIds.length) throw new HubContractError("HUB_RELATIONSHIP_ID_DUPLICATE", "Hub relationship IDs must be stable and unique.");
-  for (const exploration of source.data.explorations) {
-    const image = exploration.image;
-    if (image.kind === "external-url") {
-      if (!image.url || !image.url.startsWith("https://")) throw new HubContractError("HUB_MEDIA_REF_INVALID", `${exploration.id} external image must be HTTPS.`);
-      const host = new URL(image.url).hostname;
-      if (/^(drive|docs)\.google\.com$/i.test(host)) throw new HubContractError("HUB_MEDIA_REF_INVALID", `${exploration.id} must not expose a Google Drive/Docs URL.`);
-    } else {
-      if (!image.assetRef) throw new HubContractError("HUB_MEDIA_REF_INVALID", `${exploration.id} managed asset requires assetRef.`);
-      throw new HubContractError("HUB_MEDIA_REF_UNRESOLVED", "Managed HRV assets are reserved by the contract but no permanent asset resolver is authorized yet.", { assetRef: image.assetRef });
-    }
+  if (new Set(relationshipIds).size !== relationshipIds.length) {
+    throw new HubContractError("HUB_RELATIONSHIP_ID_DUPLICATE", "Hub relationship IDs must be stable and unique.");
   }
+
+  for (const exploration of source.data.explorations) {
+    validateImageReference(exploration.id, exploration.image);
+  }
+
+  for (const item of source.data.twwl) {
+    validateImageReference(item.id, item.image);
+  }
+
   return { routes, years, explorations, twwl, media };
 }
 
@@ -145,12 +319,39 @@ export function projectHubRuntime(source, registry) {
     const route = indexes.routes.get(ref);
     return new URL(route.path, registry.site.origin).href;
   };
+
   const comp = source.data.composition;
   const exp = indexes.explorations.get(comp.currentExplorationId);
-  const image = exp.image;
-  const resolveExploration = (item) => ({ id: item.id, title: item.title, summary: item.summary, href: routeHref(item.routeRef), image: { src: item.image.url, alt: item.image.alt }, learningPoints: [...item.learningPoints], tags: [...item.tags] });
-  const resolveTwwl = (item) => ({ id: item.id, title: item.title, summary: item.summary, href: routeHref(item.routeRef), tags: [...item.tags] });
+
+  const resolveImage = (image) => image ? { src: image.url, alt: image.alt } : undefined;
+
+  const resolveExploration = (item, { includeYear = false } = {}) => ({
+    id: item.id,
+    ...(includeYear ? {
+      schoolYear: item.schoolYear,
+      schoolYearLabel: indexes.years.get(item.schoolYear).label
+    } : {}),
+    title: item.title,
+    summary: item.summary,
+    href: routeHref(item.routeRef),
+    image: resolveImage(item.image),
+    learningPoints: [...item.learningPoints],
+    tags: [...item.tags]
+  });
+
+  const resolveTwwl = (item) => ({
+    id: item.id,
+    schoolYear: item.schoolYear,
+    schoolYearLabel: indexes.years.get(item.schoolYear).label,
+    title: item.title,
+    summary: item.summary,
+    href: routeHref(item.routeRef),
+    ...(item.image ? { image: resolveImage(item.image) } : {}),
+    tags: [...item.tags]
+  });
+
   const featured = indexes.media.get(comp.featuredMediaId);
+
   const payload = {
     runtimeSchemaVersion: "1.0",
     page: {
@@ -165,31 +366,95 @@ export function projectHubRuntime(source, registry) {
       exploration: resolveExploration(exp),
       twwl: comp.currentTwwl.state === "coming-soon"
         ? { id: comp.currentTwwl.id, state: "coming-soon" }
-        : { id: comp.currentTwwl.id, state: "published", content: resolveTwwl(indexes.twwl.get(comp.currentTwwl.contentId)) },
-      featuredMedia: { id: featured.id, kind: featured.kind, title: featured.title, embedUrl: normalizeYouTube(featured.sourceUrl) }
+        : {
+            id: comp.currentTwwl.id,
+            state: "published",
+            content: resolveTwwl(indexes.twwl.get(comp.currentTwwl.contentId))
+          },
+      featuredMedia: {
+        id: featured.id,
+        kind: featured.kind,
+        title: featured.title,
+        embedUrl: normalizeYouTube(featured.sourceUrl)
+      }
     },
     galleries: {
-      pastExplorations: comp.pastExplorationIds.map((id) => resolveExploration(indexes.explorations.get(id))),
+      pastExplorations: comp.pastExplorationIds.map((id) => resolveExploration(indexes.explorations.get(id), { includeYear: true })),
       pastTwwl: comp.pastTwwlIds.map((id) => resolveTwwl(indexes.twwl.get(id)))
     },
-    archives: comp.previousYears.map((archive) => ({ id: archive.id, schoolYear: archive.schoolYear, label: indexes.years.get(archive.schoolYear).label, state: archive.state, href: archive.routeRef ? routeHref(archive.routeRef) : null }))
+    archives: comp.previousYears.map((archive) => ({
+      id: archive.id,
+      schoolYear: archive.schoolYear,
+      label: indexes.years.get(archive.schoolYear).label,
+      state: archive.state,
+      href: archive.routeRef ? routeHref(archive.routeRef) : null
+    }))
   };
+
   const snapshotId = `sha256:${sha256Text(canonicalJson(payload))}`;
-  return { runtimeSchemaVersion: payload.runtimeSchemaVersion, snapshotId, ...Object.fromEntries(Object.entries(payload).filter(([key]) => key !== "runtimeSchemaVersion")) };
+
+  return {
+    runtimeSchemaVersion: payload.runtimeSchemaVersion,
+    snapshotId,
+    ...Object.fromEntries(Object.entries(payload).filter(([key]) => key !== "runtimeSchemaVersion"))
+  };
 }
 
 export function validateRuntimeManifestCompatibility(manifest) {
-  if (!manifest || manifest.runtimeSchemaVersion !== "1.0") throw new HubContractError("HUB_RUNTIME_SCHEMA_UNSUPPORTED", "Unsupported Hub runtime schema.");
-  if (manifest.page?.id !== "hrv-page:classroom-explorations" || manifest.page?.type !== "classroom-explorations-hub") throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Runtime manifest belongs to a different page identity or page type.");
-  if (typeof manifest.snapshotId !== "string" || !/^sha256:[a-f0-9]{64}$/.test(manifest.snapshotId)) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Runtime manifest has an invalid snapshot identity.");
+  if (!manifest || manifest.runtimeSchemaVersion !== "1.0") {
+    throw new HubContractError("HUB_RUNTIME_SCHEMA_UNSUPPORTED", "Unsupported Hub runtime schema.");
+  }
+
+  if (
+    manifest.page?.id !== "hrv-page:classroom-explorations" ||
+    manifest.page?.type !== "classroom-explorations-hub"
+  ) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Runtime manifest belongs to a different page identity or page type."
+    );
+  }
+
+  if (typeof manifest.snapshotId !== "string" || !/^sha256:[a-f0-9]{64}$/.test(manifest.snapshotId)) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Runtime manifest has an invalid snapshot identity."
+    );
+  }
+
   return manifest;
 }
 
 export function validatePublicationCompatibility(publication, manifest) {
   validateRuntimeManifestCompatibility(manifest);
-  if (!publication || publication.schemaVersion !== "1.0") throw new HubContractError("HUB_PUBLICATION_SCHEMA_UNSUPPORTED", "Unsupported Hub publication schema.");
-  if (publication.pageId !== manifest.page.id || publication.pageType !== manifest.page.type) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Publication and content page identities do not match.");
-  if (publication.runtime?.runtimeSchemaVersion !== manifest.runtimeSchemaVersion || publication.content?.runtimeSchemaVersion !== manifest.runtimeSchemaVersion) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Runtime release and content snapshot use incompatible runtime schemas.");
-  if (publication.content?.snapshotId !== manifest.snapshotId) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Publication references a different immutable content snapshot.");
+
+  if (!publication || publication.schemaVersion !== "1.0") {
+    throw new HubContractError("HUB_PUBLICATION_SCHEMA_UNSUPPORTED", "Unsupported Hub publication schema.");
+  }
+
+  if (publication.pageId !== manifest.page.id || publication.pageType !== manifest.page.type) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Publication and content page identities do not match."
+    );
+  }
+
+  if (
+    publication.runtime?.runtimeSchemaVersion !== manifest.runtimeSchemaVersion ||
+    publication.content?.runtimeSchemaVersion !== manifest.runtimeSchemaVersion
+  ) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Runtime release and content snapshot use incompatible runtime schemas."
+    );
+  }
+
+  if (publication.content?.snapshotId !== manifest.snapshotId) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Publication references a different immutable content snapshot."
+    );
+  }
+
   return true;
 }

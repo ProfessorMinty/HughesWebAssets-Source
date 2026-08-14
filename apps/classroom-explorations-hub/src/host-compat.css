@@ -1,9 +1,17 @@
-html.hrv-page-classroom-explorations-ready body #content.site-content.container {
+html.hrv-page-classroom-explorations-ready body #page {
+  overflow-x: clip !important;
+}
+
+html.hrv-page-classroom-explorations-ready body #content.site-content.container,
+html.hrv-page-classroom-explorations-ready body .site-content {
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
   overflow: visible !important;
 }
 
@@ -18,6 +26,9 @@ html.hrv-page-classroom-explorations-ready body .entry-content {
   padding-left: 0 !important;
   padding-right: 0 !important;
   float: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
   overflow: visible !important;
 }
 
@@ -48,8 +59,15 @@ html.hrv-page-classroom-explorations-ready body #hrv-classroom-explorations-root
   position: relative !important;
   left: 50% !important;
   right: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
   margin-left: -50vw !important;
   margin-right: -50vw !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: #091126 !important;
+  box-shadow: none !important;
   transform: none !important;
   box-sizing: border-box !important;
+  overflow-x: clip !important;
 }
