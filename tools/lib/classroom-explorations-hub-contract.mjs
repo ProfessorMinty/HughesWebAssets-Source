@@ -18,9 +18,8 @@ export function canonicalJson(value) {
   return JSON.stringify(normalize(value));
 }
 
-export function sha256Text(text) {
-  return createHash("sha256").update(text).digest("hex");
-}
+export function sha256Text(text) { return createHash("sha256").update(text).digest("hex"); }
+export function sriSha256(text) { return `sha256-${createHash("sha256").update(text).digest("base64")}`; }
 
 function indexById(items, code) {
   const map = new Map();
@@ -31,8 +30,18 @@ function indexById(items, code) {
   return map;
 }
 
+export function validateAuthoringCompatibility(source) {
+  if (!source || source.schemaVersion !== "1.0" || source.page?.type !== "classroom-explorations-hub") throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported Hub authoring schema or page type.");
+  return true;
+}
+
+export function validateRouteRegistryCompatibility(registry) {
+  if (!registry || registry.schemaVersion !== "1.0") throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported route registry schema.");
+  return true;
+}
+
 export function validateRouteRegistry(registry) {
-  if (registry.schemaVersion !== "1.0") throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported route registry schema.");
+  validateRouteRegistryCompatibility(registry);
   const refs = new Set();
   const pageIds = new Set();
   for (const route of registry.routes) {
@@ -58,7 +67,7 @@ export function normalizeYouTube(sourceUrl) {
 }
 
 export function validateHubSemantics(source, registry) {
-  if (source.schemaVersion !== "1.0" || source.page.type !== "classroom-explorations-hub") throw new HubContractError("HUB_SCHEMA_UNSUPPORTED", "Unsupported Hub source schema or page type.");
+  validateAuthoringCompatibility(source);
   validateRouteRegistry(registry);
   const routes = new Map(registry.routes.map((route) => [route.ref, route]));
   const years = indexById(source.data.schoolYears, "HUB_SCHOOL_YEAR_DUPLICATE");
@@ -67,9 +76,12 @@ export function validateHubSemantics(source, registry) {
   const media = indexById(source.data.media, "HUB_MEDIA_ID_DUPLICATE");
   const allIds = [...explorations.keys(), ...twwl.keys(), ...media.keys()];
   if (new Set(allIds).size !== allIds.length) throw new HubContractError("HUB_CONTENT_ID_DUPLICATE", "Stable IDs must be unique across Hub content species.");
+  const editableIds = [...Object.values(source.data.copy).map((block) => block.nodeId), source.data.composition.nodeId].filter(Boolean);
+  if (new Set(editableIds).size !== editableIds.length) throw new HubContractError("HUB_EDITABLE_NODE_DUPLICATE", "Editable node IDs must be stable and unique.");
   if (!routes.has(source.page.routeRef)) throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `Unknown Hub route ref ${source.page.routeRef}.`);
   const comp = source.data.composition;
   if (!years.has(comp.currentSchoolYear)) throw new HubContractError("HUB_ARCHIVE_YEAR_INVALID", `Unknown current school year ${comp.currentSchoolYear}.`);
+  if (!comp.currentExplorationId) throw new HubContractError("HUB_CURRENT_EXPLORATION_MISSING", "Hub composition requires a Current Exploration reference.");
   const current = explorations.get(comp.currentExplorationId);
   if (!current) throw new HubContractError("HUB_CURRENT_EXPLORATION_UNKNOWN", `Unknown current Exploration ${comp.currentExplorationId}.`);
   if (current.schoolYear !== comp.currentSchoolYear) throw new HubContractError("HUB_CURRENT_EXPLORATION_YEAR_MISMATCH", "Current Exploration does not belong to currentSchoolYear.");
@@ -111,6 +123,8 @@ export function validateHubSemantics(source, registry) {
     if (archive.state === "published" && !archive.routeRef) throw new HubContractError("HUB_ARCHIVE_ROUTE_MISSING", `Published archive ${archive.schoolYear} requires a routeRef.`);
     if (archive.routeRef && !routes.has(archive.routeRef)) throw new HubContractError("HUB_ROUTE_REF_UNKNOWN", `Unknown archive route ref ${archive.routeRef}.`);
   }
+  const relationshipIds = [comp.currentTwwl.id, ...comp.previousYears.map((item) => item.id)];
+  if (new Set(relationshipIds).size !== relationshipIds.length) throw new HubContractError("HUB_RELATIONSHIP_ID_DUPLICATE", "Hub relationship IDs must be stable and unique.");
   for (const exploration of source.data.explorations) {
     const image = exploration.image;
     if (image.kind === "external-url") {
@@ -133,15 +147,8 @@ export function projectHubRuntime(source, registry) {
   };
   const comp = source.data.composition;
   const exp = indexes.explorations.get(comp.currentExplorationId);
-  const resolveExploration = (item) => ({
-    id: item.id,
-    title: item.title,
-    summary: item.summary,
-    href: routeHref(item.routeRef),
-    image: { src: item.image.url, alt: item.image.alt },
-    learningPoints: [...item.learningPoints],
-    tags: [...item.tags]
-  });
+  const image = exp.image;
+  const resolveExploration = (item) => ({ id: item.id, title: item.title, summary: item.summary, href: routeHref(item.routeRef), image: { src: item.image.url, alt: item.image.alt }, learningPoints: [...item.learningPoints], tags: [...item.tags] });
   const resolveTwwl = (item) => ({ id: item.id, title: item.title, summary: item.summary, href: routeHref(item.routeRef), tags: [...item.tags] });
   const featured = indexes.media.get(comp.featuredMediaId);
   const payload = {
@@ -165,14 +172,24 @@ export function projectHubRuntime(source, registry) {
       pastExplorations: comp.pastExplorationIds.map((id) => resolveExploration(indexes.explorations.get(id))),
       pastTwwl: comp.pastTwwlIds.map((id) => resolveTwwl(indexes.twwl.get(id)))
     },
-    archives: comp.previousYears.map((archive) => ({
-      id: archive.id,
-      schoolYear: archive.schoolYear,
-      label: indexes.years.get(archive.schoolYear).label,
-      state: archive.state,
-      href: archive.routeRef ? routeHref(archive.routeRef) : null
-    }))
+    archives: comp.previousYears.map((archive) => ({ id: archive.id, schoolYear: archive.schoolYear, label: indexes.years.get(archive.schoolYear).label, state: archive.state, href: archive.routeRef ? routeHref(archive.routeRef) : null }))
   };
   const snapshotId = `sha256:${sha256Text(canonicalJson(payload))}`;
   return { runtimeSchemaVersion: payload.runtimeSchemaVersion, snapshotId, ...Object.fromEntries(Object.entries(payload).filter(([key]) => key !== "runtimeSchemaVersion")) };
+}
+
+export function validateRuntimeManifestCompatibility(manifest) {
+  if (!manifest || manifest.runtimeSchemaVersion !== "1.0") throw new HubContractError("HUB_RUNTIME_SCHEMA_UNSUPPORTED", "Unsupported Hub runtime schema.");
+  if (manifest.page?.id !== "hrv-page:classroom-explorations" || manifest.page?.type !== "classroom-explorations-hub") throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Runtime manifest belongs to a different page identity or page type.");
+  if (typeof manifest.snapshotId !== "string" || !/^sha256:[a-f0-9]{64}$/.test(manifest.snapshotId)) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Runtime manifest has an invalid snapshot identity.");
+  return manifest;
+}
+
+export function validatePublicationCompatibility(publication, manifest) {
+  validateRuntimeManifestCompatibility(manifest);
+  if (!publication || publication.schemaVersion !== "1.0") throw new HubContractError("HUB_PUBLICATION_SCHEMA_UNSUPPORTED", "Unsupported Hub publication schema.");
+  if (publication.pageId !== manifest.page.id || publication.pageType !== manifest.page.type) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Publication and content page identities do not match.");
+  if (publication.runtime?.runtimeSchemaVersion !== manifest.runtimeSchemaVersion || publication.content?.runtimeSchemaVersion !== manifest.runtimeSchemaVersion) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Runtime release and content snapshot use incompatible runtime schemas.");
+  if (publication.content?.snapshotId !== manifest.snapshotId) throw new HubContractError("HUB_RUNTIME_CONTENT_INCOMPATIBLE", "Publication references a different immutable content snapshot.");
+  return true;
 }

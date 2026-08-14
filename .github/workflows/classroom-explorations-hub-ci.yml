@@ -14,6 +14,7 @@ on:
       - 'tools/lib/classroom-explorations-hub-contract.mjs'
       - 'tools/lib/classroom-explorations-hub-operations.mjs'
       - 'docs/classroom-explorations-hub.md'
+      - 'docs/classroom-explorations-hub-migration-evidence.md'
       - 'docs/edublogs-integration/classroom-explorations-hub/**'
       - '.github/workflows/classroom-explorations-hub-ci.yml'
   pull_request:
@@ -27,6 +28,7 @@ on:
       - 'tools/lib/json-schema-lite.mjs'
       - 'tools/lib/classroom-explorations-hub-contract.mjs'
       - 'tools/lib/classroom-explorations-hub-operations.mjs'
+      - 'docs/classroom-explorations-hub-migration-evidence.md'
 permissions:
   contents: read
 jobs:
@@ -41,10 +43,5 @@ jobs:
         run: |
           node --check apps/classroom-explorations-hub/src/bootstrap.js
           node --check apps/classroom-explorations-hub/src/runtime.js
-      - name: Contract tests
-        run: node tools/test-classroom-explorations-hub.mjs
-      - name: Build deterministic content and runtime artifacts
-        run: |
-          node tools/build-classroom-explorations-hub-content.mjs
-          node tools/build-classroom-explorations-hub-runtime.mjs
-          node tools/verify-classroom-explorations-hub.mjs
+      - name: Full clean-baseline contract, build, and publication checks
+        run: npm run check:hub

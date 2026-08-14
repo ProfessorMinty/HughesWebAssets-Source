@@ -1,11 +1,13 @@
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { validateSchema } from "./lib/json-schema-lite.mjs";
-import { projectHubRuntime } from "./lib/classroom-explorations-hub-contract.mjs";
+import { projectHubRuntime, validateAuthoringCompatibility, validateRouteRegistryCompatibility } from "./lib/classroom-explorations-hub-contract.mjs";
 const root = resolve(new URL("..", import.meta.url).pathname);
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 const source = await readJson("apps/classroom-explorations-hub/source/hub.source.json");
 const routes = await readJson("registry/hrv-routes.source.json");
+validateAuthoringCompatibility(source);
+validateRouteRegistryCompatibility(routes);
 validateSchema(source, await readJson("schemas/hrv-page-envelope.schema.json"));
 validateSchema(source.data, await readJson("schemas/classroom-explorations-hub.source.schema.json"), "$.data");
 validateSchema(routes, await readJson("schemas/hrv-route-registry.schema.json"));
