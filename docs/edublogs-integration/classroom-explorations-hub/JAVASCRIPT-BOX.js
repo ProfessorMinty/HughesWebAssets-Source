@@ -2,7 +2,8 @@
   "use strict";
 
   var MOUNT_ID = "hrv-classroom-explorations-root";
-  var RELEASE_COMMIT = "1dc599dea9ae5caf01600292f153681009962ee7";
+  var PAGE_ID = "hrv-page:classroom-explorations";
+  var RELEASE_COMMIT = "9ce65cf73c820db7b7292863ace7611d60e61524";
   var RELEASE_BASE =
     "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
     RELEASE_COMMIT +
@@ -12,25 +13,80 @@
     var root = document.getElementById(MOUNT_ID);
     if (!root || root.getAttribute("data-hrv-doorway-started") === "true") return;
 
+    var notice = root.querySelector("[data-hrv-outage-notice]");
+    var settled = false;
+    var timer = null;
+
+    function hideOutage() {
+      if (notice) notice.hidden = true;
+    }
+
+    function showOutage() {
+      root.setAttribute("data-hrv-state", "unavailable");
+      notice = root.querySelector("[data-hrv-outage-notice]");
+      if (notice) notice.hidden = false;
+    }
+
+    function cleanup() {
+      if (timer !== null) {
+        window.clearTimeout(timer);
+        timer = null;
+      }
+      window.removeEventListener("hrv:page-ready", onReady);
+      window.removeEventListener("hrv:page-error", onError);
+    }
+
+    function eventMatchesPage(event) {
+      return !event.detail || !event.detail.pageId || event.detail.pageId === PAGE_ID;
+    }
+
+    function onReady(event) {
+      if (!eventMatchesPage(event)) return;
+      settled = true;
+      cleanup();
+    }
+
+    function onError(event) {
+      if (!eventMatchesPage(event)) return;
+      settled = true;
+      cleanup();
+      showOutage();
+    }
+
     root.setAttribute("data-hrv-doorway-started", "true");
+    root.setAttribute("data-hrv-state", "loading");
+    hideOutage();
+
+    window.addEventListener("hrv:page-ready", onReady);
+    window.addEventListener("hrv:page-error", onError);
 
     var bootstrap = document.createElement("script");
-    bootstrap.src = RELEASE_BASE + "runtime/2026.08.14.3/bootstrap.js";
+    bootstrap.src = RELEASE_BASE + "runtime/2026.08.14.4/bootstrap.js";
     bootstrap.crossOrigin = "anonymous";
-    bootstrap.integrity = "sha256-O/ja6JE/B+NASAsvMpT1SAf3EI1+G5LS0o3Pp2frX3o=";
+    bootstrap.integrity = "sha256-+O3N2JHbeLPj3dkpgUeVnphWQhJCO2xpkIZX6bjhLAE=";
     bootstrap.setAttribute("data-mount", MOUNT_ID);
     bootstrap.setAttribute(
       "data-publication",
-      RELEASE_BASE + "publications/pub-2026-08-14-003/publication.json"
+      RELEASE_BASE + "publications/pub-2026-08-14-004/publication.json"
     );
 
     bootstrap.addEventListener(
       "error",
       function () {
-        root.setAttribute("data-hrv-state", "unavailable");
+        if (settled) return;
+        settled = true;
+        cleanup();
+        showOutage();
       },
       { once: true }
     );
+
+    timer = window.setTimeout(function () {
+      if (settled || root.getAttribute("data-hrv-state") === "ready") return;
+      settled = true;
+      cleanup();
+      showOutage();
+    }, 20000);
 
     document.head.appendChild(bootstrap);
   }
