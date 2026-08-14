@@ -93,6 +93,6 @@ For a repository-owned application page:
 3. Failure before successful mount leaves the small truthful Edublogs unavailable state intact.
 4. Edublogs integration code must not know internal repository component selectors or duplicate current content.
 
-Hub integration source lives under `docs/edublogs-integration/classroom-explorations-hub/`. The placeholder URLs there are intentionally filled only after an immutable publication has passed review and activation is authorized.
+Hub integration source lives under `docs/edublogs-integration/classroom-explorations-hub/`. The checked-in JavaScript box is pinned to the current immutable preview candidate by exact Git commit and browser SRI. It is a review/test package only; nothing in Source installs it on Edublogs or changes live page 17.
 
 See `docs/architecture.md` for the independent Photo Album architecture, `docs/ui-conventions.md` for general host-isolation conventions, and `docs/classroom-explorations-hub.md` for the Hub permanent baseline.
