@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0",
+  "pageId": "hrv-page:classroom-explorations",
+  "pageType": "classroom-explorations-hub",
+  "runtimeSchemaVersion": "1.0",
+  "assets": {
+    "bootstrap": {
+      "path": "bootstrap.js",
+      "sha256": "3bf8dae8913f07e340480b2f3294f54807f7108d7e1b92d2d28dcfa767eb5f7a"
+    },
+    "script": {
+      "path": "runtime.js",
+      "sha256": "bad88f1075862996d356fee497c982130767b81a933babd48d2f1bb47e492d8b"
+    },
+    "style": {
+      "path": "hub.css",
+      "sha256": "5b4b8da87394021d3793c26b4a69f1322ee5252241b1a2d39309f050125766b4"
+    },
+    "hostCompat": {
+      "path": "host-compat.css",
+      "sha256": "8e4c5928b145fd82b68c81a484f34d03b6e53eb708341581fbd7c1edccd6f0e1"
+    }
+  }
+}
