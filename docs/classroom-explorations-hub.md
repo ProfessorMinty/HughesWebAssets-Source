@@ -1,33 +1,57 @@
 # Classroom Explorations Hub permanent baseline
 
-The current Hub source is a clean-sheet implementation based on the historical Edublogs Hub's content responsibilities and the approved repository-owned page standard. The rejected 2026-08-10 modernization lineage is not an architectural or visual dependency.
+The Classroom Explorations Hub uses the clean repository-owned page architecture, but its visible experience deliberately preserves and modernizes the selected historical Hub's successful composition and hierarchy. The rejected 2026-08-10 modernization and the rejected first clean visual candidates remain historical evidence only.
 
 ## Ownership
 
-Edublogs page 17 owns the stable public doorway only. Its HTML provides one semantic mount and a friendly unavailable state; its CSS styles only that state; its JavaScript injects one exact immutable repository bootstrap and publication URL. The repository owns the application, host compatibility, renderer, effects, accessibility behavior, diagnostics, source contracts, validation, content projection, and immutable publication artifacts.
+Edublogs page 17 owns the stable public doorway only. Its HTML provides one semantic mount and a friendly unavailable state; its CSS styles only that state; its JavaScript injects one exact immutable repository bootstrap and publication URL. The repository owns application markup, host compatibility, renderer, effects, accessibility behavior, diagnostics, source contracts, validation, content projection, and immutable publication artifacts.
 
 ## Authoring contract
 
 `apps/classroom-explorations-hub/source/hub.source.json` is the friendly source of truth. It uses the common page envelope and Hub-specific data contract. Content catalog entities are stable; placement lives under `composition`. Current TWWL `coming-soon` is a slot state, not fake content. Previous-year doorways are composition relationships, not content records.
 
-`registry/hrv-routes.source.json` separates HRV route identity from WordPress page ID and current slug/path. The Hub source refers to managed pages with stable `routeRef` values.
+For the current human visual-review phase, composition intentionally keeps selected recovered 2025–2026 material visible in the main Past galleries while each record retains its true `schoolYear`. The semantic validator permits a visible Past record only when its year is either the current school year or an explicitly declared `previousYears` relationship. This is a temporary presentation choice, not a mutation of classroom history. After Arctic and Poppet approve the permanent visual model, moving the older material behind Previous School Years is a composition operation.
+
+`registry/hrv-routes.source.json` separates HRV route identity from WordPress page ID and current slug/path. The historical page-691 Cats/Caterpillars anomaly is preserved as recovered evidence rather than silently rewritten.
 
 ## Validation
 
-Structural validity is schema-driven and fail-closed. The build executes the common page-envelope schema, Hub source-data schema, route-registry schema, and generated runtime schema. `tools/lib/json-schema-lite.mjs` is a generic schema interpreter; it does not encode Hub field names. Cross-record rules live separately in `classroom-explorations-hub-contract.mjs` and emit stable coded failures suitable for Lanternworks.
+Structural validity is schema-driven and fail-closed. The build executes the common page-envelope schema, Hub source-data schema, route-registry schema, and generated runtime schema. Cross-record rules live separately in `classroom-explorations-hub-contract.mjs` and emit stable coded failures suitable for Lanternworks.
 
-## Runtime projection
+The contract preserves the stronger invariant that Current Exploration and any published Current TWWL must belong to `composition.currentSchoolYear`. Historical visibility is therefore explicit without weakening the meaning of Current.
 
-Normal content publication runs `node tools/build-classroom-explorations-hub-content.mjs`. It resolves managed routes and provider URLs into a smaller browser manifest, validates the generated result, and gives the snapshot a SHA-256 identity. Renderer JS/CSS do not need to rebuild for a schema-compatible content-only change.
+## Runtime projection and publication
 
-Runtime publication runs `node tools/build-classroom-explorations-hub-runtime.mjs`. The runtime is plain browser ES2022, intentionally avoiding a Hub-specific bundler dependency. `stage-classroom-explorations-hub-publication.mjs` pairs one immutable runtime release with one immutable content snapshot in an immutable publication record. A controlled future resolver may replace the explicit pin without changing the bootstrap contract.
+Normal content publication resolves routes and provider URLs into a smaller deterministic browser manifest with a SHA-256 snapshot identity. Renderer JS/CSS do not need to rebuild for a schema-compatible content-only change.
 
-The first clean baseline has no previous-known-good publication in the new architecture. Rejected modernization releases are not carried forward as rollback lineage.
+Renderer or host-compatibility changes mint a new immutable runtime. An immutable publication pairs one runtime version and one content snapshot. Rejected preview publications are not treated as accepted previous-known-good production publications.
 
-## Visual direction
+## Visual baseline
 
-The new renderer is a fresh museum-front-lobby interpretation: luminous entry doors, orientation theater, Current Exploration spotlight, truthful TWWL case, quiet current-year galleries, and a school-year time gallery. It uses code-native atmosphere and the current approved Zinnia photograph rather than inheriting uncertain legacy decorative art. Reduced Effects is both system-aware and explicitly user-controllable.
+The permanent visible sequence is intentionally recognizable from the selected historical Hub:
+
+```text
+Hero
+→ Welcome Theater
+→ Current Exploration
+→ Current TWWL
+→ decorative divider
+→ Past Explorations
+→ Past TWWL
+→ compact Previous School Years control
+→ footer
+```
+
+The historical implementation architecture is not reused. What survives is the successful visitor experience: card-based sectioning, strong Current/learning/Past hierarchy, compass/discovery identity, green Exploration family, purple TWWL family, separate Welcome Theater, subject-specific cards, explicit gallery framing, decorative rhythm, and a warm populated sense of place.
+
+The modernization adds a repository-owned full-viewport museum environment around that furniture: midnight/indigo architecture, aurora and exhibit light, luminous glass, warm brass/gold accents, responsive layouts, deliberate motion, subject-specific gallery effects, stronger contrast, explicit Reduced Effects, system motion safety, and a true viewport breakout below the normal Edublogs navigation.
+
+Current Zinnia is the dominant living greenhouse exhibit. Current TWWL remains truthfully Coming Soon inside the purple Learning Lantern family. The recovered Great Barrier Reef, Mushrooms, Caterpillars-labelled page-691 destination, Tubers, Russian Winter, Owls, Bats, and Spiders remain visible during visual review with truthful 2025–2026 labels.
+
+## Human approval
+
+Passing CI, overflow checks, schema validation, or lifecycle tests does not constitute visual approval. The permanent review surface for this first standardization is the real Edublogs page 17 at `/classroom-explorations/`. Arctic and Poppet remain the visual/product approval authority.
 
 ## Lanternworks operations
 
-The contract is intentionally compatible with structured operations such as registering/editing content entities, changing `composition.currentExplorationId`, moving the outgoing Exploration into `pastExplorationIds`, setting the TWWL slot to `coming-soon` or `published`, changing featured media, reordering gallery ID arrays, resolving route changes in the route registry, validating, previewing, publishing an exact structured snapshot, and restoring a prior accepted publication.
+The contract remains compatible with registering/editing content entities, changing `composition.currentExplorationId`, moving outgoing Current content into ordered Past placement, setting the TWWL slot, changing featured media, reordering galleries, resolving route changes, managing previous-year relationships, validating, previewing, publishing an exact structured snapshot, and restoring a prior accepted publication.

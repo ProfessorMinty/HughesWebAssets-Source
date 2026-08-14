@@ -10,13 +10,13 @@ Nothing in this repository by itself deploys Cloudflare, Google Drive, Edublogs,
 
 ### Photo Album
 
-`apps/photo-album/` is the permanent repository frontend for the Drive/Cloudflare-backed classroom Photo Album. Its existing architecture and release history remain independent of the Classroom Explorations work.
+`apps/photo-album/` is the permanent repository frontend for the Drive/Cloudflare-backed classroom Photo Album. Its architecture and release history remain independent of Classroom Explorations work.
 
 ### Classroom Explorations Hub
 
 `apps/classroom-explorations-hub/` is the first standardized repository-owned HRV page application. Its stable platform doorway is WordPress page 17 at `/classroom-explorations/`.
 
-The clean permanent flow is:
+The permanent flow is:
 
 ```text
 friendly Hub source + shared page envelope + route registry
@@ -33,15 +33,44 @@ immutable runtime + immutable content
   -> exact pinned Edublogs handoff
 ```
 
-The Hub source separates stable content entities from Hub composition. `composition.currentExplorationId`, the Current TWWL slot, ordered current-year Past galleries, featured media, and previous-year archive relationships describe what the museum is showing without rewriting the identity of the underlying content.
+The Hub source separates stable content entities from Hub composition. Current/Past placement, the Current TWWL slot, featured media, gallery order, and previous-year relationships do not rewrite content identity.
 
 Managed Edublogs destinations use stable `routeRef` values resolved through `registry/hrv-routes.source.json`. HRV content identity, WordPress page identity, and current slug/path remain distinct.
 
-Normal Hub content changes run the content build only. They do not require rebuilding browser JS/CSS while the runtime schema remains compatible.
+Normal Hub content changes do not require rebuilding browser JS/CSS while the runtime schema remains compatible. Renderer/host changes mint a new immutable runtime.
 
-The browser renderer is application-owned and supports duplicate-init protection, teardown/remount, diagnostics events, responsive layout, keyboard focus, system Reduced Motion, and an explicit Reduced Effects control.
+## Current Hub visual-review state
 
-The current Source tree intentionally does not preserve the rejected 2026-08-10 Hub modernization releases as active rollback lineage. Git history retains that experiment; the clean Hub establishes a new baseline.
+The selected historical Hub is the visual/compositional baseline for the permanent modernization. The new implementation preserves its recognizable furniture and hierarchy while replacing the old inline/hybrid implementation architecture.
+
+The current review build preserves:
+
+```text
+Hero
+→ Welcome Theater
+→ Current Exploration
+→ Current TWWL
+→ decorative divider
+→ Past Explorations
+→ Past TWWL
+→ compact Previous School Years control
+→ footer
+```
+
+It also preserves the compass/discovery identity, green Exploration family, purple TWWL family, card-based gallery organization, and subject-specific identities inside a new repository-owned full-viewport magical museum environment.
+
+During human visual review, recovered `2025–2026` content intentionally remains visible in the actual Hub while retaining truthful school-year metadata. Current Zinnia remains `2026–2027` and Current TWWL remains truthfully Coming Soon. After Arctic/Poppet approve the permanent visual model, older material can move behind Previous School Years through composition.
+
+The current immutable review package is:
+
+```text
+Artifact commit: 1dc599dea9ae5caf01600292f153681009962ee7
+Runtime: 2026.08.14.3
+Publication: pub-2026-08-14-003
+Content snapshot: sha256:ba5664964d1f228a203ac177f92c160d73e70ee56342c9a505a6805a01cc8102
+```
+
+Publications 001 and 002 are immutable failed/unaccepted preview evidence and are not production rollback ancestry.
 
 ## Repository layout
 
@@ -53,36 +82,32 @@ registry/                   stable HRV route/page references
 schemas/                    canonical structural contracts
 docs/                       architecture, integration, handoff, UI conventions
 fixtures/                   clearly labeled non-production contract fixtures
-releases/                   immutable accepted artifacts by application
+releases/                   immutable artifacts by application
 tests/                      application tests where appropriate
 tools/                      deterministic build/validation/publication helpers
 dist/                       generated output, not committed
 ```
 
-Standardize machinery, not imagination. Future repository-owned page types may use different page-specific source contracts and wildly different visual experiences while reusing the same identity, validation, lifecycle, accessibility, publication, and rollback principles.
+Standardize machinery, not imagination. Future repository-owned page types may use different page-specific source contracts and radically different visual experiences while reusing identity, validation, lifecycle, accessibility, publication, and rollback principles.
 
 ## Local development and verification
 
 Requirements: Node.js 22 or newer.
-
-Photo Album keeps its existing npm/Vite workflow.
-
-Classroom Explorations Hub has a dependency-light contract/build path:
 
 ```powershell
 npm run test:hub
 npm run build:hub
 ```
 
-`build:hub` creates deterministic runtime/content output plus an exact local preview package under `dist/classroom-explorations-hub/`. The local preview may be served from localhost for visual QA without touching Edublogs.
+`build:hub` creates deterministic runtime/content output plus a local preview package under `dist/classroom-explorations-hub/`. Local preview remains supporting engineering evidence only for this first Hub standardization. The human visual review surface is the real Edublogs page 17.
 
-To stage a reviewed immutable Hub publication after the source revision is known:
+To stage a future reviewed immutable publication after the source revision is known:
 
 ```powershell
-npm run stage:hub-publication -- 2026.08.14.1 pub-2026-08-14-001 <source-commit-sha>
+npm run stage:hub-publication -- <runtime-version> <publication-id> <source-commit-sha> [previous-known-good]
 ```
 
-The first clean baseline deliberately records `previousKnownGoodPublication: null`; a rejected implementation is not promoted into the new rollback chain. Later accepted publications should point to the immediately previous accepted publication.
+Only an accepted publication should become `previous-known-good` for a later publication.
 
 ## Edublogs boundary
 
@@ -93,6 +118,6 @@ For a repository-owned application page:
 3. Failure before successful mount leaves the small truthful Edublogs unavailable state intact.
 4. Edublogs integration code must not know internal repository component selectors or duplicate current content.
 
-Hub integration source lives under `docs/edublogs-integration/classroom-explorations-hub/`. The checked-in JavaScript box is pinned to the current immutable preview candidate by exact Git commit and browser SRI. It is a review/test package only; nothing in Source installs it on Edublogs or changes live page 17.
+Hub integration source lives under `docs/edublogs-integration/classroom-explorations-hub/`. The checked-in JavaScript box is pinned to the immutable `.3` review package by exact Git commit and browser SRI. Source does not install or modify Edublogs by itself.
 
-See `docs/architecture.md` for the independent Photo Album architecture, `docs/ui-conventions.md` for general host-isolation conventions, and `docs/classroom-explorations-hub.md` for the Hub permanent baseline.
+See `docs/classroom-explorations-hub.md` for the permanent Hub baseline and `docs/classroom-explorations-hub-page17-review-handoff-2026-08-14.md` for the current direct page-17 review process.
