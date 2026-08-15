@@ -50,7 +50,7 @@ Current Zinnia is the dominant living greenhouse exhibit. Current TWWL remains t
 
 ## Human approval
 
-Passing CI, overflow checks, schema validation, or lifecycle tests does not constitute visual approval. The permanent review surface for this first standardization is the real Edublogs page 17 at `/classroom-explorations/`. Arctic and Poppet remain the visual/product approval authority.
+Passing CI, overflow checks, schema validation, or lifecycle tests does not constitute visual approval. WordPress page 17 at `/hub/` is the permanent production doorway. During the current route-migration review phase, WordPress page 2589 at `/hub-test/` is the real-host visual-review surface for the same Source implementation. Arctic and Poppet remain the visual/product approval authority.
 
 ## Lanternworks operations
 

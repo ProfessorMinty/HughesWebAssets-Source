@@ -14,7 +14,7 @@ Nothing in this repository by itself deploys Cloudflare, Google Drive, Edublogs,
 
 ### Classroom Explorations Hub
 
-`apps/classroom-explorations-hub/` is the first standardized repository-owned HRV page application. Its stable platform doorway is WordPress page 17 at `/classroom-explorations/`.
+`apps/classroom-explorations-hub/` is the first standardized repository-owned HRV page application. Its stable platform doorway is WordPress page 17 at `/hub/`.
 
 The permanent flow is:
 
@@ -99,7 +99,7 @@ npm run test:hub
 npm run build:hub
 ```
 
-`build:hub` creates deterministic runtime/content output plus a local preview package under `dist/classroom-explorations-hub/`. Local preview remains supporting engineering evidence only for this first Hub standardization. The human visual review surface is the real Edublogs page 17.
+`build:hub` creates deterministic runtime/content output plus a local preview package under `dist/classroom-explorations-hub/`. Local preview remains supporting engineering evidence only for this first Hub standardization. During the current route-migration review phase, the human visual-review surface is WordPress page 2589 at `/hub-test/`; page 17 at `/hub/` remains the permanent production doorway.
 
 To stage a future reviewed immutable publication after the source revision is known:
 
@@ -120,4 +120,4 @@ For a repository-owned application page:
 
 Hub integration source lives under `docs/edublogs-integration/classroom-explorations-hub/`. The checked-in JavaScript box is pinned to the immutable `.3` review package by exact Git commit and browser SRI. Source does not install or modify Edublogs by itself.
 
-See `docs/classroom-explorations-hub.md` for the permanent Hub baseline and `docs/classroom-explorations-hub-page17-review-handoff-2026-08-14.md` for the current direct page-17 review process.
+See `docs/classroom-explorations-hub.md` for the permanent Hub baseline and `docs/classroom-explorations-hub-hub-test-review-handoff-2026-08-14.md` for the current `/hub-test/` review process.

@@ -16,7 +16,7 @@ The active review surface is:
 The permanent production target remains:
 
 - WordPress page ID: `17`
-- Route: `/classroom-explorations/`
+- Route: `/hub/`
 
 The repository host-compatibility layer supports both WordPress page classes while the Classroom Explorations application is mounted and ready. Page 2589 is a review host only; it is not promoted into the permanent HRV route registry as the Hub's product identity.
 
