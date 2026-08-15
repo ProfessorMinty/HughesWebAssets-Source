@@ -1,6 +1,6 @@
 /*
  * Hughes Room Views — permanent global site shell
- * Version: 2026.08.14.1
+ * Version: 2026.08.15.1
  *
  * Global responsibility: guarded delayed scroll below repeated Amadeus chrome.
  * Page/application behavior does not belong here.
@@ -8,8 +8,8 @@
 (function () {
   "use strict";
 
-  if (window.__HRV_SITE_SHELL_20260814_1__) return;
-  window.__HRV_SITE_SHELL_20260814_1__ = true;
+  if (window.__HRV_SITE_SHELL_20260815_1__) return;
+  window.__HRV_SITE_SHELL_20260815_1__ = true;
 
   var DELAY_MS = 700;
   var EXTRA_OFFSET = 12;
@@ -88,5 +88,5 @@
     scheduleAutoScroll();
   }
 
-  document.documentElement.setAttribute("data-hrv-site-shell", "2026.08.14.1");
+  document.documentElement.setAttribute("data-hrv-site-shell", "2026.08.15.1");
 })();
