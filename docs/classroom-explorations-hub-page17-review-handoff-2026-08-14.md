@@ -8,7 +8,7 @@ The direct page-17 review handoff documented in the earlier revision of this fil
 The permanent production identity remains:
 
 - WordPress page ID: `17`
-- Route: `/classroom-explorations/`
+- Route: `/hub/`
 
 Page 17 remains the eventual production target and its preserved pre-rebuild doorway remains the emergency restoration anchor. It has not been replaced as the permanent Hub route.
 
