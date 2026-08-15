@@ -1,27 +1,63 @@
 (function(){
   "use strict";
 
+  function normalizedText(el){
+    return (el && el.textContent ? el.textContent : "").replace(/\s+/g," ").trim();
+  }
+
+  function isProtected(el){
+    if(!el) return true;
+    if(el.matches && el.matches("html,body,#page,#content,.site-content,.entry-content,.post-content,main,article")) return true;
+    if(el.classList && el.classList.contains("ctc")) return true;
+    if(el.querySelector && el.querySelector(".ctc")) return true;
+    return false;
+  }
+
+  function findHelperSeed(){
+    var nodes = document.querySelectorAll("h1,h2,h3,h4,p,a,button,span,strong,div,section,aside");
+    for(var i=0;i<nodes.length;i++){
+      var el = nodes[i];
+      if(el.closest && el.closest(".ctc")) continue;
+      var text = normalizedText(el);
+      if(text.indexOf("Website Helper Reset") !== -1 || text.indexOf("Restore Navigation Helper") !== -1){
+        return el;
+      }
+    }
+
+    /* Fallback for the illustrated helper after its text has already been stripped. */
+    var images = document.querySelectorAll("img");
+    for(var j=0;j<images.length;j++){
+      var img = images[j];
+      if(img.closest && img.closest(".ctc")) continue;
+      var alt = String(img.getAttribute("alt") || "").toLowerCase();
+      var title = String(img.getAttribute("title") || "").toLowerCase();
+      if(alt.indexOf("psst") !== -1 || title.indexOf("psst") !== -1 || alt.indexOf("helper") !== -1 || title.indexOf("helper") !== -1){
+        return img;
+      }
+    }
+
+    return null;
+  }
+
   function removeLegacyHelperReset(){
-    var candidates = Array.prototype.slice.call(
-      document.querySelectorAll("section,article,aside,div,.widget,.wp-block-group,.wp-block-html")
-    ).filter(function(el){
-      if(el.closest && el.closest(".ctc")) return false;
-      var text = (el.textContent || "").replace(/\s+/g," ").trim();
-      return text.indexOf("Website Helper Reset") !== -1 &&
-             text.indexOf("Restore Navigation Helper") !== -1;
-    });
+    var seed = findHelperSeed();
+    if(!seed) return false;
 
-    if(!candidates.length) return false;
+    var target = seed;
+    var parent = target.parentElement;
 
-    candidates.sort(function(a,b){
-      return (a.textContent || "").length - (b.textContent || "").length;
-    });
+    /* Climb to the outermost helper-only wrapper, but never cross into the
+       Contact app or the WordPress content/article containers. */
+    while(parent && !isProtected(parent)){
+      target = parent;
+      parent = parent.parentElement;
+    }
 
-    var target = candidates[0];
-    if(target && target.parentNode){
+    if(target && target.parentNode && !isProtected(target)){
       target.parentNode.removeChild(target);
       return true;
     }
+
     return false;
   }
 
@@ -37,7 +73,7 @@
       clearTimeout(hideTimer);
       hideTimer = setTimeout(function(){
         toast.classList.remove("show");
-      }, 1200);
+      },1200);
     }
 
     function getText(selector){
@@ -46,7 +82,7 @@
       return (el.textContent || el.value || "").trim();
     }
 
-    document.addEventListener("click", function(event){
+    document.addEventListener("click",function(event){
       var btn = event.target.closest ? event.target.closest("[data-copy-target]") : null;
       if(!btn) return;
 
@@ -86,22 +122,20 @@
     var timer = setInterval(function(){
       attempts++;
       removeLegacyHelperReset();
-      if(attempts >= 12){
-        clearInterval(timer);
-      }
-    }, 500);
+      if(attempts >= 20) clearInterval(timer);
+    },350);
 
     if(window.MutationObserver){
       var observer = new MutationObserver(function(){
         removeLegacyHelperReset();
       });
       observer.observe(document.documentElement,{childList:true,subtree:true});
-      setTimeout(function(){ observer.disconnect(); }, 8000);
+      setTimeout(function(){ observer.disconnect(); },10000);
     }
   }
 
   if(document.readyState === "loading"){
-    document.addEventListener("DOMContentLoaded", init, {once:true});
+    document.addEventListener("DOMContentLoaded",init,{once:true});
   }else{
     init();
   }
