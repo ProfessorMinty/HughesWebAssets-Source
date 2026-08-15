@@ -104,13 +104,37 @@ const runtime = projectHubRuntime(source, routes);
 validateSchema(runtime, runtimeSchema);
 validateRuntimeManifestCompatibility(runtime);
 
+// Route/platform migration: page 17 is /hub/ and the documented children preserve exact WP IDs/order.
+const hubRoute = routes.routes.find((item) => item.ref === "hrv-route:classroom-explorations");
+assert.equal(hubRoute.wordpressPageId, 17);
+assert.equal(hubRoute.slug, "hub");
+assert.equal(hubRoute.path, "/hub/");
+assert.deepEqual(
+  routes.routes
+    .filter((item) => item.wordpressParentPageId === 17)
+    .sort((a, b) => a.wordpressMenuOrder - b.wordpressMenuOrder)
+    .map((item) => [item.wordpressMenuOrder, item.wordpressPageId, item.slug, item.path]),
+  [
+    [0, 886, "twwl-spiders", "/hub/twwl-spiders/"],
+    [1, 906, "twwl-bats", "/hub/twwl-bats/"],
+    [2, 674, "exploration-butterflies", "/hub/exploration-butterflies/"],
+    [3, 1518, "exploration-great-barrier-reef", "/hub/exploration-great-barrier-reef/"],
+    [4, 413, "exploration-mushrooms", "/hub/exploration-mushrooms/"],
+    [5, 954, "twwl-owls", "/hub/twwl-owls/"],
+    [6, 1043, "twwl-traditions-of-russian-winter", "/hub/twwl-traditions-of-russian-winter/"],
+    [7, 2392, "twwl-botany-tubers", "/hub/twwl-botany-tubers/"],
+    [8, 2463, "exploration-zinnia-page", "/hub/exploration-zinnia-page/"]
+  ]
+);
+console.log("[hub route test] /hub/ parent hierarchy, child IDs, slugs, paths, and order passed");
+
 // A. Current Zinnia + truthful TWWL Coming Soon + intentionally populated historical review galleries.
 assert.equal(runtime.current.exploration.id, "summer-bloom-adoption-project");
-assert.equal(runtime.current.exploration.href, "https://rmhughes.edublogs.org/zinnia-page/");
+assert.equal(runtime.current.exploration.href, "https://rmhughes.edublogs.org/hub/exploration-zinnia-page/");
 assert.equal(runtime.current.twwl.state, "coming-soon");
 assert.deepEqual(
   runtime.galleries.pastExplorations.map((item) => item.id),
-  ["great-barrier-reef", "mushrooms", "caterpillars-in-the-classroom-historical"]
+  ["mushrooms", "caterpillars-in-the-classroom-historical", "great-barrier-reef"]
 );
 assert.deepEqual(
   runtime.galleries.pastTwwl.map((item) => item.id),
@@ -126,7 +150,7 @@ assert(runtime.galleries.pastExplorations.every((item) => item.schoolYear === "2
 assert(runtime.galleries.pastTwwl.every((item) => item.schoolYear === "2025-2026"));
 assert(runtime.galleries.pastExplorations.every((item) => item.schoolYearLabel === "2025–2026"));
 assert(runtime.galleries.pastTwwl.every((item) => item.schoolYearLabel === "2025–2026"));
-assert.equal(runtime.current.featuredMedia.embedUrl, "https://www.youtube-nocookie.com/embed/AR1cSKxxSmU");
+assert.equal(runtime.current.featuredMedia.embedUrl, "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg");
 console.log("[hub test A] current Zinnia + TWWL Coming Soon + truthful populated historical galleries passed");
 
 // B/C. Move Current Exploration into Past, install a new Current, preserve stable outgoing identity.
@@ -201,7 +225,7 @@ console.log("[hub test I] featured-video relation mismatch rejected");
 const originalPageId = routes.routes.find((item) => item.ref === "hrv-route:zinnia").wordpressPageId;
 const rerouted = updateRoute(routes, "hrv-route:zinnia", {
   slug: "zinnia-garden",
-  path: "/zinnia-garden/"
+  path: "/hub/zinnia-garden/"
 });
 assert.equal(
   rerouted.routes.find((item) => item.ref === "hrv-route:zinnia").wordpressPageId,
@@ -210,7 +234,7 @@ assert.equal(
 assert.equal(source.data.explorations[0].id, "summer-bloom-adoption-project");
 assert.equal(
   projectHubRuntime(source, rerouted).current.exploration.href,
-  "https://rmhughes.edublogs.org/zinnia-garden/"
+  "https://rmhughes.edublogs.org/hub/zinnia-garden/"
 );
 console.log("[hub test J] route change preserves HRV content + WordPress page identity");
 
