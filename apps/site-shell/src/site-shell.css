@@ -1,11 +1,13 @@
 /*
  * Hughes Room Views — permanent global site shell
- * Version: 2026.08.14.1
+ * Version: 2026.08.15.1
  *
  * Scope law:
- * - shared Amadeus header/navigation presentation only
+ * - shared Amadeus header/navigation presentation
+ * - global suppression of duplicate native WordPress page titles
  * - no page/application typography, cards, forms, buttons, widgets, or rescue CSS
  * - no Hub/Photo Album/Home/Posts/Zinnia/Contact/Library/Bat selectors
+ * - retired floating helper/fairy navigation does not return
  */
 
 :root {
@@ -121,6 +123,17 @@
   height: 2px;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--hrv-shell-accent), var(--hrv-shell-accent-2));
+}
+
+/*
+ * Native Amadeus/WordPress page titles are duplicate chrome on HRV pages.
+ * The actual visible page title is owned by each page experience, so this
+ * suppression is intentionally global and remains a site-shell responsibility.
+ */
+body.page h1.entry-title,
+body.page .entry-header h1.entry-title,
+body.page article h1.entry-title {
+  display: none !important;
 }
 
 @media (max-width: 782px) {
