@@ -1,0 +1,39 @@
+name: HRV Global Site Shell CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/site-shell/**'
+      - 'releases/site-shell/**'
+      - 'tests/site-shell.test.ts'
+      - 'docs/edublogs-integration/site-shell/**'
+      - '.github/workflows/site-shell-ci.yml'
+  pull_request:
+    paths:
+      - 'apps/site-shell/**'
+      - 'releases/site-shell/**'
+      - 'tests/site-shell.test.ts'
+      - 'docs/edublogs-integration/site-shell/**'
+      - '.github/workflows/site-shell-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-site-shell:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - name: Syntax-check shell runtime
+        run: |
+          node --check apps/site-shell/src/site-shell.js
+          node --check releases/site-shell/2026.08.14.1/site-shell.js
+      - name: Verify shell scope and immutable release
+        run: npx vitest run tests/site-shell.test.ts
