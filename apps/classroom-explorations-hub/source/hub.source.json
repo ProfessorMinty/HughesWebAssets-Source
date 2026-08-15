@@ -242,7 +242,7 @@
       {
         "id": "welcome-classroom-explorations",
         "kind": "youtube",
-        "sourceUrl": "https://www.youtube.com/watch?v=AR1cSKxxSmU",
+        "sourceUrl": "https://youtu.be/kRTJp4pqbtg?si=1ODTKCFBuBf7zdcC",
         "title": "Welcome to Classroom Explorations",
         "association": {
           "kind": "hub"
@@ -259,9 +259,9 @@
       },
       "featuredMediaId": "welcome-classroom-explorations",
       "pastExplorationIds": [
-        "great-barrier-reef",
         "mushrooms",
-        "caterpillars-in-the-classroom-historical"
+        "caterpillars-in-the-classroom-historical",
+        "great-barrier-reef"
       ],
       "pastTwwlIds": [
         "botany-lets-talk-about-tubers",
