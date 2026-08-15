@@ -104,6 +104,16 @@
       "state": "published"
     },
     {
+      "ref": "hrv-route:archive-2025-2026",
+      "wordpressPageId": 2627,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 9,
+      "slug": "archive-2025-2026",
+      "path": "/hub/archive-2025-2026/",
+      "kind": "archive",
+      "state": "published"
+    },
+    {
       "ref": "hrv-route:caterpillars-historical",
       "wordpressPageId": 691,
       "slug": "exploration-cats-in-the-classroom",
