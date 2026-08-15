@@ -3,7 +3,7 @@
 
   var MOUNT_ID = "hrv-classroom-explorations-root";
   var PAGE_ID = "hrv-page:classroom-explorations";
-  var RELEASE_COMMIT = "9ce65cf73c820db7b7292863ace7611d60e61524";
+  var RELEASE_COMMIT = "ba955d5026cdff255c332eb8be66d9283913ffed";
   var RELEASE_BASE =
     "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
     RELEASE_COMMIT +
@@ -67,7 +67,7 @@
     bootstrap.setAttribute("data-mount", MOUNT_ID);
     bootstrap.setAttribute(
       "data-publication",
-      RELEASE_BASE + "publications/pub-2026-08-14-004/publication.json"
+      RELEASE_BASE + "publications/pub-2026-08-14-005/publication.json"
     );
 
     bootstrap.addEventListener(
