@@ -1,0 +1,42 @@
+<!--
+  HUGHES ROOM VIEWS — GLOBAL SITE SHELL LOADER
+  Permanent integration seam for the Source-owned site shell.
+
+  This is intentionally only a loader. Do not place page-specific CSS/JS here.
+-->
+<script>
+(function () {
+  "use strict";
+
+  var VERSION = "2026.08.14.1";
+  var RELEASE_COMMIT = "fe22709942b07002cd06d0034b508495f3321318";
+  var RELEASE_BASE =
+    "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
+    RELEASE_COMMIT +
+    "/releases/site-shell/" + VERSION + "/";
+
+  if (!document.querySelector('link[data-hrv-site-shell-css="' + VERSION + '"]')) {
+    var stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = RELEASE_BASE + "site-shell.css";
+    stylesheet.setAttribute("data-hrv-site-shell-css", VERSION);
+    stylesheet.setAttribute("data-hrv-source-commit", RELEASE_COMMIT);
+    stylesheet.addEventListener("error", function () {
+      console.error("[HRV Site Shell] Shared shell stylesheet failed to load.");
+    }, { once: true });
+    document.head.appendChild(stylesheet);
+  }
+
+  if (!document.querySelector('script[data-hrv-site-shell-js="' + VERSION + '"]')) {
+    var runtime = document.createElement("script");
+    runtime.src = RELEASE_BASE + "site-shell.js";
+    runtime.async = false;
+    runtime.setAttribute("data-hrv-site-shell-js", VERSION);
+    runtime.setAttribute("data-hrv-source-commit", RELEASE_COMMIT);
+    runtime.addEventListener("error", function () {
+      console.error("[HRV Site Shell] Shared shell runtime failed to load.");
+    }, { once: true });
+    document.head.appendChild(runtime);
+  }
+})();
+</script>
