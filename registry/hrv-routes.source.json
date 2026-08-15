@@ -8,32 +8,98 @@
     {
       "ref": "hrv-route:classroom-explorations",
       "wordpressPageId": 17,
-      "slug": "classroom-explorations",
-      "path": "/classroom-explorations/",
+      "slug": "hub",
+      "path": "/hub/",
       "kind": "hub",
       "state": "published"
     },
     {
-      "ref": "hrv-route:zinnia",
-      "wordpressPageId": 2463,
-      "slug": "zinnia-page",
-      "path": "/zinnia-page/",
+      "ref": "hrv-route:spiders",
+      "wordpressPageId": 886,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 0,
+      "slug": "twwl-spiders",
+      "path": "/hub/twwl-spiders/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:bats",
+      "wordpressPageId": 906,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 1,
+      "slug": "twwl-bats",
+      "path": "/hub/twwl-bats/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:butterflies",
+      "wordpressPageId": 674,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 2,
+      "slug": "exploration-butterflies",
+      "path": "/hub/exploration-butterflies/",
       "kind": "exploration",
       "state": "published"
     },
     {
       "ref": "hrv-route:great-barrier-reef",
       "wordpressPageId": 1518,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 3,
       "slug": "exploration-great-barrier-reef",
-      "path": "/exploration-great-barrier-reef/",
+      "path": "/hub/exploration-great-barrier-reef/",
       "kind": "exploration",
       "state": "published"
     },
     {
       "ref": "hrv-route:mushrooms",
       "wordpressPageId": 413,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 4,
       "slug": "exploration-mushrooms",
-      "path": "/exploration-mushrooms/",
+      "path": "/hub/exploration-mushrooms/",
+      "kind": "exploration",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:owls",
+      "wordpressPageId": 954,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 5,
+      "slug": "twwl-owls",
+      "path": "/hub/twwl-owls/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:russian-winter",
+      "wordpressPageId": 1043,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 6,
+      "slug": "twwl-traditions-of-russian-winter",
+      "path": "/hub/twwl-traditions-of-russian-winter/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:tubers",
+      "wordpressPageId": 2392,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 7,
+      "slug": "twwl-botany-tubers",
+      "path": "/hub/twwl-botany-tubers/",
+      "kind": "twwl",
+      "state": "published"
+    },
+    {
+      "ref": "hrv-route:zinnia",
+      "wordpressPageId": 2463,
+      "wordpressParentPageId": 17,
+      "wordpressMenuOrder": 8,
+      "slug": "exploration-zinnia-page",
+      "path": "/hub/exploration-zinnia-page/",
       "kind": "exploration",
       "state": "published"
     },
@@ -43,46 +109,6 @@
       "slug": "exploration-cats-in-the-classroom",
       "path": "/exploration-cats-in-the-classroom/",
       "kind": "exploration",
-      "state": "published"
-    },
-    {
-      "ref": "hrv-route:tubers",
-      "wordpressPageId": 1549,
-      "slug": "botany-lets-talk-about-tubers",
-      "path": "/botany-lets-talk-about-tubers/",
-      "kind": "twwl",
-      "state": "published"
-    },
-    {
-      "ref": "hrv-route:russian-winter",
-      "wordpressPageId": 1043,
-      "slug": "the-traditions-of-russian-winter",
-      "path": "/the-traditions-of-russian-winter/",
-      "kind": "twwl",
-      "state": "published"
-    },
-    {
-      "ref": "hrv-route:owls",
-      "wordpressPageId": 954,
-      "slug": "silent-wings-wise-eyes-learning-about-owls",
-      "path": "/silent-wings-wise-eyes-learning-about-owls/",
-      "kind": "twwl",
-      "state": "published"
-    },
-    {
-      "ref": "hrv-route:bats",
-      "wordpressPageId": 906,
-      "slug": "bats-dont-go-bump-in-the-night",
-      "path": "/bats-dont-go-bump-in-the-night/",
-      "kind": "twwl",
-      "state": "published"
-    },
-    {
-      "ref": "hrv-route:spiders",
-      "wordpressPageId": 886,
-      "slug": "autumn-spiders-gentle-web-artists",
-      "path": "/autumn-spiders-gentle-web-artists/",
-      "kind": "twwl",
       "state": "published"
     }
   ]

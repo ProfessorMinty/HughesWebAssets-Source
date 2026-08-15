@@ -1,11 +1,12 @@
 {
-  "schemaVersion": "1.0",
+  "runtimeSchemaVersion": "1.0",
+  "snapshotId": "sha256:1c14d07f374e7a36cc3375651fdc88c0b57f77e8ebc0ddf586f63fada8bc3e12",
   "page": {
     "id": "hrv-page:classroom-explorations",
     "type": "classroom-explorations-hub",
-    "routeRef": "hrv-route:classroom-explorations"
-  },
-  "data": {
+    "href": "https://rmhughes.edublogs.org/hub/",
+    "currentSchoolYear": "2026-2027",
+    "schoolYearLabel": "2026–2027",
     "copy": {
       "hero": {
         "nodeId": "hub-node:hero",
@@ -62,67 +63,51 @@
         "nodeId": "hub-node:footer",
         "text": "Pack your curiosity—adventures await."
       }
+    }
+  },
+  "current": {
+    "exploration": {
+      "id": "summer-bloom-adoption-project",
+      "title": "Summer Bloom Adoption Project",
+      "summary": "Step into the zinnia greenhouse as students raise mystery seedlings, observe their growth, and discover what each unique bloom becomes.",
+      "href": "https://rmhughes.edublogs.org/hub/exploration-zinnia-page/",
+      "image": {
+        "src": "https://images.squarespace-cdn.com/content/v1/65397b8c01ff584e2d7834e3/ee61742a-ec98-449f-9475-53a345566da7/IMG_2850.jpg?format=750w",
+        "alt": "Pink zinnia blooms from the Summer Bloom Adoption Project."
+      },
+      "learningPoints": [
+        "Zinnia seedlings and plant care",
+        "Observation journals and field notes",
+        "Mystery bloom reveals"
+      ],
+      "tags": [
+        "Zinnias",
+        "Plant Care",
+        "Observation"
+      ]
     },
-    "schoolYears": [
-      {
-        "id": "2026-2027",
-        "label": "2026–2027"
-      },
-      {
-        "id": "2025-2026",
-        "label": "2025–2026"
-      }
-    ],
-    "explorations": [
-      {
-        "id": "summer-bloom-adoption-project",
-        "schoolYear": "2026-2027",
-        "title": "Summer Bloom Adoption Project",
-        "summary": "Step into the zinnia greenhouse as students raise mystery seedlings, observe their growth, and discover what each unique bloom becomes.",
-        "routeRef": "hrv-route:zinnia",
-        "image": {
-          "kind": "external-url",
-          "url": "https://images.squarespace-cdn.com/content/v1/65397b8c01ff584e2d7834e3/ee61742a-ec98-449f-9475-53a345566da7/IMG_2850.jpg?format=750w",
-          "alt": "Pink zinnia blooms from the Summer Bloom Adoption Project."
-        },
-        "learningPoints": [
-          "Zinnia seedlings and plant care",
-          "Observation journals and field notes",
-          "Mystery bloom reveals"
-        ],
-        "tags": [
-          "Zinnias",
-          "Plant Care",
-          "Observation"
-        ]
-      },
-      {
-        "id": "great-barrier-reef",
-        "schoolYear": "2025-2026",
-        "title": "Great Barrier Reef",
-        "summary": "Coral reefs, ocean habitats, and marine life.",
-        "routeRef": "hrv-route:great-barrier-reef",
-        "image": {
-          "kind": "external-url",
-          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/SeaTurt.png",
-          "alt": "Sea turtle illustration used on the historical Great Barrier Reef Hub card."
-        },
-        "learningPoints": [],
-        "tags": [
-          "Coral Reefs",
-          "Ocean Habitats",
-          "Marine Life"
-        ]
-      },
+    "twwl": {
+      "id": "hub-slot:current-twwl",
+      "state": "coming-soon"
+    },
+    "featuredMedia": {
+      "id": "welcome-classroom-explorations",
+      "kind": "youtube",
+      "title": "Welcome to Classroom Explorations",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg"
+    }
+  },
+  "galleries": {
+    "pastExplorations": [
       {
         "id": "mushrooms",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "Mushrooms",
         "summary": "Fungi, forest floors, and life cycles.",
-        "routeRef": "hrv-route:mushrooms",
+        "href": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
         "image": {
-          "kind": "external-url",
-          "url": "https://rmhughes.edublogs.org/files/2025/10/Mushroom-Banner.jpg",
+          "src": "https://rmhughes.edublogs.org/files/2025/10/Mushroom-Banner.jpg",
           "alt": "Mushroom banner used on the historical Mushrooms Hub card."
         },
         "learningPoints": [],
@@ -135,12 +120,12 @@
       {
         "id": "caterpillars-in-the-classroom-historical",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "Caterpillars in the Classroom",
         "summary": "Life cycles, metamorphosis, and butterflies.",
-        "routeRef": "hrv-route:caterpillars-historical",
+        "href": "https://rmhughes.edublogs.org/exploration-cats-in-the-classroom/",
         "image": {
-          "kind": "external-url",
-          "url": "https://rmhughes.edublogs.org/files/2025/10/CaterpillarBanner.jpg",
+          "src": "https://rmhughes.edublogs.org/files/2025/10/CaterpillarBanner.jpg",
           "alt": "Caterpillar banner used on the historical Caterpillars in the Classroom Hub card."
         },
         "learningPoints": [],
@@ -149,18 +134,36 @@
           "Metamorphosis",
           "Butterflies"
         ]
+      },
+      {
+        "id": "great-barrier-reef",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Great Barrier Reef",
+        "summary": "Coral reefs, ocean habitats, and marine life.",
+        "href": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+        "image": {
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/SeaTurt.png",
+          "alt": "Sea turtle illustration used on the historical Great Barrier Reef Hub card."
+        },
+        "learningPoints": [],
+        "tags": [
+          "Coral Reefs",
+          "Ocean Habitats",
+          "Marine Life"
+        ]
       }
     ],
-    "twwl": [
+    "pastTwwl": [
       {
         "id": "botany-lets-talk-about-tubers",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "Botany: Let’s Talk About Tubers",
         "summary": "This week we’re digging into botany as we learn about tubers, how they grow, and why these underground plant parts are so important.",
-        "routeRef": "hrv-route:tubers",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
         "image": {
-          "kind": "external-url",
-          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Tubers.png",
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Tubers.png",
           "alt": "Botany illustration used for the historical Tubers learning feature."
         },
         "tags": [
@@ -172,12 +175,12 @@
       {
         "id": "traditions-of-russian-winter",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "The Traditions of Russian Winter",
         "summary": "We explored winter traditions, celebrations, and life in cold snowy climates.",
-        "routeRef": "hrv-route:russian-winter",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
         "image": {
-          "kind": "external-url",
-          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Russian.png",
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Russian.png",
           "alt": "Winter illustration used on the historical Russian Winter learning card."
         },
         "tags": [
@@ -189,12 +192,12 @@
       {
         "id": "silent-wings-wise-eyes-learning-about-owls",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "Silent Wings, Wise Eyes: Learning About Owls",
         "summary": "We learned about owls, their special adaptations, and what makes them expert nighttime hunters.",
-        "routeRef": "hrv-route:owls",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-owls/",
         "image": {
-          "kind": "external-url",
-          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Owl.png",
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Owl.png",
           "alt": "Owl illustration used on the historical owl learning card."
         },
         "tags": [
@@ -206,12 +209,12 @@
       {
         "id": "bats-dont-go-bump-in-the-night",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "Bats Don’t Go Bump in the Night",
         "summary": "We explored echolocation, nocturnal adaptations, and why bats are helpful, not spooky.",
-        "routeRef": "hrv-route:bats",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-bats/",
         "image": {
-          "kind": "external-url",
-          "url": "https://rmhughes.edublogs.org/files/2025/10/BatBanner.jpg",
+          "src": "https://rmhughes.edublogs.org/files/2025/10/BatBanner.jpg",
           "alt": "Bat banner used on the historical bat learning card."
         },
         "tags": [
@@ -223,12 +226,12 @@
       {
         "id": "autumn-spiders-gentle-web-artists",
         "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
         "title": "Autumn Spiders: Gentle Web Artists",
         "summary": "We explored webs, silk, and how spiders help our ecosystem.",
-        "routeRef": "hrv-route:spiders",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
         "image": {
-          "kind": "external-url",
-          "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Spider.png",
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Spider.png",
           "alt": "Spider illustration used on the historical autumn spiders learning card."
         },
         "tags": [
@@ -237,47 +240,15 @@
           "Observation"
         ]
       }
-    ],
-    "media": [
-      {
-        "id": "welcome-classroom-explorations",
-        "kind": "youtube",
-        "sourceUrl": "https://youtu.be/kRTJp4pqbtg?si=1ODTKCFBuBf7zdcC",
-        "title": "Welcome to Classroom Explorations",
-        "association": {
-          "kind": "hub"
-        }
-      }
-    ],
-    "composition": {
-      "nodeId": "hub-node:composition",
-      "currentSchoolYear": "2026-2027",
-      "currentExplorationId": "summer-bloom-adoption-project",
-      "currentTwwl": {
-        "id": "hub-slot:current-twwl",
-        "state": "coming-soon"
-      },
-      "featuredMediaId": "welcome-classroom-explorations",
-      "pastExplorationIds": [
-        "mushrooms",
-        "caterpillars-in-the-classroom-historical",
-        "great-barrier-reef"
-      ],
-      "pastTwwlIds": [
-        "botany-lets-talk-about-tubers",
-        "traditions-of-russian-winter",
-        "silent-wings-wise-eyes-learning-about-owls",
-        "bats-dont-go-bump-in-the-night",
-        "autumn-spiders-gentle-web-artists"
-      ],
-      "previousYears": [
-        {
-          "id": "hub-archive:2025-2026",
-          "schoolYear": "2025-2026",
-          "state": "coming-soon",
-          "routeRef": null
-        }
-      ]
+    ]
+  },
+  "archives": [
+    {
+      "id": "hub-archive:2025-2026",
+      "schoolYear": "2025-2026",
+      "label": "2025–2026",
+      "state": "coming-soon",
+      "href": null
     }
-  }
+  ]
 }

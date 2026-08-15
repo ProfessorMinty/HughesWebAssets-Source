@@ -57,6 +57,7 @@ export function validateRouteRegistry(registry) {
   validateRouteRegistryCompatibility(registry);
   const refs = new Set();
   const pageIds = new Set();
+  const routesByPageId = new Map();
 
   for (const route of registry.routes) {
     if (refs.has(route.ref)) {
@@ -71,12 +72,35 @@ export function validateRouteRegistry(registry) {
       );
     }
     pageIds.add(route.wordpressPageId);
+    routesByPageId.set(route.wordpressPageId, route);
+  }
 
-    const expectedPath = `/${route.slug}/`;
+  for (const route of registry.routes) {
+    let expectedPath = `/${route.slug}/`;
+
+    if (route.wordpressParentPageId !== undefined) {
+      if (route.wordpressParentPageId === route.wordpressPageId) {
+        throw new HubContractError(
+          "HUB_ROUTE_PAGE_ID_MISMATCH",
+          `Route ${route.ref} cannot be its own WordPress parent.`
+        );
+      }
+
+      const parent = routesByPageId.get(route.wordpressParentPageId);
+      if (!parent) {
+        throw new HubContractError(
+          "HUB_ROUTE_PAGE_ID_MISMATCH",
+          `Route ${route.ref} references unknown WordPress parent page ID ${route.wordpressParentPageId}.`
+        );
+      }
+
+      expectedPath = `${parent.path}${route.slug}/`;
+    }
+
     if (route.path !== expectedPath) {
       throw new HubContractError(
         "HUB_ROUTE_PAGE_ID_MISMATCH",
-        `Route ${route.ref} path does not agree with its slug.`,
+        `Route ${route.ref} path does not agree with its WordPress hierarchy and slug.`,
         { expectedPath, actualPath: route.path }
       );
     }
