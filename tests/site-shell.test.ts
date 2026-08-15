@@ -5,8 +5,8 @@ import { describe, expect, it } from "vitest";
 const root = process.cwd();
 const sourceCss = readFileSync(resolve(root, "apps/site-shell/src/site-shell.css"), "utf8");
 const sourceJs = readFileSync(resolve(root, "apps/site-shell/src/site-shell.js"), "utf8");
-const releaseCss = readFileSync(resolve(root, "releases/site-shell/2026.08.14.1/site-shell.css"), "utf8");
-const releaseJs = readFileSync(resolve(root, "releases/site-shell/2026.08.14.1/site-shell.js"), "utf8");
+const releaseCss = readFileSync(resolve(root, "releases/site-shell/2026.08.15.1/site-shell.css"), "utf8");
+const releaseJs = readFileSync(resolve(root, "releases/site-shell/2026.08.15.1/site-shell.js"), "utf8");
 
 function withoutComments(value: string): string {
   return value.replace(/\/\*[\s\S]*?\*\//g, "");
@@ -18,11 +18,13 @@ describe("HRV global site shell", () => {
     expect(releaseJs).toBe(sourceJs);
   });
 
-  it("keeps CSS limited to shared header/navigation presentation", () => {
+  it("keeps CSS limited to shared Amadeus shell presentation plus global page-title suppression", () => {
     const css = withoutComments(sourceCss);
 
     expect(css).toContain(".main-navigation");
     expect(css).toContain(".site-header");
+    expect(css).toContain("body.page h1.entry-title");
+    expect(css).toContain("display: none !important");
 
     for (const forbidden of [
       ".ctc",
@@ -37,7 +39,9 @@ describe("HRV global site shell", () => {
       "#hrv-page",
       "#hrv-posts-page",
       "zinnia",
-      "classroom-explorations"
+      "classroom-explorations",
+      ".hrv-floating-return-nav",
+      "hrvFairy"
     ]) {
       expect(css).not.toContain(forbidden);
     }
@@ -60,7 +64,9 @@ describe("HRV global site shell", () => {
       "classroom-explorations",
       "DriveSync",
       "wp-json",
-      "google.com/spreadsheets"
+      "google.com/spreadsheets",
+      "hrv-floating-return-nav",
+      "Fairy"
     ]) {
       expect(js).not.toContain(forbidden);
     }
