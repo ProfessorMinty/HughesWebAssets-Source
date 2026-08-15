@@ -1,0 +1,144 @@
+/*
+ * Hughes Room Views — permanent global site shell
+ * Version: 2026.08.14.1
+ *
+ * Scope law:
+ * - shared Amadeus header/navigation presentation only
+ * - no page/application typography, cards, forms, buttons, widgets, or rescue CSS
+ * - no Hub/Photo Album/Home/Posts/Zinnia/Contact/Library/Bat selectors
+ */
+
+:root {
+  --hrv-shell-accent: #4cc9f0;
+  --hrv-shell-accent-2: #90e0ef;
+  --hrv-shell-ink: #0b3e4e;
+  --hrv-shell-ink-hover: #003049;
+}
+
+/* Shared Amadeus site-header treatment. */
+.site-header,
+.header-area {
+  background: linear-gradient(180deg, #e8f7ff 0%, #f6fbff 100%) !important;
+  border-bottom: 1px solid rgba(13, 38, 76, 0.08) !important;
+}
+
+.site-title a,
+.site-description {
+  color: #143a4a !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.main-navigation {
+  background: transparent !important;
+}
+
+/*
+ * Shared navigation buttons/bubbles.
+ * These selectors intentionally target only site-navigation structures.
+ */
+.main-navigation ul li > a,
+#site-navigation ul li > a,
+.nav-primary .menu li > a,
+.menu-primary li > a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.85rem !important;
+  margin: 0.2rem 0.12rem;
+  border-radius: 999px !important;
+  border: 1px solid rgba(13, 38, 76, 0.08) !important;
+  background: rgba(255, 255, 255, 0.76) !important;
+  color: var(--hrv-shell-ink) !important;
+  -webkit-text-fill-color: currentColor !important;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none !important;
+  box-shadow: 0 6px 14px rgba(13, 38, 76, 0.10);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+  overflow: hidden;
+  isolation: isolate;
+  touch-action: manipulation;
+}
+
+.main-navigation ul li > a::before,
+#site-navigation ul li > a::before,
+.nav-primary .menu li > a::before,
+.menu-primary li > a::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 42%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: -1;
+}
+
+.main-navigation ul li > a:hover,
+.main-navigation ul li > a:focus-visible,
+#site-navigation ul li > a:hover,
+#site-navigation ul li > a:focus-visible,
+.nav-primary .menu li > a:hover,
+.nav-primary .menu li > a:focus-visible,
+.menu-primary li > a:hover,
+.menu-primary li > a:focus-visible {
+  background: rgba(255, 255, 255, 0.96) !important;
+  color: var(--hrv-shell-ink-hover) !important;
+  border-color: rgba(13, 38, 76, 0.16) !important;
+  box-shadow: 0 8px 18px rgba(13, 38, 76, 0.14);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.main-navigation .current-menu-item > a,
+.main-navigation .current_page_item > a,
+#site-navigation .current-menu-item > a,
+#site-navigation .current_page_item > a,
+.nav-primary .current-menu-item > a,
+.nav-primary .current_page_item > a,
+.menu-primary .current-menu-item > a,
+.menu-primary .current_page_item > a {
+  background: #ffffff !important;
+  color: var(--hrv-shell-ink) !important;
+  border-color: var(--hrv-shell-accent) !important;
+  box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.22), 0 6px 14px rgba(13, 38, 76, 0.10);
+}
+
+.main-navigation .current-menu-item > a::after,
+.main-navigation .current_page_item > a::after,
+#site-navigation .current-menu-item > a::after,
+#site-navigation .current_page_item > a::after,
+.nav-primary .current-menu-item > a::after,
+.nav-primary .current_page_item > a::after,
+.menu-primary .current-menu-item > a::after,
+.menu-primary .current_page_item > a::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 22%;
+  bottom: 0.28rem;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--hrv-shell-accent), var(--hrv-shell-accent-2));
+}
+
+@media (max-width: 782px) {
+  .main-navigation ul,
+  #site-navigation ul,
+  .nav-primary .menu,
+  .menu-primary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.18rem;
+  }
+
+  .main-navigation ul li > a,
+  #site-navigation ul li > a,
+  .nav-primary .menu li > a,
+  .menu-primary li > a {
+    padding: 0.48rem 0.72rem !important;
+    border-radius: 14px !important;
+  }
+}
