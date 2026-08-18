@@ -1,0 +1,132 @@
+name: Photo Album source boundary cleanup
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-clean-source-finalize.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  clean-and-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out visual candidate
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+          fetch-depth: 0
+
+      - name: Remove inherited app-local motion ownership and apply known visual corrections
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          css = Path('apps/photo-album/src/styles/photo-album-complete.css')
+          text = css.read_text(encoding='utf-8')
+          text = text.replace(':root {\n  color-scheme: dark;\n}\n\n', '.hrv-photo-album {\n  color-scheme: dark;\n}\n\n', 1)
+          old = '''.hrv-album-row {\n  display: grid;\n  grid-template-columns: repeat(5, minmax(0, 292px));\n  justify-content: center;\n  align-items: stretch;\n  gap: 18px;\n}\n'''
+          new = '''.hrv-album-row {\n  display: grid;\n  grid-template-columns: repeat(4, minmax(0, 292px));\n  justify-content: center;\n  align-items: stretch;\n  gap: 18px;\n}\n\n.hrv-album-row:has(> .hrv-album-card:nth-child(5)) {\n  grid-template-columns: repeat(5, minmax(0, 292px));\n}\n'''
+          if old in text: text = text.replace(old, new, 1)
+          elif new not in text: raise SystemExit('Album shelf source is not a known state.')
+          css.write_text(text, encoding='utf-8')
+
+          app = Path('apps/photo-album/src/app.ts')
+          text = app.read_text(encoding='utf-8')
+          old = '''    const ornament = createElement("img", "hrv-album-card__ornament");\n    ornament.src = ORNAMENT_URLS[album.theme];\n    ornament.alt = "";\n    ornament.setAttribute("aria-hidden", "true");\n    media.append(ornament);\n'''
+          new = '''    if (album.theme !== "memory") {\n      const ornament = createElement("img", "hrv-album-card__ornament");\n      ornament.src = ORNAMENT_URLS[album.theme];\n      ornament.alt = "";\n      ornament.setAttribute("aria-hidden", "true");\n      media.append(ornament);\n    }\n'''
+          if old in text: text = text.replace(old, new, 1)
+          elif new not in text: raise SystemExit('Legacy app ornament source is not a known state.')
+          app.write_text(text, encoding='utf-8')
+
+          dom = Path('apps/photo-album/src/utils/dom.ts')
+          text = dom.read_text(encoding='utf-8')
+          text = text.replace('''\nexport function prefersReducedMotion(): boolean {\n  return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;\n}\n''', '\n')
+          dom.write_text(text, encoding='utf-8')
+
+          carousel = Path('apps/photo-album/src/components/carousel.ts')
+          text = carousel.read_text(encoding='utf-8')
+          text = text.replace('import { createElement, createIconButton, prefersReducedMotion } from "../utils/dom";', 'import { createElement, createIconButton } from "../utils/dom";')
+          text = text.replace('const REDUCED_FADE_HALF_MS = 180;\n', '')
+          text = text.replace('''\n    if (prefersReducedMotion()) {\n      this.showReducedChange();\n      return;\n    }\n''', '\n')
+          marker = '\n  private showReducedChange(): void {'
+          start = text.find(marker)
+          if start != -1:
+              brace = text.find('{', start)
+              depth = 0
+              end = None
+              for i in range(brace, len(text)):
+                  if text[i] == '{': depth += 1
+                  elif text[i] == '}':
+                      depth -= 1
+                      if depth == 0:
+                          end = i + 1
+                          break
+              if end is None: raise SystemExit('Could not remove legacy reduced-change method safely.')
+              text = text[:start] + text[end:]
+          carousel.write_text(text, encoding='utf-8')
+
+          # Historical visual CSS files remain in the tree for provenance/tests but no Photo Album
+          # source file may own OS-driven motion reduction now. Remove only the exact media blocks.
+          for path in Path('apps/photo-album/src').rglob('*.css'):
+              text = path.read_text(encoding='utf-8')
+              needle = '@media (prefers-reduced-motion: reduce)'
+              while needle in text:
+                  start = text.index(needle)
+                  brace = text.index('{', start)
+                  depth = 0
+                  end = None
+                  for i in range(brace, len(text)):
+                      if text[i] == '{': depth += 1
+                      elif text[i] == '}':
+                          depth -= 1
+                          if depth == 0:
+                              end = i + 1
+                              break
+                  if end is None: raise SystemExit(f'Unbalanced reduced-motion block in {path}')
+                  before = text[:start].rstrip()
+                  after = text[end:].lstrip('\n')
+                  text = before + '\n\n' + after
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install and verify full source
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Prove Photo Album no longer owns Reduced Effects
+        shell: bash
+        run: |
+          if grep -R --line-number -E 'prefers-reduced-motion|prefersReducedMotion|showReducedChange|REDUCED_FADE_HALF_MS' apps/photo-album/src; then
+            echo 'App-local reduced-motion ownership remains.' >&2
+            exit 1
+          fi
+          if grep -R --line-number --fixed-strings 'prefers-reduced-motion' dist/photo-album --exclude='*.map'; then
+            echo 'Built Photo Album still contains OS-driven reduced motion.' >&2
+            exit 1
+          fi
+
+      - name: Commit verified source cleanup back to visual branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/photo-album/src tests/photo-album-visual-contract.test.ts
+          if git diff --cached --quiet; then
+            echo 'No cleanup changes required.'
+          else
+            git commit -m 'Finalize Photo Album visual ownership boundaries'
+            git push origin HEAD:photo-album-visual-complete-2026-08-18
+          fi
