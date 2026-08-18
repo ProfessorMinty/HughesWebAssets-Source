@@ -1,19 +1,26 @@
 # Edublogs Photo Album three-box contract
 
-The existing Photo Album page connects to the repository-owned application through three page-local boxes. These files are deliberately small and contain no Photo Album application logic.
+The Photo Album follows the repository-wide Hughes Room Views page law:
 
-1. Paste `HTML-BOX.html` into the page's HTML box.
-2. Paste `CSS-BOX.css` into the page's CSS box.
-3. Replace `__IMMUTABLE_COMMIT_SHA__` in `JAVASCRIPT-BOX.js` with the full published commit SHA, then paste the result into the page's JavaScript box.
+> **Edublogs provides the doorway. The repository owns the room.**
 
-The JavaScript box loads the committed `bootstrap.js` release artifact from jsDelivr. That repository bootstrap loads the pinned production stylesheet and module and passes the permanent Worker manifest URL to the application.
+The three page-local Edublogs blocks contain no Photo Album application UI or application styling.
 
-The commit-SHA replacement is intentionally performed after publication because a commit cannot contain its own final hash. Never replace it with mutable `@main`.
+1. `HTML-BOX.html` provides only the stable `#hrv-photo-album` mount and a small truthful unavailable / come-back-later fallback.
+2. `CSS-BOX.css` styles only that small fallback.
+3. `JAVASCRIPT-BOX.js` is only the tiny injector for the exact immutable repository candidate and permanent Worker manifest.
 
-Current permanent release directory:
+The repository owns everything visitors experience after bootstrap succeeds: loading state, full-viewport breakout, application shell, Current Memories, album covers, routes, galleries, lightbox, themes, motion/effects, responsive behavior, host compatibility, diagnostics, and application failure states.
+
+The Edublogs blocks must never contain a Photo Album loading experience, construction banner, page layout, viewport-breakout rules, album UI, or theme/effects code.
+
+The JavaScript injector must pin an immutable Git commit SHA plus an immutable release directory. Never use mutable `@main`.
+
+Current visual-review candidate:
 
 ```text
-releases/photo-album/2026.08.10.2/
+Artifact commit: d036ff1a61bba7b7efced91c2f30881aa0e0d98a
+Release: 2026.08.18.1
 ```
 
-This directory is immutable after publication. Future changes receive a new release identifier.
+Before any Photo Album candidate is approved, it must pass repository tests/build, browser/viewport QA, bootstrap/failure QA, and then an exact three-block test on the real Edublogs host. Local screenshots are supporting evidence only and do not replace the real-host gate.
