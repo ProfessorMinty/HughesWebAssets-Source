@@ -1,57 +1,30 @@
-#hrv-photo-album.hrv-photo-album-bridge:not(.hrv-photo-album) {
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) {
   box-sizing: border-box;
-  display: grid;
-  width: 100%;
-  min-height: 420px;
-  padding: 40px 24px;
-  place-content: center;
-  justify-items: center;
-  gap: 14px;
-  border: 1px solid rgba(53, 78, 65, 0.14);
-  border-radius: 28px;
+  width: min(100%, 560px);
+  margin: 28px auto;
+  padding: 18px 20px;
+  border: 1px solid rgba(39, 55, 47, 0.16);
+  border-radius: 12px;
   color: #27372f;
   background: #f7f3eb;
   font-family: "Segoe UI", system-ui, sans-serif;
   text-align: center;
 }
 
-#hrv-photo-album.hrv-photo-album-bridge:not(.hrv-photo-album) * {
-  box-sizing: border-box;
-}
-
-#hrv-photo-album .hrv-photo-album-bridge__mark {
-  display: grid;
-  width: 52px;
-  height: 52px;
-  place-items: center;
-  border-radius: 50%;
-  color: #ffffff;
-  background: linear-gradient(145deg, #5d826b, #8e77ae);
-  box-shadow: 0 12px 30px rgba(70, 91, 78, 0.2);
-  animation: hrv-photo-album-bridge-pulse 1.7s ease-in-out infinite;
-}
-
-#hrv-photo-album .hrv-photo-album-bridge__message,
-#hrv-photo-album .hrv-photo-album-bridge__noscript {
-  max-width: 520px;
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) .hrv-photo-album-fallback__message,
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) .hrv-photo-album-fallback__noscript {
   margin: 0;
-  color: #53645a;
-  font-size: 17px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.45;
 }
 
-#hrv-photo-album[data-hrv-bootstrap="failed"] .hrv-photo-album-bridge__mark {
-  animation: none;
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) .hrv-photo-album-fallback__message strong,
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) .hrv-photo-album-fallback__message span {
+  display: block;
 }
 
-@keyframes hrv-photo-album-bridge-pulse {
-  50% {
-    transform: scale(1.08) rotate(14deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #hrv-photo-album .hrv-photo-album-bridge__mark {
-    animation: none;
-  }
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) .hrv-photo-album-fallback__message span,
+#hrv-photo-album.hrv-photo-album-fallback:not(.hrv-photo-album) .hrv-photo-album-fallback__noscript {
+  margin-top: 4px;
+  color: #5f6f66;
 }
