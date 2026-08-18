@@ -43,6 +43,12 @@ describe("Photo Album visual completion contract", () => {
     }
   });
 
+  it("does not leak presentation ownership onto the host document root", () => {
+    const visualCss = read("apps/photo-album/src/styles/photo-album-complete.css");
+    expect(visualCss).not.toMatch(/(^|\n):root\s*\{/);
+    expect(visualCss).toContain(".hrv-photo-album {\n  color-scheme: dark;");
+  });
+
   it("keeps host breakout in repository-owned, mount-scoped compatibility CSS", () => {
     const hostCss = read("apps/photo-album/src/styles/host-compat.css");
     expect(hostCss).toContain("body:has(#hrv-photo-album.hrv-photo-album)");
