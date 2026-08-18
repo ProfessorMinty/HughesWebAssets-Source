@@ -1,0 +1,76 @@
+name: Verify and capture Photo Album visual redesign v3
+
+on:
+  push:
+    branches:
+      - photo-album-visual-redesign-v3
+    paths:
+      - ".github/workflows/photo-album-visual-redesign-v3.yml"
+      - "apps/photo-album/**"
+      - "tests/**"
+      - "vite.config.ts"
+      - "package.json"
+      - "package-lock.json"
+
+permissions:
+  contents: write
+
+jobs:
+  verify-and-capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out visual redesign branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-redesign-v3
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Typecheck and build
+        run: npm run build
+
+      - name: Start local preview
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4174 > /tmp/hrv-photo-preview.log 2>&1 &
+          echo $! > /tmp/hrv-photo-preview.pid
+          for attempt in {1..40}; do
+            if curl -fsS http://127.0.0.1:4174/ >/dev/null; then
+              exit 0
+            fi
+            sleep .25
+          done
+          cat /tmp/hrv-photo-preview.log
+          exit 1
+
+      - name: Capture reference desktop and phone
+        shell: bash
+        run: |
+          mkdir -p qa/photo-album/visual-redesign-v3
+          CHROME="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=5000 --window-size=1920,911 --screenshot=qa/photo-album/visual-redesign-v3/desktop-1920x911.png http://127.0.0.1:4174/
+          "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=7600 --window-size=1920,911 --screenshot=qa/photo-album/visual-redesign-v3/desktop-1920x911-mid-travel.png http://127.0.0.1:4174/
+          "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=5000 --window-size=390,844 --screenshot=qa/photo-album/visual-redesign-v3/phone-390x844.png http://127.0.0.1:4174/
+
+      - name: Commit QA captures
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add qa/photo-album/visual-redesign-v3/*.png
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Capture Photo Album visual redesign v3 QA"
+          git push origin HEAD:photo-album-visual-redesign-v3
