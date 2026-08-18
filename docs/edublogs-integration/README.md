@@ -1,19 +1,25 @@
-# Edublogs Photo Album three-box contract
+# Hughes Room Views Edublogs integration
 
-The existing Photo Album page connects to the repository-owned application through three page-local boxes. These files are deliberately small and contain no Photo Album application logic.
+The authoritative repository-wide contract for every repository-owned Hughes Room Views page, post experience, Hub, exhibit, gallery, and application is:
 
-1. Paste `HTML-BOX.html` into the page's HTML box.
-2. Paste `CSS-BOX.css` into the page's CSS box.
-3. Replace `__IMMUTABLE_COMMIT_SHA__` in `JAVASCRIPT-BOX.js` with the full published commit SHA, then paste the result into the page's JavaScript box.
+`docs/hrv-repository-page-publication-standard.md`
 
-The JavaScript box loads the committed `bootstrap.js` release artifact from jsDelivr. That repository bootstrap loads the pinned production stylesheet and module and passes the permanent Worker manifest URL to the application.
+The governing law is:
 
-The commit-SHA replacement is intentionally performed after publication because a commit cannot contain its own final hash. Never replace it with mutable `@main`.
+> **Edublogs provides the doorway. The repository owns the room.**
 
-Current permanent release directory:
+For every repository-owned page, the permanent Edublogs seam is three page-local blocks:
 
-```text
-releases/photo-album/2026.08.10.2/
-```
+1. **HTML** — one stable semantic mount plus a small truthful unavailable / come-back-later fallback only.
+2. **CSS** — styles only that small unavailable fallback.
+3. **JavaScript** — a tiny injector pinned to the exact immutable repository candidate.
 
-This directory is immutable after publication. Future changes receive a new release identifier.
+The actual application, including loading state, layout, full-viewport breakout, host compatibility, visual design, animation/effects, responsive behavior, application errors, navigation, content projection, and diagnostics, belongs to repository code after bootstrap succeeds.
+
+The Edublogs blocks must not duplicate or approximate the repository application. They must not contain application loading experiences, page sections, page-specific layout CSS, viewport-breakout CSS, repository content, or feature logic.
+
+Repository review/production candidates are pinned by immutable commit SHA plus immutable release/publication identifier. Never use mutable `@main` delivery.
+
+Page-specific folders under this directory are integration records/templates. Where an older page-specific integration package conflicts with the repository-wide standard, treat that package as legacy migration debt rather than as precedent for new work.
+
+The global standard also documents release/publication manifest construction and the required testing ladder, including mandatory real-Edublogs-host QA before a candidate can be approved for production.
