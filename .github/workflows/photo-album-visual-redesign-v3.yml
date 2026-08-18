@@ -62,13 +62,19 @@ jobs:
           "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=5000 --window-size=1920,911 --screenshot=qa/photo-album/visual-redesign-v3/desktop-1920x911.png http://127.0.0.1:4174/
           "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=7600 --window-size=1920,911 --screenshot=qa/photo-album/visual-redesign-v3/desktop-1920x911-mid-travel.png http://127.0.0.1:4174/
           "$CHROME" --headless --no-sandbox --disable-gpu --hide-scrollbars --run-all-compositor-stages-before-draw --virtual-time-budget=5000 --window-size=390,844 --screenshot=qa/photo-album/visual-redesign-v3/phone-390x844.png http://127.0.0.1:4174/
+          ffmpeg -loglevel error -y -i qa/photo-album/visual-redesign-v3/desktop-1920x911.png -vf scale=960:-2 -q:v 8 qa/photo-album/visual-redesign-v3/desktop-review.jpg
+          ffmpeg -loglevel error -y -i qa/photo-album/visual-redesign-v3/desktop-1920x911-mid-travel.png -vf scale=960:-2 -q:v 8 qa/photo-album/visual-redesign-v3/desktop-mid-travel-review.jpg
+          ffmpeg -loglevel error -y -i qa/photo-album/visual-redesign-v3/phone-390x844.png -vf scale=390:-2 -q:v 9 qa/photo-album/visual-redesign-v3/phone-review.jpg
+          base64 -w 0 qa/photo-album/visual-redesign-v3/desktop-review.jpg > qa/photo-album/visual-redesign-v3/desktop-review.jpg.b64
+          base64 -w 0 qa/photo-album/visual-redesign-v3/desktop-mid-travel-review.jpg > qa/photo-album/visual-redesign-v3/desktop-mid-travel-review.jpg.b64
+          base64 -w 0 qa/photo-album/visual-redesign-v3/phone-review.jpg > qa/photo-album/visual-redesign-v3/phone-review.jpg.b64
 
       - name: Commit QA captures
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add qa/photo-album/visual-redesign-v3/*.png
+          git add qa/photo-album/visual-redesign-v3/*
           if git diff --cached --quiet; then
             exit 0
           fi
