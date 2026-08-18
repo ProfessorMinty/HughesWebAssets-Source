@@ -1,0 +1,34 @@
+name: Export Photo Album v6 QA screenshots
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-export-v6-qa-artifact.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out verified visual branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+      - name: Confirm final evidence exists
+        run: |
+          test -f qa/photo-album/visual-complete-2026-08-18-v6/home-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18-v6/album-pumpkin-patch-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18-v6/lightbox-pumpkin-patch-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18-v6/album-science-museum-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18-v6/album-mushroom-exploration-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18-v6/album-zinnia-garden-1920x911.png
+      - name: Upload final QA evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-album-final-visual-v6-qa
+          path: qa/photo-album/visual-complete-2026-08-18-v6/
+          if-no-files-found: error
+          retention-days: 7
