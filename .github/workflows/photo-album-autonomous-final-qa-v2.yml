@@ -150,7 +150,9 @@ jobs:
             p=await capture(name,w,h); await p.close();
           }
 
-          p=await capture('view-all-1920x911',1920,911,`${base}#photo-album/all`);
+          p=await capture('view-all-1920x911',1920,911,`${base}#hrv-photo-album/all`);
+          const grid = await p.$('.hrv-photo-grid');
+          if (!grid) throw new Error('View All route did not render the photo grid.');
           const all=await p.evaluate(()=>({count:document.querySelectorAll('.hrv-photo-card').length,columns:getComputedStyle(document.querySelector('.hrv-photo-grid')).gridTemplateColumns,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth}));
           await fs.writeFile(`${out}/view-all-metrics.json`,JSON.stringify(all,null,2));
           await p.close();
