@@ -1,0 +1,78 @@
+name: Prepare clean Photo Album v3 real-host preview
+
+on:
+  push:
+    branches:
+      - photo-album-visual-redesign-v3
+    paths:
+      - ".github/workflows/photo-album-v3-clean-preview-release.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  clean-build-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out visual redesign branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-redesign-v3
+          fetch-depth: 0
+
+      - name: Remove legacy app-local reduced-motion override
+        shell: python
+        run: |
+          from pathlib import Path
+          path = Path("apps/photo-album/src/styles/photo-album.css")
+          text = path.read_text(encoding="utf-8")
+          stale = '''@media (prefers-reduced-motion: reduce) {
+            .hrv-photo-album *,
+            .hrv-photo-album *::before,
+            .hrv-photo-album *::after {
+              scroll-behavior: auto !important;
+              animation-duration: .001ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: .001ms !important;
+            }
+          }
+
+          '''
+          if stale not in text:
+              raise SystemExit("Expected legacy reduced-motion block was not found; refusing to guess.")
+          path.write_text(text.replace(stale, "", 1), encoding="utf-8")
+
+      - name: Verify no Photo Album local reduced-motion branch remains
+        shell: bash
+        run: |
+          if grep -R --line-number --fixed-strings 'prefers-reduced-motion' apps/photo-album; then
+            echo 'Photo Album still contains app-local prefers-reduced-motion behavior.' >&2
+            exit 1
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Typecheck and build
+        run: npm run build
+
+      - name: Stage immutable visual preview release 2026.08.18.2
+        run: node tools/stage-photo-album-release.mjs 2026.08.18.2
+
+      - name: Commit corrected source and immutable preview artifacts
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/photo-album/src/styles/photo-album.css releases/photo-album/2026.08.18.2
+          git commit -m "Stage clean Photo Album visual preview 2026.08.18.2"
+          git push origin HEAD:photo-album-visual-redesign-v3
