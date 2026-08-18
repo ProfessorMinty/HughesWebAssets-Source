@@ -1,3 +1,4 @@
+import { themeForAlbumName } from "../domain/albums";
 import type { PhotoRecord } from "../types";
 import { createElement, createIconButton } from "../utils/dom";
 
@@ -169,6 +170,7 @@ export class PhotoLightbox {
   private render(): void {
     const photo = this.photos[this.index];
     if (!photo) return;
+    this.dialog.dataset.theme = themeForAlbumName(photo.albumName);
     this.image.src = photo.galleryUrl;
     this.image.alt = photo.alt;
     this.albumLabel.textContent = photo.albumName;

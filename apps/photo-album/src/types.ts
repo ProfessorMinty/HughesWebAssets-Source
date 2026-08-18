@@ -32,7 +32,7 @@ export interface PhotoAlbumManifest {
   warnings: string[];
 }
 
-export type AlbumTheme = "harvest" | "discovery" | "woodland" | "garden" | "constellation";
+export type AlbumTheme = "memory" | "harvest" | "discovery" | "woodland" | "garden" | "constellation";
 
 export interface AlbumViewModel extends AlbumRecord {
   photos: PhotoRecord[];

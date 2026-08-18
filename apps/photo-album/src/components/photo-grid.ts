@@ -1,3 +1,4 @@
+import { themeForAlbumName } from "../domain/albums";
 import type { PhotoRecord } from "../types";
 import { clamp, createElement } from "../utils/dom";
 
@@ -42,9 +43,7 @@ export class PhotoGrid {
   focusItem(index: number): void {
     if (this.photos.length === 0) return;
     const safeIndex = clamp(index, 0, this.photos.length - 1);
-    this.root
-      .querySelector<HTMLButtonElement>(`[data-photo-index="${safeIndex}"]`)
-      ?.focus({ preventScroll: true });
+    this.root.querySelector<HTMLButtonElement>(`[data-photo-index="${safeIndex}"]`)?.focus({ preventScroll: true });
   }
 
   destroy(): void {
@@ -55,22 +54,23 @@ export class PhotoGrid {
   private render(): void {
     this.preloadObserver?.disconnect();
     if (this.photos.length === 0) {
-      this.root.replaceChildren(
-        createElement("p", "hrv-empty__copy", this.options.emptyMessage ?? "No photos are available yet."),
-      );
+      this.root.replaceChildren(createElement("p", "hrv-empty__copy", this.options.emptyMessage ?? "No photos are available yet."));
       return;
     }
 
     const fragment = document.createDocumentFragment();
     for (const [index, photo] of this.photos.entries()) {
+      const theme = themeForAlbumName(photo.albumName);
       const item = createElement("div", "hrv-photo-grid__item");
       item.setAttribute("role", "listitem");
       item.setAttribute("aria-posinset", String(index + 1));
       item.setAttribute("aria-setsize", String(this.photos.length));
+      item.dataset.theme = theme;
 
       const button = createElement("button", "hrv-photo-card");
       button.type = "button";
       button.dataset.photoIndex = String(index);
+      button.dataset.theme = theme;
       button.setAttribute("aria-label", `Open photo ${index + 1} of ${this.photos.length} from ${photo.albumName}`);
 
       const image = createElement("img", "hrv-photo-card__image");

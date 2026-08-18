@@ -1,0 +1,72 @@
+/* Repository-owned Amadeus compatibility for the mounted Photo Album only.
+   The Edublogs CSS box must not own application layout or host breakout. */
+
+body:has(#hrv-photo-album.hrv-photo-album) #page {
+  overflow-x: clip !important;
+}
+
+body:has(#hrv-photo-album.hrv-photo-album) #content.site-content.container,
+body:has(#hrv-photo-album.hrv-photo-album) .site-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body:has(#hrv-photo-album.hrv-photo-album) #primary.content-area,
+body:has(#hrv-photo-album.hrv-photo-album) .content-area,
+body:has(#hrv-photo-album.hrv-photo-album) #main.site-main,
+body:has(#hrv-photo-album.hrv-photo-album) .site-main,
+body:has(#hrv-photo-album.hrv-photo-album) .entry-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  float: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body:has(#hrv-photo-album.hrv-photo-album) .hentry,
+body:has(#hrv-photo-album.hrv-photo-album) article.page {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body:has(#hrv-photo-album.hrv-photo-album) .widget-area,
+body:has(#hrv-photo-album.hrv-photo-album) #secondary,
+body:has(#hrv-photo-album.hrv-photo-album) .entry-header,
+body:has(#hrv-photo-album.hrv-photo-album) article.page > .entry-footer,
+body:has(#hrv-photo-album.hrv-photo-album) .edit-link {
+  display: none !important;
+}
+
+body:has(#hrv-photo-album.hrv-photo-album) .entry-content > #hrv-photo-album.hrv-photo-album {
+  display: block !important;
+  position: relative !important;
+  left: 50% !important;
+  width: 100vw !important;
+  width: 100dvw !important;
+  max-width: none !important;
+  margin: 0 -50vw !important;
+  margin-left: -50vw !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow-x: clip !important;
+}
