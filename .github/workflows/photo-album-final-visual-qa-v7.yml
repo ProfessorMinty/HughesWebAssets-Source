@@ -1,0 +1,100 @@
+name: Photo Album final visual QA v7
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-final-visual-qa-v7.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  final-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install, test and build
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Enforce ownership boundaries
+        shell: bash
+        run: |
+          if grep -R --line-number -E 'prefers-reduced-motion|prefersReducedMotion|showReducedChange|REDUCED_FADE_HALF_MS' apps/photo-album/src; then exit 1; fi
+          if grep -R --line-number --fixed-strings 'prefers-reduced-motion' dist/photo-album --exclude='*.map'; then exit 1; fi
+          grep -q 'loading-states.css' apps/photo-album/src/entry.ts
+          grep -q 'FOUR-MOMENT MAGIC COMPLETION' apps/photo-album/src/styles/photo-album-complete.css
+          grep -q 'body:has(#hrv-photo-album.hrv-photo-album)' apps/photo-album/src/styles/host-compat.css
+      - name: Stage immutable release 2026.08.18.7
+        run: node tools/stage-photo-album-release.mjs 2026.08.18.7
+      - name: Start preview
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4174 > /tmp/photo-preview.log 2>&1 &
+          for i in {1..80}; do
+            if curl -fsS http://127.0.0.1:4174/ >/dev/null; then exit 0; fi
+            sleep .25
+          done
+          cat /tmp/photo-preview.log
+          exit 1
+      - name: Install Playwright driver
+        run: npm install --no-save --package-lock=false playwright-core@1.55.0
+      - name: Capture final visual surfaces
+        shell: bash
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        run: |
+          rm -rf qa/photo-album/visual-complete-2026-08-18-v7
+          mkdir -p qa/photo-album/visual-complete-2026-08-18-v7
+          cat > .capture-v7.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs/promises';
+          const out='qa/photo-album/visual-complete-2026-08-18-v7';
+          const base='http://127.0.0.1:4174/';
+          const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN});
+          async function ready(p,url=base){await p.goto(url,{waitUntil:'domcontentloaded',timeout:45000});await p.waitForSelector('.hrv-photo-album .hrv-main',{timeout:30000});await p.waitForFunction(()=>!document.querySelector('.hrv-state--loading'),null,{timeout:30000});await p.waitForTimeout(2400);}
+          async function shot(name,w,h,url=base){const p=await browser.newPage({viewport:{width:w,height:h}});await ready(p,url);await p.screenshot({path:`${out}/${name}.png`,fullPage:false});return p;}
+          let p=await shot('home-1920x911',1920,911);
+          const home=await p.evaluate(()=>({root:document.querySelector('#hrv-photo-album')?.getBoundingClientRect().toJSON(),memory:document.querySelector('.hrv-memory-stage')?.getBoundingClientRect().toJSON(),viewAll:document.querySelector('.hrv-album-shelf__heading .hrv-button')?.getBoundingClientRect().toJSON(),cards:[...document.querySelectorAll('.hrv-album-card')].map(x=>x.getBoundingClientRect().toJSON()),loading:document.querySelectorAll('.hrv-album-card__image:not(.is-loaded)').length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth}));
+          const albums=await p.locator('.hrv-album-card').evaluateAll(cards=>cards.map(card=>({text:card.textContent?.trim()??'',href:card.getAttribute('href')??'',theme:card.getAttribute('data-theme')??''})));
+          await fs.writeFile(`${out}/home-metrics.json`,JSON.stringify(home,null,2));await p.close();
+          p=await shot('home-phone-390x844',390,844);await p.close();
+          p=await shot('view-all-1920x911',1920,911,`${base}#hrv-photo-album/all`);
+          const all=await p.evaluate(()=>({cards:document.querySelectorAll('.hrv-photo-card').length,visible:[...document.querySelectorAll('.hrv-photo-grid__item')].filter(x=>!x.hidden).length,loaded:document.querySelectorAll('.hrv-photo-card.is-photo-loaded').length,loading:document.querySelectorAll('.hrv-photo-card.is-photo-loading').length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth}));await fs.writeFile(`${out}/view-all-metrics.json`,JSON.stringify(all,null,2));await p.close();
+          p=await browser.newPage({viewport:{width:1920,height:911}});
+          const subjects=[['pumpkin-patch',/Pumpkin/i],['science-museum',/Science|Museum/i],['mushroom-exploration',/Mushroom|Fungi/i],['zinnia-garden',/Zinnia|Garden/i]];
+          const exercised=[];
+          for(const [slug,re] of subjects){const album=albums.find(x=>re.test(x.text));if(!album?.href)continue;await ready(p,new URL(album.href,base).href);const header=p.locator('.hrv-gallery-header');const theme=await header.getAttribute('data-theme');const primary=await header.getAttribute('data-theme-asset-primary');const visible=await p.locator('.hrv-photo-grid__item:not([hidden])').count();const loaded=await p.locator('.hrv-photo-card.is-photo-loaded').count();const loading=await p.locator('.hrv-photo-card.is-photo-loading').count();const ret=await p.locator('.hrv-album-return').count();await p.screenshot({path:`${out}/album-${slug}-1920x911.png`,fullPage:false});if(visible>0){const first=p.locator('.hrv-photo-grid__item:not([hidden]) .hrv-photo-card').first();await first.press('Enter');await p.waitForSelector('.hrv-lightbox[open]',{state:'visible'});await p.waitForTimeout(250);await p.screenshot({path:`${out}/lightbox-${slug}-1920x911.png`,fullPage:false});await p.keyboard.press('Escape');await p.waitForFunction(()=>!document.querySelector('.hrv-lightbox')?.hasAttribute('open'));}exercised.push({slug,theme,primary,visible,loaded,loading,ret});}
+          await fs.writeFile(`${out}/exercised.json`,JSON.stringify(exercised,null,2));await p.close();await browser.close();
+          EOF
+          node .capture-v7.mjs
+          rm -f .capture-v7.mjs
+      - name: Enforce final geometry and coverage
+        shell: bash
+        run: |
+          node <<'EOF'
+          const fs=require('fs'),d='qa/photo-album/visual-complete-2026-08-18-v7';const h=JSON.parse(fs.readFileSync(`${d}/home-metrics.json`)),a=JSON.parse(fs.readFileSync(`${d}/view-all-metrics.json`)),e=JSON.parse(fs.readFileSync(`${d}/exercised.json`));if(Math.abs(h.overflow)>2)throw Error(`home overflow ${h.overflow}`);if(!h.root||h.root.width<1880)throw Error('root not full width');if(!h.memory||h.memory.height>470)throw Error('Current Memories too tall');if(!h.viewAll||h.viewAll.top>780)throw Error('View All too low');if(h.cards.length<4)throw Error('missing album covers');const four=h.cards.slice(0,4),spread=Math.max(...four.map(x=>x.top))-Math.min(...four.map(x=>x.top));if(spread>8||four.some(x=>x.width>340))throw Error('album shelf geometry failed');if(Math.abs(a.overflow)>2||a.visible<90)throw Error(`View All coverage failed ${JSON.stringify(a)}`);if(e.length!==4||e.some(x=>!x.primary||x.ret!==1||x.visible<1))throw Error(`four-moment coverage failed ${JSON.stringify(e)}`);console.log(JSON.stringify({home:h,viewAll:a,exercised:e},null,2));
+          EOF
+      - name: Commit release and QA evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/photo-album/2026.08.18.7 qa/photo-album/visual-complete-2026-08-18-v7
+          git commit -m "Stage Photo Album finished visual release 2026.08.18.7 with QA evidence"
+          git push origin HEAD:photo-album-visual-complete-2026-08-18
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr comment 19 --body "Photo Album final visual QA v7 failed. Run ${GITHUB_RUN_ID}. Inspect exact logs before changing implementation."
