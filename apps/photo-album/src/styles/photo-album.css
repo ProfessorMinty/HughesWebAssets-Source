@@ -1302,17 +1302,6 @@ body.hrv-lightbox-open {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hrv-photo-album *,
-  .hrv-photo-album *::before,
-  .hrv-photo-album *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .001ms !important;
-  }
-}
-
 @media (prefers-contrast: more) {
   .hrv-photo-album {
     --hrv-border: rgb(22 42 31 / 45%);

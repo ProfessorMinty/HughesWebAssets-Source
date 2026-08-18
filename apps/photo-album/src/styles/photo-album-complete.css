@@ -2,7 +2,7 @@
    Visual completion pass: 2026-08-18
    Repository owns the room. Edublogs owns only the doorway/fallback. */
 
-:root {
+.hrv-photo-album {
   color-scheme: dark;
 }
 
@@ -601,10 +601,14 @@
 
 .hrv-album-row {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 292px));
+  grid-template-columns: repeat(4, minmax(0, 292px));
   justify-content: center;
   align-items: stretch;
   gap: 18px;
+}
+
+.hrv-album-row:has(> .hrv-album-card:nth-child(5)) {
+  grid-template-columns: repeat(5, minmax(0, 292px));
 }
 
 .hrv-album-card {

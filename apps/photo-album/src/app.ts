@@ -289,11 +289,13 @@ export class PhotoAlbumApp {
       media.append(createElement("span", "hrv-album-card__placeholder", "A new memory is on its way"));
     }
 
-    const ornament = createElement("img", "hrv-album-card__ornament");
-    ornament.src = ORNAMENT_URLS[album.theme];
-    ornament.alt = "";
-    ornament.setAttribute("aria-hidden", "true");
-    media.append(ornament);
+    if (album.theme !== "memory") {
+      const ornament = createElement("img", "hrv-album-card__ornament");
+      ornament.src = ORNAMENT_URLS[album.theme];
+      ornament.alt = "";
+      ornament.setAttribute("aria-hidden", "true");
+      media.append(ornament);
+    }
 
     const body = createElement("span", "hrv-album-card__body");
     body.append(

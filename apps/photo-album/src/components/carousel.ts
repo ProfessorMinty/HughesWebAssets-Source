@@ -1,6 +1,6 @@
 import { CAROUSEL_INTERVAL_MS } from "../config";
 import type { PhotoRecord } from "../types";
-import { createElement, createIconButton, prefersReducedMotion } from "../utils/dom";
+import { createElement, createIconButton } from "../utils/dom";
 
 export type CarouselDirection = "next" | "previous";
 
@@ -19,7 +19,6 @@ export interface CarouselControllerOptions {
 }
 
 const CAROUSEL_TRANSITION_MS = 780;
-const REDUCED_FADE_HALF_MS = 180;
 const INITIAL_SLOTS = [-2, -1, 0, 1, 2] as const;
 
 interface CarouselSlideView {
@@ -335,10 +334,6 @@ export class HeroCarousel {
     this.stage.dataset.currentPhotoId = change.current.id;
     this.status.textContent = `Memory ${change.position + 1} of ${change.total}`;
 
-    if (prefersReducedMotion()) {
-      this.showReducedChange();
-      return;
-    }
 
     this.transitioning = true;
     this.stage.classList.add("is-traveling");
@@ -373,17 +368,4 @@ export class HeroCarousel {
     this.transitionTimer = null;
   }
 
-  private showReducedChange(): void {
-    this.transitioning = true;
-    this.stage.classList.add("is-reduced-fading");
-
-    this.transitionTimer = window.setTimeout(() => {
-      this.renderInitialTrack();
-      this.stage.classList.remove("is-reduced-fading");
-      this.transitionTimer = window.setTimeout(() => {
-        this.transitioning = false;
-        this.transitionTimer = null;
-      }, REDUCED_FADE_HALF_MS);
-    }, REDUCED_FADE_HALF_MS);
-  }
 }

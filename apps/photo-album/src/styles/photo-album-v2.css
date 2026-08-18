@@ -930,19 +930,6 @@
   line-height: 1.55 !important;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hrv-photo-album-v2 .hrv-v2-memory__slide {
-    transition:
-      transform 920ms cubic-bezier(.2, .78, .18, 1),
-      opacity 650ms ease,
-      filter 760ms ease,
-      box-shadow 920ms ease !important;
-  }
-  .hrv-photo-album-v2 .hrv-v2-memory__stage.is-recycling .hrv-v2-memory__slide {
-    transition: none !important;
-  }
-}
-
 @media (max-width: 1120px) {
   .hrv-v2-hero {
     grid-template-columns: 1fr;
