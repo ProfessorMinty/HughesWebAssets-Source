@@ -173,11 +173,27 @@ export class YearHomeV2 {
     const cover = album.photos[0];
     if (cover) {
       const image = createElement("img", "hrv-album-card__image");
-      image.src = cover.galleryUrl;
       image.alt = "";
-      image.loading = "lazy";
+      image.loading = "eager";
       image.decoding = "async";
+      image.fetchPriority = "auto";
+      let coverIndex = 0;
+      const loadNextCover = (): void => {
+        const candidate = album.photos[coverIndex];
+        coverIndex += 1;
+        if (!candidate) {
+          image.remove();
+          if (!media.querySelector(".hrv-album-card__placeholder")) {
+            media.append(createElement("span", "hrv-album-card__placeholder", "This memory is getting ready"));
+          }
+          return;
+        }
+        image.src = candidate.galleryUrl;
+      };
+      image.addEventListener("error", loadNextCover);
+      image.addEventListener("load", () => image.classList.add("is-loaded"));
       media.append(image);
+      loadNextCover();
     } else {
       media.append(createElement("span", "hrv-album-card__placeholder", "A new memory is on its way"));
     }

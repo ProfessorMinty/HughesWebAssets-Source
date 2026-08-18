@@ -80,6 +80,12 @@ export class PhotoGrid {
       image.decoding = "async";
       image.setAttribute("fetchpriority", index < EAGER_IMAGE_COUNT ? "auto" : "low");
       if (image.loading === "lazy") this.preloadObserver?.observe(image);
+      image.addEventListener("error", () => {
+        this.preloadObserver?.unobserve(image);
+        button.disabled = true;
+        item.classList.add("hrv-photo-grid__item--unavailable");
+        item.hidden = true;
+      });
 
       button.append(image);
       button.addEventListener("click", () => this.options.onOpen(index, button));

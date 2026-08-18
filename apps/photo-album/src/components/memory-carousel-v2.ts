@@ -33,6 +33,7 @@ export class MemoryCarouselV2 {
   private readonly status: HTMLElement;
   private readonly pauseButton: HTMLButtonElement;
   private readonly onOpen: ((photo: PhotoRecord) => void) | undefined;
+  private readonly brokenPhotoIds = new Set<string>();
   private position = 0;
   private timer: number | null = null;
   private transitionTimer: number | null = null;
@@ -129,8 +130,12 @@ export class MemoryCarouselV2 {
 
   private photoAtOffset(offset: number): PhotoRecord | null {
     if (this.photos.length === 0) return null;
-    const index = (this.position + offset + this.photos.length) % this.photos.length;
-    return this.photos[index] ?? null;
+    const start = (this.position + offset + this.photos.length) % this.photos.length;
+    for (let step = 0; step < this.photos.length; step += 1) {
+      const candidate = this.photos[(start + step) % this.photos.length];
+      if (candidate && !this.brokenPhotoIds.has(candidate.id)) return candidate;
+    }
+    return null;
   }
 
   private createSlide(slot: number): MemorySlide {
@@ -144,6 +149,8 @@ export class MemoryCarouselV2 {
     button.append(image);
 
     const slide = { button, image, slot };
+    image.addEventListener("load", () => button.classList.remove("is-photo-error"));
+    image.addEventListener("error", () => this.handleImageError(slide));
     this.applySlot(slide, slot);
     button.addEventListener("click", () => this.activateSlide(slide));
     return slide;
@@ -167,6 +174,16 @@ export class MemoryCarouselV2 {
   private updatePhoto(slide: MemorySlide, photo: PhotoRecord): void {
     if (slide.image.src !== photo.galleryUrl) slide.image.src = photo.galleryUrl;
     slide.button.dataset.photoId = photo.id;
+  }
+
+  private handleImageError(slide: MemorySlide): void {
+    const photoId = slide.button.dataset.photoId;
+    if (photoId) this.brokenPhotoIds.add(photoId);
+    slide.button.classList.add("is-photo-error");
+    if (slide.slot !== 0 || this.traveling || this.photos.length <= this.brokenPhotoIds.size) return;
+    window.setTimeout(() => {
+      if (!this.traveling) this.move("next");
+    }, 60);
   }
 
   private applySlot(slide: MemorySlide, slot: number): void {
