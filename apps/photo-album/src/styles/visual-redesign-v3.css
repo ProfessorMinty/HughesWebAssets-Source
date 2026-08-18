@@ -1,0 +1,987 @@
+/*
+ * Photo Album visual redesign v3
+ *
+ * Review target: ~1920x911 CSS-pixel desktop viewport.
+ * Product law: this is a magical PHOTO ALBUM. Photographs stay dominant;
+ * theme art and motion live around the photographs, never over their content.
+ *
+ * IMPORTANT: motion reduction is NOT owned by this application. A future
+ * global HRV shell control owns that concern. Do not add app-local reduced
+ * motion switches or prefers-reduced-motion presentation branches here.
+ */
+
+.hrv-photo-album-v2 {
+  --memory-night: #071d2a;
+  --memory-ink: #0d2b37;
+  --memory-teal: #155f68;
+  --memory-aqua: #4fd5c8;
+  --memory-violet: #8d78d8;
+  --memory-gold: #ffd27e;
+  --memory-cream: #fff5df;
+  --memory-text: #f4fbfb;
+  --memory-muted: #b8d0d3;
+  --memory-panel: rgb(8 35 47 / 72%);
+  min-height: 100vh;
+  color: var(--memory-text);
+  background:
+    radial-gradient(circle at 9% 7%, rgb(46 173 167 / 22%), transparent 25%),
+    radial-gradient(circle at 88% 9%, rgb(121 91 196 / 23%), transparent 29%),
+    radial-gradient(circle at 66% 72%, rgb(25 120 127 / 16%), transparent 31%),
+    linear-gradient(180deg, #061923 0%, #0a2531 40%, #0b2932 69%, #071922 100%) !important;
+}
+
+body:has(> #hrv-photo-album) {
+  background: #061923 !important;
+}
+
+.hrv-photo-album-v2 .hrv-main {
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.hrv-photo-album-v2 .hrv-main::before,
+.hrv-photo-album-v2 .hrv-main::after {
+  position: fixed;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.hrv-photo-album-v2 .hrv-main::before {
+  width: 74vw;
+  height: 46vw;
+  top: -18vw;
+  left: -20vw;
+  border-radius: 50%;
+  opacity: .5;
+  background: conic-gradient(from 110deg, transparent, rgb(66 215 195 / 34%), rgb(88 126 222 / 18%), transparent 68%);
+  filter: blur(72px);
+  animation: hrv-memory-aurora-left 18s ease-in-out infinite alternate;
+}
+
+.hrv-photo-album-v2 .hrv-main::after {
+  width: 64vw;
+  height: 40vw;
+  right: -22vw;
+  top: 10vw;
+  border-radius: 50%;
+  opacity: .46;
+  background: conic-gradient(from 220deg, transparent, rgb(141 120 216 / 30%), rgb(43 182 183 / 18%), transparent 70%);
+  filter: blur(80px);
+  animation: hrv-memory-aurora-right 22s ease-in-out infinite alternate;
+}
+
+.hrv-photo-album-v2 .hrv-main > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes hrv-memory-aurora-left {
+  0% { transform: translate3d(-3%, -2%, 0) rotate(-4deg) scale(.96); }
+  55% { transform: translate3d(7%, 5%, 0) rotate(4deg) scale(1.06); }
+  100% { transform: translate3d(12%, 1%, 0) rotate(7deg) scale(1); }
+}
+
+@keyframes hrv-memory-aurora-right {
+  0% { transform: translate3d(4%, -4%, 0) rotate(2deg) scale(1); }
+  50% { transform: translate3d(-6%, 8%, 0) rotate(-5deg) scale(1.08); }
+  100% { transform: translate3d(-10%, 2%, 0) rotate(-2deg) scale(.98); }
+}
+
+/* --------------------------------------------------------------------------
+   Current Memories: compact cinematic entrance, not a viewport-sized billboard.
+   Carousel mechanics remain untouched.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-hero {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: none;
+  min-height: 0 !important;
+  margin: 0;
+  padding: clamp(30px, 3vw, 48px) clamp(30px, 4.6vw, 88px) clamp(34px, 3.4vw, 54px);
+  grid-template-columns: minmax(270px, .48fr) minmax(680px, 1.52fr);
+  align-items: center;
+  gap: clamp(30px, 3vw, 58px);
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(100deg, rgb(6 24 34 / 92%) 0 31%, rgb(6 26 38 / 68%) 54%, rgb(8 25 42 / 86%) 100%),
+    radial-gradient(circle at 67% 10%, rgb(68 225 208 / 18%), transparent 30%),
+    radial-gradient(circle at 88% 70%, rgb(148 117 222 / 22%), transparent 34%);
+  box-shadow: inset 0 -1px 0 rgb(142 218 215 / 12%);
+}
+
+.hrv-photo-album-v2 .hrv-hero::before {
+  width: 620px !important;
+  height: 620px !important;
+  top: -410px !important;
+  right: 13% !important;
+  border: 1px solid rgb(136 240 225 / 18%) !important;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 78px rgb(88 224 209 / 3%),
+    0 0 0 154px rgb(128 109 211 / 3%) !important;
+  opacity: 1 !important;
+  animation: hrv-memory-orbit 20s linear infinite;
+}
+
+.hrv-photo-album-v2 .hrv-hero::after {
+  inset: 0 !important;
+  opacity: .58 !important;
+  background-image:
+    radial-gradient(circle, rgb(255 255 255 / 76%) 0 1px, transparent 1.6px),
+    radial-gradient(circle, rgb(94 223 211 / 52%) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgb(175 150 236 / 45%) 0 1.1px, transparent 1.7px) !important;
+  background-size: 137px 137px, 199px 199px, 263px 263px !important;
+  background-position: 16px 22px, 80px 42px, 28px 128px !important;
+  mask-image: linear-gradient(90deg, transparent 0%, black 28%, black 100%) !important;
+  animation: hrv-memory-stars 16s linear infinite;
+}
+
+@keyframes hrv-memory-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hrv-memory-stars {
+  0% { transform: translate3d(0, 0, 0); opacity: .45; }
+  50% { transform: translate3d(-14px, 8px, 0); opacity: .68; }
+  100% { transform: translate3d(-28px, 0, 0); opacity: .45; }
+}
+
+.hrv-photo-album-v2 .hrv-hero__copy {
+  width: auto;
+  max-width: 500px;
+  margin: 0;
+  text-align: left;
+}
+
+.hrv-photo-album-v2 .hrv-hero .hrv-eyebrow {
+  color: #81e3d6 !important;
+  letter-spacing: .16em;
+}
+
+.hrv-photo-album-v2 .hrv-hero__title {
+  max-width: 470px;
+  margin-top: 9px !important;
+  color: #f8ffff !important;
+  font-size: clamp(48px, 3.8vw, 72px) !important;
+  line-height: .94 !important;
+  text-shadow: 0 8px 30px rgb(1 12 19 / 42%);
+}
+
+.hrv-photo-album-v2 .hrv-hero__description {
+  max-width: 450px;
+  margin: 18px 0 0 !important;
+  color: #bfd6d8 !important;
+  font-size: clamp(15px, .92vw, 18px) !important;
+  line-height: 1.55 !important;
+}
+
+.hrv-photo-album-v2 .hrv-carousel {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0;
+  padding: 10px;
+  overflow: hidden;
+  border: 1px solid rgb(181 248 238 / 18%);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 12%), rgb(255 255 255 / 4%)),
+    rgb(5 24 34 / 62%);
+  box-shadow:
+    0 30px 72px rgb(0 8 15 / 36%),
+    0 0 56px rgb(72 211 199 / 10%),
+    inset 0 1px 0 rgb(255 255 255 / 19%);
+}
+
+.hrv-photo-album-v2 .hrv-carousel__stage {
+  aspect-ratio: 2.08;
+  min-height: 0;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 50% 48%, rgb(76 191 185 / 13%), transparent 30%),
+    linear-gradient(135deg, #0a2632, #12293c 54%, #112d37);
+  box-shadow: inset 0 0 46px rgb(0 0 0 / 28%);
+}
+
+.hrv-photo-album-v2 .hrv-carousel__controls {
+  min-height: 54px;
+  color: #cfe5e6;
+}
+
+.hrv-photo-album-v2 .hrv-carousel__status {
+  color: #c7dcde !important;
+  font-weight: 720;
+}
+
+.hrv-photo-album-v2 .hrv-carousel .hrv-icon-button {
+  border-color: rgb(191 244 238 / 18%);
+  color: #dcf7f3;
+  background: rgb(14 48 60 / 82%);
+  box-shadow: 0 8px 20px rgb(0 9 15 / 22%);
+}
+
+.hrv-photo-album-v2 .hrv-carousel .hrv-icon-button:is(:hover, :focus-visible) {
+  color: #092530;
+  background: #9ee9df;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.hrv-photo-album-v2 .hrv-carousel__pause[aria-pressed="true"] {
+  color: #092530;
+  background: #ffd27e;
+  box-shadow: 0 8px 24px rgb(255 184 72 / 22%);
+}
+
+/* --------------------------------------------------------------------------
+   Current-year album shelf: album COVERS, not two giant feature billboards.
+   At the 1920x911 review viewport, 4 current albums sit in one row and a fifth
+   can join them without changing the design language.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-albums-section {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(46px, 4.7vw, 78px) clamp(28px, 4.8vw, 92px) clamp(62px, 5.6vw, 94px);
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(circle at 7% 16%, rgb(64 194 179 / 15%), transparent 26%),
+    radial-gradient(circle at 93% 12%, rgb(132 107 212 / 16%), transparent 27%),
+    linear-gradient(180deg, rgb(9 35 45 / 94%) 0%, rgb(10 42 49 / 96%) 55%, rgb(8 30 39 / 98%) 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(134 225 214 / 10%),
+    inset 0 -1px 0 rgb(0 0 0 / 28%);
+}
+
+.hrv-photo-album-v2 .hrv-albums-section::before {
+  width: 860px;
+  height: 860px;
+  top: -580px;
+  right: -180px;
+  border: 1px solid rgb(120 222 212 / 8%);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 100px rgb(72 201 192 / 2%),
+    0 0 0 210px rgb(149 116 219 / 2%);
+  animation: hrv-album-room-ring 26s linear infinite;
+}
+
+.hrv-photo-album-v2 .hrv-albums-section::after {
+  inset: 0;
+  opacity: .34;
+  background-image:
+    radial-gradient(circle, rgb(126 236 222 / 22%) 0 1px, transparent 1.4px),
+    radial-gradient(circle, rgb(184 153 235 / 16%) 0 1px, transparent 1.4px);
+  background-size: 146px 146px, 211px 211px;
+  background-position: 22px 18px, 88px 74px;
+  mask-image: linear-gradient(105deg, black, transparent 33%, transparent 68%, black);
+  animation: hrv-album-room-dust 24s linear infinite;
+}
+
+@keyframes hrv-album-room-ring {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes hrv-album-room-dust {
+  to { background-position: 168px 90px, -124px 180px; }
+}
+
+.hrv-photo-album-v2 .hrv-albums-section .hrv-section-heading {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto clamp(30px, 3vw, 46px);
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.hrv-photo-album-v2 .hrv-albums-section .hrv-eyebrow {
+  color: #77dacd !important;
+}
+
+.hrv-photo-album-v2 .hrv-albums-section .hrv-section-title {
+  margin-top: 7px !important;
+  color: #f5ffff !important;
+  font-size: clamp(38px, 3.1vw, 56px) !important;
+  text-shadow: 0 8px 30px rgb(0 11 18 / 34%);
+}
+
+.hrv-photo-album-v2 .hrv-albums-section .hrv-button--ghost {
+  flex: 0 0 auto;
+  border: 1px solid rgb(141 230 219 / 28%);
+  color: #eafffb !important;
+  background: rgb(11 49 58 / 76%);
+  box-shadow: 0 12px 28px rgb(0 9 15 / 20%);
+}
+
+.hrv-photo-album-v2 .hrv-albums-section .hrv-button--ghost:is(:hover, :focus-visible) {
+  border-color: rgb(175 249 238 / 68%);
+  color: #08232c !important;
+  background: #a6ece2;
+  transform: translateY(-3px);
+}
+
+.hrv-photo-album-v2 .hrv-album-row {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 300px));
+  justify-content: center;
+  gap: clamp(24px, 2vw, 34px);
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.hrv-photo-album-v2 .hrv-album-card {
+  --theme-deep: #1c5f65;
+  --theme-mid: #5fa9a6;
+  --theme-soft: #d9f0ec;
+  --theme-body: #effaf7;
+  --theme-ink: #173d43;
+  --theme-line: rgb(117 222 208 / 24%);
+  --theme-shadow: rgb(0 8 13 / 34%);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-rows: auto minmax(98px, auto);
+  min-width: 0;
+  min-height: 0 !important;
+  overflow: visible;
+  border: 0;
+  border-radius: 24px;
+  color: var(--theme-ink) !important;
+  background: transparent;
+  box-shadow: 0 22px 52px var(--theme-shadow);
+  transform: perspective(900px) translate3d(0, 0, 0) rotateX(0deg);
+  transform-origin: 50% 85%;
+  transition:
+    transform 360ms cubic-bezier(.2, .76, .2, 1),
+    box-shadow 360ms ease,
+    filter 360ms ease;
+}
+
+.hrv-photo-album-v2 .hrv-album-card::before {
+  z-index: 7;
+  inset: -11px;
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--theme-mid) 45%, transparent);
+  background: none;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 15%),
+    0 0 30px color-mix(in srgb, var(--theme-mid) 18%, transparent);
+  opacity: .74;
+  transition: opacity 320ms ease, transform 420ms cubic-bezier(.2, .8, .2, 1), box-shadow 320ms ease;
+}
+
+.hrv-photo-album-v2 .hrv-album-card::after {
+  z-index: -1;
+  inset: -18px;
+  border-radius: 38px;
+  background: radial-gradient(circle at 50% 60%, color-mix(in srgb, var(--theme-mid) 42%, transparent), transparent 66%);
+  filter: blur(18px);
+  opacity: .33;
+  transition: opacity 320ms ease, transform 420ms ease;
+}
+
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) {
+  transform: perspective(900px) translate3d(0, -11px, 0) rotateX(1.8deg) scale(1.018);
+  box-shadow: 0 34px 72px color-mix(in srgb, var(--theme-shadow) 88%, transparent);
+  filter: saturate(1.035);
+}
+
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible)::before {
+  opacity: 1;
+  transform: scale(1.025);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 24%),
+    0 0 42px color-mix(in srgb, var(--theme-mid) 28%, transparent);
+}
+
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible)::after {
+  opacity: .55;
+  transform: scale(1.08);
+}
+
+.hrv-photo-album-v2 .hrv-album-card:focus-visible {
+  outline: 3px solid #d9fff8;
+  outline-offset: 9px;
+}
+
+.hrv-photo-album-v2 .hrv-album-card__media {
+  position: relative;
+  z-index: 2;
+  display: block;
+  aspect-ratio: 1.45;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--theme-mid) 42%, transparent);
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+  background: var(--theme-soft);
+  isolation: isolate;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 45%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card__media::before {
+  z-index: 4;
+  inset: 8px;
+  border: 1px solid rgb(255 255 255 / 46%);
+  border-radius: 17px 17px 9px 9px;
+  box-shadow: inset 0 0 0 3px rgb(12 40 46 / 8%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card__media::after {
+  z-index: 3;
+  background: linear-gradient(180deg, transparent 68%, rgb(3 18 25 / 27%));
+}
+
+.hrv-photo-album-v2 .hrv-album-card__image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  filter: saturate(1.035) contrast(1.015);
+  transition: transform 780ms cubic-bezier(.16, .78, .2, 1), filter 420ms ease;
+}
+
+.hrv-photo-album-v2 .hrv-album-card:is(:hover, :focus-visible) .hrv-album-card__image {
+  transform: scale(1.055);
+  filter: saturate(1.09) contrast(1.035);
+}
+
+.hrv-photo-album-v2 .hrv-album-card__body {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  min-height: 98px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  overflow: hidden;
+  padding: 16px 18px 17px;
+  border: 1px solid color-mix(in srgb, var(--theme-mid) 42%, transparent);
+  border-top: 0;
+  border-radius: 0 0 24px 24px;
+  color: var(--theme-ink);
+  background:
+    radial-gradient(circle at 90% 20%, color-mix(in srgb, var(--theme-mid) 13%, transparent), transparent 38%),
+    var(--theme-body);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 62%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card__title {
+  position: relative;
+  z-index: 2;
+  color: inherit !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(20px, 1.35vw, 25px) !important;
+  font-weight: 650;
+  letter-spacing: -.025em;
+  line-height: 1.05 !important;
+}
+
+.hrv-photo-album-v2 .hrv-album-card__count {
+  position: relative;
+  z-index: 2;
+  color: color-mix(in srgb, var(--theme-ink) 68%, white) !important;
+  font-size: 13px !important;
+  font-weight: 760;
+  letter-spacing: .025em;
+}
+
+/* Runtime NL Asset art lives outside the photograph safe zone. */
+.hrv-photo-album-v2 .hrv-album-card__art {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hrv-photo-album-v2 .hrv-album-card__art-image {
+  position: absolute;
+  display: block;
+  max-width: none !important;
+  object-fit: contain;
+  transform-origin: 50% 70%;
+  filter: drop-shadow(0 8px 12px rgb(0 0 0 / 20%));
+  transition:
+    transform 520ms cubic-bezier(.18, .8, .2, 1),
+    filter 420ms ease,
+    opacity 420ms ease;
+}
+
+/* Pumpkin Patch: warm paper/orchard album with moving autumn edge art. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="pumpkin-patch"] {
+  --theme-deep: #6d3c1d;
+  --theme-mid: #df8b3f;
+  --theme-soft: #f2d6ad;
+  --theme-body: #fff0d5;
+  --theme-ink: #56321f;
+  --theme-line: rgb(222 143 72 / 38%);
+  --theme-shadow: rgb(60 25 8 / 34%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="pumpkin-patch"]::before {
+  border-color: rgb(242 178 98 / 46%);
+  background:
+    radial-gradient(ellipse 22px 10px at 7% 72%, rgb(134 112 55 / 62%) 0 68%, transparent 72%),
+    radial-gradient(ellipse 20px 9px at 95% 25%, rgb(169 88 40 / 72%) 0 68%, transparent 72%),
+    linear-gradient(110deg, transparent 0 22%, rgb(242 205 134 / 19%) 22.5% 23%, transparent 23.5% 76%, rgb(239 161 75 / 15%) 76.5% 77%, transparent 77.5%);
+  box-shadow: 0 0 34px rgb(228 126 49 / 16%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="pumpkin-patch"] .hrv-album-card__art-image--1 {
+  width: 118px;
+  right: -45px;
+  top: -34px;
+  opacity: .92;
+  transform: rotate(8deg);
+  animation: hrv-harvest-breeze 5.2s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="pumpkin-patch"]:is(:hover, :focus-visible) .hrv-album-card__art-image--1 {
+  transform: translate3d(-6px, -7px, 0) rotate(2deg) scale(1.08);
+  filter: drop-shadow(0 14px 18px rgb(80 34 9 / 28%));
+}
+
+@keyframes hrv-harvest-breeze {
+  0%, 100% { transform: rotate(8deg) translate3d(0, 0, 0); }
+  50% { transform: rotate(3deg) translate3d(-3px, 5px, 0); }
+}
+
+/* Science Museum: luminous glass album with instrument activation. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="science-museum"] {
+  --theme-deep: #183764;
+  --theme-mid: #58c3dc;
+  --theme-soft: #d9eef4;
+  --theme-body: #e8f7fa;
+  --theme-ink: #173650;
+  --theme-line: rgb(82 193 219 / 38%);
+  --theme-shadow: rgb(0 20 50 / 40%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="science-museum"]::before {
+  border-color: rgb(94 221 239 / 48%);
+  background:
+    linear-gradient(90deg, transparent 0 20%, rgb(94 229 238 / 0%) 20%, rgb(94 229 238 / 36%) 50%, rgb(94 229 238 / 0%) 80%, transparent 80%) 0 0 / 180% 1px no-repeat,
+    radial-gradient(circle at 9% 91%, rgb(100 213 231 / 35%) 0 2px, transparent 3px),
+    radial-gradient(circle at 93% 8%, rgb(169 145 245 / 42%) 0 2px, transparent 3px);
+  box-shadow: 0 0 38px rgb(65 198 222 / 18%);
+  animation: hrv-science-scan 4.6s linear infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="science-museum"] .hrv-album-card__art-image--1 {
+  width: 106px;
+  right: -35px;
+  bottom: 42px;
+  transform: rotate(5deg);
+  animation: hrv-instrument-float 6s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="science-museum"] .hrv-album-card__art-image--2 {
+  width: 92px;
+  left: -31px;
+  top: -24px;
+  opacity: .52;
+  mix-blend-mode: screen;
+  transform: rotate(-12deg);
+  animation: hrv-glass-drift 8s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="science-museum"]:is(:hover, :focus-visible) .hrv-album-card__art-image--1 {
+  transform: translate3d(-8px, -10px, 0) rotate(-2deg) scale(1.1);
+  filter: drop-shadow(0 0 20px rgb(80 221 236 / 48%));
+}
+
+@keyframes hrv-science-scan {
+  0% { background-position: -180% 0, 0 0, 0 0; }
+  100% { background-position: 180% 0, 0 0, 0 0; }
+}
+
+@keyframes hrv-instrument-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(5deg); }
+  50% { transform: translate3d(-2px, -7px, 0) rotate(1deg); }
+}
+
+@keyframes hrv-glass-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-12deg) scale(1); opacity: .46; }
+  50% { transform: translate3d(5px, 5px, 0) rotate(-5deg) scale(1.06); opacity: .64; }
+}
+
+/* Woodland & Fungi: field-journal green with dimensional mushroom accent. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"] {
+  --theme-deep: #2f5038;
+  --theme-mid: #789a65;
+  --theme-soft: #d9e7cf;
+  --theme-body: #edf3df;
+  --theme-ink: #2e4632;
+  --theme-line: rgb(102 139 81 / 38%);
+  --theme-shadow: rgb(12 35 17 / 36%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"]::before {
+  border-color: rgb(152 182 112 / 42%);
+  background:
+    radial-gradient(circle at 5% 22%, rgb(181 218 142 / 40%) 0 2px, transparent 3px),
+    radial-gradient(circle at 93% 74%, rgb(220 235 158 / 32%) 0 1.5px, transparent 2.5px),
+    linear-gradient(130deg, transparent 0 47%, rgb(136 171 98 / 13%) 47.5% 48%, transparent 48.5%);
+  box-shadow: 0 0 38px rgb(115 159 79 / 15%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"] .hrv-album-card__art-image--1 {
+  width: 116px;
+  left: -39px;
+  bottom: -24px;
+  transform: rotate(-7deg);
+  animation: hrv-fungi-breathe 5.8s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"] .hrv-album-card__art::before,
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"] .hrv-album-card__art::after {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  content: "";
+  background: #d5ef9c;
+  box-shadow: 0 0 13px #d5ef9c;
+  animation: hrv-spore-rise 4.8s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"] .hrv-album-card__art::before {
+  left: 22px;
+  bottom: 56px;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"] .hrv-album-card__art::after {
+  left: 63px;
+  bottom: 38px;
+  animation-delay: -2.1s;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="woodland-fungi"]:is(:hover, :focus-visible) .hrv-album-card__art-image--1 {
+  transform: translate3d(7px, -7px, 0) rotate(-2deg) scale(1.08);
+}
+
+@keyframes hrv-fungi-breathe {
+  0%, 100% { transform: rotate(-7deg) translate3d(0, 0, 0); }
+  50% { transform: rotate(-4deg) translate3d(2px, -5px, 0); }
+}
+
+@keyframes hrv-spore-rise {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0) scale(.7); }
+  40% { opacity: .85; }
+  100% { opacity: 0; transform: translate3d(12px, -38px, 0) scale(1.25); }
+}
+
+/* Zinnia Garden: greenhouse trellis + flowers, with petal-light motion. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="zinnia-garden"] {
+  --theme-deep: #315a46;
+  --theme-mid: #db7c9a;
+  --theme-soft: #e3efdc;
+  --theme-body: #fff0f1;
+  --theme-ink: #4d3b43;
+  --theme-line: rgb(211 119 150 / 32%);
+  --theme-shadow: rgb(42 25 37 / 34%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="zinnia-garden"]::before {
+  border-color: rgb(235 155 178 / 46%);
+  background:
+    linear-gradient(90deg, rgb(80 127 88 / 0%) 0 12%, rgb(80 127 88 / 18%) 12.5% 13%, transparent 13.5% 87%, rgb(80 127 88 / 18%) 87.5% 88%, transparent 88.5%),
+    linear-gradient(0deg, transparent 0 16%, rgb(80 127 88 / 12%) 16.5% 17%, transparent 17.5% 83%, rgb(80 127 88 / 12%) 83.5% 84%, transparent 84.5%);
+  box-shadow: 0 0 38px rgb(221 118 156 / 14%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="zinnia-garden"] .hrv-album-card__art-image--1 {
+  width: 104px;
+  right: -35px;
+  top: -31px;
+  transform: rotate(8deg);
+  animation: hrv-garden-sway 5.4s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="zinnia-garden"] .hrv-album-card__art-image--2 {
+  width: 92px;
+  left: -31px;
+  bottom: 19px;
+  opacity: .82;
+  transform: rotate(-7deg);
+  animation: hrv-trellis-breathe 7s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="zinnia-garden"] .hrv-album-card__art::after {
+  position: absolute;
+  width: 11px;
+  height: 6px;
+  right: 32px;
+  top: 72px;
+  border-radius: 80% 20% 80% 20%;
+  content: "";
+  background: rgb(244 160 184 / 78%);
+  box-shadow:
+    -18px 18px 0 -2px rgb(248 201 138 / 72%),
+    13px 32px 0 -3px rgb(244 185 205 / 65%);
+  animation: hrv-petal-drift 5.8s ease-in-out infinite;
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="zinnia-garden"]:is(:hover, :focus-visible) .hrv-album-card__art-image--1 {
+  transform: translate3d(-5px, -7px, 0) rotate(2deg) scale(1.08);
+}
+
+@keyframes hrv-garden-sway {
+  0%, 100% { transform: rotate(8deg) translate3d(0, 0, 0); }
+  50% { transform: rotate(3deg) translate3d(-3px, 4px, 0); }
+}
+
+@keyframes hrv-trellis-breathe {
+  0%, 100% { transform: rotate(-7deg) scale(1); opacity: .78; }
+  50% { transform: rotate(-4deg) scale(1.035); opacity: .92; }
+}
+
+@keyframes hrv-petal-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: .48; }
+  50% { transform: translate3d(-11px, 17px, 0) rotate(110deg); opacity: .94; }
+}
+
+/* Neutral fallback: intentionally beautiful instead of hashed theme roulette. */
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="memory-gallery"] {
+  --theme-deep: #294f5c;
+  --theme-mid: #88c7c2;
+  --theme-soft: #dcecea;
+  --theme-body: #eef7f5;
+  --theme-ink: #28424a;
+  --theme-line: rgb(107 184 179 / 34%);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="memory-gallery"] .hrv-album-card__art-image--1 {
+  width: 94px;
+  right: -33px;
+  top: -27px;
+  opacity: .75;
+  transform: rotate(7deg);
+}
+
+.hrv-photo-album-v2 .hrv-album-card[data-theme-id="memory-gallery"] .hrv-album-card__art-image--2 {
+  width: 88px;
+  left: -27px;
+  bottom: 10px;
+  opacity: .44;
+  mix-blend-mode: multiply;
+  transform: rotate(-9deg);
+}
+
+/* --------------------------------------------------------------------------
+   Previous-year doorway: treasured archive destination, not giant utility bar.
+   -------------------------------------------------------------------------- */
+
+.hrv-photo-album-v2 .hrv-prior-year {
+  position: relative;
+  isolation: isolate;
+  width: min(calc(100% - 56px), 1180px);
+  max-width: 1180px;
+  margin: clamp(52px, 5vw, 82px) auto clamp(62px, 6vw, 98px);
+  padding: clamp(27px, 3vw, 40px) clamp(30px, 4vw, 54px);
+  overflow: hidden;
+  border: 1px solid rgb(221 193 131 / 24%);
+  border-radius: 28px;
+  color: #f7f2e8;
+  background:
+    radial-gradient(circle at 92% 10%, rgb(247 209 132 / 14%), transparent 28%),
+    linear-gradient(120deg, rgb(13 43 50 / 94%), rgb(36 50 65 / 96%) 55%, rgb(59 48 73 / 94%));
+  box-shadow:
+    0 28px 70px rgb(0 10 16 / 30%),
+    inset 0 1px 0 rgb(255 255 255 / 10%);
+}
+
+.hrv-photo-album-v2 .hrv-prior-year::before {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -96px;
+  bottom: -126px;
+  border: 1px solid rgb(255 211 130 / 22%);
+  border-radius: 50%;
+  content: "";
+  box-shadow: 0 0 0 38px rgb(255 211 130 / 3%), 0 0 0 76px rgb(136 112 204 / 3%);
+  animation: hrv-archive-orbit 16s linear infinite;
+}
+
+@keyframes hrv-archive-orbit {
+  to { transform: rotate(360deg); }
+}
+
+.hrv-photo-album-v2 .hrv-prior-year .hrv-eyebrow {
+  color: #e9cb8b !important;
+}
+
+.hrv-photo-album-v2 .hrv-prior-year__title {
+  color: #fff9eb !important;
+}
+
+.hrv-photo-album-v2 .hrv-prior-year__copy {
+  max-width: 680px;
+  color: #ccd9d9 !important;
+}
+
+.hrv-photo-album-v2 .hrv-prior-year .hrv-button--light {
+  border: 1px solid rgb(255 219 147 / 38%);
+  color: #4a3821 !important;
+  background: #ffe3a7;
+  box-shadow: 0 10px 26px rgb(0 0 0 / 22%);
+}
+
+.hrv-photo-album-v2 .hrv-prior-year .hrv-button--light:is(:hover, :focus-visible) {
+  background: #fff0c8;
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive recomposition. Motion remains fully owned by the app for now;
+   no app-local reduced-motion branch is defined.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1450px) {
+  .hrv-photo-album-v2 .hrv-hero {
+    grid-template-columns: minmax(250px, .42fr) minmax(620px, 1.58fr);
+    padding-inline: clamp(26px, 3.2vw, 50px);
+  }
+
+  .hrv-photo-album-v2 .hrv-album-row {
+    grid-template-columns: repeat(auto-fit, minmax(245px, 285px));
+  }
+}
+
+@media (max-width: 1180px) {
+  .hrv-photo-album-v2 .hrv-hero {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding-top: 36px;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__copy {
+    max-width: 760px;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__title {
+    max-width: 760px;
+  }
+
+  .hrv-photo-album-v2 .hrv-carousel {
+    width: min(100%, 1040px);
+    margin-inline: auto;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-row {
+    grid-template-columns: repeat(auto-fit, minmax(235px, 280px));
+  }
+}
+
+@media (max-width: 760px) {
+  .hrv-photo-album-v2 .hrv-hero {
+    padding: 28px 14px 30px;
+    gap: 22px;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__title {
+    font-size: clamp(42px, 13vw, 58px) !important;
+  }
+
+  .hrv-photo-album-v2 .hrv-hero__description {
+    margin-top: 12px !important;
+  }
+
+  .hrv-photo-album-v2 .hrv-carousel {
+    padding: 7px;
+    border-radius: 21px;
+  }
+
+  .hrv-photo-album-v2 .hrv-carousel__stage {
+    aspect-ratio: 1.42;
+    border-radius: 16px;
+  }
+
+  .hrv-photo-album-v2 .hrv-albums-section {
+    padding: 40px 14px 54px;
+  }
+
+  .hrv-photo-album-v2 .hrv-albums-section .hrv-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 34px;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 14px;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card {
+    border-radius: 20px;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__media {
+    aspect-ratio: 1.22;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__body {
+    min-height: 86px;
+    padding: 13px 12px 14px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__title {
+    font-size: clamp(17px, 4.8vw, 21px) !important;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__count {
+    font-size: 12px !important;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__art-image {
+    transform: scale(.78);
+  }
+
+  .hrv-photo-album-v2 .hrv-prior-year {
+    width: calc(100% - 28px);
+    margin-block: 44px 58px;
+    padding: 26px 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hrv-photo-album-v2 .hrv-album-row {
+    grid-template-columns: 1fr;
+    width: min(100%, 342px);
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__media {
+    aspect-ratio: 1.48;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__body {
+    min-height: 90px;
+    padding-inline: 16px;
+  }
+
+  .hrv-photo-album-v2 .hrv-album-card__art-image {
+    transform: scale(.86);
+  }
+}
