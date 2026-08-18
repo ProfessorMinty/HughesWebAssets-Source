@@ -1,9 +1,10 @@
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { PHOTO_ALBUM_THEME_RECIPES } from "../apps/photo-album/src/theme-recipes";
 import { themeForAlbumName } from "../apps/photo-album/src/domain/albums";
 
-const read = (path: string): string => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+const read = (path: string): string => readFileSync(resolve(process.cwd(), path), "utf8");
 
 describe("Photo Album visual completion contract", () => {
   it("maps the four synthetic visual albums deliberately and keeps unknown albums neutral", () => {
@@ -57,8 +58,10 @@ describe("Photo Album visual completion contract", () => {
     expect(hostCss).toContain("100dvw");
   });
 
-  it("targets five compact album columns at the wide reference canvas", () => {
+  it("centers four current covers and expands to five when a fifth album exists", () => {
     const visualCss = read("apps/photo-album/src/styles/photo-album-complete.css");
+    expect(visualCss).toContain("grid-template-columns: repeat(4, minmax(0, 292px));");
+    expect(visualCss).toContain(".hrv-album-row:has(> .hrv-album-card:nth-child(5))");
     expect(visualCss).toContain("grid-template-columns: repeat(5, minmax(0, 292px));");
     expect(visualCss).toContain("@media (max-width: 1640px)");
   });
