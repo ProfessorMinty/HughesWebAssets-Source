@@ -25,8 +25,8 @@ jobs:
           ref: qa/photo-album-visual-complete-2026-08-18
           path: qa-control
 
-      - name: Apply deterministic four-moment magic completion patch
-        run: python qa-control/tools/photo-album-magic-completion-patch.py
+      - name: Apply robust four-moment magic completion patch v2
+        run: python qa-control/tools/photo-album-magic-completion-patch-v2.py
 
       - name: Set up Node
         uses: actions/setup-node@v4
