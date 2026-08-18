@@ -108,7 +108,7 @@ jobs:
         run: |
           mkdir -p qa/photo-album/visual-complete-2026-08-18
           rm -f qa/photo-album/visual-complete-2026-08-18/*
-          cat > /tmp/capture.mjs <<'EOF'
+          cat > .photo-album-capture.mjs <<'EOF'
           import { chromium } from 'playwright-core';
           import fs from 'node:fs/promises';
 
@@ -181,7 +181,8 @@ jobs:
           await fs.writeFile(`${out}/exercised.json`,JSON.stringify(exercised,null,2));
           await p.close(); await browser.close();
           EOF
-          node /tmp/capture.mjs
+          node .photo-album-capture.mjs
+          rm -f .photo-album-capture.mjs
 
       - name: Create compact review JPGs
         shell: bash
