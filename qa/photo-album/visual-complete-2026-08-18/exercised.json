@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "pumpkin-patch",
+    "theme": "harvest",
+    "count": 77
+  },
+  {
+    "slug": "science-museum",
+    "theme": "discovery",
+    "count": 41
+  },
+  {
+    "slug": "mushroom-exploration",
+    "theme": "woodland",
+    "count": 7
+  },
+  {
+    "slug": "zinnia-garden",
+    "theme": "garden",
+    "count": 19
+  }
+]
