@@ -1,0 +1,89 @@
+/* Photo loading should look intentional while the synthetic/runtime image bytes arrive. */
+
+.hrv-photo-card {
+  background:
+    radial-gradient(circle at 24% 18%, color-mix(in srgb, var(--photo-accent) 20%, transparent), transparent 34%),
+    var(--hrv-theme-art-primary, none) 74% 52% / min(54%, 150px) auto no-repeat,
+    linear-gradient(145deg, #122a31, #071a22);
+}
+
+.hrv-photo-card.is-photo-loading {
+  cursor: wait;
+}
+
+.hrv-photo-card.is-photo-loading::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: .38;
+  background: linear-gradient(112deg, transparent 20%, rgb(255 255 255 / 10%) 43%, transparent 64%);
+  transform: translateX(-120%);
+  animation: hrv-photo-loading-light 2.8s ease-in-out infinite;
+}
+
+.hrv-photo-card__image {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  background: transparent !important;
+  transition: opacity 280ms ease, transform 190ms ease;
+}
+
+.hrv-photo-card.is-photo-loaded .hrv-photo-card__image {
+  opacity: 1;
+}
+
+.hrv-album-card__image {
+  opacity: 0;
+}
+
+.hrv-album-card__image.is-loaded {
+  opacity: 1;
+}
+
+.hrv-carousel__slide {
+  background:
+    radial-gradient(circle at 45% 36%, rgb(108 230 216 / 14%), transparent 34%),
+    radial-gradient(circle at 68% 68%, rgb(158 129 230 / 11%), transparent 36%),
+    linear-gradient(145deg, #0a2a33, #071923);
+}
+
+.hrv-carousel__slide.is-photo-loading::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: .28;
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 45%) 0 1px, transparent 1.6px) 0 0 / 42px 42px,
+    linear-gradient(115deg, transparent 24%, rgb(112 231 218 / 11%) 46%, transparent 66%);
+  animation: hrv-memory-loading 4s linear infinite;
+}
+
+.hrv-carousel__image {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  background: transparent !important;
+  transition: opacity 320ms ease;
+}
+
+.hrv-carousel__slide.is-photo-loaded .hrv-carousel__image {
+  opacity: 1;
+}
+
+.hrv-carousel__slide.is-photo-error .hrv-carousel__image {
+  opacity: 0;
+}
+
+@keyframes hrv-photo-loading-light {
+  0%, 18% { transform: translateX(-120%); }
+  72%, 100% { transform: translateX(120%); }
+}
+
+@keyframes hrv-memory-loading {
+  to { background-position: 36px 28px, 130% 0; }
+}
