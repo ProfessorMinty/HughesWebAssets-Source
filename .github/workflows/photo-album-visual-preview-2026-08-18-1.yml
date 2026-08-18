@@ -1,0 +1,48 @@
+name: Stage Photo Album visual preview 2026.08.18.1
+
+on:
+  push:
+    branches:
+      - photo-album-visual-redesign-v3
+    paths:
+      - ".github/workflows/photo-album-visual-preview-2026-08-18-1.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  verify-build-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out visual redesign branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-redesign-v3
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify tests
+        run: npm run test
+
+      - name: Typecheck and build
+        run: npm run build
+
+      - name: Stage immutable visual preview release
+        run: node tools/stage-photo-album-release.mjs 2026.08.18.1
+
+      - name: Commit preview artifacts to visual redesign branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/photo-album/2026.08.18.1
+          git commit -m "Stage Photo Album visual preview 2026.08.18.1"
+          git push origin HEAD:photo-album-visual-redesign-v3
