@@ -1,4 +1,5 @@
 import { themeForAlbumName } from "../domain/albums";
+import { applyThemeAssets } from "../theme-recipes";
 import type { PhotoRecord } from "../types";
 import { clamp, createElement } from "../utils/dom";
 
@@ -67,10 +68,10 @@ export class PhotoGrid {
       item.setAttribute("aria-setsize", String(this.photos.length));
       item.dataset.theme = theme;
 
-      const button = createElement("button", "hrv-photo-card");
+      const button = createElement("button", "hrv-photo-card is-photo-loading");
       button.type = "button";
       button.dataset.photoIndex = String(index);
-      button.dataset.theme = theme;
+      applyThemeAssets(button, theme);
       button.setAttribute("aria-label", `Open photo ${index + 1} of ${this.photos.length} from ${photo.albumName}`);
 
       const image = createElement("img", "hrv-photo-card__image");
@@ -80,6 +81,10 @@ export class PhotoGrid {
       image.decoding = "async";
       image.setAttribute("fetchpriority", index < EAGER_IMAGE_COUNT ? "auto" : "low");
       if (image.loading === "lazy") this.preloadObserver?.observe(image);
+      image.addEventListener("load", () => {
+        button.classList.remove("is-photo-loading");
+        button.classList.add("is-photo-loaded");
+      });
       image.addEventListener("error", () => {
         this.preloadObserver?.unobserve(image);
         button.disabled = true;
