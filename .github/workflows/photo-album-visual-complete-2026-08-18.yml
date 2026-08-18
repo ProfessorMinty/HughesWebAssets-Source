@@ -26,6 +26,21 @@ jobs:
           ref: photo-album-visual-complete-2026-08-18
           fetch-depth: 0
 
+      - name: Repair the one known host-scope leak before verification
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("apps/photo-album/src/styles/photo-album-complete.css")
+          text = path.read_text(encoding="utf-8")
+          old = ":root {\n  color-scheme: dark;\n}\n\n"
+          new = ".hrv-photo-album {\n  color-scheme: dark;\n}\n\n"
+          if old in text:
+              path.write_text(text.replace(old, new, 1), encoding="utf-8")
+          elif new not in text:
+              raise SystemExit("Could not prove Photo Album color-scheme is mount-scoped.")
+          PY
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -50,7 +65,7 @@ jobs:
           fi
 
       - name: Stage immutable visual candidate release
-        run: node tools/stage-photo-album-release.mjs 2026.08.18.3
+        run: node tools/stage-photo-album-release.mjs 2026.08.18.4
 
       - name: Start local preview
         shell: bash
@@ -152,6 +167,14 @@ jobs:
           EOF
           node /tmp/capture-photo-album.mjs
 
+      - name: Create compact human-review images
+        shell: bash
+        run: |
+          for png in qa/photo-album/visual-complete-2026-08-18/*.png; do
+            base="${png%.png}"
+            ffmpeg -loglevel error -y -i "$png" -vf 'scale=960:-2' -q:v 8 "${base}-review.jpg"
+          done
+
       - name: Enforce visual geometry invariants from rendered reference viewport
         shell: bash
         run: |
@@ -171,11 +194,11 @@ jobs:
           console.log('Rendered 1920x911 geometry passed:', { rootWidth: data.root.width, memoryStageHeight: data.memoryStage.height, coverWidth: firstFour[0]?.width });
           EOF
 
-      - name: Commit immutable release and QA evidence
+      - name: Commit corrected source, immutable release and QA evidence
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add releases/photo-album/2026.08.18.3 qa/photo-album/visual-complete-2026-08-18
-          git commit -m "Stage Photo Album visual candidate 2026.08.18.3 with QA evidence"
+          git add apps/photo-album/src/styles/photo-album-complete.css releases/photo-album/2026.08.18.4 qa/photo-album/visual-complete-2026-08-18
+          git commit -m "Stage Photo Album visual candidate 2026.08.18.4 with QA evidence"
           git push origin HEAD:photo-album-visual-complete-2026-08-18
