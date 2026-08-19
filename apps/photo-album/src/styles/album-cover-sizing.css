@@ -11,7 +11,8 @@
 .hrv-album-card {
   width: 292px;
   max-width: 100%;
-  min-height: 338px;
+  height: 340px;
+  min-height: 340px;
   grid-template-rows: 202px 136px;
 }
 
@@ -67,8 +68,7 @@
   margin-top: 4px;
 }
 
-/* Keep the desktop cover contract intact through the older responsive overrides.
-   Five 292px covers plus four 18px gaps occupy 1532px, fitting the 1540px shelf. */
+/* Five 292px covers plus four 18px gaps occupy 1532px, fitting the wide shelf. */
 @media (min-width: 1321px) {
   .hrv-album-row,
   .hrv-album-row:has(> .hrv-album-card:nth-child(5)) {
@@ -82,13 +82,18 @@
   }
 }
 
-/* Tablet keeps the existing horizontal album shelf, but every cover still has
-   the same internal proportions instead of stretching its photo/title regions. */
+/* Tablet keeps the existing horizontal album shelf. Restore flex-start here so
+   the first cover begins on-screen instead of centering an overflowing flex row. */
 @media (max-width: 1040px) {
+  .hrv-album-row {
+    justify-content: flex-start;
+  }
+
   .hrv-album-card {
     flex: 0 0 292px;
     width: 292px;
-    min-height: 338px;
+    height: 340px;
+    min-height: 340px;
   }
 }
 
