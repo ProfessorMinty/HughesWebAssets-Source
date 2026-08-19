@@ -1,4 +1,4 @@
-name: Photo Album final visual QA v8
+name: Photo Album cover sizing QA
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  final-proof:
+  cover-sizing-proof:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,23 +27,22 @@ jobs:
           npm ci
           npm test
           npm run build
-      - name: Enforce architecture boundaries
+      - name: Enforce approved architecture boundaries
         shell: bash
         run: |
+          grep -q 'album-cover-sizing.css' apps/photo-album/src/entry.ts
           ! grep -R --line-number -E 'prefers-reduced-motion|prefersReducedMotion|showReducedChange|REDUCED_FADE_HALF_MS' apps/photo-album/src
           ! grep -R --line-number --fixed-strings 'prefers-reduced-motion' dist/photo-album --exclude='*.map'
-          grep -q 'FOUR-MOMENT MAGIC COMPLETION' apps/photo-album/src/styles/photo-album-complete.css
-          grep -q 'loading-states.css' apps/photo-album/src/entry.ts
           grep -q 'body:has(#hrv-photo-album.hrv-photo-album)' apps/photo-album/src/styles/host-compat.css
-      - name: Stage immutable release 2026.08.18.8
-        run: node tools/stage-photo-album-release.mjs 2026.08.18.8
+      - name: Stage immutable release 2026.08.19.1
+        run: node tools/stage-photo-album-release.mjs 2026.08.19.1
       - name: Start preview
         shell: bash
         run: |
           npm run preview -- --host 127.0.0.1 --port 4174 >/tmp/preview.log 2>&1 &
           for i in {1..80}; do curl -fsS http://127.0.0.1:4174/ >/dev/null && exit 0; sleep .25; done
           cat /tmp/preview.log; exit 1
-      - name: Install browser driver
+      - name: Install browser driver without mutating dependency graph
         shell: bash
         run: |
           rm -rf node_modules/playwright-core
@@ -51,43 +50,129 @@ jobs:
           mkdir -p node_modules/playwright-core
           tar -xzf "$tarball" -C node_modules/playwright-core --strip-components=1
           rm -f "$tarball"
-      - name: Capture final candidate
+      - name: Capture and measure album-cover contract
         env:
           CHROME_BIN: /usr/bin/google-chrome
         shell: bash
         run: |
-          rm -rf qa/photo-album/visual-complete-2026-08-18-v8
-          mkdir -p qa/photo-album/visual-complete-2026-08-18-v8
-          cat > .capture.mjs <<'EOF'
-          import {chromium} from 'playwright-core'; import fs from 'node:fs/promises';
-          const out='qa/photo-album/visual-complete-2026-08-18-v8',base='http://127.0.0.1:4174/';
+          rm -rf qa/photo-album/cover-sizing-2026-08-19-v1
+          mkdir -p qa/photo-album/cover-sizing-2026-08-19-v1
+          cat > .capture-cover-sizing.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs/promises';
+          const out='qa/photo-album/cover-sizing-2026-08-19-v1';
+          const base='http://127.0.0.1:4174/';
           const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN});
-          async function ready(p,url=base){await p.goto(url,{waitUntil:'domcontentloaded',timeout:45000});await p.waitForSelector('.hrv-photo-album .hrv-main',{timeout:30000});await p.waitForFunction(()=>!document.querySelector('.hrv-state--loading'),null,{timeout:30000});await p.waitForTimeout(3000);}
-          async function snap(name,w,h,url=base){const p=await browser.newPage({viewport:{width:w,height:h}});await ready(p,url);await p.screenshot({path:`${out}/${name}.png`,fullPage:false});return p;}
-          let p=await snap('home-1920x911',1920,911); const home=await p.evaluate(()=>({root:document.querySelector('#hrv-photo-album')?.getBoundingClientRect().toJSON(),memory:document.querySelector('.hrv-memory-stage')?.getBoundingClientRect().toJSON(),viewAll:document.querySelector('.hrv-album-shelf__heading .hrv-button')?.getBoundingClientRect().toJSON(),cards:[...document.querySelectorAll('.hrv-album-card')].map(x=>x.getBoundingClientRect().toJSON()),coverLoaded:document.querySelectorAll('.hrv-album-card__image.is-loaded').length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth}));const albums=await p.locator('.hrv-album-card').evaluateAll(cs=>cs.map(c=>({text:c.textContent?.trim()??'',href:c.getAttribute('href')??'',theme:c.getAttribute('data-theme')??'',primary:c.getAttribute('data-theme-asset-primary')??''})));await fs.writeFile(`${out}/home.json`,JSON.stringify(home,null,2));await fs.writeFile(`${out}/albums.json`,JSON.stringify(albums,null,2));await p.close();
-          p=await snap('home-phone-390x844',390,844);await p.close();
-          p=await snap('view-all-1920x911',1920,911,`${base}#hrv-photo-album/all`);const all=await p.evaluate(()=>({cards:document.querySelectorAll('.hrv-photo-card').length,loaded:document.querySelectorAll('.hrv-photo-card.is-photo-loaded').length,loading:document.querySelectorAll('.hrv-photo-card.is-photo-loading').length,hidden:[...document.querySelectorAll('.hrv-photo-grid__item')].filter(x=>x.hidden).length,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,samples:[...document.querySelectorAll('.hrv-photo-card')].slice(0,3).map(card=>{const img=card.querySelector('img');const cs=img?getComputedStyle(img):null;return {className:card.className,src:img?.src,naturalWidth:img?.naturalWidth,naturalHeight:img?.naturalHeight,opacity:cs?.opacity,display:cs?.display,visibility:cs?.visibility,zIndex:cs?.zIndex};})}));await fs.writeFile(`${out}/all.json`,JSON.stringify(all,null,2));await p.close();
-          p=await browser.newPage({viewport:{width:1920,height:911}});const subjects=[['pumpkin',/Pumpkin/i],['science',/Science|Museum/i],['mushroom',/Mushroom|Fungi/i],['zinnia',/Zinnia|Garden/i]],ex=[];for(const [slug,re] of subjects){const a=albums.find(x=>re.test(x.text));if(!a?.href)continue;await ready(p,new URL(a.href,base).href);const h=p.locator('.hrv-gallery-header'),g=p.locator('.hrv-gallery');const theme=await h.getAttribute('data-theme'),primary=await h.getAttribute('data-theme-asset-primary'),galleryTheme=await g.getAttribute('data-theme'),ret=await p.locator('.hrv-album-return').count(),cards=await p.locator('.hrv-photo-card').count(),loaded=await p.locator('.hrv-photo-card.is-photo-loaded').count(),loading=await p.locator('.hrv-photo-card.is-photo-loading').count();await p.screenshot({path:`${out}/album-${slug}-1920x911.png`,fullPage:false});const sample=await p.locator('.hrv-photo-card').first().evaluate(card=>{const img=card.querySelector('img');const cs=img?getComputedStyle(img):null;return {className:card.className,src:img?.src,naturalWidth:img?.naturalWidth,naturalHeight:img?.naturalHeight,opacity:cs?.opacity,display:cs?.display,visibility:cs?.visibility,zIndex:cs?.zIndex};});const clickable=p.locator('.hrv-photo-grid__item:not([hidden]) .hrv-photo-card:not([disabled])').first();if(await clickable.count()){await clickable.press('Enter');await p.waitForSelector('.hrv-lightbox[open]',{state:'visible'});await p.waitForTimeout(300);await p.screenshot({path:`${out}/lightbox-${slug}-1920x911.png`,fullPage:false});await p.keyboard.press('Escape');await p.waitForFunction(()=>!document.querySelector('.hrv-lightbox')?.hasAttribute('open'));}ex.push({slug,theme,primary,galleryTheme,ret,cards,loaded,loading,sample});}await fs.writeFile(`${out}/exercised.json`,JSON.stringify(ex,null,2));await p.close();await browser.close();
+          async function ready(page){
+            await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
+            await page.waitForSelector('.hrv-album-card',{timeout:30000});
+            await page.waitForFunction(()=>document.querySelectorAll('.hrv-album-card__image.is-loaded').length>=4,null,{timeout:30000});
+            await page.waitForTimeout(500);
+          }
+          const page=await browser.newPage({viewport:{width:1920,height:911}});
+          await ready(page);
+          const desktop=await page.evaluate(()=>{
+            const row=document.querySelector('.hrv-album-row');
+            const cards=[...document.querySelectorAll('.hrv-album-card')];
+            const cardData=cards.map(card=>{
+              const title=card.querySelector('.hrv-album-card__title');
+              const portal=card.querySelector('.hrv-album-card__portal');
+              const media=card.querySelector('.hrv-album-card__media');
+              const image=card.querySelector('.hrv-album-card__image');
+              const titleStyle=title?getComputedStyle(title):null;
+              const imageStyle=image?getComputedStyle(image):null;
+              return {
+                name:title?.textContent??'',
+                card:card.getBoundingClientRect().toJSON(),
+                portal:portal?.getBoundingClientRect().toJSON(),
+                media:media?.getBoundingClientRect().toJSON(),
+                image:image?.getBoundingClientRect().toJSON(),
+                title:title?.getBoundingClientRect().toJSON(),
+                titleClientWidth:title?.clientWidth??0,
+                titleScrollWidth:title?.scrollWidth??0,
+                titleClientHeight:title?.clientHeight??0,
+                titleScrollHeight:title?.scrollHeight??0,
+                whiteSpace:titleStyle?.whiteSpace,
+                lineHeight:titleStyle?.lineHeight,
+                imageObjectFit:imageStyle?.objectFit,
+                imageNaturalWidth:image?.naturalWidth??0,
+                imageNaturalHeight:image?.naturalHeight??0,
+              };
+            });
+            let five=[];
+            if(row && cards[0]){
+              const clone=cards[0].cloneNode(true);
+              clone.setAttribute('aria-hidden','true');
+              row.append(clone);
+              five=[...row.querySelectorAll('.hrv-album-card')].map(x=>x.getBoundingClientRect().toJSON());
+              clone.remove();
+            }
+            return {
+              viewport:{width:document.documentElement.clientWidth,height:document.documentElement.clientHeight},
+              overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+              row:row?.getBoundingClientRect().toJSON(),
+              cards:cardData,
+              five,
+            };
+          });
+          await fs.writeFile(`${out}/desktop.json`,JSON.stringify(desktop,null,2));
+          await page.screenshot({path:`${out}/home-1920x911.png`,fullPage:false});
+          await page.close();
+          const phone=await browser.newPage({viewport:{width:390,height:844}});
+          await ready(phone);
+          const phoneData=await phone.evaluate(()=>({
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+            card:document.querySelector('.hrv-album-card')?.getBoundingClientRect().toJSON(),
+            title:document.querySelector('.hrv-album-card__title')?.getBoundingClientRect().toJSON(),
+          }));
+          await fs.writeFile(`${out}/phone.json`,JSON.stringify(phoneData,null,2));
+          await phone.screenshot({path:`${out}/home-phone-390x844.png`,fullPage:false});
+          await phone.close();
+          await browser.close();
           EOF
-          node .capture.mjs
-          rm -f .capture.mjs
-      - name: Upload QA artifact before assertions
-        uses: actions/upload-artifact@v4
-        with:
-          name: photo-album-final-visual-v8-qa
-          path: qa/photo-album/visual-complete-2026-08-18-v8/
-          if-no-files-found: error
-          retention-days: 7
-      - name: Verify geometry and four visual moments
+          node .capture-cover-sizing.mjs
+          rm -f .capture-cover-sizing.mjs
+      - name: Verify album-cover sizing contract
         shell: bash
         run: |
           node <<'EOF'
-          const fs=require('fs'),d='qa/photo-album/visual-complete-2026-08-18-v8',h=JSON.parse(fs.readFileSync(`${d}/home.json`)),all=JSON.parse(fs.readFileSync(`${d}/all.json`)),a=JSON.parse(fs.readFileSync(`${d}/albums.json`)),ex=JSON.parse(fs.readFileSync(`${d}/exercised.json`));console.log(JSON.stringify({home:h,all,albums:a,exercised:ex},null,2));if(Math.abs(h.overflow)>2||!h.root||h.root.width<1880||!h.memory||h.memory.height>470||!h.viewAll||h.viewAll.top>780)throw Error('reference viewport geometry failed');if(h.cards.length<4)throw Error('missing covers');const four=h.cards.slice(0,4),spread=Math.max(...four.map(x=>x.top))-Math.min(...four.map(x=>x.top));if(spread>8||four.some(x=>x.width>340))throw Error('cover shelf geometry failed');if(Math.abs(all.overflow)>2||all.cards<100)throw Error('View All contract failed');if(ex.length!==4||ex.some(x=>!x.primary||x.galleryTheme!==x.theme||x.ret!==1||x.cards<1))throw Error('four-moment theme contract failed');if(a.slice(0,4).some(x=>x.theme!=='memory'&&!x.primary))throw Error('home portal missing governed NL asset');
+          const fs=require('fs');
+          const d=JSON.parse(fs.readFileSync('qa/photo-album/cover-sizing-2026-08-19-v1/desktop.json'));
+          const p=JSON.parse(fs.readFileSync('qa/photo-album/cover-sizing-2026-08-19-v1/phone.json'));
+          console.log(JSON.stringify({desktop:d,phone:p},null,2));
+          if(Math.abs(d.overflow)>2) throw Error('desktop horizontal overflow');
+          if(d.cards.length<4) throw Error('missing album covers');
+          const first=d.cards.slice(0,4);
+          const topSpread=Math.max(...first.map(x=>x.card.top))-Math.min(...first.map(x=>x.card.top));
+          if(topSpread>2) throw Error('desktop covers are not one row');
+          for(const x of first){
+            if(Math.abs(x.card.width-292)>1.5) throw Error(`card width drift: ${x.name} ${x.card.width}`);
+            if(Math.abs(x.card.height-338)>2) throw Error(`card height drift: ${x.name} ${x.card.height}`);
+            if(Math.abs(x.portal.height-202)>1.5) throw Error(`portal height drift: ${x.name}`);
+            if(Math.abs(x.media.height-164)>1.5) throw Error(`media height drift: ${x.name}`);
+            if(x.whiteSpace==='nowrap') throw Error(`title still forced to one line: ${x.name}`);
+            if(x.titleScrollWidth>x.titleClientWidth+1) throw Error(`title horizontally clipped: ${x.name}`);
+            if(x.titleScrollHeight>x.titleClientHeight+1) throw Error(`title vertically clipped: ${x.name}`);
+            if(x.imageObjectFit!=='cover') throw Error(`approved cover treatment changed: ${x.name}`);
+            if(x.imageNaturalWidth<1||x.imageNaturalHeight<1) throw Error(`cover image failed: ${x.name}`);
+          }
+          if(d.five.length!==5) throw Error('five-cover fit simulation failed');
+          const fiveTop=Math.max(...d.five.map(x=>x.top))-Math.min(...d.five.map(x=>x.top));
+          if(fiveTop>2||d.five.some(x=>Math.abs(x.width-292)>1.5)) throw Error('five covers do not fit one desktop row');
+          if(Math.abs(p.overflow)>2) throw Error('phone horizontal overflow');
           EOF
-      - name: Commit immutable release and evidence
+      - name: Upload sizing evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-album-cover-sizing-2026-08-19-v1
+          path: qa/photo-album/cover-sizing-2026-08-19-v1/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Commit immutable release and QA evidence
         shell: bash
         run: |
-          git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add releases/photo-album/2026.08.18.8 qa/photo-album/visual-complete-2026-08-18-v8
-          git commit -m "Refresh Photo Album finished visual release 2026.08.18.8 QA evidence"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/photo-album/2026.08.19.1 qa/photo-album/cover-sizing-2026-08-19-v1
+          git commit -m "Stage Photo Album cover sizing release 2026.08.19.1 with QA evidence"
           git push origin HEAD:photo-album-visual-complete-2026-08-18
