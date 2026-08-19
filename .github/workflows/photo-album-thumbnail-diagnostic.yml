@@ -26,6 +26,7 @@ jobs:
           rm -rf node_modules/playwright-core && mkdir -p node_modules/playwright-core
           tar -xzf "$tarball" -C node_modules/playwright-core --strip-components=1
           rm -f "$tarball"
+          mkdir -p qa-thumb-diag
           cat > .diag.mjs <<'EOF'
           import { chromium } from 'playwright-core';
           const browser=await chromium.launch({headless:true,executablePath:'/usr/bin/google-chrome'});
@@ -35,8 +36,17 @@ jobs:
           const href=await p.locator('.hrv-album-card').filter({hasText:'Pumpkin'}).first().getAttribute('href');
           await p.goto(new URL(href,'http://127.0.0.1:4174/').href,{waitUntil:'domcontentloaded'});
           await p.waitForSelector('.hrv-photo-card'); await p.waitForTimeout(3000);
-          const data=await p.locator('.hrv-photo-card').first().evaluate(card=>{const img=card.querySelector('img');const cs=img?getComputedStyle(img):null;const bcs=getComputedStyle(card);return {cardClass:card.className,cardBg:bcs.backgroundImage,imgSrc:img?.src,naturalWidth:img?.naturalWidth,naturalHeight:img?.naturalHeight,complete:img?.complete,opacity:cs?.opacity,display:cs?.display,visibility:cs?.visibility,zIndex:cs?.zIndex,position:cs?.position,width:cs?.width,height:cs?.height};});
+          const card=p.locator('.hrv-photo-card').first(); const img=card.locator('img');
+          const data=await card.evaluate(card=>{const img=card.querySelector('img');const cs=img?getComputedStyle(img):null;const bcs=getComputedStyle(card);return {cardClass:card.className,cardBg:bcs.backgroundImage,imgSrc:img?.src,naturalWidth:img?.naturalWidth,naturalHeight:img?.naturalHeight,complete:img?.complete,opacity:cs?.opacity,display:cs?.display,visibility:cs?.visibility,zIndex:cs?.zIndex,position:cs?.position,width:cs?.width,height:cs?.height};});
           console.log('THUMBNAIL_DIAGNOSTIC='+JSON.stringify(data));
+          await card.screenshot({path:'qa-thumb-diag/card.png'});
+          await img.screenshot({path:'qa-thumb-diag/img.png'});
+          const direct=await browser.newPage({viewport:{width:900,height:900}}); await direct.goto(data.imgSrc,{waitUntil:'load'}); await direct.screenshot({path:'qa-thumb-diag/direct.png',fullPage:false}); await direct.close();
           await browser.close();
           EOF
           node .diag.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: photo-album-thumbnail-diagnostic
+          path: qa-thumb-diag/
+          retention-days: 2
