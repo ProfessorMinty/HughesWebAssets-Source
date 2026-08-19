@@ -51,7 +51,11 @@ export class MemoryCarouselV2 {
     this.status.setAttribute("aria-live", "polite");
     const next = createIconButton("Next memory", "→", "hrv-icon-button");
     next.addEventListener("click", () => this.move("next"));
-    this.pauseButton = createIconButton("Pause featured memories", "Ⅱ", "hrv-icon-button");
+    this.pauseButton = createIconButton(
+      "Pause featured memories",
+      "Ⅱ",
+      "hrv-icon-button hrv-carousel__pause",
+    );
     this.pauseButton.setAttribute("aria-pressed", "false");
     this.pauseButton.addEventListener("click", () => this.togglePause());
     controls.append(previous, this.status, next, this.pauseButton);
