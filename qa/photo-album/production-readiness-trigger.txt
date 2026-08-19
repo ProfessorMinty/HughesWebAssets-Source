@@ -1,0 +1,1 @@
+Temporary QA trigger for the 2026-08-19 Photo Album production-readiness verification. This branch must not merge.
