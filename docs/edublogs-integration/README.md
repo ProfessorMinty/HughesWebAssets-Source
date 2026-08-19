@@ -1,7 +1,7 @@
 # Edublogs Photo Album three-box contract
 
-**Current visual candidate release:** `2026.08.18.6`  
-**Immutable release commit:** `b8f8c51ca3f23f279360f23bdd956e39ca64eb23`  
+**Current visual candidate release:** `2026.08.18.8`  
+**Immutable release commit:** `a38a2eb2eb7a9f5e9300b4861bfeae721ec74eb6`  
 **Host requirement:** the Edublogs Photo Album Page uses the **Full Width** page template.
 
 The permanent law is:
@@ -17,15 +17,36 @@ The three Edublogs boxes are intentionally tiny:
 The immutable repository bootstrap then loads:
 
 ```text
-releases/photo-album/2026.08.18.6/bootstrap.js
-releases/photo-album/2026.08.18.6/assets/photo-album.css
-releases/photo-album/2026.08.18.6/assets/photo-album.js
+releases/photo-album/2026.08.18.8/bootstrap.js
+releases/photo-album/2026.08.18.8/assets/photo-album.css
+releases/photo-album/2026.08.18.8/assets/photo-album.js
 ```
 
 The application consumes the existing synthetic/test Worker manifest:
 
 ```text
 https://hrv-photo-album.drminty17.workers.dev/manifest.json
+```
+
+## Verified automated proof
+
+The `2026.08.18.8` QA run completed successfully against the exact candidate release. It verified:
+
+- all unit tests and the production build;
+- no Photo Album-owned `prefers-reduced-motion` / reduced-effects branch;
+- repository-owned Amadeus/viewport breakout;
+- 1920x911 reference geometry with a 396px Current Memories region;
+- four current album covers on one row at 292px each;
+- View All with 144 synthetic/test memories and no horizontal overflow;
+- Pumpkin Patch, Science Museum, Mushroom Exploration and Zinnia Garden gallery routes;
+- governed NL Asset IDs on the four theme worlds;
+- themed gallery propagation, return navigation and lightbox opening/closing;
+- phone rendering at 390x844.
+
+Automated evidence is committed under:
+
+```text
+qa/photo-album/visual-complete-2026-08-18-v8/
 ```
 
 ## Real-host review procedure
@@ -48,12 +69,18 @@ If the external bootstrap cannot start, the tiny Edublogs unavailable sign remai
 
 If repository bootstrap starts but the runtime fails, the immutable repository bootstrap preserves a simple repository-owned temporary-unavailable state.
 
+## Motion ownership
+
+The Photo Album owns its normal visual animation and Current Memories pause/play interaction. It does **not** own the HRV Reduced Effects policy or a `prefers-reduced-motion` implementation. Any future sitewide reduction control belongs to the global HRV shell.
+
 ## Rollback
 
 Do not edit this immutable release in place.
 
 Current recovery surfaces include:
 
+- finished visual release: `2026.08.18.8` at immutable commit `a38a2eb2eb7a9f5e9300b4861bfeae721ec74eb6`;
+- prior green visual release: `2026.08.18.6` at immutable commit `b8f8c51ca3f23f279360f23bdd956e39ca64eb23`;
 - known-good V2 branch: `photo-album-home-v2-rebuild`;
 - known-good V2 commit: `e2b966d193668d8373316760a3531b61eea9653b`;
 - backup branch: `backup/photo-album-pre-visual-redesign-2026-08-17`;
