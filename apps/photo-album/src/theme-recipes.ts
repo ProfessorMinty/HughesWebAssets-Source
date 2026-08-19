@@ -33,6 +33,10 @@ const HARVEST_SPLENDOR = asset(
   "autumn-splendor-94a8692f6e",
   "https://cdn.nlightlabs.com/assets/illustration/hero-decoration/autumn-splendor-94a8692f6e/autumn-splendor-94a8692f6e.svg",
 );
+const PUMPKIN_PATCH_ACCENT = asset(
+  "pumpkin-chair-95bd1bc4e1",
+  "https://cdn.nlightlabs.com/assets/icon/icon/pumpkin-chair-95bd1bc4e1/pumpkin-chair-95bd1bc4e1.svg",
+);
 const SCIENCE_MICROSCOPE = asset(
   "microscope-11ddba1106",
   "https://cdn.nlightlabs.com/assets/prop/hero-prop/microscope-11ddba1106/microscope-11ddba1106.webp",
@@ -91,10 +95,10 @@ export const PHOTO_ALBUM_THEME_RECIPES: Record<AlbumTheme, PhotoAlbumThemeRecipe
       "top-trim": none,
       "bottom-trim": none,
       "photo-frame": none,
-      "corner-accent": [HARVEST_SPLENDOR],
+      "corner-accent": [PUMPKIN_PATCH_ACCENT],
       background: none,
       divider: none,
-      decorations: [HARVEST_FOREST, HARVEST_SPLENDOR],
+      decorations: [HARVEST_FOREST, PUMPKIN_PATCH_ACCENT, HARVEST_SPLENDOR],
     },
   },
   discovery: {
