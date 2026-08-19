@@ -1,0 +1,100 @@
+/* Photo Album album-cover sizing contract
+   Approved visual language stays intact. This file only standardizes cover geometry
+   so real album titles have room and every representative image uses the same window. */
+
+.hrv-album-row {
+  grid-template-columns: repeat(auto-fit, minmax(0, 292px));
+  justify-content: center;
+  align-items: stretch;
+}
+
+.hrv-album-card {
+  width: 292px;
+  max-width: 100%;
+  min-height: 338px;
+  grid-template-rows: 202px 136px;
+}
+
+.hrv-album-card__portal {
+  height: 202px;
+}
+
+.hrv-album-card__media {
+  top: 18px;
+  right: 23px;
+  bottom: auto;
+  left: 23px;
+  width: auto;
+  height: 164px;
+}
+
+.hrv-album-card__image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.hrv-album-card__body {
+  min-height: 136px;
+  height: 136px;
+  justify-content: flex-start;
+  padding: 14px 17px 18px;
+  gap: 3px;
+}
+
+.hrv-album-card__theme-label {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.hrv-album-card__title {
+  display: -webkit-box;
+  min-height: 43px;
+  max-height: 43px;
+  margin-top: 2px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-overflow: clip;
+  line-height: 1.08 !important;
+}
+
+.hrv-album-card__count {
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+/* Keep the desktop cover contract intact through the older responsive overrides.
+   Five 292px covers plus four 18px gaps occupy 1532px, fitting the 1540px shelf. */
+@media (min-width: 1321px) {
+  .hrv-album-row,
+  .hrv-album-row:has(> .hrv-album-card:nth-child(5)) {
+    grid-template-columns: repeat(auto-fit, minmax(0, 292px));
+  }
+}
+
+@media (min-width: 1041px) and (max-width: 1320px) {
+  .hrv-album-row {
+    grid-template-columns: repeat(auto-fit, minmax(0, 292px));
+  }
+}
+
+/* Tablet keeps the existing horizontal album shelf, but every cover still has
+   the same internal proportions instead of stretching its photo/title regions. */
+@media (max-width: 1040px) {
+  .hrv-album-card {
+    flex: 0 0 292px;
+    width: 292px;
+    min-height: 338px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hrv-album-card {
+    flex-basis: min(82vw, 292px);
+    width: min(82vw, 292px);
+  }
+}
