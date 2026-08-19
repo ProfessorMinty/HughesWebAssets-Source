@@ -85,3 +85,5 @@ jobs:
           git add releases/photo-album/2026.08.18.8 qa/photo-album/visual-complete-2026-08-18-v8
           git commit -m "Stage Photo Album finished visual release 2026.08.18.8 with QA evidence"
           git push origin HEAD:photo-album-visual-complete-2026-08-18
+
+# Rerun after restoring the explicit Current Memories pause hook.
