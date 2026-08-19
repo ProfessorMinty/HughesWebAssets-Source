@@ -1,0 +1,108 @@
+name: Photo Album Pumpkin Patch subject QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-pumpkin-subject-qa.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  pumpkin-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Test and build exact source
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Verify governed pumpkin recipe
+        shell: bash
+        run: |
+          grep -q 'pumpkin-chair-95bd1bc4e1' apps/photo-album/src/theme-recipes.ts
+          grep -q 'album-cover-sizing.css' apps/photo-album/src/entry.ts
+          ! grep -R --line-number -E 'prefers-reduced-motion|prefersReducedMotion|showReducedChange|REDUCED_FADE_HALF_MS' apps/photo-album/src
+      - name: Stage immutable release 2026.08.19.2
+        run: node tools/stage-photo-album-release.mjs 2026.08.19.2
+      - name: Start preview
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4174 >/tmp/preview.log 2>&1 &
+          for i in {1..80}; do curl -fsS http://127.0.0.1:4174/ >/dev/null && exit 0; sleep .25; done
+          cat /tmp/preview.log; exit 1
+      - name: Install browser driver
+        shell: bash
+        run: |
+          rm -rf node_modules/playwright-core
+          tarball="$(npm pack playwright-core@1.55.0 --silent)"
+          mkdir -p node_modules/playwright-core
+          tar -xzf "$tarball" -C node_modules/playwright-core --strip-components=1
+          rm -f "$tarball"
+      - name: Exercise Pumpkin Patch visuals
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        shell: bash
+        run: |
+          rm -rf qa/photo-album/pumpkin-subject-2026-08-19-v1
+          mkdir -p qa/photo-album/pumpkin-subject-2026-08-19-v1
+          cat > .pumpkin-qa.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs/promises';
+          const base='http://127.0.0.1:4174/';
+          const out='qa/photo-album/pumpkin-subject-2026-08-19-v1';
+          const expected='pumpkin-chair-95bd1bc4e1';
+          const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN});
+          const page=await browser.newPage({viewport:{width:1920,height:911}});
+          await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
+          await page.waitForSelector('.hrv-album-card',{timeout:30000});
+          await page.waitForTimeout(1500);
+          const card=page.locator('.hrv-album-card').filter({hasText:'Pumpkin'}).first();
+          const homeData={
+            secondary:await card.getAttribute('data-theme-asset-secondary'),
+            primary:await card.getAttribute('data-theme-asset-primary'),
+            href:await card.getAttribute('href'),
+            artBackground:await card.locator('.hrv-album-card__art--front').evaluate(el=>getComputedStyle(el).backgroundImage)
+          };
+          if(homeData.secondary!==expected) throw new Error(`Pumpkin cover secondary asset mismatch: ${homeData.secondary}`);
+          if(!homeData.artBackground.includes(expected)) throw new Error('Pumpkin cover art does not reference governed pumpkin asset');
+          await page.screenshot({path:`${out}/home-pumpkin-cover-1920x911.png`,fullPage:false});
+          await page.goto(new URL(homeData.href,base).href,{waitUntil:'domcontentloaded',timeout:45000});
+          await page.waitForSelector('.hrv-gallery-header[data-theme="harvest"]',{timeout:30000});
+          await page.waitForTimeout(1200);
+          const header=page.locator('.hrv-gallery-header[data-theme="harvest"]');
+          const galleryData={
+            secondary:await header.getAttribute('data-theme-asset-secondary'),
+            primary:await header.getAttribute('data-theme-asset-primary'),
+            gallerySecondary:await page.locator('.hrv-gallery[data-theme="harvest"]').getAttribute('data-theme-asset-secondary')
+          };
+          if(galleryData.secondary!==expected||galleryData.gallerySecondary!==expected) throw new Error(`Pumpkin interior asset mismatch: ${JSON.stringify(galleryData)}`);
+          await page.screenshot({path:`${out}/pumpkin-album-1920x911.png`,fullPage:false});
+          await fs.writeFile(`${out}/proof.json`,JSON.stringify({homeData,galleryData},null,2));
+          await browser.close();
+          EOF
+          node .pumpkin-qa.mjs
+          rm -f .pumpkin-qa.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: photo-album-pumpkin-subject-qa
+          path: qa/photo-album/pumpkin-subject-2026-08-19-v1/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Commit immutable release and evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/photo-album/2026.08.19.2 qa/photo-album/pumpkin-subject-2026-08-19-v1
+          git commit -m "Stage Photo Album Pumpkin Patch release 2026.08.19.2 with QA evidence"
+          git push origin HEAD:photo-album-visual-complete-2026-08-18
