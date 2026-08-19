@@ -6,6 +6,7 @@ import { DEFAULT_MANIFEST_URL, DEFAULT_YEAR_CATALOG_URL } from "./config";
 import { loadManifest } from "./data/manifest";
 import { loadYearCatalog, type PhotoYearCatalog, type PhotoYearDescriptor } from "./data/year-catalog";
 import { buildAlbumCollection } from "./domain/albums";
+import { applyThemeAssets, recipeForTheme } from "./theme-recipes";
 import { PhotoAlbumRouter, routeHref, type PhotoAlbumRoute } from "./runtime/router-v2";
 import type { AlbumCollection, PhotoAlbumManifest, PhotoRecord } from "./types";
 import { createElement } from "./utils/dom";
@@ -360,14 +361,55 @@ export class PhotoAlbumAppV2 {
       return;
     }
 
+    const homeRoute: PhotoAlbumRoute = year.descriptor.kind === "current"
+      ? { name: "home" }
+      : { name: "year", schoolYear: year.manifest.schoolYear };
     const header = this.createGalleryHeader(
       album.name,
       `${album.photos.length} ${album.photos.length === 1 ? "memory" : "memories"}`,
       year,
     );
-    header.dataset.theme = album.theme;
-    this.main.append(header);
-    this.mountGallery(album.photos, "This album is ready, but no photos have been published into it yet.");
+    applyThemeAssets(header, album.theme);
+    const recipe = recipeForTheme(album.theme);
+    const themeLabel = createElement("p", "hrv-gallery-header__theme-label", recipe.label);
+    const headerArt = createElement("div", "hrv-gallery-header__art");
+    headerArt.setAttribute("aria-hidden", "true");
+    headerArt.append(
+      createElement("span", "hrv-gallery-header__art-layer hrv-gallery-header__art-layer--secondary"),
+      createElement("span", "hrv-gallery-header__art-layer hrv-gallery-header__art-layer--primary"),
+    );
+    header.append(themeLabel, headerArt);
+
+    const gallery = createElement("section", "hrv-gallery");
+    gallery.setAttribute("aria-label", "Photos");
+    applyThemeAssets(gallery, album.theme);
+    const grid = new PhotoGrid(gallery, album.photos, {
+      emptyMessage: "This album is ready, but no photos have been published into it yet.",
+      onOpen: (index, button) => this.lightbox?.open(album.photos, index, button, (returnIndex) => grid.focusItem(returnIndex)),
+    });
+
+    const albumReturn = createElement("section", "hrv-album-return");
+    applyThemeAssets(albumReturn, album.theme);
+    const returnArt = createElement("span", "hrv-album-return__art");
+    returnArt.setAttribute("aria-hidden", "true");
+    const returnCopy = createElement("div", "hrv-album-return__copy");
+    returnCopy.append(
+      createElement("p", "hrv-eyebrow", "Close this album"),
+      createElement("h2", "hrv-album-return__title", "Back to the memory shelf"),
+      createElement("p", "hrv-album-return__text", `Return to ${year.descriptor.label} and choose another classroom adventure.`),
+    );
+    albumReturn.append(
+      returnArt,
+      returnCopy,
+      this.createRouteLink(
+        `Back to ${year.descriptor.label} albums`,
+        homeRoute,
+        "hrv-button hrv-button--memory",
+      ),
+    );
+
+    this.main.append(header, gallery, albumReturn);
+    this.viewCleanup = () => grid.destroy();
   }
 
   private createGalleryHeader(titleText: string, copy: string, year: LoadedYear): HTMLElement {

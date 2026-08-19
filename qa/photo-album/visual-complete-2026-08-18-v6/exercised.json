@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "pumpkin-patch",
+    "theme": "harvest",
+    "galleryTheme": "harvest",
+    "headerPrimary": "autumn-forest-7e0183a203",
+    "count": 77,
+    "visible": 77,
+    "hasReturn": 1
+  },
+  {
+    "slug": "science-museum",
+    "theme": "discovery",
+    "galleryTheme": "discovery",
+    "headerPrimary": "microscope-11ddba1106",
+    "count": 41,
+    "visible": 41,
+    "hasReturn": 1
+  },
+  {
+    "slug": "mushroom-exploration",
+    "theme": "woodland",
+    "galleryTheme": "woodland",
+    "headerPrimary": "mushrooms-d9549e0535",
+    "count": 7,
+    "visible": 7,
+    "hasReturn": 1
+  },
+  {
+    "slug": "zinnia-garden",
+    "theme": "garden",
+    "galleryTheme": "garden",
+    "headerPrimary": "flower-plants-93bdc61203",
+    "count": 19,
+    "visible": 19,
+    "hasReturn": 1
+  }
+]

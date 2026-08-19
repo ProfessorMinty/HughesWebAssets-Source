@@ -332,16 +332,3 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hrv-photo-album .hrv-carousel__stage {
-    transition: opacity 180ms ease !important;
-  }
-
-  .hrv-photo-album .hrv-carousel__stage.is-reduced-fading {
-    opacity: .28;
-  }
-
-  .hrv-photo-album .hrv-carousel__slide {
-    transition: none !important;
-  }
-}

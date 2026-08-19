@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "pumpkin",
+    "theme": "harvest",
+    "primary": "autumn-forest-7e0183a203",
+    "galleryTheme": "harvest",
+    "ret": 1,
+    "cards": 77,
+    "loaded": 77,
+    "loading": 0
+  },
+  {
+    "slug": "science",
+    "theme": "discovery",
+    "primary": "microscope-11ddba1106",
+    "galleryTheme": "discovery",
+    "ret": 1,
+    "cards": 41,
+    "loaded": 41,
+    "loading": 0
+  },
+  {
+    "slug": "mushroom",
+    "theme": "woodland",
+    "primary": "mushrooms-d9549e0535",
+    "galleryTheme": "woodland",
+    "ret": 1,
+    "cards": 7,
+    "loaded": 7,
+    "loading": 0
+  },
+  {
+    "slug": "zinnia",
+    "theme": "garden",
+    "primary": "flower-plants-93bdc61203",
+    "galleryTheme": "garden",
+    "ret": 1,
+    "cards": 19,
+    "loaded": 19,
+    "loading": 0
+  }
+]

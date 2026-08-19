@@ -1,57 +1,26 @@
-#hrv-photo-album.hrv-photo-album-bridge:not(.hrv-photo-album) {
+#hrv-photo-album.hrv-photo-album-unavailable:not(.hrv-photo-album) {
   box-sizing: border-box;
-  display: grid;
-  width: 100%;
-  min-height: 420px;
-  padding: 40px 24px;
-  place-content: center;
-  justify-items: center;
-  gap: 14px;
-  border: 1px solid rgba(53, 78, 65, 0.14);
-  border-radius: 28px;
-  color: #27372f;
-  background: #f7f3eb;
-  font-family: "Segoe UI", system-ui, sans-serif;
-  text-align: center;
+  display: flex;
+  width: min(100% - 24px, 560px);
+  margin: 24px auto;
+  padding: 14px 18px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #d8d2c6;
+  border-radius: 14px;
+  color: #3f4742;
+  background: #fffdf8;
+  font: 600 15px/1.45 "Segoe UI", system-ui, sans-serif;
+  text-align: left;
 }
 
-#hrv-photo-album.hrv-photo-album-bridge:not(.hrv-photo-album) * {
-  box-sizing: border-box;
-}
-
-#hrv-photo-album .hrv-photo-album-bridge__mark {
-  display: grid;
-  width: 52px;
-  height: 52px;
-  place-items: center;
-  border-radius: 50%;
-  color: #ffffff;
-  background: linear-gradient(145deg, #5d826b, #8e77ae);
-  box-shadow: 0 12px 30px rgba(70, 91, 78, 0.2);
-  animation: hrv-photo-album-bridge-pulse 1.7s ease-in-out infinite;
-}
-
-#hrv-photo-album .hrv-photo-album-bridge__message,
-#hrv-photo-album .hrv-photo-album-bridge__noscript {
-  max-width: 520px;
+#hrv-photo-album.hrv-photo-album-unavailable:not(.hrv-photo-album) p {
   margin: 0;
-  color: #53645a;
-  font-size: 17px;
-  line-height: 1.55;
 }
 
-#hrv-photo-album[data-hrv-bootstrap="failed"] .hrv-photo-album-bridge__mark {
-  animation: none;
-}
-
-@keyframes hrv-photo-album-bridge-pulse {
-  50% {
-    transform: scale(1.08) rotate(14deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #hrv-photo-album .hrv-photo-album-bridge__mark {
-    animation: none;
-  }
+#hrv-photo-album.hrv-photo-album-unavailable:not(.hrv-photo-album) .hrv-photo-album-unavailable__pup {
+  flex: 0 0 auto;
+  font-size: 28px;
+  line-height: 1;
 }

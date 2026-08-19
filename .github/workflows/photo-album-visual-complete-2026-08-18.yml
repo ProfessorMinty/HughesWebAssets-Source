@@ -1,0 +1,204 @@
+name: Verify and stage complete Photo Album visual candidate
+
+on:
+  push:
+    branches:
+      - photo-album-visual-complete-2026-08-18
+    paths:
+      - ".github/workflows/photo-album-visual-complete-2026-08-18.yml"
+      - "apps/photo-album/**"
+      - "tests/**"
+      - "vite.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - "tools/stage-photo-album-release.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  verify-capture-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+          fetch-depth: 0
+
+      - name: Repair the one known host-scope leak before verification
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("apps/photo-album/src/styles/photo-album-complete.css")
+          text = path.read_text(encoding="utf-8")
+          old = ":root {\n  color-scheme: dark;\n}\n\n"
+          new = ".hrv-photo-album {\n  color-scheme: dark;\n}\n\n"
+          if old in text:
+              path.write_text(text.replace(old, new, 1), encoding="utf-8")
+          elif new not in text:
+              raise SystemExit("Could not prove Photo Album color-scheme is mount-scoped.")
+          PY
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run full test suite
+        run: npm test
+
+      - name: Build immutable browser candidate
+        run: npm run build
+
+      - name: Verify no Photo Album-local reduced-motion branch survived build
+        shell: bash
+        run: |
+          if grep -R "prefers-reduced-motion" apps/photo-album/src dist/photo-album; then
+            echo "Photo Album must not own Reduced Effects or prefers-reduced-motion behavior."
+            exit 1
+          fi
+
+      - name: Stage immutable visual candidate release
+        run: node tools/stage-photo-album-release.mjs 2026.08.18.4
+
+      - name: Start local preview
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4174 > /tmp/hrv-photo-preview.log 2>&1 &
+          echo $! > /tmp/hrv-photo-preview.pid
+          for attempt in {1..60}; do
+            if curl -fsS http://127.0.0.1:4174/ >/dev/null; then
+              exit 0
+            fi
+            sleep .25
+          done
+          cat /tmp/hrv-photo-preview.log
+          exit 1
+
+      - name: Install browser automation driver
+        run: npm install --no-save --package-lock=false playwright-core@1.55.0
+
+      - name: Capture real rendered home, albums, View All and lightbox
+        shell: bash
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        run: |
+          mkdir -p qa/photo-album/visual-complete-2026-08-18
+          cat > /tmp/capture-photo-album.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs/promises';
+
+          const output = 'qa/photo-album/visual-complete-2026-08-18';
+          const base = 'http://127.0.0.1:4174/';
+          const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_BIN });
+
+          async function ready(page, url) {
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+            await page.waitForSelector('.hrv-photo-album .hrv-main', { timeout: 30000 });
+            await page.waitForFunction(() => !document.querySelector('.hrv-state--loading'), null, { timeout: 30000 });
+            await page.waitForTimeout(1800);
+          }
+
+          async function shot(name, width, height, url = base) {
+            const page = await browser.newPage({ viewport: { width, height } });
+            await ready(page, url);
+            await page.screenshot({ path: `${output}/${name}.png`, fullPage: false });
+            return page;
+          }
+
+          let page = await shot('home-1920x911', 1920, 911);
+          const homeMetrics = await page.evaluate(() => ({
+            viewport: [innerWidth, innerHeight],
+            root: document.querySelector('#hrv-photo-album')?.getBoundingClientRect().toJSON(),
+            albumCards: [...document.querySelectorAll('.hrv-album-card')].map((el) => el.getBoundingClientRect().toJSON()),
+            memoryStage: document.querySelector('.hrv-memory-stage')?.getBoundingClientRect().toJSON(),
+            bodyOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          }));
+          await fs.writeFile(`${output}/home-1920x911-metrics.json`, JSON.stringify(homeMetrics, null, 2));
+          await page.close();
+
+          page = await shot('home-1534x937', 1534, 937);
+          await page.close();
+          page = await shot('home-1366x768', 1366, 768);
+          await page.close();
+          page = await shot('home-phone-390x844', 390, 844);
+          await page.close();
+
+          page = await shot('view-all-1920x911', 1920, 911, `${base}#photo-album/all`);
+          await page.close();
+
+          page = await browser.newPage({ viewport: { width: 1920, height: 911 } });
+          await ready(page, base);
+          const albums = await page.locator('.hrv-album-card').evaluateAll((cards) => cards.map((card) => ({
+            name: card.textContent?.trim() ?? '',
+            href: card.getAttribute('href') ?? '',
+          })));
+          await fs.writeFile(`${output}/albums.json`, JSON.stringify(albums, null, 2));
+
+          const subjects = [
+            ['pumpkin-patch', /Pumpkin/i],
+            ['science-museum', /Science|Museum/i],
+            ['mushroom-exploration', /Mushroom|Fungi/i],
+            ['zinnia-garden', /Zinnia|Garden/i],
+          ];
+
+          for (const [slug, matcher] of subjects) {
+            const candidate = albums.find((album) => matcher.test(album.name));
+            if (!candidate?.href) continue;
+            await ready(page, new URL(candidate.href, base).href);
+            await page.screenshot({ path: `${output}/album-${slug}-1920x911.png`, fullPage: false });
+            const firstPhoto = page.locator('.hrv-photo-card').first();
+            if (await firstPhoto.count()) {
+              await firstPhoto.click();
+              await page.waitForSelector('.hrv-lightbox[open]');
+              await page.waitForTimeout(500);
+              await page.screenshot({ path: `${output}/lightbox-${slug}-1920x911.png`, fullPage: false });
+              await page.locator('.hrv-lightbox__close').click();
+            }
+          }
+          await page.close();
+          await browser.close();
+          EOF
+          node /tmp/capture-photo-album.mjs
+
+      - name: Create compact human-review images
+        shell: bash
+        run: |
+          for png in qa/photo-album/visual-complete-2026-08-18/*.png; do
+            base="${png%.png}"
+            ffmpeg -loglevel error -y -i "$png" -vf 'scale=960:-2' -q:v 8 "${base}-review.jpg"
+          done
+
+      - name: Enforce visual geometry invariants from rendered reference viewport
+        shell: bash
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const p = 'qa/photo-album/visual-complete-2026-08-18/home-1920x911-metrics.json';
+          const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+          if (Math.abs(data.bodyOverflow) > 2) throw new Error(`Horizontal overflow detected: ${data.bodyOverflow}px`);
+          if (!data.root || data.root.width < 1880) throw new Error(`Photo Album did not own the 1920px viewport: ${JSON.stringify(data.root)}`);
+          if (!data.memoryStage || data.memoryStage.height > 470) throw new Error(`Current Memories is still too tall: ${JSON.stringify(data.memoryStage)}`);
+          if (data.albumCards.length < 4) throw new Error(`Expected at least four synthetic album covers, got ${data.albumCards.length}`);
+          const firstFour = data.albumCards.slice(0, 4);
+          const rowSpread = Math.max(...firstFour.map(x => x.top)) - Math.min(...firstFour.map(x => x.top));
+          if (rowSpread > 8) throw new Error(`First four albums are not one desktop row: ${rowSpread}px spread`);
+          const tooWide = firstFour.find(x => x.width > 340);
+          if (tooWide) throw new Error(`Album cover remains oversized: ${tooWide.width}px`);
+          console.log('Rendered 1920x911 geometry passed:', { rootWidth: data.root.width, memoryStageHeight: data.memoryStage.height, coverWidth: firstFour[0]?.width });
+          EOF
+
+      - name: Commit corrected source, immutable release and QA evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/photo-album/src/styles/photo-album-complete.css releases/photo-album/2026.08.18.4 qa/photo-album/visual-complete-2026-08-18
+          git commit -m "Stage Photo Album visual candidate 2026.08.18.4 with QA evidence"
+          git push origin HEAD:photo-album-visual-complete-2026-08-18
