@@ -1,0 +1,25 @@
+name: Photo Album immutable CDN smoke
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-cdn-smoke.yml"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          set -euo pipefail
+          base='https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@a38a2eb2eb7a9f5e9300b4861bfeae721ec74eb6/releases/photo-album/2026.08.18.8'
+          for path in bootstrap.js assets/photo-album.css assets/photo-album.js; do
+            echo "Checking $base/$path"
+            curl --fail --silent --show-error --location --retry 4 --retry-delay 2 --output "/tmp/$(basename "$path")" "$base/$path"
+            test -s "/tmp/$(basename "$path")"
+            wc -c "/tmp/$(basename "$path")"
+          done
+          grep -q 'mountPhotoAlbum' /tmp/bootstrap.js
+          grep -q 'hrv-photo-album' /tmp/photo-album.css
+          grep -q 'mountPhotoAlbum' /tmp/photo-album.js
