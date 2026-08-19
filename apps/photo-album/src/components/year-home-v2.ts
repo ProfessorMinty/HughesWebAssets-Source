@@ -39,9 +39,11 @@ export class YearHomeV2 {
     const label = yearLabel(manifest.schoolYear);
     mount.classList.add("hrv-year-home");
     mount.dataset.yearKind = kind;
+    mount.dataset.hasPhotos = String(collection.photos.length > 0);
 
     const hero = createElement("section", "hrv-memory-stage");
     hero.setAttribute("aria-labelledby", "hrv-featured-title");
+    if (collection.photos.length === 0) hero.classList.add("hrv-memory-stage--empty");
 
     const copy = createElement("div", "hrv-memory-stage__copy");
     const eyebrow = createElement(
@@ -88,13 +90,18 @@ export class YearHomeV2 {
 
   private createEmptyMemory(options: YearHomeOptions): HTMLElement {
     const empty = createElement("div", "hrv-v2-memory-empty");
+    empty.setAttribute("role", "status");
     const glow = createElement("span", "hrv-v2-memory-empty__glow", "✦");
     glow.setAttribute("aria-hidden", "true");
     const copy = createElement("div", "hrv-v2-memory-empty__copy");
     copy.append(
-      createElement("p", "hrv-eyebrow", "The first memory is still ahead"),
-      createElement("h2", "hrv-v2-memory-empty__title", "This year is just getting started."),
-      createElement("p", "hrv-v2-memory-empty__text", "New photographs will appear here as classroom adventures begin."),
+      createElement("p", "hrv-eyebrow", "Photos are coming soon"),
+      createElement("h2", "hrv-v2-memory-empty__title", "New memories will appear here."),
+      createElement(
+        "p",
+        "hrv-v2-memory-empty__text",
+        "As classroom photos are added throughout the school year, they’ll appear here for families to enjoy.",
+      ),
     );
     empty.append(glow, copy);
 
@@ -130,22 +137,27 @@ export class YearHomeV2 {
       ),
     );
     headingCopy.querySelector("h2")!.id = "hrv-current-albums-title";
-    heading.append(
-      headingCopy,
-      options.createLink("View All Photos", yearAllRoute(kind, manifest.schoolYear), "hrv-button hrv-button--memory"),
-    );
+    heading.append(headingCopy);
+    if (collection.photos.length > 0) {
+      heading.append(
+        options.createLink("View All Photos", yearAllRoute(kind, manifest.schoolYear), "hrv-button hrv-button--memory"),
+      );
+    }
     section.append(heading);
 
     if (collection.albums.length === 0) {
-      section.append(
+      const emptyShelf = createElement("div", "hrv-album-shelf__empty");
+      emptyShelf.setAttribute("role", "status");
+      emptyShelf.append(
         createElement(
           "p",
           "hrv-empty__copy",
           kind === "current"
-            ? "Albums will appear here as this school year begins."
+            ? "Album covers will appear here when the first classroom photos are published."
             : "No albums are published for this archived year yet.",
         ),
       );
+      section.append(emptyShelf);
       return section;
     }
 
