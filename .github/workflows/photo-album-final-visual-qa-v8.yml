@@ -44,7 +44,13 @@ jobs:
           for i in {1..80}; do curl -fsS http://127.0.0.1:4174/ >/dev/null && exit 0; sleep .25; done
           cat /tmp/preview.log; exit 1
       - name: Install browser driver
-        run: npm install --no-save --package-lock=false playwright-core@1.55.0
+        shell: bash
+        run: |
+          rm -rf node_modules/playwright-core
+          tarball="$(npm pack playwright-core@1.55.0 --silent)"
+          mkdir -p node_modules/playwright-core
+          tar -xzf "$tarball" -C node_modules/playwright-core --strip-components=1
+          rm -f "$tarball"
       - name: Capture final candidate
         env:
           CHROME_BIN: /usr/bin/google-chrome
@@ -85,5 +91,3 @@ jobs:
           git add releases/photo-album/2026.08.18.8 qa/photo-album/visual-complete-2026-08-18-v8
           git commit -m "Stage Photo Album finished visual release 2026.08.18.8 with QA evidence"
           git push origin HEAD:photo-album-visual-complete-2026-08-18
-
-# Rerun after restoring the explicit Current Memories pause hook.
