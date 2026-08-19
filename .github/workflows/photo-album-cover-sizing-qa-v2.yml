@@ -1,0 +1,182 @@
+name: Photo Album cover sizing QA v2
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-cover-sizing-qa-v2.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  cover-sizing-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Test and build exact source
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: Enforce approved architecture boundaries
+        shell: bash
+        run: |
+          grep -q 'album-cover-sizing.css' apps/photo-album/src/entry.ts
+          ! grep -R --line-number -E 'prefers-reduced-motion|prefersReducedMotion|showReducedChange|REDUCED_FADE_HALF_MS' apps/photo-album/src
+          ! grep -R --line-number --fixed-strings 'prefers-reduced-motion' dist/photo-album --exclude='*.map'
+          grep -q 'body:has(#hrv-photo-album.hrv-photo-album)' apps/photo-album/src/styles/host-compat.css
+      - name: Stage immutable release 2026.08.19.1
+        run: node tools/stage-photo-album-release.mjs 2026.08.19.1
+      - name: Start preview
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4174 >/tmp/preview.log 2>&1 &
+          for i in {1..80}; do curl -fsS http://127.0.0.1:4174/ >/dev/null && exit 0; sleep .25; done
+          cat /tmp/preview.log; exit 1
+      - name: Install browser driver without mutating dependency graph
+        shell: bash
+        run: |
+          rm -rf node_modules/playwright-core
+          tarball="$(npm pack playwright-core@1.55.0 --silent)"
+          mkdir -p node_modules/playwright-core
+          tar -xzf "$tarball" -C node_modules/playwright-core --strip-components=1
+          rm -f "$tarball"
+      - name: Capture and measure album-cover contract
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        shell: bash
+        run: |
+          rm -rf qa/photo-album/cover-sizing-2026-08-19-v1
+          mkdir -p qa/photo-album/cover-sizing-2026-08-19-v1
+          cat > .capture-cover-sizing.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs/promises';
+          const out='qa/photo-album/cover-sizing-2026-08-19-v1';
+          const base='http://127.0.0.1:4174/';
+          const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN});
+          async function ready(page){
+            await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
+            await page.waitForSelector('.hrv-album-card',{timeout:30000});
+            await page.waitForFunction(()=>document.querySelectorAll('.hrv-album-card__image.is-loaded').length>=4,null,{timeout:30000});
+            await page.waitForTimeout(500);
+          }
+          const page=await browser.newPage({viewport:{width:1920,height:911}});
+          await ready(page);
+          const desktop=await page.evaluate(()=>{
+            const row=document.querySelector('.hrv-album-row');
+            const cards=[...document.querySelectorAll('.hrv-album-card')];
+            const cardData=cards.map(card=>{
+              const title=card.querySelector('.hrv-album-card__title');
+              const portal=card.querySelector('.hrv-album-card__portal');
+              const media=card.querySelector('.hrv-album-card__media');
+              const image=card.querySelector('.hrv-album-card__image');
+              const titleStyle=title?getComputedStyle(title):null;
+              const mediaStyle=media?getComputedStyle(media):null;
+              const imageStyle=image?getComputedStyle(image):null;
+              return {
+                name:title?.textContent??'',
+                card:card.getBoundingClientRect().toJSON(),
+                portal:portal?.getBoundingClientRect().toJSON(),
+                media:media?.getBoundingClientRect().toJSON(),
+                mediaCssHeight:mediaStyle?.height,
+                image:image?.getBoundingClientRect().toJSON(),
+                title:title?.getBoundingClientRect().toJSON(),
+                titleClientWidth:title?.clientWidth??0,
+                titleScrollWidth:title?.scrollWidth??0,
+                titleClientHeight:title?.clientHeight??0,
+                titleScrollHeight:title?.scrollHeight??0,
+                whiteSpace:titleStyle?.whiteSpace,
+                lineHeight:titleStyle?.lineHeight,
+                imageObjectFit:imageStyle?.objectFit,
+                imageNaturalWidth:image?.naturalWidth??0,
+                imageNaturalHeight:image?.naturalHeight??0,
+              };
+            });
+            let five=[];
+            if(row && cards[0]){
+              const clone=cards[0].cloneNode(true);
+              clone.setAttribute('aria-hidden','true');
+              row.append(clone);
+              five=[...row.querySelectorAll('.hrv-album-card')].map(x=>x.getBoundingClientRect().toJSON());
+              clone.remove();
+            }
+            return {
+              viewport:{width:document.documentElement.clientWidth,height:document.documentElement.clientHeight},
+              overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+              row:row?.getBoundingClientRect().toJSON(),
+              cards:cardData,
+              five,
+            };
+          });
+          await fs.writeFile(`${out}/desktop.json`,JSON.stringify(desktop,null,2));
+          await page.screenshot({path:`${out}/home-1920x911.png`,fullPage:false});
+          await page.close();
+          const phone=await browser.newPage({viewport:{width:390,height:844}});
+          await ready(phone);
+          const phoneData=await phone.evaluate(()=>({
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+            row:document.querySelector('.hrv-album-row')?.getBoundingClientRect().toJSON(),
+            card:document.querySelector('.hrv-album-card')?.getBoundingClientRect().toJSON(),
+            title:document.querySelector('.hrv-album-card__title')?.getBoundingClientRect().toJSON(),
+          }));
+          await fs.writeFile(`${out}/phone.json`,JSON.stringify(phoneData,null,2));
+          await phone.screenshot({path:`${out}/home-phone-390x844.png`,fullPage:false});
+          await phone.close();
+          await browser.close();
+          EOF
+          node .capture-cover-sizing.mjs
+          rm -f .capture-cover-sizing.mjs
+      - name: Upload sizing evidence before assertions
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-album-cover-sizing-2026-08-19-v1
+          path: qa/photo-album/cover-sizing-2026-08-19-v1/
+          if-no-files-found: error
+          retention-days: 7
+      - name: Verify album-cover sizing contract
+        shell: bash
+        run: |
+          node <<'EOF'
+          const fs=require('fs');
+          const d=JSON.parse(fs.readFileSync('qa/photo-album/cover-sizing-2026-08-19-v1/desktop.json'));
+          const p=JSON.parse(fs.readFileSync('qa/photo-album/cover-sizing-2026-08-19-v1/phone.json'));
+          console.log(JSON.stringify({desktop:d,phone:p},null,2));
+          if(Math.abs(d.overflow)>2) throw Error('desktop horizontal overflow');
+          if(d.cards.length<4) throw Error('missing album covers');
+          const first=d.cards.slice(0,4);
+          const topSpread=Math.max(...first.map(x=>x.card.top))-Math.min(...first.map(x=>x.card.top));
+          if(topSpread>2) throw Error('desktop covers are not one row');
+          for(const x of first){
+            if(Math.abs(x.card.width-292)>1.5) throw Error(`card width drift: ${x.name} ${x.card.width}`);
+            if(Math.abs(x.card.height-340)>1.5) throw Error(`card height drift: ${x.name} ${x.card.height}`);
+            if(Math.abs(x.portal.height-202)>1.5) throw Error(`portal height drift: ${x.name}`);
+            if(x.mediaCssHeight!=='164px') throw Error(`media CSS height drift: ${x.name} ${x.mediaCssHeight}`);
+            if(x.whiteSpace==='nowrap') throw Error(`title still forced to one line: ${x.name}`);
+            if(x.titleScrollWidth>x.titleClientWidth+1) throw Error(`title horizontally clipped: ${x.name}`);
+            if(x.titleScrollHeight>x.titleClientHeight+1) throw Error(`title vertically clipped: ${x.name}`);
+            if(x.imageObjectFit!=='cover') throw Error(`approved cover treatment changed: ${x.name}`);
+            if(x.imageNaturalWidth<1||x.imageNaturalHeight<1) throw Error(`cover image failed: ${x.name}`);
+          }
+          if(d.five.length!==5) throw Error('five-cover fit simulation failed');
+          const fiveTop=Math.max(...d.five.map(x=>x.top))-Math.min(...d.five.map(x=>x.top));
+          if(fiveTop>2||d.five.some(x=>Math.abs(x.width-292)>1.5)) throw Error('five covers do not fit one desktop row');
+          if(Math.abs(p.overflow)>2) throw Error('phone horizontal overflow');
+          if(!p.card||p.card.left<-2||p.card.left>100||p.card.right<250) throw Error(`first phone cover is not on-screen: ${JSON.stringify(p.card)}`);
+          EOF
+      - name: Commit immutable release and QA evidence
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add releases/photo-album/2026.08.19.1 qa/photo-album/cover-sizing-2026-08-19-v1
+          git commit -m "Stage Photo Album cover sizing release 2026.08.19.1 with QA evidence"
+          git push origin HEAD:photo-album-visual-complete-2026-08-18

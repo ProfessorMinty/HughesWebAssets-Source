@@ -1,0 +1,288 @@
+name: Photo Album autonomous final QA
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/photo-album-autonomous-final-qa.yml"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  verify-capture-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact Photo Album visual candidate
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+          fetch-depth: 0
+
+      - name: Scope Photo Album color scheme to its mount
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("apps/photo-album/src/styles/photo-album-complete.css")
+          text = path.read_text(encoding="utf-8")
+          old = ":root {\n  color-scheme: dark;\n}\n\n"
+          new = ".hrv-photo-album {\n  color-scheme: dark;\n}\n\n"
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit("Could not prove Photo Album color-scheme is mount scoped.")
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Center four covers and grow to five only when a fifth exists
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("apps/photo-album/src/styles/photo-album-complete.css")
+          text = path.read_text(encoding="utf-8")
+          old = """.hrv-album-row {\n  display: grid;\n  grid-template-columns: repeat(5, minmax(0, 292px));\n  justify-content: center;\n  align-items: stretch;\n  gap: 18px;\n}\n"""
+          new = """.hrv-album-row {\n  display: grid;\n  grid-template-columns: repeat(4, minmax(0, 292px));\n  justify-content: center;\n  align-items: stretch;\n  gap: 18px;\n}\n\n.hrv-album-row:has(> .hrv-album-card:nth-child(5)) {\n  grid-template-columns: repeat(5, minmax(0, 292px));\n}\n"""
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit("Expected album-grid source was not found; refusing to guess.")
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Update visual ownership test for deliberate 4-to-5 cover shelf
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("tests/photo-album-visual-contract.test.ts")
+          text = path.read_text(encoding="utf-8")
+          old = '''  it("targets five compact album columns at the wide reference canvas", () => {\n    const visualCss = read("apps/photo-album/src/styles/photo-album-complete.css");\n    expect(visualCss).toContain("grid-template-columns: repeat(5, minmax(0, 292px));");\n    expect(visualCss).toContain("@media (max-width: 1640px)");\n  });\n'''
+          new = '''  it("centers four current covers and expands to five when a fifth album exists", () => {\n    const visualCss = read("apps/photo-album/src/styles/photo-album-complete.css");\n    expect(visualCss).toContain("grid-template-columns: repeat(4, minmax(0, 292px));");\n    expect(visualCss).toContain(".hrv-album-row:has(> .hrv-album-card:nth-child(5))");\n    expect(visualCss).toContain("grid-template-columns: repeat(5, minmax(0, 292px));");\n    expect(visualCss).toContain("@media (max-width: 1640px)");\n  });\n'''
+          if old in text:
+              text = text.replace(old, new, 1)
+          elif new not in text:
+              raise SystemExit("Expected visual shelf test was not found; refusing to guess.")
+          path.write_text(text, encoding="utf-8")
+          PY
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run full repository test suite
+        run: npm test
+
+      - name: Build production browser candidate
+        run: npm run build
+
+      - name: Enforce Photo Album ownership boundaries in built output
+        shell: bash
+        run: |
+          if grep -R --line-number --fixed-strings 'prefers-reduced-motion' apps/photo-album/src dist/photo-album; then
+            echo 'Photo Album still owns a reduced-motion branch.' >&2
+            exit 1
+          fi
+          if grep -R --line-number -E '^:root[[:space:]]*\{' apps/photo-album/src/styles/photo-album-complete.css; then
+            echo 'Photo Album leaked presentation ownership onto :root.' >&2
+            exit 1
+          fi
+
+      - name: Stage immutable final visual candidate release
+        run: node tools/stage-photo-album-release.mjs 2026.08.18.5
+
+      - name: Start local preview against current synthetic Worker manifest
+        shell: bash
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4174 > /tmp/hrv-photo-preview.log 2>&1 &
+          for attempt in {1..80}; do
+            if curl -fsS http://127.0.0.1:4174/ >/dev/null; then
+              exit 0
+            fi
+            sleep .25
+          done
+          cat /tmp/hrv-photo-preview.log
+          exit 1
+
+      - name: Install browser automation driver
+        run: npm install --no-save --package-lock=false playwright-core@1.55.0
+
+      - name: Render and exercise the entire visual candidate
+        shell: bash
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        run: |
+          mkdir -p qa/photo-album/visual-complete-2026-08-18
+          rm -f qa/photo-album/visual-complete-2026-08-18/*
+          cat > /tmp/capture-photo-album.mjs <<'EOF'
+          import { chromium } from 'playwright-core';
+          import fs from 'node:fs/promises';
+
+          const output = 'qa/photo-album/visual-complete-2026-08-18';
+          const base = 'http://127.0.0.1:4174/';
+          const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROME_BIN });
+
+          async function ready(page, url) {
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+            await page.waitForSelector('.hrv-photo-album .hrv-main', { timeout: 30000 });
+            await page.waitForFunction(() => !document.querySelector('.hrv-state--loading'), null, { timeout: 30000 });
+            await page.waitForTimeout(1800);
+          }
+
+          async function shot(name, width, height, url = base) {
+            const page = await browser.newPage({ viewport: { width, height } });
+            await ready(page, url);
+            await page.screenshot({ path: `${output}/${name}.png`, fullPage: false });
+            return page;
+          }
+
+          let page = await shot('home-1920x911', 1920, 911);
+          const homeMetrics = await page.evaluate(() => ({
+            viewport: [innerWidth, innerHeight],
+            root: document.querySelector('#hrv-photo-album')?.getBoundingClientRect().toJSON(),
+            albumCards: [...document.querySelectorAll('.hrv-album-card')].map((el) => el.getBoundingClientRect().toJSON()),
+            memoryStage: document.querySelector('.hrv-memory-stage')?.getBoundingClientRect().toJSON(),
+            viewAll: document.querySelector('.hrv-album-shelf__heading .hrv-button')?.getBoundingClientRect().toJSON(),
+            documentOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+            visibleText: document.body.innerText,
+          }));
+          await fs.writeFile(`${output}/home-1920x911-metrics.json`, JSON.stringify(homeMetrics, null, 2));
+          await page.close();
+
+          for (const [name, width, height] of [
+            ['home-1920x945', 1920, 945],
+            ['home-1534x937', 1534, 937],
+            ['home-1440x900', 1440, 900],
+            ['home-1366x768', 1366, 768],
+            ['home-tablet-820x1180', 820, 1180],
+            ['home-phone-430x932', 430, 932],
+            ['home-phone-390x844', 390, 844],
+          ]) {
+            page = await shot(name, width, height);
+            await page.close();
+          }
+
+          page = await shot('view-all-1920x911', 1920, 911, `${base}#photo-album/all`);
+          const allMetrics = await page.evaluate(() => ({
+            photoCount: document.querySelectorAll('.hrv-photo-card').length,
+            columns: getComputedStyle(document.querySelector('.hrv-photo-grid')).gridTemplateColumns,
+            overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          }));
+          await fs.writeFile(`${output}/view-all-metrics.json`, JSON.stringify(allMetrics, null, 2));
+          await page.close();
+
+          page = await browser.newPage({ viewport: { width: 1920, height: 911 } });
+          await ready(page, base);
+          const albums = await page.locator('.hrv-album-card').evaluateAll((cards) => cards.map((card) => ({
+            name: card.textContent?.trim() ?? '',
+            href: card.getAttribute('href') ?? '',
+            theme: card.getAttribute('data-theme') ?? '',
+            primaryAsset: card.getAttribute('data-theme-asset-primary') ?? '',
+            secondaryAsset: card.getAttribute('data-theme-asset-secondary') ?? '',
+          })));
+          await fs.writeFile(`${output}/albums.json`, JSON.stringify(albums, null, 2));
+
+          const subjects = [
+            ['pumpkin-patch', /Pumpkin/i],
+            ['science-museum', /Science|Museum/i],
+            ['mushroom-exploration', /Mushroom|Fungi/i],
+            ['zinnia-garden', /Zinnia|Garden/i],
+          ];
+          const exercised = [];
+
+          for (const [slug, matcher] of subjects) {
+            const candidate = albums.find((album) => matcher.test(album.name));
+            if (!candidate?.href) continue;
+            await ready(page, new URL(candidate.href, base).href);
+            const theme = await page.locator('.hrv-gallery-header').getAttribute('data-theme');
+            const count = await page.locator('.hrv-photo-card').count();
+            exercised.push({ slug, theme, count });
+            await page.screenshot({ path: `${output}/album-${slug}-1920x911.png`, fullPage: false });
+            const firstPhoto = page.locator('.hrv-photo-card').first();
+            if (count > 0) {
+              await firstPhoto.focus();
+              await firstPhoto.press('Enter');
+              await page.waitForSelector('.hrv-lightbox[open]');
+              await page.waitForTimeout(400);
+              const lightboxTheme = await page.locator('.hrv-lightbox').getAttribute('data-theme');
+              if (lightboxTheme !== theme) throw new Error(`${slug}: lightbox theme ${lightboxTheme} did not follow gallery theme ${theme}`);
+              await page.screenshot({ path: `${output}/lightbox-${slug}-1920x911.png`, fullPage: false });
+              await page.keyboard.press('ArrowRight');
+              await page.keyboard.press('Escape');
+              await page.waitForSelector('.hrv-lightbox:not([open])');
+            }
+          }
+          await fs.writeFile(`${output}/exercised-albums.json`, JSON.stringify(exercised, null, 2));
+          await page.close();
+          await browser.close();
+          EOF
+          node /tmp/capture-photo-album.mjs
+
+      - name: Create compact human-review images
+        shell: bash
+        run: |
+          for png in qa/photo-album/visual-complete-2026-08-18/*.png; do
+            base="${png%.png}"
+            ffmpeg -loglevel error -y -i "$png" -vf 'scale=960:-2' -q:v 8 "${base}-review.jpg"
+          done
+
+      - name: Enforce rendered reference geometry and functional coverage
+        shell: bash
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const home = JSON.parse(fs.readFileSync('qa/photo-album/visual-complete-2026-08-18/home-1920x911-metrics.json', 'utf8'));
+          const all = JSON.parse(fs.readFileSync('qa/photo-album/visual-complete-2026-08-18/view-all-metrics.json', 'utf8'));
+          const exercised = JSON.parse(fs.readFileSync('qa/photo-album/visual-complete-2026-08-18/exercised-albums.json', 'utf8'));
+          const albums = JSON.parse(fs.readFileSync('qa/photo-album/visual-complete-2026-08-18/albums.json', 'utf8'));
+
+          if (Math.abs(home.documentOverflow) > 2) throw new Error(`Horizontal overflow detected: ${home.documentOverflow}px`);
+          if (!home.root || home.root.width < 1880) throw new Error(`Photo Album did not own the 1920px viewport: ${JSON.stringify(home.root)}`);
+          if (!home.memoryStage || home.memoryStage.height > 470) throw new Error(`Current Memories is still too tall: ${JSON.stringify(home.memoryStage)}`);
+          if (!home.viewAll || home.viewAll.top > 780) throw new Error(`View All is not visible early enough in the 1920x911 reference viewport: ${JSON.stringify(home.viewAll)}`);
+          if (home.albumCards.length < 4) throw new Error(`Expected at least four synthetic album covers, got ${home.albumCards.length}`);
+          const firstFour = home.albumCards.slice(0, 4);
+          const rowSpread = Math.max(...firstFour.map(x => x.top)) - Math.min(...firstFour.map(x => x.top));
+          if (rowSpread > 8) throw new Error(`First four albums are not one desktop row: ${rowSpread}px spread`);
+          const tooWide = firstFour.find(x => x.width > 340);
+          if (tooWide) throw new Error(`Album cover remains oversized: ${tooWide.width}px`);
+          if (Math.abs(all.overflow) > 2) throw new Error(`View All horizontal overflow: ${all.overflow}px`);
+          if (all.photoCount < 100) throw new Error(`View All did not load the synthetic collection; only ${all.photoCount} cards rendered.`);
+          if (exercised.length !== 4) throw new Error(`Expected four current themed albums to be exercised, got ${exercised.length}.`);
+          for (const album of albums.slice(0, 4)) {
+            if (!album.theme) throw new Error(`Album theme missing for ${album.name}`);
+            if (album.theme !== 'memory' && !album.primaryAsset) throw new Error(`Approved NL Asset was not attached to ${album.name}`);
+          }
+          console.log('Final visual geometry and interaction coverage passed.', {
+            rootWidth: home.root.width,
+            memoryStageHeight: home.memoryStage.height,
+            coverWidth: firstFour[0]?.width,
+            viewAllPhotoCount: all.photoCount,
+            exercised,
+          });
+          EOF
+
+      - name: Commit corrected source, immutable release and QA evidence to visual branch
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/photo-album/src/styles/photo-album-complete.css tests/photo-album-visual-contract.test.ts releases/photo-album/2026.08.18.5 qa/photo-album/visual-complete-2026-08-18
+          git commit -m "Stage Photo Album final visual candidate 2026.08.18.5 with QA evidence"
+          git push origin HEAD:photo-album-visual-complete-2026-08-18
+
+      - name: Report failed QA with run ID
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh pr comment 19 --body "Photo Album autonomous final QA failed. Run ID: ${GITHUB_RUN_ID}. Commit under test: $(git rev-parse HEAD 2>/dev/null || echo unknown). Aurora should inspect this run before changing implementation."
