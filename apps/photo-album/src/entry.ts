@@ -2,6 +2,7 @@ import "./styles/photo-album-complete.css";
 import "./styles/lightbox-themes.css";
 import "./styles/loading-states.css";
 import "./styles/album-cover-sizing.css";
+import "./styles/production-readiness.css";
 import "./styles/host-compat.css";
 import { PhotoAlbumAppV2 } from "./app-v2";
 import type { PhotoAlbumOptions } from "./config";
