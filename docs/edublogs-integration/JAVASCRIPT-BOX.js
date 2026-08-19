@@ -8,7 +8,7 @@
     mount.setAttribute("data-hrv-repository-handoff", "started");
 
     var loader = document.createElement("script");
-    loader.src = "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@b8f8c51ca3f23f279360f23bdd956e39ca64eb23/releases/photo-album/2026.08.18.6/bootstrap.js";
+    loader.src = "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@a38a2eb2eb7a9f5e9300b4861bfeae721ec74eb6/releases/photo-album/2026.08.18.8/bootstrap.js";
     loader.crossOrigin = "anonymous";
     loader.setAttribute("data-mount", "hrv-photo-album");
     loader.setAttribute("data-runtime", "./assets/photo-album.js");
