@@ -1,0 +1,357 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hughes-room-views.invalid/schemas/classroom-explorations-hub.control.schema.json",
+  "title": "Lanternworks control contract for the Classroom Explorations Hub",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "controlId",
+    "target",
+    "documents",
+    "hosts",
+    "concurrency",
+    "editor",
+    "commands",
+    "transaction",
+    "publication",
+    "safety"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "controlId": {
+      "type": "string",
+      "pattern": "^lanternworks-control:[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pageId", "pageType", "canonicalRouteRef"],
+      "properties": {
+        "pageId": { "const": "hrv-page:classroom-explorations" },
+        "pageType": { "const": "classroom-explorations-hub" },
+        "canonicalRouteRef": { "const": "hrv-route:classroom-explorations" }
+      }
+    },
+    "documents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authoring", "routes", "control"],
+      "properties": {
+        "authoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "schemaPath", "role"],
+          "properties": {
+            "path": { "type": "string", "minLength": 1 },
+            "schemaPath": { "type": "string", "minLength": 1 },
+            "role": { "const": "editable-authoring-truth" }
+          }
+        },
+        "routes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "schemaPath", "role"],
+          "properties": {
+            "path": { "type": "string", "minLength": 1 },
+            "schemaPath": { "type": "string", "minLength": 1 },
+            "role": { "const": "route-and-platform-truth" }
+          }
+        },
+        "control": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "schemaPath", "role"],
+          "properties": {
+            "path": { "type": "string", "minLength": 1 },
+            "schemaPath": { "type": "string", "minLength": 1 },
+            "role": { "const": "lanternworks-operation-contract" }
+          }
+        }
+      }
+    },
+    "hosts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonical", "review"],
+      "properties": {
+        "canonical": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["wordpressPageId", "path", "mountId", "mayPublish", "note"],
+          "properties": {
+            "wordpressPageId": { "const": 17 },
+            "path": { "const": "/hub/" },
+            "mountId": { "const": "hrv-classroom-explorations-root" },
+            "mayPublish": { "const": false },
+            "note": { "type": "string", "minLength": 1 }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["wordpressPageId", "path", "mountId", "mayPublish", "note"],
+          "properties": {
+            "wordpressPageId": { "const": 2589 },
+            "path": { "const": "/hub-test/" },
+            "mountId": { "const": "hrv-classroom-explorations-root" },
+            "mayPublish": { "const": true },
+            "note": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "concurrency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revisionAlgorithm",
+        "requiredExpectedRevisions",
+        "rejectStaleCommands",
+        "idempotencyOwner"
+      ],
+      "properties": {
+        "revisionAlgorithm": { "const": "sha256-canonical-json" },
+        "requiredExpectedRevisions": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "rejectStaleCommands": { "const": true },
+        "idempotencyOwner": { "const": "lanternworks-event-store" }
+      }
+    },
+    "editor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domIdentityAttribute",
+        "contentIdentityAttribute",
+        "slotIdentityAttribute",
+        "nodes",
+        "catalogs"
+      ],
+      "properties": {
+        "domIdentityAttribute": { "const": "data-hrv-node-id" },
+        "contentIdentityAttribute": { "const": "data-hrv-content-id" },
+        "slotIdentityAttribute": { "const": "data-hrv-slot-id" },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["nodeId", "path", "editableFields"],
+            "properties": {
+              "nodeId": {
+                "type": "string",
+                "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "path": { "type": "string", "pattern": "^/data/copy/" },
+              "editableFields": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        },
+        "catalogs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "path",
+              "idField",
+              "immutableFields",
+              "editableFields"
+            ],
+            "properties": {
+              "kind": { "enum": ["exploration", "twwl", "media"] },
+              "path": { "type": "string", "pattern": "^/data/" },
+              "idField": { "const": "id" },
+              "immutableFields": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "editableFields": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "commands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "swapCurrentExploration",
+        "editNode",
+        "updateContent",
+        "setCurrentTwwl",
+        "setCurrentTwwlComingSoon",
+        "setFeaturedMedia",
+        "reorderGallery",
+        "publishArchive",
+        "rollSchoolYear"
+      ],
+      "properties": {
+        "swapCurrentExploration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.swap-current-exploration" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "editNode": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.edit-node" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "updateContent": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.update-content" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "setCurrentTwwl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.set-current-twwl" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "setCurrentTwwlComingSoon": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.set-current-twwl-coming-soon" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "setFeaturedMedia": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.set-featured-media" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "reorderGallery": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.reorder-gallery" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "publishArchive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.publish-archive" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        },
+        "rollSchoolYear": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation", "description", "payloadFields", "effects"],
+          "properties": {
+            "operation": { "const": "hub.roll-school-year" },
+            "description": { "type": "string", "minLength": 1 },
+            "payloadFields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "effects": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+          }
+        }
+      }
+    },
+    "transaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allOrNothingDocuments",
+        "validateBeforeProjection",
+        "validateAfterProjection",
+        "emitBeforeAfterHashes",
+        "publishOnlyAfterGreenChecks",
+        "requiredInvariants"
+      ],
+      "properties": {
+        "allOrNothingDocuments": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "validateBeforeProjection": { "const": true },
+        "validateAfterProjection": { "const": true },
+        "emitBeforeAfterHashes": { "const": true },
+        "publishOnlyAfterGreenChecks": { "const": true },
+        "requiredInvariants": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authoringDocumentIsBrowserManifest", "pipeline"],
+      "properties": {
+        "authoringDocumentIsBrowserManifest": { "const": false },
+        "pipeline": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "immutableIdentityFields",
+        "forbiddenDirectEdits",
+        "productionWordpressPageId",
+        "reviewWordpressPageId"
+      ],
+      "properties": {
+        "immutableIdentityFields": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "forbiddenDirectEdits": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "productionWordpressPageId": { "const": 17 },
+        "reviewWordpressPageId": { "const": 2589 }
+      }
+    }
+  }
+}
