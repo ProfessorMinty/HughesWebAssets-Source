@@ -18,13 +18,32 @@ Edublogs owns only:
 
 The repository owns the Hub authoring source, route contract, Lanternworks control manifest, application runtime, responsive presentation, validation, and future immutable publication pipeline.
 
+The persistent HRV Reduced Effects preference/control belongs to the global site shell. The Hub review runtime must not render a competing page-local control or persist a private effects preference.
+
+## Current review release
+
+```text
+2026.08.28.2-review
+```
+
+The review handoff loads:
+
+```text
+apps/classroom-explorations-hub/src/runtime-v3.js
+apps/classroom-explorations-hub/src/hub-v3.css
+```
+
+This review correction widens the desktop exhibit composition, applies the native Amadeus typography baseline to reading/structural text, raises small text sizes, and removes the Hub-local Reduced Effects control.
+
 ## Paste order
 
 1. Paste `HTML-BOX.html` into the page HTML field.
 2. Paste `CSS-BOX.css` into the page CSS field.
 3. Paste `JAVASCRIPT-BOX.js` into the page JavaScript field.
 4. Save or update page `2589` only.
-5. Open `/hub-test/` in a signed-out browser window and verify desktop and mobile behavior.
+5. Open `/hub-test/` in a signed-out browser window and verify the 1920×911 desktop reference plus tablet and phone behavior.
+
+The HTML and CSS outage-card blocks are unchanged from review release `2026.08.28.1-review`. When upgrading an existing page-2589 installation, only the JavaScript field needs to be replaced.
 
 ## Review-channel warning
 

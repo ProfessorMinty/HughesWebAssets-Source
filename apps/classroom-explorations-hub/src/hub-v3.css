@@ -1,0 +1,428 @@
+@import url("./hub-v2.css");
+
+/*
+ * Classroom Explorations Hub review correction layer
+ * Review release: 2026.08.28.2-review
+ *
+ * Owns:
+ * - unmistakable Full Width composition at the 1920x911 reference viewport;
+ * - Amadeus-aware typography and color integration;
+ * - readable text hierarchy and minimum practical label/control sizing;
+ * - removal of the page-local effects-control presentation.
+ *
+ * The global shell owns the persistent HRV Reduced Effects preference/control.
+ */
+
+#hrv-classroom-explorations-root.hrv-hub-v3 {
+  --hrv-native-canvas: #f8fafa;
+  --hrv-native-brand-surface: #eef5f6;
+  --hrv-native-structure: #173a43;
+  --hrv-native-action: #0f6b78;
+  --hrv-native-ink: #263238;
+  --hrv-native-ink-secondary: #4b5d63;
+  --hrv-native-ink-meta: #5f6f75;
+  --hrv-native-inverse: #ffffff;
+  --hrv-native-body-font: "Atkinson Hyperlegible", sans-serif;
+  --hrv-native-heading-font: "Nunito Sans", sans-serif;
+
+  --hub-type-body: 20px;
+  --hub-type-body-secondary: 18px;
+  --hub-type-label: 14px;
+  --hub-type-action: 16px;
+  --hub-type-card-title: 25px;
+  --hub-type-memory-title: 23px;
+
+  --hub-v2-ink: #fbfdff;
+  --hub-v2-muted: #d7e4f8;
+  --hub-v2-teal: #7cebd1;
+  --hub-v2-gold: #ffe7a3;
+  --hub-v2-line: rgba(202, 226, 255, 0.28);
+  --hub-v2-shell: min(1520px, calc(100dvw - clamp(32px, 5vw, 96px)));
+  --hub-v3-shell-wide: min(1720px, calc(100dvw - clamp(28px, 3vw, 64px)));
+
+  width: 100dvw;
+  max-width: none;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--hub-v2-ink);
+  background:
+    linear-gradient(
+      180deg,
+      var(--hrv-native-structure) 0,
+      #0c243d 88px,
+      #081a37 300px,
+      #061128 780px,
+      #061128 100%
+    );
+  font-family: var(--hrv-native-body-font);
+  font-size: var(--hub-type-body);
+  line-height: 1.62;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-museum {
+  width: 100%;
+  padding-top: clamp(24px, 3vw, 44px);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-shell {
+  width: var(--hub-v2-shell);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v3-shell-wide {
+  width: var(--hub-v3-shell-wide);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v3-shell-theater {
+  width: min(1320px, calc(100dvw - clamp(36px, 7vw, 144px)));
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-section {
+  padding-block: clamp(32px, 4vw, 58px);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-hero {
+  padding-top: 0;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-hero-card {
+  min-height: min(620px, calc(100svh - 170px));
+  padding: clamp(38px, 4.2vw, 72px);
+  border-radius: 42px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-title,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-name,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-lantern-title {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-section-title,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-title,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-title,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map-title,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-oath strong {
+  font-family: var(--hrv-native-heading-font);
+  font-weight: 700;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-title {
+  max-width: 820px;
+  font-size: clamp(4rem, 6.2vw, 6.25rem);
+  line-height: 0.94;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-lead {
+  max-width: 760px;
+  color: #edf4ff;
+  font-size: clamp(1.18rem, 1.45vw, 1.42rem);
+  line-height: 1.62;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-invitation {
+  color: var(--hub-v2-gold);
+  font-size: clamp(1.06rem, 1.25vw, 1.22rem);
+  line-height: 1.45;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-museum-label,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-eyebrow,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-year,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-meta,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-specimen-label {
+  font-family: var(--hrv-native-body-font);
+  font-size: var(--hub-type-label);
+  line-height: 1.45;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-pillars li {
+  min-height: 42px;
+  padding: 8px 14px 8px 8px;
+  font-size: 16px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-pillar-number {
+  width: 28px;
+  height: 28px;
+  font-size: 13px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-oath {
+  padding: 22px 24px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-oath strong {
+  color: var(--hub-v2-gold);
+  font-size: 1.18rem;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-oath p {
+  color: #dce8f8;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* The year is page metadata, not a competing page-local settings control. */
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v3-year-chip {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 40px;
+  margin-top: 24px;
+  padding: 8px 13px;
+  align-items: center;
+  border: 1px solid var(--hub-v2-line);
+  border-radius: 999px;
+  color: #e3eefc;
+  background: rgba(9, 27, 59, 0.78);
+  font-family: var(--hrv-native-body-font);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-controls,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-effects {
+  display: none !important;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map {
+  padding-block: 16px 26px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map-shell {
+  min-height: 64px;
+  padding: 14px 20px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map-title {
+  font-size: 18px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map-link {
+  min-height: 42px;
+  padding: 9px 12px;
+  color: #e6f0ff;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-theater {
+  padding: clamp(26px, 3.4vw, 44px);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-section-title {
+  font-size: clamp(40px, 3.5vw, 54px);
+  line-height: 1.08;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-room-badge,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-coming-soon,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-featured-ribbon {
+  min-height: 34px;
+  padding: 7px 12px;
+  font-size: 14px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-section-summary {
+  max-width: 760px;
+  color: #d7e4f8;
+  font-size: clamp(18px, 1.05vw, 20px);
+  line-height: 1.68;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-screen::before {
+  font-size: 13px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current {
+  padding-top: clamp(48px, 5vw, 72px);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-card {
+  grid-template-columns: minmax(420px, 0.9fr) minmax(0, 1.1fr);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-art {
+  min-height: 590px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-name {
+  font-size: clamp(48px, 4.4vw, 76px);
+  line-height: 1.02;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-summary {
+  color: #e0ebfb;
+  font-size: clamp(18px, 1.1vw, 20px);
+  line-height: 1.72;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-learning-points li {
+  color: #edf4ff;
+  font-size: var(--hub-type-body-secondary);
+  line-height: 1.55;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-tags li {
+  min-height: 30px;
+  padding: 6px 10px;
+  color: #dbe8f9;
+  font-size: var(--hub-type-label);
+  line-height: 1.25;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-action {
+  min-height: 50px;
+  padding: 12px 18px;
+  font-size: var(--hub-type-action);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-lantern-title {
+  font-size: clamp(30px, 2.6vw, 42px);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-exploration-grid {
+  gap: clamp(20px, 2vw, 30px);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-art {
+  min-height: 260px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-body {
+  padding: 26px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-title {
+  font-size: var(--hub-type-card-title);
+  line-height: 1.2;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-summary,
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-summary {
+  color: #d5e2f5;
+  font-size: var(--hub-type-body-secondary);
+  line-height: 1.62;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-link {
+  font-size: 16px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-card {
+  min-height: 118px;
+  padding: 22px 24px 22px 0;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-title {
+  font-size: var(--hub-type-memory-title);
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-link {
+  min-width: 112px;
+  min-height: 44px;
+  align-items: center;
+  font-size: 15px;
+}
+
+#hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-footer p {
+  color: #e1ebf8;
+  font-family: var(--hrv-native-heading-font);
+  font-size: clamp(1.08rem, 1.4vw, 1.3rem);
+}
+
+/*
+ * OS reduced-motion is used only as a narrow motion-safety signal here.
+ * It does not create, persist, or expose the HRV Reduced Effects product mode.
+ */
+@media (prefers-reduced-motion: reduce) {
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-aurora,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-compass-orbit,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-compass-needle,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-lantern-flame,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-lantern-glow {
+    animation: none !important;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Preserve brief focus/hover feedback. OS motion preference is not the HRV product mode. */
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-skip {
+    transition-duration: 160ms !important;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map-link {
+    transition-duration: 160ms !important;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-action,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-link,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-link {
+    transition-duration: 170ms !important;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-exploration-card {
+    transition-duration: 220ms !important;
+  }
+}
+
+@media (max-width: 1380px) {
+  #hrv-classroom-explorations-root.hrv-hub-v3 {
+    --hub-v2-shell: min(1240px, calc(100dvw - 48px));
+    --hub-v3-shell-wide: min(1320px, calc(100dvw - 36px));
+  }
+}
+
+@media (max-width: 920px) {
+  #hrv-classroom-explorations-root.hrv-hub-v3 {
+    --hub-v2-shell: min(100% - 34px, 860px);
+    --hub-v3-shell-wide: min(100% - 26px, 900px);
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-card {
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-art {
+    min-height: min(540px, 72vw);
+  }
+}
+
+@media (max-width: 680px) {
+  #hrv-classroom-explorations-root.hrv-hub-v3 {
+    --hub-v2-shell: min(100% - 22px, 640px);
+    --hub-v3-shell-wide: min(100% - 18px, 660px);
+    font-size: 18px;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-hero-card {
+    min-height: 0;
+    padding: 26px;
+    border-radius: 26px;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-title {
+    font-size: clamp(2.8rem, 15vw, 4.35rem);
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-lead,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-section-summary,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-current-summary {
+    font-size: 18px;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-map-link {
+    font-size: 15px;
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-section-title {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-card-title,
+  #hrv-classroom-explorations-root.hrv-hub-v3 .hub-v2-memory-title {
+    font-size: 22px;
+  }
+}

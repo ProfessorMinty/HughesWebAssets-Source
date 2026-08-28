@@ -1,6 +1,6 @@
 repository=ProfessorMinty/HughesWebAssets-Source
 review_branch=hub-authoring-v2-2026-08-28
-review_release=2026.08.28.1-review
+review_release=2026.08.28.2-review
 canonical_wordpress_page_id=17
 review_wordpress_page_id=2589
 canonical_path=/hub/

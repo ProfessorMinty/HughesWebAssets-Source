@@ -15,7 +15,7 @@
     "preview": "vite preview --config vite.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:hub": "node tools/test-classroom-explorations-hub-v2.mjs && node tools/test-classroom-explorations-hub-host-compat.mjs",
+    "test:hub": "node tools/test-classroom-explorations-hub-v2.mjs && node tools/test-classroom-explorations-hub-visual-v3.mjs && node tools/test-classroom-explorations-hub-host-compat.mjs",
     "check": "npm run test && npm run build",
     "check:hub": "npm run test:hub && npm run build:hub && npm run test:hub:publication",
     "test:hub:publication": "node tools/test-classroom-explorations-hub-publication.mjs"

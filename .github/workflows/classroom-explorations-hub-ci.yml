@@ -29,6 +29,8 @@ on:
       - 'tools/lib/classroom-explorations-hub-contract.mjs'
       - 'tools/lib/classroom-explorations-hub-operations.mjs'
       - 'docs/classroom-explorations-hub-migration-evidence.md'
+      - 'docs/classroom-explorations-hub-viewport-typography-audit-2026-08-28.md'
+      - 'docs/edublogs-integration/classroom-explorations-hub-test/**'
 permissions:
   contents: read
 jobs:
@@ -43,5 +45,7 @@ jobs:
         run: |
           node --check apps/classroom-explorations-hub/src/bootstrap.js
           node --check apps/classroom-explorations-hub/src/runtime.js
+          node --check apps/classroom-explorations-hub/src/review-bootstrap.js
+          node --check apps/classroom-explorations-hub/src/runtime-v3.js
       - name: Full clean-baseline contract, build, and publication checks
         run: npm run check:hub

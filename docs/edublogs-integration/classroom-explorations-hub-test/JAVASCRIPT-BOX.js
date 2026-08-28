@@ -9,7 +9,7 @@
 
     var repository = "ProfessorMinty/HughesWebAssets-Source";
     var reviewRef = "hub-authoring-v2-2026-08-28";
-    var release = "2026.08.28.1-review";
+    var release = "2026.08.28.2-review";
     var base = "https://cdn.jsdelivr.net/gh/" + repository + "@" + reviewRef + "/";
     var cacheKey = "?v=" + encodeURIComponent(release);
 
@@ -23,8 +23,8 @@
     loader.setAttribute("data-source", base + "apps/classroom-explorations-hub/source/hub.source.json" + cacheKey);
     loader.setAttribute("data-routes", base + "registry/hrv-routes.source.json" + cacheKey);
     loader.setAttribute("data-control", base + "apps/classroom-explorations-hub/source/hub.control.json" + cacheKey);
-    loader.setAttribute("data-runtime", base + "apps/classroom-explorations-hub/src/runtime-v2.js" + cacheKey);
-    loader.setAttribute("data-stylesheet", base + "apps/classroom-explorations-hub/src/hub-v2.css" + cacheKey);
+    loader.setAttribute("data-runtime", base + "apps/classroom-explorations-hub/src/runtime-v3.js" + cacheKey);
+    loader.setAttribute("data-stylesheet", base + "apps/classroom-explorations-hub/src/hub-v3.css" + cacheKey);
     loader.setAttribute("data-host-stylesheet", base + "apps/classroom-explorations-hub/src/host-compat.css" + cacheKey);
     loader.setAttribute("data-timeout", "20000");
 
