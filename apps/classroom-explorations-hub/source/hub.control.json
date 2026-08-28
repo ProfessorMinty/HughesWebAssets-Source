@@ -1,0 +1,350 @@
+{
+  "schemaVersion": "1.0",
+  "controlId": "lanternworks-control:classroom-explorations-hub",
+  "target": {
+    "pageId": "hrv-page:classroom-explorations",
+    "pageType": "classroom-explorations-hub",
+    "canonicalRouteRef": "hrv-route:classroom-explorations"
+  },
+  "documents": {
+    "authoring": {
+      "path": "apps/classroom-explorations-hub/source/hub.source.json",
+      "schemaPath": "schemas/classroom-explorations-hub.source.schema.json",
+      "role": "editable-authoring-truth"
+    },
+    "routes": {
+      "path": "registry/hrv-routes.source.json",
+      "schemaPath": "schemas/hrv-route-registry.schema.json",
+      "role": "route-and-platform-truth"
+    },
+    "control": {
+      "path": "apps/classroom-explorations-hub/source/hub.control.json",
+      "schemaPath": "schemas/classroom-explorations-hub.control.schema.json",
+      "role": "lanternworks-operation-contract"
+    }
+  },
+  "hosts": {
+    "canonical": {
+      "wordpressPageId": 17,
+      "path": "/hub/",
+      "mountId": "hrv-classroom-explorations-root",
+      "mayPublish": false,
+      "note": "Production doorway. Frozen until an approved publication cutover."
+    },
+    "review": {
+      "wordpressPageId": 2589,
+      "path": "/hub-test/",
+      "mountId": "hrv-classroom-explorations-root",
+      "mayPublish": true,
+      "note": "Review doorway for the repository-owned Hub. It renders the canonical Hub identity without changing page 17."
+    }
+  },
+  "concurrency": {
+    "revisionAlgorithm": "sha256-canonical-json",
+    "requiredExpectedRevisions": [
+      "authoringSha256",
+      "routesSha256"
+    ],
+    "rejectStaleCommands": true,
+    "idempotencyOwner": "lanternworks-event-store"
+  },
+  "editor": {
+    "domIdentityAttribute": "data-hrv-node-id",
+    "contentIdentityAttribute": "data-hrv-content-id",
+    "slotIdentityAttribute": "data-hrv-slot-id",
+    "nodes": [
+      {
+        "nodeId": "hub-node:hero",
+        "path": "/data/copy/hero",
+        "editableFields": [
+          "eyebrow",
+          "title",
+          "intro",
+          "invitation",
+          "pillars",
+          "oathTitle",
+          "oathBody"
+        ]
+      },
+      {
+        "nodeId": "hub-node:welcome",
+        "path": "/data/copy/welcome",
+        "editableFields": [
+          "eyebrow",
+          "title",
+          "summary"
+        ]
+      },
+      {
+        "nodeId": "hub-node:current-exploration",
+        "path": "/data/copy/currentExploration",
+        "editableFields": [
+          "eyebrow",
+          "title"
+        ]
+      },
+      {
+        "nodeId": "hub-node:current-twwl",
+        "path": "/data/copy/currentTwwl",
+        "editableFields": [
+          "eyebrow",
+          "title",
+          "comingSoonTitle",
+          "comingSoonBody"
+        ]
+      },
+      {
+        "nodeId": "hub-node:past-explorations",
+        "path": "/data/copy/pastExplorations",
+        "editableFields": [
+          "eyebrow",
+          "title",
+          "emptyText"
+        ]
+      },
+      {
+        "nodeId": "hub-node:past-twwl",
+        "path": "/data/copy/pastTwwl",
+        "editableFields": [
+          "eyebrow",
+          "title",
+          "emptyText"
+        ]
+      },
+      {
+        "nodeId": "hub-node:archives",
+        "path": "/data/copy/archives",
+        "editableFields": [
+          "eyebrow",
+          "title",
+          "intro"
+        ]
+      },
+      {
+        "nodeId": "hub-node:footer",
+        "path": "/data/copy/footer",
+        "editableFields": [
+          "text"
+        ]
+      }
+    ],
+    "catalogs": [
+      {
+        "kind": "exploration",
+        "path": "/data/explorations",
+        "idField": "id",
+        "immutableFields": [
+          "id"
+        ],
+        "editableFields": [
+          "schoolYear",
+          "title",
+          "summary",
+          "routeRef",
+          "image",
+          "learningPoints",
+          "tags"
+        ]
+      },
+      {
+        "kind": "twwl",
+        "path": "/data/twwl",
+        "idField": "id",
+        "immutableFields": [
+          "id"
+        ],
+        "editableFields": [
+          "schoolYear",
+          "title",
+          "summary",
+          "routeRef",
+          "image",
+          "tags"
+        ]
+      },
+      {
+        "kind": "media",
+        "path": "/data/media",
+        "idField": "id",
+        "immutableFields": [
+          "id"
+        ],
+        "editableFields": [
+          "kind",
+          "sourceUrl",
+          "title",
+          "association"
+        ]
+      }
+    ]
+  },
+  "commands": {
+    "swapCurrentExploration": {
+      "operation": "hub.swap-current-exploration",
+      "description": "Promote an existing or atomically registered Exploration and archive the outgoing Current card.",
+      "payloadFields": [
+        "nextExplorationId",
+        "archiveOutgoing",
+        "exploration",
+        "route"
+      ],
+      "effects": [
+        "optionally register route",
+        "optionally register exploration",
+        "archive outgoing current exploration",
+        "remove incoming exploration from Past",
+        "set incoming exploration as Current"
+      ]
+    },
+    "editNode": {
+      "operation": "hub.edit-node",
+      "description": "Edit approved page copy by stable node ID and field allow-list.",
+      "payloadFields": [
+        "nodeId",
+        "patch"
+      ],
+      "effects": [
+        "update approved copy fields only"
+      ]
+    },
+    "updateContent": {
+      "operation": "hub.update-content",
+      "description": "Edit an existing Exploration, TWWL, or media record without changing its stable ID.",
+      "payloadFields": [
+        "kind",
+        "contentId",
+        "patch"
+      ],
+      "effects": [
+        "update approved catalog fields only"
+      ]
+    },
+    "setCurrentTwwl": {
+      "operation": "hub.set-current-twwl",
+      "description": "Publish a TWWL record into the Current Learning Lantern and archive the outgoing story.",
+      "payloadFields": [
+        "contentId",
+        "archiveOutgoing",
+        "twwl",
+        "route"
+      ],
+      "effects": [
+        "optionally register route",
+        "optionally register TWWL",
+        "archive outgoing current TWWL",
+        "remove incoming TWWL from Past",
+        "publish incoming TWWL"
+      ]
+    },
+    "setCurrentTwwlComingSoon": {
+      "operation": "hub.set-current-twwl-coming-soon",
+      "description": "Return the Current Learning Lantern to its truthful Coming Soon state.",
+      "payloadFields": [],
+      "effects": [
+        "archive an outgoing published TWWL",
+        "set the stable Current TWWL slot to Coming Soon"
+      ]
+    },
+    "setFeaturedMedia": {
+      "operation": "hub.set-featured-media",
+      "description": "Change the Hub welcome theater media by stable media ID.",
+      "payloadFields": [
+        "mediaId"
+      ],
+      "effects": [
+        "change featured media relationship"
+      ]
+    },
+    "reorderGallery": {
+      "operation": "hub.reorder-gallery",
+      "description": "Replace the exact order of a Past gallery after validating every stable content ID.",
+      "payloadFields": [
+        "gallery",
+        "orderedIds"
+      ],
+      "effects": [
+        "replace Past Exploration or Past TWWL order"
+      ]
+    },
+    "publishArchive": {
+      "operation": "hub.publish-archive",
+      "description": "Publish or update a previous-school-year archive relationship.",
+      "payloadFields": [
+        "archiveId",
+        "schoolYear",
+        "routeRef"
+      ],
+      "effects": [
+        "upsert a published previous-year archive relationship"
+      ]
+    },
+    "rollSchoolYear": {
+      "operation": "hub.roll-school-year",
+      "description": "Atomically establish a new current school year, Current Exploration, Coming Soon TWWL slot, and prior-year archive relationship.",
+      "payloadFields": [
+        "schoolYear",
+        "currentExplorationId",
+        "exploration",
+        "route",
+        "previousYearArchive"
+      ],
+      "effects": [
+        "register school year",
+        "archive the outgoing school year relationship",
+        "set the new Current Exploration",
+        "reset Current TWWL to Coming Soon"
+      ]
+    }
+  },
+  "transaction": {
+    "allOrNothingDocuments": [
+      "authoring",
+      "routes"
+    ],
+    "validateBeforeProjection": true,
+    "validateAfterProjection": true,
+    "emitBeforeAfterHashes": true,
+    "publishOnlyAfterGreenChecks": true,
+    "requiredInvariants": [
+      "stable IDs never change",
+      "Current content belongs to currentSchoolYear",
+      "one content ID cannot occupy contradictory Hub slots",
+      "all managed route references resolve",
+      "promoted content is removed from its Past gallery",
+      "outgoing Current content is archived when requested",
+      "Coming Soon is a slot state and never a fabricated content record",
+      "page 17 is never changed by a review-only transaction"
+    ]
+  },
+  "publication": {
+    "authoringDocumentIsBrowserManifest": false,
+    "pipeline": [
+      "validate source and route contracts",
+      "project deterministic browser manifest",
+      "run Hub contract and host-compatibility tests",
+      "mint immutable content snapshot",
+      "bind snapshot to an exact runtime release",
+      "verify artifact integrity",
+      "update only the approved Edublogs doorway"
+    ]
+  },
+  "safety": {
+    "immutableIdentityFields": [
+      "page.id",
+      "page.type",
+      "route.ref",
+      "route.wordpressPageId",
+      "content.id",
+      "relationship.id",
+      "copy.nodeId"
+    ],
+    "forbiddenDirectEdits": [
+      "generated runtime manifests",
+      "immutable publication records",
+      "page 17 during review",
+      "WordPress page IDs through ordinary content-edit commands"
+    ],
+    "productionWordpressPageId": 17,
+    "reviewWordpressPageId": 2589
+  }
+}
