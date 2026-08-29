@@ -1,0 +1,31 @@
+name: Export Photo Album QA screenshots
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/photo-album-export-qa-artifact.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out verified visual branch
+        uses: actions/checkout@v4
+        with:
+          ref: photo-album-visual-complete-2026-08-18
+      - name: Confirm expected evidence exists
+        run: |
+          test -f qa/photo-album/visual-complete-2026-08-18/home-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18/album-pumpkin-patch-1920x911.png
+          test -f qa/photo-album/visual-complete-2026-08-18/lightbox-pumpkin-patch-1920x911.png
+      - name: Upload QA evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: photo-album-final-visual-qa
+          path: qa/photo-album/visual-complete-2026-08-18/
+          if-no-files-found: error
+          retention-days: 7
