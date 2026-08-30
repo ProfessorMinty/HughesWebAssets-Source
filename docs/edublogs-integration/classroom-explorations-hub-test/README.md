@@ -1,76 +1,62 @@
-# Classroom Explorations Hub review doorway
+# Classroom Explorations Hub Phase 1 doorway
 
-This directory contains the Edublogs doorway blocks for the active review page:
+This directory contains the Edublogs doorway blocks for the review page:
 
 - Public review URL: `https://rmhughes.edublogs.org/hub-test/`
 - WordPress page ID: `2589`
 
-Page `17` at `/hub/` remains untouched and is not the visual, layout, typography, copy, or interaction reference for this work. The reconstructed repository application supersedes that archaic presentation.
+Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Ownership boundary
-
-Edublogs owns only:
-
-1. the semantic mount element;
-2. a small friendly unavailable card;
-3. the minimal CSS needed to display that card;
-4. the tiny JavaScript handoff that loads the repository application.
-
-The repository owns the Hub source, route contract, Lanternworks control manifest, application runtime, responsive presentation, validation, and future immutable publication pipeline.
-
-The persistent HRV Reduced Effects control and preference belong to the global site shell. The Hub does not create a competing page-local control or private effects preference.
-
-## Connected-state failure found in `.4-review`
-
-The `.4-review` entry stylesheet named two files that did not exist and failed to name three files that contained the intended layout, button colors, footer treatment, and motion. The browser accepted the top-level stylesheet link, so the bootstrap mounted the application with only part of its CSS. That produced the observed mixed state: static star dots, mostly unchanged layout, inherited white action text, and an unrelated native footer floor.
-
-The `.5-review` handoff removes that failure mode. It requests every required stylesheet module as an independent `<link>` and waits for all of them before mounting the application. If any required CSS module fails, the friendly unavailable card is restored instead of displaying a half-styled Hub.
-
-## Current immutable review candidate
+## Phase 1 immutable publication
 
 ```text
-Release: 2026.08.29.5-review
-Commit:  0d112e3bcdbb2b5554c662aa1615aaba07b2876f
-CI:      green
+Asset commit:       817dcfe5dc1646df39815209af0501a9aa0142c9
+Source revision:    31bf77a01b5b5df77592b1abb67f97eb9bf69ee6
+Runtime version:    2026.08.30.1
+Publication:        pub-2026-08-30-001
+Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
+Rollback target:    pub-2026-08-14-005
 ```
 
-Page 2589 now loads this exact immutable commit rather than the mutable review branch. The branch remains the workshop lineage, but it is not the browser source of truth for the review.
+The doorway loads one SRI-protected canonical bootstrap from the exact asset commit. The bootstrap fetches the immutable publication, verifies the SHA-256 digest of the runtime, one application stylesheet, the host-compatibility stylesheet, and the projected content manifest, then mounts the application.
 
-The handoff loads:
+The active delivery chain is:
 
 ```text
-apps/classroom-explorations-hub/src/runtime-v3.js
-apps/classroom-explorations-hub/src/hub-foundation.css
-apps/classroom-explorations-hub/src/hub-hero-and-map.css
-apps/classroom-explorations-hub/src/hub-feature-rooms.css
-apps/classroom-explorations-hub/src/hub-galleries-and-motion.css
-apps/classroom-explorations-hub/src/hub-responsive.css
-apps/classroom-explorations-hub/src/host-compat.css
+page 2589 doorway
+  -> releases/classroom-explorations-hub/runtime/2026.08.30.1/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-001/publication.json
+  -> verified runtime.js
+  -> verified hub.css
+  -> verified host-compat.css
+  -> verified content/.../manifest.json
 ```
 
-`hub-v3.css` remains a source-inspection entry point containing the same correct module list, but the browser doorway does not rely on nested `@import` success.
+There is no mutable branch URL, review bootstrap, alternate runtime, split application stylesheet set, or nested `@import` in this doorway.
 
-This revision:
+## Phase 1 acceptance evidence
 
-- preserves the established order Hero → Welcome Theater → Current Exploration;
-- retains the real Zinnia photograph and current Hub manifest;
-- keeps the corrected 1920×911 desktop density;
-- restores the intended lateral/asymmetric room layouts and multi-column galleries;
-- restores the dark text on mint primary actions;
-- restores the star drift, breathing, aurora, lantern, botanical, and gallery motion definitions;
-- keeps the Welcome Theater surrounded by museum context rather than becoming a giant isolated video;
-- removes the old inline animal SVG from the fallback;
-- uses approved NLL Runtime Assets as decorative ingredients only;
-- reconciles the native Amadeus footer and back-to-top control with the dark museum environment;
-- fixes the misspelled responsive root selectors;
-- leaves page 17 untouched.
+The exact asset commit passed both the push and pull-request GitHub Actions runs. Local and remote jsDelivr bytes matched for the bootstrap, runtime, application stylesheet, host stylesheet, publication, and content manifest.
+
+The real projected application was exercised in a browser at `1920×911` with real external media. Acceptance included:
+
+- Welcome Theater before Current Exploration;
+- real Zinnia photography;
+- all five real Past TWWL banners with nonzero natural dimensions;
+- no emoji media substitutions;
+- one application style and one host style;
+- no alternate review assets;
+- active star, aurora, compass, screen, greenhouse, lantern, botanical, hover, and pointer motion;
+- no Hub-local Reduced Effects control;
+- zero horizontal overflow;
+- no browser console warnings or errors.
 
 ## Editor update boundary
 
-The current page-2589 HTML and CSS have already been confirmed by the live review because the old inline SVG animal disappeared. For `.5-review`, replace **only the JavaScript field** with `JAVASCRIPT-BOX.js`.
+Do not change page `17`. Do not change page `2589` HTML or CSS for this release.
 
-Do not paste this review doorway into page 17. Production must use an immutable publication after the Hub is accepted.
+When Arctic is authorized to update Edublogs, replace only the page-2589 JavaScript field with `JAVASCRIPT-BOX.js`.
 
 ## Failure behavior
 
-The unavailable card is the complete host-level fallback. The repository bootstrap hides it during startup and replaces the mount only after the source, routes, control manifest, runtime, host compatibility, and every application stylesheet have loaded successfully. Any startup failure restores the preserved card.
+The existing unavailable card remains the host-level fallback. The doorway hides it during startup and the canonical bootstrap replaces the mount only after all immutable assets pass integrity and contract checks. A load, integrity, compatibility, or timeout failure restores the unavailable state.

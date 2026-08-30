@@ -30,6 +30,15 @@ const manifest = projectHubRuntime(source, routes);
 const runtimeText = readText(runtimePath);
 const css = readText(cssPath);
 const bootstrap = readText(bootstrapPath);
+const doorway = readText("docs/edublogs-integration/classroom-explorations-hub-test/JAVASCRIPT-BOX.js");
+const doorwayReadme = readText("docs/edublogs-integration/classroom-explorations-hub-test/README.md");
+const doorwayChannel = readText("docs/edublogs-integration/classroom-explorations-hub-test/BRANCH-CHANNEL.txt");
+const activeDoorwayDocs = [doorway, doorwayReadme, doorwayChannel].join("\n");
+const publication = readJson("releases/classroom-explorations-hub/publications/pub-2026-08-30-001/publication.json");
+const releaseBootstrap = readFileSync(
+  path.join(root, "releases/classroom-explorations-hub/runtime/2026.08.30.1/bootstrap.js")
+);
+const releaseBootstrapSri = `sha256-${createHash("sha256").update(releaseBootstrap).digest("base64")}`;
 
 assert.deepEqual(
   readdirSync(path.join(root, "apps/classroom-explorations-hub/src")).sort(),
@@ -59,6 +68,16 @@ assert.match(bootstrap, /style\.dataset\.hrvClassroomHubStyle = "app"/);
 assert.match(bootstrap, /compat\.dataset\.hrvClassroomHubStyle = "host"/);
 assert.match(bootstrap, /link\[data-hrv-review-style\]/);
 assert.match(bootstrap, /script\[data-hrv-review-runtime\]/);
+assert.match(doorway, /817dcfe5dc1646df39815209af0501a9aa0142c9/);
+assert.match(doorway, /runtime\/2026\.08\.30\.1\/bootstrap\.js/);
+assert.match(doorway, /publications\/pub-2026-08-30-001\/publication\.json/);
+assert.ok(doorway.includes(releaseBootstrapSri));
+assert.doesNotMatch(
+  activeDoorwayDocs,
+  /review-bootstrap\.js|runtime-v3\.js|hub-v3\.css|hub-foundation\.css|hub-hero-and-map\.css|hub-feature-rooms\.css|hub-galleries-and-motion\.css|hub-responsive\.css|HughesWebAssets-Source@hub-authoring-v2-2026-08-28/
+);
+assert.equal(publication.sourceRevision, "31bf77a01b5b5df77592b1abb67f97eb9bf69ee6");
+assert.equal(publication.previousKnownGoodPublication, "pub-2026-08-14-005");
 
 assert.match(manifest.current.exploration.image.src, /IMG_2850\.jpg\?format=750w/);
 assert.equal(manifest.galleries.pastTwwl.length, 5);

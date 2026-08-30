@@ -1,147 +1,99 @@
 (function () {
   "use strict";
 
-  var RELEASE = "2026.08.29.5-review";
-  var REVIEW_COMMIT = "0d112e3bcdbb2b5554c662aa1615aaba07b2876f";
   var MOUNT_ID = "hrv-classroom-explorations-root";
-  var MUSEUM_ASSET =
-    "https://cdn.nlightlabs.com/assets/icon/icon/museum-e141ca5eb8/museum-e141ca5eb8.webp";
+  var PAGE_ID = "hrv-page:classroom-explorations";
+  var RELEASE_COMMIT = "817dcfe5dc1646df39815209af0501a9aa0142c9";
+  var RELEASE_BASE =
+    "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
+    RELEASE_COMMIT +
+    "/releases/classroom-explorations-hub/";
 
-  function normalizeOutageCard(mount) {
-    var scene = mount.querySelector(".hrv-hub-outage__scene");
-    if (!scene) return;
+  function startClassroomExplorations() {
+    var root = document.getElementById(MOUNT_ID);
+    if (!root || root.getAttribute("data-hrv-doorway-started") === "true") return;
 
-    var legacyAnimal = scene.querySelector(
-      ".hrv-hub-outage__puppy, svg[aria-label*='puppy' i]"
+    var notice = root.querySelector("[data-hrv-outage-notice]");
+    var settled = false;
+    var timer = null;
+
+    function hideOutage() {
+      if (notice) notice.hidden = true;
+    }
+
+    function showOutage() {
+      root.setAttribute("data-hrv-state", "unavailable");
+      notice = root.querySelector("[data-hrv-outage-notice]");
+      if (notice) notice.hidden = false;
+    }
+
+    function cleanup() {
+      if (timer !== null) {
+        window.clearTimeout(timer);
+        timer = null;
+      }
+      window.removeEventListener("hrv:page-ready", onReady);
+      window.removeEventListener("hrv:page-error", onError);
+    }
+
+    function eventMatchesPage(event) {
+      return !event.detail || !event.detail.pageId || event.detail.pageId === PAGE_ID;
+    }
+
+    function onReady(event) {
+      if (!eventMatchesPage(event)) return;
+      settled = true;
+      cleanup();
+    }
+
+    function onError(event) {
+      if (!eventMatchesPage(event)) return;
+      settled = true;
+      cleanup();
+      showOutage();
+    }
+
+    root.setAttribute("data-hrv-doorway-started", "true");
+    root.setAttribute("data-hrv-state", "loading");
+    hideOutage();
+
+    window.addEventListener("hrv:page-ready", onReady);
+    window.addEventListener("hrv:page-error", onError);
+
+    var bootstrap = document.createElement("script");
+    bootstrap.src = RELEASE_BASE + "runtime/2026.08.30.1/bootstrap.js";
+    bootstrap.crossOrigin = "anonymous";
+    bootstrap.integrity = "sha256-rHAcNpBvZDT+1OQkkFc9kXK6WKgms44/bUYz0F7sXy0=";
+    bootstrap.setAttribute("data-mount", MOUNT_ID);
+    bootstrap.setAttribute(
+      "data-publication",
+      RELEASE_BASE + "publications/pub-2026-08-30-001/publication.json"
     );
-    var guide = scene.querySelector("[data-hrv-guide-asset]");
 
-    if (legacyAnimal || !guide) {
-      scene.replaceChildren();
-
-      var fallback = document.createElement("span");
-      fallback.className = "hrv-hub-outage__guide-fallback";
-      fallback.textContent = "🏛️";
-
-      guide = document.createElement("img");
-      guide.className = "hrv-hub-outage__guide";
-      guide.setAttribute("data-hrv-guide-asset", "");
-      guide.alt = "";
-      guide.decoding = "async";
-      guide.src = MUSEUM_ASSET;
-
-      var question = document.createElement("span");
-      question.className = "hrv-hub-outage__question";
-      question.textContent = "?";
-
-      var map = document.createElement("span");
-      map.className = "hrv-hub-outage__map";
-      map.textContent = "🗺️";
-
-      scene.append(fallback, guide, question, map);
-    }
-
-    var markReady = function () {
-      if (guide.naturalWidth > 0) mount.classList.add("hrv-guide-ready");
-    };
-
-    var markUnavailable = function () {
-      mount.classList.remove("hrv-guide-ready");
-      guide.hidden = true;
-    };
-
-    guide.addEventListener("load", markReady, { once: true });
-    guide.addEventListener("error", markUnavailable, { once: true });
-
-    if (guide.complete) {
-      if (guide.naturalWidth > 0) markReady();
-      else markUnavailable();
-    }
-  }
-
-  function startHubReview() {
-    var mount = document.getElementById(MOUNT_ID);
-    if (!mount || mount.dataset.hrvRepositoryHandoff === "started") return;
-
-    normalizeOutageCard(mount);
-    mount.dataset.hrvRepositoryHandoff = "started";
-    mount.dataset.hrvReviewRelease = RELEASE;
-    mount.dataset.hrvReviewCommit = REVIEW_COMMIT;
-
-    var repository = "ProfessorMinty/HughesWebAssets-Source";
-    var base =
-      "https://cdn.jsdelivr.net/gh/" +
-      repository +
-      "@" +
-      REVIEW_COMMIT +
-      "/";
-    var cacheKey = "?v=" + encodeURIComponent(RELEASE);
-
-    var loader = document.createElement("script");
-    loader.src =
-      base +
-      "apps/classroom-explorations-hub/src/review-bootstrap.js" +
-      cacheKey;
-    loader.async = false;
-    loader.crossOrigin = "anonymous";
-
-    loader.dataset.mount = MOUNT_ID;
-    loader.dataset.pageId = "hrv-page:classroom-explorations";
-    loader.dataset.sourceRef = REVIEW_COMMIT;
-    loader.dataset.release = RELEASE;
-    loader.dataset.source =
-      base +
-      "apps/classroom-explorations-hub/source/hub.source.json" +
-      cacheKey;
-    loader.dataset.routes =
-      base + "registry/hrv-routes.source.json" + cacheKey;
-    loader.dataset.control =
-      base +
-      "apps/classroom-explorations-hub/source/hub.control.json" +
-      cacheKey;
-    loader.dataset.runtime =
-      base +
-      "apps/classroom-explorations-hub/src/runtime-v3.js" +
-      cacheKey;
-    loader.dataset.stylesheets = [
-      "hub-foundation.css",
-      "hub-hero-and-map.css",
-      "hub-feature-rooms.css",
-      "hub-galleries-and-motion.css",
-      "hub-responsive.css"
-    ].map(function (name) {
-      return base + "apps/classroom-explorations-hub/src/" + name + cacheKey;
-    }).join("|");
-    loader.dataset.hostStylesheet =
-      base +
-      "apps/classroom-explorations-hub/src/host-compat.css" +
-      cacheKey;
-    loader.dataset.timeout = "20000";
-
-    loader.addEventListener(
+    bootstrap.addEventListener(
       "error",
       function () {
-        delete mount.dataset.hrvRepositoryHandoff;
-        mount.dataset.hrvState = "unavailable";
-
-        var notice = mount.querySelector("[data-hrv-outage-notice]");
-        if (notice) notice.hidden = false;
-
-        console.error(
-          "[HRV Hub Test] Repository bootstrap failed to load."
-        );
+        if (settled) return;
+        settled = true;
+        cleanup();
+        showOutage();
       },
       { once: true }
     );
 
-    document.head.appendChild(loader);
+    timer = window.setTimeout(function () {
+      if (settled || root.getAttribute("data-hrv-state") === "ready") return;
+      settled = true;
+      cleanup();
+      showOutage();
+    }, 20000);
+
+    document.head.appendChild(bootstrap);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", startHubReview, {
-      once: true
-    });
+    document.addEventListener("DOMContentLoaded", startClassroomExplorations, { once: true });
   } else {
-    startHubReview();
+    startClassroomExplorations();
   }
 })();
