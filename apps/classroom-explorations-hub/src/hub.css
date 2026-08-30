@@ -15,9 +15,9 @@
   --hub-shadow: 0 28px 70px rgba(0, 7, 25, 0.36);
   --hub-radius: 28px;
   --hub-radius-small: 18px;
-  --hub-shell-wide: min(1680px, calc(100dvw - 64px));
-  --hub-shell-reading: min(1480px, calc(100dvw - 64px));
-  --hub-shell-theater: min(1320px, calc(100dvw - 64px));
+  --hub-shell-wide: min(1760px, calc(100dvw - clamp(32px, 4vw, 72px)));
+  --hub-shell-reading: min(1660px, calc(100dvw - clamp(44px, 6vw, 112px)));
+  --hub-shell-theater: min(1480px, calc(100dvw - clamp(64px, 10vw, 192px)));
   display: block;
   width: 100%;
   min-height: 100vh;
@@ -26,7 +26,7 @@
   color: var(--hub-ink);
   color-scheme: dark;
   font-family: "Atkinson Hyperlegible", Aptos, "Segoe UI", system-ui, sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.55;
 }
 
@@ -90,7 +90,6 @@
 .hrv-classroom-hub .environment-light {
   position: absolute;
   border-radius: 50%;
-  filter: blur(32px);
 }
 
 .hrv-classroom-hub .aurora-one {
@@ -98,9 +97,9 @@
   left: -18vw;
   width: 72vw;
   height: 25rem;
-  background: rgba(66, 218, 187, 0.25);
+  background: radial-gradient(ellipse, rgba(66, 218, 187, 0.22), transparent 68%);
   transform: rotate(-8deg);
-  animation: hub-aurora-left 17s ease-in-out infinite alternate;
+  animation: hub-aurora-left 14s ease-in-out infinite alternate;
 }
 
 .hrv-classroom-hub .aurora-two {
@@ -108,13 +107,13 @@
   right: -20vw;
   width: 69vw;
   height: 28rem;
-  background: rgba(151, 125, 227, 0.25);
+  background: radial-gradient(ellipse, rgba(151, 125, 227, 0.22), transparent 68%);
   transform: rotate(7deg);
-  animation: hub-aurora-right 21s ease-in-out infinite alternate;
+  animation: hub-aurora-right 17s ease-in-out infinite alternate;
 }
 
 .hrv-classroom-hub .environment-starfield {
-  position: absolute;
+  position: fixed;
   inset: -4%;
   background-repeat: repeat;
   opacity: 0.48;
@@ -127,7 +126,7 @@
     radial-gradient(circle at 67% 8%, #ffffff 0 1px, transparent 1.5px),
     radial-gradient(circle at 84% 24%, #bde9ff 0 1px, transparent 1.6px);
   background-size: 180px 160px, 230px 190px, 270px 200px, 320px 250px;
-  animation: hub-stars-drift-a 44s linear infinite, hub-stars-breathe 8s ease-in-out infinite alternate;
+  animation: hub-stars-drift-a 34s linear infinite;
 }
 
 .hrv-classroom-hub .starfield-two {
@@ -137,7 +136,7 @@
     radial-gradient(circle at 91% 44%, rgba(200, 183, 255, 0.9) 0 1px, transparent 1.7px);
   background-size: 210px 240px, 290px 220px, 360px 310px;
   opacity: 0.3;
-  animation: hub-stars-drift-b 58s linear infinite reverse, hub-stars-breathe 11s ease-in-out infinite alternate-reverse;
+  animation: hub-stars-drift-b 42s linear infinite reverse;
 }
 
 .hrv-classroom-hub .light-one {
@@ -145,7 +144,7 @@
   left: 8%;
   width: 38rem;
   height: 24rem;
-  background: rgba(85, 185, 218, 0.12);
+  background: radial-gradient(ellipse, rgba(85, 185, 218, 0.12), transparent 68%);
 }
 
 .hrv-classroom-hub .light-two {
@@ -153,7 +152,7 @@
   right: 5%;
   width: 44rem;
   height: 28rem;
-  background: rgba(239, 189, 82, 0.1);
+  background: radial-gradient(ellipse, rgba(239, 189, 82, 0.1), transparent 68%);
 }
 
 .hrv-classroom-hub .museum-shell {
@@ -169,24 +168,23 @@
 
 .hrv-classroom-hub .welcome-section .museum-shell {
   width: var(--hub-shell-theater);
-  margin-right: max(32px, 5vw);
+  margin-right: clamp(48px, 4vw, 80px);
   margin-left: auto;
 }
 
 .hrv-classroom-hub .current-exploration-section .museum-shell {
-  width: var(--hub-shell-wide);
+  width: var(--hub-shell-reading);
   margin-right: auto;
-  margin-left: max(32px, 5vw);
+  margin-left: clamp(48px, 4vw, 80px);
 }
 
 .hrv-classroom-hub .current-twwl-section .museum-shell {
-  width: var(--hub-shell-reading);
-  margin-right: max(32px, 5vw);
-  margin-left: auto;
+  width: min(1360px, calc(100dvw - clamp(64px, 10vw, 192px)));
+  margin-inline: auto;
 }
 
 .hrv-classroom-hub .compact-archive-shell {
-  width: var(--hub-shell-theater);
+  width: min(1240px, calc(100dvw - clamp(64px, 10vw, 192px)));
 }
 
 .hrv-classroom-hub .hub-section {
@@ -201,22 +199,22 @@
   border-radius: var(--hub-radius);
   background: var(--hub-panel);
   box-shadow: var(--hub-shadow), inset 0 1px rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(14px);
 }
 
-.hrv-classroom-hub .hub-card[data-tilt],
-.hrv-classroom-hub .collection-card[data-tilt] {
+.hrv-classroom-hub [data-tilt] {
   transform:
     perspective(1200px)
     rotateX(var(--tilt-x, 0deg))
     rotateY(var(--tilt-y, 0deg));
   transform-style: preserve-3d;
-  transition: transform 180ms ease, border-color 260ms ease, box-shadow 260ms ease;
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hrv-classroom-hub [data-tilt].is-pointer-active {
   will-change: transform;
 }
 
-.hrv-classroom-hub .hub-card[data-tilt]::after,
-.hrv-classroom-hub .collection-card[data-tilt]::after {
+.hrv-classroom-hub [data-pointer-light]::after {
   position: absolute;
   z-index: 4;
   inset: 0;
@@ -227,7 +225,7 @@
     transparent 55%
   );
   content: "";
-  opacity: 0.7;
+  opacity: 0.58;
   pointer-events: none;
 }
 
@@ -239,7 +237,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   color: var(--hub-gold);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -249,7 +247,7 @@
   margin: 0.08rem 0 0.5rem;
   color: var(--hub-ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-size: clamp(2.35rem, 2.7vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.02;
@@ -260,18 +258,21 @@
   max-width: 62ch;
   margin: 0;
   color: var(--hub-muted);
+  font-size: 1rem;
+  line-height: 1.62;
 }
 
 .hrv-classroom-hub .hero-section {
-  padding-top: clamp(1.75rem, 3.2vw, 3rem);
+  padding-top: clamp(1.35rem, 2vw, 2rem);
+  padding-bottom: clamp(0.65rem, 1vw, 1rem);
 }
 
 .hrv-classroom-hub .hub-hero-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.65fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
-  min-height: clamp(410px, 50svh, 475px);
-  padding: clamp(1.85rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 1.18fr) minmax(540px, 0.82fr);
+  gap: clamp(2rem, 3.2vw, 3.4rem);
+  min-height: clamp(450px, 52svh, 500px);
+  padding: clamp(2.25rem, 3.3vw, 3.6rem);
   background:
     radial-gradient(46rem 28rem at 4% 10%, rgba(45, 185, 158, 0.2), transparent 68%),
     radial-gradient(34rem 24rem at 94% 88%, rgba(153, 123, 226, 0.18), transparent 70%),
@@ -301,11 +302,11 @@
 .hrv-classroom-hub .hero-identity-row {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
+  gap: 0.75rem;
 }
 
 .hrv-classroom-hub .hub-compass {
-  width: clamp(76px, 6vw, 104px);
+  width: clamp(176px, 11vw, 220px);
   flex: none;
   filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.52));
 }
@@ -316,17 +317,17 @@
 
 .hrv-classroom-hub .compass-orbit {
   transform-origin: center;
-  animation: hub-compass-orbit 20s linear infinite;
+  animation: hub-compass-orbit 17s linear infinite;
 }
 
 .hrv-classroom-hub .compass-needle {
   transform-origin: center;
-  animation: hub-compass-needle 6s ease-in-out infinite;
+  animation: hub-compass-needle 4.8s ease-in-out infinite;
 }
 
 .hrv-classroom-hub .hero-museum-mark {
   color: #dfe9ff;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -339,11 +340,11 @@
 }
 
 .hrv-classroom-hub .hub-title {
-  max-width: 13ch;
+  max-width: 12ch;
   margin: 0.1rem 0 0.55rem;
   color: #fffaf0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 4vw, 4.8rem);
+  font-size: clamp(4.6rem, 5vw, 5.4rem);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.94;
@@ -354,13 +355,15 @@
   max-width: 64ch;
   margin: 0;
   color: #dfe8f8;
-  font-size: clamp(1rem, 1.25vw, 1.18rem);
+  font-size: clamp(1.05rem, 1.15vw, 1.24rem);
+  line-height: 1.6;
 }
 
 .hrv-classroom-hub .hub-invitation {
   margin: 0.5rem 0 0;
   color: var(--hub-gold);
   font-weight: 700;
+  font-size: 1rem;
 }
 
 .hrv-classroom-hub .hero-pillars {
@@ -373,24 +376,54 @@
 }
 
 .hrv-classroom-hub .hero-pillars li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
   padding: 0.42rem 0.68rem;
   border: 1px solid rgba(255, 255, 255, 0.17);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: #f4f7ff;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 750;
+}
+
+.hrv-classroom-hub .hero-pillar-number {
+  display: grid;
+  width: 1.55rem;
+  height: 1.55rem;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--hub-gold), var(--hub-teal));
+  color: #061128;
+  font-size: 0.78rem;
+  font-weight: 950;
 }
 
 .hrv-classroom-hub .hero-right {
   display: grid;
+  grid-template-columns: minmax(176px, 0.62fr) minmax(280px, 1fr);
+  grid-template-rows: auto auto;
   align-content: center;
-  gap: 0.9rem;
+  align-items: center;
+  gap: 0.9rem 1.35rem;
+}
+
+.hrv-classroom-hub .hero-right .hub-compass {
+  grid-row: 1 / 3;
+  grid-column: 1;
+  justify-self: center;
 }
 
 .hrv-classroom-hub .hero-oath,
 .hrv-classroom-hub .hero-glance {
-  padding: 1.05rem;
+  grid-column: 2;
+}
+
+.hrv-classroom-hub .hero-oath,
+.hrv-classroom-hub .hero-glance {
+  padding: 1.15rem 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 20px;
   background: rgba(3, 15, 38, 0.58);
@@ -402,13 +435,15 @@
   margin: 0 0 0.3rem;
   color: var(--hub-gold);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 700;
 }
 
 .hrv-classroom-hub .hero-oath-body {
   margin: 0;
   color: #edf2ff;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .hrv-classroom-hub .hero-glance-grid {
@@ -433,34 +468,96 @@
 
 .hrv-classroom-hub .hero-stat span {
   color: #cbd8ef;
-  font-size: 0.68rem;
+  font-size: 0.82rem;
 }
 
 .hrv-classroom-hub .hero-school-year {
   margin: 0.65rem 0 0;
   color: #b9c8e3;
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   font-weight: 750;
   letter-spacing: 0.06em;
   text-align: right;
   text-transform: uppercase;
 }
 
+.hrv-classroom-hub .museum-map {
+  position: relative;
+  z-index: 3;
+  padding-block: 0.25rem 0.55rem;
+}
+
+.hrv-classroom-hub .museum-map-shell {
+  display: flex;
+  width: var(--hub-shell-reading);
+  min-height: 54px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid rgba(186, 218, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(7, 20, 47, 0.76);
+  box-shadow: 0 14px 34px rgba(0, 6, 21, 0.2);
+}
+
+.hrv-classroom-hub .museum-map-title {
+  flex: none;
+  margin: 0;
+  color: var(--hub-gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.hrv-classroom-hub .museum-map-links {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.hrv-classroom-hub .museum-map-link {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.58rem;
+  border-radius: 11px;
+  color: #e4eeff;
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.hrv-classroom-hub .museum-map-link:hover,
+.hrv-classroom-hub .museum-map-link:focus-visible {
+  color: #ffffff;
+  background: rgba(114, 227, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+.hrv-classroom-hub .museum-map-number {
+  color: var(--hub-teal);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+}
+
 .hrv-classroom-hub .welcome-section {
-  padding-top: 0.5rem;
+  padding-block: clamp(1.4rem, 2.5vw, 2.25rem);
 }
 
 .hrv-classroom-hub .welcome-theater-card {
   display: grid;
-  grid-template-columns: minmax(280px, 0.42fr) minmax(420px, 0.58fr);
+  grid-template-columns: minmax(430px, 0.38fr) minmax(720px, 0.62fr);
   align-items: center;
-  gap: clamp(1.25rem, 2.5vw, 2.4rem);
-  min-height: 400px;
-  padding: clamp(1.35rem, 2.5vw, 2rem);
-  background:
-    radial-gradient(26rem 18rem at 93% 50%, rgba(145, 183, 255, 0.15), transparent 68%),
-    linear-gradient(142deg, rgba(7, 21, 48, 0.97), rgba(18, 30, 62, 0.95));
-  border-color: rgba(145, 183, 255, 0.26);
+  gap: clamp(2rem, 3.4vw, 3.4rem);
+  min-height: 0;
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .hrv-classroom-hub .card-heading {
@@ -470,10 +567,15 @@
 
 .hrv-classroom-hub .welcome-heading {
   align-self: center;
+  padding: clamp(1.8rem, 2.8vw, 2.7rem);
+  border-left: 3px solid rgba(145, 183, 255, 0.62);
+  border-radius: 0 24px 24px 0;
+  background: linear-gradient(90deg, rgba(12, 31, 65, 0.86), rgba(12, 31, 65, 0.18));
 }
 
 .hrv-classroom-hub .welcome-heading .section-title {
-  font-size: clamp(2rem, 3vw, 3.2rem);
+  max-width: 12ch;
+  font-size: clamp(2.7rem, 3vw, 3.45rem);
 }
 
 .hrv-classroom-hub .welcome-heading .section-summary {
@@ -492,7 +594,7 @@
   border-radius: 999px;
   background: rgba(20, 47, 88, 0.82);
   color: #eef5ff;
-  font-size: 0.7rem;
+  font-size: 0.82rem;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -500,7 +602,7 @@
 
 .hrv-classroom-hub .welcome-screen {
   position: relative;
-  width: min(100%, 680px);
+  width: min(100%, 840px);
   aspect-ratio: 16 / 9;
   justify-self: end;
   overflow: hidden;
@@ -521,7 +623,7 @@
   inset: -20% 62% -20% -20%;
   background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.28), transparent);
   transform: skewX(-14deg);
-  animation: hub-screen-glint 9s ease-in-out infinite;
+  animation: hub-screen-glint 6.5s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -552,11 +654,11 @@
 
 .hrv-classroom-hub .current-exploration-card {
   display: grid;
-  grid-template-columns: minmax(440px, 0.88fr) minmax(480px, 1.12fr);
+  grid-template-columns: minmax(520px, 0.96fr) minmax(0, 1.04fr);
   align-items: center;
-  gap: clamp(1.5rem, 3vw, 3.2rem);
-  min-height: clamp(400px, 48svh, 470px);
-  padding: clamp(1.25rem, 2vw, 2rem);
+  gap: clamp(2rem, 2.8vw, 3rem);
+  min-height: clamp(450px, 51svh, 500px);
+  padding: clamp(1.3rem, 2.1vw, 2rem);
   background:
     radial-gradient(34rem 24rem at 10% 50%, rgba(114, 227, 200, 0.18), transparent 69%),
     linear-gradient(138deg, rgba(7, 31, 52, 0.98), rgba(9, 38, 56, 0.96) 48%, rgba(14, 35, 66, 0.97));
@@ -569,7 +671,7 @@
   grid-row: 1;
   grid-column: 1;
   width: 100%;
-  height: clamp(400px, 48svh, 470px);
+  height: clamp(420px, 49svh, 470px);
   overflow: hidden;
   border: 6px solid rgba(191, 255, 233, 0.18);
   border-radius: 24px;
@@ -583,13 +685,13 @@
   z-index: 2;
   grid-row: 1;
   grid-column: 2;
-  max-width: none;
+  max-width: 700px;
 }
 
 .hrv-classroom-hub .current-topline {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 0.7rem;
   flex-wrap: wrap;
 }
@@ -604,20 +706,20 @@
   border-radius: 999px;
   background: rgba(45, 185, 158, 0.18);
   color: #bffbea;
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 950;
   letter-spacing: 0.09em;
 }
 
 .hrv-classroom-hub .current-section-title {
-  font-size: clamp(1.65rem, 2vw, 2.25rem);
+  font-size: clamp(2.05rem, 2.2vw, 2.5rem);
 }
 
 .hrv-classroom-hub .content-year-badge {
   display: inline-flex;
   margin: 0.05rem 0 0.38rem;
   color: #b8c9e2;
-  font-size: 0.75rem;
+  font-size: 0.82rem;
   font-weight: 850;
 }
 
@@ -625,7 +727,7 @@
   margin: 0.08rem 0 0.5rem;
   color: #f8fff9;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.2rem, 3vw, 3.25rem);
+  font-size: clamp(3rem, 3.15vw, 3.55rem);
   font-weight: 700;
   line-height: 1;
   text-wrap: balance;
@@ -635,9 +737,10 @@
   max-width: none;
   margin: 0;
   color: #d7e8e4;
+  font-size: 1rem;
+  line-height: 1.62;
 }
 
-.hrv-classroom-hub .current-points,
 .hrv-classroom-hub .hub-tags {
   display: flex;
   flex-wrap: wrap;
@@ -647,21 +750,47 @@
 }
 
 .hrv-classroom-hub .current-points {
-  margin: 0.8rem 0;
+  display: grid;
+  gap: 0.48rem;
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
 }
 
 .hrv-classroom-hub .hub-tags {
   margin: 0.65rem 0;
 }
 
-.hrv-classroom-hub .current-points li,
+.hrv-classroom-hub .current-points li {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  color: #e7f4f0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.hrv-classroom-hub .current-point-number {
+  display: grid;
+  width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--hub-gold);
+  color: #072033;
+  font-size: 0.78rem;
+  font-weight: 950;
+  box-shadow: 0 0 18px rgba(255, 230, 154, 0.2);
+}
+
 .hrv-classroom-hub .hub-tags li {
   padding: 0.36rem 0.56rem;
   border: 1px solid rgba(114, 227, 200, 0.2);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: #dceee9;
-  font-size: 0.73rem;
+  font-size: 0.74rem;
   font-weight: 750;
 }
 
@@ -715,7 +844,7 @@
   inset: -20% 62% -20% -20%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.48), transparent);
   transform: skewX(-14deg);
-  animation: hub-glass-glint 8s ease-in-out infinite;
+  animation: hub-glass-glint 6s ease-in-out infinite;
   pointer-events: none;
 }
 
@@ -730,14 +859,13 @@
   background: rgba(3, 13, 30, 0.9);
   color: #ffffff;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.32);
-  backdrop-filter: blur(8px);
 }
 
 .hrv-classroom-hub .current-caption {
   bottom: 0.85rem;
   left: 0.85rem;
   padding: 0.42rem 0.68rem;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 850;
 }
 
@@ -816,11 +944,11 @@
 
 .hrv-classroom-hub .current-twwl-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
   align-items: center;
-  gap: clamp(1.3rem, 3vw, 3rem);
-  min-height: 310px;
-  padding: clamp(1.4rem, 2.5vw, 2.4rem);
+  gap: clamp(2rem, 3vw, 3rem);
+  min-height: 300px;
+  padding: clamp(1.6rem, 2.7vw, 2.4rem);
   background:
     radial-gradient(30rem 22rem at 82% 46%, rgba(255, 230, 154, 0.12), transparent 68%),
     linear-gradient(140deg, rgba(52, 36, 91, 0.98), rgba(31, 28, 70, 0.97) 58%, rgba(12, 20, 48, 0.98));
@@ -842,7 +970,7 @@
   border-radius: 999px;
   background: var(--hub-gold);
   color: #2d244f;
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 950;
   letter-spacing: 0.08em;
 }
@@ -852,7 +980,7 @@
   margin: 0 0 0.5rem;
   color: #fff9e8;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.9rem, 3vw, 3rem);
+  font-size: clamp(2.25rem, 2.6vw, 2.8rem);
   font-weight: 700;
   line-height: 1.04;
   text-wrap: balance;
@@ -862,12 +990,14 @@
   max-width: 60ch;
   margin: 0;
   color: #ddd5f0;
+  font-size: 1rem;
+  line-height: 1.58;
 }
 
 .hrv-classroom-hub .current-twwl-visual {
   position: relative;
   display: grid;
-  min-height: 250px;
+  min-height: 252px;
   place-items: center;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.13);
@@ -880,7 +1010,7 @@
 .hrv-classroom-hub .current-twwl-image {
   width: 100%;
   height: 100%;
-  min-height: 250px;
+  min-height: 252px;
   object-fit: cover;
 }
 
@@ -896,7 +1026,7 @@
   height: 140px;
   margin: auto;
   filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.42));
-  animation: hub-lantern-float 5s ease-in-out infinite;
+  animation: hub-lantern-float 4.2s ease-in-out infinite;
 }
 
 .hrv-classroom-hub .lantern-handle,
@@ -955,13 +1085,14 @@
   border-radius: 70% 45%;
   background: #ffe58e;
   box-shadow: 0 0 24px 9px rgba(255, 209, 83, 0.34);
-  animation: hub-lantern-flame 2.2s ease-in-out infinite;
+  animation: hub-lantern-flame 1.7s ease-in-out infinite;
 }
 
 .hrv-classroom-hub .preparing-display-title {
   margin: 0.65rem 0 0;
   color: #eee4ff;
   font-weight: 850;
+  font-size: 1rem;
 }
 
 .hrv-classroom-hub .preparing-display-line {
@@ -1010,7 +1141,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: var(--hub-shell-wide);
-  margin: 0.35rem auto;
+  margin: 0.55rem auto;
 }
 
 .hrv-classroom-hub .divider-line {
@@ -1062,21 +1193,20 @@
 }
 
 .hrv-classroom-hub .gallery-frame {
-  padding: clamp(1.35rem, 2.4vw, 2.25rem);
-  background:
-    radial-gradient(34rem 19rem at 0 0, rgba(114, 227, 200, 0.09), transparent 72%),
-    linear-gradient(145deg, rgba(8, 24, 52, 0.96), rgba(7, 18, 43, 0.97));
+  overflow: visible;
+  padding: clamp(1.2rem, 2vw, 2rem) 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .hrv-classroom-hub .exploration-gallery-frame {
-  border-top: 4px solid rgba(114, 227, 200, 0.72);
+  border-top: 3px solid rgba(114, 227, 200, 0.7);
 }
 
 .hrv-classroom-hub .learning-gallery-frame {
-  border-top: 4px solid rgba(200, 183, 255, 0.72);
-  background:
-    radial-gradient(34rem 19rem at 100% 0, rgba(200, 183, 255, 0.1), transparent 72%),
-    linear-gradient(145deg, rgba(20, 22, 57, 0.97), rgba(8, 17, 42, 0.98));
+  border-top: 3px solid rgba(200, 183, 255, 0.7);
 }
 
 .hrv-classroom-hub .gallery-header {
@@ -1084,21 +1214,26 @@
   align-items: end;
   justify-content: space-between;
   gap: 1.2rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.45rem;
+}
+
+.hrv-classroom-hub .gallery-title {
+  font-size: clamp(2.5rem, 2.8vw, 3.1rem);
 }
 
 .hrv-classroom-hub .gallery-tools {
-  width: min(100%, 360px);
+  width: min(100%, 390px);
 }
 
 .hrv-classroom-hub .gallery-search {
   width: 100%;
-  min-height: 44px;
-  padding: 0.66rem 0.82rem;
+  min-height: 50px;
+  padding: 0.72rem 0.9rem;
   border: 1px solid rgba(186, 218, 255, 0.28);
   border-radius: 13px;
   background: rgba(3, 13, 30, 0.8);
   color: #f8fbff;
+  font-size: 1rem;
 }
 
 .hrv-classroom-hub .gallery-search::placeholder {
@@ -1108,15 +1243,34 @@
 .hrv-classroom-hub .gallery-count {
   margin: 0.32rem 0.1rem 0;
   color: #aebed8;
-  font-size: 0.74rem;
+  font-size: 0.85rem;
   font-weight: 800;
   text-align: right;
 }
 
 .hrv-classroom-hub .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.9rem, 1.5vw, 1.25rem);
+  gap: clamp(1.1rem, 1.5vw, 1.5rem);
+}
+
+.hrv-classroom-hub .exploration-grid {
+  grid-template-columns: minmax(0, 1.12fr) repeat(2, minmax(0, 0.94fr));
+}
+
+.hrv-classroom-hub .learning-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hrv-classroom-hub .learning-grid .learning-card {
+  width: calc((100% - 3rem) / 3);
+  flex: 0 1 calc((100% - 3rem) / 3);
+}
+
+.hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+  width: calc((100% - 3rem) / 3);
+  flex-basis: calc((100% - 3rem) / 3);
 }
 
 .hrv-classroom-hub .collection-card {
@@ -1129,12 +1283,14 @@
   border-radius: 21px;
   background: rgba(7, 20, 45, 0.96);
   box-shadow: 0 14px 30px rgba(0, 5, 20, 0.34);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .hrv-classroom-hub .collection-card:hover,
 .hrv-classroom-hub .collection-card:focus-within {
   border-color: var(--subject-line);
   box-shadow: 0 20px 42px rgba(0, 5, 20, 0.46), 0 0 30px var(--subject-glow);
+  transform: translateY(-6px);
 }
 
 .hrv-classroom-hub .collection-link {
@@ -1148,25 +1304,30 @@
 .hrv-classroom-hub .collection-visual {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2 / 1;
   background: #101f38;
 }
 
 .hrv-classroom-hub .learning-grid .collection-visual {
-  aspect-ratio: 16 / 8;
+  height: clamp(230px, 14vw, 280px);
+  aspect-ratio: auto;
+}
+
+.hrv-classroom-hub .exploration-grid .collection-visual {
+  height: clamp(220px, 14vw, 260px);
+  aspect-ratio: auto;
 }
 
 .hrv-classroom-hub .collection-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 440ms ease, filter 260ms ease;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hrv-classroom-hub .collection-card:hover .collection-image,
 .hrv-classroom-hub .collection-card:focus-within .collection-image {
-  filter: saturate(1.08) brightness(1.04);
-  transform: scale(1.035);
+  transform: scale(1.045);
 }
 
 .hrv-classroom-hub .collection-effect {
@@ -1182,7 +1343,7 @@
 .hrv-classroom-hub .collection-year {
   top: 0.62rem;
   padding: 0.32rem 0.5rem;
-  font-size: 0.64rem;
+  font-size: 0.82rem;
   font-weight: 950;
 }
 
@@ -1197,14 +1358,14 @@
 .hrv-classroom-hub .collection-meta {
   display: flex;
   flex-direction: column;
-  padding: 0.95rem 1rem 1.05rem;
+  padding: 1.15rem 1.25rem 1.3rem;
 }
 
 .hrv-classroom-hub .collection-title {
   margin: 0 0 0.4rem;
   color: #f8fbff;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.16rem, 1.35vw, 1.42rem);
+  font-size: clamp(1.25rem, 1.35vw, 1.48rem);
   font-weight: 700;
   line-height: 1.14;
 }
@@ -1212,7 +1373,8 @@
 .hrv-classroom-hub .collection-summary {
   margin: 0;
   color: #c5d2e6;
-  font-size: 0.87rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
 }
 
 .hrv-classroom-hub .collection-tags {
@@ -1229,7 +1391,7 @@
   margin-top: auto;
   padding-top: 0.72rem;
   color: var(--hub-teal);
-  font-size: 0.74rem;
+  font-size: 0.85rem;
   font-weight: 900;
 }
 
@@ -1340,7 +1502,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.055);
   color: #cbd8eb;
-  font-size: 0.7rem;
+  font-size: 0.86rem;
   font-weight: 750;
 }
 
@@ -1359,7 +1521,7 @@
 }
 
 .hrv-classroom-hub .archive-control-section {
-  padding-top: 1.15rem;
+  padding-top: 1.65rem;
 }
 
 .hrv-classroom-hub .archive-control-card {
@@ -1367,7 +1529,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  padding: 1.1rem 1.3rem;
+  min-height: 132px;
+  padding: 1.45rem 1.65rem;
   border: 1px solid rgba(255, 230, 154, 0.22);
   border-radius: 20px;
   background: linear-gradient(135deg, rgba(29, 43, 77, 0.96), rgba(17, 26, 55, 0.94));
@@ -1383,7 +1546,7 @@
   margin: 0;
   color: #fffaf0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  font-size: clamp(1.8rem, 2.1vw, 2.15rem);
   font-weight: 700;
 }
 
@@ -1391,7 +1554,8 @@
   max-width: 62ch;
   margin: 0.28rem 0 0;
   color: #cad5ea;
-  font-size: 0.84rem;
+  font-size: 1.02rem;
+  line-height: 1.55;
 }
 
 .hrv-classroom-hub .archive-door-wrap {
@@ -1403,16 +1567,16 @@
 
 .hrv-classroom-hub .archive-door {
   display: grid;
-  min-width: 210px;
-  min-height: 66px;
+  min-width: 250px;
+  min-height: 84px;
   align-content: center;
-  padding: 0.7rem 1rem;
+  padding: 0.85rem 1.15rem;
   border: 1px solid rgba(255, 230, 154, 0.4);
   border-radius: 14px 14px 7px 7px;
   background: linear-gradient(#4a3e69, #2b274d);
   color: #fff9de;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 800;
   text-decoration: none;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
@@ -1421,12 +1585,15 @@
 .hrv-classroom-hub .archive-door-caption {
   color: #d2cae3;
   font-family: "Atkinson Hyperlegible", Aptos, "Segoe UI", sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.82rem;
   font-weight: 750;
 }
 
 .hrv-classroom-hub .hub-footer {
-  padding: 1rem 0 3.5rem;
+  margin-top: 1.4rem;
+  padding: 1.8rem 0 4rem;
+  border-top: 1px solid rgba(186, 218, 255, 0.14);
+  background: linear-gradient(180deg, rgba(3, 11, 28, 0.42), transparent);
 }
 
 .hrv-classroom-hub .footer-shell {
@@ -1441,7 +1608,7 @@
   margin: 0;
   color: #d7e2f5;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 .hrv-classroom-hub .footer-spark {
@@ -1462,7 +1629,9 @@
 .hrv-classroom-hub [data-wake] {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 650ms ease var(--wake-delay, 0ms), transform 700ms ease var(--wake-delay, 0ms);
+  transition:
+    opacity 450ms ease var(--wake-delay, 0ms),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1) var(--wake-delay, 0ms);
 }
 
 .hrv-classroom-hub [data-wake].is-awake {
@@ -1470,21 +1639,51 @@
   transform: translateY(0);
 }
 
-.hrv-classroom-hub [data-wake][data-tilt] {
-  transform:
-    perspective(1200px)
-    translateY(18px)
-    rotateX(var(--tilt-x, 0deg))
-    rotateY(var(--tilt-y, 0deg));
-  transition: opacity 650ms ease var(--wake-delay, 0ms), transform 180ms ease;
+.hrv-classroom-hub .welcome-heading,
+.hrv-classroom-hub .welcome-screen,
+.hrv-classroom-hub .hero-left,
+.hrv-classroom-hub .hero-right,
+.hrv-classroom-hub .current-copy,
+.hrv-classroom-hub .current-visual,
+.hrv-classroom-hub .current-twwl-copy,
+.hrv-classroom-hub .current-twwl-visual {
+  transition:
+    opacity 450ms ease 70ms,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 70ms;
 }
 
-.hrv-classroom-hub [data-wake][data-tilt].is-awake {
-  transform:
-    perspective(1200px)
-    translateY(0)
-    rotateX(var(--tilt-x, 0deg))
-    rotateY(var(--tilt-y, 0deg));
+.hrv-classroom-hub .hero-right {
+  transition-delay: 150ms;
+}
+
+.hrv-classroom-hub .hub-section:not(.is-awake) .hero-left,
+.hrv-classroom-hub .hub-section:not(.is-awake) .welcome-heading,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-copy,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-twwl-copy {
+  transform: translateX(-22px);
+}
+
+.hrv-classroom-hub .hub-section:not(.is-awake) .hero-right,
+.hrv-classroom-hub .hub-section:not(.is-awake) .welcome-screen,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-visual,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-twwl-visual {
+  transform: translateX(22px);
+}
+
+.hrv-classroom-hub .hub-section.is-awake .current-visual[data-tilt],
+.hrv-classroom-hub .hub-section.is-awake .current-twwl-visual[data-tilt] {
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hrv-classroom-hub .hub-section:not(.is-in-view) .screen-glint,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .current-glass,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .leaf-shadow,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .seed-drift,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .learning-lantern,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .lantern-flame,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .twwl-halo,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .collection-effect {
+  animation-play-state: paused;
 }
 
 @keyframes hub-aurora-left {
@@ -1510,12 +1709,6 @@
 @keyframes hub-stars-drift-b {
   to {
     transform: translate3d(-28px, 36px, 0);
-  }
-}
-
-@keyframes hub-stars-breathe {
-  50% {
-    opacity: 0.62;
   }
 }
 
@@ -1608,8 +1801,8 @@
 
 @keyframes hub-moon-breathe {
   50% {
-    filter: brightness(1.15);
     opacity: 0.8;
+    transform: scale(1.06);
   }
 }
 
@@ -1637,12 +1830,18 @@
     margin-inline: auto;
   }
 
-  .hrv-classroom-hub .gallery-grid {
+  .hrv-classroom-hub .exploration-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hrv-classroom-hub .learning-grid .learning-card,
+  .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+    width: calc((100% - 1.5rem) / 2);
+    flex-basis: calc((100% - 1.5rem) / 2);
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1330px) {
   .hrv-classroom-hub .hub-hero-card,
   .hrv-classroom-hub .welcome-theater-card,
   .hrv-classroom-hub .current-exploration-card,
@@ -1656,7 +1855,7 @@
   }
 
   .hrv-classroom-hub .hero-right {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(160px, 0.5fr) minmax(260px, 1fr);
   }
 
   .hrv-classroom-hub .welcome-screen {
@@ -1683,13 +1882,40 @@
     --hub-shell-theater: calc(100% - 20px);
   }
 
-  .hrv-classroom-hub .gallery-grid,
+  .hrv-classroom-hub .exploration-grid,
   .hrv-classroom-hub .hero-right {
     grid-template-columns: 1fr;
   }
 
+  .hrv-classroom-hub .museum-map-shell {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hrv-classroom-hub .museum-map-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hrv-classroom-hub .learning-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hrv-classroom-hub .learning-grid .learning-card,
+  .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+    width: auto;
+  }
+
+  .hrv-classroom-hub .hero-right .hub-compass,
+  .hrv-classroom-hub .hero-oath,
+  .hrv-classroom-hub .hero-glance {
+    grid-row: auto;
+    grid-column: 1;
+  }
+
   .hrv-classroom-hub .hub-title {
-    font-size: clamp(2.7rem, 13vw, 4.2rem);
+    font-size: clamp(3rem, 13vw, 4.2rem);
   }
 
   .hrv-classroom-hub .card-heading,
@@ -1754,12 +1980,11 @@
   }
 }
 
-@media (min-width: 1200px) and (max-height: 820px) {
+@media (min-width: 1600px) and (max-height: 820px) {
   .hrv-classroom-hub .hub-hero-card {
     min-height: 390px;
   }
 
-  .hrv-classroom-hub .current-exploration-card,
   .hrv-classroom-hub .current-visual {
     min-height: 370px;
     height: 400px;
@@ -1784,6 +2009,18 @@
   .hrv-classroom-hub [data-tilt] {
     transform: none !important;
   }
+
+  .hrv-classroom-hub .welcome-heading,
+  .hrv-classroom-hub .welcome-screen,
+  .hrv-classroom-hub .hero-left,
+  .hrv-classroom-hub .hero-right,
+  .hrv-classroom-hub .current-copy,
+  .hrv-classroom-hub .current-visual,
+  .hrv-classroom-hub .current-twwl-copy,
+  .hrv-classroom-hub .current-twwl-visual {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .hrv-classroom-hub[data-system-motion="reduced"] [data-wake] {
@@ -1794,4 +2031,17 @@
 
 .hrv-classroom-hub[data-system-motion="reduced"] [data-tilt] {
   transform: none;
+}
+
+.hrv-classroom-hub[data-system-motion="reduced"] .welcome-heading,
+.hrv-classroom-hub[data-system-motion="reduced"] .welcome-screen,
+.hrv-classroom-hub[data-system-motion="reduced"] .hero-left,
+.hrv-classroom-hub[data-system-motion="reduced"] .hero-right,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-copy,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-visual,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-twwl-copy,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-twwl-visual {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }

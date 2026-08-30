@@ -122,6 +122,7 @@ class HubController {
     this.render();
     this.wireSystemMotionPreference();
     this.wireWakeUp();
+    this.wireAmbientVisibility();
     this.wirePointerLight();
 
     requestAnimationFrame(() => {
@@ -176,8 +177,29 @@ class HubController {
         observer.unobserve(entry.target);
       }
     }, {
-      rootMargin: "0px 0px -8% 0px",
-      threshold: 0.12
+      rootMargin: "0px 0px 10% 0px",
+      threshold: 0.05
+    });
+
+    targets.forEach((element) => observer.observe(element));
+    this.observers.push(observer);
+  }
+
+  wireAmbientVisibility() {
+    const targets = [...this.root.querySelectorAll(".hub-section")];
+
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach((element) => element.classList.add("is-in-view"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        entry.target.classList.toggle("is-in-view", entry.isIntersecting);
+      }
+    }, {
+      rootMargin: "220px 0px",
+      threshold: 0
     });
 
     targets.forEach((element) => observer.observe(element));
@@ -185,27 +207,51 @@ class HubController {
   }
 
   wirePointerLight() {
-    const targets = [...this.root.querySelectorAll("[data-tilt]")];
+    const targets = [...this.root.querySelectorAll("[data-pointer-light], [data-tilt]")];
 
     for (const target of targets) {
+      let animationFrame = 0;
+      let latestPoint = null;
+
       const move = (event) => {
         if (prefersReducedMotion() || this.root.dataset.systemMotion === "reduced") return;
-        const rect = target.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / Math.max(rect.width, 1);
-        const y = (event.clientY - rect.top) / Math.max(rect.height, 1);
-        target.style.setProperty("--pointer-x", `${Math.round(x * 100)}%`);
-        target.style.setProperty("--pointer-y", `${Math.round(y * 100)}%`);
-        target.style.setProperty("--tilt-x", `${((.5 - y) * 2.2).toFixed(2)}deg`);
-        target.style.setProperty("--tilt-y", `${((x - .5) * 2.8).toFixed(2)}deg`);
+        latestPoint = { x: event.clientX, y: event.clientY };
+        if (animationFrame) return;
+
+        animationFrame = requestAnimationFrame(() => {
+          animationFrame = 0;
+          if (!latestPoint || this.destroyed) return;
+
+          const rect = target.getBoundingClientRect();
+          const x = Math.min(1, Math.max(0, (latestPoint.x - rect.left) / Math.max(rect.width, 1)));
+          const y = Math.min(1, Math.max(0, (latestPoint.y - rect.top) / Math.max(rect.height, 1)));
+          target.style.setProperty("--pointer-x", `${Math.round(x * 100)}%`);
+          target.style.setProperty("--pointer-y", `${Math.round(y * 100)}%`);
+          target.classList.add("is-pointer-active");
+
+          if (target.hasAttribute("data-tilt")) {
+            target.style.setProperty("--tilt-x", `${((.5 - y) * 1.3).toFixed(2)}deg`);
+            target.style.setProperty("--tilt-y", `${((x - .5) * 1.5).toFixed(2)}deg`);
+          }
+        });
       };
 
       const leave = () => {
+        latestPoint = null;
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        target.classList.remove("is-pointer-active");
+        target.style.removeProperty("--pointer-x");
+        target.style.removeProperty("--pointer-y");
         target.style.removeProperty("--tilt-x");
         target.style.removeProperty("--tilt-y");
       };
 
       this.on(target, "pointermove", move, { passive: true });
       this.on(target, "pointerleave", leave, { passive: true });
+      this.listeners.push(() => {
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+      });
     }
   }
 
@@ -230,6 +276,7 @@ class HubController {
     museum.append(
       environment,
       this.hero(copy.hero),
+      this.museumMap(),
       this.welcome(copy.welcome, manifest.current.featuredMedia),
       this.currentExploration(copy.currentExploration, manifest.current.exploration),
       this.currentTwwl(copy.currentTwwl, manifest.current.twwl),
@@ -249,11 +296,11 @@ class HubController {
 
     const shell = node("div", "museum-shell");
     const card = node("div", "hub-card hub-hero-card");
-    card.dataset.tilt = "";
+    card.dataset.pointerLight = "";
 
     const left = node("div", "hero-left");
     const identityRow = node("div", "hero-identity-row");
-    identityRow.append(compassGraphic(), node("span", "hero-museum-mark", "Classroom Museum"));
+    identityRow.append(node("span", "hero-museum-mark", "Classroom Museum"));
     left.append(
       identityRow,
       node("p", "section-kicker hero-kicker", copy.eyebrow),
@@ -264,10 +311,18 @@ class HubController {
 
     const pillars = node("ul", "hero-pillars");
     pillars.setAttribute("aria-label", "Exploration pillars");
-    for (const pillar of copy.pillars) pillars.append(node("li", "", pillar));
+    copy.pillars.forEach((pillar, index) => {
+      const item = node("li");
+      item.append(
+        node("span", "hero-pillar-number", String(index + 1).padStart(2, "0")),
+        node("span", "hero-pillar-label", pillar)
+      );
+      pillars.append(item);
+    });
     left.append(pillars);
 
     const right = node("div", "hero-right");
+    const compass = compassGraphic();
     const oath = node("aside", "hero-oath");
     oath.setAttribute("role", "note");
     oath.setAttribute("aria-label", copy.oathTitle);
@@ -290,7 +345,7 @@ class HubController {
     }
 
     glance.append(stats);
-    right.append(oath, glance);
+    right.append(compass, oath, glance);
 
     card.append(left, right);
     shell.append(card);
@@ -303,8 +358,39 @@ class HubController {
     return section;
   }
 
+  museumMap() {
+    const map = node("nav", "museum-map");
+    map.setAttribute("aria-label", "Museum map");
+
+    const shell = node("div", "museum-shell museum-map-shell");
+    const title = node("p", "museum-map-title", "Museum Map");
+    const links = node("div", "museum-map-links");
+    const destinations = [
+      ["01", "Welcome", "#hrv-welcome-theater"],
+      ["02", "Current", "#hrv-current-exploration"],
+      ["03", "Learning Lantern", "#hrv-current-learning"],
+      ["04", "Past Exhibits", "#hrv-past-explorations"],
+      ["05", "Past Learning", "#hrv-past-learning"],
+      ["06", "Archives", "#hrv-school-year-archives"]
+    ];
+
+    for (const [number, label, href] of destinations) {
+      const destination = link("", href, "museum-map-link");
+      destination.append(
+        node("span", "museum-map-number", number),
+        node("span", "museum-map-label", label)
+      );
+      links.append(destination);
+    }
+
+    shell.append(title, links);
+    map.append(shell);
+    return map;
+  }
+
   welcome(copy, media) {
     const section = setEditable(node("section", "hub-section welcome-section"), copy.nodeId);
+    section.id = "hrv-welcome-theater";
     section.dataset.wake = "";
 
     const shell = node("div", "museum-shell");
@@ -356,7 +442,7 @@ class HubController {
 
     const shell = node("div", "museum-shell");
     const card = node("article", "hub-card current-exploration-card");
-    card.dataset.tilt = "";
+    card.dataset.pointerLight = "";
 
     const copyColumn = node("div", "current-copy");
     const topLine = node("div", "current-topline");
@@ -374,7 +460,14 @@ class HubController {
     );
 
     const points = node("ul", "current-points");
-    for (const point of item.learningPoints || []) points.append(node("li", "", point));
+    (item.learningPoints || []).forEach((point, index) => {
+      const pointItem = node("li");
+      pointItem.append(
+        node("span", "current-point-number", String(index + 1).padStart(2, "0")),
+        node("span", "current-point-copy", point)
+      );
+      points.append(pointItem);
+    });
     if (points.children.length) copyColumn.append(points);
 
     copyColumn.append(
@@ -383,6 +476,7 @@ class HubController {
     );
 
     const visual = node("figure", "current-visual");
+    visual.dataset.tilt = "";
     visual.append(
       imageNode(item.image, "current-image", "eager"),
       node("span", "greenhouse-grid"),
@@ -398,6 +492,7 @@ class HubController {
 
   currentTwwl(copy, slot) {
     const section = setEditable(node("section", "hub-section current-twwl-section"), copy.nodeId);
+    section.id = "hrv-current-learning";
     section.dataset.hrvSlotId = slot.id;
     section.dataset.wake = "";
 
@@ -410,7 +505,7 @@ class HubController {
 
     const shell = node("div", "museum-shell");
     const card = node("article", "hub-card current-twwl-card");
-    card.dataset.tilt = "";
+    card.dataset.pointerLight = "";
 
     const copyColumn = node("div", "current-twwl-copy");
     copyColumn.append(
@@ -420,6 +515,7 @@ class HubController {
     );
 
     const visual = node("div", "current-twwl-visual");
+    visual.dataset.tilt = "";
 
     if (slot.state === "coming-soon") {
       copyColumn.append(
@@ -481,7 +577,7 @@ class HubController {
 
   pastExplorations(copy, items) {
     const section = setEditable(node("section", "hub-section past-explorations-section"), copy.nodeId);
-    section.dataset.wake = "";
+    section.id = "hrv-past-explorations";
 
     const shell = node("div", "museum-shell");
     const frame = node("section", "hub-card gallery-frame exploration-gallery-frame");
@@ -511,7 +607,7 @@ class HubController {
 
   pastTwwl(copy, items) {
     const section = setEditable(node("section", "hub-section past-twwl-section"), copy.nodeId);
-    section.dataset.wake = "";
+    section.id = "hrv-past-learning";
 
     const shell = node("div", "museum-shell");
     const frame = node("section", "hub-card gallery-frame learning-gallery-frame");
@@ -594,9 +690,8 @@ class HubController {
     const article = node("article", `collection-card exploration-card ${subjectClass(item)}`);
     article.dataset.hrvContentId = item.id;
     article.dataset.wake = "";
-    article.dataset.tilt = "";
     article.dataset.searchText = [item.title, item.summary, ...(item.tags || [])].join(" ").toLocaleLowerCase();
-    article.style.setProperty("--wake-delay", `${Math.min(index * 80, 240)}ms`);
+    article.style.setProperty("--wake-delay", `${Math.min(index * 80, 160)}ms`);
 
     const anchor = link("", item.href, "collection-link");
     anchor.setAttribute("aria-label", `Open ${item.title}`);
@@ -626,7 +721,6 @@ class HubController {
     const article = node("article", `collection-card learning-card ${subjectClass(item)}`);
     article.dataset.hrvContentId = item.id;
     article.dataset.wake = "";
-    article.dataset.tilt = "";
     article.dataset.searchText = [item.title, item.summary, ...(item.tags || [])].join(" ").toLocaleLowerCase();
     article.style.setProperty("--wake-delay", `${Math.min(index * 70, 280)}ms`);
 
@@ -656,6 +750,7 @@ class HubController {
 
   archives(copy, archives) {
     const section = setEditable(node("section", "hub-section archive-control-section"), copy.nodeId);
+    section.id = "hrv-school-year-archives";
     section.dataset.wake = "";
 
     const shell = node("div", "museum-shell compact-archive-shell");
