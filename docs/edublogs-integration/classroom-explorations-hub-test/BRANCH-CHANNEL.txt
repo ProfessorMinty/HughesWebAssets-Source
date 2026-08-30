@@ -1,9 +1,13 @@
 repository=ProfessorMinty/HughesWebAssets-Source
 review_branch=hub-authoring-v2-2026-08-28
-review_release=2026.08.28.3-review
+review_release=2026.08.29.4-review
 canonical_wordpress_page_id=17
 review_wordpress_page_id=2589
 canonical_path=/hub/
 review_path=/hub-test/
 visual_authority=/hub-test/
 page17_visual_reference=false
+active_runtime=apps/classroom-explorations-hub/src/runtime-v3.js
+active_stylesheet=apps/classroom-explorations-hub/src/hub-v3.css
+retired_layer_imported=false
+editor_blocks_replace=html,css,javascript

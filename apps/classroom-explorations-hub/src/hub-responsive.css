@@ -1,0 +1,235 @@
+/* RESPONSIVE */
+@media (max-width: 1180px) {
+  #hrv-classroom-explorations-root .hub-v2-hero-card {
+    grid-template-columns: minmax(0, 1.15fr) minmax(220px, .65fr);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-current-card {
+    grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-exploration-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 920px) {
+  #hrv-classroom-explorations-root .hub-v2-hero-card,
+  #hrv-classroom-explorations-root .hub-v2-current-card,
+  #hrv-classroom-explorations-root .hub-v2-theater,
+  #hrv-classroom-explorations-root .hub-v2-lantern-card,
+  #hrv-classroom-explorations-root .hub-v2-archive-card {
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-hero-card {
+    min-height: 0;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-hero-side {
+    grid-template-columns: minmax(160px, .7fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-compass {
+    width: min(190px, 44vw);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-current-art {
+    min-height: min(500px, 68vw);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-current-body {
+    padding: 30px;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-theater > .hub-v2-section-heading,
+  #hrv-classroom-explorations-root .hub-v2-theater > .hub-v2-section-summary,
+  #hrv-classroom-explorations-root .hub-v2-screen {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-screen {
+    justify-self: center;
+    width: min(100%, 720px);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-memory-list {
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-lantern-card {
+    text-align: center;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-lantern-copy .hub-v2-tags {
+    justify-content: center;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-archive-key {
+    margin: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  #hrv-classroom-explorations-root.hrv-hub-v3 {
+    --hub-shell: calc(100% - 22px);
+    --hub-shell-wide: calc(100% - 22px);
+    --hub-shell-theater: calc(100% - 22px);
+    font-size: 17px;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-museum {
+    padding-top: 12px;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-section {
+    padding: 22px 0;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-hero-card,
+  #hrv-classroom-explorations-root .hub-v2-theater,
+  #hrv-classroom-explorations-root .hub-v2-current-body,
+  #hrv-classroom-explorations-root .hub-v2-lantern-card,
+  #hrv-classroom-explorations-root .hub-v2-archive-card {
+    padding: 21px;
+    border-radius: 22px;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-hero-side {
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-title {
+    font-size: clamp(2.8rem, 13vw, 4rem);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-lead {
+    font-size: 1.05rem;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-map-shell {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-map-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-map-link {
+    min-width: 0;
+    white-space: normal;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-section-title {
+    font-size: clamp(1.9rem, 9.5vw, 2.7rem);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-current-art {
+    min-height: 70vw;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-current-name {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-exploration-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-card-art {
+    min-height: 55vw;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-card-body {
+    min-height: 0;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-memory-card {
+    grid-template-columns: 82px minmax(0, 1fr);
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-memory-icon {
+    width: 82px;
+    font-size: 2.2rem;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-footer-shell {
+    gap: 7px;
+  }
+}
+
+@media (max-width: 420px) {
+  #hrv-classroom-explorations-root .hub-v2-map-links,
+  #hrv-classroom-explorations-root .hub-v2-actions,
+  #hrv-classroom-explorations-root .hub-v2-archive-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-action,
+  #hrv-classroom-explorations-root .hub-v2-card-link,
+  #hrv-classroom-explorations-root .hub-v2-memory-link {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #hrv-classroom-explorations-root .hub-v2-aurora,
+  #hrv-classroom-explorations-root .hub-v2-stars,
+  #hrv-classroom-explorations-root .hub-v2-orb,
+  #hrv-classroom-explorations-root .hub-v2-environment::before,
+  #hrv-classroom-explorations-root .hub-v2-environment::after,
+  #hrv-classroom-explorations-root .hub-v2-hero-card::after,
+  #hrv-classroom-explorations-root .hub-v2-current-card::after,
+  #hrv-classroom-explorations-root .hub-v2-compass-orbit,
+  #hrv-classroom-explorations-root .hub-v2-compass-needle,
+  #hrv-classroom-explorations-root .hub-v2-lantern::before,
+  #hrv-classroom-explorations-root .hub-v2-lantern-flame,
+  #hrv-classroomexplorations-root .hub-v2-lantern-glow,
+  #hrv-classroom-explorations-root .hub-v2-screen::after {
+    animation: none !important;
+  }
+
+  #hrv-classroom-explorations-root [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media print {
+  #hrv-classroom-explorations-root.hrv-hub-v3 {
+    color: #111;
+    background: #fff;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-environment,
+  #hrv-classroomexplorations-root .hub-v2-map,
+  #hrv-classroom-explorations-root .hub-v2-screen {
+    display: none !important;
+  }
+
+  #hrv-classroom-explorations-root .hub-v2-hero-card,
+  #hrv-classroom-explorations-root .hub-v2-panel,
+  #hrv-classroom-explorations-root .hub-v2-current-card,
+  #hrv-classroom-explorations-root .hub-v2-lantern-card,
+  #hrv-classroom-explorations-root .hub-v2-exploration-card,
+  #hrv-classroom-explorations-root .hub-v2-memory-card,
+  #hrv-classroom-explorations-root .hub-v2-archive-card {
+    break-inside: avoid;
+    border: 1px solid #bbb;
+    color: #111;
+    background: #fff;
+    box-shadow: none;
+  }
+}

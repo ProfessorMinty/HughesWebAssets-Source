@@ -11,10 +11,28 @@ const readText = (relativePath) =>
 const runtime = readText(
   "apps/classroom-explorations-hub/src/runtime-v3.js"
 );
-const stylesheet = readText(
+const stylesheetEntry = readText(
   "apps/classroom-explorations-hub/src/hub-v3.css"
 );
-const handoff = readText(
+const stylesheetModules = [
+  "hub-foundation.css",
+  "hub-hero-and-map.css",
+  "hub-feature-rooms.css",
+  "hub-galleries-and-motion.css",
+  "hub-responsive.css"
+].map((name) =>
+  readText("apps/classroom-explorations-hub/src/" + name)
+).join("\n");
+const source = readText(
+  "apps/classroom-explorations-hub/source/hub.source.json"
+);
+const handoffHtml = readText(
+  "docs/edublogs-integration/classroom-explorations-hub-test/HTML-BOX.html"
+);
+const handoffCss = readText(
+  "docs/edublogs-integration/classroom-explorations-hub-test/CSS-BOX.css"
+);
+const handoffJs = readText(
   "docs/edublogs-integration/classroom-explorations-hub-test/JAVASCRIPT-BOX.js"
 );
 
@@ -25,86 +43,91 @@ assert.doesNotMatch(
 );
 assert.doesNotMatch(
   runtime,
-  /localStorage/,
-  "Hub runtime must not own a private effects preference."
-);
-assert.doesNotMatch(
-  runtime,
-  /EFFECTS_KEY|data-effects-toggle|manualReduced|wireEffects/,
-  "Legacy page-local effects machinery must remain absent."
+  /localStorage|EFFECTS_KEY|data-effects-toggle|manualReduced|wireEffects|applyEffects/,
+  "Hub runtime must not own a competing effects preference or product mode."
 );
 assert.match(runtime, /classList\.add\("hrv-hub-v2", "hrv-hub-v3"\)/);
 assert.match(runtime, /data-hrv-auto-scroll-target/);
 
-assert.match(stylesheet, /2026\.08\.28\.3-review/);
-assert.match(stylesheet, /"Atkinson Hyperlegible"/);
-assert.match(stylesheet, /"Nunito Sans"/);
-assert.match(stylesheet, /--hub-type-body:\s*18px/);
-assert.match(stylesheet, /--hub-type-body-secondary:\s*16px/);
-assert.match(stylesheet, /--hub-type-label:\s*13px/);
-assert.match(stylesheet, /--hub-type-action:\s*15px/);
-assert.match(stylesheet, /--hub-type-card-title:\s*22px/);
-assert.match(stylesheet, /--hub-type-memory-title:\s*20px/);
-assert.match(stylesheet, /--hub-v2-shell:\s*min\([\s\S]*?1360px/);
-assert.match(stylesheet, /--hub-v3-shell-wide:\s*min\([\s\S]*?1500px/);
-assert.match(stylesheet, /--hub-v3-shell-theater:\s*min\([\s\S]*?1180px/);
-
-assert.match(
-  stylesheet,
-  /\.hub-v2-controls,[\s\S]*?\.hub-v2-effects[\s\S]*?display:\s*none !important/
-);
-assert.doesNotMatch(stylesheet, /\[data-effects="reduced"\]/);
-
-assert.match(
-  stylesheet,
-  /\.hub-v2-theater\s*\{[\s\S]*?grid-template-columns:[\s\S]*?0\.42fr[\s\S]*?0\.58fr/
-);
-assert.match(
-  stylesheet,
-  /\.hub-v2-screen\s*\{[\s\S]*?max-width:\s*720px/
-);
-assert.match(
-  stylesheet,
-  /\.hub-v2-screen::before\s*\{[\s\S]*?display:\s*none/
+const welcomeAppend = runtime.indexOf("this.welcome()");
+const currentAppend = runtime.indexOf("this.currentExploration()");
+assert.ok(welcomeAppend >= 0 && currentAppend >= 0);
+assert.ok(
+  welcomeAppend < currentAppend,
+  "Welcome Theater must remain before Current Exploration in DOM order."
 );
 
-assert.match(
-  stylesheet,
-  /\.hub-v2-current-art\s*\{[\s\S]*?height:\s*clamp\(430px,\s*55svh,\s*510px\)/
-);
-assert.match(
-  stylesheet,
-  /\.hub-v2-current-name\s*\{[\s\S]*?3\.65rem/
-);
 assert.doesNotMatch(
-  stylesheet,
-  /\.hub-v2-current-art\s*\{[\s\S]*?min-height:\s*590px/
+  stylesheetEntry,
+  /@import\s+url\([^)]*hub-v[12]\.css/i,
+  "The active review stylesheet must not import a retired visual layer."
 );
+for (const name of [
+  "hub-foundation.css",
+  "hub-hero-and-map.css",
+  "hub-feature-rooms.css",
+  "hub-galleries-and-motion.css",
+  "hub-responsive.css"
+]) {
+  assert.match(
+    stylesheetEntry,
+    new RegExp(name.replace(".", "\\.")),
+    `Missing active stylesheet module ${name}.`
+  );
+}
+assert.doesNotMatch(stylesheetModules, /--nll-dog|dog-3ebe6102df/i);
+assert.match(stylesheetEntry, /2026\.08\.29\.4-review/);
+assert.match(stylesheetModules, /"Atkinson Hyperlegible"/);
+assert.match(stylesheetModules, /"Nunito Sans"/);
+assert.match(stylesheetModules, /--hub-shell-wide:\s*min\(1500px/);
+assert.match(stylesheetModules, /--hub-shell-theater:\s*min\(1380px/);
+assert.match(stylesheetModules, /\.hub-v2-welcome \{ order: 3; \}/);
+assert.match(stylesheetModules, /\.hub-v2-current \{ order: 4; \}/);
+assert.match(stylesheetModules, /hub-stars-drift-a/);
+assert.match(stylesheetModules, /hub-stars-drift-b/);
+assert.match(stylesheetModules, /hub-stars-breathe/);
+assert.match(stylesheetModules, /moon-stars-a1f5255f57/);
+assert.match(stylesheetModules, /star-01-a3468124d1/);
+assert.match(stylesheetModules, /aster-flower-30a7d2a32b/);
+assert.match(stylesheetModules, /basil-stem-14f1cf0611/);
+assert.match(stylesheetModules, /museum-e141ca5eb8/);
+assert.match(stylesheetModules, /lantern-a4339a46aa/);
+assert.match(stylesheetModules, /min-height:\s*clamp\(430px, 54svh, 510px\)/);
+assert.match(stylesheetModules, /min-height:\s*clamp\(430px, 52svh, 500px\)/);
+assert.match(stylesheetModules, /grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/);
+assert.match(stylesheetModules, /grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/);
+assert.match(stylesheetModules, /@media \(prefers-reduced-motion: reduce\)/);
 
 assert.match(
-  stylesheet,
-  /\.hub-v2-memory-list\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/
+  source,
+  /IMG_2850\.jpg\?format=750w/,
+  "Current must retain the real Zinnia photograph."
 );
-assert.match(
-  stylesheet,
-  /@media \(min-width:\s*921px\) and \(max-height:\s*820px\)/
-);
-assert.match(stylesheet, /@media \(prefers-reduced-motion:\s*reduce\)/);
+assert.match(source, /kRTJp4pqbtg/);
 
-assert.match(handoff, /2026\.08\.28\.3-review/);
-assert.match(handoff, /runtime-v3\.js/);
-assert.match(handoff, /hub-v3\.css/);
-assert.doesNotMatch(handoff, /runtime-v2\.js/);
+assert.doesNotMatch(handoffHtml, /<svg[^>]*hrv-hub-outage__puppy/i);
+assert.doesNotMatch(handoffHtml, /puppy/i);
+assert.match(handoffHtml, /museum-e141ca5eb8/);
+assert.doesNotMatch(handoffCss, /hrv-hub-outage__puppy/i);
+assert.match(handoffCss, /"Atkinson Hyperlegible"/);
+assert.match(handoffJs, /2026\.08\.29\.4-review/);
+assert.match(handoffJs, /runtime-v3\.js/);
+assert.match(handoffJs, /hub-v3\.css/);
+assert.match(handoffJs, /hrv-hub-outage__puppy/);
+assert.match(handoffJs, /museum-e141ca5eb8/);
 
 console.log(
-  "[hub visual v3] global-shell effects ownership and page-local removal passed"
+  "[hub visual v4] standalone active stylesheet modules and retired-layer removal passed"
 );
 console.log(
-  "[hub visual v3] 1920x911 density, theater framing, and Current-fit checks passed"
+  "[hub visual v4] Welcome-before-Current hierarchy and real Zinnia media passed"
 );
 console.log(
-  "[hub visual v3] Amadeus typography and readable compact text hierarchy passed"
+  "[hub visual v4] layered moving atmosphere and NLL decorative assets passed"
 );
 console.log(
-  "[hub visual v3] review doorway points at the 2026.08.28.3 review channel"
+  "[hub visual v4] editor fallback contains no inline bear/puppy SVG"
+);
+console.log(
+  "[hub visual v4] review doorway points at the 2026.08.29.4 channel"
 );
