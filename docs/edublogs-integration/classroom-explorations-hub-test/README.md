@@ -41,14 +41,14 @@ There is no mutable branch URL, review bootstrap, alternate runtime, split appli
 
 The exact asset commit passed push run `33340105543` and pull-request run `33340107915`. All ten immutable jsDelivr GETs returned HTTP `200`, and the remote bytes and SHA-256 digests matched the local bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, three artwork files, publication, and content manifest.
 
-The real projected application was exercised in a browser at an exact `1920×911` viewport with real external media. The supplied stitched annotation was used as a relationship map rather than a scale drawing. Acceptance included:
+The immutable CDN publication was exercised in a real browser at an exact `1920×911` viewport with real external media. The supplied stitched annotation was used as a relationship map rather than a scale drawing. Acceptance included:
 
 - a coherent `78px` identity/global-menu rail with the six requested site destinations and an active Classroom Explorations state;
-- equal `922×420px` Welcome/video and Current Exploration primary cards separated by a `14px` gutter;
-- a substantial `647×364px` Welcome video with its native `16:9` aspect ratio, integrated into the Welcome card rather than presented as a thumbnail;
-- a broad `1545×312px` Current TWWL room below the primary row;
-- exactly one `298×151px` Past Explorations door and one `298×151px` Past TWWL door beside Current TWWL;
-- a `298×120px` Past Years door beginning at `y=868`, making it the first intentional-scroll item while all main content remains visible within the `911px` canvas;
+- equal `929×420px` Welcome/video and Current Exploration primary cards separated by a `14px` gutter;
+- a substantial `653×367px` Welcome video with its native `16:9` aspect ratio, integrated into the Welcome card rather than presented as a thumbnail;
+- a broad `1558×312px` Current TWWL room below the primary row;
+- exactly one `300×151px` Past Explorations door and one `300×151px` Past TWWL door beside Current TWWL;
+- a `300×120px` Past Years door beginning at `y=868`, making it the first intentional-scroll item while all main content remains visible within the `911px` canvas;
 - a document height of `1053px`, limiting the secondary continuation to `142px` of vertical scrolling;
 - real Zinnia photography and all three teacher-approved history-button images with nonzero natural dimensions;
 - no emoji media substitutions;
