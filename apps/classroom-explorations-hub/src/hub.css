@@ -53,10 +53,10 @@
 .hrv-classroom-hub .hub-skip {
   position: fixed;
   z-index: 9999;
-  top: 1rem;
-  left: 1rem;
+  top: 16px;
+  left: 16px;
   transform: translateY(-180%);
-  padding: 0.72rem 1rem;
+  padding: 11.52px 16px;
   border-radius: 12px;
   background: #ffffff;
   color: #17243a;
@@ -73,8 +73,8 @@
   min-height: 100vh;
   overflow: clip;
   background:
-    radial-gradient(74rem 34rem at 12% 3%, rgba(45, 185, 158, 0.16), transparent 68%),
-    radial-gradient(68rem 36rem at 88% 14%, rgba(145, 126, 226, 0.2), transparent 70%),
+    radial-gradient(1184px 544px at 12% 3%, rgba(45, 185, 158, 0.16), transparent 68%),
+    radial-gradient(1088px 576px at 88% 14%, rgba(145, 126, 226, 0.2), transparent 70%),
     linear-gradient(180deg, #061128 0%, #0b1b38 34%, #07152e 70%, #050d1e 100%);
 }
 
@@ -96,17 +96,17 @@
   top: 0;
   left: -18vw;
   width: 72vw;
-  height: 25rem;
+  height: 400px;
   background: radial-gradient(ellipse, rgba(66, 218, 187, 0.22), transparent 68%);
   transform: rotate(-8deg);
   animation: hub-aurora-left 14s ease-in-out infinite alternate;
 }
 
 .hrv-classroom-hub .aurora-two {
-  top: 17rem;
+  top: 272px;
   right: -20vw;
   width: 69vw;
-  height: 28rem;
+  height: 448px;
   background: radial-gradient(ellipse, rgba(151, 125, 227, 0.22), transparent 68%);
   transform: rotate(7deg);
   animation: hub-aurora-right 17s ease-in-out infinite alternate;
@@ -140,18 +140,18 @@
 }
 
 .hrv-classroom-hub .light-one {
-  top: 34rem;
+  top: 544px;
   left: 8%;
-  width: 38rem;
-  height: 24rem;
+  width: 608px;
+  height: 384px;
   background: radial-gradient(ellipse, rgba(85, 185, 218, 0.12), transparent 68%);
 }
 
 .hrv-classroom-hub .light-two {
-  top: 68rem;
+  top: 1088px;
   right: 5%;
-  width: 44rem;
-  height: 28rem;
+  width: 704px;
+  height: 448px;
   background: radial-gradient(ellipse, rgba(239, 189, 82, 0.1), transparent 68%);
 }
 
@@ -189,7 +189,7 @@
 
 .hrv-classroom-hub .hub-section {
   position: relative;
-  padding-block: clamp(1.25rem, 2.4vw, 2rem);
+  padding-block: clamp(20px, 2.4vw, 32px);
 }
 
 .hrv-classroom-hub .hub-card {
@@ -220,7 +220,7 @@
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    28rem circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    448px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
     rgba(255, 255, 255, 0.13),
     transparent 55%
   );
@@ -231,23 +231,23 @@
 
 .hrv-classroom-hub .section-kicker {
   display: inline-flex;
-  margin: 0 0 0.5rem;
-  padding: 0.34rem 0.64rem;
+  margin: 0 0 8px;
+  padding: 5.44px 10.24px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   color: var(--hub-gold);
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .hrv-classroom-hub .section-title {
-  margin: 0.08rem 0 0.5rem;
+  margin: 1.28px 0 8px;
   color: var(--hub-ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.35rem, 2.7vw, 3rem);
+  font-size: clamp(37.6px, 2.7vw, 48px);
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.02;
@@ -258,24 +258,24 @@
   max-width: 62ch;
   margin: 0;
   color: var(--hub-muted);
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.62;
 }
 
 .hrv-classroom-hub .hero-section {
-  padding-top: clamp(1.35rem, 2vw, 2rem);
-  padding-bottom: clamp(0.65rem, 1vw, 1rem);
+  padding-top: clamp(21.6px, 2vw, 32px);
+  padding-bottom: clamp(10.4px, 1vw, 16px);
 }
 
 .hrv-classroom-hub .hub-hero-card {
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(540px, 0.82fr);
-  gap: clamp(2rem, 3.2vw, 3.4rem);
+  gap: clamp(32px, 3.2vw, 54.4px);
   min-height: clamp(450px, 52svh, 500px);
-  padding: clamp(2.25rem, 3.3vw, 3.6rem);
+  padding: clamp(36px, 3.3vw, 57.6px);
   background:
-    radial-gradient(46rem 28rem at 4% 10%, rgba(45, 185, 158, 0.2), transparent 68%),
-    radial-gradient(34rem 24rem at 94% 88%, rgba(153, 123, 226, 0.18), transparent 70%),
+    radial-gradient(736px 448px at 4% 10%, rgba(45, 185, 158, 0.2), transparent 68%),
+    radial-gradient(544px 384px at 94% 88%, rgba(153, 123, 226, 0.18), transparent 70%),
     linear-gradient(145deg, rgba(9, 30, 64, 0.97), rgba(15, 35, 71, 0.93) 55%, rgba(35, 29, 72, 0.94));
   border-color: rgba(255, 230, 154, 0.28);
 }
@@ -302,7 +302,7 @@
 .hrv-classroom-hub .hero-identity-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .hrv-classroom-hub .hub-compass {
@@ -327,24 +327,24 @@
 
 .hrv-classroom-hub .hero-museum-mark {
   color: #dfe9ff;
-  font-size: 0.8rem;
+  font-size: 12.8px;
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .hrv-classroom-hub .hero-kicker {
-  margin-top: 0.65rem;
+  margin-top: 10.4px;
   border-color: rgba(255, 230, 154, 0.2);
   background: rgba(239, 189, 82, 0.13);
 }
 
 .hrv-classroom-hub .hub-title {
   max-width: 12ch;
-  margin: 0.1rem 0 0.55rem;
+  margin: 1.6px 0 8.8px;
   color: #fffaf0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4.6rem, 5vw, 5.4rem);
+  font-size: clamp(73.6px, 5vw, 86.4px);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.94;
@@ -355,22 +355,22 @@
   max-width: 64ch;
   margin: 0;
   color: #dfe8f8;
-  font-size: clamp(1.05rem, 1.15vw, 1.24rem);
+  font-size: clamp(16.8px, 1.15vw, 19.84px);
   line-height: 1.6;
 }
 
 .hrv-classroom-hub .hub-invitation {
-  margin: 0.5rem 0 0;
+  margin: 8px 0 0;
   color: var(--hub-gold);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .hrv-classroom-hub .hero-pillars {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1rem 0 0;
+  gap: 8px;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -378,26 +378,26 @@
 .hrv-classroom-hub .hero-pillars li {
   display: inline-flex;
   align-items: center;
-  gap: 0.48rem;
-  padding: 0.42rem 0.68rem;
+  gap: 7.68px;
+  padding: 6.72px 10.88px;
   border: 1px solid rgba(255, 255, 255, 0.17);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: #f4f7ff;
-  font-size: 0.88rem;
+  font-size: 14.08px;
   font-weight: 750;
 }
 
 .hrv-classroom-hub .hero-pillar-number {
   display: grid;
-  width: 1.55rem;
-  height: 1.55rem;
+  width: 24.8px;
+  height: 24.8px;
   flex: none;
   place-items: center;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--hub-gold), var(--hub-teal));
   color: #061128;
-  font-size: 0.78rem;
+  font-size: 12.48px;
   font-weight: 950;
 }
 
@@ -407,7 +407,7 @@
   grid-template-rows: auto auto;
   align-content: center;
   align-items: center;
-  gap: 0.9rem 1.35rem;
+  gap: 14.4px 21.6px;
 }
 
 .hrv-classroom-hub .hero-right .hub-compass {
@@ -423,7 +423,7 @@
 
 .hrv-classroom-hub .hero-oath,
 .hrv-classroom-hub .hero-glance {
-  padding: 1.15rem 1.2rem;
+  padding: 18.4px 19.2px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 20px;
   background: rgba(3, 15, 38, 0.58);
@@ -432,28 +432,28 @@
 
 .hrv-classroom-hub .hero-oath-title,
 .hrv-classroom-hub .hero-glance-title {
-  margin: 0 0 0.3rem;
+  margin: 0 0 4.8px;
   color: var(--hub-gold);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.08rem;
+  font-size: 17.28px;
   font-weight: 700;
 }
 
 .hrv-classroom-hub .hero-oath-body {
   margin: 0;
   color: #edf2ff;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.55;
 }
 
 .hrv-classroom-hub .hero-glance-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .hrv-classroom-hub .hero-stat {
-  padding: 0.62rem 0.4rem;
+  padding: 9.92px 6.4px;
   border-radius: 13px;
   background: rgba(255, 255, 255, 0.055);
   text-align: center;
@@ -462,19 +462,19 @@
 .hrv-classroom-hub .hero-stat strong {
   display: block;
   color: var(--hub-gold);
-  font-size: 1.45rem;
+  font-size: 23.2px;
   line-height: 1;
 }
 
 .hrv-classroom-hub .hero-stat span {
   color: #cbd8ef;
-  font-size: 0.82rem;
+  font-size: 13.12px;
 }
 
 .hrv-classroom-hub .hero-school-year {
-  margin: 0.65rem 0 0;
+  margin: 10.4px 0 0;
   color: #b9c8e3;
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 750;
   letter-spacing: 0.06em;
   text-align: right;
@@ -484,7 +484,7 @@
 .hrv-classroom-hub .museum-map {
   position: relative;
   z-index: 3;
-  padding-block: 0.25rem 0.55rem;
+  padding-block: 4px 8.8px;
 }
 
 .hrv-classroom-hub .museum-map-shell {
@@ -492,8 +492,8 @@
   width: var(--hub-shell-reading);
   min-height: 54px;
   align-items: center;
-  gap: 1rem;
-  padding: 0.45rem 0.75rem;
+  gap: 16px;
+  padding: 7.2px 12px;
   border: 1px solid rgba(186, 218, 255, 0.18);
   border-radius: 18px;
   background: rgba(7, 20, 47, 0.76);
@@ -505,7 +505,7 @@
   margin: 0;
   color: var(--hub-gold);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 0.95rem;
+  font-size: 15.2px;
   font-weight: 700;
 }
 
@@ -513,18 +513,18 @@
   display: flex;
   flex: 1;
   justify-content: space-between;
-  gap: 0.35rem;
+  gap: 5.6px;
 }
 
 .hrv-classroom-hub .museum-map-link {
   display: inline-flex;
   min-height: 36px;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.58rem;
+  gap: 7.2px;
+  padding: 6.4px 9.28px;
   border-radius: 11px;
   color: #e4eeff;
-  font-size: 0.88rem;
+  font-size: 14.08px;
   font-weight: 800;
   text-decoration: none;
   transition: color 180ms ease, background 180ms ease, transform 180ms ease;
@@ -539,19 +539,19 @@
 
 .hrv-classroom-hub .museum-map-number {
   color: var(--hub-teal);
-  font-size: 0.82rem;
+  font-size: 13.12px;
   letter-spacing: 0.08em;
 }
 
 .hrv-classroom-hub .welcome-section {
-  padding-block: clamp(1.4rem, 2.5vw, 2.25rem);
+  padding-block: clamp(22.4px, 2.5vw, 36px);
 }
 
 .hrv-classroom-hub .welcome-theater-card {
   display: grid;
   grid-template-columns: minmax(430px, 0.38fr) minmax(720px, 0.62fr);
   align-items: center;
-  gap: clamp(2rem, 3.4vw, 3.4rem);
+  gap: clamp(32px, 3.4vw, 54.4px);
   min-height: 0;
   overflow: visible;
   padding: 0;
@@ -567,7 +567,7 @@
 
 .hrv-classroom-hub .welcome-heading {
   align-self: center;
-  padding: clamp(1.8rem, 2.8vw, 2.7rem);
+  padding: clamp(28.8px, 2.8vw, 43.2px);
   border-left: 3px solid rgba(145, 183, 255, 0.62);
   border-radius: 0 24px 24px 0;
   background: linear-gradient(90deg, rgba(12, 31, 65, 0.86), rgba(12, 31, 65, 0.18));
@@ -575,7 +575,7 @@
 
 .hrv-classroom-hub .welcome-heading .section-title {
   max-width: 12ch;
-  font-size: clamp(2.7rem, 3vw, 3.45rem);
+  font-size: clamp(43.2px, 3vw, 55.2px);
 }
 
 .hrv-classroom-hub .welcome-heading .section-summary {
@@ -588,13 +588,13 @@
 
 .hrv-classroom-hub .theater-badge {
   display: inline-flex;
-  margin-top: 1rem;
-  padding: 0.4rem 0.65rem;
+  margin-top: 16px;
+  padding: 6.4px 10.4px;
   border: 1px solid rgba(145, 183, 255, 0.26);
   border-radius: 999px;
   background: rgba(20, 47, 88, 0.82);
   color: #eef5ff;
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 850;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -649,18 +649,18 @@
 }
 
 .hrv-classroom-hub .current-exploration-section::before {
-  background: radial-gradient(64rem 28rem at 25% 50%, rgba(45, 185, 158, 0.15), transparent 70%);
+  background: radial-gradient(1024px 448px at 25% 50%, rgba(45, 185, 158, 0.15), transparent 70%);
 }
 
 .hrv-classroom-hub .current-exploration-card {
   display: grid;
   grid-template-columns: minmax(520px, 0.96fr) minmax(0, 1.04fr);
   align-items: center;
-  gap: clamp(2rem, 2.8vw, 3rem);
+  gap: clamp(32px, 2.8vw, 48px);
   min-height: clamp(450px, 51svh, 500px);
-  padding: clamp(1.3rem, 2.1vw, 2rem);
+  padding: clamp(20.8px, 2.1vw, 32px);
   background:
-    radial-gradient(34rem 24rem at 10% 50%, rgba(114, 227, 200, 0.18), transparent 69%),
+    radial-gradient(544px 384px at 10% 50%, rgba(114, 227, 200, 0.18), transparent 69%),
     linear-gradient(138deg, rgba(7, 31, 52, 0.98), rgba(9, 38, 56, 0.96) 48%, rgba(14, 35, 66, 0.97));
   border-color: rgba(114, 227, 200, 0.32);
 }
@@ -692,7 +692,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.7rem;
+  gap: 11.2px;
   flex-wrap: wrap;
 }
 
@@ -701,33 +701,33 @@
 }
 
 .hrv-classroom-hub .open-now-badge {
-  padding: 0.38rem 0.62rem;
+  padding: 6.08px 9.92px;
   border: 1px solid rgba(114, 227, 200, 0.32);
   border-radius: 999px;
   background: rgba(45, 185, 158, 0.18);
   color: #bffbea;
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 950;
   letter-spacing: 0.09em;
 }
 
 .hrv-classroom-hub .current-section-title {
-  font-size: clamp(2.05rem, 2.2vw, 2.5rem);
+  font-size: clamp(32.8px, 2.2vw, 40px);
 }
 
 .hrv-classroom-hub .content-year-badge {
   display: inline-flex;
-  margin: 0.05rem 0 0.38rem;
+  margin: 0.8px 0 6.08px;
   color: #b8c9e2;
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 850;
 }
 
 .hrv-classroom-hub .current-title {
-  margin: 0.08rem 0 0.5rem;
+  margin: 1.28px 0 8px;
   color: #f8fff9;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 3.15vw, 3.55rem);
+  font-size: clamp(48px, 3.15vw, 56.8px);
   font-weight: 700;
   line-height: 1;
   text-wrap: balance;
@@ -737,60 +737,60 @@
   max-width: none;
   margin: 0;
   color: #d7e8e4;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.62;
 }
 
 .hrv-classroom-hub .hub-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 7.2px;
   padding: 0;
   list-style: none;
 }
 
 .hrv-classroom-hub .current-points {
   display: grid;
-  gap: 0.48rem;
-  margin: 1rem 0;
+  gap: 7.68px;
+  margin: 16px 0;
   padding: 0;
   list-style: none;
 }
 
 .hrv-classroom-hub .hub-tags {
-  margin: 0.65rem 0;
+  margin: 10.4px 0;
 }
 
 .hrv-classroom-hub .current-points li {
   display: grid;
-  grid-template-columns: 1.8rem minmax(0, 1fr);
-  gap: 0.65rem;
+  grid-template-columns: 28.8px minmax(0, 1fr);
+  gap: 10.4px;
   align-items: start;
   color: #e7f4f0;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.45;
 }
 
 .hrv-classroom-hub .current-point-number {
   display: grid;
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 27.2px;
+  height: 27.2px;
   place-items: center;
   border-radius: 50%;
   background: var(--hub-gold);
   color: #072033;
-  font-size: 0.78rem;
+  font-size: 12.48px;
   font-weight: 950;
   box-shadow: 0 0 18px rgba(255, 230, 154, 0.2);
 }
 
 .hrv-classroom-hub .hub-tags li {
-  padding: 0.36rem 0.56rem;
+  padding: 5.76px 8.96px;
   border: 1px solid rgba(114, 227, 200, 0.2);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   color: #dceee9;
-  font-size: 0.74rem;
+  font-size: 11.84px;
   font-weight: 750;
 }
 
@@ -799,8 +799,8 @@
   align-items: center;
   justify-content: center;
   min-height: 46px;
-  margin-top: 0.3rem;
-  padding: 0.68rem 1rem;
+  margin-top: 4.8px;
+  padding: 10.88px 16px;
   border-radius: 14px;
   color: #061128;
   font-weight: 900;
@@ -862,10 +862,10 @@
 }
 
 .hrv-classroom-hub .current-caption {
-  bottom: 0.85rem;
-  left: 0.85rem;
-  padding: 0.42rem 0.68rem;
-  font-size: 0.82rem;
+  bottom: 13.6px;
+  left: 13.6px;
+  padding: 6.72px 10.88px;
+  font-size: 13.12px;
   font-weight: 850;
 }
 
@@ -880,9 +880,9 @@
 .hrv-classroom-hub .greenhouse-light {
   position: absolute;
   top: 7%;
-  left: -8rem;
-  width: 42rem;
-  height: 24rem;
+  left: -128px;
+  width: 672px;
+  height: 384px;
   border-radius: 50%;
   background: rgba(114, 227, 200, 0.17);
   filter: blur(26px);
@@ -939,18 +939,18 @@
 }
 
 .hrv-classroom-hub .current-twwl-section::before {
-  background: radial-gradient(56rem 26rem at 74% 50%, rgba(139, 102, 211, 0.16), transparent 70%);
+  background: radial-gradient(896px 416px at 74% 50%, rgba(139, 102, 211, 0.16), transparent 70%);
 }
 
 .hrv-classroom-hub .current-twwl-card {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
   align-items: center;
-  gap: clamp(2rem, 3vw, 3rem);
+  gap: clamp(32px, 3vw, 48px);
   min-height: 300px;
-  padding: clamp(1.6rem, 2.7vw, 2.4rem);
+  padding: clamp(25.6px, 2.7vw, 38.4px);
   background:
-    radial-gradient(30rem 22rem at 82% 46%, rgba(255, 230, 154, 0.12), transparent 68%),
+    radial-gradient(480px 352px at 82% 46%, rgba(255, 230, 154, 0.12), transparent 68%),
     linear-gradient(140deg, rgba(52, 36, 91, 0.98), rgba(31, 28, 70, 0.97) 58%, rgba(12, 20, 48, 0.98));
   border-color: rgba(200, 183, 255, 0.28);
 }
@@ -965,22 +965,22 @@
 
 .hrv-classroom-hub .preparing-label {
   display: inline-flex;
-  margin: 0.15rem 0 0.6rem;
-  padding: 0.34rem 0.58rem;
+  margin: 2.4px 0 9.6px;
+  padding: 5.44px 9.28px;
   border-radius: 999px;
   background: var(--hub-gold);
   color: #2d244f;
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 950;
   letter-spacing: 0.08em;
 }
 
 .hrv-classroom-hub .twwl-title {
   max-width: 24ch;
-  margin: 0 0 0.5rem;
+  margin: 0 0 8px;
   color: #fff9e8;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 2.6vw, 2.8rem);
+  font-size: clamp(36px, 2.6vw, 44.8px);
   font-weight: 700;
   line-height: 1.04;
   text-wrap: balance;
@@ -990,7 +990,7 @@
   max-width: 60ch;
   margin: 0;
   color: #ddd5f0;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.58;
 }
 
@@ -1089,17 +1089,17 @@
 }
 
 .hrv-classroom-hub .preparing-display-title {
-  margin: 0.65rem 0 0;
+  margin: 10.4px 0 0;
   color: #eee4ff;
   font-weight: 850;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .hrv-classroom-hub .preparing-display-line {
   display: block;
   width: 120px;
   height: 2px;
-  margin: 0.7rem auto 0;
+  margin: 11.2px auto 0;
   background: linear-gradient(90deg, transparent, var(--hub-gold), transparent);
 }
 
@@ -1107,8 +1107,8 @@
   position: absolute;
   top: 50%;
   left: 72%;
-  width: 28rem;
-  height: 20rem;
+  width: 448px;
+  height: 320px;
   translate: -50% -50%;
   border-radius: 50%;
   background: rgba(169, 130, 230, 0.18);
@@ -1119,7 +1119,7 @@
 .hrv-classroom-hub .twwl-ray {
   position: absolute;
   top: -15%;
-  width: 5rem;
+  width: 80px;
   height: 55%;
   background: linear-gradient(180deg, rgba(255, 230, 154, 0.13), transparent);
   filter: blur(8px);
@@ -1141,7 +1141,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: var(--hub-shell-wide);
-  margin: 0.55rem auto;
+  margin: 8.8px auto;
 }
 
 .hrv-classroom-hub .divider-line {
@@ -1157,7 +1157,7 @@
   display: grid;
   width: 60px;
   height: 60px;
-  margin: 0.45rem;
+  margin: 7.2px;
   place-items: center;
   border: 1px solid rgba(255, 230, 154, 0.34);
   border-radius: 50%;
@@ -1185,16 +1185,16 @@
 }
 
 .hrv-classroom-hub .past-explorations-section::before {
-  background: radial-gradient(58rem 22rem at 8% 18%, rgba(45, 185, 158, 0.11), transparent 72%);
+  background: radial-gradient(928px 352px at 8% 18%, rgba(45, 185, 158, 0.11), transparent 72%);
 }
 
 .hrv-classroom-hub .past-twwl-section::before {
-  background: radial-gradient(58rem 22rem at 92% 18%, rgba(139, 102, 211, 0.12), transparent 72%);
+  background: radial-gradient(928px 352px at 92% 18%, rgba(139, 102, 211, 0.12), transparent 72%);
 }
 
 .hrv-classroom-hub .gallery-frame {
   overflow: visible;
-  padding: clamp(1.2rem, 2vw, 2rem) 0 0;
+  padding: clamp(19.2px, 2vw, 32px) 0 0;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -1213,12 +1213,12 @@
   display: flex;
   align-items: end;
   justify-content: space-between;
-  gap: 1.2rem;
-  margin-bottom: 1.45rem;
+  gap: 19.2px;
+  margin-bottom: 23.2px;
 }
 
 .hrv-classroom-hub .gallery-title {
-  font-size: clamp(2.5rem, 2.8vw, 3.1rem);
+  font-size: clamp(40px, 2.8vw, 49.6px);
 }
 
 .hrv-classroom-hub .gallery-tools {
@@ -1228,12 +1228,12 @@
 .hrv-classroom-hub .gallery-search {
   width: 100%;
   min-height: 50px;
-  padding: 0.72rem 0.9rem;
+  padding: 11.52px 14.4px;
   border: 1px solid rgba(186, 218, 255, 0.28);
   border-radius: 13px;
   background: rgba(3, 13, 30, 0.8);
   color: #f8fbff;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .hrv-classroom-hub .gallery-search::placeholder {
@@ -1241,16 +1241,16 @@
 }
 
 .hrv-classroom-hub .gallery-count {
-  margin: 0.32rem 0.1rem 0;
+  margin: 5.12px 1.6px 0;
   color: #aebed8;
-  font-size: 0.85rem;
+  font-size: 13.6px;
   font-weight: 800;
   text-align: right;
 }
 
 .hrv-classroom-hub .gallery-grid {
   display: grid;
-  gap: clamp(1.1rem, 1.5vw, 1.5rem);
+  gap: clamp(17.6px, 1.5vw, 24px);
 }
 
 .hrv-classroom-hub .exploration-grid {
@@ -1264,13 +1264,13 @@
 }
 
 .hrv-classroom-hub .learning-grid .learning-card {
-  width: calc((100% - 3rem) / 3);
-  flex: 0 1 calc((100% - 3rem) / 3);
+  width: calc((100% - 48px) / 3);
+  flex: 0 1 calc((100% - 48px) / 3);
 }
 
 .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
-  width: calc((100% - 3rem) / 3);
-  flex-basis: calc((100% - 3rem) / 3);
+  width: calc((100% - 48px) / 3);
+  flex-basis: calc((100% - 48px) / 3);
 }
 
 .hrv-classroom-hub .collection-card {
@@ -1341,31 +1341,31 @@
 
 .hrv-classroom-hub .collection-label,
 .hrv-classroom-hub .collection-year {
-  top: 0.62rem;
-  padding: 0.32rem 0.5rem;
-  font-size: 0.82rem;
+  top: 9.92px;
+  padding: 5.12px 8px;
+  font-size: 13.12px;
   font-weight: 950;
 }
 
 .hrv-classroom-hub .collection-label {
-  left: 0.62rem;
+  left: 9.92px;
 }
 
 .hrv-classroom-hub .collection-year {
-  right: 0.62rem;
+  right: 9.92px;
 }
 
 .hrv-classroom-hub .collection-meta {
   display: flex;
   flex-direction: column;
-  padding: 1.15rem 1.25rem 1.3rem;
+  padding: 18.4px 20px 20.8px;
 }
 
 .hrv-classroom-hub .collection-title {
-  margin: 0 0 0.4rem;
+  margin: 0 0 6.4px;
   color: #f8fbff;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.25rem, 1.35vw, 1.48rem);
+  font-size: clamp(20px, 1.35vw, 23.68px);
   font-weight: 700;
   line-height: 1.14;
 }
@@ -1373,12 +1373,12 @@
 .hrv-classroom-hub .collection-summary {
   margin: 0;
   color: #c5d2e6;
-  font-size: 1.05rem;
+  font-size: 16.8px;
   line-height: 1.55;
 }
 
 .hrv-classroom-hub .collection-tags {
-  margin-top: 0.68rem;
+  margin-top: 10.88px;
 }
 
 .hrv-classroom-hub .collection-tags li {
@@ -1389,9 +1389,9 @@
 
 .hrv-classroom-hub .collection-enter {
   margin-top: auto;
-  padding-top: 0.72rem;
+  padding-top: 11.52px;
   color: var(--hub-teal);
-  font-size: 0.85rem;
+  font-size: 13.6px;
   font-weight: 900;
 }
 
@@ -1488,8 +1488,8 @@
 .hrv-classroom-hub .collection-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.42rem;
-  margin: 0.68rem 0;
+  gap: 6.72px;
+  margin: 10.88px 0;
   padding: 0;
   list-style: none;
 }
@@ -1497,12 +1497,12 @@
 .hrv-classroom-hub .current-tags li,
 .hrv-classroom-hub .twwl-tags li,
 .hrv-classroom-hub .collection-tags li {
-  padding: 0.3rem 0.48rem;
+  padding: 4.8px 7.68px;
   border: 1px solid rgba(186, 218, 255, 0.13);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.055);
   color: #cbd8eb;
-  font-size: 0.86rem;
+  font-size: 13.76px;
   font-weight: 750;
 }
 
@@ -1521,16 +1521,16 @@
 }
 
 .hrv-classroom-hub .archive-control-section {
-  padding-top: 1.65rem;
+  padding-top: 26.4px;
 }
 
 .hrv-classroom-hub .archive-control-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 20px;
   min-height: 132px;
-  padding: 1.45rem 1.65rem;
+  padding: 23.2px 26.4px;
   border: 1px solid rgba(255, 230, 154, 0.22);
   border-radius: 20px;
   background: linear-gradient(135deg, rgba(29, 43, 77, 0.96), rgba(17, 26, 55, 0.94));
@@ -1538,7 +1538,7 @@
 }
 
 .hrv-classroom-hub .archive-kicker {
-  margin-bottom: 0.35rem;
+  margin-bottom: 5.6px;
   border-color: rgba(255, 230, 154, 0.18);
 }
 
@@ -1546,15 +1546,15 @@
   margin: 0;
   color: #fffaf0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.8rem, 2.1vw, 2.15rem);
+  font-size: clamp(28.8px, 2.1vw, 34.4px);
   font-weight: 700;
 }
 
 .hrv-classroom-hub .archive-summary {
   max-width: 62ch;
-  margin: 0.28rem 0 0;
+  margin: 4.48px 0 0;
   color: #cad5ea;
-  font-size: 1.02rem;
+  font-size: 16.32px;
   line-height: 1.55;
 }
 
@@ -1562,7 +1562,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: end;
-  gap: 0.65rem;
+  gap: 10.4px;
 }
 
 .hrv-classroom-hub .archive-door {
@@ -1570,13 +1570,13 @@
   min-width: 250px;
   min-height: 84px;
   align-content: center;
-  padding: 0.85rem 1.15rem;
+  padding: 13.6px 18.4px;
   border: 1px solid rgba(255, 230, 154, 0.4);
   border-radius: 14px 14px 7px 7px;
   background: linear-gradient(#4a3e69, #2b274d);
   color: #fff9de;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.08rem;
+  font-size: 17.28px;
   font-weight: 800;
   text-decoration: none;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
@@ -1585,13 +1585,13 @@
 .hrv-classroom-hub .archive-door-caption {
   color: #d2cae3;
   font-family: "Atkinson Hyperlegible", Aptos, "Segoe UI", sans-serif;
-  font-size: 0.82rem;
+  font-size: 13.12px;
   font-weight: 750;
 }
 
 .hrv-classroom-hub .hub-footer {
-  margin-top: 1.4rem;
-  padding: 1.8rem 0 4rem;
+  margin-top: 22.4px;
+  padding: 28.8px 0 64px;
   border-top: 1px solid rgba(186, 218, 255, 0.14);
   background: linear-gradient(180deg, rgba(3, 11, 28, 0.42), transparent);
 }
@@ -1600,7 +1600,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
+  gap: 10.4px;
   text-align: center;
 }
 
@@ -1608,7 +1608,7 @@
   margin: 0;
   color: #d7e2f5;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.05rem;
+  font-size: 16.8px;
 }
 
 .hrv-classroom-hub .footer-spark {
@@ -1689,14 +1689,14 @@
 @keyframes hub-aurora-left {
   to {
     opacity: 0.72;
-    transform: translate3d(8vw, 2rem, 0) rotate(-2deg);
+    transform: translate3d(8vw, 32px, 0) rotate(-2deg);
   }
 }
 
 @keyframes hub-aurora-right {
   to {
     opacity: 0.68;
-    transform: translate3d(-6vw, 1rem, 0) rotate(2deg);
+    transform: translate3d(-6vw, 16px, 0) rotate(2deg);
   }
 }
 
@@ -1836,8 +1836,8 @@
 
   .hrv-classroom-hub .learning-grid .learning-card,
   .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
-    width: calc((100% - 1.5rem) / 2);
-    flex-basis: calc((100% - 1.5rem) / 2);
+    width: calc((100% - 24px) / 2);
+    flex-basis: calc((100% - 24px) / 2);
   }
 }
 
@@ -1915,7 +1915,7 @@
   }
 
   .hrv-classroom-hub .hub-title {
-    font-size: clamp(3rem, 13vw, 4.2rem);
+    font-size: clamp(48px, 13vw, 67.2px);
   }
 
   .hrv-classroom-hub .card-heading,
@@ -1945,7 +1945,7 @@
 
 @media (max-width: 560px) {
   .hrv-classroom-hub .hub-section {
-    padding-block: 1rem;
+    padding-block: 16px;
   }
 
   .hrv-classroom-hub .hub-card {
@@ -1957,7 +1957,7 @@
   .hrv-classroom-hub .current-exploration-card,
   .hrv-classroom-hub .current-twwl-card,
   .hrv-classroom-hub .gallery-frame {
-    padding: 1rem;
+    padding: 16px;
   }
 
   .hrv-classroom-hub .hero-identity-row {
@@ -2003,7 +2003,7 @@
   .hrv-classroom-hub .hub-museum {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: 94px 428px 272px 39px;
+    grid-template-rows: 86px 598px 344px 96px 39px;
     gap: 12px;
     min-height: 100vh;
     padding: 20px 32px 12px;
@@ -2012,6 +2012,8 @@
   .hrv-classroom-hub .hub-museum > .hero-section {
     grid-row: 1;
     grid-column: 1 / span 4;
+    z-index: 4;
+    margin-right: -12px;
   }
 
   .hrv-classroom-hub .hub-museum > .museum-map {
@@ -2021,20 +2023,20 @@
 
   .hrv-classroom-hub .hub-museum > .welcome-section {
     grid-row: 2;
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
     align-self: center;
   }
 
   .hrv-classroom-hub .hub-museum > .current-exploration-section {
     grid-row: 2;
-    grid-column: 4 / span 6;
+    grid-column: 5 / span 6;
   }
 
   .hrv-classroom-hub .hub-museum > .current-twwl-section {
     grid-row: 2;
-    grid-column: 10 / span 3;
-    align-self: start;
-    margin-top: 16px;
+    grid-column: 11 / -1;
+    align-self: center;
+    margin-top: 0;
   }
 
   .hrv-classroom-hub .hub-museum > .museum-divider {
@@ -2043,21 +2045,21 @@
 
   .hrv-classroom-hub .hub-museum > .past-explorations-section {
     grid-row: 3;
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 5;
   }
 
   .hrv-classroom-hub .hub-museum > .past-twwl-section {
     grid-row: 3;
-    grid-column: 5 / span 6;
+    grid-column: 6 / -1;
   }
 
   .hrv-classroom-hub .hub-museum > .archive-control-section {
-    grid-row: 3;
-    grid-column: 11 / -1;
+    grid-row: 4;
+    grid-column: 1 / -1;
   }
 
   .hrv-classroom-hub .hub-museum > .hub-footer {
-    grid-row: 4;
+    grid-row: 5;
     grid-column: 1 / -1;
   }
 
@@ -2075,7 +2077,7 @@
     margin-inline: 0;
   }
 
-  /* Compact identity mast */
+  /* One continuous orientation rail: identity and navigation share a baseline. */
   .hrv-classroom-hub .hero-section,
   .hrv-classroom-hub .hero-section .museum-shell,
   .hrv-classroom-hub .hub-hero-card {
@@ -2083,12 +2085,17 @@
   }
 
   .hrv-classroom-hub .hub-hero-card {
-    grid-template-columns: minmax(0, 1fr) 72px;
-    gap: 0.7rem;
+    grid-template-columns: minmax(0, 1fr) 60px;
+    gap: 10px;
     min-height: 0;
     align-items: center;
-    padding: 0.72rem 0.85rem 0.72rem 1rem;
-    border-radius: 18px;
+    padding: 9px 14px 9px 18px;
+    border-right: 0;
+    border-radius: 18px 0 0 18px;
+    background:
+      radial-gradient(360px 150px at 3% 10%, rgba(45, 185, 158, 0.18), transparent 70%),
+      linear-gradient(110deg, rgba(9, 37, 67, 0.98), rgba(11, 28, 59, 0.98));
+    box-shadow: 0 14px 34px rgba(0, 6, 21, 0.24), inset 0 1px rgba(255, 255, 255, 0.07);
   }
 
   .hrv-classroom-hub .hero-left {
@@ -2107,17 +2114,17 @@
 
   .hrv-classroom-hub .hub-title {
     max-width: none;
-    margin: 0 0 0.18rem;
-    font-size: clamp(2rem, 2.05vw, 2.35rem);
+    margin: 0 0 2px;
+    font-size: clamp(30px, 1.9vw, 35px);
     line-height: 0.98;
   }
 
   .hrv-classroom-hub .hub-subtitle {
     display: -webkit-box;
-    max-width: 50ch;
+    max-width: 70ch;
     overflow: hidden;
-    font-size: 0.74rem;
-    line-height: 1.28;
+    font-size: 11.5px;
+    line-height: 1.22;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
@@ -2131,68 +2138,100 @@
   .hrv-classroom-hub .hero-right .hub-compass {
     grid-row: 1;
     grid-column: 1;
-    width: 66px;
+    width: 56px;
   }
 
-  /* Horizontal room map */
+  /* Horizontal room map continues the identity rail instead of floating apart. */
   .hrv-classroom-hub .museum-map {
-    align-self: center;
+    align-self: stretch;
   }
 
   .hrv-classroom-hub .museum-map-shell {
-    min-height: 52px;
-    gap: 0.65rem;
-    padding: 0.32rem 0.55rem;
-    border-radius: 15px;
+    height: 100%;
+    min-height: 0;
+    gap: 0;
+    padding: 0 8px;
+    border-left: 0;
+    border-radius: 0 18px 18px 0;
+    background: linear-gradient(90deg, rgba(11, 28, 59, 0.98), rgba(17, 25, 61, 0.96));
+    box-shadow: 0 14px 34px rgba(0, 6, 21, 0.24), inset 0 1px rgba(255, 255, 255, 0.07);
   }
 
   .hrv-classroom-hub .museum-map-title {
-    font-size: 0.8rem;
+    display: none;
+  }
+
+  .hrv-classroom-hub .museum-map-links {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    height: 100%;
+    align-items: stretch;
+    gap: 0;
   }
 
   .hrv-classroom-hub .museum-map-link {
-    min-height: 35px;
-    gap: 0.35rem;
-    padding: 0.3rem 0.42rem;
-    font-size: 0.74rem;
+    min-width: 0;
+    min-height: 0;
+    flex: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 7px;
+    border-left: 1px solid rgba(186, 218, 255, 0.12);
+    border-radius: 0;
+    font-size: 12.5px;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .hrv-classroom-hub .museum-map-link:first-child {
+    border-left: 0;
   }
 
   .hrv-classroom-hub .museum-map-number {
-    font-size: 0.68rem;
+    font-size: 10px;
   }
 
-  /* Supporting Welcome rail */
+  /* Welcome Theater is one coherent support card with a full-width 16:9 screen. */
   .hrv-classroom-hub .welcome-theater-card {
     grid-template-columns: minmax(0, 1fr);
-    align-content: start;
-    gap: 0.55rem;
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid rgba(145, 183, 255, 0.24);
+    border-radius: 22px;
+    background: linear-gradient(155deg, rgba(12, 31, 65, 0.94), rgba(8, 19, 45, 0.88));
+    box-shadow: 0 18px 44px rgba(0, 4, 18, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
   }
 
   .hrv-classroom-hub .welcome-heading {
-    padding: 0.58rem 0.7rem;
-    border-radius: 0 16px 16px 0;
+    padding: 6px 8px 0;
+    border-left: 0;
+    border-radius: 0;
+    background: transparent;
   }
 
   .hrv-classroom-hub .welcome-heading .section-title {
     max-width: none;
-    margin-bottom: 0.18rem;
-    font-size: clamp(1.2rem, 1.2vw, 1.38rem);
-    line-height: 1.02;
+    margin-bottom: 4px;
+    font-size: clamp(24px, 1.45vw, 28px);
+    line-height: 1.04;
   }
 
   .hrv-classroom-hub .welcome-heading .section-summary {
     display: -webkit-box;
     overflow: hidden;
-    font-size: 0.73rem;
-    line-height: 1.32;
+    font-size: 13.5px;
+    line-height: 1.35;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
 
   .hrv-classroom-hub .welcome-kicker {
-    margin-bottom: 0.2rem;
-    padding: 0.2rem 0.38rem;
-    font-size: 0.6rem;
+    margin-bottom: 4px;
+    padding: 3px 6px;
+    font-size: 10.5px;
   }
 
   .hrv-classroom-hub .theater-badge {
@@ -2200,7 +2239,7 @@
   }
 
   .hrv-classroom-hub .welcome-screen {
-    width: min(94%, 455px);
+    width: 100%;
     justify-self: center;
     border-radius: 16px;
   }
@@ -2244,146 +2283,148 @@
   .hrv-classroom-hub .current-copy {
     z-index: 4;
     display: flex;
-    width: clamp(410px, 56%, 530px);
+    width: clamp(430px, 58%, 550px);
     max-width: none;
     height: 100%;
     flex-direction: column;
     justify-content: center;
-    padding: 1rem 3.35rem 1rem 1.35rem;
+    padding: 28px 72px 28px 32px;
     background: linear-gradient(90deg, rgba(4, 24, 43, 0.99) 0%, rgba(5, 27, 47, 0.96) 62%, rgba(5, 27, 47, 0.78) 82%, transparent 100%);
   }
 
   .hrv-classroom-hub .current-topline {
-    gap: 0.4rem;
+    gap: 6.4px;
   }
 
   .hrv-classroom-hub .current-topline .section-kicker,
   .hrv-classroom-hub .open-now-badge {
-    padding: 0.25rem 0.42rem;
-    font-size: 0.62rem;
+    padding: 5px 8px;
+    font-size: 11px;
   }
 
   .hrv-classroom-hub .current-section-title {
-    margin: 0.28rem 0 0.12rem;
-    font-size: 1.12rem;
+    margin: 7px 0 3px;
+    font-size: 20px;
     line-height: 1;
   }
 
   .hrv-classroom-hub .content-year-badge {
-    margin: 0 0 0.15rem;
-    font-size: 0.64rem;
+    margin: 0 0 4px;
+    font-size: 11.5px;
   }
 
   .hrv-classroom-hub .current-title {
     max-width: 16ch;
-    margin: 0 0 0.3rem;
-    font-size: clamp(1.85rem, 1.8vw, 2.08rem);
+    margin: 0 0 8px;
+    font-size: clamp(36px, 2.2vw, 42px);
     line-height: 0.98;
   }
 
   .hrv-classroom-hub .current-summary {
     display: -webkit-box;
     overflow: hidden;
-    font-size: 0.72rem;
-    line-height: 1.34;
+    font-size: 14px;
+    line-height: 1.4;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
   }
 
   .hrv-classroom-hub .current-points {
-    gap: 0.24rem;
-    margin: 0.48rem 0;
+    gap: 6px;
+    margin: 12px 0;
   }
 
   .hrv-classroom-hub .current-points li {
-    grid-template-columns: 1.25rem minmax(0, 1fr);
-    gap: 0.38rem;
-    font-size: 0.68rem;
-    line-height: 1.27;
+    grid-template-columns: 23px minmax(0, 1fr);
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.32;
   }
 
   .hrv-classroom-hub .current-point-number {
-    width: 1.2rem;
-    height: 1.2rem;
-    font-size: 0.57rem;
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
   }
 
   .hrv-classroom-hub .current-tags {
-    gap: 0.2rem;
-    margin: 0.3rem 0;
+    gap: 5px;
+    margin: 7px 0;
   }
 
   .hrv-classroom-hub .current-tags li {
-    padding: 0.2rem 0.32rem;
-    font-size: 0.59rem;
+    padding: 4px 7px;
+    font-size: 10.5px;
   }
 
   .hrv-classroom-hub .hub-action {
     min-height: 44px;
     align-self: flex-start;
-    margin-top: 0.1rem;
-    padding: 0.45rem 0.68rem;
+    margin-top: 3px;
+    padding: 8px 13px;
     border-radius: 11px;
-    font-size: 0.77rem;
+    font-size: 14px;
   }
 
   .hrv-classroom-hub .current-caption {
-    right: 0.7rem;
-    bottom: 0.7rem;
+    right: 14px;
+    bottom: 14px;
     left: auto;
-    padding: 0.3rem 0.48rem;
-    font-size: 0.66rem;
+    padding: 5px 8px;
+    font-size: 11px;
   }
 
-  /* Staggered Learning Lantern support rail */
+  /* Learning Lantern remains compact but fills its narrow support rail intentionally. */
   .hrv-classroom-hub .current-twwl-card {
     grid-template-columns: minmax(0, 1fr);
-    align-content: start;
-    gap: 0.45rem;
+    grid-template-rows: auto minmax(220px, 1fr);
+    align-content: stretch;
+    gap: 12px;
+    height: 520px;
     min-height: 0;
-    padding: 0.72rem;
+    padding: 16px;
     border-radius: 19px;
   }
 
   .hrv-classroom-hub .current-twwl-copy .section-kicker {
-    margin-bottom: 0.25rem;
-    font-size: 0.65rem;
+    margin-bottom: 5px;
+    font-size: 10.5px;
   }
 
   .hrv-classroom-hub .twwl-section-title {
-    margin-bottom: 0.12rem;
-    font-size: clamp(1.35rem, 1.35vw, 1.55rem);
+    margin-bottom: 3px;
+    font-size: clamp(21px, 1.25vw, 24px);
   }
 
   .hrv-classroom-hub .learning-year-badge {
-    margin-bottom: 0.12rem;
-    font-size: 0.62rem;
+    margin-bottom: 3px;
+    font-size: 10.5px;
   }
 
   .hrv-classroom-hub .preparing-label {
-    margin: 0 0 0.25rem;
-    padding: 0.22rem 0.36rem;
-    font-size: 0.58rem;
+    margin: 0 0 4px;
+    padding: 3.52px 5.76px;
+    font-size: 9.28px;
   }
 
   .hrv-classroom-hub .twwl-title {
-    margin-bottom: 0.2rem;
-    font-size: clamp(1.18rem, 1.2vw, 1.38rem);
+    margin-bottom: 5px;
+    font-size: clamp(18px, 1.15vw, 22px);
     line-height: 1.02;
   }
 
   .hrv-classroom-hub .twwl-summary {
     display: -webkit-box;
     overflow: hidden;
-    font-size: 0.68rem;
-    line-height: 1.3;
+    font-size: 11.5px;
+    line-height: 1.35;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
 
   .hrv-classroom-hub .current-twwl-visual,
   .hrv-classroom-hub .current-twwl-image {
-    min-height: 158px;
+    min-height: 220px;
   }
 
   .hrv-classroom-hub .current-twwl-visual {
@@ -2391,21 +2432,21 @@
   }
 
   .hrv-classroom-hub .learning-lantern {
-    margin-block: -20px -18px;
-    scale: 0.68;
+    margin-block: -10px -12px;
+    scale: 0.82;
   }
 
   .hrv-classroom-hub .preparing-display-title {
-    margin-top: 0.2rem;
-    font-size: 0.72rem;
+    margin-top: 7px;
+    font-size: 12px;
   }
 
   .hrv-classroom-hub .preparing-display-line {
     width: 84px;
-    margin-top: 0.35rem;
+    margin-top: 5.6px;
   }
 
-  /* Low, image-rich collection ribbons */
+  /* Secondary collections sit just below the first viewport at a readable card scale. */
   .hrv-classroom-hub .past-explorations-section,
   .hrv-classroom-hub .past-twwl-section,
   .hrv-classroom-hub .past-explorations-section .museum-shell,
@@ -2417,48 +2458,48 @@
   .hrv-classroom-hub .gallery-frame {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
-    padding-top: 0.48rem;
+    padding-top: 10px;
   }
 
   .hrv-classroom-hub .gallery-header {
     align-items: end;
-    gap: 0.5rem;
-    margin-bottom: 0.48rem;
+    gap: 8px;
+    margin-bottom: 10px;
   }
 
   .hrv-classroom-hub .gallery-header .section-kicker {
-    margin-bottom: 0.18rem;
+    margin-bottom: 2.88px;
     padding: 0;
     border: 0;
     background: transparent;
-    font-size: 0.58rem;
+    font-size: 9.28px;
   }
 
   .hrv-classroom-hub .gallery-title {
     margin-bottom: 0;
-    font-size: clamp(1.25rem, 1.25vw, 1.45rem);
+    font-size: clamp(22px, 1.35vw, 26px);
     line-height: 1;
   }
 
   .hrv-classroom-hub .gallery-tools {
-    width: min(40%, 148px);
+    width: min(40%, 176px);
   }
 
   .hrv-classroom-hub .gallery-search {
-    min-height: 30px;
-    padding: 0.34rem 0.45rem;
+    min-height: 34px;
+    padding: 6px 9px;
     border-radius: 9px;
-    font-size: 0.65rem;
+    font-size: 11.5px;
   }
 
   .hrv-classroom-hub .gallery-count {
-    margin: 0.12rem 0 0;
-    font-size: 0.57rem;
+    margin: 1.92px 0 0;
+    font-size: 9.12px;
   }
 
   .hrv-classroom-hub .gallery-grid {
     min-height: 0;
-    gap: 0.48rem;
+    gap: 10px;
   }
 
   .hrv-classroom-hub .exploration-grid {
@@ -2502,7 +2543,7 @@
     z-index: 2;
     align-self: end;
     justify-content: end;
-    padding: 2.5rem 0.58rem 0.52rem;
+    padding: 40px 9.28px 8.32px;
     background: linear-gradient(180deg, transparent 0%, rgba(3, 13, 30, 0.56) 36%, rgba(3, 13, 30, 0.96) 100%);
   }
 
@@ -2513,17 +2554,17 @@
   }
 
   .hrv-classroom-hub .collection-year {
-    top: 0.42rem;
-    right: 0.42rem;
-    padding: 0.2rem 0.3rem;
-    font-size: 0.56rem;
+    top: 6.72px;
+    right: 6.72px;
+    padding: 3.2px 4.8px;
+    font-size: 8.96px;
   }
 
   .hrv-classroom-hub .collection-title {
     display: -webkit-box;
     overflow: hidden;
-    margin-bottom: 0.16rem;
-    font-size: clamp(0.78rem, 0.78vw, 0.9rem);
+    margin-bottom: 2.56px;
+    font-size: clamp(14px, 0.9vw, 17px);
     line-height: 1.05;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -2532,13 +2573,13 @@
   .hrv-classroom-hub .collection-summary {
     display: -webkit-box;
     overflow: hidden;
-    font-size: 0.58rem;
-    line-height: 1.16;
+    font-size: 10.5px;
+    line-height: 1.2;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
 
-  /* Previous years becomes the compact edge rail. */
+  /* Previous years becomes a compact horizontal band after the galleries. */
   .hrv-classroom-hub .archive-control-section,
   .hrv-classroom-hub .compact-archive-shell,
   .hrv-classroom-hub .archive-control-card {
@@ -2546,56 +2587,58 @@
   }
 
   .hrv-classroom-hub .archive-control-card {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
-    gap: 0.6rem;
+    gap: 18px;
     min-height: 0;
-    padding: 0.78rem;
+    padding: 12px 18px;
     border-radius: 17px;
   }
 
   .hrv-classroom-hub .archive-kicker {
-    margin-bottom: 0.25rem;
+    margin-bottom: 4px;
     padding: 0;
     border: 0;
     background: transparent;
-    font-size: 0.6rem;
+    font-size: 9.6px;
   }
 
   .hrv-classroom-hub .archive-title {
-    font-size: clamp(1.18rem, 1.15vw, 1.35rem);
+    font-size: clamp(22px, 1.35vw, 26px);
     line-height: 1.02;
   }
 
   .hrv-classroom-hub .archive-summary {
     display: -webkit-box;
     overflow: hidden;
-    margin-top: 0.38rem;
-    font-size: 0.66rem;
+    max-width: 84ch;
+    margin-top: 3px;
+    font-size: 11px;
     line-height: 1.3;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 1;
   }
 
   .hrv-classroom-hub .archive-door-wrap {
-    width: 100%;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.4rem;
+    width: auto;
+    flex: none;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
   .hrv-classroom-hub .archive-door {
-    width: 100%;
-    min-width: 0;
-    min-height: 50px;
-    padding: 0.5rem 0.58rem;
+    width: auto;
+    min-width: 220px;
+    min-height: 58px;
+    padding: 8px 14px;
     border-radius: 11px 11px 6px 6px;
-    font-size: 0.88rem;
+    font-size: 15px;
   }
 
   .hrv-classroom-hub .archive-door-caption {
-    font-size: 0.59rem;
+    font-size: 9.44px;
   }
 
   .hrv-classroom-hub .hub-footer {
@@ -2609,7 +2652,7 @@
   }
 
   .hrv-classroom-hub .footer-message {
-    font-size: 0.75rem;
+    font-size: 12px;
   }
 }
 
