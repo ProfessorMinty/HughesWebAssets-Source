@@ -1,4 +1,4 @@
-# Classroom Explorations Hub single-canvas desktop doorway
+# Classroom Explorations Hub panoramic desktop doorway
 
 This directory contains the Edublogs doorway blocks for the review page:
 
@@ -7,13 +7,13 @@ This directory contains the Edublogs doorway blocks for the review page:
 
 Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Single-canvas desktop immutable publication
+## Panoramic desktop immutable publication
 
 ```text
-Asset commit:       028b01cf00b6bbe124640f61e0841f3dd490e0ab
-Source revision:    3af2d1b9b2b4c1c52c5aee9394d334821397f91b
-Runtime version:    2026.08.30.4
-Publication:        pub-2026-08-30-004
+Asset commit:       eb335004b637433315a0de2fb69677e7e272a07d
+Source revision:    913ab1e5f76942b5a022710fed4c3565ad5b1441
+Runtime version:    2026.08.30.5
+Publication:        pub-2026-08-30-005
 Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
 Rollback target:    pub-2026-08-14-005
 ```
@@ -24,8 +24,8 @@ The active delivery chain is:
 
 ```text
 page 2589 doorway
-  -> releases/classroom-explorations-hub/runtime/2026.08.30.4/bootstrap.js
-  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-004/publication.json
+  -> releases/classroom-explorations-hub/runtime/2026.08.30.5/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-005/publication.json
   -> verified runtime.js
   -> verified hub.css
   -> verified host-compat.css
@@ -34,17 +34,19 @@ page 2589 doorway
 
 There is no mutable branch URL, review bootstrap, alternate runtime, split application stylesheet set, or nested `@import` in this doorway.
 
-## Single-canvas desktop acceptance evidence
+## Panoramic primary-canvas acceptance evidence
 
-The exact asset commit passed push run `33310751813` and pull-request run `33310754121`. Local and remote jsDelivr bytes matched for the bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, publication, and content manifest.
+The exact asset commit passed push run `33333485668` and pull-request run `33333486937`. All seven immutable jsDelivr GETs returned HTTP `200`, and the remote bytes and SHA-256 digests matched the local bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, publication, and content manifest.
 
-The real projected application was exercised in a browser at `1920×911` with real external media. Acceptance included:
+The real projected application was exercised in a browser at an exact `1920×911` viewport with the Amadeus-equivalent `10px` root font and real external media. Acceptance included:
 
-- a bounded twelve-column, four-row exploration board with every major experience visible together;
-- a dominant image-led Current Exploration at `922px × 428px`, with its complete copy and action over the left side of the repository-owned Zinnia image;
-- compact, staggered `455px`-wide Welcome and Learning Lantern support rails ending at `y=518.3` and `y=502.6` respectively;
-- three Past Exploration images, five Past TWWL images, and Previous School Years sharing the `y=566–838` lower gallery row;
-- the compact footer ending at `y=889`, with exact document and viewport dimensions of `1920×911` and no vertical museum tour at the acceptance canvas;
+- a coherent `86px` orientation rail combining the Hub identity with six equal Museum Map landmarks;
+- a complete primary row containing Welcome/video, Current Exploration, and Learning Lantern within the first viewport;
+- a dominant image-led Current Exploration measuring `914.5px` wide, supported by a `605.66px` Welcome region and a `296.84px` Learning Lantern;
+- a full-width `579.66px` Welcome video with a reserved `1.778` aspect ratio rather than a detached thumbnail;
+- Past Explorations and Past TWWL beginning at `y=728`, visibly signaling the intentional historical continuation below the primary canvas;
+- a document height of `1243px` against the `911px` viewport, limiting the secondary gallery/archive continuation to about `332px` of vertical scrolling;
+- exact layout parity between `10px` and `16px` root-font fixtures, with a maximum measured box delta of `0`;
 - real Zinnia photography plus all eight gallery images with nonzero natural dimensions;
 - no emoji media substitutions;
 - one application style and one host style;
@@ -53,8 +55,7 @@ The real projected application was exercised in a browser at `1920×911` with re
 - the browser's OS-level reduced-motion preference honored without a Hub-local override;
 - no Hub-local Reduced Effects control;
 - zero horizontal overflow;
-- Museum Map focus order and gallery filtering exercised successfully;
-- responsive no-overflow checks at `2560×1440`, `1920×911`, `1728×900`, `1536×864`, `1440×900`, `1330×900`, `1024×768`, and `390×844`.
+- Museum Map focus order and gallery filtering exercised successfully.
 
 ## Editor update boundary
 
