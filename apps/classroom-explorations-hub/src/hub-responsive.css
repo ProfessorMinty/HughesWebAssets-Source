@@ -195,7 +195,7 @@
   #hrv-classroom-explorations-root .hub-v2-compass-needle,
   #hrv-classroom-explorations-root .hub-v2-lantern::before,
   #hrv-classroom-explorations-root .hub-v2-lantern-flame,
-  #hrv-classroomexplorations-root .hub-v2-lantern-glow,
+  #hrv-classroom-explorations-root .hub-v2-lantern-glow,
   #hrv-classroom-explorations-root .hub-v2-screen::after {
     animation: none !important;
   }
@@ -214,7 +214,7 @@
   }
 
   #hrv-classroom-explorations-root .hub-v2-environment,
-  #hrv-classroomexplorations-root .hub-v2-map,
+  #hrv-classroom-explorations-root .hub-v2-map,
   #hrv-classroom-explorations-root .hub-v2-screen {
     display: none !important;
   }

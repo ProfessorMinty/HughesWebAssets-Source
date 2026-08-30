@@ -6,8 +6,25 @@
 - [ ] `node --check apps/classroom-explorations-hub/src/runtime-v3.js`
 - [ ] `node --check tools/lib/classroom-explorations-hub-transactions.mjs`
 - [ ] `npm run check:hub`
-- [ ] Confirm no file outside the Hub contract, integration docs, schemas, tests, or package script changed unexpectedly.
-- [ ] Confirm production page 17 remains untouched.
+- [ ] Exact review commit has green Classroom Explorations Hub CI.
+- [ ] Page-2589 doorway uses that exact immutable commit, not a mutable branch.
+- [ ] No new branch was created for this incremental correction.
+- [ ] No file outside the Hub contract, integration docs, schemas, tests, or package script changed unexpectedly.
+- [ ] Production page 17 remains untouched.
+
+## Stylesheet integrity
+
+- [ ] Browser doorway requests each required module directly:
+  - [ ] `hub-foundation.css`
+  - [ ] `hub-hero-and-map.css`
+  - [ ] `hub-feature-rooms.css`
+  - [ ] `hub-galleries-and-motion.css`
+  - [ ] `hub-responsive.css`
+- [ ] No doorway or stylesheet references `hub-current-and-theater.css`.
+- [ ] No doorway or stylesheet references `hub-galleries.css`.
+- [ ] Missing app CSS restores the unavailable card rather than mounting a partial Hub.
+- [ ] `hub-v3.css` imports the same five valid modules and no retired `hub-v1.css`/`hub-v2.css` layer.
+- [ ] Responsive CSS contains no misspelled `#hrv-classroomexplorations-root` selectors.
 
 ## Authoring and route checks
 
@@ -40,46 +57,45 @@
 - [ ] Hub renders no page-local Reduced Effects button.
 - [ ] Hub runtime contains no Hub-specific effects localStorage key.
 - [ ] Hub runtime does not persist a private Reduced Effects product mode.
-- [ ] Operating-system reduced-motion behavior is limited to motion safety and does not expose a competing product control.
-- [ ] The future persistent Reduced Effects control remains a global-shell responsibility.
+- [ ] Operating-system reduced-motion behavior is limited to motion safety.
+- [ ] Persistent Reduced Effects remains a global-shell responsibility.
 
 ## Page 2589 review
 
-- [ ] Paste only the three blocks from `docs/edublogs-integration/classroom-explorations-hub-test/`.
-- [ ] Confirm the confused-puppy fallback appears before JavaScript starts.
-- [ ] Confirm successful startup replaces the fallback.
-- [ ] Confirm blocked JavaScript, blocked JSON, blocked CSS, or network timeout restores the fallback.
-- [ ] Confirm `/hub-test/` does not redirect or mutate `/hub/`.
-- [ ] Confirm signed-out desktop rendering.
-- [ ] Confirm tablet rendering.
-- [ ] Confirm phone rendering.
-- [ ] Confirm keyboard-only navigation.
-- [ ] Confirm skip link.
-- [ ] Confirm focus indicators.
-- [ ] Confirm video playback and title.
-- [ ] Confirm every content card opens the expected route.
-- [ ] Confirm image failures produce graceful illustrated fallbacks.
-- [ ] Confirm Edublogs header, navigation, footer, and admin bar do not overlap the repository application.
+- [ ] Existing HTML has no inline animal SVG.
+- [ ] Existing fallback CSS remains small and page-local.
+- [ ] Replace only the JavaScript field with the immutable `.5-review` handoff.
+- [ ] Successful startup replaces the fallback.
+- [ ] Blocked runtime, JSON, host CSS, or any app CSS restores the fallback.
+- [ ] `/hub-test/` does not redirect or mutate `/hub/`.
+- [ ] Signed-out desktop rendering is verified.
+- [ ] Tablet rendering is verified.
+- [ ] Phone rendering is verified.
+- [ ] Keyboard-only navigation, skip link, and focus indicators are verified.
+- [ ] Video playback and title are correct.
+- [ ] Every content card opens the expected route.
+- [ ] The real Zinnia photograph is present.
+- [ ] Image failures produce graceful illustrated fallbacks.
+- [ ] Edublogs header, navigation, footer, back-to-top control, and admin bar do not overlap the repository application.
 
-## 1920×911 full-width and text checks
+## 1920×911 visual checks
 
 - [ ] Environment touches both viewport edges beneath normal Edublogs navigation.
-- [ ] Hero and major exhibit rooms no longer read as an 1180px middle-column application.
-- [ ] No blank settings/control row remains below the hero.
-- [ ] Atkinson Hyperlegible carries body copy, labels, metadata, controls, and actions.
-- [ ] Nunito Sans carries structural room headings and card titles.
-- [ ] Scoped display typography is limited to major museum/feature titles.
-- [ ] Major room headings remain at least approximately 40px on desktop.
-- [ ] Important labels remain at least 14px.
-- [ ] Body/card summaries remain approximately 18–20px.
-- [ ] Primary actions remain at least 16px with approximately 44–50px targets.
+- [ ] Hero, Theater, Current, galleries, and archive use the intended lateral layouts.
+- [ ] Welcome remains before Current.
+- [ ] Current uses the real photograph and fits comfortably in the desktop viewport.
+- [ ] Star layers visibly drift/breathe at full motion.
+- [ ] Aurora, lantern, botanical, and gallery motion are present but restrained.
+- [ ] Primary mint action text is dark and readable.
+- [ ] Native footer continues the dark museum palette rather than introducing a teal/white floor.
+- [ ] Atkinson Hyperlegible carries reading copy; Nunito Sans carries structural text.
 - [ ] Muted text remains visibly secondary without becoming faint.
 - [ ] No horizontal overflow appears.
 
 ## Production gate
 
-- [ ] Review branch accepted.
-- [ ] Exact immutable commit selected.
+- [ ] Review workstream accepted.
+- [ ] Exact immutable production artifact selected.
 - [ ] Immutable runtime and content snapshot minted.
 - [ ] Publication hashes verified.
 - [ ] Lanternworks publisher certified against the accepted command contract.

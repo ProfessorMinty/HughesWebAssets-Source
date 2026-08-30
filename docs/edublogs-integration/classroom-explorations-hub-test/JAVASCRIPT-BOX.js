@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var RELEASE = "2026.08.29.4-review";
+  var RELEASE = "2026.08.29.5-review";
   var MOUNT_ID = "hrv-classroom-explorations-root";
   var MUSEUM_ASSET =
     "https://cdn.nlightlabs.com/assets/icon/icon/museum-e141ca5eb8/museum-e141ca5eb8.webp";
@@ -83,6 +83,7 @@
     loader.dataset.mount = MOUNT_ID;
     loader.dataset.pageId = "hrv-page:classroom-explorations";
     loader.dataset.sourceRef = reviewRef;
+    loader.dataset.release = RELEASE;
     loader.dataset.source =
       base +
       "apps/classroom-explorations-hub/source/hub.source.json" +
@@ -97,10 +98,15 @@
       base +
       "apps/classroom-explorations-hub/src/runtime-v3.js" +
       cacheKey;
-    loader.dataset.stylesheet =
-      base +
-      "apps/classroom-explorations-hub/src/hub-v3.css" +
-      cacheKey;
+    loader.dataset.stylesheets = [
+      "hub-foundation.css",
+      "hub-hero-and-map.css",
+      "hub-feature-rooms.css",
+      "hub-galleries-and-motion.css",
+      "hub-responsive.css"
+    ].map(function (name) {
+      return base + "apps/classroom-explorations-hub/src/" + name + cacheKey;
+    }).join("|");
     loader.dataset.hostStylesheet =
       base +
       "apps/classroom-explorations-hub/src/host-compat.css" +
