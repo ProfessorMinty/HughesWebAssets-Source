@@ -35,7 +35,7 @@ const runtimeText = readText(runtimePath);
 const css = readText(cssPath);
 const bootstrap = readText(bootstrapPath);
 const staticInvariantNote = "Static source invariant only; real-browser visual acceptance remains a separate gate.";
-const parseCssRules = (cssText) => [...cssText.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => ({
+const parseCssRules = (cssText) => [...cssText.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => ({
   selectors: match[1].split(",").map((selector) => selector.trim()),
   body: match[2]
 }));
@@ -126,42 +126,58 @@ assert.doesNotMatch(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\)/,
-  "Wide desktop must use a twelve-column panoramic museum stage"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*94px\s+428px\s+272px\s+39px;[\s\S]*padding:\s*20px\s+32px\s+12px/,
+  "Wide desktop must use a bounded twelve-column, four-row exploration board"
 );
-[
+assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hero-section",
+  /grid-row:\s*1;[\s\S]*grid-column:\s*1\s*\/\s*span\s+4/,
+  "The identity mast must occupy the compact upper-left region"
+);
+assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .museum-map",
-  ".hrv-classroom-hub .hub-museum > .museum-divider",
-  ".hrv-classroom-hub .hub-museum > .archive-control-section",
-  ".hrv-classroom-hub .hub-museum > .hub-footer"
-].forEach((selector) => {
-  assertPanoramicRule(selector, /grid-column:\s*1\s*\/\s*-1/, `${selector} must span the panoramic stage`);
-});
+  /grid-row:\s*1;[\s\S]*grid-column:\s*5\s*\/\s*-1/,
+  "The Museum Map must share the compact mast row"
+);
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .welcome-section",
-  /grid-column:\s*1\s*\/\s*span\s+3/,
-  "Welcome must be the compact left support region"
+  /grid-row:\s*2;[\s\S]*grid-column:\s*1\s*\/\s*span\s+3;[\s\S]*align-self:\s*center/,
+  "Welcome must be the vertically inset left support room"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .current-exploration-section",
-  /grid-column:\s*4\s*\/\s*span\s+6/,
+  /grid-row:\s*2;[\s\S]*grid-column:\s*4\s*\/\s*span\s+6/,
   "Current Exploration must own the dominant six-column center region"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .current-twwl-section",
-  /grid-column:\s*10\s*\/\s*span\s+3/,
-  "Current TWWL must be the compact right support region"
+  /grid-row:\s*2;[\s\S]*grid-column:\s*10\s*\/\s*span\s+3;[\s\S]*margin-top:\s*16px/,
+  "Current TWWL must be the staggered right support room"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .museum-divider",
+  /display:\s*none/,
+  "The desktop board must not spend a row on the legacy section divider"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .past-explorations-section",
-  /grid-column:\s*1\s*\/\s*span\s+5/,
-  "Past Explorations must occupy the five-column gallery region"
+  /grid-row:\s*3;[\s\S]*grid-column:\s*1\s*\/\s*span\s+4/,
+  "Past Explorations must occupy the four-column lower image ribbon"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .past-twwl-section",
-  /grid-column:\s*6\s*\/\s*-1/,
-  "Past TWWL must occupy the seven-column gallery region"
+  /grid-row:\s*3;[\s\S]*grid-column:\s*5\s*\/\s*span\s+6/,
+  "Past TWWL must occupy the six-column lower image ribbon"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .archive-control-section",
+  /grid-row:\s*3;[\s\S]*grid-column:\s*11\s*\/\s*-1/,
+  "Previous School Years must remain a compact right-edge rail"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .hub-footer",
+  /grid-row:\s*4;[\s\S]*grid-column:\s*1\s*\/\s*-1/,
+  "The footer must close the single desktop canvas"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hub-section > .museum-shell",
@@ -170,12 +186,17 @@ assertPanoramicRule(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-hero-card",
-  /grid-template-columns:\s*minmax\(0,\s*1\.55fr\)\s*minmax\(470px,\s*0\.85fr\);[\s\S]*min-height:\s*0/,
-  "The hero must become a compact panoramic mast"
+  /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+72px;[\s\S]*min-height:\s*0/,
+  "The hero must reduce to identity copy and the existing compass"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hero-museum-mark",
+  /display:\s*none/,
+  "Redundant hero detail must be visually suppressed only on the dense desktop board"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .museum-map-shell",
-  /min-height:\s*46px/,
+  /min-height:\s*52px/,
   "The Museum Map must remain a compact horizontal control band"
 );
 assertPanoramicRule(
@@ -185,18 +206,28 @@ assertPanoramicRule(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .welcome-screen",
-  /width:\s*100%;[\s\S]*justify-self:\s*stretch/,
-  "Welcome media must fill the compact support region"
+  /width:\s*min\(94%,\s*455px\);[\s\S]*justify-self:\s*center/,
+  "Welcome media must read as an inset supporting theater"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-exploration-card",
-  /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(0,\s*1\.08fr\);[\s\S]*min-height:\s*0/,
-  "Current Exploration must retain complete copy and photography in its dominant region"
+  /grid-template:\s*1fr\s*\/\s*1fr;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*0/,
+  "Current Exploration must become one image-led composition rather than split dashboard cells"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-visual",
-  /height:\s*430px;[\s\S]*min-height:\s*0/,
-  "Current photography must be bounded so the complete panorama fits one desktop view"
+  /grid-area:\s*1\s*\/\s*1/,
+  "Current photography must own the full Current composition cell"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .current-copy",
+  /grid-area:\s*1\s*\/\s*1/,
+  "Current copy must overlay the image without changing DOM order"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .current-copy",
+  /width:\s*clamp\(410px,\s*56%,\s*530px\);[\s\S]*background:\s*linear-gradient/,
+  "Current copy must remain readable while leaving the photography dominant"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-twwl-card",
@@ -207,6 +238,11 @@ assertCssRule(
   ".hrv-classroom-hub .gallery-frame",
   /overflow:\s*visible;[\s\S]*border:\s*0;[\s\S]*background:\s*transparent;[\s\S]*box-shadow:\s*none/,
   "Gallery sections must not reintroduce giant nested panel rectangles"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .gallery-frame",
+  /grid-template-rows:\s*auto\s+minmax\(0,\s*1fr\)/,
+  "Each gallery must compress its controls and images into one bounded ribbon"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .exploration-grid",
@@ -224,19 +260,29 @@ assertPanoramicRule(
   "Past TWWL cards must release their legacy three-column flex sizing"
 );
 assertPanoramicRule(
-  ".hrv-classroom-hub .collection-title",
-  /-webkit-line-clamp:\s*2/,
-  "Dense collection titles must remain bounded without removing their source text"
+  ".hrv-classroom-hub .collection-link",
+  /grid-template:\s*1fr\s*\/\s*1fr/,
+  "Collection links must become image-first overlay cards"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .collection-visual",
+  /grid-area:\s*1\s*\/\s*1;[\s\S]*height:\s*100%/,
+  "Collection images must fill the complete ribbon card"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .collection-summary",
-  /-webkit-line-clamp:\s*2/,
-  "Dense collection summaries must remain bounded without removing their source text"
+  /-webkit-line-clamp:\s*1/,
+  "Dense collection summaries must remain available but limited to one glanceable line"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .collection-label",
+  /display:\s*none/,
+  "Repeated card labels must not compete with image and title hierarchy"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .archive-door",
-  /min-width:\s*220px;[\s\S]*min-height:\s*62px/,
-  "The previous-years doorway must remain compact and comfortably actionable"
+  /width:\s*100%;[\s\S]*min-width:\s*0;[\s\S]*min-height:\s*50px/,
+  "The previous-years doorway must fill its compact edge rail"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-action",
