@@ -2,6 +2,7 @@
   "use strict";
 
   var RELEASE = "2026.08.29.5-review";
+  var REVIEW_COMMIT = "0d112e3bcdbb2b5554c662aa1615aaba07b2876f";
   var MOUNT_ID = "hrv-classroom-explorations-root";
   var MUSEUM_ASSET =
     "https://cdn.nlightlabs.com/assets/icon/icon/museum-e141ca5eb8/museum-e141ca5eb8.webp";
@@ -65,11 +66,15 @@
     normalizeOutageCard(mount);
     mount.dataset.hrvRepositoryHandoff = "started";
     mount.dataset.hrvReviewRelease = RELEASE;
+    mount.dataset.hrvReviewCommit = REVIEW_COMMIT;
 
     var repository = "ProfessorMinty/HughesWebAssets-Source";
-    var reviewRef = "hub-authoring-v2-2026-08-28";
     var base =
-      "https://cdn.jsdelivr.net/gh/" + repository + "@" + reviewRef + "/";
+      "https://cdn.jsdelivr.net/gh/" +
+      repository +
+      "@" +
+      REVIEW_COMMIT +
+      "/";
     var cacheKey = "?v=" + encodeURIComponent(RELEASE);
 
     var loader = document.createElement("script");
@@ -82,7 +87,7 @@
 
     loader.dataset.mount = MOUNT_ID;
     loader.dataset.pageId = "hrv-page:classroom-explorations";
-    loader.dataset.sourceRef = reviewRef;
+    loader.dataset.sourceRef = REVIEW_COMMIT;
     loader.dataset.release = RELEASE;
     loader.dataset.source =
       base +

@@ -26,13 +26,17 @@ The `.4-review` entry stylesheet named two files that did not exist and failed t
 
 The `.5-review` handoff removes that failure mode. It requests every required stylesheet module as an independent `<link>` and waits for all of them before mounting the application. If any required CSS module fails, the friendly unavailable card is restored instead of displaying a half-styled Hub.
 
-## Current review release
+## Current immutable review candidate
 
 ```text
-2026.08.29.5-review
+Release: 2026.08.29.5-review
+Commit:  0d112e3bcdbb2b5554c662aa1615aaba07b2876f
+CI:      green
 ```
 
-The review handoff loads:
+Page 2589 now loads this exact immutable commit rather than the mutable review branch. The branch remains the workshop lineage, but it is not the browser source of truth for the review.
+
+The handoff loads:
 
 ```text
 apps/classroom-explorations-hub/src/runtime-v3.js
@@ -63,9 +67,9 @@ This revision:
 
 ## Editor update boundary
 
-The current page-2589 HTML and CSS have already been confirmed by the live review because the old inline SVG animal disappeared. Once the exact passing repository commit is pinned in `JAVASCRIPT-BOX.js`, only the JavaScript field needs to be replaced for `.5-review`.
+The current page-2589 HTML and CSS have already been confirmed by the live review because the old inline SVG animal disappeared. For `.5-review`, replace **only the JavaScript field** with `JAVASCRIPT-BOX.js`.
 
-Do not paste a branch-backed doorway into page 17. Production must use an immutable publication after the Hub is accepted.
+Do not paste this review doorway into page 17. Production must use an immutable publication after the Hub is accepted.
 
 ## Failure behavior
 

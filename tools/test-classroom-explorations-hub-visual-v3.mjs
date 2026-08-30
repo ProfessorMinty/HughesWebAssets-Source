@@ -46,6 +46,8 @@ const handoffJs = readText(
   "docs/edublogs-integration/classroom-explorations-hub-test/JAVASCRIPT-BOX.js"
 );
 
+const reviewCommit = "0d112e3bcdbb2b5554c662aa1615aaba07b2876f";
+
 assert.doesNotMatch(
   runtime,
   /Reduced Effects/i,
@@ -91,6 +93,17 @@ for (const name of moduleNames) {
 }
 assert.match(stylesheetEntry, /2026\.08\.29\.5-review/);
 assert.match(handoffJs, /2026\.08\.29\.5-review/);
+assert.match(handoffJs, new RegExp(reviewCommit));
+assert.match(
+  handoffJs,
+  new RegExp("HughesWebAssets-Source@" + reviewCommit),
+  "The page-2589 review doorway must load the exact green commit."
+);
+assert.doesNotMatch(
+  handoffJs,
+  /HughesWebAssets-Source@hub-authoring-v2-2026-08-28/,
+  "The browser doorway must not load a mutable branch."
+);
 assert.match(handoffJs, /dataset\.stylesheets/);
 assert.doesNotMatch(
   handoffJs,
@@ -169,6 +182,9 @@ console.log(
 );
 console.log(
   "[hub visual v5] moving atmosphere, dark action text, responsive selectors, and footer continuity passed"
+);
+console.log(
+  "[hub visual v5] page 2589 is pinned to the exact green review commit"
 );
 console.log(
   "[hub visual v5] editor fallback contains no inline bear/puppy SVG"

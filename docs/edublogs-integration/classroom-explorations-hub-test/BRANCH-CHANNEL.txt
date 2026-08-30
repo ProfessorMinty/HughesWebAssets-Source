@@ -1,7 +1,8 @@
 repository=ProfessorMinty/HughesWebAssets-Source
 review_branch=hub-authoring-v2-2026-08-28
 review_release=2026.08.29.5-review
-review_delivery=branch-pending-green-commit-pin
+review_delivery=immutable-commit
+review_commit=0d112e3bcdbb2b5554c662aa1615aaba07b2876f
 canonical_wordpress_page_id=17
 review_wordpress_page_id=2589
 canonical_path=/hub/
@@ -12,4 +13,4 @@ active_runtime=apps/classroom-explorations-hub/src/runtime-v3.js
 active_stylesheets=apps/classroom-explorations-hub/src/hub-foundation.css|apps/classroom-explorations-hub/src/hub-hero-and-map.css|apps/classroom-explorations-hub/src/hub-feature-rooms.css|apps/classroom-explorations-hub/src/hub-galleries-and-motion.css|apps/classroom-explorations-hub/src/hub-responsive.css
 stylesheet_loading=direct-fail-closed
 retired_layer_imported=false
-editor_blocks_replace=javascript-only-after-commit-pin
+editor_blocks_replace=javascript-only
