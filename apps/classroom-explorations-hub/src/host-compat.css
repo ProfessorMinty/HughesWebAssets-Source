@@ -75,9 +75,6 @@ html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #
   overflow-x: clip !important;
 }
 
-/* The native Amadeus footer remains the site footer, but on the Hub pages it
-   must visually continue the museum instead of introducing an unrelated teal
-   or white floor beneath the application. */
 html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer {
   margin: 0 !important;
   padding: 40px 0 30px !important;
