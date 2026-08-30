@@ -1,33 +1,43 @@
 name: Classroom Explorations Hub CI
 on:
   push:
-    branches: [main]
+    branches: [main, hub-authoring-v2-2026-08-28]
     paths:
+      - 'package.json'
+      - 'package-lock.json'
       - 'apps/classroom-explorations-hub/**'
       - 'registry/hrv-routes.source.json'
       - 'schemas/hrv-page-envelope.schema.json'
       - 'schemas/hrv-route-registry.schema.json'
       - 'schemas/classroom-explorations-hub.source.schema.json'
       - 'schemas/classroom-explorations-hub.runtime.schema.json'
+      - 'schemas/classroom-explorations-hub.control.schema.json'
+      - 'releases/classroom-explorations-hub/**'
       - 'tools/*classroom-explorations-hub*.mjs'
       - 'tools/lib/json-schema-lite.mjs'
       - 'tools/lib/classroom-explorations-hub-contract.mjs'
       - 'tools/lib/classroom-explorations-hub-operations.mjs'
+      - 'tools/lib/classroom-explorations-hub-transactions.mjs'
       - 'docs/classroom-explorations-hub.md'
       - 'docs/classroom-explorations-hub-migration-evidence.md'
       - 'docs/edublogs-integration/classroom-explorations-hub/**'
+      - 'docs/edublogs-integration/classroom-explorations-hub-test/**'
       - '.github/workflows/classroom-explorations-hub-ci.yml'
   pull_request:
     paths:
+      - 'package.json'
+      - 'package-lock.json'
       - 'apps/classroom-explorations-hub/**'
       - 'registry/hrv-routes.source.json'
       - 'schemas/**classroom-explorations-hub**'
       - 'schemas/hrv-page-envelope.schema.json'
       - 'schemas/hrv-route-registry.schema.json'
+      - 'releases/classroom-explorations-hub/**'
       - 'tools/*classroom-explorations-hub*.mjs'
       - 'tools/lib/json-schema-lite.mjs'
       - 'tools/lib/classroom-explorations-hub-contract.mjs'
       - 'tools/lib/classroom-explorations-hub-operations.mjs'
+      - 'tools/lib/classroom-explorations-hub-transactions.mjs'
       - 'docs/classroom-explorations-hub-migration-evidence.md'
       - 'docs/classroom-explorations-hub-viewport-typography-audit-2026-08-28.md'
       - 'docs/edublogs-integration/classroom-explorations-hub-test/**'
@@ -41,11 +51,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '22' }
+      - name: Install locked dependencies
+        run: npm ci
       - name: Syntax check browser runtime
         run: |
           node --check apps/classroom-explorations-hub/src/bootstrap.js
           node --check apps/classroom-explorations-hub/src/runtime.js
-          node --check apps/classroom-explorations-hub/src/review-bootstrap.js
-          node --check apps/classroom-explorations-hub/src/runtime-v3.js
-      - name: Full clean-baseline contract, build, and publication checks
+      - name: Repository test and build suite
+        run: npm run check
+      - name: Full Hub contract, presentation, build, and publication checks
         run: npm run check:hub

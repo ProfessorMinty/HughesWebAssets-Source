@@ -29,6 +29,22 @@
     return;
   }
 
+  document
+    .querySelectorAll([
+      "style[data-hrv-classroom-hub-style]",
+      "link[data-hrv-review-style]",
+      "link[data-hrv-review-style-group]",
+      "script[data-hrv-review-runtime]"
+    ].join(","))
+    .forEach((element) => element.remove());
+  root.classList.remove("hrv-hub-v2", "hrv-hub-v3");
+  [
+    "data-hrv-review-bootstrap",
+    "data-hrv-review-release",
+    "data-hrv-review-commit",
+    "data-hrv-repository-handoff"
+  ].forEach((attribute) => root.removeAttribute(attribute));
+
   root.dataset.hrvBootstrapStarted = "true";
   const initialNotice = root.querySelector("[data-hrv-outage-notice]");
   if (initialNotice) initialNotice.hidden = true;

@@ -1,12 +1,13 @@
 import { copyFile, mkdir, readFile, stat, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 const [runtimeVersion, publicationId, sourceRevision, previousPublicationId = "none"] = process.argv.slice(2);
 if (!/^\d{4}\.\d{2}\.\d{2}\.\d+$/.test(runtimeVersion || "")) throw new Error("runtimeVersion must be YYYY.MM.DD.N");
 if (!/^pub-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{3}$/.test(publicationId || "")) throw new Error("publicationId must be pub-YYYY-MM-DD-NNN");
 if (!/^[a-f0-9]{40}$/.test(sourceRevision || "")) throw new Error("sourceRevision must be a 40-character Git commit SHA");
 if (previousPublicationId !== "none" && !/^pub-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{3}$/.test(previousPublicationId)) throw new Error("previousPublicationId must be none or pub-YYYY-MM-DD-NNN");
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const dist = resolve(root, "dist/classroom-explorations-hub");
 const releaseRoot = resolve(process.env.HRV_HUB_RELEASE_ROOT || resolve(root, "releases/classroom-explorations-hub"));
 const runtimeTarget = resolve(releaseRoot, `runtime/${runtimeVersion}`);

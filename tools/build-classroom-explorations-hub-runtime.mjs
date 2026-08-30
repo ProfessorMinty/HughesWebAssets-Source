@@ -1,7 +1,8 @@
 import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve } from "node:path";
-const root = resolve(new URL("..", import.meta.url).pathname);
+import { fileURLToPath } from "node:url";
+const root = fileURLToPath(new URL("..", import.meta.url));
 const src = resolve(root, "apps/classroom-explorations-hub/src");
 const out = resolve(root, "dist/classroom-explorations-hub/runtime");
 await rm(out, { recursive: true, force: true });

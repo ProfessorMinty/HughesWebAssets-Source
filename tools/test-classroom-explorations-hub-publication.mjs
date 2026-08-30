@@ -4,8 +4,9 @@ import { mkdtemp, readFile, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const releaseRoot = await mkdtemp(resolve(tmpdir(), "hrv-hub-publication-test-"));
 const env = { ...process.env, HRV_HUB_RELEASE_ROOT: releaseRoot };
 const runStage = (publicationId, sourceRevision, previous = "none") => spawnSync(process.execPath, [

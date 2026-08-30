@@ -1,13 +1,12 @@
 const mounted = new WeakMap();
 
 const APP_CLASS = "hrv-classroom-hub";
-const EFFECTS_KEY = "hrv:classroom-explorations:reduced-effects";
 
 const SUBJECT_CLASS = new Map([
   ["summer-bloom-adoption-project", "subject-zinnia"],
   ["great-barrier-reef", "subject-reef"],
   ["mushrooms", "subject-mushrooms"],
-  ["caterpillars-in-the-classroom-historical", "subject-caterpillars"],
+  ["butterflies-in-the-classroom", "subject-caterpillars"],
   ["botany-lets-talk-about-tubers", "subject-tubers"],
   ["traditions-of-russian-winter", "subject-winter"],
   ["silent-wings-wise-eyes-learning-about-owls", "subject-owls"],
@@ -35,20 +34,6 @@ function link(label, href, className = "hub-action") {
   const anchor = node("a", className, label);
   anchor.href = href;
   return anchor;
-}
-
-function readReducedPreference() {
-  try {
-    return localStorage.getItem(EFFECTS_KEY) === "true";
-  } catch {
-    return false;
-  }
-}
-
-function writeReducedPreference(value) {
-  try {
-    localStorage.setItem(EFFECTS_KEY, String(value));
-  } catch {}
 }
 
 function prefersReducedMotion() {
@@ -119,7 +104,6 @@ class HubController {
     this.listeners = [];
     this.observers = [];
     this.destroyed = false;
-    this.manualReduced = readReducedPreference();
   }
 
   on(target, type, handler, options) {
@@ -136,7 +120,6 @@ class HubController {
     this.root.dataset.systemMotion = prefersReducedMotion() ? "reduced" : "standard";
 
     this.render();
-    this.applyEffects();
     this.wireSystemMotionPreference();
     this.wireWakeUp();
     this.wirePointerLight();
@@ -165,26 +148,8 @@ class HubController {
     document.documentElement.classList.remove("hrv-page-classroom-explorations-ready");
     this.root.classList.remove(APP_CLASS, "museum-awake");
     this.root.replaceChildren();
-    this.root.removeAttribute("data-effects");
     this.root.removeAttribute("data-system-motion");
     mounted.delete(this.root);
-  }
-
-  applyEffects() {
-    this.root.dataset.effects = this.manualReduced ? "reduced" : "full";
-    const button = this.root.querySelector("[data-effects-toggle]");
-    if (button) {
-      button.textContent = this.manualReduced ? "Reduced Effects: On" : "Reduced Effects: Off";
-      button.setAttribute("aria-pressed", String(this.manualReduced));
-    }
-
-    if (this.manualReduced) {
-      this.root.querySelectorAll("[data-wake]").forEach((element) => element.classList.add("is-awake"));
-      this.root.querySelectorAll("[data-tilt]").forEach((element) => {
-        element.style.removeProperty("--tilt-x");
-        element.style.removeProperty("--tilt-y");
-      });
-    }
   }
 
   wireSystemMotionPreference() {
@@ -199,7 +164,7 @@ class HubController {
   wireWakeUp() {
     const targets = [...this.root.querySelectorAll("[data-wake]")];
 
-    if (this.manualReduced || !("IntersectionObserver" in window)) {
+    if (this.root.dataset.systemMotion === "reduced" || !("IntersectionObserver" in window)) {
       targets.forEach((element) => element.classList.add("is-awake"));
       return;
     }
@@ -224,7 +189,7 @@ class HubController {
 
     for (const target of targets) {
       const move = (event) => {
-        if (this.manualReduced || this.root.dataset.systemMotion === "reduced") return;
+        if (prefersReducedMotion() || this.root.dataset.systemMotion === "reduced") return;
         const rect = target.getBoundingClientRect();
         const x = (event.clientX - rect.left) / Math.max(rect.width, 1);
         const y = (event.clientY - rect.top) / Math.max(rect.height, 1);
@@ -330,21 +295,9 @@ class HubController {
     card.append(left, right);
     shell.append(card);
 
-    const controls = node("div", "hero-controls");
-    const effects = node("button", "effects-control", "Reduced Effects: Off");
-    effects.type = "button";
-    effects.dataset.effectsToggle = "";
-    this.on(effects, "click", () => {
-      this.manualReduced = !this.manualReduced;
-      writeReducedPreference(this.manualReduced);
-      this.applyEffects();
-    });
-
-    controls.append(
-      effects,
-      node("span", "school-year-control", `${this.manifest.page.schoolYearLabel} Museum`)
+    shell.append(
+      node("p", "hero-school-year", `${this.manifest.page.schoolYearLabel} Museum`)
     );
-    shell.append(controls);
 
     section.append(shell);
     return section;

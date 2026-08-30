@@ -162,7 +162,7 @@ assert.equal(
   editResult.documents.source.data.copy.hero.invitation,
   "A deterministic Lanternworks edit test."
 );
-assert.equal(editResult.documents.routes, routes);
+assert.deepEqual(editResult.documents.routes, routes);
 
 assert.throws(
   () => applyHubCommand({
@@ -268,7 +268,14 @@ assert.ok(
 assert.ok(swapResult.documents.routes.routes.some((route) => route.ref === swapRoute.ref));
 validateHubSemantics(swapResult.documents.source, swapResult.documents.routes);
 
-const promoted = setCurrentExploration(source, routes, "mushrooms");
+assert.throws(
+  () => setCurrentExploration(source, routes, "mushrooms"),
+  (error) => error.code === "HUB_CURRENT_EXPLORATION_YEAR_MISMATCH"
+);
+const promotableSource = structuredClone(source);
+promotableSource.data.explorations.find((item) => item.id === "mushrooms").schoolYear =
+  promotableSource.data.composition.currentSchoolYear;
+const promoted = setCurrentExploration(promotableSource, routes, "mushrooms");
 assert.equal(promoted.data.composition.currentExplorationId, "mushrooms");
 assert.ok(promoted.data.composition.pastExplorationIds.includes("summer-bloom-adoption-project"));
 assert.ok(!promoted.data.composition.pastExplorationIds.includes("mushrooms"));
