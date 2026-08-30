@@ -1,4 +1,4 @@
-# Classroom Explorations Hub panoramic desktop doorway
+# Classroom Explorations Hub single-canvas desktop doorway
 
 This directory contains the Edublogs doorway blocks for the review page:
 
@@ -7,13 +7,13 @@ This directory contains the Edublogs doorway blocks for the review page:
 
 Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Panoramic desktop immutable publication
+## Single-canvas desktop immutable publication
 
 ```text
-Asset commit:       47eab7374968ffd1896dca7c4fd3a19dff1fb96b
-Source revision:    5e2db1aea9d6447e508f7e2e04c74815f25c776c
-Runtime version:    2026.08.30.3
-Publication:        pub-2026-08-30-003
+Asset commit:       028b01cf00b6bbe124640f61e0841f3dd490e0ab
+Source revision:    3af2d1b9b2b4c1c52c5aee9394d334821397f91b
+Runtime version:    2026.08.30.4
+Publication:        pub-2026-08-30-004
 Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
 Rollback target:    pub-2026-08-14-005
 ```
@@ -24,8 +24,8 @@ The active delivery chain is:
 
 ```text
 page 2589 doorway
-  -> releases/classroom-explorations-hub/runtime/2026.08.30.3/bootstrap.js
-  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-003/publication.json
+  -> releases/classroom-explorations-hub/runtime/2026.08.30.4/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-004/publication.json
   -> verified runtime.js
   -> verified hub.css
   -> verified host-compat.css
@@ -34,17 +34,17 @@ page 2589 doorway
 
 There is no mutable branch URL, review bootstrap, alternate runtime, split application stylesheet set, or nested `@import` in this doorway.
 
-## Panoramic desktop acceptance evidence
+## Single-canvas desktop acceptance evidence
 
-The exact asset commit passed push run `33306230579` and pull-request run `33306232487`. Local and remote jsDelivr bytes matched for the bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, publication, and content manifest.
+The exact asset commit passed push run `33310751813` and pull-request run `33310754121`. Local and remote jsDelivr bytes matched for the bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, publication, and content manifest.
 
 The real projected application was exercised in a browser at `1920×911` with real external media. Acceptance included:
 
-- a twelve-column panoramic desktop stage with Welcome, Current Exploration, and Current TWWL visible together;
-- Current Exploration at `906.9px` wide, twice the `446.3px` width of each supporting region;
-- all three current regions ending at `y=895.7` inside the `911px` acceptance viewport;
-- total document height reduced from the `.2` baseline of `4721px` to `1607px`;
-- three Past Exploration images and five Past TWWL images in two dense, simultaneous gallery rows;
+- a bounded twelve-column, four-row exploration board with every major experience visible together;
+- a dominant image-led Current Exploration at `922px × 428px`, with its complete copy and action over the left side of the repository-owned Zinnia image;
+- compact, staggered `455px`-wide Welcome and Learning Lantern support rails ending at `y=518.3` and `y=502.6` respectively;
+- three Past Exploration images, five Past TWWL images, and Previous School Years sharing the `y=566–838` lower gallery row;
+- the compact footer ending at `y=889`, with exact document and viewport dimensions of `1920×911` and no vertical museum tour at the acceptance canvas;
 - real Zinnia photography plus all eight gallery images with nonzero natural dimensions;
 - no emoji media substitutions;
 - one application style and one host style;
@@ -53,9 +53,8 @@ The real projected application was exercised in a browser at `1920×911` with re
 - the browser's OS-level reduced-motion preference honored without a Hub-local override;
 - no Hub-local Reduced Effects control;
 - zero horizontal overflow;
-- Museum Map anchors and both gallery filters exercised successfully;
-- responsive no-overflow checks at `1920×768`, `1440×800`, `1439×800`, `1330×800`, `1024×768`, `720×900`, `390×844`, and `320×568`;
-- no browser console warnings or errors.
+- Museum Map focus order and gallery filtering exercised successfully;
+- responsive no-overflow checks at `2560×1440`, `1920×911`, `1728×900`, `1536×864`, `1440×900`, `1330×900`, `1024×768`, and `390×844`.
 
 ## Editor update boundary
 
