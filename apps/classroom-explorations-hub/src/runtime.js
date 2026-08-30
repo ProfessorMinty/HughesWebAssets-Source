@@ -2,6 +2,15 @@ const mounted = new WeakMap();
 
 const APP_CLASS = "hrv-classroom-hub";
 
+const SITE_NAVIGATION = [
+  ["Home", "https://rmhughes.edublogs.org/"],
+  ["Hughes Monthly Calendar", "https://rmhughes.edublogs.org/hughes-monthly-calendar/"],
+  ["Posts", "https://rmhughes.edublogs.org/posts/"],
+  ["Hughes Class Library", "https://rmhughes.edublogs.org/class-library/"],
+  ["Photo Album", "https://rmhughes.edublogs.org/photo-album/"],
+  ["Contact Information", "https://rmhughes.edublogs.org/contact-information/"]
+];
+
 const SUBJECT_CLASS = new Map([
   ["summer-bloom-adoption-project", "subject-zinnia"],
   ["great-barrier-reef", "subject-reef"],
@@ -98,9 +107,10 @@ function lanternGraphic() {
 }
 
 class HubController {
-  constructor(root, manifest) {
+  constructor(root, manifest, runtimeAssets = {}) {
     this.root = root;
     this.manifest = manifest;
+    this.runtimeAssets = runtimeAssets;
     this.listeners = [];
     this.observers = [];
     this.destroyed = false;
@@ -150,6 +160,10 @@ class HubController {
     this.root.classList.remove(APP_CLASS, "museum-awake");
     this.root.replaceChildren();
     this.root.removeAttribute("data-system-motion");
+    for (const url of Object.values(this.runtimeAssets.artwork || {})) {
+      if (typeof url === "string" && url.startsWith("blob:")) URL.revokeObjectURL(url);
+    }
+    this.runtimeAssets = {};
     mounted.delete(this.root);
   }
 
@@ -273,18 +287,59 @@ class HubController {
       <span class="environment-light light-one"></span>
       <span class="environment-light light-two"></span>`;
 
+    const pastExplorations = this.pastExplorations(copy.pastExplorations, manifest.galleries.pastExplorations);
+    const pastTwwl = this.pastTwwl(copy.pastTwwl, manifest.galleries.pastTwwl);
+    const archives = this.archives(copy.archives, manifest.archives);
+    const pastExplorationsDialog = this.historyDialog(
+      "hrv-past-explorations-dialog",
+      copy.pastExplorations.title,
+      pastExplorations
+    );
+    const pastTwwlDialog = this.historyDialog(
+      "hrv-past-learning-dialog",
+      copy.pastTwwl.title,
+      pastTwwl
+    );
+    const archivesDialog = this.historyDialog(
+      "hrv-school-year-archives-dialog",
+      copy.archives.title,
+      archives
+    );
+
     museum.append(
       environment,
       this.hero(copy.hero),
-      this.museumMap(),
+      this.siteNavigation(),
       this.welcome(copy.welcome, manifest.current.featuredMedia),
       this.currentExploration(copy.currentExploration, manifest.current.exploration),
       this.currentTwwl(copy.currentTwwl, manifest.current.twwl),
-      this.divider(),
-      this.pastExplorations(copy.pastExplorations, manifest.galleries.pastExplorations),
-      this.pastTwwl(copy.pastTwwl, manifest.galleries.pastTwwl),
-      this.archives(copy.archives, manifest.archives),
-      this.footer(copy.footer)
+      this.historyDoors([
+        {
+          key: "pastExplorations",
+          label: "Past Explorations",
+          eyebrow: "Exploration archive",
+          action: "Choose an exhibit",
+          dialog: pastExplorationsDialog
+        },
+        {
+          key: "pastTwwl",
+          label: "Past TWWL",
+          eyebrow: "Learning archive",
+          action: "Choose a learning story",
+          dialog: pastTwwlDialog
+        },
+        {
+          key: "pastYears",
+          label: "Past Years",
+          eyebrow: "School-year archive",
+          action: "Choose a school year",
+          dialog: archivesDialog
+        }
+      ]),
+      this.footer(copy.footer),
+      pastExplorationsDialog,
+      pastTwwlDialog,
+      archivesDialog
     );
 
     this.root.replaceChildren(skip, museum);
@@ -358,34 +413,92 @@ class HubController {
     return section;
   }
 
-  museumMap() {
-    const map = node("nav", "museum-map");
-    map.setAttribute("aria-label", "Museum map");
+  siteNavigation() {
+    const navigation = node("nav", "site-navigation");
+    navigation.setAttribute("aria-label", "Hughes Room Views site navigation");
 
-    const shell = node("div", "museum-shell museum-map-shell");
-    const title = node("p", "museum-map-title", "Museum Map");
-    const links = node("div", "museum-map-links");
-    const destinations = [
-      ["01", "Welcome", "#hrv-welcome-theater"],
-      ["02", "Current", "#hrv-current-exploration"],
-      ["03", "Learning Lantern", "#hrv-current-learning"],
-      ["04", "Past Exhibits", "#hrv-past-explorations"],
-      ["05", "Past Learning", "#hrv-past-learning"],
-      ["06", "Archives", "#hrv-school-year-archives"]
-    ];
+    const shell = node("div", "museum-shell site-navigation-shell");
+    const links = node("div", "site-navigation-links");
 
-    for (const [number, label, href] of destinations) {
-      const destination = link("", href, "museum-map-link");
-      destination.append(
-        node("span", "museum-map-number", number),
-        node("span", "museum-map-label", label)
+    SITE_NAVIGATION.forEach(([label, href], index) => {
+      if (index === 5) {
+        const current = node("span", "site-navigation-link is-current", "Classroom Explorations");
+        current.setAttribute("aria-current", "page");
+        links.append(current);
+      }
+      links.append(link(label, href, "site-navigation-link"));
+    });
+
+    shell.append(links);
+    navigation.append(shell);
+    return navigation;
+  }
+
+  historyDialog(id, label, content) {
+    const dialog = node("dialog", "history-dialog");
+    dialog.id = id;
+    dialog.setAttribute("aria-label", label);
+
+    const surface = node("div", "history-dialog-surface");
+    const close = node("button", "history-dialog-close", "Close");
+    close.type = "button";
+    close.setAttribute("aria-label", `Close ${label}`);
+    surface.append(close, content);
+    dialog.append(surface);
+
+    this.on(close, "click", () => {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    });
+    this.on(dialog, "click", (event) => {
+      if (event.target !== dialog) return;
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    });
+    return dialog;
+  }
+
+  historyDoors(entries) {
+    const section = node("section", "hub-section history-door-section");
+    section.id = "hrv-history-navigation";
+    section.dataset.wake = "";
+
+    const shell = node("div", "museum-shell history-door-shell");
+    const navigation = node("nav", "history-door-grid");
+    navigation.setAttribute("aria-label", "Explore classroom history");
+
+    for (const entry of entries) {
+      const button = node("button", `history-door history-door-${entry.key}`);
+      button.type = "button";
+      button.setAttribute("aria-haspopup", "dialog");
+      button.setAttribute("aria-controls", entry.dialog.id);
+      button.setAttribute("aria-label", `${entry.label}: ${entry.action}`);
+
+      const artwork = node("img", "history-door-artwork");
+      const artworkUrl = this.runtimeAssets.artwork?.[entry.key];
+      if (artworkUrl) artwork.src = artworkUrl;
+      artwork.alt = "";
+      artwork.loading = entry.key === "pastYears" ? "lazy" : "eager";
+      artwork.decoding = "async";
+
+      const copy = node("span", "history-door-copy");
+      copy.append(
+        node("span", "history-door-eyebrow", entry.eyebrow),
+        node("strong", "history-door-title", entry.label),
+        node("span", "history-door-action", entry.action)
       );
-      links.append(destination);
+      button.append(artwork, node("span", "history-door-shade"), copy);
+
+      this.on(button, "click", () => {
+        if (typeof entry.dialog.showModal === "function") entry.dialog.showModal();
+        else entry.dialog.setAttribute("open", "");
+      });
+      navigation.append(button);
     }
 
-    shell.append(title, links);
-    map.append(shell);
-    return map;
+    shell.append(navigation);
+    section.append(shell);
+    return section;
   }
 
   welcome(copy, media) {
@@ -798,7 +911,7 @@ class HubController {
   }
 }
 
-export function mountClassroomExplorationsHub(root, manifest) {
+export function mountClassroomExplorationsHub(root, manifest, runtimeAssets = {}) {
   if (!(root instanceof HTMLElement)) {
     throw new TypeError("Hub mount requires an HTMLElement.");
   }
@@ -814,7 +927,7 @@ export function mountClassroomExplorationsHub(root, manifest) {
     throw new Error("Unsupported Classroom Explorations runtime manifest.");
   }
 
-  const controller = new HubController(root, manifest);
+  const controller = new HubController(root, manifest, runtimeAssets);
   mounted.set(root, controller);
   controller.start();
   return controller;

@@ -68,13 +68,14 @@
   root.setAttribute("aria-busy", "true");
   root.dataset.hrvState = "loading";
 
-  const hashText = async (text) => {
-    const bytes = new TextEncoder().encode(text);
+  const hashBytes = async (bytes) => {
     const digest = await crypto.subtle.digest("SHA-256", bytes);
     return [...new Uint8Array(digest)]
       .map((byte) => byte.toString(16).padStart(2, "0"))
       .join("");
   };
+
+  const hashText = async (text) => hashBytes(new TextEncoder().encode(text));
 
   const fetchTextVerified = async (url, expectedHash) => {
     const response = await fetch(url, { credentials: "omit", cache: "no-store" });
@@ -83,6 +84,15 @@
     const actual = await hashText(text);
     if (actual !== expectedHash) throw new Error(`Integrity mismatch for ${url}`);
     return text;
+  };
+
+  const fetchBytesVerified = async (url, expectedHash) => {
+    const response = await fetch(url, { credentials: "omit", cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+    const bytes = await response.arrayBuffer();
+    const actual = await hashBytes(bytes);
+    if (actual !== expectedHash) throw new Error(`Integrity mismatch for ${url}`);
+    return bytes;
   };
 
   publicationUrl = publicationResolved.href;
@@ -109,11 +119,30 @@
         throw new Error("Unsupported publication contract.");
       }
 
-      const [cssText, compatText, jsText, manifestText] = await Promise.all([
+      const artworkKeys = ["pastExplorations", "pastTwwl", "pastYears"];
+      const artwork = publication.runtime.artwork;
+      if (
+        !artwork ||
+        Object.keys(artwork).sort().join("|") !== [...artworkKeys].sort().join("|") ||
+        artworkKeys.some((key) => (
+          typeof artwork[key]?.path !== "string" ||
+          !/^[a-f0-9]{64}$/.test(artwork[key]?.sha256 || "") ||
+          artwork[key]?.mediaType !== "image/webp"
+        ))
+      ) {
+        throw new Error("Unsupported runtime artwork contract.");
+      }
+
+      const [cssText, compatText, jsText, manifestText, artworkBytes] = await Promise.all([
         fetchTextVerified(resolve(publication.runtime.style.path), publication.runtime.style.sha256),
         fetchTextVerified(resolve(publication.runtime.hostCompat.path), publication.runtime.hostCompat.sha256),
         fetchTextVerified(resolve(publication.runtime.script.path), publication.runtime.script.sha256),
-        fetchTextVerified(resolve(publication.content.manifest.path), publication.content.manifest.sha256)
+        fetchTextVerified(resolve(publication.content.manifest.path), publication.content.manifest.sha256),
+        Promise.all(artworkKeys.map(async (key) => [
+          key,
+          await fetchBytesVerified(resolve(artwork[key].path), artwork[key].sha256),
+          artwork[key].mediaType
+        ]))
       ]);
 
       const manifest = JSON.parse(manifestText);
@@ -135,6 +164,13 @@
 
       document.head.append(style, compat);
 
+      const artworkUrls = Object.fromEntries(artworkBytes.map(([key, bytes, mediaType]) => [
+        key,
+        URL.createObjectURL(new Blob([bytes], { type: mediaType }))
+      ]));
+      const runtimeAssets = { artwork: artworkUrls };
+      let artworkOwnedByRuntime = false;
+
       const moduleUrl = URL.createObjectURL(
         new Blob([jsText], { type: "text/javascript" })
       );
@@ -144,9 +180,13 @@
         if (typeof module.mountClassroomExplorationsHub !== "function") {
           throw new Error("Renderer mount export missing.");
         }
-        module.mountClassroomExplorationsHub(root, manifest);
+        const controller = module.mountClassroomExplorationsHub(root, manifest, runtimeAssets);
+        artworkOwnedByRuntime = controller?.runtimeAssets === runtimeAssets;
       } finally {
         URL.revokeObjectURL(moduleUrl);
+        if (!artworkOwnedByRuntime) {
+          Object.values(artworkUrls).forEach((url) => URL.revokeObjectURL(url));
+        }
       }
     } catch (error) {
       document

@@ -7,6 +7,11 @@ const dist = resolve(root, "dist/classroom-explorations-hub");
 const snapshot = JSON.parse(await readFile(resolve(dist, "content-snapshot.json"), "utf8"));
 const hash = snapshot.snapshotId.slice("sha256:".length);
 const digest = async (p) => createHash("sha256").update(await readFile(resolve(dist, p))).digest("hex");
+const runtimeRelease = JSON.parse(await readFile(resolve(dist, "runtime/runtime-release.json"), "utf8"));
+const artwork = Object.fromEntries(Object.entries(runtimeRelease.artwork).map(([name, entry]) => [
+  name,
+  { path: `./runtime/${entry.path}`, sha256: entry.sha256, mediaType: entry.mediaType }
+]));
 const publication = {
   schemaVersion: "1.0",
   publicationId: "local-preview",
@@ -20,7 +25,8 @@ const publication = {
     bootstrap: { path: "./runtime/bootstrap.js", sha256: await digest("runtime/bootstrap.js") },
     script: { path: "./runtime/runtime.js", sha256: await digest("runtime/runtime.js") },
     style: { path: "./runtime/hub.css", sha256: await digest("runtime/hub.css") },
-    hostCompat: { path: "./runtime/host-compat.css", sha256: await digest("runtime/host-compat.css") }
+    hostCompat: { path: "./runtime/host-compat.css", sha256: await digest("runtime/host-compat.css") },
+    artwork
   },
   content: {
     snapshotId: snapshot.snapshotId,

@@ -1,6 +1,6 @@
-import { copyFile, mkdir, readFile, stat, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 const [runtimeVersion, publicationId, sourceRevision, previousPublicationId = "none"] = process.argv.slice(2);
 if (!/^\d{4}\.\d{2}\.\d{2}\.\d+$/.test(runtimeVersion || "")) throw new Error("runtimeVersion must be YYYY.MM.DD.N");
@@ -16,20 +16,70 @@ const hash = snapshot.snapshotId.slice("sha256:".length);
 const contentTarget = resolve(releaseRoot, `content/${hash}`);
 const pubTarget = resolve(releaseRoot, `publications/${publicationId}`);
 const exists = async (path) => { try { await stat(path); return true; } catch (e) { if (e.code === "ENOENT") return false; throw e; } };
+const listFiles = async (directory, prefix = "") => {
+  const files = [];
+  const entries = (await readdir(directory, { withFileTypes: true }))
+    .sort((left, right) => left.name < right.name ? -1 : left.name > right.name ? 1 : 0);
+
+  for (const entry of entries) {
+    const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name;
+    const absolutePath = resolve(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await listFiles(absolutePath, relativePath));
+    else if (entry.isFile()) files.push(relativePath);
+    else throw new Error(`Unsupported immutable runtime entry: ${relativePath}`);
+  }
+
+  return files;
+};
+const runtimeSource = resolve(dist, "runtime");
+const runtimeRelease = JSON.parse(await readFile(resolve(runtimeSource, "runtime-release.json"), "utf8"));
+const runtimeFiles = await listFiles(runtimeSource);
 if (await exists(pubTarget)) throw new Error(`Immutable publication already exists: ${pubTarget}`);
-const runtimeFiles = ["bootstrap.js", "runtime.js", "hub.css", "host-compat.css", "runtime-release.json"];
 if (!(await exists(runtimeTarget))) {
   await mkdir(runtimeTarget, { recursive: true });
-  for (const name of runtimeFiles) await copyFile(resolve(dist, "runtime", name), resolve(runtimeTarget, name));
+  for (const name of runtimeFiles) {
+    const destination = resolve(runtimeTarget, name);
+    await mkdir(dirname(destination), { recursive: true });
+    await copyFile(resolve(runtimeSource, name), destination);
+  }
 }
-await mkdir(pubTarget, { recursive: true });
 const incomingManifest = resolve(dist, snapshot.manifestPath);
 if (!(await exists(contentTarget))) { await mkdir(contentTarget, { recursive: true }); await copyFile(incomingManifest, resolve(contentTarget, "manifest.json")); }
 const digest = async (path) => createHash("sha256").update(await readFile(path)).digest("hex");
+
+const stagedRuntimeFiles = await listFiles(runtimeTarget);
+if (runtimeFiles.join("|") !== stagedRuntimeFiles.join("|")) {
+  throw new Error(`Existing immutable runtime ${runtimeVersion} file set does not match deterministic build output.`);
+}
 for (const name of runtimeFiles) {
-  if (await digest(resolve(dist, "runtime", name)) !== await digest(resolve(runtimeTarget, name))) throw new Error(`Existing immutable runtime ${runtimeVersion} does not match deterministic build output: ${name}`);
+  if (await digest(resolve(runtimeSource, name)) !== await digest(resolve(runtimeTarget, name))) throw new Error(`Existing immutable runtime ${runtimeVersion} does not match deterministic build output: ${name}`);
 }
 if (await digest(incomingManifest) !== await digest(resolve(contentTarget, "manifest.json"))) throw new Error("Existing immutable content snapshot does not match deterministic build output.");
+
+const expectedArtwork = {
+  pastExplorations: "assets/history/past-explorations.webp",
+  pastTwwl: "assets/history/past-twwl.webp",
+  pastYears: "assets/history/past-years.webp"
+};
+if (Object.keys(runtimeRelease.artwork || {}).join("|") !== Object.keys(expectedArtwork).join("|")) {
+  throw new Error("Runtime release artwork map is missing or unstable.");
+}
+const publicationArtwork = {};
+for (const [name, expectedPath] of Object.entries(expectedArtwork)) {
+  const entry = runtimeRelease.artwork[name];
+  if (entry.path !== expectedPath || entry.mediaType !== "image/webp") {
+    throw new Error(`Runtime release artwork contract is invalid: ${name}`);
+  }
+  const actual = await digest(resolve(runtimeTarget, entry.path));
+  if (actual !== entry.sha256) throw new Error(`Runtime release artwork digest is invalid: ${entry.path}`);
+  publicationArtwork[name] = {
+    path: `../../runtime/${runtimeVersion}/${entry.path}`,
+    sha256: actual,
+    mediaType: entry.mediaType
+  };
+}
+
+await mkdir(pubTarget, { recursive: true });
 const publication = {
   schemaVersion: "1.0", publicationId, pageId: "hrv-page:classroom-explorations", pageType: "classroom-explorations-hub", sourceRevision,
   previousKnownGoodPublication: previousPublicationId === "none" ? null : previousPublicationId,
@@ -38,7 +88,8 @@ const publication = {
     bootstrap: { path: `../../runtime/${runtimeVersion}/bootstrap.js`, sha256: await digest(resolve(runtimeTarget, "bootstrap.js")) },
     script: { path: `../../runtime/${runtimeVersion}/runtime.js`, sha256: await digest(resolve(runtimeTarget, "runtime.js")) },
     style: { path: `../../runtime/${runtimeVersion}/hub.css`, sha256: await digest(resolve(runtimeTarget, "hub.css")) },
-    hostCompat: { path: `../../runtime/${runtimeVersion}/host-compat.css`, sha256: await digest(resolve(runtimeTarget, "host-compat.css")) }
+    hostCompat: { path: `../../runtime/${runtimeVersion}/host-compat.css`, sha256: await digest(resolve(runtimeTarget, "host-compat.css")) },
+    artwork: publicationArtwork
   },
   content: { snapshotId: snapshot.snapshotId, runtimeSchemaVersion: "1.0", manifest: { path: `../../content/${hash}/manifest.json`, sha256: await digest(resolve(contentTarget, "manifest.json")) } }
 };

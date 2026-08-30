@@ -20,13 +20,28 @@ const runtimePath = "apps/classroom-explorations-hub/src/runtime.js";
 const cssPath = "apps/classroom-explorations-hub/src/hub.css";
 const bootstrapPath = "apps/classroom-explorations-hub/src/bootstrap.js";
 const hostCompatPath = "apps/classroom-explorations-hub/src/host-compat.css";
+const artworkPaths = {
+  pastExplorations: "apps/classroom-explorations-hub/src/assets/history/past-explorations.webp",
+  pastTwwl: "apps/classroom-explorations-hub/src/assets/history/past-twwl.webp",
+  pastYears: "apps/classroom-explorations-hub/src/assets/history/past-years.webp"
+};
 
 assert.equal(sha256(sourcePath), "3c85a2ce02f4ff11c337c8d28444604907971d4c2ca59d74d65e20b3ee009977");
 assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73");
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
-assert.equal(sha256(bootstrapPath), "ac701c36906f6434fed4e42490573d9172ba58a826b38e3f6d4633d05eec5f2d");
-assert.equal(sha256(runtimePath), "e6303cc890cd38909b17ae32f63481553958c8af4ef004e8c2e87788c49e406a");
+assert.equal(sha256(bootstrapPath), "23d850ddad85cd17a25a32c2545565cfad84073ad290845448db2486ed1d7e2c");
+assert.equal(sha256(runtimePath), "d650bebb20bdc32fd9270c5e9b93ad805d8e687ff31073214dff35fea93061b7");
+assert.equal(sha256(cssPath), "2405ed7c960e7f27a660b22a6ff9d8cd6a4503f9bf9fb3de4c06a56690e763be");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
+assert.deepEqual(
+  Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
+  {
+    pastExplorations: "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
+    pastTwwl: "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
+    pastYears: "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4"
+  },
+  "The three approved history-door WebP files must retain their verified source bytes."
+);
 
 const source = readJson(sourcePath);
 const routes = readJson(routesPath);
@@ -55,8 +70,8 @@ const assertCssRuleIn = (rules, selector, expected, description) => {
 const assertCssRule = (selector, expected, description) => {
   assertCssRuleIn(cssRules, selector, expected, description);
 };
-const extractCssBlock = (cssText, header) => {
-  const headerIndex = cssText.indexOf(header);
+const extractLastCssBlock = (cssText, header) => {
+  const headerIndex = cssText.lastIndexOf(header);
   assert.notEqual(headerIndex, -1, `Missing CSS block: ${header}. ${staticInvariantNote}`);
   const openIndex = cssText.indexOf("{", headerIndex + header.length);
   assert.notEqual(openIndex, -1, `Missing opening brace for ${header}. ${staticInvariantNote}`);
@@ -70,7 +85,7 @@ const extractCssBlock = (cssText, header) => {
 
   assert.fail(`Missing closing brace for ${header}. ${staticInvariantNote}`);
 };
-const panoramicCss = extractCssBlock(css, "@media (min-width: 1440px)");
+const panoramicCss = extractLastCssBlock(css, "@media (min-width: 1440px)");
 const panoramicRules = parseCssRules(panoramicCss);
 assert.doesNotMatch(
   css,
@@ -85,21 +100,21 @@ assert.doesNotMatch(
 const assertPanoramicRule = (selector, expected, description) => {
   assertCssRuleIn(panoramicRules, selector, expected, description);
 };
-const doorway = readText("docs/edublogs-integration/classroom-explorations-hub-test/JAVASCRIPT-BOX.js");
-const doorwayReadme = readText("docs/edublogs-integration/classroom-explorations-hub-test/README.md");
-const doorwayChannel = readText("docs/edublogs-integration/classroom-explorations-hub-test/BRANCH-CHANNEL.txt");
-const activeDoorwayDocs = [doorway, doorwayReadme, doorwayChannel].join("\n");
-const publication = readJson("releases/classroom-explorations-hub/publications/pub-2026-08-30-005/publication.json");
-const releaseBootstrap = readFileSync(
-  path.join(root, "releases/classroom-explorations-hub/runtime/2026.08.30.5/bootstrap.js")
-);
-const releaseBootstrapSri = `sha256-${createHash("sha256").update(releaseBootstrap).digest("base64")}`;
-
 assert.deepEqual(
   readdirSync(path.join(root, "apps/classroom-explorations-hub/src")).sort(),
-  ["bootstrap.js", "host-compat.css", "hub.css", "runtime.js"],
-  "The Hub source directory must contain one bootstrap, one runtime, one app stylesheet, and one host stylesheet."
+  ["assets", "bootstrap.js", "host-compat.css", "hub.css", "runtime.js"],
+  "The Hub source directory must contain one verified artwork tree, one bootstrap, one runtime, one app stylesheet, and one host stylesheet."
 );
+assert.deepEqual(readdirSync(path.join(root, "apps/classroom-explorations-hub/src/assets")), ["history"]);
+assert.deepEqual(
+  readdirSync(path.join(root, "apps/classroom-explorations-hub/src/assets/history")).sort(),
+  ["past-explorations.webp", "past-twwl.webp", "past-years.webp"]
+);
+Object.values(artworkPaths).forEach((relativePath) => {
+  const bytes = readFileSync(path.join(root, relativePath));
+  assert.equal(bytes.subarray(0, 4).toString("ascii"), "RIFF", `${relativePath} must retain its WebP RIFF signature.`);
+  assert.equal(bytes.subarray(8, 12).toString("ascii"), "WEBP", `${relativePath} must remain a WebP file.`);
+});
 
 assert.match(runtimeText, /export function mountClassroomExplorationsHub/);
 assert.doesNotMatch(runtimeText, /Reduced Effects|localStorage|EFFECTS_KEY|data-effects-toggle|manualReduced|applyEffects/);
@@ -137,8 +152,8 @@ assert.doesNotMatch(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*86px\s+598px\s+344px\s+96px\s+39px;[\s\S]*padding:\s*20px\s+32px\s+12px/,
-  "Wide desktop must use a twelve-column weekly overview followed by intentional scroll depth"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*78px\s+420px\s+312px\s+120px\s+39px;[\s\S]*padding:\s*16px\s+24px\s+12px/,
+  "Wide desktop must use the approved twelve-column, five-row panoramic composition"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hero-section",
@@ -146,58 +161,43 @@ assertPanoramicRule(
   "The identity mast must occupy the compact upper-left region"
 );
 assertPanoramicRule(
-  ".hrv-classroom-hub .hub-museum > .museum-map",
+  ".hrv-classroom-hub .hub-museum > .site-navigation",
   /grid-row:\s*1;[\s\S]*grid-column:\s*5\s*\/\s*-1/,
-  "The Museum Map must share the compact mast row"
+  "The global Hughes Room Views menu must complete the identity rail"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .welcome-section",
-  /grid-row:\s*2;[\s\S]*grid-column:\s*1\s*\/\s*span\s+4;[\s\S]*align-self:\s*center/,
-  "Welcome Theater must own a substantial four-column support region"
+  /grid-row:\s*2;[\s\S]*grid-column:\s*1\s*\/\s*span\s+6/,
+  "Welcome Theater must own exactly half of the primary feature row"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .current-exploration-section",
-  /grid-row:\s*2;[\s\S]*grid-column:\s*5\s*\/\s*span\s+6/,
-  "Current Exploration must own the dominant six-column center region"
+  /grid-row:\s*2;[\s\S]*grid-column:\s*7\s*\/\s*-1/,
+  "Current Exploration must own the other half of the primary feature row"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .current-twwl-section",
-  /grid-row:\s*2;[\s\S]*grid-column:\s*11\s*\/\s*-1;[\s\S]*align-self:\s*center;[\s\S]*margin-top:\s*0/,
-  "Current TWWL must be the narrow right support room"
+  /grid-row:\s*3;[\s\S]*grid-column:\s*1\s*\/\s*span\s+10;[\s\S]*margin-top:\s*0/,
+  "Current TWWL must own the broad lower learning region"
 );
 assertPanoramicRule(
-  ".hrv-classroom-hub .hub-museum > .museum-divider",
-  /display:\s*none/,
-  "The desktop board must not spend a row on the legacy section divider"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .hub-museum > .past-explorations-section",
-  /grid-row:\s*3;[\s\S]*grid-column:\s*1\s*\/\s*span\s+5/,
-  "Past Explorations must begin the readable below-fold gallery row"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .hub-museum > .past-twwl-section",
-  /grid-row:\s*3;[\s\S]*grid-column:\s*6\s*\/\s*-1/,
-  "Past TWWL must complete the readable below-fold gallery row"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .hub-museum > .archive-control-section",
-  /grid-row:\s*4;[\s\S]*grid-column:\s*1\s*\/\s*-1/,
-  "Previous School Years must remain a compact full-width continuation band"
+  ".hrv-classroom-hub .hub-museum > .history-door-section",
+  /grid-row:\s*3\s*\/\s*span\s+2;[\s\S]*grid-column:\s*11\s*\/\s*-1/,
+  "The three history doors must form a narrow rail spanning the learning and archive rows"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hub-footer",
   /grid-row:\s*5;[\s\S]*grid-column:\s*1\s*\/\s*-1/,
-  "The footer must close the desktop museum after its secondary depth"
+  "The footer must close the compact panoramic board"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hub-section > .museum-shell",
-  /width:\s*100%;[\s\S]*margin-inline:\s*0/,
+  /width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*margin-inline:\s*0/,
   "Nested room shells must fill their grid cells without legacy offsets"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-hero-card",
-  /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+60px;[\s\S]*min-height:\s*0;[\s\S]*border-radius:\s*18px\s+0\s+0\s+18px/,
+  /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+56px;[\s\S]*min-height:\s*0;[\s\S]*border-radius:\s*18px\s+0\s+0\s+18px/,
   "The hero must become the leading edge of one continuous orientation rail"
 );
 assertPanoramicRule(
@@ -206,29 +206,19 @@ assertPanoramicRule(
   "Redundant hero detail must be visually suppressed only on the dense desktop board"
 );
 assertPanoramicRule(
-  ".hrv-classroom-hub .museum-map-shell",
-  /height:\s*100%;[\s\S]*min-height:\s*0;[\s\S]*border-radius:\s*0\s+18px\s+18px\s+0/,
-  "The Museum Map must complete the full-height orientation rail"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .museum-map-title",
-  /display:\s*none/,
-  "The redundant visible Museum Map label must not compete with its six navigation segments"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .museum-map-links",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(6,\s*minmax\(0,\s*1fr\)\)/,
-  "The orientation rail must expose six evenly weighted destinations"
+  ".hrv-classroom-hub .site-navigation-links",
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*0\.7fr\s+1\.38fr\s+0\.68fr\s+1\.18fr\s+0\.92fr\s+1\.28fr\s+1\.08fr/,
+  "The orientation rail must expose all six global links plus the active Hub item"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .welcome-theater-card",
-  /grid-template-columns:\s*minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*auto\s+auto;[\s\S]*border:\s*1px\s+solid[\s\S]*background:\s*linear-gradient/,
-  "Welcome copy and video must share one clear supporting region"
+  /grid-template-columns:\s*minmax\(210px,\s*0\.34fr\)\s+minmax\(0,\s*1fr\);[\s\S]*border:\s*1px\s+solid[\s\S]*background:\s*linear-gradient/,
+  "Welcome copy and video must share the six-column feature region"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .welcome-screen",
-  /width:\s*100%;[\s\S]*justify-self:\s*center/,
-  "Welcome media must use the full width of its support card"
+  /width:\s*100%;[\s\S]*justify-self:\s*stretch/,
+  "Welcome media must use the full available theater width"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-exploration-card",
@@ -247,68 +237,23 @@ assertPanoramicRule(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-copy",
-  /width:\s*clamp\(430px,\s*58%,\s*550px\);[\s\S]*background:\s*linear-gradient/,
+  /width:\s*clamp\(400px,\s*49%,\s*450px\);[\s\S]*background:\s*linear-gradient/,
   "Current copy must remain readable while leaving the photography dominant"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-twwl-card",
-  /grid-template-columns:\s*minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*auto\s+minmax\(220px,\s*1fr\);[\s\S]*height:\s*520px;[\s\S]*min-height:\s*0/,
-  "Current TWWL must read as an intentional slim vertical lantern tile"
-);
-assertCssRule(
-  ".hrv-classroom-hub .gallery-frame",
-  /overflow:\s*visible;[\s\S]*border:\s*0;[\s\S]*background:\s*transparent;[\s\S]*box-shadow:\s*none/,
-  "Gallery sections must not reintroduce giant nested panel rectangles"
+  /grid-template-columns:\s*minmax\(420px,\s*0\.34fr\)\s+minmax\(0,\s*0\.66fr\);[\s\S]*min-height:\s*0/,
+  "Current TWWL must read as a broad copy-and-lantern feature"
 );
 assertPanoramicRule(
-  ".hrv-classroom-hub .gallery-frame",
-  /grid-template-rows:\s*auto\s+minmax\(0,\s*1fr\)/,
-  "Each gallery must compress its controls and images into one bounded ribbon"
+  ".hrv-classroom-hub .history-door-grid",
+  /grid-template-columns:\s*1fr;[\s\S]*grid-template-rows:\s*1fr\s+1fr\s+120px/,
+  "The history rail must contain exactly three vertically composed doors"
 );
-assertPanoramicRule(
-  ".hrv-classroom-hub .exploration-grid",
-  /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/,
-  "All three Past Explorations must share one dense image row"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .learning-grid",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/,
-  "All five Past TWWL memories must share one glanceable image row"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .learning-grid .learning-card",
-  /width:\s*auto;[\s\S]*min-width:\s*0;[\s\S]*flex:\s*none/,
-  "Past TWWL cards must release their legacy three-column flex sizing"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .collection-link",
-  /grid-template:\s*1fr\s*\/\s*1fr/,
-  "Collection links must become image-first overlay cards"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .collection-visual",
-  /grid-area:\s*1\s*\/\s*1;[\s\S]*height:\s*100%/,
-  "Collection images must fill the complete ribbon card"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .collection-summary",
-  /-webkit-line-clamp:\s*1/,
-  "Dense collection summaries must remain available but limited to one glanceable line"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .collection-label",
-  /display:\s*none/,
-  "Repeated card labels must not compete with image and title hierarchy"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .archive-door",
-  /width:\s*auto;[\s\S]*min-width:\s*220px;[\s\S]*min-height:\s*58px/,
-  "The previous-years doorway must remain a compact horizontal control"
-);
-assertPanoramicRule(
-  ".hrv-classroom-hub .hub-action",
-  /min-height:\s*44px/,
-  "Primary actions must retain a practical desktop target size"
+assert.doesNotMatch(
+  panoramicCss,
+  /\.hub-museum\s*>\s*\.(?:past-explorations-section|past-twwl-section|archive-control-section)/,
+  `Historical tile walls must not be placed in the panoramic landing grid. ${staticInvariantNote}`
 );
 assert.match(
   css,
@@ -331,8 +276,8 @@ assert.match(css, /@keyframes hub-leaf-breathe/);
 assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 assert.match(
   css,
-  /@media \(max-width: 720px\)[\s\S]*?\.museum-map-shell\s*\{[\s\S]*?flex-direction:\s*column;[\s\S]*?\.museum-map-links\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/,
-  `The Museum Map must stack without horizontal clipping on narrow screens. ${staticInvariantNote}`
+  /@media \(max-width: 720px\)[\s\S]*?\.site-navigation-links,[\s\S]*?\.history-door-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/,
+  `The global menu and history doors must stack without horizontal clipping on narrow screens. ${staticInvariantNote}`
 );
 assert.doesNotMatch(
   css,
@@ -343,25 +288,12 @@ assert.match(bootstrap, /style\.dataset\.hrvClassroomHubStyle = "app"/);
 assert.match(bootstrap, /compat\.dataset\.hrvClassroomHubStyle = "host"/);
 assert.match(bootstrap, /link\[data-hrv-review-style\]/);
 assert.match(bootstrap, /script\[data-hrv-review-runtime\]/);
-assert.match(doorway, /eb335004b637433315a0de2fb69677e7e272a07d/);
-assert.match(doorway, /runtime\/2026\.08\.30\.5\/bootstrap\.js/);
-assert.match(doorway, /publications\/pub-2026-08-30-005\/publication\.json/);
-assert.ok(doorway.includes(releaseBootstrapSri));
-Object.entries({ doorway, doorwayReadme, doorwayChannel }).forEach(([name, document]) => {
-  assert.match(document, /eb335004b637433315a0de2fb69677e7e272a07d/, `${name} must pin the immutable asset commit.`);
-  assert.match(document, /2026\.08\.30\.5/, `${name} must identify the active runtime version.`);
-  assert.match(document, /pub-2026-08-30-005/, `${name} must identify the active publication.`);
-});
-[doorwayReadme, doorwayChannel].forEach((document) => {
-  assert.match(document, /913ab1e5f76942b5a022710fed4c3565ad5b1441/);
-  assert.match(document, /sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b/);
-});
-assert.doesNotMatch(
-  activeDoorwayDocs,
-  /review-bootstrap\.js|runtime-v3\.js|hub-v3\.css|hub-foundation\.css|hub-hero-and-map\.css|hub-feature-rooms\.css|hub-galleries-and-motion\.css|hub-responsive\.css|HughesWebAssets-Source@hub-authoring-v2-2026-08-28/
-);
-assert.equal(publication.sourceRevision, "913ab1e5f76942b5a022710fed4c3565ad5b1441");
-assert.equal(publication.previousKnownGoodPublication, "pub-2026-08-14-005");
+assert.match(bootstrap, /const artworkKeys = \["pastExplorations", "pastTwwl", "pastYears"\]/);
+assert.match(bootstrap, /artwork\[key\]\?\.mediaType !== "image\/webp"/);
+assert.match(bootstrap, /fetchBytesVerified\(resolve\(artwork\[key\]\.path\), artwork\[key\]\.sha256\)/);
+assert.match(bootstrap, /URL\.createObjectURL\(new Blob\(\[bytes\], \{ type: mediaType \}\)\)/);
+assert.match(runtimeText, /this\.runtimeAssets\.artwork\?\.\[entry\.key\]/);
+assert.match(runtimeText, /Object\.values\(this\.runtimeAssets\.artwork \|\| \{\}\)/);
 
 assert.match(manifest.current.exploration.image.src, /IMG_2850\.jpg\?format=750w/);
 assert.equal(manifest.galleries.pastTwwl.length, 5);
@@ -397,30 +329,41 @@ globalThis.IntersectionObserver = class {
 const runtimeUrl = `${pathToFileURL(path.join(root, runtimePath)).href}?presentation-test=${Date.now()}`;
 const runtime = await import(runtimeUrl);
 const mount = dom.window.document.getElementById("hub");
-runtime.mountClassroomExplorationsHub(mount, manifest);
+const runtimeAssets = {
+  artwork: {
+    pastExplorations: "https://assets.example/history/past-explorations.webp",
+    pastTwwl: "https://assets.example/history/past-twwl.webp",
+    pastYears: "https://assets.example/history/past-years.webp"
+  }
+};
+runtime.mountClassroomExplorationsHub(mount, manifest, runtimeAssets);
 
 assert.equal(mount.dataset.hrvState, "ready");
 assert.equal(mount.classList.contains("hrv-classroom-hub"), true);
 assert.equal(mount.querySelectorAll(".hub-museum").length, 1);
 
 const hero = mount.querySelector(".hero-section");
-const museumMap = mount.querySelector('nav.museum-map[aria-label="Museum map"]');
+const siteNavigation = mount.querySelector('nav.site-navigation[aria-label="Hughes Room Views site navigation"]');
 const welcome = mount.querySelector(".welcome-section");
 const current = mount.querySelector(".current-exploration-section");
 const currentTwwl = mount.querySelector(".current-twwl-section");
+const historyDoors = mount.querySelector(".history-door-section");
+const footer = mount.querySelector(".hub-footer");
 const pastExplorations = mount.querySelector(".past-explorations-section");
 const pastTwwl = mount.querySelector(".past-twwl-section");
 const archives = mount.querySelector(".archive-control-section");
-assert.ok(hero && museumMap && welcome && current && currentTwwl && pastExplorations && pastTwwl && archives);
+assert.ok(hero && siteNavigation && welcome && current && currentTwwl && historyDoors && footer);
+assert.ok(pastExplorations && pastTwwl && archives);
+assert.equal(mount.querySelector(".museum-map"), null, "The obsolete internal Museum Map must not remain in the renderer.");
 assert.equal(
-  hero.compareDocumentPosition(museumMap) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
+  hero.compareDocumentPosition(siteNavigation) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
   dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
-  "The compact Museum Map must follow the hero. Static DOM-order invariant only; browser layout is verified separately."
+  "The global site menu must follow the Hub identity. Static DOM-order invariant only; browser layout is verified separately."
 );
 assert.equal(
-  museumMap.compareDocumentPosition(welcome) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
+  siteNavigation.compareDocumentPosition(welcome) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
   dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
-  "Welcome Theater must follow the compact Museum Map. Static DOM-order invariant only; browser layout is verified separately."
+  "Welcome Theater must follow the global site menu. Static DOM-order invariant only; browser layout is verified separately."
 );
 assert.equal(
   welcome.compareDocumentPosition(current) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
@@ -429,9 +372,8 @@ assert.equal(
 );
 [
   [current, currentTwwl, "Current Exploration must be before Current TWWL."],
-  [currentTwwl, pastExplorations, "Current TWWL must be before Past Explorations."],
-  [pastExplorations, pastTwwl, "Past Explorations must be before Past TWWL."],
-  [pastTwwl, archives, "Past TWWL must be before Archives."]
+  [currentTwwl, historyDoors, "Current TWWL must be before the history doors."],
+  [historyDoors, footer, "The history doors must be before the footer."]
 ].forEach(([before, after, message]) => {
   assert.equal(
     before.compareDocumentPosition(after) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
@@ -440,27 +382,58 @@ assert.equal(
   );
 });
 
-const expectedMuseumMap = [
-  ["01", "Welcome", "#hrv-welcome-theater"],
-  ["02", "Current", "#hrv-current-exploration"],
-  ["03", "Learning Lantern", "#hrv-current-learning"],
-  ["04", "Past Exhibits", "#hrv-past-explorations"],
-  ["05", "Past Learning", "#hrv-past-learning"],
-  ["06", "Archives", "#hrv-school-year-archives"]
+const expectedSiteNavigation = [
+  ["A", "Home", "https://rmhughes.edublogs.org/", null],
+  ["A", "Hughes Monthly Calendar", "https://rmhughes.edublogs.org/hughes-monthly-calendar/", null],
+  ["A", "Posts", "https://rmhughes.edublogs.org/posts/", null],
+  ["A", "Hughes Class Library", "https://rmhughes.edublogs.org/class-library/", null],
+  ["A", "Photo Album", "https://rmhughes.edublogs.org/photo-album/", null],
+  ["SPAN", "Classroom Explorations", null, "page"],
+  ["A", "Contact Information", "https://rmhughes.edublogs.org/contact-information/", null]
 ];
-const museumMapLinks = [...museumMap.querySelectorAll(".museum-map-link")];
 assert.deepEqual(
-  museumMapLinks.map((mapLink) => [
-    mapLink.querySelector(".museum-map-number")?.textContent,
-    mapLink.querySelector(".museum-map-label")?.textContent,
-    mapLink.getAttribute("href")
+  [...siteNavigation.querySelectorAll(".site-navigation-link")].map((item) => [
+    item.tagName,
+    item.textContent,
+    item.getAttribute("href"),
+    item.getAttribute("aria-current")
   ]),
-  expectedMuseumMap,
-  "The compact Museum Map must retain stable text landmarks and in-page destinations."
+  expectedSiteNavigation,
+  "The Hub must expose the exact Hughes Room Views global menu and mark Classroom Explorations as the current page."
 );
-expectedMuseumMap.forEach(([, label, href]) => {
-  assert.ok(mount.querySelector(href), `Museum Map destination ${label} (${href}) must exist in the rendered Hub.`);
+const expectedHistoryDoors = [
+  ["Past Explorations: Choose an exhibit", "hrv-past-explorations-dialog", runtimeAssets.artwork.pastExplorations, "eager"],
+  ["Past TWWL: Choose a learning story", "hrv-past-learning-dialog", runtimeAssets.artwork.pastTwwl, "eager"],
+  ["Past Years: Choose a school year", "hrv-school-year-archives-dialog", runtimeAssets.artwork.pastYears, "lazy"]
+];
+const historyDoorButtons = [...historyDoors.querySelectorAll("button.history-door")];
+assert.deepEqual(historyDoorButtons.map((button) => [
+  button.getAttribute("aria-label"),
+  button.getAttribute("aria-controls"),
+  button.querySelector(".history-door-artwork")?.getAttribute("src"),
+  button.querySelector(".history-door-artwork")?.loading
+]), expectedHistoryDoors);
+assert.ok(historyDoorButtons.every((button) => button.type === "button" && button.getAttribute("aria-haspopup") === "dialog"));
+
+const historyDialogs = [...mount.querySelectorAll("dialog.history-dialog")];
+assert.deepEqual(historyDialogs.map((dialog) => dialog.id), [
+  "hrv-past-explorations-dialog",
+  "hrv-past-learning-dialog",
+  "hrv-school-year-archives-dialog"
+]);
+historyDialogs.forEach((dialog) => {
+  assert.equal(dialog.hasAttribute("open"), false, `${dialog.id} must be closed in the landing composition.`);
+  assert.ok(dialog.querySelector("button.history-dialog-close"));
 });
+assert.equal(historyDialogs[0].querySelectorAll(".exploration-card").length, 3);
+assert.equal(historyDialogs[1].querySelectorAll(".learning-card").length, 5);
+assert.equal(historyDialogs[2].querySelectorAll(".archive-door").length, 1);
+assert.equal(mount.querySelector(".hub-museum > .past-explorations-section"), null);
+assert.equal(mount.querySelector(".hub-museum > .past-twwl-section"), null);
+assert.equal(mount.querySelector(".hub-museum > .archive-control-section"), null);
+assert.ok(pastExplorations.closest("dialog.history-dialog"));
+assert.ok(pastTwwl.closest("dialog.history-dialog"));
+assert.ok(archives.closest("dialog.history-dialog"));
 
 const heroCard = mount.querySelector(".hub-hero-card");
 const currentCard = mount.querySelector(".current-exploration-card");
@@ -528,15 +501,15 @@ assert.equal(learningCount.textContent, "5 learning displays on display");
 
 runtime.unmountClassroomExplorationsHub(mount);
 assert.equal(mount.children.length, 0);
-runtime.mountClassroomExplorationsHub(mount, manifest);
+runtime.mountClassroomExplorationsHub(mount, manifest, runtimeAssets);
 assert.equal(mount.querySelectorAll(".hub-museum").length, 1);
 runtime.unmountClassroomExplorationsHub(mount);
 
 console.log("[hub presentation] preserved source/routes/control hashes passed");
 console.log("[hub presentation] one canonical runtime + import-free stylesheet passed");
 console.log("[hub presentation] static panoramic density, hierarchy, and twelve-column composition invariants passed");
-console.log("[hub presentation] compact Museum Map landmarks and complete visual/keyboard DOM order passed");
-console.log("[hub presentation] real Zinnia + five real Past TWWL image renderers passed");
-console.log("[hub presentation] dense gallery filtering and visible-count behavior passed");
+console.log("[hub presentation] exact global menu and active Classroom Explorations state passed");
+console.log("[hub presentation] three artwork-backed history dialogs and retained historical cards passed");
+console.log("[hub presentation] real Zinnia + five real Past TWWL image renderers and gallery filtering passed");
 console.log("[hub presentation] scoped motion, OS reduction, and no Hub-local effects control passed");
 console.log("[hub presentation] static invariants passed; this test does not claim real-browser visual acceptance");
