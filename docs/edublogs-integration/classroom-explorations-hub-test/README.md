@@ -10,10 +10,10 @@ Page `17` at `/hub/` remains untouched. It is a route identity and compatibility
 ## Phase 1 immutable publication
 
 ```text
-Asset commit:       817dcfe5dc1646df39815209af0501a9aa0142c9
-Source revision:    31bf77a01b5b5df77592b1abb67f97eb9bf69ee6
-Runtime version:    2026.08.30.1
-Publication:        pub-2026-08-30-001
+Asset commit:       6f4da0f5481fcc2d6af88c505a67d547ecadf8f8
+Source revision:    96ae80965af17172631d208f8aafd2c568b43391
+Runtime version:    2026.08.30.2
+Publication:        pub-2026-08-30-002
 Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
 Rollback target:    pub-2026-08-14-005
 ```
@@ -24,8 +24,8 @@ The active delivery chain is:
 
 ```text
 page 2589 doorway
-  -> releases/classroom-explorations-hub/runtime/2026.08.30.1/bootstrap.js
-  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-001/publication.json
+  -> releases/classroom-explorations-hub/runtime/2026.08.30.2/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-002/publication.json
   -> verified runtime.js
   -> verified hub.css
   -> verified host-compat.css

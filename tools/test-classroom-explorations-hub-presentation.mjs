@@ -50,9 +50,9 @@ const doorway = readText("docs/edublogs-integration/classroom-explorations-hub-t
 const doorwayReadme = readText("docs/edublogs-integration/classroom-explorations-hub-test/README.md");
 const doorwayChannel = readText("docs/edublogs-integration/classroom-explorations-hub-test/BRANCH-CHANNEL.txt");
 const activeDoorwayDocs = [doorway, doorwayReadme, doorwayChannel].join("\n");
-const publication = readJson("releases/classroom-explorations-hub/publications/pub-2026-08-30-001/publication.json");
+const publication = readJson("releases/classroom-explorations-hub/publications/pub-2026-08-30-002/publication.json");
 const releaseBootstrap = readFileSync(
-  path.join(root, "releases/classroom-explorations-hub/runtime/2026.08.30.1/bootstrap.js")
+  path.join(root, "releases/classroom-explorations-hub/runtime/2026.08.30.2/bootstrap.js")
 );
 const releaseBootstrapSri = `sha256-${createHash("sha256").update(releaseBootstrap).digest("base64")}`;
 
@@ -224,15 +224,24 @@ assert.match(bootstrap, /style\.dataset\.hrvClassroomHubStyle = "app"/);
 assert.match(bootstrap, /compat\.dataset\.hrvClassroomHubStyle = "host"/);
 assert.match(bootstrap, /link\[data-hrv-review-style\]/);
 assert.match(bootstrap, /script\[data-hrv-review-runtime\]/);
-assert.match(doorway, /817dcfe5dc1646df39815209af0501a9aa0142c9/);
-assert.match(doorway, /runtime\/2026\.08\.30\.1\/bootstrap\.js/);
-assert.match(doorway, /publications\/pub-2026-08-30-001\/publication\.json/);
+assert.match(doorway, /6f4da0f5481fcc2d6af88c505a67d547ecadf8f8/);
+assert.match(doorway, /runtime\/2026\.08\.30\.2\/bootstrap\.js/);
+assert.match(doorway, /publications\/pub-2026-08-30-002\/publication\.json/);
 assert.ok(doorway.includes(releaseBootstrapSri));
+Object.entries({ doorway, doorwayReadme, doorwayChannel }).forEach(([name, document]) => {
+  assert.match(document, /6f4da0f5481fcc2d6af88c505a67d547ecadf8f8/, `${name} must pin the immutable asset commit.`);
+  assert.match(document, /2026\.08\.30\.2/, `${name} must identify the active runtime version.`);
+  assert.match(document, /pub-2026-08-30-002/, `${name} must identify the active publication.`);
+});
+[doorwayReadme, doorwayChannel].forEach((document) => {
+  assert.match(document, /96ae80965af17172631d208f8aafd2c568b43391/);
+  assert.match(document, /sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b/);
+});
 assert.doesNotMatch(
   activeDoorwayDocs,
   /review-bootstrap\.js|runtime-v3\.js|hub-v3\.css|hub-foundation\.css|hub-hero-and-map\.css|hub-feature-rooms\.css|hub-galleries-and-motion\.css|hub-responsive\.css|HughesWebAssets-Source@hub-authoring-v2-2026-08-28/
 );
-assert.equal(publication.sourceRevision, "31bf77a01b5b5df77592b1abb67f97eb9bf69ee6");
+assert.equal(publication.sourceRevision, "96ae80965af17172631d208f8aafd2c568b43391");
 assert.equal(publication.previousKnownGoodPublication, "pub-2026-08-14-005");
 
 assert.match(manifest.current.exploration.image.src, /IMG_2850\.jpg\?format=750w/);
