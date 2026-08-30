@@ -1,4 +1,4 @@
-# Classroom Explorations Hub Phase 1 doorway
+# Classroom Explorations Hub panoramic desktop doorway
 
 This directory contains the Edublogs doorway blocks for the review page:
 
@@ -7,13 +7,13 @@ This directory contains the Edublogs doorway blocks for the review page:
 
 Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Phase 1 immutable publication
+## Panoramic desktop immutable publication
 
 ```text
-Asset commit:       6f4da0f5481fcc2d6af88c505a67d547ecadf8f8
-Source revision:    96ae80965af17172631d208f8aafd2c568b43391
-Runtime version:    2026.08.30.2
-Publication:        pub-2026-08-30-002
+Asset commit:       47eab7374968ffd1896dca7c4fd3a19dff1fb96b
+Source revision:    5e2db1aea9d6447e508f7e2e04c74815f25c776c
+Runtime version:    2026.08.30.3
+Publication:        pub-2026-08-30-003
 Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
 Rollback target:    pub-2026-08-14-005
 ```
@@ -24,8 +24,8 @@ The active delivery chain is:
 
 ```text
 page 2589 doorway
-  -> releases/classroom-explorations-hub/runtime/2026.08.30.2/bootstrap.js
-  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-002/publication.json
+  -> releases/classroom-explorations-hub/runtime/2026.08.30.3/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-003/publication.json
   -> verified runtime.js
   -> verified hub.css
   -> verified host-compat.css
@@ -34,21 +34,27 @@ page 2589 doorway
 
 There is no mutable branch URL, review bootstrap, alternate runtime, split application stylesheet set, or nested `@import` in this doorway.
 
-## Phase 1 acceptance evidence
+## Panoramic desktop acceptance evidence
 
-The exact asset commit passed both the push and pull-request GitHub Actions runs. Local and remote jsDelivr bytes matched for the bootstrap, runtime, application stylesheet, host stylesheet, publication, and content manifest.
+The exact asset commit passed push run `33306230579` and pull-request run `33306232487`. Local and remote jsDelivr bytes matched for the bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, publication, and content manifest.
 
 The real projected application was exercised in a browser at `1920×911` with real external media. Acceptance included:
 
-- Welcome Theater before Current Exploration;
-- real Zinnia photography;
-- all five real Past TWWL banners with nonzero natural dimensions;
+- a twelve-column panoramic desktop stage with Welcome, Current Exploration, and Current TWWL visible together;
+- Current Exploration at `906.9px` wide, twice the `446.3px` width of each supporting region;
+- all three current regions ending at `y=895.7` inside the `911px` acceptance viewport;
+- total document height reduced from the `.2` baseline of `4721px` to `1607px`;
+- three Past Exploration images and five Past TWWL images in two dense, simultaneous gallery rows;
+- real Zinnia photography plus all eight gallery images with nonzero natural dimensions;
 - no emoji media substitutions;
 - one application style and one host style;
 - no alternate review assets;
-- active star, aurora, compass, screen, greenhouse, lantern, botanical, hover, and pointer motion;
+- the existing star, aurora, compass, screen, greenhouse, lantern, botanical, hover, pointer, visibility-pausing, and cleanup architecture preserved byte-for-byte in `runtime.js`;
+- the browser's OS-level reduced-motion preference honored without a Hub-local override;
 - no Hub-local Reduced Effects control;
 - zero horizontal overflow;
+- Museum Map anchors and both gallery filters exercised successfully;
+- responsive no-overflow checks at `1920×768`, `1440×800`, `1439×800`, `1330×800`, `1024×768`, `720×900`, `390×844`, and `320×568`;
 - no browser console warnings or errors.
 
 ## Editor update boundary
