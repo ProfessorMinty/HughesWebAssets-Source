@@ -19,10 +19,14 @@ const controlPath = "apps/classroom-explorations-hub/source/hub.control.json";
 const runtimePath = "apps/classroom-explorations-hub/src/runtime.js";
 const cssPath = "apps/classroom-explorations-hub/src/hub.css";
 const bootstrapPath = "apps/classroom-explorations-hub/src/bootstrap.js";
+const hostCompatPath = "apps/classroom-explorations-hub/src/host-compat.css";
 
 assert.equal(sha256(sourcePath), "3c85a2ce02f4ff11c337c8d28444604907971d4c2ca59d74d65e20b3ee009977");
 assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73");
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
+assert.equal(sha256(bootstrapPath), "ac701c36906f6434fed4e42490573d9172ba58a826b38e3f6d4633d05eec5f2d");
+assert.equal(sha256(runtimePath), "e6303cc890cd38909b17ae32f63481553958c8af4ef004e8c2e87788c49e406a");
+assert.equal(sha256(hostCompatPath), "e796c262eccae516ea21844c9d4c16f8a73e77778a1574239d0964c5ffe628db");
 
 const source = readJson(sourcePath);
 const routes = readJson(routesPath);
@@ -31,12 +35,13 @@ const runtimeText = readText(runtimePath);
 const css = readText(cssPath);
 const bootstrap = readText(bootstrapPath);
 const staticInvariantNote = "Static source invariant only; real-browser visual acceptance remains a separate gate.";
-const cssRules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => ({
+const parseCssRules = (cssText) => [...cssText.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => ({
   selectors: match[1].split(",").map((selector) => selector.trim()),
   body: match[2]
 }));
-const assertCssRule = (selector, expected, description) => {
-  const bodies = cssRules
+const cssRules = parseCssRules(css);
+const assertCssRuleIn = (rules, selector, expected, description) => {
+  const bodies = rules
     .filter((rule) => rule.selectors.includes(selector))
     .map((rule) => rule.body);
 
@@ -45,6 +50,29 @@ const assertCssRule = (selector, expected, description) => {
     bodies.some((body) => expected.test(body)),
     `${description}. ${staticInvariantNote}`
   );
+};
+const assertCssRule = (selector, expected, description) => {
+  assertCssRuleIn(cssRules, selector, expected, description);
+};
+const extractCssBlock = (cssText, header) => {
+  const headerIndex = cssText.indexOf(header);
+  assert.notEqual(headerIndex, -1, `Missing CSS block: ${header}. ${staticInvariantNote}`);
+  const openIndex = cssText.indexOf("{", headerIndex + header.length);
+  assert.notEqual(openIndex, -1, `Missing opening brace for ${header}. ${staticInvariantNote}`);
+
+  let depth = 0;
+  for (let index = openIndex; index < cssText.length; index += 1) {
+    if (cssText[index] === "{") depth += 1;
+    if (cssText[index] === "}") depth -= 1;
+    if (depth === 0) return cssText.slice(openIndex + 1, index);
+  }
+
+  assert.fail(`Missing closing brace for ${header}. ${staticInvariantNote}`);
+};
+const panoramicCss = extractCssBlock(css, "@media (min-width: 1440px)");
+const panoramicRules = parseCssRules(panoramicCss);
+const assertPanoramicRule = (selector, expected, description) => {
+  assertCssRuleIn(panoramicRules, selector, expected, description);
 };
 const doorway = readText("docs/edublogs-integration/classroom-explorations-hub-test/JAVASCRIPT-BOX.js");
 const doorwayReadme = readText("docs/edublogs-integration/classroom-explorations-hub-test/README.md");
@@ -84,117 +112,141 @@ assertCssRule(
 assertCssRule(
   ".hrv-classroom-hub",
   /font-size:\s*18px/,
-  "The Hub must retain the readable Phase 1.2 base type scale"
+  "The Hub must retain its readable base type scale"
 );
-assertCssRule(
-  ".hrv-classroom-hub .welcome-section .museum-shell",
-  /width:\s*var\(--hub-shell-theater\);[\s\S]*margin-right:\s*clamp\(48px,\s*4vw,\s*80px\);[\s\S]*margin-left:\s*auto/,
-  "Welcome Theater must occupy the right-side theater stage"
+assert.match(
+  css,
+  /--hub-night:\s*#061128;[\s\S]*--hub-teal:\s*#72e3c8;[\s\S]*--hub-gold:\s*#ffe69a;[\s\S]*--hub-blue:\s*#91b7ff;[\s\S]*--hub-lilac:\s*#c8b7ff;/,
+  `The panoramic geometry pass must preserve the established Hub palette. ${staticInvariantNote}`
 );
-assertCssRule(
-  ".hrv-classroom-hub .current-exploration-section .museum-shell",
-  /width:\s*var\(--hub-shell-reading\);[\s\S]*margin-right:\s*auto;[\s\S]*margin-left:\s*clamp\(48px,\s*4vw,\s*80px\)/,
-  "Current Exploration must counterbalance Welcome on the left-side reading stage"
+assert.doesNotMatch(
+  css,
+  /(?:^|,)\s*(?:html|body|#page|#masthead|#colophon)\b/m,
+  `Hub presentation rules must remain scoped and must not repaint the native Amadeus shell. ${staticInvariantNote}`
 );
-assertCssRule(
-  ".hrv-classroom-hub .current-twwl-section .museum-shell",
-  /width:\s*min\(1360px,\s*calc\(100dvw\s*-\s*clamp\(64px,\s*10vw,\s*192px\)\)\);[\s\S]*margin-inline:\s*auto/,
-  "The current TWWL room must remain a compact centered focal room"
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum",
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\)/,
+  "Wide desktop must use a twelve-column panoramic museum stage"
 );
-assertCssRule(
+[
+  ".hrv-classroom-hub .hub-museum > .hero-section",
+  ".hrv-classroom-hub .hub-museum > .museum-map",
+  ".hrv-classroom-hub .hub-museum > .museum-divider",
+  ".hrv-classroom-hub .hub-museum > .archive-control-section",
+  ".hrv-classroom-hub .hub-museum > .hub-footer"
+].forEach((selector) => {
+  assertPanoramicRule(selector, /grid-column:\s*1\s*\/\s*-1/, `${selector} must span the panoramic stage`);
+});
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .welcome-section",
+  /grid-column:\s*1\s*\/\s*span\s+3/,
+  "Welcome must be the compact left support region"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .current-exploration-section",
+  /grid-column:\s*4\s*\/\s*span\s+6/,
+  "Current Exploration must own the dominant six-column center region"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .current-twwl-section",
+  /grid-column:\s*10\s*\/\s*span\s+3/,
+  "Current TWWL must be the compact right support region"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .past-explorations-section",
+  /grid-column:\s*1\s*\/\s*span\s+5/,
+  "Past Explorations must occupy the five-column gallery region"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .past-twwl-section",
+  /grid-column:\s*6\s*\/\s*-1/,
+  "Past TWWL must occupy the seven-column gallery region"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-museum > .hub-section > .museum-shell",
+  /width:\s*100%;[\s\S]*margin-inline:\s*0/,
+  "Nested room shells must fill their grid cells without legacy offsets"
+);
+assertPanoramicRule(
   ".hrv-classroom-hub .hub-hero-card",
-  /grid-template-columns:\s*minmax\(0,\s*1\.18fr\)\s*minmax\(540px,\s*0\.82fr\);[\s\S]*min-height:\s*clamp\(450px,\s*52svh,\s*500px\)/,
-  "The hero must retain its balanced Phase 1.2 composition"
+  /grid-template-columns:\s*minmax\(0,\s*1\.55fr\)\s*minmax\(470px,\s*0\.85fr\);[\s\S]*min-height:\s*0/,
+  "The hero must become a compact panoramic mast"
 );
-assertCssRule(
-  ".hrv-classroom-hub .hub-title",
-  /font-size:\s*clamp\(4\.6rem,\s*5vw,\s*5\.4rem\)/,
-  "The hero title must retain its primary visual hierarchy"
-);
-assertCssRule(
-  ".hrv-classroom-hub .hub-compass",
-  /width:\s*clamp\(176px,\s*11vw,\s*220px\)/,
-  "The compass must remain a visible focal object"
-);
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .museum-map-shell",
-  /width:\s*var\(--hub-shell-reading\);[\s\S]*min-height:\s*54px/,
-  "The compact Museum Map must retain the reading-stage width"
+  /min-height:\s*46px/,
+  "The Museum Map must remain a compact horizontal control band"
 );
-assertCssRule(
-  ".hrv-classroom-hub .museum-map-link",
-  /font-size:\s*0\.88rem/,
-  "Museum Map navigation must not regress to microtype"
-);
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .welcome-theater-card",
-  /grid-template-columns:\s*minmax\(430px,\s*0\.38fr\)\s*minmax\(720px,\s*0\.62fr\);[\s\S]*min-height:\s*0;[\s\S]*border:\s*0;[\s\S]*background:\s*transparent;[\s\S]*box-shadow:\s*none/,
-  "Welcome must use an unboxed editorial composition instead of a giant repeated room"
+  /grid-template-columns:\s*minmax\(0,\s*1fr\)/,
+  "Welcome must stack compactly inside its support region"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .welcome-screen",
-  /width:\s*min\(100%,\s*840px\);[\s\S]*aspect-ratio:\s*16\s*\/\s*9/,
-  "The real Welcome media must retain its deliberate theater scale"
+  /width:\s*100%;[\s\S]*justify-self:\s*stretch/,
+  "Welcome media must fill the compact support region"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .current-exploration-card",
-  /grid-template-columns:\s*minmax\(520px,\s*0\.96fr\)\s*minmax\(0,\s*1\.04fr\);[\s\S]*min-height:\s*clamp\(450px,\s*51svh,\s*500px\)/,
-  "Current Exploration must retain its copy-and-photography hierarchy"
+  /grid-template-columns:\s*minmax\(0,\s*0\.92fr\)\s*minmax\(0,\s*1\.08fr\);[\s\S]*min-height:\s*0/,
+  "Current Exploration must retain complete copy and photography in its dominant region"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .current-visual",
-  /height:\s*clamp\(420px,\s*49svh,\s*470px\)/,
-  "Current Exploration photography must remain bounded at desktop density"
+  /height:\s*430px;[\s\S]*min-height:\s*0/,
+  "Current photography must be bounded so the complete panorama fits one desktop view"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .current-twwl-card",
-  /grid-template-columns:\s*minmax\(0,\s*1fr\)\s*minmax\(320px,\s*380px\);[\s\S]*min-height:\s*300px/,
-  "The current TWWL room must retain compact copy-and-lantern geometry"
+  /grid-template-columns:\s*minmax\(0,\s*1fr\);[\s\S]*min-height:\s*0/,
+  "Current TWWL must stack compactly inside its support region"
 );
 assertCssRule(
   ".hrv-classroom-hub .gallery-frame",
   /overflow:\s*visible;[\s\S]*border:\s*0;[\s\S]*background:\s*transparent;[\s\S]*box-shadow:\s*none/,
   "Gallery sections must not reintroduce giant nested panel rectangles"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .exploration-grid",
-  /grid-template-columns:\s*minmax\(0,\s*1\.12fr\)\s*repeat\(2,\s*minmax\(0,\s*0\.94fr\)\)/,
-  "Past Explorations must retain an intentional asymmetric card rhythm"
+  /grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/,
+  "All three Past Explorations must share one dense image row"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .learning-grid",
-  /display:\s*flex;[\s\S]*flex-wrap:\s*wrap;[\s\S]*justify-content:\s*center/,
-  "Past TWWL cards must wrap into centered rows without an orphaned left-aligned pair"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(5,\s*minmax\(0,\s*1fr\)\)/,
+  "All five Past TWWL memories must share one glanceable image row"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .learning-grid .learning-card",
-  /width:\s*calc\(\(100%\s*-\s*3rem\)\s*\/\s*3\);[\s\S]*flex:\s*0\s+1\s+calc\(\(100%\s*-\s*3rem\)\s*\/\s*3\)/,
-  "Past TWWL cards must retain three-card desktop sizing while allowing centered wrapping"
+  /width:\s*auto;[\s\S]*min-width:\s*0;[\s\S]*flex:\s*none/,
+  "Past TWWL cards must release their legacy three-column flex sizing"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .collection-title",
-  /font-size:\s*clamp\(1\.25rem,\s*1\.35vw,\s*1\.48rem\)/,
-  "Collection titles must retain the readable Phase 1.2 hierarchy"
+  /-webkit-line-clamp:\s*2/,
+  "Dense collection titles must remain bounded without removing their source text"
 );
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .collection-summary",
-  /font-size:\s*1\.05rem;[\s\S]*line-height:\s*1\.55/,
-  "Collection summaries must retain the readable Phase 1.2 scale"
+  /-webkit-line-clamp:\s*2/,
+  "Dense collection summaries must remain bounded without removing their source text"
 );
-assertCssRule(
-  ".hrv-classroom-hub .collection-label",
-  /font-size:\s*0\.82rem/,
-  "Collection labels and years must remain readable at the target viewport"
-);
-assertCssRule(
-  ".hrv-classroom-hub .collection-tags li",
-  /font-size:\s*0\.86rem/,
-  "Tags must not regress to microtype"
-);
-assertCssRule(
+assertPanoramicRule(
   ".hrv-classroom-hub .archive-door",
-  /min-width:\s*250px;[\s\S]*min-height:\s*84px/,
-  "The previous-years doorway must retain sufficient visual weight"
+  /min-width:\s*220px;[\s\S]*min-height:\s*62px/,
+  "The previous-years doorway must remain compact and comfortably actionable"
+);
+assertPanoramicRule(
+  ".hrv-classroom-hub .hub-action",
+  /min-height:\s*44px/,
+  "Primary actions must retain a practical desktop target size"
+);
+assert.match(
+  css,
+  /@media \(max-width: 1330px\)[\s\S]*?\.current-exploration-card,[\s\S]*?\.current-twwl-card\s*\{[\s\S]*?grid-template-columns:\s*1fr/,
+  `The established stacked layout must remain active below the panoramic breakpoint. ${staticInvariantNote}`
 );
 assert.match(runtimeText, /wireAmbientVisibility\(\)/);
 assert.match(runtimeText, /classList\.toggle\("is-in-view", entry\.isIntersecting\)/);
@@ -288,7 +340,11 @@ const hero = mount.querySelector(".hero-section");
 const museumMap = mount.querySelector('nav.museum-map[aria-label="Museum map"]');
 const welcome = mount.querySelector(".welcome-section");
 const current = mount.querySelector(".current-exploration-section");
-assert.ok(hero && museumMap && welcome && current);
+const currentTwwl = mount.querySelector(".current-twwl-section");
+const pastExplorations = mount.querySelector(".past-explorations-section");
+const pastTwwl = mount.querySelector(".past-twwl-section");
+const archives = mount.querySelector(".archive-control-section");
+assert.ok(hero && museumMap && welcome && current && currentTwwl && pastExplorations && pastTwwl && archives);
 assert.equal(
   hero.compareDocumentPosition(museumMap) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
   dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
@@ -304,6 +360,18 @@ assert.equal(
   dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
   "Welcome Theater must be before Current Exploration."
 );
+[
+  [current, currentTwwl, "Current Exploration must be before Current TWWL."],
+  [currentTwwl, pastExplorations, "Current TWWL must be before Past Explorations."],
+  [pastExplorations, pastTwwl, "Past Explorations must be before Past TWWL."],
+  [pastTwwl, archives, "Past TWWL must be before Archives."]
+].forEach(([before, after, message]) => {
+  assert.equal(
+    before.compareDocumentPosition(after) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
+    dom.window.Node.DOCUMENT_POSITION_FOLLOWING,
+    message
+  );
+});
 
 const expectedMuseumMap = [
   ["01", "Welcome", "#hrv-welcome-theater"],
@@ -367,6 +435,30 @@ assert.doesNotMatch(
   "Documented TWWL media must never be replaced with emoji."
 );
 
+const explorationCards = [...mount.querySelectorAll(".exploration-card")];
+const [explorationSearch, learningSearch] = mount.querySelectorAll(".gallery-search");
+const [explorationCount, learningCount] = mount.querySelectorAll(".gallery-count");
+assert.equal(explorationCards.length, 3);
+assert.ok(explorationSearch && learningSearch && explorationCount && learningCount);
+
+explorationSearch.value = "mushrooms";
+explorationSearch.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
+assert.equal(explorationCards.filter((card) => !card.hidden).length, 1);
+assert.equal(explorationCount.textContent, "1 exhibit on display");
+explorationSearch.value = "";
+explorationSearch.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
+assert.equal(explorationCards.filter((card) => !card.hidden).length, 3);
+assert.equal(explorationCount.textContent, "3 exhibits on display");
+
+learningSearch.value = "owls";
+learningSearch.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
+assert.equal(learningCards.filter((card) => !card.hidden).length, 1);
+assert.equal(learningCount.textContent, "1 learning display on display");
+learningSearch.value = "";
+learningSearch.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
+assert.equal(learningCards.filter((card) => !card.hidden).length, 5);
+assert.equal(learningCount.textContent, "5 learning displays on display");
+
 runtime.unmountClassroomExplorationsHub(mount);
 assert.equal(mount.children.length, 0);
 runtime.mountClassroomExplorationsHub(mount, manifest);
@@ -375,8 +467,9 @@ runtime.unmountClassroomExplorationsHub(mount);
 
 console.log("[hub presentation] preserved source/routes/control hashes passed");
 console.log("[hub presentation] one canonical runtime + import-free stylesheet passed");
-console.log("[hub presentation] static Phase 1.2 density, hierarchy, and composition invariants passed");
-console.log("[hub presentation] compact Museum Map landmarks and Welcome-before-Current DOM order passed");
+console.log("[hub presentation] static panoramic density, hierarchy, and twelve-column composition invariants passed");
+console.log("[hub presentation] compact Museum Map landmarks and complete visual/keyboard DOM order passed");
 console.log("[hub presentation] real Zinnia + five real Past TWWL image renderers passed");
+console.log("[hub presentation] dense gallery filtering and visible-count behavior passed");
 console.log("[hub presentation] scoped motion, OS reduction, and no Hub-local effects control passed");
 console.log("[hub presentation] static invariants passed; this test does not claim real-browser visual acceptance");
