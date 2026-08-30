@@ -1,0 +1,113 @@
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #page {
+  overflow-x: clip !important;
+}
+
+html.hrv-page-classroom-explorations-ready body.page-id-2589 #masthead.site-header,
+html.hrv-page-classroom-explorations-ready body.page-id-2589 #sidebar-footer.footer-widget-area {
+  display: none !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #content.site-content.container,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .site-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #primary.content-area,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .content-area,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #main.site-main,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .site-main,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .entry-content {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  float: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .widget-area,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #secondary,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .entry-header,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .entry-footer,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .edit-link {
+  display: none !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) .hentry,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) article.page {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #hrv-classroom-explorations-root {
+  display: block !important;
+  width: 100vw !important;
+  width: 100dvw !important;
+  max-width: none !important;
+  position: relative !important;
+  left: 50% !important;
+  right: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: -50vw !important;
+  margin-left: -50dvw !important;
+  margin-right: -50vw !important;
+  margin-right: -50dvw !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: #091126 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+  overflow-x: clip !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer {
+  margin: 0 !important;
+  padding: 40px 0 30px !important;
+  border-top: 1px solid rgba(189, 220, 255, 0.16) !important;
+  color: #cfe0fb !important;
+  background:
+    radial-gradient(circle at 50% 0, rgba(120, 232, 207, 0.08), transparent 448px),
+    linear-gradient(180deg, #081a37, #061128) !important;
+  box-shadow: inset 0 18px 44px rgba(0, 7, 25, 0.2) !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer .site-info,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer a {
+  color: #cfe0fb !important;
+  background-color: transparent !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer .scroll-container a {
+  border: 1px solid rgba(255, 230, 154, 0.42) !important;
+  color: #ffe69a !important;
+  background: #0b1c3b !important;
+  box-shadow: 0 10px 24px rgba(0, 7, 25, 0.32) !important;
+}
+
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer .scroll-container a:hover,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #colophon.site-footer .scroll-container a:focus-visible {
+  border-color: rgba(120, 232, 207, 0.65) !important;
+  color: #ffffff !important;
+  background: #173a43 !important;
+}
