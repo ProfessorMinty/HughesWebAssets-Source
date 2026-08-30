@@ -93,11 +93,15 @@ for (const name of moduleNames) {
 }
 assert.match(stylesheetEntry, /2026\.08\.29\.5-review/);
 assert.match(handoffJs, /2026\.08\.29\.5-review/);
-assert.match(handoffJs, new RegExp(reviewCommit));
 assert.match(
   handoffJs,
-  new RegExp("HughesWebAssets-Source@" + reviewCommit),
-  "The page-2589 review doorway must load the exact green commit."
+  new RegExp('var REVIEW_COMMIT = "' + reviewCommit + '"'),
+  "The page-2589 review doorway must name the exact green commit."
+);
+assert.match(
+  handoffJs,
+  /"@"\s*\+\s*REVIEW_COMMIT\s*\+/,
+  "The review base URL must be assembled from the exact immutable commit."
 );
 assert.doesNotMatch(
   handoffJs,
