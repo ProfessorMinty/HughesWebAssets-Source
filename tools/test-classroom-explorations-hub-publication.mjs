@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { access, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
+import { access, cp, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -9,13 +9,13 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const releaseRoot = await mkdtemp(resolve(tmpdir(), "hrv-hub-publication-test-"));
 const env = { ...process.env, HRV_HUB_RELEASE_ROOT: releaseRoot };
-const runStage = (publicationId, sourceRevision, previous = "none") => spawnSync(process.execPath, [
+const runStage = (publicationId, sourceRevision, previous = "none", envOverrides = {}) => spawnSync(process.execPath, [
   resolve(root, "tools/stage-classroom-explorations-hub-publication.mjs"),
   "2099.01.01.1",
   publicationId,
   sourceRevision,
   previous
-], { cwd: root, env, encoding: "utf8" });
+], { cwd: root, env: { ...env, ...envOverrides }, encoding: "utf8" });
 const digest = async (path) => createHash("sha256").update(await readFile(path)).digest("hex");
 const artwork = {
   pastExplorations: { path: "assets/history/past-explorations.webp", mediaType: "image/webp" },
@@ -40,6 +40,60 @@ const listFiles = async (directory, prefix = "") => {
   }
   return files;
 };
+
+const assertNoStagingResidue = async (publicationId) => {
+  const snapshot = JSON.parse(await readFile(resolve(root, "dist/classroom-explorations-hub/content-snapshot.json"), "utf8"));
+  const contentHash = snapshot.snapshotId.slice("sha256:".length);
+  for (const target of [
+    resolve(releaseRoot, "runtime/2099.01.01.1"),
+    resolve(releaseRoot, `content/${contentHash}`),
+    resolve(releaseRoot, `publications/${publicationId}`)
+  ]) {
+    await assert.rejects(
+      access(target),
+      (error) => error.code === "ENOENT",
+      `Failed staging must not leave a final target: ${target}`
+    );
+  }
+  for (const parent of ["runtime", "content", "publications"]) {
+    assert.deepEqual(
+      await readdir(resolve(releaseRoot, parent)),
+      [],
+      `Failed staging must remove every temporary ${parent} entry.`
+    );
+  }
+};
+
+const malformedDistContainer = await mkdtemp(resolve(tmpdir(), "hrv-hub-malformed-dist-"));
+const malformedDistRoot = resolve(malformedDistContainer, "classroom-explorations-hub");
+await cp(resolve(root, "dist/classroom-explorations-hub"), malformedDistRoot, { recursive: true });
+await writeFile(
+  resolve(malformedDistRoot, "runtime", artwork.frameTopLeft.path),
+  "tampered first-stage frame artwork",
+  "utf8"
+);
+const malformedFirst = runStage(
+  "pub-2099-01-01-001",
+  "a".repeat(40),
+  "none",
+  { HRV_HUB_DIST_ROOT: malformedDistRoot }
+);
+assert.notEqual(malformedFirst.status, 0, "Malformed first-time runtime bytes must reject staging.");
+assert.match(malformedFirst.stderr + malformedFirst.stdout, /Runtime release artwork digest is invalid: assets\/frame\/top-left\.webp/);
+await assertNoStagingResidue("pub-2099-01-01-001");
+
+const interruptedPromotion = runStage(
+  "pub-2099-01-01-001",
+  "a".repeat(40),
+  "none",
+  {
+    NODE_ENV: "test",
+    HRV_HUB_TEST_FAIL_BEFORE_PUBLICATION_PROMOTION: "true"
+  }
+);
+assert.notEqual(interruptedPromotion.status, 0, "Interrupted publication promotion must reject staging.");
+assert.match(interruptedPromotion.stderr + interruptedPromotion.stdout, /Injected failure before publication promotion/);
+await assertNoStagingResidue("pub-2099-01-01-001");
 
 const first = runStage("pub-2099-01-01-001", "a".repeat(40));
 assert.equal(first.status, 0, first.stderr || first.stdout);
