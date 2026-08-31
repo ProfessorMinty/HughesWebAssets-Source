@@ -31,7 +31,7 @@ assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3e
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
 assert.equal(sha256(bootstrapPath), "23d850ddad85cd17a25a32c2545565cfad84073ad290845448db2486ed1d7e2c");
 assert.equal(sha256(runtimePath), "d650bebb20bdc32fd9270c5e9b93ad805d8e687ff31073214dff35fea93061b7");
-assert.equal(sha256(cssPath), "2405ed7c960e7f27a660b22a6ff9d8cd6a4503f9bf9fb3de4c06a56690e763be");
+assert.equal(sha256(cssPath), "d55e773aebb5832d46b9bde7b91c938f3222061b6a82591c2f77d57764bdee99");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
@@ -87,6 +87,15 @@ const extractLastCssBlock = (cssText, header) => {
 };
 const panoramicCss = extractLastCssBlock(css, "@media (min-width: 1440px)");
 const panoramicRules = parseCssRules(panoramicCss);
+const definitiveTypographyMarker = "Definitive desktop typography system.";
+const definitiveTypographyIndex = panoramicCss.indexOf(definitiveTypographyMarker);
+assert.notEqual(
+  definitiveTypographyIndex,
+  -1,
+  `Wide desktop must end with one definitive role-based typography system. ${staticInvariantNote}`
+);
+const definitiveTypographyCss = panoramicCss.slice(definitiveTypographyIndex);
+const definitiveTypographyRules = parseCssRules(definitiveTypographyCss);
 assert.doesNotMatch(
   css,
   /-?(?:\d+(?:\.\d+)?|\.\d+)rem\b/,
@@ -99,6 +108,9 @@ assert.doesNotMatch(
 );
 const assertPanoramicRule = (selector, expected, description) => {
   assertCssRuleIn(panoramicRules, selector, expected, description);
+};
+const assertDefinitiveTypographyRule = (selector, expected, description) => {
+  assertCssRuleIn(definitiveTypographyRules, selector, expected, description);
 };
 assert.deepEqual(
   readdirSync(path.join(root, "apps/classroom-explorations-hub/src")).sort(),
@@ -140,6 +152,22 @@ assertCssRule(
   /font-size:\s*18px/,
   "The Hub must retain its readable base type scale"
 );
+assertCssRule(
+  ".hrv-classroom-hub",
+  /--hub-font-display:\s*Georgia,\s*Cambria,\s*"Times New Roman",\s*serif;[\s\S]*--hub-font-ui:\s*system-ui,\s*-apple-system,\s*BlinkMacSystemFont,\s*"Segoe UI",\s*sans-serif;[\s\S]*font-family:\s*var\(--hub-font-ui\)/,
+  "The Hub root must define and consume dependable display and system-UI typography tokens"
+);
+const hubRootRule = cssRules.find((rule) => (
+  rule.selectors.length === 1
+  && rule.selectors[0] === ".hrv-classroom-hub"
+  && rule.body.includes("--hub-font-display")
+));
+assert.ok(hubRootRule, `The Hub root typography contract must be discoverable. ${staticInvariantNote}`);
+assert.doesNotMatch(
+  hubRootRule.body,
+  /Atkinson Hyperlegible/i,
+  `The Hub root must not depend on an unbundled Atkinson installation. ${staticInvariantNote}`
+);
 assert.match(
   css,
   /--hub-night:\s*#061128;[\s\S]*--hub-teal:\s*#72e3c8;[\s\S]*--hub-gold:\s*#ffe69a;[\s\S]*--hub-blue:\s*#91b7ff;[\s\S]*--hub-lilac:\s*#c8b7ff;/,
@@ -152,8 +180,8 @@ assert.doesNotMatch(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*78px\s+420px\s+312px\s+120px\s+39px;[\s\S]*padding:\s*16px\s+24px\s+12px/,
-  "Wide desktop must use the approved twelve-column, five-row panoramic composition"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*78px\s+420px\s+304px\s+39px;[\s\S]*padding:\s*16px\s+24px\s+12px/,
+  "Wide desktop must use the approved twelve-column, four-row panoramic composition"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hero-section",
@@ -182,12 +210,12 @@ assertPanoramicRule(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .history-door-section",
-  /grid-row:\s*3\s*\/\s*span\s+2;[\s\S]*grid-column:\s*11\s*\/\s*-1/,
-  "The three history doors must form a narrow rail spanning the learning and archive rows"
+  /grid-row:\s*3;[\s\S]*grid-column:\s*11\s*\/\s*-1/,
+  "The three history doors must fit beside Current TWWL in one narrow lower rail"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .hub-museum > .hub-footer",
-  /grid-row:\s*5;[\s\S]*grid-column:\s*1\s*\/\s*-1/,
+  /grid-row:\s*4;[\s\S]*grid-column:\s*1\s*\/\s*-1/,
   "The footer must close the compact panoramic board"
 );
 assertPanoramicRule(
@@ -242,14 +270,78 @@ assertPanoramicRule(
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .current-twwl-card",
-  /grid-template-columns:\s*minmax\(420px,\s*0\.34fr\)\s+minmax\(0,\s*0\.66fr\);[\s\S]*min-height:\s*0/,
-  "Current TWWL must read as a broad copy-and-lantern feature"
+  /grid-template-columns:\s*clamp\(292px,\s*16vw,\s*320px\)\s+minmax\(0,\s*1fr\);[\s\S]*min-height:\s*0/,
+  "Current TWWL must reserve a concise copy column and extend the lantern visual"
 );
 assertPanoramicRule(
   ".hrv-classroom-hub .history-door-grid",
-  /grid-template-columns:\s*1fr;[\s\S]*grid-template-rows:\s*1fr\s+1fr\s+120px/,
-  "The history rail must contain exactly three vertically composed doors"
+  /grid-template-columns:\s*1fr;[\s\S]*grid-template-rows:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);[\s\S]*gap:\s*10px/,
+  "The history rail must contain three equal doors inside the Current TWWL row"
 );
+
+const definitiveFontWeights = [...definitiveTypographyCss.matchAll(/font-weight:\s*(\d+)\s*;/g)]
+  .map((match) => match[1]);
+assert.deepEqual(
+  [...new Set(definitiveFontWeights)].sort(),
+  ["400", "600", "700"],
+  `The definitive desktop type system must use only real 400, 600, and 700 weights. ${staticInvariantNote}`
+);
+const definitiveFontFamilies = [...definitiveTypographyCss.matchAll(/font-family:\s*([^;]+)\s*;/g)]
+  .map((match) => match[1].trim());
+assert.deepEqual(
+  [...new Set(definitiveFontFamilies)].sort(),
+  ["var(--hub-font-display)", "var(--hub-font-ui)"],
+  `The definitive desktop type system must use only the declared display and UI tokens. ${staticInvariantNote}`
+);
+
+[
+  [".hrv-classroom-hub .hub-title", /font-size:\s*clamp\(29px,\s*1\.83vw,\s*35px\);[\s\S]*font-weight:\s*700;[\s\S]*line-height:\s*1;/, "The Hub identity must remain a compact display heading"],
+  [".hrv-classroom-hub .hub-subtitle", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*400;[\s\S]*-webkit-line-clamp:\s*initial;/, "The Hub subtitle must remain readable and unclamped"],
+  [".hrv-classroom-hub .site-navigation-link", /font-size:\s*13px;[\s\S]*font-weight:\s*600;[\s\S]*line-height:\s*1\.2;/, "Global navigation must retain its readable wayfinding role"],
+  [".hrv-classroom-hub .section-kicker", /font-size:\s*10\.5px;[\s\S]*font-weight:\s*700;/, "Eyebrows must retain a consistent micro-label floor"],
+  [".hrv-classroom-hub .welcome-heading .section-title", /font-size:\s*clamp\(27px,\s*1\.67vw,\s*32px\);[\s\S]*line-height:\s*1\.02;/, "Welcome must retain a clear supporting-room heading"],
+  [".hrv-classroom-hub .current-section-title", /font-size:\s*18px;[\s\S]*line-height:\s*1\.1;/, "Current Exploration must retain its structural heading floor"],
+  [".hrv-classroom-hub .current-title", /font-size:\s*clamp\(35px,\s*2\.08vw,\s*40px\);[\s\S]*line-height:\s*0\.98;/, "The Current subject must remain the dominant exhibit title"],
+  [".hrv-classroom-hub .current-points li", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*400;[\s\S]*line-height:\s*1\.3;/, "Current learning points must retain their reading floor"],
+  [".hrv-classroom-hub .current-tags li", /font-size:\s*11px;[\s\S]*font-weight:\s*600;/, "Current tags must remain legible metadata"],
+  [".hrv-classroom-hub .hub-action", /font-size:\s*14px;[\s\S]*font-weight:\s*700;/, "The primary action must retain a strong control label"],
+  [".hrv-classroom-hub .twwl-section-title", /font-size:\s*30px;[\s\S]*line-height:\s*1\.02;/, "Current TWWL must retain a clear section heading"],
+  [".hrv-classroom-hub .twwl-title", /font-size:\s*22px;[\s\S]*line-height:\s*1\.08;/, "The TWWL story title must remain subordinate to its section heading"],
+  [".hrv-classroom-hub .preparing-display-title", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*600;/, "The lantern status must remain readable inside the expanded visual"],
+  [".hrv-classroom-hub .history-door-title", /font-size:\s*clamp\(18px,\s*1\.05vw,\s*20px\);[\s\S]*line-height:\s*1\.04;/, "History doors must retain compact but readable titles"],
+  [".hrv-classroom-hub .history-door-eyebrow", /font-size:\s*10\.5px;[\s\S]*font-weight:\s*700;/, "History-door labels must retain their micro-label floor"],
+  [".hrv-classroom-hub .footer-message", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*600;[\s\S]*line-height:\s*1\.35;/, "The footer must close the board with readable supporting type"]
+].forEach(([selector, expected, description]) => {
+  assertDefinitiveTypographyRule(selector, expected, description);
+});
+
+[
+  [".hrv-classroom-hub .welcome-heading .section-summary", "Welcome summary", "14.5px", "1.45"],
+  [".hrv-classroom-hub .current-summary", "Current summary", "14px", "1.38"],
+  [".hrv-classroom-hub .twwl-summary", "Current TWWL summary", "14px", "1.42"]
+].forEach(([selector, label, fontSize, lineHeight]) => {
+  assertDefinitiveTypographyRule(
+    selector,
+    new RegExp(`display:\\s*block;[\\s\\S]*overflow:\\s*visible;[\\s\\S]*font-size:\\s*${fontSize.replace(".", "\\.")};[\\s\\S]*font-weight:\\s*400;[\\s\\S]*line-height:\\s*${lineHeight.replace(".", "\\.")};[\\s\\S]*-webkit-line-clamp:\\s*initial;`),
+    `${label} must remain readable and fully visible rather than line-clamped`
+  );
+});
+
+[
+  [".hrv-classroom-hub .history-dialog-close", /font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "Dialog close control"],
+  [".hrv-classroom-hub .history-dialog .gallery-header .section-kicker", /font-size:\s*11px;[\s\S]*font-weight:\s*700;/, "Dialog eyebrow"],
+  [".hrv-classroom-hub .history-dialog .gallery-title", /font-size:\s*28px;[\s\S]*line-height:\s*1\.06;/, "Dialog title"],
+  [".hrv-classroom-hub .history-dialog .gallery-search", /font-size:\s*14px;[\s\S]*font-weight:\s*400;/, "Dialog search"],
+  [".hrv-classroom-hub .history-dialog .gallery-count", /font-size:\s*11\.5px;[\s\S]*font-weight:\s*600;/, "Dialog result count"],
+  [".hrv-classroom-hub .history-dialog .collection-title", /font-size:\s*18px;[\s\S]*line-height:\s*1\.15;/, "Dialog card title"],
+  [".hrv-classroom-hub .history-dialog .collection-summary", /font-size:\s*13px;[\s\S]*font-weight:\s*400;[\s\S]*line-height:\s*1\.4;/, "Dialog card summary"],
+  [".hrv-classroom-hub .history-dialog .collection-label", /font-size:\s*10\.5px;[\s\S]*font-weight:\s*600;/, "Dialog card metadata"],
+  [".hrv-classroom-hub .history-dialog .collection-enter", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*600;/, "Dialog card action"],
+  [".hrv-classroom-hub .history-dialog .archive-summary", /font-size:\s*14px;[\s\S]*font-weight:\s*400;/, "Archive summary"],
+  [".hrv-classroom-hub .history-dialog .archive-door", /font-size:\s*16px;[\s\S]*font-weight:\s*700;/, "Archive doorway"]
+].forEach(([selector, expected, role]) => {
+  assertDefinitiveTypographyRule(selector, expected, `${role} must retain its verified desktop typography floor`);
+});
 assert.doesNotMatch(
   panoramicCss,
   /\.hub-museum\s*>\s*\.(?:past-explorations-section|past-twwl-section|archive-control-section)/,

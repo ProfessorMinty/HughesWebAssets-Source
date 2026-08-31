@@ -15,6 +15,8 @@
   --hub-shadow: 0 28px 70px rgba(0, 7, 25, 0.36);
   --hub-radius: 28px;
   --hub-radius-small: 18px;
+  --hub-font-display: Georgia, Cambria, "Times New Roman", serif;
+  --hub-font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --hub-shell-wide: min(1760px, calc(100dvw - clamp(32px, 4vw, 72px)));
   --hub-shell-reading: min(1660px, calc(100dvw - clamp(44px, 6vw, 112px)));
   --hub-shell-theater: min(1480px, calc(100dvw - clamp(64px, 10vw, 192px)));
@@ -25,7 +27,7 @@
   background: var(--hub-night);
   color: var(--hub-ink);
   color-scheme: dark;
-  font-family: "Atkinson Hyperlegible", Aptos, "Segoe UI", system-ui, sans-serif;
+  font-family: var(--hub-font-ui);
   font-size: 18px;
   line-height: 1.55;
 }
@@ -2893,7 +2895,7 @@
   .hrv-classroom-hub .hub-museum {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: 78px 420px 312px 120px 39px;
+    grid-template-rows: 78px 420px 304px 39px;
     gap: 14px;
     min-height: 100vh;
     padding: 16px 24px 12px;
@@ -2928,12 +2930,12 @@
   }
 
   .hrv-classroom-hub .hub-museum > .history-door-section {
-    grid-row: 3 / span 2;
+    grid-row: 3;
     grid-column: 11 / -1;
   }
 
   .hrv-classroom-hub .hub-museum > .hub-footer {
-    grid-row: 5;
+    grid-row: 4;
     grid-column: 1 / -1;
   }
 
@@ -3227,7 +3229,7 @@
   }
 
   .hrv-classroom-hub .current-twwl-card {
-    grid-template-columns: minmax(420px, 0.34fr) minmax(0, 0.66fr);
+    grid-template-columns: clamp(292px, 16vw, 320px) minmax(0, 1fr);
     align-items: stretch;
     gap: 16px;
     min-height: 0;
@@ -3310,8 +3312,8 @@
 
   .hrv-classroom-hub .history-door-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 120px;
-    gap: 12px;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .hrv-classroom-hub .history-door {
@@ -3319,6 +3321,15 @@
     min-height: 0;
     aspect-ratio: auto;
     border-radius: 18px;
+  }
+
+  .hrv-classroom-hub .history-door-pastExplorations .history-door-artwork,
+  .hrv-classroom-hub .history-door-pastTwwl .history-door-artwork {
+    object-position: left center;
+  }
+
+  .hrv-classroom-hub .history-door-pastYears .history-door-artwork {
+    object-position: right center;
   }
 
   .hrv-classroom-hub .history-door-title {
@@ -3341,7 +3352,324 @@
   }
 
   .hrv-classroom-hub .footer-message {
-    font-size: 12px;
+    font-size: 12.5px;
+  }
+
+  /*
+   * Definitive desktop typography system.
+   * Two dependable font stacks, three real weights, and role-based sizing
+   * replace the earlier compression rules and their synthetic font weights.
+   */
+  .hrv-classroom-hub .hub-title,
+  .hrv-classroom-hub .welcome-heading .section-title,
+  .hrv-classroom-hub .current-section-title,
+  .hrv-classroom-hub .current-title,
+  .hrv-classroom-hub .twwl-section-title,
+  .hrv-classroom-hub .twwl-title,
+  .hrv-classroom-hub .history-door-title,
+  .hrv-classroom-hub .history-dialog .gallery-title,
+  .hrv-classroom-hub .history-dialog .collection-title,
+  .hrv-classroom-hub .history-dialog .archive-title {
+    font-family: var(--hub-font-display);
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .hub-subtitle,
+  .hrv-classroom-hub .hub-skip,
+  .hrv-classroom-hub .site-navigation-link,
+  .hrv-classroom-hub .section-kicker,
+  .hrv-classroom-hub .open-now-badge,
+  .hrv-classroom-hub .content-year-badge,
+  .hrv-classroom-hub .learning-year-badge,
+  .hrv-classroom-hub .preparing-label,
+  .hrv-classroom-hub .welcome-heading .section-summary,
+  .hrv-classroom-hub .current-summary,
+  .hrv-classroom-hub .current-points li,
+  .hrv-classroom-hub .current-point-number,
+  .hrv-classroom-hub .current-tags li,
+  .hrv-classroom-hub .hub-action,
+  .hrv-classroom-hub .current-caption,
+  .hrv-classroom-hub .twwl-summary,
+  .hrv-classroom-hub .preparing-display-title,
+  .hrv-classroom-hub .history-door-eyebrow,
+  .hrv-classroom-hub .history-door-action,
+  .hrv-classroom-hub .history-dialog,
+  .hrv-classroom-hub .history-dialog-close,
+  .hrv-classroom-hub .history-dialog .gallery-search,
+  .hrv-classroom-hub .history-dialog .gallery-count,
+  .hrv-classroom-hub .history-dialog .collection-summary,
+  .hrv-classroom-hub .history-dialog .collection-label,
+  .hrv-classroom-hub .history-dialog .collection-year,
+  .hrv-classroom-hub .history-dialog .collection-tags li,
+  .hrv-classroom-hub .history-dialog .collection-enter,
+  .hrv-classroom-hub .history-dialog .archive-kicker,
+  .hrv-classroom-hub .history-dialog .archive-summary,
+  .hrv-classroom-hub .history-dialog .archive-door,
+  .hrv-classroom-hub .history-dialog .archive-door-caption,
+  .hrv-classroom-hub .footer-message {
+    font-family: var(--hub-font-ui);
+  }
+
+  .hrv-classroom-hub .hub-title {
+    margin-bottom: 3px;
+    font-size: clamp(29px, 1.83vw, 35px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  .hrv-classroom-hub .hub-subtitle {
+    display: block;
+    max-width: none;
+    overflow: visible;
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.3;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .site-navigation-link {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .hrv-classroom-hub .site-navigation-link.is-current {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .section-kicker,
+  .hrv-classroom-hub .open-now-badge,
+  .hrv-classroom-hub .preparing-label,
+  .hrv-classroom-hub .history-door-eyebrow {
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.065em;
+  }
+
+  .hrv-classroom-hub .current-topline .section-kicker,
+  .hrv-classroom-hub .current-twwl-copy .section-kicker {
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.065em;
+  }
+
+  .hrv-classroom-hub .hub-skip {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-title {
+    font-size: clamp(27px, 1.67vw, 32px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-summary {
+    display: block;
+    overflow: visible;
+    font-size: 14.5px;
+    font-weight: 400;
+    line-height: 1.45;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .current-section-title {
+    font-size: 18px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .content-year-badge,
+  .hrv-classroom-hub .learning-year-badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .current-title {
+    font-size: clamp(35px, 2.08vw, 40px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+
+  .hrv-classroom-hub .current-summary {
+    display: block;
+    overflow: visible;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.38;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .current-points li {
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .hrv-classroom-hub .current-point-number {
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .current-tags li {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .hub-action {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .current-caption {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .twwl-section-title {
+    font-size: 30px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .hrv-classroom-hub .twwl-title {
+    font-size: 22px;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .twwl-summary {
+    display: block;
+    max-width: none;
+    overflow: visible;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .preparing-display-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-door-copy {
+    inset: 0 4% 0 44%;
+    gap: 2px;
+  }
+
+  .hrv-classroom-hub .history-door-pastYears .history-door-copy {
+    inset: 0 44% 0 4%;
+  }
+
+  .hrv-classroom-hub .history-door-title {
+    font-size: clamp(18px, 1.05vw, 20px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow,
+  .hrv-classroom-hub .history-door-action {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .history-door-grid > .history-door .history-door-action {
+    display: none;
+  }
+
+  .hrv-classroom-hub .history-dialog-close {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-header .section-kicker,
+  .hrv-classroom-hub .history-dialog .archive-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-title,
+  .hrv-classroom-hub .history-dialog .archive-title {
+    font-size: 28px;
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-search {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-count {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-title {
+    font-size: 18px;
+    line-height: 1.15;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-label,
+  .hrv-classroom-hub .history-dialog .collection-year {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-tags li,
+  .hrv-classroom-hub .history-dialog .collection-enter,
+  .hrv-classroom-hub .history-dialog .archive-door-caption {
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-dialog .archive-summary {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+  }
+
+  .hrv-classroom-hub .history-dialog .archive-door {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .footer-message {
+    font-family: var(--hub-font-ui);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.35;
   }
 }
 
