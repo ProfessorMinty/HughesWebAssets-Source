@@ -59,7 +59,13 @@ if (await digest(incomingManifest) !== await digest(resolve(contentTarget, "mani
 const expectedArtwork = {
   pastExplorations: "assets/history/past-explorations.webp",
   pastTwwl: "assets/history/past-twwl.webp",
-  pastYears: "assets/history/past-years.webp"
+  pastYears: "assets/history/past-years.webp",
+  frameTopLeft: "assets/frame/top-left.webp",
+  frameTopRight: "assets/frame/top-right.webp",
+  frameMiddleLeft: "assets/frame/middle-left.webp",
+  frameMiddleRight: "assets/frame/middle-right.webp",
+  frameBottomLeft: "assets/frame/bottom-left.webp",
+  frameBottomRight: "assets/frame/bottom-right.webp"
 };
 if (Object.keys(runtimeRelease.artwork || {}).join("|") !== Object.keys(expectedArtwork).join("|")) {
   throw new Error("Runtime release artwork map is missing or unstable.");

@@ -13,6 +13,12 @@ const required = [
   "dist/classroom-explorations-hub/runtime/assets/history/past-explorations.webp",
   "dist/classroom-explorations-hub/runtime/assets/history/past-twwl.webp",
   "dist/classroom-explorations-hub/runtime/assets/history/past-years.webp",
+  "dist/classroom-explorations-hub/runtime/assets/frame/top-left.webp",
+  "dist/classroom-explorations-hub/runtime/assets/frame/top-right.webp",
+  "dist/classroom-explorations-hub/runtime/assets/frame/middle-left.webp",
+  "dist/classroom-explorations-hub/runtime/assets/frame/middle-right.webp",
+  "dist/classroom-explorations-hub/runtime/assets/frame/bottom-left.webp",
+  "dist/classroom-explorations-hub/runtime/assets/frame/bottom-right.webp",
   "dist/classroom-explorations-hub/content-snapshot.json"
 ];
 
@@ -59,7 +65,13 @@ for (const asset of Object.values(release.assets)) {
 const expectedArtwork = {
   pastExplorations: "assets/history/past-explorations.webp",
   pastTwwl: "assets/history/past-twwl.webp",
-  pastYears: "assets/history/past-years.webp"
+  pastYears: "assets/history/past-years.webp",
+  frameTopLeft: "assets/frame/top-left.webp",
+  frameTopRight: "assets/frame/top-right.webp",
+  frameMiddleLeft: "assets/frame/middle-left.webp",
+  frameMiddleRight: "assets/frame/middle-right.webp",
+  frameBottomLeft: "assets/frame/bottom-left.webp",
+  frameBottomRight: "assets/frame/bottom-right.webp"
 };
 if (Object.keys(release.artwork || {}).join("|") !== Object.keys(expectedArtwork).join("|")) {
   throw new Error("Runtime release artwork map is missing or unstable.");

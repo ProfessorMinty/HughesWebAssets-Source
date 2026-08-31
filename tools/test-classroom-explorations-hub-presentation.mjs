@@ -23,24 +23,56 @@ const hostCompatPath = "apps/classroom-explorations-hub/src/host-compat.css";
 const artworkPaths = {
   pastExplorations: "apps/classroom-explorations-hub/src/assets/history/past-explorations.webp",
   pastTwwl: "apps/classroom-explorations-hub/src/assets/history/past-twwl.webp",
-  pastYears: "apps/classroom-explorations-hub/src/assets/history/past-years.webp"
+  pastYears: "apps/classroom-explorations-hub/src/assets/history/past-years.webp",
+  frameTopLeft: "apps/classroom-explorations-hub/src/assets/frame/top-left.webp",
+  frameTopRight: "apps/classroom-explorations-hub/src/assets/frame/top-right.webp",
+  frameMiddleLeft: "apps/classroom-explorations-hub/src/assets/frame/middle-left.webp",
+  frameMiddleRight: "apps/classroom-explorations-hub/src/assets/frame/middle-right.webp",
+  frameBottomLeft: "apps/classroom-explorations-hub/src/assets/frame/bottom-left.webp",
+  frameBottomRight: "apps/classroom-explorations-hub/src/assets/frame/bottom-right.webp"
+};
+const originalFramePaths = {
+  frameTopLeft: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/TopLeftHubBannerFrame.png",
+  frameTopRight: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/TopRightHubBannerFrame.png",
+  frameMiddleLeft: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/MiddleLeftHubBannerFrame.png",
+  frameMiddleRight: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/MiddleRightHubBannerFrame.png",
+  frameBottomLeft: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/BottomLeftHubBannerFrame.png",
+  frameBottomRight: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/BottomRightHubBannerFrame.png"
 };
 
 assert.equal(sha256(sourcePath), "3c85a2ce02f4ff11c337c8d28444604907971d4c2ca59d74d65e20b3ee009977");
 assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73");
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
-assert.equal(sha256(bootstrapPath), "23d850ddad85cd17a25a32c2545565cfad84073ad290845448db2486ed1d7e2c");
-assert.equal(sha256(runtimePath), "d650bebb20bdc32fd9270c5e9b93ad805d8e687ff31073214dff35fea93061b7");
-assert.equal(sha256(cssPath), "d55e773aebb5832d46b9bde7b91c938f3222061b6a82591c2f77d57764bdee99");
+assert.equal(sha256(bootstrapPath), "fe7015cabad35b3a3442ac9787185a2b63fee9890a4e2fde431a1ce06e817496");
+assert.equal(sha256(runtimePath), "2b7bde132b7afd2646d9952e199452826fc5c8029b0eec617d65e75361be59f8");
+assert.equal(sha256(cssPath), "ce247f2f7ae13c0d5456231dde685946d6f4d595bade6c2f5faedd854c41d3be");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
   {
     pastExplorations: "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
     pastTwwl: "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
-    pastYears: "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4"
+    pastYears: "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+    frameTopLeft: "7a7a9cebcad631d3287211f8e7529e301cdaf9d70de55cd21a64fc505ead7c54",
+    frameTopRight: "c74cee00ba8504186647f8641126accabd0a2fcc8a832d9e0ffd6e017c79ba11",
+    frameMiddleLeft: "81b0ee9ee9e93687ee1aaffb214feca1d31de986751318405b29f258eff565b7",
+    frameMiddleRight: "ec015b8e4f98f0eca9d48254b6b719e3826ea8927a78891151627378ce13c889",
+    frameBottomLeft: "4c41de2d714d324e565ab779fcd8e9c80e9ae181d654a95380ecfa3deed248b6",
+    frameBottomRight: "ad4450dba040a20a393fd026d00df644faed9be86e8e265ce730ee481ae91074"
   },
-  "The three approved history-door WebP files must retain their verified source bytes."
+  "The three approved history doors and six approved frame derivatives must retain their verified bytes."
+);
+assert.deepEqual(
+  Object.fromEntries(Object.entries(originalFramePaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
+  {
+    frameTopLeft: "5f44d39eedaa59c48a486fba2ef3cc9342681871de24c47f1dd99129734df15c",
+    frameTopRight: "d8a2fca272fb1d470d5c459e8e9a036e80143a0058e27ade27f392b8a5a3b004",
+    frameMiddleLeft: "20583a73fab1acc3bb662c913f827615e6f36b5750e40b08f7aca4a5629a1b75",
+    frameMiddleRight: "50c2d5ae54a00b08c6d8bbd5c0c6930ab83c17b8284368dbf5d885158d404a9f",
+    frameBottomLeft: "f710e726d7c5adeff6e696525e8b7c280ec0de7764a5bfb467efa217d7e08315",
+    frameBottomRight: "022d538873ba6e787bb5a8496b4b0e595c4456d933fa6bff78a1f13853fdd5d9"
+  },
+  "The six retained frame PNGs must remain byte-exact copies of the supplied originals."
 );
 
 const source = readJson(sourcePath);
@@ -70,11 +102,10 @@ const assertCssRuleIn = (rules, selector, expected, description) => {
 const assertCssRule = (selector, expected, description) => {
   assertCssRuleIn(cssRules, selector, expected, description);
 };
-const extractLastCssBlock = (cssText, header) => {
-  const headerIndex = cssText.lastIndexOf(header);
-  assert.notEqual(headerIndex, -1, `Missing CSS block: ${header}. ${staticInvariantNote}`);
-  const openIndex = cssText.indexOf("{", headerIndex + header.length);
-  assert.notEqual(openIndex, -1, `Missing opening brace for ${header}. ${staticInvariantNote}`);
+const extractCssBlockAt = (cssText, headerIndex, label) => {
+  assert.notEqual(headerIndex, -1, `Missing CSS block: ${label}. ${staticInvariantNote}`);
+  const openIndex = cssText.indexOf("{", headerIndex);
+  assert.notEqual(openIndex, -1, `Missing opening brace for ${label}. ${staticInvariantNote}`);
 
   let depth = 0;
   for (let index = openIndex; index < cssText.length; index += 1) {
@@ -83,19 +114,51 @@ const extractLastCssBlock = (cssText, header) => {
     if (depth === 0) return cssText.slice(openIndex + 1, index);
   }
 
-  assert.fail(`Missing closing brace for ${header}. ${staticInvariantNote}`);
+  assert.fail(`Missing closing brace for ${label}. ${staticInvariantNote}`);
 };
-const panoramicCss = extractLastCssBlock(css, "@media (min-width: 1440px)");
-const panoramicRules = parseCssRules(panoramicCss);
-const definitiveTypographyMarker = "Definitive desktop typography system.";
-const definitiveTypographyIndex = panoramicCss.indexOf(definitiveTypographyMarker);
+const authoritativeDesktopMarker = "Authoritative panoramic desktop composition.";
+const authoritativeDesktopMarkerIndex = css.indexOf(authoritativeDesktopMarker);
 assert.notEqual(
-  definitiveTypographyIndex,
+  authoritativeDesktopMarkerIndex,
   -1,
-  `Wide desktop must end with one definitive role-based typography system. ${staticInvariantNote}`
+  `The active desktop composition must retain its explicit authority marker. ${staticInvariantNote}`
 );
-const definitiveTypographyCss = panoramicCss.slice(definitiveTypographyIndex);
-const definitiveTypographyRules = parseCssRules(definitiveTypographyCss);
+const authoritativeDesktopHeader = "@media (min-width: 1440px)";
+const authoritativeDesktopHeaderIndex = css.indexOf(authoritativeDesktopHeader, authoritativeDesktopMarkerIndex);
+const authoritativeDesktopCss = extractCssBlockAt(
+  css,
+  authoritativeDesktopHeaderIndex,
+  "authoritative panoramic desktop composition"
+);
+const authoritativeDesktopRules = parseCssRules(authoritativeDesktopCss);
+
+const compactDesktopHeader = "@media (min-width: 1440px) and (max-width: 1679px)";
+const compactDesktopHeaderIndex = css.indexOf(
+  compactDesktopHeader,
+  authoritativeDesktopHeaderIndex + authoritativeDesktopHeader.length
+);
+const compactDesktopCss = extractCssBlockAt(css, compactDesktopHeaderIndex, "1440-1679 desktop adjustment");
+const compactDesktopRules = parseCssRules(compactDesktopCss);
+
+const desktopNormalizationMarker = "Desktop normalization for navigation and archive components declared above.";
+const desktopNormalizationMarkerIndex = css.indexOf(desktopNormalizationMarker);
+assert.ok(
+  desktopNormalizationMarkerIndex > authoritativeDesktopHeaderIndex,
+  `Late desktop normalization must remain explicitly separated from the authoritative composition. ${staticInvariantNote}`
+);
+const desktopNormalizationHeaderIndex = css.indexOf(authoritativeDesktopHeader, desktopNormalizationMarkerIndex);
+const desktopNormalizationCss = extractCssBlockAt(
+  css,
+  desktopNormalizationHeaderIndex,
+  "late desktop navigation and archive normalization"
+);
+const desktopNormalizationRules = parseCssRules(desktopNormalizationCss);
+
+const inactiveLegacyHeader = "@media (min-width: 1440px) and (max-width: 1439px)";
+assert.ok(
+  css.indexOf(inactiveLegacyHeader, desktopNormalizationHeaderIndex) > desktopNormalizationHeaderIndex,
+  `Superseded desktop blocks must remain mathematically inactive and must not be mistaken for the active composition. ${staticInvariantNote}`
+);
 assert.doesNotMatch(
   css,
   /-?(?:\d+(?:\.\d+)?|\.\d+)rem\b/,
@@ -106,21 +169,39 @@ assert.doesNotMatch(
   /-?(?:\d+(?:\.\d+)?|\.\d+)rem\b/,
   `Host compatibility dimensions must not depend on the Amadeus document root font size. ${staticInvariantNote}`
 );
-const assertPanoramicRule = (selector, expected, description) => {
-  assertCssRuleIn(panoramicRules, selector, expected, description);
+const assertAuthoritativeDesktopRule = (selector, expected, description) => {
+  assertCssRuleIn(authoritativeDesktopRules, selector, expected, description);
 };
-const assertDefinitiveTypographyRule = (selector, expected, description) => {
-  assertCssRuleIn(definitiveTypographyRules, selector, expected, description);
+const assertCompactDesktopRule = (selector, expected, description) => {
+  assertCssRuleIn(compactDesktopRules, selector, expected, description);
+};
+const assertDesktopNormalizationRule = (selector, expected, description) => {
+  assertCssRuleIn(desktopNormalizationRules, selector, expected, description);
 };
 assert.deepEqual(
   readdirSync(path.join(root, "apps/classroom-explorations-hub/src")).sort(),
   ["assets", "bootstrap.js", "host-compat.css", "hub.css", "runtime.js"],
   "The Hub source directory must contain one verified artwork tree, one bootstrap, one runtime, one app stylesheet, and one host stylesheet."
 );
-assert.deepEqual(readdirSync(path.join(root, "apps/classroom-explorations-hub/src/assets")), ["history"]);
+assert.deepEqual(readdirSync(path.join(root, "apps/classroom-explorations-hub/src/assets")).sort(), ["frame", "history"]);
+assert.deepEqual(
+  readdirSync(path.join(root, "apps/classroom-explorations-hub/src/assets/frame")).sort(),
+  ["bottom-left.webp", "bottom-right.webp", "middle-left.webp", "middle-right.webp", "top-left.webp", "top-right.webp"]
+);
 assert.deepEqual(
   readdirSync(path.join(root, "apps/classroom-explorations-hub/src/assets/history")).sort(),
   ["past-explorations.webp", "past-twwl.webp", "past-years.webp"]
+);
+assert.deepEqual(
+  readdirSync(path.join(root, "apps/classroom-explorations-hub/source-assets/banner-frame-originals")).sort(),
+  [
+    "BottomLeftHubBannerFrame.png",
+    "BottomRightHubBannerFrame.png",
+    "MiddleLeftHubBannerFrame.png",
+    "MiddleRightHubBannerFrame.png",
+    "TopLeftHubBannerFrame.png",
+    "TopRightHubBannerFrame.png"
+  ]
 );
 Object.values(artworkPaths).forEach((relativePath) => {
   const bytes = readFileSync(path.join(root, relativePath));
@@ -178,172 +259,186 @@ assert.doesNotMatch(
   /(?:^|,)\s*(?:html|body|#page|#masthead|#colophon)\b/m,
   `Hub presentation rules must remain scoped and must not repaint the native Amadeus shell. ${staticInvariantNote}`
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*78px\s+420px\s+304px\s+39px;[\s\S]*padding:\s*16px\s+24px\s+12px/,
-  "Wide desktop must use the approved twelve-column, four-row panoramic composition"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*minmax\(88px,\s*auto\)\s+minmax\(480px,\s*auto\)\s+minmax\(300px,\s*auto\)\s+auto;[\s\S]*gap:\s*14px;[\s\S]*padding:\s*14px\s+24px\s+20px;[\s\S]*overflow:\s*clip/,
+  "The 1920 desktop must use the expandable 88/480/300/auto twelve-column composition"
 );
-assertPanoramicRule(
+assertCompactDesktopRule(
+  ".hrv-classroom-hub .hub-museum",
+  /grid-template-rows:\s*minmax\(88px,\s*auto\)\s+minmax\(510px,\s*auto\)\s+minmax\(300px,\s*auto\)\s+auto/,
+  "The 1440-1679 adjustment must give the primary cards additional expandable height"
+);
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .hero-section",
   /grid-row:\s*1;[\s\S]*grid-column:\s*1\s*\/\s*span\s+4/,
   "The identity mast must occupy the compact upper-left region"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .site-navigation",
   /grid-row:\s*1;[\s\S]*grid-column:\s*5\s*\/\s*-1/,
   "The global Hughes Room Views menu must complete the identity rail"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .welcome-section",
   /grid-row:\s*2;[\s\S]*grid-column:\s*1\s*\/\s*span\s+6/,
   "Welcome Theater must own exactly half of the primary feature row"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .current-exploration-section",
   /grid-row:\s*2;[\s\S]*grid-column:\s*7\s*\/\s*-1/,
   "Current Exploration must own the other half of the primary feature row"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .current-twwl-section",
   /grid-row:\s*3;[\s\S]*grid-column:\s*1\s*\/\s*span\s+10;[\s\S]*margin-top:\s*0/,
   "Current TWWL must own the broad lower learning region"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .history-door-section",
   /grid-row:\s*3;[\s\S]*grid-column:\s*11\s*\/\s*-1/,
   "The three history doors must fit beside Current TWWL in one narrow lower rail"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .hub-footer",
   /grid-row:\s*4;[\s\S]*grid-column:\s*1\s*\/\s*-1/,
-  "The footer must close the compact panoramic board"
+  "Supporting footer content may continue below the opening panoramic canvas"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum > .hub-section > .museum-shell",
   /width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*margin-inline:\s*0/,
   "Nested room shells must fill their grid cells without legacy offsets"
 );
-assertPanoramicRule(
-  ".hrv-classroom-hub .hub-hero-card",
-  /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+56px;[\s\S]*min-height:\s*0;[\s\S]*border-radius:\s*18px\s+0\s+0\s+18px/,
-  "The hero must become the leading edge of one continuous orientation rail"
+assertAuthoritativeDesktopRule(
+  ".hrv-classroom-hub .hub-banner-frame-layer",
+  /position:\s*absolute;[\s\S]*z-index:\s*1;[\s\S]*inset:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*pointer-events:\s*none/,
+  "The supplied banner pieces must form pointer-free page chrome behind every card"
 );
-assertPanoramicRule(
-  ".hrv-classroom-hub .hero-museum-mark",
-  /display:\s*none/,
-  "Redundant hero detail must be visually suppressed only on the dense desktop board"
+assertAuthoritativeDesktopRule(
+  ".hrv-classroom-hub .hub-banner-frame-piece",
+  /position:\s*absolute;[\s\S]*height:\s*34\.5%;[\s\S]*opacity:\s*0\.88;[\s\S]*user-select:\s*none/,
+  "All six banner pieces must retain their transparent page-frame treatment"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .site-navigation-links",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*0\.7fr\s+1\.38fr\s+0\.68fr\s+1\.18fr\s+0\.92fr\s+1\.28fr\s+1\.08fr/,
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*0\.72fr\s+1\.35fr\s+0\.68fr\s+1\.18fr\s+0\.94fr\s+1\.25fr\s+1\.08fr/,
   "The orientation rail must expose all six global links plus the active Hub item"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .welcome-theater-card",
-  /grid-template-columns:\s*minmax\(210px,\s*0\.34fr\)\s+minmax\(0,\s*1fr\);[\s\S]*border:\s*1px\s+solid[\s\S]*background:\s*linear-gradient/,
-  "Welcome copy and video must share the six-column feature region"
+  /grid-template-columns:\s*clamp\(220px,\s*26%,\s*250px\)\s+minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*border:\s*1px\s+solid/,
+  "Welcome copy and full-width video must remain contained in a balanced two-pane card"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .welcome-screen",
-  /width:\s*100%;[\s\S]*justify-self:\s*stretch/,
+  /width:\s*100%;[\s\S]*max-height:\s*none;[\s\S]*justify-self:\s*stretch/,
   "Welcome media must use the full available theater width"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .current-exploration-card",
-  /grid-template:\s*1fr\s*\/\s*1fr;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*0/,
-  "Current Exploration must become one image-led composition rather than split dashboard cells"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(310px,\s*43%,\s*390px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*18px/,
+  "Current Exploration must be a clipped two-pane card with copy and subject media in normal flow"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
+  ".hrv-classroom-hub .current-copy",
+  /display:\s*flex;[\s\S]*width:\s*auto;[\s\S]*height:\s*auto;[\s\S]*flex-direction:\s*column;[\s\S]*background:\s*none/,
+  "Current copy must remain inside its own normal-flow pane rather than overlaying photography"
+);
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .current-visual",
-  /grid-area:\s*1\s*\/\s*1/,
-  "Current photography must own the full Current composition cell"
+  /width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*overflow:\s*hidden;[\s\S]*border-radius:\s*18px/,
+  "Current subject media must be visibly clipped by the owning figure"
 );
-assertPanoramicRule(
-  ".hrv-classroom-hub .current-copy",
-  /grid-area:\s*1\s*\/\s*1/,
-  "Current copy must overlay the image without changing DOM order"
+assertAuthoritativeDesktopRule(
+  ".hrv-classroom-hub .current-media-stage",
+  /position:\s*absolute;[\s\S]*inset:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*border-radius:\s*inherit/,
+  "Current motion must occur on an inner clipped media stage"
 );
-assertPanoramicRule(
-  ".hrv-classroom-hub .current-copy",
-  /width:\s*clamp\(400px,\s*49%,\s*450px\);[\s\S]*background:\s*linear-gradient/,
-  "Current copy must remain readable while leaving the photography dominant"
-);
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .current-twwl-card",
-  /grid-template-columns:\s*clamp\(292px,\s*16vw,\s*320px\)\s+minmax\(0,\s*1fr\);[\s\S]*min-height:\s*0/,
-  "Current TWWL must reserve a concise copy column and extend the lantern visual"
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(360px,\s*27%,\s*420px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*18px/,
+  "Current TWWL must use one expandable row with a concise copy pane and broad contained visual"
 );
-assertPanoramicRule(
+assertAuthoritativeDesktopRule(
+  ".hrv-classroom-hub .current-twwl-visual",
+  /height:\s*100%;[\s\S]*overflow:\s*hidden;[\s\S]*border-radius:\s*18px/,
+  "The TWWL subject display must be clipped by its owning visual card"
+);
+assertAuthoritativeDesktopRule(
+  ".hrv-classroom-hub .twwl-media-stage",
+  /display:\s*grid;[\s\S]*place-items:\s*center/,
+  "The TWWL media stage must own the subject display and lantern centering"
+);
+assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .history-door-grid",
   /grid-template-columns:\s*1fr;[\s\S]*grid-template-rows:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);[\s\S]*gap:\s*10px/,
-  "The history rail must contain three equal doors inside the Current TWWL row"
+  "The approved archive rail must preserve its three equal doors and 10px gaps"
+);
+assertDesktopNormalizationRule(
+  ".hrv-classroom-hub .hub-museum .history-door-grid",
+  /grid-template-columns:\s*1fr;[\s\S]*grid-template-rows:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\);[\s\S]*gap:\s*10px/,
+  "Late normalization must preserve the approved archive geometry rather than redefine it"
+);
+assertDesktopNormalizationRule(
+  ".hrv-classroom-hub .hub-museum .history-door-copy",
+  /inset:\s*0\s+4%\s+0\s+44%;[\s\S]*gap:\s*2px/,
+  "Late normalization must preserve the approved archive copy crop"
+);
+assertDesktopNormalizationRule(
+  ".hrv-classroom-hub .hub-museum .history-door-pastYears .history-door-copy",
+  /inset:\s*0\s+44%\s+0\s+4%/,
+  "The Past Years doorway must retain its approved mirrored crop"
 );
 
-const definitiveFontWeights = [...definitiveTypographyCss.matchAll(/font-weight:\s*(\d+)\s*;/g)]
+const authoritativeFontWeights = [...authoritativeDesktopCss.matchAll(/font-weight:\s*(\d+)\s*;/g)]
   .map((match) => match[1]);
 assert.deepEqual(
-  [...new Set(definitiveFontWeights)].sort(),
+  [...new Set(authoritativeFontWeights)].sort(),
   ["400", "600", "700"],
-  `The definitive desktop type system must use only real 400, 600, and 700 weights. ${staticInvariantNote}`
+  `The authoritative desktop type system must use only real 400, 600, and 700 weights. ${staticInvariantNote}`
 );
-const definitiveFontFamilies = [...definitiveTypographyCss.matchAll(/font-family:\s*([^;]+)\s*;/g)]
+const authoritativeFontFamilies = [...authoritativeDesktopCss.matchAll(/font-family:\s*([^;]+)\s*;/g)]
   .map((match) => match[1].trim());
 assert.deepEqual(
-  [...new Set(definitiveFontFamilies)].sort(),
+  [...new Set(authoritativeFontFamilies)].sort(),
   ["var(--hub-font-display)", "var(--hub-font-ui)"],
-  `The definitive desktop type system must use only the declared display and UI tokens. ${staticInvariantNote}`
+  `The authoritative desktop type system must use only the declared display and UI tokens. ${staticInvariantNote}`
 );
 
 [
-  [".hrv-classroom-hub .hub-title", /font-size:\s*clamp\(29px,\s*1\.83vw,\s*35px\);[\s\S]*font-weight:\s*700;[\s\S]*line-height:\s*1;/, "The Hub identity must remain a compact display heading"],
-  [".hrv-classroom-hub .hub-subtitle", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*400;[\s\S]*-webkit-line-clamp:\s*initial;/, "The Hub subtitle must remain readable and unclamped"],
-  [".hrv-classroom-hub .site-navigation-link", /font-size:\s*13px;[\s\S]*font-weight:\s*600;[\s\S]*line-height:\s*1\.2;/, "Global navigation must retain its readable wayfinding role"],
-  [".hrv-classroom-hub .section-kicker", /font-size:\s*10\.5px;[\s\S]*font-weight:\s*700;/, "Eyebrows must retain a consistent micro-label floor"],
-  [".hrv-classroom-hub .welcome-heading .section-title", /font-size:\s*clamp\(27px,\s*1\.67vw,\s*32px\);[\s\S]*line-height:\s*1\.02;/, "Welcome must retain a clear supporting-room heading"],
-  [".hrv-classroom-hub .current-section-title", /font-size:\s*18px;[\s\S]*line-height:\s*1\.1;/, "Current Exploration must retain its structural heading floor"],
-  [".hrv-classroom-hub .current-title", /font-size:\s*clamp\(35px,\s*2\.08vw,\s*40px\);[\s\S]*line-height:\s*0\.98;/, "The Current subject must remain the dominant exhibit title"],
-  [".hrv-classroom-hub .current-points li", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*400;[\s\S]*line-height:\s*1\.3;/, "Current learning points must retain their reading floor"],
-  [".hrv-classroom-hub .current-tags li", /font-size:\s*11px;[\s\S]*font-weight:\s*600;/, "Current tags must remain legible metadata"],
-  [".hrv-classroom-hub .hub-action", /font-size:\s*14px;[\s\S]*font-weight:\s*700;/, "The primary action must retain a strong control label"],
-  [".hrv-classroom-hub .twwl-section-title", /font-size:\s*30px;[\s\S]*line-height:\s*1\.02;/, "Current TWWL must retain a clear section heading"],
-  [".hrv-classroom-hub .twwl-title", /font-size:\s*22px;[\s\S]*line-height:\s*1\.08;/, "The TWWL story title must remain subordinate to its section heading"],
-  [".hrv-classroom-hub .preparing-display-title", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*600;/, "The lantern status must remain readable inside the expanded visual"],
-  [".hrv-classroom-hub .history-door-title", /font-size:\s*clamp\(18px,\s*1\.05vw,\s*20px\);[\s\S]*line-height:\s*1\.04;/, "History doors must retain compact but readable titles"],
-  [".hrv-classroom-hub .history-door-eyebrow", /font-size:\s*10\.5px;[\s\S]*font-weight:\s*700;/, "History-door labels must retain their micro-label floor"],
-  [".hrv-classroom-hub .footer-message", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*600;[\s\S]*line-height:\s*1\.35;/, "The footer must close the board with readable supporting type"]
+  [".hrv-classroom-hub .hub-title", /font-family:\s*var\(--hub-font-display\);[\s\S]*font-size:\s*32px;[\s\S]*font-weight:\s*700;[\s\S]*line-height:\s*0\.98;/, "The Hub identity must remain a compact personality heading"],
+  [".hrv-classroom-hub .site-navigation-link", /font-family:\s*var\(--hub-font-ui\);[\s\S]*font-size:\s*clamp\(14px,\s*0\.78vw,\s*15px\);[\s\S]*font-weight:\s*600;/, "Global navigation must retain a readable UI role"],
+  [".hrv-classroom-hub .section-kicker", /min-height:\s*28px;[\s\S]*font-family:\s*var\(--hub-font-ui\);[\s\S]*font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "Section pills must share a 13px minimum type floor and 28px height"],
+  [".hrv-classroom-hub .welcome-heading .section-title", /font-size:\s*clamp\(29px,\s*1\.62vw,\s*32px\);[\s\S]*line-height:\s*1\.08;/, "Welcome must retain a clear structural heading"],
+  [".hrv-classroom-hub .current-section-title", /font-size:\s*21px;[\s\S]*line-height:\s*1\.16;/, "Current Exploration must retain its structural heading"],
+  [".hrv-classroom-hub .current-title", /font-family:\s*var\(--hub-font-display\);[\s\S]*font-size:\s*clamp\(35px,\s*1\.9vw,\s*36px\);[\s\S]*line-height:\s*1\.01;/, "The Current subject must remain the dominant exhibit title"],
+  [".hrv-classroom-hub .current-topline > *", /min-height:\s*28px;[\s\S]*font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "Current pills must align to one 13px by 28px status row"],
+  [".hrv-classroom-hub .current-tags li", /font-size:\s*13px;[\s\S]*font-weight:\s*600;/, "Current tag pills must retain the 13px metadata floor"],
+  [".hrv-classroom-hub .current-caption", /font-size:\s*13px;[\s\S]*font-weight:\s*600;/, "Current media captions must remain inside the card at 13px"],
+  [".hrv-classroom-hub .hub-action", /min-height:\s*44px;[\s\S]*font-size:\s*15px;[\s\S]*font-weight:\s*700;/, "The primary action must retain a strong readable control label"],
+  [".hrv-classroom-hub .twwl-section-title", /font-size:\s*30px;[\s\S]*line-height:\s*1\.08;/, "Current TWWL must retain a clear structural heading"],
+  [".hrv-classroom-hub .twwl-statusline", /display:\s*flex;[\s\S]*min-height:\s*28px;[\s\S]*align-items:\s*center;[\s\S]*gap:\s*8px/, "TWWL status pills must share one explicit aligned row"],
+  [".hrv-classroom-hub .preparing-label", /font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "The TWWL state pill must retain the 13px floor"],
+  [".hrv-classroom-hub .twwl-title", /font-family:\s*var\(--hub-font-display\);[\s\S]*font-size:\s*26px;[\s\S]*line-height:\s*1\.08;/, "The TWWL story title must remain subordinate to its section heading"],
+  [".hrv-classroom-hub .preparing-display-title", /font-size:\s*16px;[\s\S]*font-weight:\s*600;/, "The lantern status must remain readable inside the expanded visual"],
+  [".hrv-classroom-hub .footer-message", /font-size:\s*14px;[\s\S]*font-weight:\s*600;[\s\S]*line-height:\s*1\.4;/, "The supporting footer must remain readable below the opening canvas"]
 ].forEach(([selector, expected, description]) => {
-  assertDefinitiveTypographyRule(selector, expected, description);
+  assertAuthoritativeDesktopRule(selector, expected, description);
 });
 
 [
-  [".hrv-classroom-hub .welcome-heading .section-summary", "Welcome summary", "14.5px", "1.45"],
-  [".hrv-classroom-hub .current-summary", "Current summary", "14px", "1.38"],
-  [".hrv-classroom-hub .twwl-summary", "Current TWWL summary", "14px", "1.42"]
-].forEach(([selector, label, fontSize, lineHeight]) => {
-  assertDefinitiveTypographyRule(
+  [".hrv-classroom-hub .welcome-heading .section-summary", "Welcome summary", "1.5"],
+  [".hrv-classroom-hub .current-summary", "Current summary", "1.4"],
+  [".hrv-classroom-hub .twwl-summary", "Current TWWL summary", "1.48"]
+].forEach(([selector, label, lineHeight]) => {
+  assertAuthoritativeDesktopRule(
     selector,
-    new RegExp(`display:\\s*block;[\\s\\S]*overflow:\\s*visible;[\\s\\S]*font-size:\\s*${fontSize.replace(".", "\\.")};[\\s\\S]*font-weight:\\s*400;[\\s\\S]*line-height:\\s*${lineHeight.replace(".", "\\.")};[\\s\\S]*-webkit-line-clamp:\\s*initial;`),
-    `${label} must remain readable and fully visible rather than line-clamped`
+    new RegExp(`display:\\s*block;[\\s\\S]*overflow:\\s*visible;[\\s\\S]*font-size:\\s*16px;[\\s\\S]*font-weight:\\s*400;[\\s\\S]*line-height:\\s*${lineHeight.replace(".", "\\.")};[\\s\\S]*-webkit-line-clamp:\\s*initial;`),
+    `${label} must remain fully visible at the 16px body floor rather than line-clamped`
   );
 });
-
-[
-  [".hrv-classroom-hub .history-dialog-close", /font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "Dialog close control"],
-  [".hrv-classroom-hub .history-dialog .gallery-header .section-kicker", /font-size:\s*11px;[\s\S]*font-weight:\s*700;/, "Dialog eyebrow"],
-  [".hrv-classroom-hub .history-dialog .gallery-title", /font-size:\s*28px;[\s\S]*line-height:\s*1\.06;/, "Dialog title"],
-  [".hrv-classroom-hub .history-dialog .gallery-search", /font-size:\s*14px;[\s\S]*font-weight:\s*400;/, "Dialog search"],
-  [".hrv-classroom-hub .history-dialog .gallery-count", /font-size:\s*11\.5px;[\s\S]*font-weight:\s*600;/, "Dialog result count"],
-  [".hrv-classroom-hub .history-dialog .collection-title", /font-size:\s*18px;[\s\S]*line-height:\s*1\.15;/, "Dialog card title"],
-  [".hrv-classroom-hub .history-dialog .collection-summary", /font-size:\s*13px;[\s\S]*font-weight:\s*400;[\s\S]*line-height:\s*1\.4;/, "Dialog card summary"],
-  [".hrv-classroom-hub .history-dialog .collection-label", /font-size:\s*10\.5px;[\s\S]*font-weight:\s*600;/, "Dialog card metadata"],
-  [".hrv-classroom-hub .history-dialog .collection-enter", /font-size:\s*12\.5px;[\s\S]*font-weight:\s*600;/, "Dialog card action"],
-  [".hrv-classroom-hub .history-dialog .archive-summary", /font-size:\s*14px;[\s\S]*font-weight:\s*400;/, "Archive summary"],
-  [".hrv-classroom-hub .history-dialog .archive-door", /font-size:\s*16px;[\s\S]*font-weight:\s*700;/, "Archive doorway"]
-].forEach(([selector, expected, role]) => {
-  assertDefinitiveTypographyRule(selector, expected, `${role} must retain its verified desktop typography floor`);
-});
 assert.doesNotMatch(
-  panoramicCss,
+  authoritativeDesktopCss,
   /\.hub-museum\s*>\s*\.(?:past-explorations-section|past-twwl-section|archive-control-section)/,
   `Historical tile walls must not be placed in the panoramic landing grid. ${staticInvariantNote}`
 );
@@ -380,7 +475,10 @@ assert.match(bootstrap, /style\.dataset\.hrvClassroomHubStyle = "app"/);
 assert.match(bootstrap, /compat\.dataset\.hrvClassroomHubStyle = "host"/);
 assert.match(bootstrap, /link\[data-hrv-review-style\]/);
 assert.match(bootstrap, /script\[data-hrv-review-runtime\]/);
-assert.match(bootstrap, /const artworkKeys = \["pastExplorations", "pastTwwl", "pastYears"\]/);
+assert.match(
+  bootstrap,
+  /const artworkKeys = \[\s*"pastExplorations",\s*"pastTwwl",\s*"pastYears",\s*"frameTopLeft",\s*"frameTopRight",\s*"frameMiddleLeft",\s*"frameMiddleRight",\s*"frameBottomLeft",\s*"frameBottomRight"\s*\]/
+);
 assert.match(bootstrap, /artwork\[key\]\?\.mediaType !== "image\/webp"/);
 assert.match(bootstrap, /fetchBytesVerified\(resolve\(artwork\[key\]\.path\), artwork\[key\]\.sha256\)/);
 assert.match(bootstrap, /URL\.createObjectURL\(new Blob\(\[bytes\], \{ type: mediaType \}\)\)/);
@@ -425,7 +523,13 @@ const runtimeAssets = {
   artwork: {
     pastExplorations: "https://assets.example/history/past-explorations.webp",
     pastTwwl: "https://assets.example/history/past-twwl.webp",
-    pastYears: "https://assets.example/history/past-years.webp"
+    pastYears: "https://assets.example/history/past-years.webp",
+    frameTopLeft: "https://assets.example/frame/top-left.webp",
+    frameTopRight: "https://assets.example/frame/top-right.webp",
+    frameMiddleLeft: "https://assets.example/frame/middle-left.webp",
+    frameMiddleRight: "https://assets.example/frame/middle-right.webp",
+    frameBottomLeft: "https://assets.example/frame/bottom-left.webp",
+    frameBottomRight: "https://assets.example/frame/bottom-right.webp"
   }
 };
 runtime.mountClassroomExplorationsHub(mount, manifest, runtimeAssets);
@@ -530,19 +634,52 @@ assert.ok(archives.closest("dialog.history-dialog"));
 const heroCard = mount.querySelector(".hub-hero-card");
 const currentCard = mount.querySelector(".current-exploration-card");
 const currentVisual = mount.querySelector(".current-visual");
+const currentMediaStage = currentVisual?.querySelector(":scope > .current-media-stage");
 const currentTwwlCard = mount.querySelector(".current-twwl-card");
 const currentTwwlVisual = mount.querySelector(".current-twwl-visual");
+const twwlMediaStage = currentTwwlVisual?.querySelector(":scope > .twwl-media-stage");
 assert.ok(heroCard?.hasAttribute("data-pointer-light"));
 assert.ok(currentCard?.hasAttribute("data-pointer-light"));
 assert.ok(currentTwwlCard?.hasAttribute("data-pointer-light"));
 assert.equal(heroCard?.hasAttribute("data-tilt"), false);
 assert.equal(currentCard?.hasAttribute("data-tilt"), false);
 assert.equal(currentTwwlCard?.hasAttribute("data-tilt"), false);
-assert.ok(currentVisual?.hasAttribute("data-tilt"));
-assert.ok(currentTwwlVisual?.hasAttribute("data-tilt"));
+assert.equal(currentVisual?.hasAttribute("data-tilt"), false);
+assert.equal(currentTwwlVisual?.hasAttribute("data-tilt"), false);
+assert.ok(currentMediaStage?.hasAttribute("data-tilt"));
+assert.ok(twwlMediaStage?.hasAttribute("data-tilt"));
+assert.ok(currentMediaStage?.querySelector(":scope > .current-atmosphere"));
+assert.ok(twwlMediaStage?.querySelector(":scope > .twwl-atmosphere"));
+assert.equal(current.querySelector(":scope > .current-atmosphere"), null);
+assert.equal(currentTwwl.querySelector(":scope > .twwl-atmosphere"), null);
+assert.deepEqual(
+  [...currentTwwl.querySelectorAll(".twwl-statusline > *")].map((item) => item.className),
+  ["content-year-badge learning-year-badge", "preparing-label"]
+);
 assert.equal(mount.querySelectorAll(".collection-card[data-tilt]").length, 0);
 assert.ok(mount.querySelector(".hero-right > .hub-compass"));
 assert.equal(mount.querySelector(".hero-identity-row .hub-compass"), null);
+
+const bannerFrameLayer = mount.querySelector(".hub-banner-frame-layer");
+assert.equal(bannerFrameLayer?.getAttribute("aria-hidden"), "true");
+assert.equal(bannerFrameLayer?.style.pointerEvents, "none");
+assert.deepEqual(
+  [...bannerFrameLayer.querySelectorAll(":scope > .hub-banner-frame-piece")].map((frame) => [
+    frame.className,
+    frame.dataset.frameKey,
+    frame.getAttribute("src"),
+    frame.getAttribute("alt"),
+    frame.draggable
+  ]),
+  [
+    ["hub-banner-frame-piece hub-banner-frame-top-left", "frameTopLeft", runtimeAssets.artwork.frameTopLeft, "", false],
+    ["hub-banner-frame-piece hub-banner-frame-top-right", "frameTopRight", runtimeAssets.artwork.frameTopRight, "", false],
+    ["hub-banner-frame-piece hub-banner-frame-middle-left", "frameMiddleLeft", runtimeAssets.artwork.frameMiddleLeft, "", false],
+    ["hub-banner-frame-piece hub-banner-frame-middle-right", "frameMiddleRight", runtimeAssets.artwork.frameMiddleRight, "", false],
+    ["hub-banner-frame-piece hub-banner-frame-bottom-left", "frameBottomLeft", runtimeAssets.artwork.frameBottomLeft, "", false],
+    ["hub-banner-frame-piece hub-banner-frame-bottom-right", "frameBottomRight", runtimeAssets.artwork.frameBottomRight, "", false]
+  ]
+);
 
 const zinnia = mount.querySelector(".current-image");
 assert.ok(zinnia);

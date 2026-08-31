@@ -20,7 +20,13 @@ const digest = async (path) => createHash("sha256").update(await readFile(path))
 const artwork = {
   pastExplorations: { path: "assets/history/past-explorations.webp", mediaType: "image/webp" },
   pastTwwl: { path: "assets/history/past-twwl.webp", mediaType: "image/webp" },
-  pastYears: { path: "assets/history/past-years.webp", mediaType: "image/webp" }
+  pastYears: { path: "assets/history/past-years.webp", mediaType: "image/webp" },
+  frameTopLeft: { path: "assets/frame/top-left.webp", mediaType: "image/webp" },
+  frameTopRight: { path: "assets/frame/top-right.webp", mediaType: "image/webp" },
+  frameMiddleLeft: { path: "assets/frame/middle-left.webp", mediaType: "image/webp" },
+  frameMiddleRight: { path: "assets/frame/middle-right.webp", mediaType: "image/webp" },
+  frameBottomLeft: { path: "assets/frame/bottom-left.webp", mediaType: "image/webp" },
+  frameBottomRight: { path: "assets/frame/bottom-right.webp", mediaType: "image/webp" }
 };
 const listFiles = async (directory, prefix = "") => {
   const files = [];

@@ -308,6 +308,7 @@ class HubController {
 
     museum.append(
       environment,
+      this.bannerFrameLayer(),
       this.hero(copy.hero),
       this.siteNavigation(),
       this.welcome(copy.welcome, manifest.current.featuredMedia),
@@ -343,6 +344,37 @@ class HubController {
     );
 
     this.root.replaceChildren(skip, museum);
+  }
+
+  bannerFrameLayer() {
+    const layer = node("div", "hub-banner-frame-layer");
+    layer.setAttribute("aria-hidden", "true");
+    layer.style.pointerEvents = "none";
+
+    const frames = [
+      ["frameTopLeft", "top", "left"],
+      ["frameTopRight", "top", "right"],
+      ["frameMiddleLeft", "middle", "left"],
+      ["frameMiddleRight", "middle", "right"],
+      ["frameBottomLeft", "bottom", "left"],
+      ["frameBottomRight", "bottom", "right"]
+    ];
+
+    for (const [key, position, side] of frames) {
+      const frame = node(
+        "img",
+        `hub-banner-frame-piece hub-banner-frame-${position}-${side}`
+      );
+      const artworkUrl = this.runtimeAssets.artwork?.[key];
+      if (artworkUrl) frame.src = artworkUrl;
+      frame.alt = "";
+      frame.decoding = "async";
+      frame.draggable = false;
+      frame.dataset.frameKey = key;
+      layer.append(frame);
+    }
+
+    return layer;
   }
 
   hero(copy) {
@@ -589,17 +621,22 @@ class HubController {
     );
 
     const visual = node("figure", "current-visual");
-    visual.dataset.tilt = "";
-    visual.append(
+    const mediaStage = node("div", "current-media-stage");
+    mediaStage.dataset.tilt = "";
+    mediaStage.append(
+      atmosphere,
       imageNode(item.image, "current-image", "eager"),
       node("span", "greenhouse-grid"),
-      node("span", "current-glass"),
+      node("span", "current-glass")
+    );
+    visual.append(
+      mediaStage,
       node("figcaption", "current-caption", "Zinnia Greenhouse • Current Exhibit")
     );
 
     card.append(copyColumn, visual);
     shell.append(card);
-    section.append(atmosphere, shell);
+    section.append(shell);
     return section;
   }
 
@@ -621,18 +658,27 @@ class HubController {
     card.dataset.pointerLight = "";
 
     const copyColumn = node("div", "current-twwl-copy");
+    const statusline = node("div", "twwl-statusline");
+    statusline.append(
+      node("span", "content-year-badge learning-year-badge", this.manifest.page.schoolYearLabel)
+    );
+    if (slot.state === "coming-soon") {
+      statusline.append(node("span", "preparing-label", "COMING SOON"));
+    }
+
     copyColumn.append(
       node("p", "section-kicker learning-kicker", copy.eyebrow),
       node("h2", "section-title twwl-section-title", copy.title),
-      node("span", "content-year-badge learning-year-badge", this.manifest.page.schoolYearLabel)
+      statusline
     );
 
     const visual = node("div", "current-twwl-visual");
-    visual.dataset.tilt = "";
+    const mediaStage = node("div", "twwl-media-stage");
+    mediaStage.dataset.tilt = "";
+    mediaStage.append(atmosphere);
 
     if (slot.state === "coming-soon") {
       copyColumn.append(
-        node("span", "preparing-label", "COMING SOON"),
         node("h3", "twwl-title", copy.comingSoonTitle),
         node("p", "twwl-summary", copy.comingSoonBody)
       );
@@ -643,7 +689,7 @@ class HubController {
         node("p", "preparing-display-title", "The next learning display is being prepared"),
         node("span", "preparing-display-line")
       );
-      visual.append(preparing);
+      mediaStage.append(preparing);
     } else {
       const item = slot.content;
       section.dataset.hrvContentId = item.id;
@@ -656,7 +702,8 @@ class HubController {
 
       if (item.image) {
         visual.classList.add(subjectClass(item));
-        visual.append(
+        mediaStage.classList.add(subjectClass(item));
+        mediaStage.append(
           imageNode(item.image, "current-twwl-image"),
           node("span", "twwl-glass"),
           node("span", "twwl-visual-label", "CURRENT LEARNING")
@@ -664,9 +711,11 @@ class HubController {
       }
     }
 
+    visual.append(mediaStage);
+
     card.append(copyColumn, visual);
     shell.append(card);
-    section.append(atmosphere, shell);
+    section.append(shell);
     return section;
   }
 

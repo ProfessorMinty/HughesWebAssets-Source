@@ -119,7 +119,17 @@
         throw new Error("Unsupported publication contract.");
       }
 
-      const artworkKeys = ["pastExplorations", "pastTwwl", "pastYears"];
+      const artworkKeys = [
+        "pastExplorations",
+        "pastTwwl",
+        "pastYears",
+        "frameTopLeft",
+        "frameTopRight",
+        "frameMiddleLeft",
+        "frameMiddleRight",
+        "frameBottomLeft",
+        "frameBottomRight"
+      ];
       const artwork = publication.runtime.artwork;
       if (
         !artwork ||
