@@ -7,13 +7,13 @@ This directory contains the Edublogs doorway blocks for the review page:
 
 Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Approved desktop immutable publication
+## Current desktop immutable publication
 
 ```text
-Asset commit:       7f2583fec8a357eaab6557abeca261aa592cd58f
-Source revision:    b7fd2a67297513f5e617d00d9d457df63eb76ac9
-Runtime version:    2026.08.30.6
-Publication:        pub-2026-08-30-006
+Asset commit:       ea8981f4792130d5e1666e80f64cd36db184f7fd
+Source revision:    7f595de4c2a1c752b83d43004999ce518987f1b2
+Runtime version:    2026.08.30.7
+Publication:        pub-2026-08-30-007
 Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
 Rollback target:    pub-2026-08-14-005
 ```
@@ -24,8 +24,8 @@ The active delivery chain is:
 
 ```text
 page 2589 doorway
-  -> releases/classroom-explorations-hub/runtime/2026.08.30.6/bootstrap.js
-  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-006/publication.json
+  -> releases/classroom-explorations-hub/runtime/2026.08.30.7/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-007/publication.json
   -> verified runtime.js
   -> verified hub.css
   -> verified host-compat.css
@@ -37,19 +37,21 @@ page 2589 doorway
 
 There is no mutable branch URL, review bootstrap, alternate runtime, split application stylesheet set, or nested `@import` in this doorway.
 
-## Approved composition acceptance evidence
+## Composition and typography acceptance evidence
 
-The exact asset commit passed push run `33340105543` and pull-request run `33340107915`. All ten immutable jsDelivr GETs returned HTTP `200`, and the remote bytes and SHA-256 digests matched the local bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, three artwork files, publication, and content manifest.
+The exact asset commit passed push run `33344265585` and pull-request run `33344267557`. All ten immutable jsDelivr GETs returned HTTP `200`, and the remote bytes and SHA-256 digests matched the local bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, three artwork files, publication, and content manifest.
 
 The immutable CDN publication was exercised in a real browser at an exact `1920×911` viewport with real external media. The supplied stitched annotation was used as a relationship map rather than a scale drawing. Acceptance included:
 
 - a coherent `78px` identity/global-menu rail with the six requested site destinations and an active Classroom Explorations state;
 - equal `929×420px` Welcome/video and Current Exploration primary cards separated by a `14px` gutter;
 - a substantial `653×367px` Welcome video with its native `16:9` aspect ratio, integrated into the Welcome card rather than presented as a thumbnail;
-- a broad `1558×312px` Current TWWL room below the primary row;
-- exactly one `300×151px` Past Explorations door and one `300×151px` Past TWWL door beside Current TWWL;
-- a `300×120px` Past Years door beginning at `y=868`, making it the first intentional-scroll item while all main content remains visible within the `911px` canvas;
-- a document height of `1053px`, limiting the secondary continuation to `142px` of vertical scrolling;
+- a broad `1558×304px` Current TWWL room below the primary row, including a `1196×219px` lantern visual extended leftward across the available canvas;
+- exactly three equal `300×95px` artwork-backed doors for Past Explorations, Past TWWL, and Past Years in the right rail;
+- a four-row desktop board with a `39px` footer and a document height of exactly `911px`, keeping the entire primary Hub visible without vertical or horizontal overflow;
+- a full-page desktop typography system using a deterministic Georgia/Cambria display stack and a system-UI reading stack, with only real `400`, `600`, and `700` weights;
+- readable role floors across the identity rail, navigation, Welcome, Current Exploration, Current TWWL, history doors, dialogs, metadata, controls, and footer, with no visible text below `10.5px` at the verified viewport;
+- fully visible Welcome, Current Exploration, and Current TWWL summaries rather than accidental line clamps;
 - real Zinnia photography and all three teacher-approved history-button images with nonzero natural dimensions;
 - no emoji media substitutions;
 - one application style and one host style;
