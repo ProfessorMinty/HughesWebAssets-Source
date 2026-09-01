@@ -45,7 +45,7 @@ assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3e
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
 assert.equal(sha256(bootstrapPath), "fe7015cabad35b3a3442ac9787185a2b63fee9890a4e2fde431a1ce06e817496");
 assert.equal(sha256(runtimePath), "2b7bde132b7afd2646d9952e199452826fc5c8029b0eec617d65e75361be59f8");
-assert.equal(sha256(cssPath), "ce247f2f7ae13c0d5456231dde685946d6f4d595bade6c2f5faedd854c41d3be");
+assert.equal(sha256(cssPath), "23df5b47f8469011818d0c01856d1bf7ec4775050c3b77617745f96eb3a355ba");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
@@ -455,6 +455,16 @@ assert.match(runtimeText, /if \(animationFrame\) cancelAnimationFrame\(animation
 assert.match(css, /\.hub-section:not\(\.is-in-view\)[\s\S]*animation-play-state:\s*paused/);
 assert.match(css, /@keyframes hub-stars-drift-a/);
 assert.match(css, /@keyframes hub-stars-drift-b/);
+assert.match(
+  css,
+  /\.starfield-one\s*\{[\s\S]*?animation:\s*hub-stars-drift-a\s+34s\s+ease-in-out\s+infinite\s+alternate;/,
+  "The primary star field must reverse from its exact endpoint instead of snapping to its origin"
+);
+assert.match(
+  css,
+  /\.starfield-two\s*\{[\s\S]*?animation:\s*hub-stars-drift-b\s+42s\s+ease-in-out\s+infinite\s+alternate-reverse;/,
+  "The reversed secondary star field must preserve endpoint continuity across iterations"
+);
 assert.match(css, /@keyframes hub-compass-orbit/);
 assert.match(css, /@keyframes hub-screen-glint/);
 assert.match(css, /@keyframes hub-glass-glint/);

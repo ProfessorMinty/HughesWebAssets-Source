@@ -128,7 +128,7 @@
     radial-gradient(circle at 67% 8%, #ffffff 0 1px, transparent 1.5px),
     radial-gradient(circle at 84% 24%, #bde9ff 0 1px, transparent 1.6px);
   background-size: 180px 160px, 230px 190px, 270px 200px, 320px 250px;
-  animation: hub-stars-drift-a 34s linear infinite;
+  animation: hub-stars-drift-a 34s ease-in-out infinite alternate;
 }
 
 .hrv-classroom-hub .starfield-two {
@@ -138,7 +138,7 @@
     radial-gradient(circle at 91% 44%, rgba(200, 183, 255, 0.9) 0 1px, transparent 1.7px);
   background-size: 210px 240px, 290px 220px, 360px 310px;
   opacity: 0.3;
-  animation: hub-stars-drift-b 42s linear infinite reverse;
+  animation: hub-stars-drift-b 42s ease-in-out infinite alternate-reverse;
 }
 
 .hrv-classroom-hub .light-one {
