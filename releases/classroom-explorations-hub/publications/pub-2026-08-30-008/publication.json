@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "publicationId": "pub-2026-08-30-008",
+  "pageId": "hrv-page:classroom-explorations",
+  "pageType": "classroom-explorations-hub",
+  "sourceRevision": "a36627dc20d9408b825ae80efbe2b289df550e6c",
+  "previousKnownGoodPublication": "pub-2026-08-14-005",
+  "runtime": {
+    "version": "2026.08.30.8",
+    "runtimeSchemaVersion": "1.0",
+    "bootstrap": {
+      "path": "../../runtime/2026.08.30.8/bootstrap.js",
+      "sha256": "fe7015cabad35b3a3442ac9787185a2b63fee9890a4e2fde431a1ce06e817496"
+    },
+    "script": {
+      "path": "../../runtime/2026.08.30.8/runtime.js",
+      "sha256": "2b7bde132b7afd2646d9952e199452826fc5c8029b0eec617d65e75361be59f8"
+    },
+    "style": {
+      "path": "../../runtime/2026.08.30.8/hub.css",
+      "sha256": "ce247f2f7ae13c0d5456231dde685946d6f4d595bade6c2f5faedd854c41d3be"
+    },
+    "hostCompat": {
+      "path": "../../runtime/2026.08.30.8/host-compat.css",
+      "sha256": "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300"
+    },
+    "artwork": {
+      "pastExplorations": {
+        "path": "../../runtime/2026.08.30.8/assets/history/past-explorations.webp",
+        "sha256": "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
+        "mediaType": "image/webp"
+      },
+      "pastTwwl": {
+        "path": "../../runtime/2026.08.30.8/assets/history/past-twwl.webp",
+        "sha256": "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
+        "mediaType": "image/webp"
+      },
+      "pastYears": {
+        "path": "../../runtime/2026.08.30.8/assets/history/past-years.webp",
+        "sha256": "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+        "mediaType": "image/webp"
+      },
+      "frameTopLeft": {
+        "path": "../../runtime/2026.08.30.8/assets/frame/top-left.webp",
+        "sha256": "7a7a9cebcad631d3287211f8e7529e301cdaf9d70de55cd21a64fc505ead7c54",
+        "mediaType": "image/webp"
+      },
+      "frameTopRight": {
+        "path": "../../runtime/2026.08.30.8/assets/frame/top-right.webp",
+        "sha256": "c74cee00ba8504186647f8641126accabd0a2fcc8a832d9e0ffd6e017c79ba11",
+        "mediaType": "image/webp"
+      },
+      "frameMiddleLeft": {
+        "path": "../../runtime/2026.08.30.8/assets/frame/middle-left.webp",
+        "sha256": "81b0ee9ee9e93687ee1aaffb214feca1d31de986751318405b29f258eff565b7",
+        "mediaType": "image/webp"
+      },
+      "frameMiddleRight": {
+        "path": "../../runtime/2026.08.30.8/assets/frame/middle-right.webp",
+        "sha256": "ec015b8e4f98f0eca9d48254b6b719e3826ea8927a78891151627378ce13c889",
+        "mediaType": "image/webp"
+      },
+      "frameBottomLeft": {
+        "path": "../../runtime/2026.08.30.8/assets/frame/bottom-left.webp",
+        "sha256": "4c41de2d714d324e565ab779fcd8e9c80e9ae181d654a95380ecfa3deed248b6",
+        "mediaType": "image/webp"
+      },
+      "frameBottomRight": {
+        "path": "../../runtime/2026.08.30.8/assets/frame/bottom-right.webp",
+        "sha256": "ad4450dba040a20a393fd026d00df644faed9be86e8e265ce730ee481ae91074",
+        "mediaType": "image/webp"
+      }
+    }
+  },
+  "content": {
+    "snapshotId": "sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b",
+    "runtimeSchemaVersion": "1.0",
+    "manifest": {
+      "path": "../../content/46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b/manifest.json",
+      "sha256": "99f92a626f362b37fea48a358ae786ac3a980d4a877823913f790c1080d4a054"
+    }
+  }
+}
