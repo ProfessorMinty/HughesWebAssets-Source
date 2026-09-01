@@ -59,7 +59,7 @@ The immutable CDN publication was exercised in a real browser at an exact `1920�
 - real Zinnia photography and all three teacher-approved history-button images with nonzero natural dimensions;
 - all six supplied frame pieces loaded at `362×1086` natural dimensions and stitched as contained page chrome;
 - below `1440px`, all six frame pieces remained absolutely positioned page chrome at the left and right edges instead of entering document flow;
-- the three archive doors remained equal at every responsive checkpoint: approximately `355×177.5px` in the `390px` one-column phone layout, `228.3×114.2px` at `768px`, `299×149.5px` at the `980px` wide-layout phone/narrow-browser case, and `418.7×209.3px` at `1366px`;
+- the three archive doors remained equal at every responsive checkpoint in the immutable CDN harness: approximately `370×185px` in the `390px` one-column phone layout, `233.3×116.7px` at `768px`, `304×152px` at the `980px` wide-layout phone/narrow-browser case, and `418.7×209.3px` at `1366px`;
 - phone, tablet, wide-layout mobile, and narrowed desktop geometry passed at `390`, `719`, `720`, `721`, `768`, `980`, `1024`, `1179`, `1180`, `1181`, `1330`, `1331`, `1366`, `1439`, `1440`, and `1920px`;
 - a live `1920→1366→980→768→390→1920` resize round trip retained absolute frame positioning, equal archive-door heights, and zero horizontal overflow at every step;
 - no emoji media substitutions;
