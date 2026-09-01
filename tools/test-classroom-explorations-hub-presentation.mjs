@@ -45,7 +45,7 @@ assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3e
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
 assert.equal(sha256(bootstrapPath), "fe7015cabad35b3a3442ac9787185a2b63fee9890a4e2fde431a1ce06e817496");
 assert.equal(sha256(runtimePath), "2b7bde132b7afd2646d9952e199452826fc5c8029b0eec617d65e75361be59f8");
-assert.equal(sha256(cssPath), "23df5b47f8469011818d0c01856d1bf7ec4775050c3b77617745f96eb3a355ba");
+assert.equal(sha256(cssPath), "e32ba48fe6774d2fc1924be1ce15673dd97c54a75bb99b3b266b126af0bb2bc7");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
@@ -154,6 +154,45 @@ const desktopNormalizationCss = extractCssBlockAt(
 );
 const desktopNormalizationRules = parseCssRules(desktopNormalizationCss);
 
+const responsiveFrameMarker = "Responsive frame containment.";
+const responsiveFrameMarkerIndex = css.indexOf(responsiveFrameMarker);
+assert.ok(
+  responsiveFrameMarkerIndex > desktopNormalizationHeaderIndex,
+  `Responsive frame containment must remain a late-cascade correction. ${staticInvariantNote}`
+);
+const responsiveFrameHeader = "@media (max-width: 1439px)";
+const responsiveFrameHeaderIndex = css.indexOf(responsiveFrameHeader, responsiveFrameMarkerIndex);
+const responsiveFrameCss = extractCssBlockAt(
+  css,
+  responsiveFrameHeaderIndex,
+  "sub-1440 responsive frame containment"
+);
+const responsiveFrameRules = parseCssRules(responsiveFrameCss);
+
+const responsiveTabletHeader = "@media (max-width: 1180px)";
+const responsiveTabletHeaderIndex = css.indexOf(
+  responsiveTabletHeader,
+  responsiveFrameHeaderIndex + responsiveFrameHeader.length
+);
+const responsiveTabletCss = extractCssBlockAt(
+  css,
+  responsiveTabletHeaderIndex,
+  "sub-1181 responsive frame refinement"
+);
+const responsiveTabletRules = parseCssRules(responsiveTabletCss);
+
+const responsiveMobileHeader = "@media (max-width: 720px)";
+const responsiveMobileHeaderIndex = css.indexOf(
+  responsiveMobileHeader,
+  responsiveTabletHeaderIndex + responsiveTabletHeader.length
+);
+const responsiveMobileCss = extractCssBlockAt(
+  css,
+  responsiveMobileHeaderIndex,
+  "sub-721 responsive frame and archive refinement"
+);
+const responsiveMobileRules = parseCssRules(responsiveMobileCss);
+
 const inactiveLegacyHeader = "@media (min-width: 1440px) and (max-width: 1439px)";
 assert.ok(
   css.indexOf(inactiveLegacyHeader, desktopNormalizationHeaderIndex) > desktopNormalizationHeaderIndex,
@@ -177,6 +216,15 @@ const assertCompactDesktopRule = (selector, expected, description) => {
 };
 const assertDesktopNormalizationRule = (selector, expected, description) => {
   assertCssRuleIn(desktopNormalizationRules, selector, expected, description);
+};
+const assertResponsiveFrameRule = (selector, expected, description) => {
+  assertCssRuleIn(responsiveFrameRules, selector, expected, description);
+};
+const assertResponsiveTabletRule = (selector, expected, description) => {
+  assertCssRuleIn(responsiveTabletRules, selector, expected, description);
+};
+const assertResponsiveMobileRule = (selector, expected, description) => {
+  assertCssRuleIn(responsiveMobileRules, selector, expected, description);
 };
 assert.deepEqual(
   readdirSync(path.join(root, "apps/classroom-explorations-hub/src")).sort(),
@@ -388,6 +436,74 @@ assertDesktopNormalizationRule(
   ".hrv-classroom-hub .hub-museum .history-door-pastYears .history-door-copy",
   /inset:\s*0\s+44%\s+0\s+4%/,
   "The Past Years doorway must retain its approved mirrored crop"
+);
+assertResponsiveFrameRule(
+  ".hrv-classroom-hub .hub-banner-frame-layer",
+  /position:\s*absolute;[\s\S]*z-index:\s*1;[\s\S]*inset:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*pointer-events:\s*none/,
+  "Sub-1440 banner artwork must remain page chrome instead of entering document flow"
+);
+assertResponsiveFrameRule(
+  ".hrv-classroom-hub .hub-banner-frame-piece",
+  /position:\s*absolute;[\s\S]*width:\s*clamp\(62px,\s*7\.5vw,\s*108px\);[\s\S]*max-width:\s*none;[\s\S]*height:\s*auto/,
+  "Sub-1440 frame pieces must keep a bounded natural aspect ratio"
+);
+[
+  ".hrv-classroom-hub .hub-banner-frame-top-left",
+  ".hrv-classroom-hub .hub-banner-frame-middle-left",
+  ".hrv-classroom-hub .hub-banner-frame-bottom-left"
+].forEach((selector) => {
+  assertResponsiveFrameRule(
+    selector,
+    /left:\s*clamp\(-34px,\s*-2\.1vw,\s*-16px\)/,
+    `${selector} must remain attached to the left edge below 1440px`
+  );
+});
+[
+  ".hrv-classroom-hub .hub-banner-frame-top-right",
+  ".hrv-classroom-hub .hub-banner-frame-middle-right",
+  ".hrv-classroom-hub .hub-banner-frame-bottom-right"
+].forEach((selector) => {
+  assertResponsiveFrameRule(
+    selector,
+    /right:\s*clamp\(-34px,\s*-2\.1vw,\s*-16px\)/,
+    `${selector} must remain attached to the right edge below 1440px`
+  );
+});
+[
+  ".hrv-classroom-hub .hub-museum > .hub-section",
+  ".hrv-classroom-hub .hub-museum > .site-navigation",
+  ".hrv-classroom-hub .hub-museum > .hub-footer"
+].forEach((selector) => {
+  assertResponsiveFrameRule(
+    selector,
+    /position:\s*relative;[\s\S]*z-index:\s*2/,
+    `${selector} must remain above the responsive frame artwork`
+  );
+});
+assertResponsiveFrameRule(
+  ".hrv-classroom-hub .history-door",
+  /width:\s*100%;[\s\S]*height:\s*auto;[\s\S]*aspect-ratio:\s*2\s*\/\s*1/,
+  "The responsive archive doors must share one geometry"
+);
+assertResponsiveFrameRule(
+  ".hrv-classroom-hub .history-door-pastYears",
+  /width:\s*100%;[\s\S]*height:\s*auto;[\s\S]*aspect-ratio:\s*2\s*\/\s*1/,
+  "Past Years must be the same responsive height as the other archive doors"
+);
+assertResponsiveTabletRule(
+  ".hrv-classroom-hub .hub-banner-frame-piece",
+  /width:\s*clamp\(54px,\s*7vw,\s*76px\);[\s\S]*opacity:\s*0\.64/,
+  "Tablet and narrowed-window frame art must scale down without entering flow"
+);
+assertResponsiveMobileRule(
+  ".hrv-classroom-hub .hub-banner-frame-piece",
+  /width:\s*clamp\(42px,\s*12vw,\s*58px\);[\s\S]*opacity:\s*0\.58/,
+  "True-mobile frame art must remain a restrained side accent"
+);
+assertResponsiveMobileRule(
+  ".hrv-classroom-hub .history-door-grid",
+  /grid-template-columns:\s*1fr/,
+  "True-mobile archive doors must share one full-width column"
 );
 
 const authoritativeFontWeights = [...authoritativeDesktopCss.matchAll(/font-weight:\s*(\d+)\s*;/g)]
