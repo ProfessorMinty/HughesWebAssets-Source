@@ -1,4 +1,4 @@
-# Classroom Explorations Hub approved desktop doorway
+# Classroom Explorations Hub approved responsive doorway
 
 This directory contains the Edublogs doorway blocks for the review page:
 
@@ -7,15 +7,15 @@ This directory contains the Edublogs doorway blocks for the review page:
 
 Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Current desktop immutable publication
+## Current responsive immutable publication
 
 ```text
-Asset commit:       b353fb98fcf76ef2f6e2ad5771b52012c8068ba3
-Source revision:    a36627dc20d9408b825ae80efbe2b289df550e6c
-Runtime version:    2026.08.30.8
-Publication:        pub-2026-08-30-008
+Asset commit:       b372871d9ff882eed37260da8a98c8c85a861363
+Source revision:    1379f289911c804b105d3761d44f56a02a607a3f
+Runtime version:    2026.08.31.2
+Publication:        pub-2026-08-31-002
 Content snapshot:   sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b
-Rollback target:    pub-2026-08-14-005
+Rollback target:    pub-2026-08-30-008
 ```
 
 The doorway loads one SRI-protected canonical bootstrap from the exact asset commit. The bootstrap fetches the immutable publication, verifies the SHA-256 digest of the runtime, one application stylesheet, the host-compatibility stylesheet, the projected content manifest, three archive-button images, and all six banner-frame images before mounting the application.
@@ -24,8 +24,8 @@ The active delivery chain is:
 
 ```text
 page 2589 doorway
-  -> releases/classroom-explorations-hub/runtime/2026.08.30.8/bootstrap.js
-  -> releases/classroom-explorations-hub/publications/pub-2026-08-30-008/publication.json
+  -> releases/classroom-explorations-hub/runtime/2026.08.31.2/bootstrap.js
+  -> releases/classroom-explorations-hub/publications/pub-2026-08-31-002/publication.json
   -> verified runtime.js
   -> verified hub.css
   -> verified host-compat.css
@@ -42,7 +42,7 @@ There is no mutable branch URL, review bootstrap, alternate runtime, split appli
 
 ## Composition and typography acceptance evidence
 
-The exact asset commit passed push run `33355650550` and pull-request run `33355654612`. All sixteen immutable jsDelivr GETs returned HTTP `200`, and the remote bytes and SHA-256 digests matched the local bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, three archive-button images, six banner-frame images, publication, and content manifest.
+The exact asset commit passed push run `33465446656` and pull-request run `33465450144`. All sixteen immutable jsDelivr GETs returned HTTP `200`, and the remote bytes and SHA-256 digests matched the local bootstrap, runtime, application stylesheet, host stylesheet, runtime release record, three archive-button images, six banner-frame images, publication, and content manifest.
 
 The immutable CDN publication was exercised in a real browser at an exact `1920×911` viewport with real external media. The supplied stitched annotation was used as a relationship map rather than a scale drawing. Acceptance included:
 
@@ -58,6 +58,10 @@ The immutable CDN publication was exercised in a real browser at an exact `1920�
 - a Current copy pane with equal `442px` client and scroll heights, keeping the title, points, tags, and call to action inside the card;
 - real Zinnia photography and all three teacher-approved history-button images with nonzero natural dimensions;
 - all six supplied frame pieces loaded at `362×1086` natural dimensions and stitched as contained page chrome;
+- below `1440px`, all six frame pieces remained absolutely positioned page chrome at the left and right edges instead of entering document flow;
+- the three archive doors remained equal at every responsive checkpoint: approximately `355×177.5px` in the `390px` one-column phone layout, `228.3×114.2px` at `768px`, `299×149.5px` at the `980px` wide-layout phone/narrow-browser case, and `418.7×209.3px` at `1366px`;
+- phone, tablet, wide-layout mobile, and narrowed desktop geometry passed at `390`, `719`, `720`, `721`, `768`, `980`, `1024`, `1179`, `1180`, `1181`, `1330`, `1331`, `1366`, `1439`, `1440`, and `1920px`;
+- a live `1920→1366→980→768→390→1920` resize round trip retained absolute frame positioning, equal archive-door heights, and zero horizontal overflow at every step;
 - no emoji media substitutions;
 - one application style and one host style;
 - no alternate review assets;
@@ -68,11 +72,14 @@ The immutable CDN publication was exercised in a real browser at an exact `1920�
 - all six global URLs verified exactly;
 - all three archive dialogs opened and closed successfully, restored focus to their launch button, and retained the canonical `3/5/1` child-link sets;
 - gallery filtering exercised successfully inside the archive dialogs;
-- the palette and mobile visual system left outside this release's redesign scope.
+- the star fields reversed continuously at their exact endpoints, preserving the existing motion architecture without a visible loop reset;
+- the palette and any broader mobile visual redesign remained outside this targeted responsive repair.
 
 At `1440×911`, the same hierarchy remains contained and readable: both primary cards are approximately `681.5×516.4px`, Current copy has equal `478px` client and scroll heights, and the page intentionally uses about `90px` of vertical continuation instead of shrinking or clipping the exhibits.
 
 Runtime `2026.08.30.7` and publication `pub-2026-08-30-007` remain immutable rejected visual evidence. They are not the rollback target and were not modified or reused by this release.
+
+Runtime `2026.08.31.1` and publication `pub-2026-08-31-001` remain immutable intermediate evidence for the star-loop repair. The responsive `.2` publication supersedes them for the review doorway; neither intermediate artifact is the rollback target.
 
 ## Editor update boundary
 
