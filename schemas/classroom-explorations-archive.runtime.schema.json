@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hughes-room-views.invalid/schemas/classroom-explorations-archive.runtime.schema.json",
+  "title": "Classroom Explorations archive browser runtime manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["runtimeSchemaVersion", "snapshotId", "page", "collections", "stats"],
+  "properties": {
+    "runtimeSchemaVersion": { "const": "1.0" },
+    "snapshotId": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "href", "hubHref", "archiveId", "schoolYear", "schoolYearLabel", "copy"],
+      "properties": {
+        "id": { "const": "hrv-page:classroom-explorations-archive-2025-2026" },
+        "type": { "const": "classroom-explorations-archive" },
+        "href": { "type": "string", "pattern": "^https://" },
+        "hubHref": { "type": "string", "pattern": "^https://" },
+        "archiveId": { "const": "hub-archive:2025-2026" },
+        "schoolYear": { "const": "2025-2026" },
+        "schoolYearLabel": { "type": "string", "minLength": 1 },
+        "copy": { "type": "object" }
+      }
+    },
+    "collections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explorations", "twwl"],
+      "properties": {
+        "explorations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "schoolYear", "schoolYearLabel", "title", "summary", "href", "image", "learningPoints", "tags"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+              "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+              "schoolYearLabel": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "summary": { "type": "string", "minLength": 1 },
+              "href": { "type": "string", "pattern": "^https://" },
+              "image": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["src", "alt"],
+                "properties": {
+                  "src": { "type": "string", "pattern": "^https://" },
+                  "alt": { "type": "string", "minLength": 1 }
+                }
+              },
+              "learningPoints": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+              "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+            }
+          }
+        },
+        "twwl": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "schoolYear", "schoolYearLabel", "title", "summary", "href", "image", "tags"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+              "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+              "schoolYearLabel": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "summary": { "type": "string", "minLength": 1 },
+              "href": { "type": "string", "pattern": "^https://" },
+              "image": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["src", "alt"],
+                "properties": {
+                  "src": { "type": "string", "pattern": "^https://" },
+                  "alt": { "type": "string", "minLength": 1 }
+                }
+              },
+              "tags": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+            }
+          }
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["explorations", "twwl", "total"],
+      "properties": {
+        "explorations": { "type": "integer", "minimum": 0 },
+        "twwl": { "type": "integer", "minimum": 0 },
+        "total": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}
