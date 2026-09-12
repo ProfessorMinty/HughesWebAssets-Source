@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "1.0",
+  "observedOn": "2026-09-12",
+  "status": "immutable-cdn-doorway-browser-verified-not-edublogs-installed",
+  "browser": {
+    "surface": "Codex In-app Browser",
+    "profileIsolation": "Isolated in-app browser; no Chrome profile was used.",
+    "harnessUrl": "http://127.0.0.1:4177/",
+    "harnessCommand": "npm run preview:archive:doorway",
+    "consoleErrorCount": 0,
+    "consoleWarningCount": 0,
+    "viewportOverrideResetAfterVerification": true
+  },
+  "release": {
+    "repository": "ProfessorMinty/HughesWebAssets-Source",
+    "assetCommit": "9deaf1723109c5259b5813d271a23d336d68559d",
+    "sourceRevision": "1ab0b4dfa9c339e58583c454816193e5247f6c1c",
+    "runtimeVersion": "2026.09.12.1",
+    "publicationId": "pub-2026-09-12-001",
+    "bootstrapUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@9deaf1723109c5259b5813d271a23d336d68559d/releases/classroom-explorations-archive/runtime/2026.09.12.1/bootstrap.js",
+    "publicationUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@9deaf1723109c5259b5813d271a23d336d68559d/releases/classroom-explorations-archive/publications/pub-2026-09-12-001/publication.json",
+    "bootstrapIntegrity": "sha256-ReDjv/QalAFhiBB79JidFRP9rUUiFCrl9JeKY0JqByY=",
+    "bootstrapCrossOrigin": "anonymous"
+  },
+  "desktop1920x911": {
+    "state": "ready",
+    "viewport": {
+      "width": 1920,
+      "height": 911
+    },
+    "documentClientWidth": 1905,
+    "documentScrollWidth": 1905,
+    "documentScrollHeight": 1161,
+    "horizontalOverflowBeyondViewport": false,
+    "h1Count": 1,
+    "navigationLinkCount": 7,
+    "explorationCardCount": 3,
+    "learningCardCount": 5,
+    "returnControlCount": 2,
+    "imageCount": 15,
+    "loadedImageCount": 15,
+    "applicationStyleCount": 2,
+    "readyClassPresent": true,
+    "headingSizes": [
+      {
+        "level": 1,
+        "text": "Classroom Explorations: 2025–2026 Archive",
+        "computedFontSize": "56px"
+      },
+      {
+        "level": 2,
+        "text": "Past Explorations",
+        "computedFontSize": "34.56px"
+      },
+      {
+        "level": 2,
+        "text": "Past “This Week We Learned”",
+        "computedFontSize": "34.56px"
+      }
+    ]
+  },
+  "responsive": [
+    {
+      "label": "narrow-desktop",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "state": "ready",
+      "documentScrollWidth": 1351,
+      "horizontalOverflowBeyondViewport": false,
+      "navigationRowCount": 1,
+      "explorationColumns": 3,
+      "learningColumns": 5,
+      "cardContainmentFailures": []
+    },
+    {
+      "label": "tablet",
+      "viewport": {
+        "width": 980,
+        "height": 911
+      },
+      "state": "ready",
+      "documentScrollWidth": 965,
+      "horizontalOverflowBeyondViewport": false,
+      "navigationRowCount": 1,
+      "explorationColumns": 3,
+      "learningColumns": 3,
+      "cardContainmentFailures": []
+    },
+    {
+      "label": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "state": "ready",
+      "documentScrollWidth": 375,
+      "horizontalOverflowBeyondViewport": false,
+      "navigationRowCount": 4,
+      "explorationColumns": 1,
+      "learningColumns": 1,
+      "cardContainmentFailures": []
+    }
+  ],
+  "interaction": {
+    "explorationFilterQuery": "Butterflies",
+    "filteredVisibleTitles": [
+      "Butterflies in the Classroom"
+    ],
+    "filteredCountText": "1 exhibit on display",
+    "resetVisibleCount": 3,
+    "resetCountText": "3 exhibits on display"
+  },
+  "boundary": "This is real-browser proof of the generated doorway loading the immutable CDN release. It is not proof that Page 2627 has been edited or that the release is installed on Edublogs."
+}

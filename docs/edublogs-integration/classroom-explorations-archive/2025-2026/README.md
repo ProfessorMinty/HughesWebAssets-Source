@@ -10,26 +10,35 @@ The approved archive application stays in the repository. The HTML field supplie
 
 ## Current state
 
-`HTML-BOX.html`, `CSS-BOX.css`, and `JAVASCRIPT-BOX.template.js` are source templates. A final `JAVASCRIPT-BOX.js` and `RELEASE-PIN.json` are deliberately absent until the immutable archive release exists in a committed Git object. Never paste the template JavaScript and never replace its tokens by hand.
+The final repository handoff exists and is pinned to one immutable release:
 
-After the release asset commit is known, generate the exact doorway with:
+- Asset commit: `9deaf1723109c5259b5813d271a23d336d68559d`
+- Runtime: `2026.09.12.1`
+- Publication: `pub-2026-09-12-001`
+- Source revision: `1ab0b4dfa9c339e58583c454816193e5247f6c1c`
+- Previous known-good repository publication: `null` (first repository-native archive baseline)
+- Bootstrap SRI: `sha256-ReDjv/QalAFhiBB79JidFRP9rUUiFCrl9JeKY0JqByY=`
+
+`JAVASCRIPT-BOX.js` and `RELEASE-PIN.json` were generated from the exact committed release bytes. The complete 14-file CDN GET-and-hash proof is in `evidence/classroom-explorations-archive/release-2026-09-12/cdn-byte-verification.json`. Never paste `JAVASCRIPT-BOX.template.js`, replace its tokens by hand, or mix doorway files from different generations.
+
+The exact regeneration command is:
 
 ```text
-node tools/generate-classroom-explorations-archive-doorway.mjs <runtime-version> <publication-id> <40-character-asset-commit>
+node tools/generate-classroom-explorations-archive-doorway.mjs 2026.09.12.1 pub-2026-09-12-001 9deaf1723109c5259b5813d271a23d336d68559d
 ```
 
-The generator refuses mutable refs, abbreviated commits, missing commit objects, release files that differ from their committed bytes, unexpected publication contracts, and any publication dependency whose committed SHA-256 digest does not match `publication.json`. It derives the browser SRI value from the committed bootstrap bytes and writes the final JavaScript and release-pin record deterministically.
+The generator refuses mutable refs, abbreviated commits, non-ancestor or missing commit objects, release files that differ from their committed bytes, unexpected publication contracts, and any publication dependency whose committed SHA-256 digest does not match `publication.json`. It derives the browser SRI value from the committed bootstrap bytes and writes the final JavaScript and release-pin record deterministically.
 
-Verify source-template state at any time with:
-
-```text
-node tools/verify-classroom-explorations-archive-doorway.mjs
-```
-
-After generation, require a complete final pin with:
+Verify the final package with:
 
 ```text
 node tools/verify-classroom-explorations-archive-doorway.mjs --require-final
+```
+
+Exercise the exact doorway against its immutable CDN release in a local browser with:
+
+```text
+npm run preview:archive:doorway
 ```
 
 ## Preservation gate

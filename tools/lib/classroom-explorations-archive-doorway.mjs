@@ -126,7 +126,23 @@ const gitPathFor = (gitRoot, absolutePath) => {
 };
 
 const committedFile = async (gitRoot, commit, gitPath) => {
-  const bytes = await runGit(gitRoot, ["show", `${commit}:${gitPath}`], null);
+  const treeBytes = await runGit(
+    gitRoot,
+    ["ls-tree", "-z", "--full-tree", commit, "--", gitPath],
+    null
+  );
+  const records = Buffer.from(treeBytes).toString("utf8").split("\0").filter(Boolean);
+  assert(records.length === 1, `Committed archive file is missing or ambiguous: ${gitPath}`);
+  const separator = records[0].indexOf("\t");
+  assert(separator >= 0, `Git returned a malformed tree record for ${gitPath}.`);
+  const [mode, type, objectId] = records[0].slice(0, separator).split(" ");
+  const returnedPath = records[0].slice(separator + 1);
+  assert(returnedPath === gitPath, `Git returned the wrong committed archive path for ${gitPath}.`);
+  assert(
+    mode === "100644" && type === "blob" && /^[a-f0-9]{40,64}$/.test(objectId || ""),
+    `Committed archive path is not a regular file: ${gitPath}`
+  );
+  const bytes = await runGit(gitRoot, ["cat-file", "blob", objectId], null);
   return Buffer.isBuffer(bytes) ? bytes : Buffer.from(bytes);
 };
 

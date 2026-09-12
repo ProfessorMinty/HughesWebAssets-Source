@@ -75,6 +75,7 @@ const gitSucceeds = (gitArgs) => spawnSync(
   ["-C", repositoryRoot, ...gitArgs],
   { encoding: "utf8" }
 ).status === 0;
+const sorted = (values) => [...values].sort((left, right) => left.localeCompare(right));
 
 if (!gitSucceeds(["cat-file", "-e", `${releaseCommit}^{commit}`])) {
   throw new Error(`releaseCommit ${releaseCommit} is not an available local Git commit.`);
@@ -83,15 +84,31 @@ if (!gitSucceeds(["merge-base", "--is-ancestor", releaseCommit, "HEAD"])) {
   throw new Error(`releaseCommit ${releaseCommit} is not an ancestor of the current repository HEAD.`);
 }
 
-const gitBlob = (path) => Buffer.from(runGit(
-  ["show", `${releaseCommit}:${path}`],
-  { bytes: true, label: `Read committed release file ${path}` }
+const committedTreeBytes = Buffer.from(runGit(
+  ["ls-tree", "-r", "-z", "--full-tree", releaseCommit, "--", RELEASE_PREFIX],
+  { bytes: true, label: "List committed archive release tree" }
 ));
-const committedPaths = runGit(
-  ["ls-tree", "-r", "--name-only", releaseCommit, "--", RELEASE_PREFIX],
-  { label: "List committed archive release tree" }
-).trim().split(/\r?\n/).filter(Boolean);
+const committedBlobByPath = new Map();
+for (const record of committedTreeBytes.toString("utf8").split("\0").filter(Boolean)) {
+  const separator = record.indexOf("\t");
+  if (separator < 0) throw new Error("Git returned a malformed archive release tree record.");
+  const [mode, type, objectId] = record.slice(0, separator).split(" ");
+  const path = record.slice(separator + 1);
+  if (mode !== "100644" || type !== "blob" || !/^[a-f0-9]{40,64}$/.test(objectId || "")) {
+    throw new Error(`Archive release tree contains a non-regular file: ${path}`);
+  }
+  committedBlobByPath.set(path, objectId);
+}
+const committedPaths = sorted(committedBlobByPath.keys());
 const committedPathSet = new Set(committedPaths);
+const gitBlob = (path) => {
+  const objectId = committedBlobByPath.get(path);
+  if (!objectId) throw new Error(`Required committed archive file is missing: ${path}`);
+  return Buffer.from(runGit(
+    ["cat-file", "blob", objectId],
+    { bytes: true, label: `Read committed release blob ${objectId}` }
+  ));
+};
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const canonicalJson = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const parseCommittedJson = (path, label) => {
@@ -108,7 +125,6 @@ const parseCommittedJson = (path, label) => {
   }
   return { bytes, value };
 };
-const sorted = (values) => [...values].sort((left, right) => left.localeCompare(right));
 const assertExactKeys = (value, keys, label) => {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     throw new Error(`${label} must be an object.`);
