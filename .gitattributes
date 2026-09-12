@@ -7,3 +7,7 @@
 *.webp binary
 *.woff binary
 *.woff2 binary
+
+# Preserve read-only live-service captures byte-for-byte for restoration evidence.
+evidence/classroom-explorations-archive/pre-install-*/page2627-public.html binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-rest-view.json binary

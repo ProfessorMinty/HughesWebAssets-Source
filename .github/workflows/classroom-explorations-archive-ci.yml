@@ -1,0 +1,76 @@
+name: Classroom Explorations Archive CI
+
+on:
+  push:
+    branches: [main, hub-authoring-v2-2026-08-28]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - '.gitattributes'
+      - 'apps/classroom-explorations-archive/**'
+      - 'apps/classroom-explorations-hub/source/hub.source.json'
+      - 'apps/classroom-explorations-hub/src/hub.css'
+      - 'apps/classroom-explorations-hub/src/assets/**'
+      - 'registry/hrv-routes.source.json'
+      - 'schemas/hrv-page-envelope.schema.json'
+      - 'schemas/hrv-route-registry.schema.json'
+      - 'schemas/classroom-explorations-archive.source.schema.json'
+      - 'schemas/classroom-explorations-archive.runtime.schema.json'
+      - 'schemas/classroom-explorations-hub.source.schema.json'
+      - 'releases/classroom-explorations-archive/**'
+      - 'tools/*classroom-explorations-archive*.mjs'
+      - 'tools/lib/classroom-explorations-archive-doorway.mjs'
+      - 'tools/lib/json-schema-lite.mjs'
+      - 'tools/lib/classroom-explorations-archive-contract.mjs'
+      - 'tools/lib/classroom-explorations-hub-contract.mjs'
+      - 'docs/classroom-explorations-archive*.md'
+      - 'docs/edublogs-integration/classroom-explorations-archive*/**'
+      - 'evidence/classroom-explorations-archive/**'
+      - '.github/workflows/classroom-explorations-archive-ci.yml'
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+      - '.gitattributes'
+      - 'apps/classroom-explorations-archive/**'
+      - 'apps/classroom-explorations-hub/source/hub.source.json'
+      - 'apps/classroom-explorations-hub/src/hub.css'
+      - 'apps/classroom-explorations-hub/src/assets/**'
+      - 'registry/hrv-routes.source.json'
+      - 'schemas/hrv-page-envelope.schema.json'
+      - 'schemas/hrv-route-registry.schema.json'
+      - 'schemas/classroom-explorations-archive.source.schema.json'
+      - 'schemas/classroom-explorations-archive.runtime.schema.json'
+      - 'schemas/classroom-explorations-hub.source.schema.json'
+      - 'releases/classroom-explorations-archive/**'
+      - 'tools/*classroom-explorations-archive*.mjs'
+      - 'tools/lib/classroom-explorations-archive-doorway.mjs'
+      - 'tools/lib/json-schema-lite.mjs'
+      - 'tools/lib/classroom-explorations-archive-contract.mjs'
+      - 'tools/lib/classroom-explorations-hub-contract.mjs'
+      - 'docs/classroom-explorations-archive*.md'
+      - 'docs/edublogs-integration/classroom-explorations-archive*/**'
+      - 'evidence/classroom-explorations-archive/**'
+      - '.github/workflows/classroom-explorations-archive-ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Full archive contract, build, release, CDN, and doorway checks
+        run: npm run check:archive
+      - name: Verify the shared Hub remains regression-clean
+        run: npm run check:hub
