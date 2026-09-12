@@ -1,0 +1,5 @@
+REVIEW CHANNEL ONLY
+
+These blocks are for WordPress page 2589 at /hub-test/.
+They load the review branch hub-authoring-v2-2026-08-28.
+Do not paste this review bootstrap into production page 17.

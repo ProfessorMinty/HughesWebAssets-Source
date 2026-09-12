@@ -1,27 +1,127 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtemp, readFile, readdir } from "node:fs/promises";
+import { access, cp, mkdtemp, readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const releaseRoot = await mkdtemp(resolve(tmpdir(), "hrv-hub-publication-test-"));
 const env = { ...process.env, HRV_HUB_RELEASE_ROOT: releaseRoot };
-const runStage = (publicationId, sourceRevision, previous = "none") => spawnSync(process.execPath, [
+const runStage = (publicationId, sourceRevision, previous = "none", envOverrides = {}) => spawnSync(process.execPath, [
   resolve(root, "tools/stage-classroom-explorations-hub-publication.mjs"),
   "2099.01.01.1",
   publicationId,
   sourceRevision,
   previous
-], { cwd: root, env, encoding: "utf8" });
+], { cwd: root, env: { ...env, ...envOverrides }, encoding: "utf8" });
 const digest = async (path) => createHash("sha256").update(await readFile(path)).digest("hex");
+const artwork = {
+  pastExplorations: { path: "assets/history/past-explorations.webp", mediaType: "image/webp" },
+  pastTwwl: { path: "assets/history/past-twwl.webp", mediaType: "image/webp" },
+  pastYears: { path: "assets/history/past-years.webp", mediaType: "image/webp" },
+  frameTopLeft: { path: "assets/frame/top-left.webp", mediaType: "image/webp" },
+  frameTopRight: { path: "assets/frame/top-right.webp", mediaType: "image/webp" },
+  frameMiddleLeft: { path: "assets/frame/middle-left.webp", mediaType: "image/webp" },
+  frameMiddleRight: { path: "assets/frame/middle-right.webp", mediaType: "image/webp" },
+  frameBottomLeft: { path: "assets/frame/bottom-left.webp", mediaType: "image/webp" },
+  frameBottomRight: { path: "assets/frame/bottom-right.webp", mediaType: "image/webp" }
+};
+const listFiles = async (directory, prefix = "") => {
+  const files = [];
+  const entries = (await readdir(directory, { withFileTypes: true }))
+    .sort((left, right) => left.name < right.name ? -1 : left.name > right.name ? 1 : 0);
+  for (const entry of entries) {
+    const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name;
+    const absolutePath = resolve(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await listFiles(absolutePath, relativePath));
+    else if (entry.isFile()) files.push(relativePath);
+  }
+  return files;
+};
+
+const assertNoStagingResidue = async (publicationId) => {
+  const snapshot = JSON.parse(await readFile(resolve(root, "dist/classroom-explorations-hub/content-snapshot.json"), "utf8"));
+  const contentHash = snapshot.snapshotId.slice("sha256:".length);
+  for (const target of [
+    resolve(releaseRoot, "runtime/2099.01.01.1"),
+    resolve(releaseRoot, `content/${contentHash}`),
+    resolve(releaseRoot, `publications/${publicationId}`)
+  ]) {
+    await assert.rejects(
+      access(target),
+      (error) => error.code === "ENOENT",
+      `Failed staging must not leave a final target: ${target}`
+    );
+  }
+  for (const parent of ["runtime", "content", "publications"]) {
+    assert.deepEqual(
+      await readdir(resolve(releaseRoot, parent)),
+      [],
+      `Failed staging must remove every temporary ${parent} entry.`
+    );
+  }
+};
+
+const malformedDistContainer = await mkdtemp(resolve(tmpdir(), "hrv-hub-malformed-dist-"));
+const malformedDistRoot = resolve(malformedDistContainer, "classroom-explorations-hub");
+await cp(resolve(root, "dist/classroom-explorations-hub"), malformedDistRoot, { recursive: true });
+await writeFile(
+  resolve(malformedDistRoot, "runtime", artwork.frameTopLeft.path),
+  "tampered first-stage frame artwork",
+  "utf8"
+);
+const malformedFirst = runStage(
+  "pub-2099-01-01-001",
+  "a".repeat(40),
+  "none",
+  { HRV_HUB_DIST_ROOT: malformedDistRoot }
+);
+assert.notEqual(malformedFirst.status, 0, "Malformed first-time runtime bytes must reject staging.");
+assert.match(malformedFirst.stderr + malformedFirst.stdout, /Runtime release artwork digest is invalid: assets\/frame\/top-left\.webp/);
+await assertNoStagingResidue("pub-2099-01-01-001");
+
+const interruptedPromotion = runStage(
+  "pub-2099-01-01-001",
+  "a".repeat(40),
+  "none",
+  {
+    NODE_ENV: "test",
+    HRV_HUB_TEST_FAIL_BEFORE_PUBLICATION_PROMOTION: "true"
+  }
+);
+assert.notEqual(interruptedPromotion.status, 0, "Interrupted publication promotion must reject staging.");
+assert.match(interruptedPromotion.stderr + interruptedPromotion.stdout, /Injected failure before publication promotion/);
+await assertNoStagingResidue("pub-2099-01-01-001");
 
 const first = runStage("pub-2099-01-01-001", "a".repeat(40));
 assert.equal(first.status, 0, first.stderr || first.stdout);
 const runtimeDir = resolve(releaseRoot, "runtime/2099.01.01.1");
-const files = ["bootstrap.js", "runtime.js", "hub.css", "host-compat.css", "runtime-release.json"];
+const files = [
+  "bootstrap.js",
+  "runtime.js",
+  "hub.css",
+  "host-compat.css",
+  "runtime-release.json",
+  ...Object.values(artwork).map((entry) => entry.path)
+].sort();
+assert.deepEqual(await listFiles(runtimeDir), files, "The immutable runtime must recursively package every declared artwork file.");
 const before = Object.fromEntries(await Promise.all(files.map(async (name) => [name, await digest(resolve(runtimeDir, name))])));
+
+const runtimeRelease = JSON.parse(await readFile(resolve(runtimeDir, "runtime-release.json"), "utf8"));
+for (const [name, expected] of Object.entries(artwork)) {
+  assert.deepEqual(runtimeRelease.artwork[name], {
+    path: expected.path,
+    sha256: before[expected.path],
+    mediaType: expected.mediaType
+  });
+  assert.equal(
+    before[expected.path],
+    await digest(resolve(root, "dist/classroom-explorations-hub/runtime", expected.path)),
+    `Nested artwork bytes must match the deterministic build: ${expected.path}`
+  );
+}
 
 const duplicate = runStage("pub-2099-01-01-001", "a".repeat(40));
 assert.notEqual(duplicate.status, 0, "Restaging an immutable publication ID must fail.");
@@ -36,4 +136,22 @@ const runtimeVersions = await readdir(resolve(releaseRoot, "runtime"));
 assert.deepEqual(runtimeVersions, ["2099.01.01.1"]);
 const publication2 = JSON.parse(await readFile(resolve(releaseRoot, "publications/pub-2099-01-01-002/publication.json"), "utf8"));
 assert.equal(publication2.previousKnownGoodPublication, "pub-2099-01-01-001");
+for (const [name, expected] of Object.entries(artwork)) {
+  assert.deepEqual(publication2.runtime.artwork[name], {
+    path: `../../runtime/2099.01.01.1/${expected.path}`,
+    sha256: before[expected.path],
+    mediaType: expected.mediaType
+  });
+}
+
+const tamperedArtwork = resolve(runtimeDir, artwork.pastExplorations.path);
+await writeFile(tamperedArtwork, "tampered nested artwork", "utf8");
+const tamperedReuse = runStage("pub-2099-01-01-003", "c".repeat(40), "pub-2099-01-01-002");
+assert.notEqual(tamperedReuse.status, 0, "A changed nested artwork file must reject immutable runtime reuse.");
+assert.match(tamperedReuse.stderr + tamperedReuse.stdout, /does not match deterministic build output: assets\/history\/past-explorations\.webp/);
+await assert.rejects(
+  access(resolve(releaseRoot, "publications/pub-2099-01-01-003")),
+  (error) => error.code === "ENOENT",
+  "Rejected nested artwork reuse must not leave a partial publication."
+);
 console.log("[hub test W] immutable runtime/publication preservation + later publication reuse passed");

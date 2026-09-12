@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hughes-room-views.invalid/schemas/classroom-explorations-archive.source.schema.json",
+  "title": "Classroom Explorations archive authoring data",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["copy", "composition"],
+  "properties": {
+    "copy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hero", "explorations", "twwl", "navigation", "footer"],
+      "properties": {
+        "hero": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodeId", "eyebrow", "title", "intro"],
+          "properties": {
+            "nodeId": { "type": "string", "pattern": "^archive-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "eyebrow": { "type": "string", "minLength": 1 },
+            "title": { "type": "string", "minLength": 1 },
+            "intro": { "type": "string", "minLength": 1 }
+          }
+        },
+        "explorations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodeId", "eyebrow", "title", "intro", "emptyText"],
+          "properties": {
+            "nodeId": { "type": "string", "pattern": "^archive-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "eyebrow": { "type": "string", "minLength": 1 },
+            "title": { "type": "string", "minLength": 1 },
+            "intro": { "type": "string", "minLength": 1 },
+            "emptyText": { "type": "string", "minLength": 1 }
+          }
+        },
+        "twwl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodeId", "eyebrow", "title", "intro", "emptyText"],
+          "properties": {
+            "nodeId": { "type": "string", "pattern": "^archive-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "eyebrow": { "type": "string", "minLength": 1 },
+            "title": { "type": "string", "minLength": 1 },
+            "intro": { "type": "string", "minLength": 1 },
+            "emptyText": { "type": "string", "minLength": 1 }
+          }
+        },
+        "navigation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodeId", "backLabel", "returnLabel"],
+          "properties": {
+            "nodeId": { "type": "string", "pattern": "^archive-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "backLabel": { "type": "string", "minLength": 1 },
+            "returnLabel": { "type": "string", "minLength": 1 }
+          }
+        },
+        "footer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nodeId", "text"],
+          "properties": {
+            "nodeId": { "type": "string", "pattern": "^archive-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "text": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nodeId", "relationshipId", "schoolYear", "hubRouteRef", "explorationIds", "twwlIds"],
+      "properties": {
+        "nodeId": { "type": "string", "pattern": "^archive-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "relationshipId": { "type": "string", "pattern": "^hub-archive:[0-9]{4}-[0-9]{4}$" },
+        "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+        "hubRouteRef": { "type": "string", "pattern": "^hrv-route:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "explorationIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+        },
+        "twwlIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+        }
+      }
+    }
+  }
+}

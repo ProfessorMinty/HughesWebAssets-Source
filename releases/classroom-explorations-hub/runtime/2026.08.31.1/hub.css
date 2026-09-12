@@ -1,0 +1,4688 @@
+.hrv-classroom-hub {
+  --hub-night: #061128;
+  --hub-night-soft: #0b1c3b;
+  --hub-panel: rgba(10, 27, 58, 0.9);
+  --hub-panel-strong: rgba(7, 20, 47, 0.97);
+  --hub-ink: #f8fbff;
+  --hub-muted: #c8d8f5;
+  --hub-teal: #72e3c8;
+  --hub-teal-deep: #2db99e;
+  --hub-gold: #ffe69a;
+  --hub-gold-deep: #efbd52;
+  --hub-blue: #91b7ff;
+  --hub-lilac: #c8b7ff;
+  --hub-line: rgba(186, 218, 255, 0.22);
+  --hub-shadow: 0 28px 70px rgba(0, 7, 25, 0.36);
+  --hub-radius: 28px;
+  --hub-radius-small: 18px;
+  --hub-font-display: Georgia, Cambria, "Times New Roman", serif;
+  --hub-font-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hub-shell-wide: min(1760px, calc(100dvw - clamp(32px, 4vw, 72px)));
+  --hub-shell-reading: min(1660px, calc(100dvw - clamp(44px, 6vw, 112px)));
+  --hub-shell-theater: min(1480px, calc(100dvw - clamp(64px, 10vw, 192px)));
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  overflow: clip;
+  background: var(--hub-night);
+  color: var(--hub-ink);
+  color-scheme: dark;
+  font-family: var(--hub-font-ui);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.hrv-classroom-hub,
+.hrv-classroom-hub * {
+  box-sizing: border-box;
+}
+
+.hrv-classroom-hub img,
+.hrv-classroom-hub iframe {
+  display: block;
+  max-width: 100%;
+}
+
+.hrv-classroom-hub button,
+.hrv-classroom-hub input {
+  font: inherit;
+}
+
+.hrv-classroom-hub a {
+  color: inherit;
+}
+
+.hrv-classroom-hub .hub-skip {
+  position: fixed;
+  z-index: 9999;
+  top: 16px;
+  left: 16px;
+  transform: translateY(-180%);
+  padding: 11.52px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #17243a;
+  font-weight: 800;
+}
+
+.hrv-classroom-hub .hub-skip:focus {
+  transform: none;
+}
+
+.hrv-classroom-hub .hub-museum {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    radial-gradient(1184px 544px at 12% 3%, rgba(45, 185, 158, 0.16), transparent 68%),
+    radial-gradient(1088px 576px at 88% 14%, rgba(145, 126, 226, 0.2), transparent 70%),
+    linear-gradient(180deg, #061128 0%, #0b1b38 34%, #07152e 70%, #050d1e 100%);
+}
+
+.hrv-classroom-hub .museum-environment {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .environment-aurora,
+.hrv-classroom-hub .environment-light {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hrv-classroom-hub .aurora-one {
+  top: 0;
+  left: -18vw;
+  width: 72vw;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(66, 218, 187, 0.22), transparent 68%);
+  transform: rotate(-8deg);
+  animation: hub-aurora-left 14s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .aurora-two {
+  top: 272px;
+  right: -20vw;
+  width: 69vw;
+  height: 448px;
+  background: radial-gradient(ellipse, rgba(151, 125, 227, 0.22), transparent 68%);
+  transform: rotate(7deg);
+  animation: hub-aurora-right 17s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .environment-starfield {
+  position: fixed;
+  inset: -4%;
+  background-repeat: repeat;
+  opacity: 0.48;
+}
+
+.hrv-classroom-hub .starfield-one {
+  background-image:
+    radial-gradient(circle at 12% 9%, #ffffff 0 1px, transparent 1.7px),
+    radial-gradient(circle at 29% 21%, #ffe69a 0 1px, transparent 1.7px),
+    radial-gradient(circle at 67% 8%, #ffffff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 84% 24%, #bde9ff 0 1px, transparent 1.6px);
+  background-size: 180px 160px, 230px 190px, 270px 200px, 320px 250px;
+  animation: hub-stars-drift-a 34s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .starfield-two {
+  background-image:
+    radial-gradient(circle at 8% 31%, rgba(255, 255, 255, 0.78) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 54% 13%, rgba(114, 227, 200, 0.82) 0 1px, transparent 1.6px),
+    radial-gradient(circle at 91% 44%, rgba(200, 183, 255, 0.9) 0 1px, transparent 1.7px);
+  background-size: 210px 240px, 290px 220px, 360px 310px;
+  opacity: 0.3;
+  animation: hub-stars-drift-b 42s ease-in-out infinite alternate-reverse;
+}
+
+.hrv-classroom-hub .light-one {
+  top: 544px;
+  left: 8%;
+  width: 608px;
+  height: 384px;
+  background: radial-gradient(ellipse, rgba(85, 185, 218, 0.12), transparent 68%);
+}
+
+.hrv-classroom-hub .light-two {
+  top: 1088px;
+  right: 5%;
+  width: 704px;
+  height: 448px;
+  background: radial-gradient(ellipse, rgba(239, 189, 82, 0.1), transparent 68%);
+}
+
+.hrv-classroom-hub .museum-shell {
+  width: var(--hub-shell-reading);
+  margin-inline: auto;
+}
+
+.hrv-classroom-hub .hero-section .museum-shell,
+.hrv-classroom-hub .past-explorations-section .museum-shell,
+.hrv-classroom-hub .past-twwl-section .museum-shell {
+  width: var(--hub-shell-wide);
+}
+
+.hrv-classroom-hub .welcome-section .museum-shell {
+  width: var(--hub-shell-theater);
+  margin-right: clamp(48px, 4vw, 80px);
+  margin-left: auto;
+}
+
+.hrv-classroom-hub .current-exploration-section .museum-shell {
+  width: var(--hub-shell-reading);
+  margin-right: auto;
+  margin-left: clamp(48px, 4vw, 80px);
+}
+
+.hrv-classroom-hub .current-twwl-section .museum-shell {
+  width: min(1360px, calc(100dvw - clamp(64px, 10vw, 192px)));
+  margin-inline: auto;
+}
+
+.hrv-classroom-hub .compact-archive-shell {
+  width: min(1240px, calc(100dvw - clamp(64px, 10vw, 192px)));
+}
+
+.hrv-classroom-hub .hub-section {
+  position: relative;
+  padding-block: clamp(20px, 2.4vw, 32px);
+}
+
+.hrv-classroom-hub .hub-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--hub-line);
+  border-radius: var(--hub-radius);
+  background: var(--hub-panel);
+  box-shadow: var(--hub-shadow), inset 0 1px rgba(255, 255, 255, 0.07);
+}
+
+.hrv-classroom-hub [data-tilt] {
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hrv-classroom-hub [data-tilt].is-pointer-active {
+  will-change: transform;
+}
+
+.hrv-classroom-hub [data-pointer-light]::after {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    448px circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    rgba(255, 255, 255, 0.13),
+    transparent 55%
+  );
+  content: "";
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .section-kicker {
+  display: inline-flex;
+  margin: 0 0 8px;
+  padding: 5.44px 10.24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--hub-gold);
+  font-size: 13.12px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hrv-classroom-hub .section-title {
+  margin: 1.28px 0 8px;
+  color: var(--hub-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(37.6px, 2.7vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.hrv-classroom-hub .section-summary {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--hub-muted);
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+.hrv-classroom-hub .hero-section {
+  padding-top: clamp(21.6px, 2vw, 32px);
+  padding-bottom: clamp(10.4px, 1vw, 16px);
+}
+
+.hrv-classroom-hub .hub-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(540px, 0.82fr);
+  gap: clamp(32px, 3.2vw, 54.4px);
+  min-height: clamp(450px, 52svh, 500px);
+  padding: clamp(36px, 3.3vw, 57.6px);
+  background:
+    radial-gradient(736px 448px at 4% 10%, rgba(45, 185, 158, 0.2), transparent 68%),
+    radial-gradient(544px 384px at 94% 88%, rgba(153, 123, 226, 0.18), transparent 70%),
+    linear-gradient(145deg, rgba(9, 30, 64, 0.97), rgba(15, 35, 71, 0.93) 55%, rgba(35, 29, 72, 0.94));
+  border-color: rgba(255, 230, 154, 0.28);
+}
+
+.hrv-classroom-hub .hub-hero-card::before {
+  position: absolute;
+  inset: -35% 36% 54% -22%;
+  background: radial-gradient(circle, rgba(114, 227, 200, 0.23), transparent 66%);
+  content: "";
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .hero-left,
+.hrv-classroom-hub .hero-right {
+  position: relative;
+  z-index: 1;
+}
+
+.hrv-classroom-hub .hero-left {
+  align-self: center;
+}
+
+.hrv-classroom-hub .hero-identity-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hrv-classroom-hub .hub-compass {
+  width: clamp(176px, 11vw, 220px);
+  flex: none;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.52));
+}
+
+.hrv-classroom-hub .hub-compass svg {
+  width: 100%;
+}
+
+.hrv-classroom-hub .compass-orbit {
+  transform-origin: center;
+  animation: hub-compass-orbit 17s linear infinite;
+}
+
+.hrv-classroom-hub .compass-needle {
+  transform-origin: center;
+  animation: hub-compass-needle 4.8s ease-in-out infinite;
+}
+
+.hrv-classroom-hub .hero-museum-mark {
+  color: #dfe9ff;
+  font-size: 12.8px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hrv-classroom-hub .hero-kicker {
+  margin-top: 10.4px;
+  border-color: rgba(255, 230, 154, 0.2);
+  background: rgba(239, 189, 82, 0.13);
+}
+
+.hrv-classroom-hub .hub-title {
+  max-width: 12ch;
+  margin: 1.6px 0 8.8px;
+  color: #fffaf0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(73.6px, 5vw, 86.4px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.hrv-classroom-hub .hub-subtitle {
+  max-width: 64ch;
+  margin: 0;
+  color: #dfe8f8;
+  font-size: clamp(16.8px, 1.15vw, 19.84px);
+  line-height: 1.6;
+}
+
+.hrv-classroom-hub .hub-invitation {
+  margin: 8px 0 0;
+  color: var(--hub-gold);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.hrv-classroom-hub .hero-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hrv-classroom-hub .hero-pillars li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7.68px;
+  padding: 6.72px 10.88px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f4f7ff;
+  font-size: 14.08px;
+  font-weight: 750;
+}
+
+.hrv-classroom-hub .hero-pillar-number {
+  display: grid;
+  width: 24.8px;
+  height: 24.8px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--hub-gold), var(--hub-teal));
+  color: #061128;
+  font-size: 12.48px;
+  font-weight: 950;
+}
+
+.hrv-classroom-hub .hero-right {
+  display: grid;
+  grid-template-columns: minmax(176px, 0.62fr) minmax(280px, 1fr);
+  grid-template-rows: auto auto;
+  align-content: center;
+  align-items: center;
+  gap: 14.4px 21.6px;
+}
+
+.hrv-classroom-hub .hero-right .hub-compass {
+  grid-row: 1 / 3;
+  grid-column: 1;
+  justify-self: center;
+}
+
+.hrv-classroom-hub .hero-oath,
+.hrv-classroom-hub .hero-glance {
+  grid-column: 2;
+}
+
+.hrv-classroom-hub .hero-oath,
+.hrv-classroom-hub .hero-glance {
+  padding: 18.4px 19.2px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  background: rgba(3, 15, 38, 0.58);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.hrv-classroom-hub .hero-oath-title,
+.hrv-classroom-hub .hero-glance-title {
+  margin: 0 0 4.8px;
+  color: var(--hub-gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17.28px;
+  font-weight: 700;
+}
+
+.hrv-classroom-hub .hero-oath-body {
+  margin: 0;
+  color: #edf2ff;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.hrv-classroom-hub .hero-glance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.hrv-classroom-hub .hero-stat {
+  padding: 9.92px 6.4px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.055);
+  text-align: center;
+}
+
+.hrv-classroom-hub .hero-stat strong {
+  display: block;
+  color: var(--hub-gold);
+  font-size: 23.2px;
+  line-height: 1;
+}
+
+.hrv-classroom-hub .hero-stat span {
+  color: #cbd8ef;
+  font-size: 13.12px;
+}
+
+.hrv-classroom-hub .hero-school-year {
+  margin: 10.4px 0 0;
+  color: #b9c8e3;
+  font-size: 13.12px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.hrv-classroom-hub .museum-map {
+  position: relative;
+  z-index: 3;
+  padding-block: 4px 8.8px;
+}
+
+.hrv-classroom-hub .museum-map-shell {
+  display: flex;
+  width: var(--hub-shell-reading);
+  min-height: 54px;
+  align-items: center;
+  gap: 16px;
+  padding: 7.2px 12px;
+  border: 1px solid rgba(186, 218, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(7, 20, 47, 0.76);
+  box-shadow: 0 14px 34px rgba(0, 6, 21, 0.2);
+}
+
+.hrv-classroom-hub .museum-map-title {
+  flex: none;
+  margin: 0;
+  color: var(--hub-gold);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15.2px;
+  font-weight: 700;
+}
+
+.hrv-classroom-hub .museum-map-links {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 5.6px;
+}
+
+.hrv-classroom-hub .museum-map-link {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 7.2px;
+  padding: 6.4px 9.28px;
+  border-radius: 11px;
+  color: #e4eeff;
+  font-size: 14.08px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.hrv-classroom-hub .museum-map-link:hover,
+.hrv-classroom-hub .museum-map-link:focus-visible {
+  color: #ffffff;
+  background: rgba(114, 227, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+.hrv-classroom-hub .museum-map-number {
+  color: var(--hub-teal);
+  font-size: 13.12px;
+  letter-spacing: 0.08em;
+}
+
+.hrv-classroom-hub .welcome-section {
+  padding-block: clamp(22.4px, 2.5vw, 36px);
+}
+
+.hrv-classroom-hub .welcome-theater-card {
+  display: grid;
+  grid-template-columns: minmax(430px, 0.38fr) minmax(720px, 0.62fr);
+  align-items: center;
+  gap: clamp(32px, 3.4vw, 54.4px);
+  min-height: 0;
+  overflow: visible;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hrv-classroom-hub .card-heading {
+  display: block;
+  margin: 0;
+}
+
+.hrv-classroom-hub .welcome-heading {
+  align-self: center;
+  padding: clamp(28.8px, 2.8vw, 43.2px);
+  border-left: 3px solid rgba(145, 183, 255, 0.62);
+  border-radius: 0 24px 24px 0;
+  background: linear-gradient(90deg, rgba(12, 31, 65, 0.86), rgba(12, 31, 65, 0.18));
+}
+
+.hrv-classroom-hub .welcome-heading .section-title {
+  max-width: 12ch;
+  font-size: clamp(43.2px, 3vw, 55.2px);
+}
+
+.hrv-classroom-hub .welcome-heading .section-summary {
+  max-width: 42ch;
+}
+
+.hrv-classroom-hub .welcome-kicker {
+  color: var(--hub-blue);
+}
+
+.hrv-classroom-hub .theater-badge {
+  display: inline-flex;
+  margin-top: 16px;
+  padding: 6.4px 10.4px;
+  border: 1px solid rgba(145, 183, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(20, 47, 88, 0.82);
+  color: #eef5ff;
+  font-size: 13.12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hrv-classroom-hub .welcome-screen {
+  position: relative;
+  width: min(100%, 840px);
+  aspect-ratio: 16 / 9;
+  justify-self: end;
+  overflow: hidden;
+  border: 1px solid rgba(200, 218, 255, 0.28);
+  border-radius: 22px;
+  background: #020916;
+  box-shadow: 0 18px 44px rgba(0, 4, 18, 0.54), 0 0 36px rgba(145, 183, 255, 0.1);
+}
+
+.hrv-classroom-hub .welcome-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.hrv-classroom-hub .screen-glint {
+  position: absolute;
+  inset: -20% 62% -20% -20%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform: skewX(-14deg);
+  animation: hub-screen-glint 6.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .screen-footlight {
+  position: absolute;
+  right: 10%;
+  bottom: -10px;
+  left: 10%;
+  height: 22px;
+  background: rgba(239, 189, 82, 0.38);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .current-exploration-section::before,
+.hrv-classroom-hub .current-twwl-section::before,
+.hrv-classroom-hub .past-explorations-section::before,
+.hrv-classroom-hub .past-twwl-section::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .current-exploration-section::before {
+  background: radial-gradient(1024px 448px at 25% 50%, rgba(45, 185, 158, 0.15), transparent 70%);
+}
+
+.hrv-classroom-hub .current-exploration-card {
+  display: grid;
+  grid-template-columns: minmax(520px, 0.96fr) minmax(0, 1.04fr);
+  align-items: center;
+  gap: clamp(32px, 2.8vw, 48px);
+  min-height: clamp(450px, 51svh, 500px);
+  padding: clamp(20.8px, 2.1vw, 32px);
+  background:
+    radial-gradient(544px 384px at 10% 50%, rgba(114, 227, 200, 0.18), transparent 69%),
+    linear-gradient(138deg, rgba(7, 31, 52, 0.98), rgba(9, 38, 56, 0.96) 48%, rgba(14, 35, 66, 0.97));
+  border-color: rgba(114, 227, 200, 0.32);
+}
+
+.hrv-classroom-hub .current-visual {
+  position: relative;
+  z-index: 1;
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
+  height: clamp(420px, 49svh, 470px);
+  overflow: hidden;
+  border: 6px solid rgba(191, 255, 233, 0.18);
+  border-radius: 24px;
+  background: #0c2b28;
+  box-shadow: 0 22px 52px rgba(0, 11, 20, 0.5), 0 0 38px rgba(114, 227, 200, 0.12);
+  margin: 0;
+}
+
+.hrv-classroom-hub .current-copy {
+  position: relative;
+  z-index: 2;
+  grid-row: 1;
+  grid-column: 2;
+  max-width: 700px;
+}
+
+.hrv-classroom-hub .current-topline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11.2px;
+  flex-wrap: wrap;
+}
+
+.hrv-classroom-hub .exploration-kicker {
+  color: var(--hub-teal);
+}
+
+.hrv-classroom-hub .open-now-badge {
+  padding: 6.08px 9.92px;
+  border: 1px solid rgba(114, 227, 200, 0.32);
+  border-radius: 999px;
+  background: rgba(45, 185, 158, 0.18);
+  color: #bffbea;
+  font-size: 13.12px;
+  font-weight: 950;
+  letter-spacing: 0.09em;
+}
+
+.hrv-classroom-hub .current-section-title {
+  font-size: clamp(32.8px, 2.2vw, 40px);
+}
+
+.hrv-classroom-hub .content-year-badge {
+  display: inline-flex;
+  margin: 0.8px 0 6.08px;
+  color: #b8c9e2;
+  font-size: 13.12px;
+  font-weight: 850;
+}
+
+.hrv-classroom-hub .current-title {
+  margin: 1.28px 0 8px;
+  color: #f8fff9;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(48px, 3.15vw, 56.8px);
+  font-weight: 700;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.hrv-classroom-hub .current-summary {
+  max-width: none;
+  margin: 0;
+  color: #d7e8e4;
+  font-size: 16px;
+  line-height: 1.62;
+}
+
+.hrv-classroom-hub .hub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7.2px;
+  padding: 0;
+  list-style: none;
+}
+
+.hrv-classroom-hub .current-points {
+  display: grid;
+  gap: 7.68px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hrv-classroom-hub .hub-tags {
+  margin: 10.4px 0;
+}
+
+.hrv-classroom-hub .current-points li {
+  display: grid;
+  grid-template-columns: 28.8px minmax(0, 1fr);
+  gap: 10.4px;
+  align-items: start;
+  color: #e7f4f0;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.hrv-classroom-hub .current-point-number {
+  display: grid;
+  width: 27.2px;
+  height: 27.2px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--hub-gold);
+  color: #072033;
+  font-size: 12.48px;
+  font-weight: 950;
+  box-shadow: 0 0 18px rgba(255, 230, 154, 0.2);
+}
+
+.hrv-classroom-hub .hub-tags li {
+  padding: 5.76px 8.96px;
+  border: 1px solid rgba(114, 227, 200, 0.2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #dceee9;
+  font-size: 11.84px;
+  font-weight: 750;
+}
+
+.hrv-classroom-hub .hub-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 4.8px;
+  padding: 10.88px 16px;
+  border-radius: 14px;
+  color: #061128;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 12px 26px rgba(0, 6, 22, 0.28);
+  transition: filter 180ms ease, transform 180ms ease;
+}
+
+.hrv-classroom-hub .hub-action:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.hrv-classroom-hub .exploration-action {
+  background: linear-gradient(135deg, var(--hub-teal), #c9fff2);
+}
+
+.hrv-classroom-hub .learning-action {
+  background: linear-gradient(135deg, var(--hub-gold), #fff4c7);
+}
+
+.hrv-classroom-hub .current-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 48%;
+}
+
+.hrv-classroom-hub .greenhouse-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 32%, rgba(255, 255, 255, 0.3) 33% 34%, transparent 35% 66%, rgba(255, 255, 255, 0.3) 67% 68%, transparent 69%),
+    linear-gradient(180deg, transparent 48%, rgba(255, 255, 255, 0.16) 49% 50%, transparent 51%);
+  opacity: 0.36;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .current-glass {
+  position: absolute;
+  inset: -20% 62% -20% -20%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.48), transparent);
+  transform: skewX(-14deg);
+  animation: hub-glass-glint 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .current-caption,
+.hrv-classroom-hub .collection-label,
+.hrv-classroom-hub .collection-year,
+.hrv-classroom-hub .twwl-visual-label {
+  position: absolute;
+  z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(3, 13, 30, 0.9);
+  color: #ffffff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.32);
+}
+
+.hrv-classroom-hub .current-caption {
+  bottom: 13.6px;
+  left: 13.6px;
+  padding: 6.72px 10.88px;
+  font-size: 13.12px;
+  font-weight: 850;
+}
+
+.hrv-classroom-hub .current-atmosphere,
+.hrv-classroom-hub .twwl-atmosphere {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .greenhouse-light {
+  position: absolute;
+  top: 7%;
+  left: -128px;
+  width: 672px;
+  height: 384px;
+  border-radius: 50%;
+  background: rgba(114, 227, 200, 0.17);
+  filter: blur(26px);
+}
+
+.hrv-classroom-hub .leaf-shadow {
+  position: absolute;
+  width: 190px;
+  height: 110px;
+  border-radius: 70% 20% 70% 20%;
+  background: rgba(77, 166, 108, 0.13);
+  filter: blur(4px);
+  animation: hub-leaf-breathe 7s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .leaf-shadow-one {
+  top: 14%;
+  left: -35px;
+  transform: rotate(22deg);
+}
+
+.hrv-classroom-hub .leaf-shadow-two {
+  right: -30px;
+  bottom: 10%;
+  transform: rotate(-25deg);
+  animation-delay: -3s;
+}
+
+.hrv-classroom-hub .seed-drift {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 70% 20% 70% 20%;
+  background: var(--hub-gold);
+  box-shadow: 0 0 14px rgba(255, 230, 154, 0.65);
+  animation: hub-seed-drift 8s ease-in-out infinite;
+}
+
+.hrv-classroom-hub .seed-one {
+  top: 22%;
+  left: 14%;
+}
+
+.hrv-classroom-hub .seed-two {
+  top: 15%;
+  left: 72%;
+  animation-delay: -2s;
+}
+
+.hrv-classroom-hub .seed-three {
+  top: 62%;
+  left: 85%;
+  animation-delay: -5s;
+}
+
+.hrv-classroom-hub .current-twwl-section::before {
+  background: radial-gradient(896px 416px at 74% 50%, rgba(139, 102, 211, 0.16), transparent 70%);
+}
+
+.hrv-classroom-hub .current-twwl-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+  align-items: center;
+  gap: clamp(32px, 3vw, 48px);
+  min-height: 300px;
+  padding: clamp(25.6px, 2.7vw, 38.4px);
+  background:
+    radial-gradient(480px 352px at 82% 46%, rgba(255, 230, 154, 0.12), transparent 68%),
+    linear-gradient(140deg, rgba(52, 36, 91, 0.98), rgba(31, 28, 70, 0.97) 58%, rgba(12, 20, 48, 0.98));
+  border-color: rgba(200, 183, 255, 0.28);
+}
+
+.hrv-classroom-hub .learning-kicker {
+  color: var(--hub-lilac);
+}
+
+.hrv-classroom-hub .learning-year-badge {
+  color: #c9bce9;
+}
+
+.hrv-classroom-hub .preparing-label {
+  display: inline-flex;
+  margin: 2.4px 0 9.6px;
+  padding: 5.44px 9.28px;
+  border-radius: 999px;
+  background: var(--hub-gold);
+  color: #2d244f;
+  font-size: 13.12px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
+.hrv-classroom-hub .twwl-title {
+  max-width: 24ch;
+  margin: 0 0 8px;
+  color: #fff9e8;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 2.6vw, 44.8px);
+  font-weight: 700;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.hrv-classroom-hub .twwl-summary {
+  max-width: 60ch;
+  margin: 0;
+  color: #ddd5f0;
+  font-size: 16px;
+  line-height: 1.58;
+}
+
+.hrv-classroom-hub .current-twwl-visual {
+  position: relative;
+  display: grid;
+  min-height: 252px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 214, 104, 0.19), transparent 28%),
+    linear-gradient(rgba(7, 12, 35, 0.72), rgba(10, 9, 29, 0.88));
+}
+
+.hrv-classroom-hub .current-twwl-image {
+  width: 100%;
+  height: 100%;
+  min-height: 252px;
+  object-fit: cover;
+}
+
+.hrv-classroom-hub .preparing-display {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hrv-classroom-hub .learning-lantern {
+  position: relative;
+  width: 100px;
+  height: 140px;
+  margin: auto;
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.42));
+  animation: hub-lantern-float 4.2s ease-in-out infinite;
+}
+
+.hrv-classroom-hub .lantern-handle,
+.hrv-classroom-hub .lantern-cap,
+.hrv-classroom-hub .lantern-glass,
+.hrv-classroom-hub .lantern-base,
+.hrv-classroom-hub .lantern-flame {
+  position: absolute;
+  display: block;
+}
+
+.hrv-classroom-hub .lantern-handle {
+  top: 0;
+  left: 24px;
+  width: 52px;
+  height: 44px;
+  border: 5px solid #d1b464;
+  border-bottom: 0;
+  border-radius: 28px 28px 0 0;
+}
+
+.hrv-classroom-hub .lantern-cap {
+  top: 35px;
+  left: 20px;
+  width: 60px;
+  height: 14px;
+  border-radius: 9px;
+  background: #b99646;
+}
+
+.hrv-classroom-hub .lantern-glass {
+  top: 48px;
+  left: 26px;
+  width: 48px;
+  height: 65px;
+  border: 3px solid #bba35e;
+  border-radius: 9px;
+  background: rgba(255, 248, 198, 0.24);
+  box-shadow: 0 0 32px rgba(255, 210, 83, 0.23);
+}
+
+.hrv-classroom-hub .lantern-base {
+  bottom: 16px;
+  left: 18px;
+  width: 64px;
+  height: 16px;
+  border-radius: 4px 4px 9px 9px;
+  background: #80652c;
+}
+
+.hrv-classroom-hub .lantern-flame {
+  top: 19px;
+  left: 17px;
+  width: 11px;
+  height: 26px;
+  border-radius: 70% 45%;
+  background: #ffe58e;
+  box-shadow: 0 0 24px 9px rgba(255, 209, 83, 0.34);
+  animation: hub-lantern-flame 1.7s ease-in-out infinite;
+}
+
+.hrv-classroom-hub .preparing-display-title {
+  margin: 10.4px 0 0;
+  color: #eee4ff;
+  font-weight: 850;
+  font-size: 16px;
+}
+
+.hrv-classroom-hub .preparing-display-line {
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 11.2px auto 0;
+  background: linear-gradient(90deg, transparent, var(--hub-gold), transparent);
+}
+
+.hrv-classroom-hub .twwl-halo {
+  position: absolute;
+  top: 50%;
+  left: 72%;
+  width: 448px;
+  height: 320px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: rgba(169, 130, 230, 0.18);
+  filter: blur(24px);
+  animation: hub-halo-pulse 6s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .twwl-ray {
+  position: absolute;
+  top: -15%;
+  width: 80px;
+  height: 55%;
+  background: linear-gradient(180deg, rgba(255, 230, 154, 0.13), transparent);
+  filter: blur(8px);
+  transform: rotate(18deg);
+}
+
+.hrv-classroom-hub .twwl-ray-one {
+  right: 18%;
+}
+
+.hrv-classroom-hub .twwl-ray-two {
+  right: 30%;
+  opacity: 0.55;
+  transform: rotate(10deg);
+}
+
+.hrv-classroom-hub .museum-divider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: var(--hub-shell-wide);
+  margin: 8.8px auto;
+}
+
+.hrv-classroom-hub .divider-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(114, 227, 200, 0.36), rgba(255, 230, 154, 0.58));
+}
+
+.hrv-classroom-hub .divider-line-right {
+  transform: scaleX(-1);
+}
+
+.hrv-classroom-hub .divider-medallion {
+  display: grid;
+  width: 60px;
+  height: 60px;
+  margin: 7.2px;
+  place-items: center;
+  border: 1px solid rgba(255, 230, 154, 0.34);
+  border-radius: 50%;
+  background: radial-gradient(circle, #24345f, #101a34);
+  box-shadow: 0 0 28px rgba(255, 230, 154, 0.12);
+}
+
+.hrv-classroom-hub .divider-medallion svg {
+  width: 42px;
+}
+
+.hrv-classroom-hub .divider-medallion circle {
+  fill: none;
+  stroke: #e0c675;
+  stroke-width: 2;
+}
+
+.hrv-classroom-hub .divider-medallion path:first-of-type {
+  fill: #fff0aa;
+}
+
+.hrv-classroom-hub .divider-medallion path:last-of-type {
+  stroke: #79d8bf;
+  stroke-width: 2;
+}
+
+.hrv-classroom-hub .past-explorations-section::before {
+  background: radial-gradient(928px 352px at 8% 18%, rgba(45, 185, 158, 0.11), transparent 72%);
+}
+
+.hrv-classroom-hub .past-twwl-section::before {
+  background: radial-gradient(928px 352px at 92% 18%, rgba(139, 102, 211, 0.12), transparent 72%);
+}
+
+.hrv-classroom-hub .gallery-frame {
+  overflow: visible;
+  padding: clamp(19.2px, 2vw, 32px) 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hrv-classroom-hub .exploration-gallery-frame {
+  border-top: 3px solid rgba(114, 227, 200, 0.7);
+}
+
+.hrv-classroom-hub .learning-gallery-frame {
+  border-top: 3px solid rgba(200, 183, 255, 0.7);
+}
+
+.hrv-classroom-hub .gallery-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 19.2px;
+  margin-bottom: 23.2px;
+}
+
+.hrv-classroom-hub .gallery-title {
+  font-size: clamp(40px, 2.8vw, 49.6px);
+}
+
+.hrv-classroom-hub .gallery-tools {
+  width: min(100%, 390px);
+}
+
+.hrv-classroom-hub .gallery-search {
+  width: 100%;
+  min-height: 50px;
+  padding: 11.52px 14.4px;
+  border: 1px solid rgba(186, 218, 255, 0.28);
+  border-radius: 13px;
+  background: rgba(3, 13, 30, 0.8);
+  color: #f8fbff;
+  font-size: 16px;
+}
+
+.hrv-classroom-hub .gallery-search::placeholder {
+  color: #9fb1cc;
+}
+
+.hrv-classroom-hub .gallery-count {
+  margin: 5.12px 1.6px 0;
+  color: #aebed8;
+  font-size: 13.6px;
+  font-weight: 800;
+  text-align: right;
+}
+
+.hrv-classroom-hub .gallery-grid {
+  display: grid;
+  gap: clamp(17.6px, 1.5vw, 24px);
+}
+
+.hrv-classroom-hub .exploration-grid {
+  grid-template-columns: minmax(0, 1.12fr) repeat(2, minmax(0, 0.94fr));
+}
+
+.hrv-classroom-hub .learning-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hrv-classroom-hub .learning-grid .learning-card {
+  width: calc((100% - 48px) / 3);
+  flex: 0 1 calc((100% - 48px) / 3);
+}
+
+.hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+  width: calc((100% - 48px) / 3);
+  flex-basis: calc((100% - 48px) / 3);
+}
+
+.hrv-classroom-hub .collection-card {
+  --subject-glow: rgba(86, 141, 210, 0.22);
+  --subject-line: rgba(115, 159, 212, 0.34);
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(186, 218, 255, 0.18);
+  border-radius: 21px;
+  background: rgba(7, 20, 45, 0.96);
+  box-shadow: 0 14px 30px rgba(0, 5, 20, 0.34);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.hrv-classroom-hub .collection-card:hover,
+.hrv-classroom-hub .collection-card:focus-within {
+  border-color: var(--subject-line);
+  box-shadow: 0 20px 42px rgba(0, 5, 20, 0.46), 0 0 30px var(--subject-glow);
+  transform: translateY(-6px);
+}
+
+.hrv-classroom-hub .collection-link {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hrv-classroom-hub .collection-visual {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2 / 1;
+  background: #101f38;
+}
+
+.hrv-classroom-hub .learning-grid .collection-visual {
+  height: clamp(230px, 14vw, 280px);
+  aspect-ratio: auto;
+}
+
+.hrv-classroom-hub .exploration-grid .collection-visual {
+  height: clamp(220px, 14vw, 260px);
+  aspect-ratio: auto;
+}
+
+.hrv-classroom-hub .collection-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hrv-classroom-hub .collection-card:hover .collection-image,
+.hrv-classroom-hub .collection-card:focus-within .collection-image {
+  transform: scale(1.045);
+}
+
+.hrv-classroom-hub .collection-effect {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  opacity: 0.42;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.hrv-classroom-hub .collection-label,
+.hrv-classroom-hub .collection-year {
+  top: 9.92px;
+  padding: 5.12px 8px;
+  font-size: 13.12px;
+  font-weight: 950;
+}
+
+.hrv-classroom-hub .collection-label {
+  left: 9.92px;
+}
+
+.hrv-classroom-hub .collection-year {
+  right: 9.92px;
+}
+
+.hrv-classroom-hub .collection-meta {
+  display: flex;
+  flex-direction: column;
+  padding: 18.4px 20px 20.8px;
+}
+
+.hrv-classroom-hub .collection-title {
+  margin: 0 0 6.4px;
+  color: #f8fbff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(20px, 1.35vw, 23.68px);
+  font-weight: 700;
+  line-height: 1.14;
+}
+
+.hrv-classroom-hub .collection-summary {
+  margin: 0;
+  color: #c5d2e6;
+  font-size: 16.8px;
+  line-height: 1.55;
+}
+
+.hrv-classroom-hub .collection-tags {
+  margin-top: 10.88px;
+}
+
+.hrv-classroom-hub .collection-tags li {
+  border-color: rgba(186, 218, 255, 0.13);
+  background: rgba(255, 255, 255, 0.055);
+  color: #cbd8eb;
+}
+
+.hrv-classroom-hub .collection-enter {
+  margin-top: auto;
+  padding-top: 11.52px;
+  color: var(--hub-teal);
+  font-size: 13.6px;
+  font-weight: 900;
+}
+
+.hrv-classroom-hub .learning-card .collection-enter {
+  color: var(--hub-lilac);
+}
+
+.hrv-classroom-hub .subject-reef {
+  --subject-glow: rgba(58, 171, 205, 0.28);
+  --subject-line: rgba(75, 178, 217, 0.42);
+}
+
+.hrv-classroom-hub .subject-reef .collection-effect {
+  background: repeating-linear-gradient(115deg, transparent 0 28px, rgba(181, 245, 255, 0.18) 31px 35px, transparent 39px 66px);
+  animation: hub-reef-shimmer 8s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .subject-mushrooms {
+  --subject-glow: rgba(119, 157, 87, 0.27);
+  --subject-line: rgba(129, 173, 91, 0.38);
+}
+
+.hrv-classroom-hub .subject-mushrooms .collection-effect {
+  background: linear-gradient(180deg, rgba(24, 51, 25, 0.03), rgba(91, 111, 64, 0.2));
+}
+
+.hrv-classroom-hub .subject-caterpillars {
+  --subject-glow: rgba(119, 180, 73, 0.26);
+  --subject-line: rgba(123, 184, 75, 0.4);
+}
+
+.hrv-classroom-hub .subject-caterpillars .collection-effect {
+  background: linear-gradient(120deg, transparent 58%, rgba(230, 255, 178, 0.2) 60% 64%, transparent 67%);
+  animation: hub-leaf-breathe 7s ease-in-out infinite alternate;
+}
+
+.hrv-classroom-hub .subject-tubers {
+  --subject-glow: rgba(180, 124, 80, 0.28);
+  --subject-line: rgba(177, 128, 86, 0.4);
+}
+
+.hrv-classroom-hub .subject-tubers .collection-effect {
+  background: linear-gradient(180deg, transparent 35%, rgba(104, 65, 40, 0.22));
+}
+
+.hrv-classroom-hub .subject-winter {
+  --subject-glow: rgba(120, 191, 233, 0.31);
+  --subject-line: rgba(113, 185, 227, 0.42);
+}
+
+.hrv-classroom-hub .subject-winter .collection-effect {
+  background-image:
+    radial-gradient(circle at 15% 15%, #ffffff 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 62% 18%, #ffffff 0 1.3px, transparent 2.3px),
+    radial-gradient(circle at 84% 42%, rgba(255, 255, 255, 0.82) 0 1.2px, transparent 2.2px);
+  background-size: 120px 100px;
+  animation: hub-snow-drift 8s linear infinite;
+}
+
+.hrv-classroom-hub .subject-owls {
+  --subject-glow: rgba(226, 203, 134, 0.28);
+  --subject-line: rgba(220, 195, 119, 0.42);
+}
+
+.hrv-classroom-hub .subject-owls .collection-effect {
+  background: radial-gradient(circle at 78% 20%, rgba(255, 241, 180, 0.4), transparent 22%);
+  animation: hub-moon-breathe 6s ease-in-out infinite;
+}
+
+.hrv-classroom-hub .subject-bats {
+  --subject-glow: rgba(114, 117, 223, 0.31);
+  --subject-line: rgba(121, 125, 226, 0.42);
+}
+
+.hrv-classroom-hub .subject-bats .collection-effect {
+  background: radial-gradient(circle at 78% 35%, transparent 0 20px, rgba(181, 196, 255, 0.36) 21px 22px, transparent 23px 39px, rgba(181, 196, 255, 0.22) 40px 41px, transparent 42px);
+  animation: hub-sonar 4.2s ease-out infinite;
+}
+
+.hrv-classroom-hub .subject-spiders {
+  --subject-glow: rgba(193, 140, 91, 0.27);
+  --subject-line: rgba(195, 147, 103, 0.4);
+}
+
+.hrv-classroom-hub .subject-spiders .collection-effect {
+  opacity: 0.3;
+  background:
+    repeating-conic-gradient(from 12deg at 84% 15%, rgba(255, 240, 218, 0.5) 0 1deg, transparent 1deg 13deg),
+    repeating-radial-gradient(circle at 84% 15%, transparent 0 18px, rgba(255, 240, 218, 0.32) 19px 20px, transparent 21px 38px);
+}
+
+.hrv-classroom-hub .current-tags,
+.hrv-classroom-hub .twwl-tags,
+.hrv-classroom-hub .collection-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6.72px;
+  margin: 10.88px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hrv-classroom-hub .current-tags li,
+.hrv-classroom-hub .twwl-tags li,
+.hrv-classroom-hub .collection-tags li {
+  padding: 4.8px 7.68px;
+  border: 1px solid rgba(186, 218, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #cbd8eb;
+  font-size: 13.76px;
+  font-weight: 750;
+}
+
+.hrv-classroom-hub .empty-gallery {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  border: 1px dashed rgba(186, 218, 255, 0.22);
+  border-radius: 18px;
+  color: var(--hub-muted);
+  text-align: center;
+}
+
+.hrv-classroom-hub .empty-gallery p {
+  margin: 0;
+}
+
+.hrv-classroom-hub .archive-control-section {
+  padding-top: 26.4px;
+}
+
+.hrv-classroom-hub .archive-control-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 132px;
+  padding: 23.2px 26.4px;
+  border: 1px solid rgba(255, 230, 154, 0.22);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(29, 43, 77, 0.96), rgba(17, 26, 55, 0.94));
+  box-shadow: 0 18px 40px rgba(0, 5, 20, 0.32);
+}
+
+.hrv-classroom-hub .archive-kicker {
+  margin-bottom: 5.6px;
+  border-color: rgba(255, 230, 154, 0.18);
+}
+
+.hrv-classroom-hub .archive-title {
+  margin: 0;
+  color: #fffaf0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28.8px, 2.1vw, 34.4px);
+  font-weight: 700;
+}
+
+.hrv-classroom-hub .archive-summary {
+  max-width: 62ch;
+  margin: 4.48px 0 0;
+  color: #cad5ea;
+  font-size: 16.32px;
+  line-height: 1.55;
+}
+
+.hrv-classroom-hub .archive-door-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  gap: 10.4px;
+}
+
+.hrv-classroom-hub .archive-door {
+  display: grid;
+  min-width: 250px;
+  min-height: 84px;
+  align-content: center;
+  padding: 13.6px 18.4px;
+  border: 1px solid rgba(255, 230, 154, 0.4);
+  border-radius: 14px 14px 7px 7px;
+  background: linear-gradient(#4a3e69, #2b274d);
+  color: #fff9de;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17.28px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+}
+
+.hrv-classroom-hub .archive-door-caption {
+  color: #d2cae3;
+  font-family: "Atkinson Hyperlegible", Aptos, "Segoe UI", sans-serif;
+  font-size: 13.12px;
+  font-weight: 750;
+}
+
+.hrv-classroom-hub .hub-footer {
+  margin-top: 22.4px;
+  padding: 28.8px 0 64px;
+  border-top: 1px solid rgba(186, 218, 255, 0.14);
+  background: linear-gradient(180deg, rgba(3, 11, 28, 0.42), transparent);
+}
+
+.hrv-classroom-hub .footer-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10.4px;
+  text-align: center;
+}
+
+.hrv-classroom-hub .footer-message {
+  margin: 0;
+  color: #d7e2f5;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16.8px;
+}
+
+.hrv-classroom-hub .footer-spark {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--hub-gold);
+  box-shadow: 0 0 18px rgba(255, 230, 154, 0.56);
+}
+
+.hrv-classroom-hub a:focus-visible,
+.hrv-classroom-hub button:focus-visible,
+.hrv-classroom-hub input:focus-visible {
+  outline: 3px solid #fff3a8;
+  outline-offset: 4px;
+}
+
+.hrv-classroom-hub [data-wake] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 450ms ease var(--wake-delay, 0ms),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1) var(--wake-delay, 0ms);
+}
+
+.hrv-classroom-hub [data-wake].is-awake {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hrv-classroom-hub .welcome-heading,
+.hrv-classroom-hub .welcome-screen,
+.hrv-classroom-hub .hero-left,
+.hrv-classroom-hub .hero-right,
+.hrv-classroom-hub .current-copy,
+.hrv-classroom-hub .current-visual,
+.hrv-classroom-hub .current-twwl-copy,
+.hrv-classroom-hub .current-twwl-visual {
+  transition:
+    opacity 450ms ease 70ms,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1) 70ms;
+}
+
+.hrv-classroom-hub .hero-right {
+  transition-delay: 150ms;
+}
+
+.hrv-classroom-hub .hub-section:not(.is-awake) .hero-left,
+.hrv-classroom-hub .hub-section:not(.is-awake) .welcome-heading,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-copy,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-twwl-copy {
+  transform: translateX(-22px);
+}
+
+.hrv-classroom-hub .hub-section:not(.is-awake) .hero-right,
+.hrv-classroom-hub .hub-section:not(.is-awake) .welcome-screen,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-visual,
+.hrv-classroom-hub .hub-section:not(.is-awake) .current-twwl-visual {
+  transform: translateX(22px);
+}
+
+.hrv-classroom-hub .hub-section.is-awake .current-visual[data-tilt],
+.hrv-classroom-hub .hub-section.is-awake .current-twwl-visual[data-tilt] {
+  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hrv-classroom-hub .hub-section:not(.is-in-view) .screen-glint,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .current-glass,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .leaf-shadow,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .seed-drift,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .learning-lantern,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .lantern-flame,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .twwl-halo,
+.hrv-classroom-hub .hub-section:not(.is-in-view) .collection-effect {
+  animation-play-state: paused;
+}
+
+@keyframes hub-aurora-left {
+  to {
+    opacity: 0.72;
+    transform: translate3d(8vw, 32px, 0) rotate(-2deg);
+  }
+}
+
+@keyframes hub-aurora-right {
+  to {
+    opacity: 0.68;
+    transform: translate3d(-6vw, 16px, 0) rotate(2deg);
+  }
+}
+
+@keyframes hub-stars-drift-a {
+  to {
+    transform: translate3d(34px, 22px, 0);
+  }
+}
+
+@keyframes hub-stars-drift-b {
+  to {
+    transform: translate3d(-28px, 36px, 0);
+  }
+}
+
+@keyframes hub-compass-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hub-compass-needle {
+  50% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes hub-screen-glint {
+  0%,
+  20% {
+    opacity: 0;
+    transform: translateX(0) skewX(-14deg);
+  }
+  40% {
+    opacity: 0.8;
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: translateX(650%) skewX(-14deg);
+  }
+}
+
+@keyframes hub-glass-glint {
+  0%,
+  20% {
+    opacity: 0;
+    transform: translateX(0) skewX(-14deg);
+  }
+  40% {
+    opacity: 0.8;
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: translateX(650%) skewX(-14deg);
+  }
+}
+
+@keyframes hub-leaf-breathe {
+  to {
+    transform: translate(-9px, 5px) rotate(2deg);
+  }
+}
+
+@keyframes hub-seed-drift {
+  50% {
+    transform: translate(12px, -25px) rotate(130deg);
+  }
+}
+
+@keyframes hub-lantern-float {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes hub-lantern-flame {
+  50% {
+    transform: scale(0.86, 1.12) rotate(-5deg);
+  }
+}
+
+@keyframes hub-halo-pulse {
+  to {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes hub-reef-shimmer {
+  to {
+    transform: translate(12px, -7px) scale(1.04);
+  }
+}
+
+@keyframes hub-snow-drift {
+  to {
+    transform: translate(16px, 40px);
+  }
+}
+
+@keyframes hub-moon-breathe {
+  50% {
+    opacity: 0.8;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes hub-sonar {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+@media (max-width: 1180px) {
+  .hrv-classroom-hub {
+    --hub-shell-wide: min(1080px, calc(100% - 40px));
+    --hub-shell-reading: min(1000px, calc(100% - 40px));
+    --hub-shell-theater: min(960px, calc(100% - 40px));
+  }
+
+  .hrv-classroom-hub .welcome-section .museum-shell,
+  .hrv-classroom-hub .current-exploration-section .museum-shell,
+  .hrv-classroom-hub .current-twwl-section .museum-shell {
+    margin-inline: auto;
+  }
+
+  .hrv-classroom-hub .exploration-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hrv-classroom-hub .learning-grid .learning-card,
+  .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+    width: calc((100% - 24px) / 2);
+    flex-basis: calc((100% - 24px) / 2);
+  }
+}
+
+@media (max-width: 1330px) {
+  .hrv-classroom-hub .hub-hero-card,
+  .hrv-classroom-hub .welcome-theater-card,
+  .hrv-classroom-hub .current-exploration-card,
+  .hrv-classroom-hub .current-twwl-card {
+    grid-template-columns: 1fr;
+  }
+
+  .hrv-classroom-hub .hub-hero-card,
+  .hrv-classroom-hub .welcome-theater-card {
+    min-height: 0;
+  }
+
+  .hrv-classroom-hub .hero-right {
+    grid-template-columns: minmax(160px, 0.5fr) minmax(260px, 1fr);
+  }
+
+  .hrv-classroom-hub .welcome-screen {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .hrv-classroom-hub .current-copy {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .hrv-classroom-hub .current-visual {
+    grid-row: 1;
+    grid-column: 1;
+    height: min(460px, 58vw);
+  }
+}
+
+/*
+ * Authoritative panoramic desktop composition.
+ * The opening canvas contains the complete navigation, Welcome, Current
+ * Exploration, Current TWWL, and approved archive rail. Supporting footer
+ * content may continue below the fold.
+ */
+@media (min-width: 1440px) {
+  .hrv-classroom-hub .hub-museum {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: minmax(88px, auto) minmax(480px, auto) minmax(300px, auto) auto;
+    align-content: start;
+    gap: 14px;
+    min-height: 100vh;
+    padding: 14px 24px 20px;
+    overflow: clip;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-layer {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-piece {
+    position: absolute;
+    width: auto;
+    max-width: none;
+    height: 34.5%;
+    opacity: 0.88;
+    filter: drop-shadow(0 0 18px rgba(35, 173, 219, 0.16));
+    user-select: none;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-top-left,
+  .hrv-classroom-hub .hub-banner-frame-middle-left,
+  .hrv-classroom-hub .hub-banner-frame-bottom-left {
+    left: -4px;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-top-right,
+  .hrv-classroom-hub .hub-banner-frame-middle-right,
+  .hrv-classroom-hub .hub-banner-frame-bottom-right {
+    right: -4px;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-top-left,
+  .hrv-classroom-hub .hub-banner-frame-top-right {
+    top: 0;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-middle-left,
+  .hrv-classroom-hub .hub-banner-frame-middle-right {
+    top: 32.75%;
+  }
+
+  .hrv-classroom-hub .hub-banner-frame-bottom-left,
+  .hrv-classroom-hub .hub-banner-frame-bottom-right {
+    bottom: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-section,
+  .hrv-classroom-hub .hub-museum > .site-navigation,
+  .hrv-classroom-hub .hub-museum > .hub-footer {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    padding-block: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-section > .museum-shell,
+  .hrv-classroom-hub .hub-museum > .site-navigation > .museum-shell,
+  .hrv-classroom-hub .hub-museum > .hub-footer > .museum-shell {
+    width: 100%;
+    height: 100%;
+    margin-inline: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hero-section {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+  }
+
+  .hrv-classroom-hub .hub-museum > .site-navigation {
+    grid-row: 1;
+    grid-column: 5 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .welcome-section {
+    grid-row: 2;
+    grid-column: 1 / span 6;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-exploration-section {
+    grid-row: 2;
+    grid-column: 7 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-twwl-section {
+    grid-row: 3;
+    grid-column: 1 / span 10;
+    margin-top: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .history-door-section {
+    grid-row: 3;
+    grid-column: 11 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-footer {
+    grid-row: 4;
+    grid-column: 1 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .history-dialog {
+    position: fixed;
+  }
+
+  .hrv-classroom-hub .hero-section,
+  .hrv-classroom-hub .hero-section .museum-shell,
+  .hrv-classroom-hub .hub-hero-card,
+  .hrv-classroom-hub .site-navigation,
+  .hrv-classroom-hub .site-navigation-shell,
+  .hrv-classroom-hub .welcome-section,
+  .hrv-classroom-hub .welcome-theater-card,
+  .hrv-classroom-hub .current-exploration-section,
+  .hrv-classroom-hub .current-exploration-card,
+  .hrv-classroom-hub .current-twwl-section,
+  .hrv-classroom-hub .current-twwl-card {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .hub-hero-card {
+    grid-template-columns: minmax(0, 1fr) 58px;
+    align-items: center;
+    gap: 14px;
+    min-height: 0;
+    padding: 5px 16px 5px 20px;
+    border-radius: 20px;
+    background:
+      radial-gradient(390px 160px at 3% 10%, rgba(45, 185, 158, 0.18), transparent 70%),
+      linear-gradient(110deg, rgba(9, 37, 67, 0.97), rgba(18, 28, 67, 0.96));
+  }
+
+  .hrv-classroom-hub .hero-museum-mark,
+  .hrv-classroom-hub .hero-kicker,
+  .hrv-classroom-hub .hub-invitation,
+  .hrv-classroom-hub .hero-pillars,
+  .hrv-classroom-hub .hero-oath,
+  .hrv-classroom-hub .hero-glance,
+  .hrv-classroom-hub .hero-school-year {
+    display: none;
+  }
+
+  .hrv-classroom-hub .hero-right {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    place-items: center;
+  }
+
+  .hrv-classroom-hub .hero-right .hub-compass {
+    grid-row: 1;
+    grid-column: 1;
+    width: 56px;
+  }
+
+  .hrv-classroom-hub .hub-title {
+    max-width: none;
+    margin: 0 0 4px;
+    font-family: var(--hub-font-display);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+
+  .hrv-classroom-hub .hub-subtitle {
+    display: block;
+    max-width: 62ch;
+    margin: 0;
+    overflow: visible;
+    font-family: var(--hub-font-ui);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.35;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .site-navigation-shell {
+    min-height: 0;
+    padding: 6px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgba(11, 28, 59, 0.97), rgba(17, 25, 61, 0.96));
+  }
+
+  .hrv-classroom-hub .site-navigation-links {
+    display: grid;
+    grid-template-columns: 0.72fr 1.35fr 0.68fr 1.18fr 0.94fr 1.25fr 1.08fr;
+    align-items: stretch;
+    gap: 4px;
+  }
+
+  .hrv-classroom-hub .site-navigation-link {
+    min-width: 0;
+    min-height: 0;
+    padding: 8px 7px;
+    border-radius: 13px;
+    font-family: var(--hub-font-ui);
+    font-size: clamp(14px, 0.78vw, 15px);
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .hrv-classroom-hub .site-navigation-link.is-current {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .welcome-theater-card {
+    grid-template-columns: clamp(220px, 26%, 250px) minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+    padding: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(145, 183, 255, 0.26);
+    border-radius: 24px;
+    background: linear-gradient(155deg, rgba(11, 29, 63, 0.97), rgba(8, 19, 45, 0.95));
+    box-shadow: 0 18px 44px rgba(0, 4, 18, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .hrv-classroom-hub .welcome-heading {
+    min-width: 0;
+    padding: 20px 10px 20px 14px;
+    border-left: 3px solid rgba(145, 183, 255, 0.54);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .hrv-classroom-hub .section-kicker {
+    min-height: 28px;
+    align-items: center;
+    margin: 0 0 10px;
+    padding: 0 10px;
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.065em;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-title,
+  .hrv-classroom-hub .current-section-title,
+  .hrv-classroom-hub .twwl-section-title {
+    font-family: var(--hub-font-ui);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-title {
+    max-width: 13ch;
+    margin: 0 0 12px;
+    font-size: clamp(29px, 1.62vw, 32px);
+    line-height: 1.08;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-summary {
+    display: block;
+    max-width: 27ch;
+    overflow: visible;
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .theater-badge {
+    display: none;
+  }
+
+  .hrv-classroom-hub .welcome-screen {
+    width: 100%;
+    max-height: none;
+    justify-self: stretch;
+    border-radius: 18px;
+  }
+
+  .hrv-classroom-hub .current-exploration-section::before,
+  .hrv-classroom-hub .current-twwl-section::before {
+    display: none;
+  }
+
+  .hrv-classroom-hub [data-pointer-light]::after {
+    z-index: 1;
+    opacity: 0.34;
+  }
+
+  .hrv-classroom-hub .current-exploration-card {
+    display: grid;
+    grid-template-columns: clamp(310px, 43%, 390px) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 18px;
+    min-height: 0;
+    overflow: hidden;
+    padding: 18px;
+    border-radius: 24px;
+    background:
+      radial-gradient(420px 300px at 12% 48%, rgba(114, 227, 200, 0.13), transparent 72%),
+      linear-gradient(138deg, rgba(7, 31, 52, 0.98), rgba(9, 35, 55, 0.97) 54%, rgba(12, 27, 57, 0.98));
+  }
+
+  .hrv-classroom-hub .current-copy,
+  .hrv-classroom-hub .current-visual {
+    position: relative;
+    z-index: 2;
+    grid-area: auto;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .hrv-classroom-hub .current-copy {
+    display: flex;
+    width: auto;
+    max-width: none;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px 2px 4px 4px;
+    background: none;
+  }
+
+  .hrv-classroom-hub .current-topline {
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 7px;
+  }
+
+  .hrv-classroom-hub .current-topline > * {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    margin: 0;
+    padding: 0 8px;
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.055em;
+  }
+
+  .hrv-classroom-hub .current-section-title {
+    margin: 0 0 1px;
+    font-size: 21px;
+    line-height: 1.16;
+  }
+
+  .hrv-classroom-hub .content-year-badge,
+  .hrv-classroom-hub .learning-year-badge {
+    margin: 0;
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .current-title {
+    max-width: 16ch;
+    margin: 2px 0 6px;
+    font-family: var(--hub-font-display);
+    font-size: clamp(35px, 1.9vw, 36px);
+    font-weight: 700;
+    line-height: 1.01;
+    letter-spacing: -0.028em;
+  }
+
+  .hrv-classroom-hub .current-summary {
+    display: block;
+    margin: 0;
+    overflow: visible;
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .current-points {
+    gap: 5px;
+    margin: 7px 0;
+  }
+
+  .hrv-classroom-hub .current-points li {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.32;
+  }
+
+  .hrv-classroom-hub .current-point-number {
+    width: 24px;
+    height: 24px;
+    font-family: var(--hub-font-ui);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .current-tags {
+    gap: 6px;
+    margin: 0 0 6px;
+  }
+
+  .hrv-classroom-hub .current-tags li {
+    padding: 5px 8px;
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .hub-action {
+    min-height: 44px;
+    align-self: flex-start;
+    margin-top: 0;
+    padding: 9px 15px;
+    border-radius: 12px;
+    font-family: var(--hub-font-ui);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .current-visual {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(191, 255, 233, 0.22);
+    border-radius: 18px;
+    background: #0c2b28;
+    box-shadow: 0 16px 34px rgba(0, 11, 20, 0.4);
+  }
+
+  .hrv-classroom-hub .current-media-stage,
+  .hrv-classroom-hub .twwl-media-stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .hrv-classroom-hub .current-image {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-position: 58% 48%;
+  }
+
+  .hrv-classroom-hub .greenhouse-grid {
+    z-index: 1;
+  }
+
+  .hrv-classroom-hub .current-atmosphere {
+    z-index: 2;
+    border-radius: inherit;
+  }
+
+  .hrv-classroom-hub .current-glass {
+    z-index: 3;
+  }
+
+  .hrv-classroom-hub .current-caption {
+    z-index: 4;
+    right: 12px;
+    bottom: 12px;
+    left: auto;
+    max-width: calc(100% - 24px);
+    padding: 6px 9px;
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .current-twwl-card {
+    display: grid;
+    grid-template-columns: clamp(360px, 27%, 420px) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    gap: 18px;
+    min-height: 0;
+    overflow: hidden;
+    padding: 18px;
+    border-radius: 22px;
+    background:
+      radial-gradient(520px 320px at 84% 44%, rgba(255, 230, 154, 0.1), transparent 70%),
+      linear-gradient(140deg, rgba(52, 36, 91, 0.98), rgba(31, 28, 70, 0.97) 58%, rgba(12, 20, 48, 0.98));
+  }
+
+  .hrv-classroom-hub .current-twwl-copy,
+  .hrv-classroom-hub .current-twwl-visual {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .hrv-classroom-hub .current-twwl-copy {
+    align-self: center;
+    padding: 2px 6px;
+  }
+
+  .hrv-classroom-hub .current-twwl-copy .section-kicker {
+    margin-bottom: 8px;
+  }
+
+  .hrv-classroom-hub .twwl-section-title {
+    margin: 0 0 8px;
+    font-size: 30px;
+    line-height: 1.08;
+  }
+
+  .hrv-classroom-hub .twwl-statusline {
+    display: flex;
+    min-height: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 9px;
+  }
+
+  .hrv-classroom-hub .twwl-statusline > * {
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    margin: 0;
+  }
+
+  .hrv-classroom-hub .preparing-label {
+    padding: 0 9px;
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.055em;
+  }
+
+  .hrv-classroom-hub .twwl-title {
+    max-width: 25ch;
+    margin: 0 0 7px;
+    font-family: var(--hub-font-display);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  .hrv-classroom-hub .twwl-summary {
+    display: block;
+    max-width: 46ch;
+    overflow: visible;
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.48;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .current-twwl-visual {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 18px;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(255, 214, 104, 0.18), transparent 30%),
+      linear-gradient(135deg, rgba(12, 18, 48, 0.96), rgba(7, 9, 29, 0.98));
+  }
+
+  .hrv-classroom-hub .twwl-media-stage {
+    display: grid;
+    place-items: center;
+  }
+
+  .hrv-classroom-hub .twwl-media-stage::before,
+  .hrv-classroom-hub .twwl-media-stage::after {
+    position: absolute;
+    z-index: 0;
+    content: "";
+    pointer-events: none;
+  }
+
+  .hrv-classroom-hub .twwl-media-stage::before {
+    width: min(74%, 720px);
+    aspect-ratio: 2.2 / 1;
+    border: 1px solid rgba(255, 230, 154, 0.12);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 34px rgba(184, 145, 233, 0.025),
+      0 0 0 68px rgba(184, 145, 233, 0.018);
+  }
+
+  .hrv-classroom-hub .twwl-media-stage::after {
+    right: 8%;
+    bottom: 16%;
+    left: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 230, 154, 0.38), transparent);
+  }
+
+  .hrv-classroom-hub .twwl-atmosphere {
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  .hrv-classroom-hub .twwl-halo {
+    top: 50%;
+    left: 50%;
+    width: min(68%, 680px);
+    height: 86%;
+  }
+
+  .hrv-classroom-hub .twwl-ray-one {
+    right: 34%;
+  }
+
+  .hrv-classroom-hub .twwl-ray-two {
+    right: 48%;
+  }
+
+  .hrv-classroom-hub .preparing-display {
+    z-index: 2;
+  }
+
+  .hrv-classroom-hub .learning-lantern {
+    scale: 1.2;
+  }
+
+  .hrv-classroom-hub .preparing-display-title {
+    margin-top: 28px;
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .hrv-classroom-hub .preparing-display-line {
+    width: 120px;
+    margin-top: 10px;
+  }
+
+  .hrv-classroom-hub .current-twwl-image {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  /* Approved archive-button geometry and crops are intentionally frozen. */
+  .hrv-classroom-hub .history-door-section,
+  .hrv-classroom-hub .history-door-shell,
+  .hrv-classroom-hub .history-door-grid {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .history-door-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .hrv-classroom-hub .history-door {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: 18px;
+  }
+
+  .hrv-classroom-hub .history-door-pastExplorations .history-door-artwork,
+  .hrv-classroom-hub .history-door-pastTwwl .history-door-artwork {
+    object-position: left center;
+  }
+
+  .hrv-classroom-hub .history-door-pastYears .history-door-artwork {
+    object-position: right center;
+  }
+
+  .hrv-classroom-hub .history-door-copy {
+    inset: 0 4% 0 44%;
+    gap: 2px;
+  }
+
+  .hrv-classroom-hub .history-door-pastYears .history-door-copy {
+    inset: 0 44% 0 4%;
+  }
+
+  .hrv-classroom-hub .history-door-title {
+    font-family: var(--hub-font-display);
+    font-size: clamp(18px, 1.05vw, 20px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow,
+  .hrv-classroom-hub .history-door-action {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .history-door-grid > .history-door .history-door-action {
+    display: none;
+  }
+
+  .hrv-classroom-hub .hub-footer {
+    height: auto;
+    margin-top: 0;
+    padding: 12px 0 0;
+  }
+
+  .hrv-classroom-hub .footer-shell {
+    height: auto;
+  }
+
+  .hrv-classroom-hub .footer-message {
+    font-family: var(--hub-font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .hrv-classroom-hub .history-dialog-close {
+    font-family: var(--hub-font-ui);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-header .section-kicker,
+  .hrv-classroom-hub .history-dialog .archive-kicker {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-title,
+  .hrv-classroom-hub .history-dialog .archive-title {
+    font-family: var(--hub-font-display);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.06;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-search {
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-count,
+  .hrv-classroom-hub .history-dialog .collection-label,
+  .hrv-classroom-hub .history-dialog .collection-year {
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-title {
+    font-family: var(--hub-font-display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.12;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-summary,
+  .hrv-classroom-hub .history-dialog .archive-summary {
+    display: block;
+    overflow: visible;
+    font-family: var(--hub-font-ui);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-tags li,
+  .hrv-classroom-hub .history-dialog .collection-enter,
+  .hrv-classroom-hub .history-dialog .archive-door-caption {
+    font-family: var(--hub-font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .hrv-classroom-hub .history-dialog .archive-door {
+    font-family: var(--hub-font-ui);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1679px) {
+  .hrv-classroom-hub .hub-museum {
+    grid-template-rows: minmax(88px, auto) minmax(510px, auto) minmax(300px, auto) auto;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-twwl-section {
+    grid-column: 1 / span 9;
+  }
+
+  .hrv-classroom-hub .hub-museum > .history-door-section {
+    grid-column: 10 / -1;
+  }
+
+  .hrv-classroom-hub .welcome-theater-card {
+    grid-template-columns: 210px minmax(0, 1fr);
+  }
+
+  .hrv-classroom-hub .hub-title {
+    font-size: 28px;
+  }
+
+  .hrv-classroom-hub .hub-subtitle {
+    font-size: 14px;
+  }
+
+  .hrv-classroom-hub .current-exploration-card {
+    grid-template-columns: 300px minmax(0, 1fr);
+  }
+
+  .hrv-classroom-hub .current-twwl-card {
+    grid-template-columns: 350px minmax(0, 1fr);
+  }
+
+  .hrv-classroom-hub .current-title {
+    font-size: 34px;
+  }
+
+  .hrv-classroom-hub .current-points {
+    gap: 4px;
+    margin-block: 8px;
+  }
+}
+
+@media (max-width: 720px) {
+  .hrv-classroom-hub {
+    --hub-shell-wide: calc(100% - 20px);
+    --hub-shell-reading: calc(100% - 20px);
+    --hub-shell-theater: calc(100% - 20px);
+  }
+
+  .hrv-classroom-hub .exploration-grid,
+  .hrv-classroom-hub .hero-right {
+    grid-template-columns: 1fr;
+  }
+
+  .hrv-classroom-hub .museum-map-shell {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hrv-classroom-hub .museum-map-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hrv-classroom-hub .learning-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hrv-classroom-hub .learning-grid .learning-card,
+  .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+    width: auto;
+  }
+
+  .hrv-classroom-hub .hero-right .hub-compass,
+  .hrv-classroom-hub .hero-oath,
+  .hrv-classroom-hub .hero-glance {
+    grid-row: auto;
+    grid-column: 1;
+  }
+
+  .hrv-classroom-hub .hub-title {
+    font-size: clamp(48px, 13vw, 67.2px);
+  }
+
+  .hrv-classroom-hub .card-heading,
+  .hrv-classroom-hub .gallery-header,
+  .hrv-classroom-hub .archive-control-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hrv-classroom-hub .gallery-tools {
+    width: 100%;
+  }
+
+  .hrv-classroom-hub .gallery-count {
+    text-align: left;
+  }
+
+  .hrv-classroom-hub .archive-door-wrap {
+    justify-content: stretch;
+  }
+
+  .hrv-classroom-hub .archive-door {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .hrv-classroom-hub .hub-section {
+    padding-block: 16px;
+  }
+
+  .hrv-classroom-hub .hub-card {
+    border-radius: 20px;
+  }
+
+  .hrv-classroom-hub .hub-hero-card,
+  .hrv-classroom-hub .welcome-theater-card,
+  .hrv-classroom-hub .current-exploration-card,
+  .hrv-classroom-hub .current-twwl-card,
+  .hrv-classroom-hub .gallery-frame {
+    padding: 16px;
+  }
+
+  .hrv-classroom-hub .hero-identity-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hrv-classroom-hub .current-visual {
+    min-height: 240px;
+    border-width: 4px;
+  }
+
+  .hrv-classroom-hub .divider-medallion {
+    width: 52px;
+    height: 52px;
+  }
+
+  .hrv-classroom-hub .hero-school-year {
+    text-align: left;
+  }
+}
+
+@media (min-width: 1600px) and (max-height: 820px) {
+  .hrv-classroom-hub .hub-hero-card {
+    min-height: 390px;
+  }
+
+  .hrv-classroom-hub .current-visual {
+    min-height: 370px;
+    height: 400px;
+  }
+}
+
+/*
+ * Single-canvas desktop exploration board
+ *
+ * Wide desktop treats the Hub as one composed room rather than a sequence of
+ * stacked exhibits. The DOM and focus order remain unchanged: identity/map;
+ * Welcome, Current, Learning; galleries, archives, footer. Narrower layouts
+ * continue to use the established room plan above this breakpoint.
+ */
+/* Retired desktop composition retained for historical breakpoint comparison only. */
+@media (min-width: 1440px) and (max-width: 1439px) {
+  .hrv-classroom-hub .hub-museum {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 86px 598px 344px 96px 39px;
+    gap: 12px;
+    min-height: 100vh;
+    padding: 20px 32px 12px;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hero-section {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+    z-index: 4;
+    margin-right: -12px;
+  }
+
+  .hrv-classroom-hub .hub-museum > .museum-map {
+    grid-row: 1;
+    grid-column: 5 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .welcome-section {
+    grid-row: 2;
+    grid-column: 1 / span 4;
+    align-self: center;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-exploration-section {
+    grid-row: 2;
+    grid-column: 5 / span 6;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-twwl-section {
+    grid-row: 2;
+    grid-column: 11 / -1;
+    align-self: center;
+    margin-top: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .museum-divider {
+    display: none;
+  }
+
+  .hrv-classroom-hub .hub-museum > .past-explorations-section {
+    grid-row: 3;
+    grid-column: 1 / span 5;
+  }
+
+  .hrv-classroom-hub .hub-museum > .past-twwl-section {
+    grid-row: 3;
+    grid-column: 6 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .archive-control-section {
+    grid-row: 4;
+    grid-column: 1 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-footer {
+    grid-row: 5;
+    grid-column: 1 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-section,
+  .hrv-classroom-hub .hub-museum > .museum-map,
+  .hrv-classroom-hub .hub-museum > .hub-footer {
+    min-width: 0;
+    padding-block: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-section > .museum-shell,
+  .hrv-classroom-hub .hub-museum > .museum-map > .museum-shell,
+  .hrv-classroom-hub .hub-museum > .hub-footer > .museum-shell {
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  /* One continuous orientation rail: identity and navigation share a baseline. */
+  .hrv-classroom-hub .hero-section,
+  .hrv-classroom-hub .hero-section .museum-shell,
+  .hrv-classroom-hub .hub-hero-card {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .hub-hero-card {
+    grid-template-columns: minmax(0, 1fr) 60px;
+    gap: 10px;
+    min-height: 0;
+    align-items: center;
+    padding: 9px 14px 9px 18px;
+    border-right: 0;
+    border-radius: 18px 0 0 18px;
+    background:
+      radial-gradient(360px 150px at 3% 10%, rgba(45, 185, 158, 0.18), transparent 70%),
+      linear-gradient(110deg, rgba(9, 37, 67, 0.98), rgba(11, 28, 59, 0.98));
+    box-shadow: 0 14px 34px rgba(0, 6, 21, 0.24), inset 0 1px rgba(255, 255, 255, 0.07);
+  }
+
+  .hrv-classroom-hub .hero-left {
+    align-self: center;
+  }
+
+  .hrv-classroom-hub .hero-museum-mark,
+  .hrv-classroom-hub .hero-kicker,
+  .hrv-classroom-hub .hub-invitation,
+  .hrv-classroom-hub .hero-pillars,
+  .hrv-classroom-hub .hero-oath,
+  .hrv-classroom-hub .hero-glance,
+  .hrv-classroom-hub .hero-school-year {
+    display: none;
+  }
+
+  .hrv-classroom-hub .hub-title {
+    max-width: none;
+    margin: 0 0 2px;
+    font-size: clamp(30px, 1.9vw, 35px);
+    line-height: 0.98;
+  }
+
+  .hrv-classroom-hub .hub-subtitle {
+    display: -webkit-box;
+    max-width: 70ch;
+    overflow: hidden;
+    font-size: 11.5px;
+    line-height: 1.22;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .hero-right {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    place-items: center;
+  }
+
+  .hrv-classroom-hub .hero-right .hub-compass {
+    grid-row: 1;
+    grid-column: 1;
+    width: 56px;
+  }
+
+  /* Horizontal room map continues the identity rail instead of floating apart. */
+  .hrv-classroom-hub .museum-map {
+    align-self: stretch;
+  }
+
+  .hrv-classroom-hub .museum-map-shell {
+    height: 100%;
+    min-height: 0;
+    gap: 0;
+    padding: 0 8px;
+    border-left: 0;
+    border-radius: 0 18px 18px 0;
+    background: linear-gradient(90deg, rgba(11, 28, 59, 0.98), rgba(17, 25, 61, 0.96));
+    box-shadow: 0 14px 34px rgba(0, 6, 21, 0.24), inset 0 1px rgba(255, 255, 255, 0.07);
+  }
+
+  .hrv-classroom-hub .museum-map-title {
+    display: none;
+  }
+
+  .hrv-classroom-hub .museum-map-links {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    height: 100%;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .hrv-classroom-hub .museum-map-link {
+    min-width: 0;
+    min-height: 0;
+    flex: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 7px;
+    border-left: 1px solid rgba(186, 218, 255, 0.12);
+    border-radius: 0;
+    font-size: 12.5px;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .hrv-classroom-hub .museum-map-link:first-child {
+    border-left: 0;
+  }
+
+  .hrv-classroom-hub .museum-map-number {
+    font-size: 10px;
+  }
+
+  /* Welcome Theater is one coherent support card with a full-width 16:9 screen. */
+  .hrv-classroom-hub .welcome-theater-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid rgba(145, 183, 255, 0.24);
+    border-radius: 22px;
+    background: linear-gradient(155deg, rgba(12, 31, 65, 0.94), rgba(8, 19, 45, 0.88));
+    box-shadow: 0 18px 44px rgba(0, 4, 18, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .hrv-classroom-hub .welcome-heading {
+    padding: 6px 8px 0;
+    border-left: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-title {
+    max-width: none;
+    margin-bottom: 4px;
+    font-size: clamp(24px, 1.45vw, 28px);
+    line-height: 1.04;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 13.5px;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .welcome-kicker {
+    margin-bottom: 4px;
+    padding: 3px 6px;
+    font-size: 10.5px;
+  }
+
+  .hrv-classroom-hub .theater-badge {
+    display: none;
+  }
+
+  .hrv-classroom-hub .welcome-screen {
+    width: 100%;
+    justify-self: center;
+    border-radius: 16px;
+  }
+
+  /* Image-led Current anchor: copy floats over the left side of one image. */
+  .hrv-classroom-hub .current-exploration-section,
+  .hrv-classroom-hub .current-exploration-section .museum-shell,
+  .hrv-classroom-hub .current-exploration-card {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .current-exploration-card {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    min-height: 0;
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 22px;
+  }
+
+  .hrv-classroom-hub .current-visual,
+  .hrv-classroom-hub .current-copy {
+    grid-area: 1 / 1;
+  }
+
+  .hrv-classroom-hub .current-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    align-self: stretch;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hrv-classroom-hub .current-image {
+    object-position: 68% 48%;
+  }
+
+  .hrv-classroom-hub .current-copy {
+    z-index: 4;
+    display: flex;
+    width: clamp(430px, 58%, 550px);
+    max-width: none;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 72px 28px 32px;
+    background: linear-gradient(90deg, rgba(4, 24, 43, 0.99) 0%, rgba(5, 27, 47, 0.96) 62%, rgba(5, 27, 47, 0.78) 82%, transparent 100%);
+  }
+
+  .hrv-classroom-hub .current-topline {
+    gap: 6.4px;
+  }
+
+  .hrv-classroom-hub .current-topline .section-kicker,
+  .hrv-classroom-hub .open-now-badge {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  .hrv-classroom-hub .current-section-title {
+    margin: 7px 0 3px;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .content-year-badge {
+    margin: 0 0 4px;
+    font-size: 11.5px;
+  }
+
+  .hrv-classroom-hub .current-title {
+    max-width: 16ch;
+    margin: 0 0 8px;
+    font-size: clamp(36px, 2.2vw, 42px);
+    line-height: 0.98;
+  }
+
+  .hrv-classroom-hub .current-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .hrv-classroom-hub .current-points {
+    gap: 6px;
+    margin: 12px 0;
+  }
+
+  .hrv-classroom-hub .current-points li {
+    grid-template-columns: 23px minmax(0, 1fr);
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.32;
+  }
+
+  .hrv-classroom-hub .current-point-number {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+
+  .hrv-classroom-hub .current-tags {
+    gap: 5px;
+    margin: 7px 0;
+  }
+
+  .hrv-classroom-hub .current-tags li {
+    padding: 4px 7px;
+    font-size: 10.5px;
+  }
+
+  .hrv-classroom-hub .hub-action {
+    min-height: 44px;
+    align-self: flex-start;
+    margin-top: 3px;
+    padding: 8px 13px;
+    border-radius: 11px;
+    font-size: 14px;
+  }
+
+  .hrv-classroom-hub .current-caption {
+    right: 14px;
+    bottom: 14px;
+    left: auto;
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
+  /* Learning Lantern remains compact but fills its narrow support rail intentionally. */
+  .hrv-classroom-hub .current-twwl-card {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(220px, 1fr);
+    align-content: stretch;
+    gap: 12px;
+    height: 520px;
+    min-height: 0;
+    padding: 16px;
+    border-radius: 19px;
+  }
+
+  .hrv-classroom-hub .current-twwl-copy .section-kicker {
+    margin-bottom: 5px;
+    font-size: 10.5px;
+  }
+
+  .hrv-classroom-hub .twwl-section-title {
+    margin-bottom: 3px;
+    font-size: clamp(21px, 1.25vw, 24px);
+  }
+
+  .hrv-classroom-hub .learning-year-badge {
+    margin-bottom: 3px;
+    font-size: 10.5px;
+  }
+
+  .hrv-classroom-hub .preparing-label {
+    margin: 0 0 4px;
+    padding: 3.52px 5.76px;
+    font-size: 9.28px;
+  }
+
+  .hrv-classroom-hub .twwl-title {
+    margin-bottom: 5px;
+    font-size: clamp(18px, 1.15vw, 22px);
+    line-height: 1.02;
+  }
+
+  .hrv-classroom-hub .twwl-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 11.5px;
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .current-twwl-visual,
+  .hrv-classroom-hub .current-twwl-image {
+    min-height: 220px;
+  }
+
+  .hrv-classroom-hub .current-twwl-visual {
+    border-radius: 15px;
+  }
+
+  .hrv-classroom-hub .learning-lantern {
+    margin-block: -10px -12px;
+    scale: 0.82;
+  }
+
+  .hrv-classroom-hub .preparing-display-title {
+    margin-top: 7px;
+    font-size: 12px;
+  }
+
+  .hrv-classroom-hub .preparing-display-line {
+    width: 84px;
+    margin-top: 5.6px;
+  }
+
+  /* Secondary collections sit just below the first viewport at a readable card scale. */
+  .hrv-classroom-hub .past-explorations-section,
+  .hrv-classroom-hub .past-twwl-section,
+  .hrv-classroom-hub .past-explorations-section .museum-shell,
+  .hrv-classroom-hub .past-twwl-section .museum-shell,
+  .hrv-classroom-hub .gallery-frame {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .gallery-frame {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    padding-top: 10px;
+  }
+
+  .hrv-classroom-hub .gallery-header {
+    align-items: end;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .hrv-classroom-hub .gallery-header .section-kicker {
+    margin-bottom: 2.88px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 9.28px;
+  }
+
+  .hrv-classroom-hub .gallery-title {
+    margin-bottom: 0;
+    font-size: clamp(22px, 1.35vw, 26px);
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .gallery-tools {
+    width: min(40%, 176px);
+  }
+
+  .hrv-classroom-hub .gallery-search {
+    min-height: 34px;
+    padding: 6px 9px;
+    border-radius: 9px;
+    font-size: 11.5px;
+  }
+
+  .hrv-classroom-hub .gallery-count {
+    margin: 1.92px 0 0;
+    font-size: 9.12px;
+  }
+
+  .hrv-classroom-hub .gallery-grid {
+    min-height: 0;
+    gap: 10px;
+  }
+
+  .hrv-classroom-hub .exploration-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hrv-classroom-hub .learning-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .hrv-classroom-hub .learning-grid .learning-card,
+  .hrv-classroom-hub .learning-grid .learning-card:nth-child(n + 4) {
+    width: auto;
+    min-width: 0;
+    flex: none;
+  }
+
+  .hrv-classroom-hub .collection-card {
+    height: 100%;
+    border-radius: 14px;
+  }
+
+  .hrv-classroom-hub .collection-link {
+    display: grid;
+    grid-template: 1fr / 1fr;
+  }
+
+  .hrv-classroom-hub .collection-visual,
+  .hrv-classroom-hub .collection-meta,
+  .hrv-classroom-hub .exploration-grid .collection-visual,
+  .hrv-classroom-hub .learning-grid .collection-visual {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .hrv-classroom-hub .collection-meta {
+    position: relative;
+    z-index: 2;
+    align-self: end;
+    justify-content: end;
+    padding: 40px 9.28px 8.32px;
+    background: linear-gradient(180deg, transparent 0%, rgba(3, 13, 30, 0.56) 36%, rgba(3, 13, 30, 0.96) 100%);
+  }
+
+  .hrv-classroom-hub .collection-label,
+  .hrv-classroom-hub .collection-tags,
+  .hrv-classroom-hub .collection-enter {
+    display: none;
+  }
+
+  .hrv-classroom-hub .collection-year {
+    top: 6.72px;
+    right: 6.72px;
+    padding: 3.2px 4.8px;
+    font-size: 8.96px;
+  }
+
+  .hrv-classroom-hub .collection-title {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 2.56px;
+    font-size: clamp(14px, 0.9vw, 17px);
+    line-height: 1.05;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .collection-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 10.5px;
+    line-height: 1.2;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  /* Previous years becomes a compact horizontal band after the galleries. */
+  .hrv-classroom-hub .archive-control-section,
+  .hrv-classroom-hub .compact-archive-shell,
+  .hrv-classroom-hub .archive-control-card {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .archive-control-card {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 18px;
+    min-height: 0;
+    padding: 12px 18px;
+    border-radius: 17px;
+  }
+
+  .hrv-classroom-hub .archive-kicker {
+    margin-bottom: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 9.6px;
+  }
+
+  .hrv-classroom-hub .archive-title {
+    font-size: clamp(22px, 1.35vw, 26px);
+    line-height: 1.02;
+  }
+
+  .hrv-classroom-hub .archive-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    max-width: 84ch;
+    margin-top: 3px;
+    font-size: 11px;
+    line-height: 1.3;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .hrv-classroom-hub .archive-door-wrap {
+    width: auto;
+    flex: none;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .hrv-classroom-hub .archive-door {
+    width: auto;
+    min-width: 220px;
+    min-height: 58px;
+    padding: 8px 14px;
+    border-radius: 11px 11px 6px 6px;
+    font-size: 15px;
+  }
+
+  .hrv-classroom-hub .archive-door-caption {
+    font-size: 9.44px;
+  }
+
+  .hrv-classroom-hub .hub-footer {
+    height: 100%;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .hrv-classroom-hub .footer-shell {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .footer-message {
+    font-size: 12px;
+  }
+}
+
+.hrv-classroom-hub .site-navigation {
+  position: relative;
+  z-index: 5;
+  padding-block: 4px 8.8px;
+}
+
+.hrv-classroom-hub .site-navigation-shell {
+  display: flex;
+  width: var(--hub-shell-reading);
+  min-height: 58px;
+  align-items: stretch;
+  padding: 7px;
+  border: 1px solid rgba(186, 218, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(7, 20, 47, 0.82);
+  box-shadow: 0 14px 34px rgba(0, 6, 21, 0.2);
+}
+
+.hrv-classroom-hub .site-navigation-links {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(142px, 1fr));
+  gap: 5px;
+}
+
+.hrv-classroom-hub .site-navigation-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  color: #e4eeff;
+  font-size: 13px;
+  font-weight: 850;
+  line-height: 1.12;
+  text-align: center;
+  text-decoration: none;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.hrv-classroom-hub a.site-navigation-link:hover,
+.hrv-classroom-hub a.site-navigation-link:focus-visible {
+  border-color: rgba(114, 227, 200, 0.26);
+  background: rgba(114, 227, 200, 0.1);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hrv-classroom-hub .site-navigation-link.is-current {
+  border-color: rgba(255, 230, 154, 0.3);
+  background: linear-gradient(135deg, rgba(114, 227, 200, 0.16), rgba(255, 230, 154, 0.12));
+  color: #fff4bd;
+  cursor: default;
+}
+
+.hrv-classroom-hub .history-door-section {
+  position: relative;
+  z-index: 3;
+  padding-block: clamp(18px, 2.2vw, 30px);
+}
+
+.hrv-classroom-hub .history-door-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hrv-classroom-hub .history-door {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(255, 230, 154, 0.34);
+  border-radius: 20px;
+  background: #07152d;
+  box-shadow: 0 16px 34px rgba(0, 5, 20, 0.36);
+  color: #fff9e8;
+  cursor: pointer;
+  isolation: isolate;
+  text-align: left;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.hrv-classroom-hub .history-door-pastYears {
+  aspect-ratio: 2.5 / 1;
+}
+
+.hrv-classroom-hub .history-door:hover,
+.hrv-classroom-hub .history-door:focus-visible {
+  border-color: rgba(255, 230, 154, 0.72);
+  box-shadow: 0 18px 38px rgba(0, 5, 20, 0.46), 0 0 0 3px rgba(114, 227, 200, 0.18);
+  transform: translateY(-2px) scale(1.008);
+}
+
+.hrv-classroom-hub .history-door:focus-visible {
+  outline: 3px solid #fff1ac;
+  outline-offset: 3px;
+}
+
+.hrv-classroom-hub .history-door-artwork,
+.hrv-classroom-hub .history-door-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hrv-classroom-hub .history-door-artwork {
+  z-index: -2;
+  object-fit: cover;
+}
+
+.hrv-classroom-hub .history-door-shade {
+  z-index: -1;
+  background: linear-gradient(90deg, transparent 20%, rgba(3, 14, 31, 0.3) 44%, rgba(3, 14, 31, 0.96) 72%);
+}
+
+.hrv-classroom-hub .history-door-pastYears .history-door-shade {
+  background: linear-gradient(90deg, rgba(3, 14, 31, 0.96) 0%, rgba(3, 14, 31, 0.62) 44%, transparent 72%);
+}
+
+.hrv-classroom-hub .history-door-copy {
+  position: absolute;
+  inset: 0 7% 0 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.hrv-classroom-hub .history-door-pastYears .history-door-copy {
+  inset: 0 48% 0 7%;
+}
+
+.hrv-classroom-hub .history-door-eyebrow,
+.hrv-classroom-hub .history-door-action {
+  font-family: "Atkinson Hyperlegible", Aptos, "Segoe UI", sans-serif;
+  font-size: clamp(10px, 0.72vw, 12px);
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.hrv-classroom-hub .history-door-eyebrow {
+  color: var(--hub-teal);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.hrv-classroom-hub .history-door-title {
+  color: #fff8dd;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 1.4vw, 27px);
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.hrv-classroom-hub .history-door-action {
+  color: #dce8fb;
+}
+
+.hrv-classroom-hub .history-dialog {
+  width: min(1180px, calc(100vw - 48px));
+  max-width: none;
+  max-height: min(820px, calc(100vh - 48px));
+  overflow: auto;
+  padding: 0;
+  border: 1px solid rgba(186, 218, 255, 0.28);
+  border-radius: 24px;
+  background: #07152d;
+  color: #f7fbff;
+  box-shadow: 0 28px 90px rgba(0, 3, 15, 0.78);
+}
+
+.hrv-classroom-hub .history-dialog::backdrop {
+  background: rgba(1, 7, 20, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.hrv-classroom-hub .history-dialog-surface {
+  position: relative;
+  padding: 24px;
+}
+
+.hrv-classroom-hub .history-dialog-close {
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  display: block;
+  min-width: 86px;
+  min-height: 42px;
+  margin: 0 0 12px auto;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 230, 154, 0.38);
+  border-radius: 999px;
+  background: #16284a;
+  color: #fff8dd;
+  font: 850 13px/1 "Atkinson Hyperlegible", Aptos, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.hrv-classroom-hub .history-dialog-close:hover,
+.hrv-classroom-hub .history-dialog-close:focus-visible {
+  background: #203961;
+  outline: 3px solid rgba(114, 227, 200, 0.42);
+  outline-offset: 2px;
+}
+
+.hrv-classroom-hub .history-dialog .hub-section,
+.hrv-classroom-hub .history-dialog .museum-shell,
+.hrv-classroom-hub .history-dialog .gallery-frame,
+.hrv-classroom-hub .history-dialog .archive-control-section,
+.hrv-classroom-hub .history-dialog .archive-control-card {
+  height: auto;
+}
+
+.hrv-classroom-hub .history-dialog .hub-section {
+  padding: 0;
+}
+
+.hrv-classroom-hub .history-dialog .museum-shell {
+  width: 100%;
+  margin: 0;
+}
+
+/* Desktop normalization for navigation and archive components declared above. */
+@media (min-width: 1440px) {
+  .hrv-classroom-hub .hub-museum .site-navigation-shell {
+    width: 100%;
+    min-height: 0;
+    padding: 6px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, rgba(11, 28, 59, 0.97), rgba(17, 25, 61, 0.96));
+  }
+
+  .hrv-classroom-hub .hub-museum .site-navigation-links {
+    grid-template-columns: 0.72fr 1.35fr 0.68fr 1.18fr 0.94fr 1.25fr 1.08fr;
+    gap: 4px;
+  }
+
+  .hrv-classroom-hub .hub-museum .site-navigation-link {
+    min-height: 0;
+    padding: 8px 7px;
+    border-radius: 13px;
+    font-family: var(--hub-font-ui);
+    font-size: clamp(14px, 0.78vw, 15px);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .hub-museum .site-navigation-link.is-current {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: 18px;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-pastYears {
+    aspect-ratio: auto;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-copy {
+    inset: 0 4% 0 44%;
+    gap: 2px;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-pastYears .history-door-copy {
+    inset: 0 44% 0 4%;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-title {
+    font-family: var(--hub-font-display);
+    font-size: clamp(18px, 1.05vw, 20px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-eyebrow,
+  .hrv-classroom-hub .hub-museum .history-door-action {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-eyebrow {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .hub-museum .history-door-grid > .history-door .history-door-action {
+    display: none;
+  }
+
+  .hrv-classroom-hub .history-dialog-close {
+    font: 700 14px/1 var(--hub-font-ui);
+  }
+}
+
+/*
+ * Approved panoramic desktop composition.
+ * The freehand annotation defines relationships; the live 1920x911 canvas
+ * determines the final proportions.
+ */
+/* Superseded 2026-08-30 desktop composition; deliberately inactive. */
+@media (min-width: 1440px) and (max-width: 1439px) {
+  .hrv-classroom-hub .hub-museum {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 78px 420px 304px 39px;
+    gap: 14px;
+    min-height: 100vh;
+    padding: 16px 24px 12px;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hero-section {
+    grid-row: 1;
+    grid-column: 1 / span 4;
+    z-index: 6;
+    margin-right: -14px;
+  }
+
+  .hrv-classroom-hub .hub-museum > .site-navigation {
+    grid-row: 1;
+    grid-column: 5 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .welcome-section {
+    grid-row: 2;
+    grid-column: 1 / span 6;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-exploration-section {
+    grid-row: 2;
+    grid-column: 7 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .current-twwl-section {
+    grid-row: 3;
+    grid-column: 1 / span 10;
+    margin-top: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .history-door-section {
+    grid-row: 3;
+    grid-column: 11 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-footer {
+    grid-row: 4;
+    grid-column: 1 / -1;
+  }
+
+  .hrv-classroom-hub .hub-museum > .history-dialog {
+    position: fixed;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-section,
+  .hrv-classroom-hub .hub-museum > .site-navigation,
+  .hrv-classroom-hub .hub-museum > .hub-footer {
+    min-width: 0;
+    padding-block: 0;
+  }
+
+  .hrv-classroom-hub .hub-museum > .hub-section > .museum-shell,
+  .hrv-classroom-hub .hub-museum > .site-navigation > .museum-shell,
+  .hrv-classroom-hub .hub-museum > .hub-footer > .museum-shell {
+    width: 100%;
+    height: 100%;
+    margin-inline: 0;
+  }
+
+  .hrv-classroom-hub .hero-section,
+  .hrv-classroom-hub .hero-section .museum-shell,
+  .hrv-classroom-hub .hub-hero-card {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .hub-hero-card {
+    grid-template-columns: minmax(0, 1fr) 56px;
+    gap: 10px;
+    min-height: 0;
+    align-items: center;
+    padding: 8px 14px 8px 18px;
+    border-right: 0;
+    border-radius: 18px 0 0 18px;
+    background:
+      radial-gradient(360px 150px at 3% 10%, rgba(45, 185, 158, 0.18), transparent 70%),
+      linear-gradient(110deg, rgba(9, 37, 67, 0.98), rgba(11, 28, 59, 0.98));
+  }
+
+  .hrv-classroom-hub .hero-museum-mark,
+  .hrv-classroom-hub .hero-kicker,
+  .hrv-classroom-hub .hub-invitation,
+  .hrv-classroom-hub .hero-pillars,
+  .hrv-classroom-hub .hero-oath,
+  .hrv-classroom-hub .hero-glance,
+  .hrv-classroom-hub .hero-school-year {
+    display: none;
+  }
+
+  .hrv-classroom-hub .hub-title {
+    max-width: none;
+    margin: 0 0 2px;
+    font-size: clamp(30px, 1.85vw, 35px);
+    line-height: 0.98;
+  }
+
+  .hrv-classroom-hub .hub-subtitle {
+    display: -webkit-box;
+    max-width: 68ch;
+    overflow: hidden;
+    font-size: 11.5px;
+    line-height: 1.2;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .hero-right {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    place-items: center;
+  }
+
+  .hrv-classroom-hub .hero-right .hub-compass {
+    grid-row: 1;
+    grid-column: 1;
+    width: 52px;
+  }
+
+  .hrv-classroom-hub .site-navigation,
+  .hrv-classroom-hub .site-navigation-shell {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .site-navigation-shell {
+    min-height: 0;
+    padding: 0 8px;
+    border-left: 0;
+    border-radius: 0 18px 18px 0;
+    background: linear-gradient(90deg, rgba(11, 28, 59, 0.98), rgba(17, 25, 61, 0.96));
+  }
+
+  .hrv-classroom-hub .site-navigation-links {
+    display: grid;
+    grid-template-columns: 0.7fr 1.38fr 0.68fr 1.18fr 0.92fr 1.28fr 1.08fr;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .hrv-classroom-hub .site-navigation-link {
+    min-width: 0;
+    min-height: 0;
+    border: 0;
+    border-left: 1px solid rgba(186, 218, 255, 0.12);
+    border-radius: 0;
+    padding: 8px 6px;
+    font-size: clamp(10.5px, 0.66vw, 12.5px);
+  }
+
+  .hrv-classroom-hub .site-navigation-link:first-child {
+    border-left: 0;
+  }
+
+  .hrv-classroom-hub .welcome-section,
+  .hrv-classroom-hub .welcome-theater-card,
+  .hrv-classroom-hub .current-exploration-section,
+  .hrv-classroom-hub .current-exploration-card,
+  .hrv-classroom-hub .current-twwl-section,
+  .hrv-classroom-hub .current-twwl-card {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .welcome-theater-card {
+    grid-template-columns: minmax(210px, 0.34fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(145, 183, 255, 0.24);
+    border-radius: 22px;
+    background: linear-gradient(155deg, rgba(12, 31, 65, 0.96), rgba(8, 19, 45, 0.9));
+    box-shadow: 0 18px 44px rgba(0, 4, 18, 0.38), inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .hrv-classroom-hub .welcome-heading {
+    padding: 16px 8px 16px 12px;
+    border-left: 2px solid rgba(145, 183, 255, 0.5);
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-title {
+    max-width: 11ch;
+    margin-bottom: 8px;
+    font-size: clamp(27px, 1.5vw, 30px);
+    line-height: 1.02;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-summary {
+    display: -webkit-box;
+    max-width: 30ch;
+    overflow: hidden;
+    font-size: 13.5px;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .hrv-classroom-hub .welcome-kicker {
+    margin-bottom: 7px;
+    font-size: 10.5px;
+  }
+
+  .hrv-classroom-hub .theater-badge {
+    display: none;
+  }
+
+  .hrv-classroom-hub .welcome-screen {
+    width: 100%;
+    max-height: 384px;
+    justify-self: stretch;
+    border-radius: 16px;
+  }
+
+  .hrv-classroom-hub .current-exploration-card {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    min-height: 0;
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 22px;
+  }
+
+  .hrv-classroom-hub .current-visual,
+  .hrv-classroom-hub .current-copy {
+    grid-area: 1 / 1;
+  }
+
+  .hrv-classroom-hub .current-visual {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hrv-classroom-hub .current-image {
+    object-position: 67% 48%;
+  }
+
+  .hrv-classroom-hub .current-copy {
+    z-index: 4;
+    display: flex;
+    width: clamp(400px, 49%, 450px);
+    max-width: none;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px 58px 22px 26px;
+    background: linear-gradient(90deg, rgba(4, 24, 43, 0.99) 0%, rgba(5, 27, 47, 0.96) 62%, rgba(5, 27, 47, 0.76) 82%, transparent 100%);
+  }
+
+  .hrv-classroom-hub .current-topline .section-kicker,
+  .hrv-classroom-hub .open-now-badge {
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+
+  .hrv-classroom-hub .current-section-title {
+    margin: 5px 0 2px;
+    font-size: 17px;
+  }
+
+  .hrv-classroom-hub .content-year-badge {
+    margin: 0 0 3px;
+    font-size: 10px;
+  }
+
+  .hrv-classroom-hub .current-title {
+    max-width: 15ch;
+    margin: 0 0 6px;
+    font-size: clamp(34px, 2vw, 39px);
+    line-height: 0.97;
+  }
+
+  .hrv-classroom-hub .current-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 12.5px;
+    line-height: 1.34;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .current-points {
+    gap: 4px;
+    margin: 8px 0;
+  }
+
+  .hrv-classroom-hub .current-points li {
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 7px;
+    font-size: 11.5px;
+    line-height: 1.22;
+  }
+
+  .hrv-classroom-hub .current-point-number {
+    width: 19px;
+    height: 19px;
+    font-size: 9px;
+  }
+
+  .hrv-classroom-hub .current-tags {
+    gap: 4px;
+    margin: 5px 0;
+  }
+
+  .hrv-classroom-hub .current-tags li {
+    padding: 3px 6px;
+    font-size: 9.5px;
+  }
+
+  .hrv-classroom-hub .hub-action {
+    min-height: 40px;
+    align-self: flex-start;
+    margin-top: 2px;
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 12.5px;
+  }
+
+  .hrv-classroom-hub .current-caption {
+    right: 12px;
+    bottom: 12px;
+    left: auto;
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+
+  .hrv-classroom-hub .current-twwl-card {
+    grid-template-columns: clamp(292px, 16vw, 320px) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 16px;
+    min-height: 0;
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .hrv-classroom-hub .current-twwl-copy {
+    align-self: center;
+    padding: 0 12px;
+  }
+
+  .hrv-classroom-hub .current-twwl-copy .section-kicker {
+    margin-bottom: 4px;
+    font-size: 10px;
+  }
+
+  .hrv-classroom-hub .twwl-section-title {
+    margin-bottom: 2px;
+    font-size: clamp(25px, 1.55vw, 30px);
+  }
+
+  .hrv-classroom-hub .learning-year-badge {
+    margin-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .hrv-classroom-hub .preparing-label {
+    margin: 0 0 4px;
+    padding: 3px 6px;
+    font-size: 9px;
+  }
+
+  .hrv-classroom-hub .twwl-title {
+    max-width: 28ch;
+    margin-bottom: 5px;
+    font-size: clamp(21px, 1.3vw, 25px);
+    line-height: 1.02;
+  }
+
+  .hrv-classroom-hub .twwl-summary {
+    display: -webkit-box;
+    max-width: 56ch;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.38;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .hrv-classroom-hub .current-twwl-visual,
+  .hrv-classroom-hub .current-twwl-image {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .hrv-classroom-hub .current-twwl-visual {
+    border-radius: 16px;
+  }
+
+  .hrv-classroom-hub .learning-lantern {
+    scale: 0.82;
+  }
+
+  .hrv-classroom-hub .preparing-display-title {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+  .hrv-classroom-hub .preparing-display-line {
+    width: 86px;
+    margin-top: 5px;
+  }
+
+  .hrv-classroom-hub .history-door-section,
+  .hrv-classroom-hub .history-door-shell,
+  .hrv-classroom-hub .history-door-grid {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .history-door-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .hrv-classroom-hub .history-door {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    border-radius: 18px;
+  }
+
+  .hrv-classroom-hub .history-door-pastExplorations .history-door-artwork,
+  .hrv-classroom-hub .history-door-pastTwwl .history-door-artwork {
+    object-position: left center;
+  }
+
+  .hrv-classroom-hub .history-door-pastYears .history-door-artwork {
+    object-position: right center;
+  }
+
+  .hrv-classroom-hub .history-door-title {
+    font-size: clamp(18px, 1.18vw, 23px);
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow,
+  .hrv-classroom-hub .history-door-action {
+    font-size: 9.5px;
+  }
+
+  .hrv-classroom-hub .hub-footer {
+    height: 100%;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .hrv-classroom-hub .footer-shell {
+    height: 100%;
+  }
+
+  .hrv-classroom-hub .footer-message {
+    font-size: 12.5px;
+  }
+
+  /*
+   * Definitive desktop typography system.
+   * Two dependable font stacks, three real weights, and role-based sizing
+   * replace the earlier compression rules and their synthetic font weights.
+   */
+  .hrv-classroom-hub .hub-title,
+  .hrv-classroom-hub .welcome-heading .section-title,
+  .hrv-classroom-hub .current-section-title,
+  .hrv-classroom-hub .current-title,
+  .hrv-classroom-hub .twwl-section-title,
+  .hrv-classroom-hub .twwl-title,
+  .hrv-classroom-hub .history-door-title,
+  .hrv-classroom-hub .history-dialog .gallery-title,
+  .hrv-classroom-hub .history-dialog .collection-title,
+  .hrv-classroom-hub .history-dialog .archive-title {
+    font-family: var(--hub-font-display);
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .hub-subtitle,
+  .hrv-classroom-hub .hub-skip,
+  .hrv-classroom-hub .site-navigation-link,
+  .hrv-classroom-hub .section-kicker,
+  .hrv-classroom-hub .open-now-badge,
+  .hrv-classroom-hub .content-year-badge,
+  .hrv-classroom-hub .learning-year-badge,
+  .hrv-classroom-hub .preparing-label,
+  .hrv-classroom-hub .welcome-heading .section-summary,
+  .hrv-classroom-hub .current-summary,
+  .hrv-classroom-hub .current-points li,
+  .hrv-classroom-hub .current-point-number,
+  .hrv-classroom-hub .current-tags li,
+  .hrv-classroom-hub .hub-action,
+  .hrv-classroom-hub .current-caption,
+  .hrv-classroom-hub .twwl-summary,
+  .hrv-classroom-hub .preparing-display-title,
+  .hrv-classroom-hub .history-door-eyebrow,
+  .hrv-classroom-hub .history-door-action,
+  .hrv-classroom-hub .history-dialog,
+  .hrv-classroom-hub .history-dialog-close,
+  .hrv-classroom-hub .history-dialog .gallery-search,
+  .hrv-classroom-hub .history-dialog .gallery-count,
+  .hrv-classroom-hub .history-dialog .collection-summary,
+  .hrv-classroom-hub .history-dialog .collection-label,
+  .hrv-classroom-hub .history-dialog .collection-year,
+  .hrv-classroom-hub .history-dialog .collection-tags li,
+  .hrv-classroom-hub .history-dialog .collection-enter,
+  .hrv-classroom-hub .history-dialog .archive-kicker,
+  .hrv-classroom-hub .history-dialog .archive-summary,
+  .hrv-classroom-hub .history-dialog .archive-door,
+  .hrv-classroom-hub .history-dialog .archive-door-caption,
+  .hrv-classroom-hub .footer-message {
+    font-family: var(--hub-font-ui);
+  }
+
+  .hrv-classroom-hub .hub-title {
+    margin-bottom: 3px;
+    font-size: clamp(29px, 1.83vw, 35px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+
+  .hrv-classroom-hub .hub-subtitle {
+    display: block;
+    max-width: none;
+    overflow: visible;
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.3;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .site-navigation-link {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .hrv-classroom-hub .site-navigation-link.is-current {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .section-kicker,
+  .hrv-classroom-hub .open-now-badge,
+  .hrv-classroom-hub .preparing-label,
+  .hrv-classroom-hub .history-door-eyebrow {
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.065em;
+  }
+
+  .hrv-classroom-hub .current-topline .section-kicker,
+  .hrv-classroom-hub .current-twwl-copy .section-kicker {
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.065em;
+  }
+
+  .hrv-classroom-hub .hub-skip {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-title {
+    font-size: clamp(27px, 1.67vw, 32px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .hrv-classroom-hub .welcome-heading .section-summary {
+    display: block;
+    overflow: visible;
+    font-size: 14.5px;
+    font-weight: 400;
+    line-height: 1.45;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .current-section-title {
+    font-size: 18px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .content-year-badge,
+  .hrv-classroom-hub .learning-year-badge {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .current-title {
+    font-size: clamp(35px, 2.08vw, 40px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+
+  .hrv-classroom-hub .current-summary {
+    display: block;
+    overflow: visible;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.38;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .current-points li {
+    font-size: 12.5px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .hrv-classroom-hub .current-point-number {
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .current-tags li {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .hub-action {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .current-caption {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .twwl-section-title {
+    font-size: 30px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .hrv-classroom-hub .twwl-title {
+    font-size: 22px;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .twwl-summary {
+    display: block;
+    max-width: none;
+    overflow: visible;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+    -webkit-line-clamp: initial;
+  }
+
+  .hrv-classroom-hub .preparing-display-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-door-copy {
+    inset: 0 4% 0 44%;
+    gap: 2px;
+  }
+
+  .hrv-classroom-hub .history-door-pastYears .history-door-copy {
+    inset: 0 44% 0 4%;
+  }
+
+  .hrv-classroom-hub .history-door-title {
+    font-size: clamp(18px, 1.05vw, 20px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow,
+  .hrv-classroom-hub .history-door-action {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .hrv-classroom-hub .history-door-eyebrow {
+    font-weight: 700;
+  }
+
+  .hrv-classroom-hub .history-door-grid > .history-door .history-door-action {
+    display: none;
+  }
+
+  .hrv-classroom-hub .history-dialog-close {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-header .section-kicker,
+  .hrv-classroom-hub .history-dialog .archive-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-title,
+  .hrv-classroom-hub .history-dialog .archive-title {
+    font-size: 28px;
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-search {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .hrv-classroom-hub .history-dialog .gallery-count {
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-title {
+    font-size: 18px;
+    line-height: 1.15;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-summary {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.4;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-label,
+  .hrv-classroom-hub .history-dialog .collection-year {
+    font-size: 10.5px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .history-dialog .collection-tags li,
+  .hrv-classroom-hub .history-dialog .collection-enter,
+  .hrv-classroom-hub .history-dialog .archive-door-caption {
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .hrv-classroom-hub .history-dialog .archive-summary {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+  }
+
+  .hrv-classroom-hub .history-dialog .archive-door {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .hrv-classroom-hub .footer-message {
+    font-family: var(--hub-font-ui);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 720px) {
+  .hrv-classroom-hub .site-navigation-links,
+  .hrv-classroom-hub .history-door-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hrv-classroom-hub .history-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+  }
+
+  .hrv-classroom-hub .history-dialog-surface {
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hrv-classroom-hub *,
+  .hrv-classroom-hub *::before,
+  .hrv-classroom-hub *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .hrv-classroom-hub [data-wake] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hrv-classroom-hub [data-tilt] {
+    transform: none !important;
+  }
+
+  .hrv-classroom-hub .welcome-heading,
+  .hrv-classroom-hub .welcome-screen,
+  .hrv-classroom-hub .hero-left,
+  .hrv-classroom-hub .hero-right,
+  .hrv-classroom-hub .current-copy,
+  .hrv-classroom-hub .current-visual,
+  .hrv-classroom-hub .current-twwl-copy,
+  .hrv-classroom-hub .current-twwl-visual {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.hrv-classroom-hub[data-system-motion="reduced"] [data-wake] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.hrv-classroom-hub[data-system-motion="reduced"] [data-tilt] {
+  transform: none;
+}
+
+.hrv-classroom-hub[data-system-motion="reduced"] .welcome-heading,
+.hrv-classroom-hub[data-system-motion="reduced"] .welcome-screen,
+.hrv-classroom-hub[data-system-motion="reduced"] .hero-left,
+.hrv-classroom-hub[data-system-motion="reduced"] .hero-right,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-copy,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-visual,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-twwl-copy,
+.hrv-classroom-hub[data-system-motion="reduced"] .current-twwl-visual {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}

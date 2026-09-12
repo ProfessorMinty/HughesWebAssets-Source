@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0",
+  "capturedOn": "2026-09-12",
+  "purpose": "Preservation gate and restoration record for the Page 2627 doorway before replacing the unfinished legacy 2025-2026 archive.",
+  "wordpress": {
+    "pageId": 2627,
+    "title": "Classroom Explorations: 2025–2026 Archive",
+    "slug": "archive-2025-2026",
+    "path": "/hub/archive-2025-2026/",
+    "url": "https://rmhughes.edublogs.org/hub/archive-2025-2026/",
+    "template": "page_fullwidth.php",
+    "lastObservedModified": "2026-08-15T06:22:25"
+  },
+  "observedInstalledState": {
+    "status": "published",
+    "legacyAssetCommit": "8331606ba430e039a78174da3825c275fefa9c46",
+    "legacyRuntimePath": "legacy-page-support/archive-2025-2026/archive-2025-2026.js",
+    "knownIncorrectHistoricalDestination": "Caterpillars in the Classroom",
+    "missingApprovedHistoricalDestination": "Butterflies in the Classroom"
+  },
+  "readOnlyEvidence": {
+    "publicHtml": {
+      "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-public.html",
+      "bytes": 58563,
+      "sha256": "acba88198e526c4f86a8ed94bcabbd801dbaebe9926084a377ad8a2dd25823c8"
+    },
+    "restView": {
+      "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-rest-view.json",
+      "bytes": 22372,
+      "sha256": "44802b57447d8b0785dcaf340f02837c778b9d1ef30c4e3278ebe1e2755b2a2b"
+    }
+  },
+  "authenticatedEditorFields": {
+    "status": "pending-authenticated-export",
+    "requiredBeforeReplacement": true,
+    "fields": {
+      "html": {
+        "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-editor-HTML-BOX.html",
+        "bytes": null,
+        "sha256": null
+      },
+      "css": {
+        "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-editor-CSS-BOX.css",
+        "bytes": null,
+        "sha256": null
+      },
+      "javascript": {
+        "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-editor-JAVASCRIPT-BOX.js",
+        "bytes": null,
+        "sha256": null
+      }
+    }
+  },
+  "installationGate": "blocked-until-authenticated-editor-fields-are-exported-and-hashed",
+  "restorationRule": "Restore the three authenticated editor-field captures together on WordPress Page 2627 using page_fullwidth.php. Never mix fields from the legacy and replacement doorway generations.",
+  "scopeBoundary": "This record covers Page 2627 only. It does not authorize or describe a Page 17, child-page backlink, or live Edublogs change."
+}
