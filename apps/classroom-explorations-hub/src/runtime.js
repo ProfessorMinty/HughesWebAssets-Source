@@ -2,6 +2,15 @@ const mounted = new WeakMap();
 
 const APP_CLASS = "hrv-classroom-hub";
 
+const DIALOG_FOCUSABLE = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "[tabindex]:not([tabindex='-1'])"
+].join(",");
+
 const SITE_NAVIGATION = [
   ["Home", "https://rmhughes.edublogs.org/"],
   ["Hughes Monthly Calendar", "https://rmhughes.edublogs.org/hughes-monthly-calendar/"],
@@ -22,6 +31,32 @@ const SUBJECT_CLASS = new Map([
   ["bats-dont-go-bump-in-the-night", "subject-bats"],
   ["autumn-spiders-gentle-web-artists", "subject-spiders"]
 ]);
+
+const RUNTIME_COPY_REQUIREMENTS = {
+  hero: ["nodeId", "eyebrow", "title", "intro", "invitation"],
+  welcome: ["nodeId", "eyebrow", "title", "summary"],
+  currentExploration: ["nodeId", "eyebrow", "title"],
+  currentTwwl: ["nodeId", "eyebrow", "title", "comingSoonTitle", "comingSoonBody"],
+  pastExplorations: ["nodeId", "eyebrow", "title", "emptyText"],
+  pastTwwl: ["nodeId", "eyebrow", "title", "emptyText"],
+  archives: ["nodeId", "eyebrow", "title", "intro"],
+  footer: ["nodeId", "text"]
+};
+
+function runtimeCopyIsUsable(copy) {
+  return Boolean(
+    copy &&
+    Object.entries(RUNTIME_COPY_REQUIREMENTS).every(([section, fields]) => (
+      copy[section] &&
+      fields.every((field) => typeof copy[section][field] === "string" && copy[section][field].trim())
+    )) &&
+    (copy.hero.pillars === undefined || (
+      Array.isArray(copy.hero.pillars) &&
+      copy.hero.pillars.length > 0 &&
+      copy.hero.pillars.every((pillar) => typeof pillar === "string" && pillar.trim())
+    ))
+  );
+}
 
 function node(tag, className, text) {
   const element = document.createElement(tag);
@@ -49,14 +84,107 @@ function prefersReducedMotion() {
   return Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
 }
 
-function imageNode(image, className, loading = "lazy") {
+function imageNode(image, className, loading = "lazy", handlers = {}) {
   const img = node("img", className);
-  if (!image) return img;
-  img.src = image.src;
-  img.alt = image.alt;
+  img.alt = image?.alt || "";
   img.loading = loading;
   img.decoding = "async";
+
+  if (typeof handlers.onLoad === "function") img.addEventListener("load", handlers.onLoad);
+  if (typeof handlers.onError === "function") img.addEventListener("error", handlers.onError);
+  if (typeof image?.src === "string" && image.src.trim()) img.src = image.src;
   return img;
+}
+
+function mediaFallback(title, body, modifier = "") {
+  const fallback = node(
+    "div",
+    ["hub-media-fallback", modifier].filter(Boolean).join(" ")
+  );
+  fallback.hidden = true;
+  fallback.setAttribute("role", "status");
+  fallback.setAttribute("aria-live", "polite");
+  fallback.append(
+    node("strong", "hub-media-fallback-title", title),
+    node("span", "hub-media-fallback-copy", body)
+  );
+  return fallback;
+}
+
+function appendImageWithFallback(container, image, className, {
+  loading = "lazy",
+  timeoutMs = 8_000,
+  fallbackTitle = "Preview unavailable",
+  fallbackBody = "The image could not load, but the exhibit details are still available.",
+  fallbackClass = ""
+  } = {}) {
+  const fallback = mediaFallback(fallbackTitle, fallbackBody, fallbackClass);
+  const usableImage = Boolean(
+    image &&
+    typeof image.src === "string" &&
+    image.src.trim() &&
+    typeof image.alt === "string" &&
+    image.alt.trim()
+  );
+  let img;
+  let settlementTimer = 0;
+  let eligibilityObserver = null;
+
+  const cancelPendingSettlement = () => {
+    if (settlementTimer) window.clearTimeout(settlementTimer);
+    settlementTimer = 0;
+    eligibilityObserver?.disconnect();
+    eligibilityObserver = null;
+  };
+
+  const showFallback = () => {
+    cancelPendingSettlement();
+    img.hidden = true;
+    fallback.hidden = false;
+    container.classList.add("has-media-fallback");
+    container.dataset.mediaState = "unavailable";
+  };
+  const showImage = () => {
+    cancelPendingSettlement();
+    img.hidden = false;
+    fallback.hidden = true;
+    container.classList.remove("has-media-fallback");
+    container.dataset.mediaState = "ready";
+  };
+
+  img = imageNode(usableImage ? image : null, className, loading, {
+    onLoad: showImage,
+    onError: showFallback
+  });
+  container.append(img, fallback);
+  if (!usableImage) showFallback();
+  else if (timeoutMs > 0 && loading === "lazy" && "IntersectionObserver" in window) {
+    eligibilityObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      eligibilityObserver?.disconnect();
+      eligibilityObserver = null;
+      settlementTimer = window.setTimeout(showFallback, timeoutMs);
+    }, { threshold: 0 });
+    eligibilityObserver.observe(container);
+  } else if (timeoutMs > 0) {
+    settlementTimer = window.setTimeout(showFallback, timeoutMs);
+  }
+  return { img, fallback, cancel: cancelPendingSettlement };
+}
+
+function youtubeWatchUrl(embedUrl) {
+  if (typeof embedUrl !== "string" || !embedUrl) return "";
+  try {
+    const url = new URL(embedUrl);
+    const parts = url.pathname.split("/").filter(Boolean);
+    const id = parts[parts.length - 1] || "";
+    if (url.hostname === "www.youtube-nocookie.com" && /^[A-Za-z0-9_-]{11}$/.test(id)) {
+      return `https://www.youtube.com/watch?v=${id}`;
+    }
+  } catch {
+    return "";
+  }
+  return "";
 }
 
 function tagList(tags, className = "hub-tags") {
@@ -113,6 +241,10 @@ class HubController {
     this.runtimeAssets = runtimeAssets;
     this.listeners = [];
     this.observers = [];
+    this.dialogReturnFocus = new WeakMap();
+    this.dialogBackgroundState = new WeakMap();
+    this.dialogPortalState = new WeakMap();
+    this.openFallbackDialogs = new Set();
     this.destroyed = false;
   }
 
@@ -154,10 +286,11 @@ class HubController {
   destroy() {
     if (this.destroyed) return;
     this.destroyed = true;
+    [...this.openFallbackDialogs].forEach((dialog) => this.closeHistoryDialog(dialog));
     this.listeners.splice(0).forEach((off) => off());
     this.observers.splice(0).forEach((observer) => observer.disconnect());
     document.documentElement.classList.remove("hrv-page-classroom-explorations-ready");
-    this.root.classList.remove(APP_CLASS, "museum-awake");
+    this.root.classList.remove(APP_CLASS, "museum-awake", "has-fallback-dialog");
     this.root.replaceChildren();
     this.root.removeAttribute("data-system-motion");
     for (const url of Object.values(this.runtimeAssets.artwork || {})) {
@@ -378,6 +511,9 @@ class HubController {
   }
 
   hero(copy) {
+    const pillarLabels = copy.pillars || ["Observe", "Wonder", "Investigate", "Share"];
+    const oathTitle = copy.oathTitle || "Our Exploration Promise";
+    const oathBody = copy.oathBody || "We look closely, ask brave questions, test ideas safely, learn from surprises, and share what we discover.";
     const section = setEditable(node("section", "hub-section hero-section"), copy.nodeId);
     section.dataset.wake = "";
 
@@ -398,7 +534,7 @@ class HubController {
 
     const pillars = node("ul", "hero-pillars");
     pillars.setAttribute("aria-label", "Exploration pillars");
-    copy.pillars.forEach((pillar, index) => {
+    pillarLabels.forEach((pillar, index) => {
       const item = node("li");
       item.append(
         node("span", "hero-pillar-number", String(index + 1).padStart(2, "0")),
@@ -412,8 +548,8 @@ class HubController {
     const compass = compassGraphic();
     const oath = node("aside", "hero-oath");
     oath.setAttribute("role", "note");
-    oath.setAttribute("aria-label", copy.oathTitle);
-    oath.append(node("p", "hero-oath-title", copy.oathTitle), node("p", "hero-oath-body", copy.oathBody));
+    oath.setAttribute("aria-label", oathTitle);
+    oath.append(node("p", "hero-oath-title", oathTitle), node("p", "hero-oath-body", oathBody));
 
     const glance = node("div", "hero-glance");
     glance.append(node("p", "hero-glance-title", "Museum at a Glance"));
@@ -466,10 +602,156 @@ class HubController {
     return navigation;
   }
 
+  restoreDialogFocus(dialog) {
+    const target = this.dialogReturnFocus.get(dialog);
+    this.dialogReturnFocus.delete(dialog);
+    if (target?.isConnected && typeof target.focus === "function") {
+      target.focus({ preventScroll: true });
+    }
+  }
+
+  isolateFallbackDialog(dialog) {
+    const background = [];
+    let foreground = dialog;
+    while (foreground?.parentElement) {
+      const parent = foreground.parentElement;
+      background.push(...[...parent.children].filter((element) => element !== foreground));
+      if (parent === document.body) break;
+      foreground = parent;
+    }
+    const states = [...new Set(background)].map((element) => ({
+      element,
+      inert: element.hasAttribute("inert"),
+      ariaHidden: element.getAttribute("aria-hidden")
+    }));
+
+    for (const { element } of states) {
+      element.setAttribute("inert", "");
+      element.setAttribute("aria-hidden", "true");
+    }
+    this.dialogBackgroundState.set(dialog, states);
+    this.root.classList.add("has-fallback-dialog");
+  }
+
+  portalFallbackDialog(dialog) {
+    const parent = dialog.parentElement;
+    if (!parent || !document.body) return;
+    const portal = node("div", `${APP_CLASS} hub-dialog-portal`);
+    this.dialogPortalState.set(dialog, {
+      parent,
+      nextSibling: dialog.nextSibling,
+      portal
+    });
+    document.body.append(portal);
+    portal.append(dialog);
+    this.openFallbackDialogs.add(dialog);
+  }
+
+  restoreFallbackDialogPortal(dialog) {
+    const state = this.dialogPortalState.get(dialog);
+    if (!state) return;
+    const reference = state.nextSibling?.parentElement === state.parent
+      ? state.nextSibling
+      : null;
+    state.parent.insertBefore(dialog, reference);
+    state.portal.remove();
+    this.dialogPortalState.delete(dialog);
+    this.openFallbackDialogs.delete(dialog);
+  }
+
+  restoreFallbackDialogBackground(dialog) {
+    const states = this.dialogBackgroundState.get(dialog) || [];
+    for (const { element, inert, ariaHidden } of states) {
+      if (inert) element.setAttribute("inert", "");
+      else element.removeAttribute("inert");
+      if (ariaHidden === null) element.removeAttribute("aria-hidden");
+      else element.setAttribute("aria-hidden", ariaHidden);
+    }
+    this.dialogBackgroundState.delete(dialog);
+    this.root.classList.remove("has-fallback-dialog");
+  }
+
+  closeHistoryDialog(dialog) {
+    const nativeDialog = dialog.dataset.hrvDialogMode === "native";
+    if (nativeDialog && typeof dialog.close === "function" && dialog.open) {
+      dialog.close();
+      return;
+    }
+
+    dialog.removeAttribute("open");
+    dialog.hidden = true;
+    dialog.classList.remove("history-dialog-fallback-open");
+    delete dialog.dataset.hrvDialogMode;
+    this.restoreFallbackDialogBackground(dialog);
+    this.restoreFallbackDialogPortal(dialog);
+    this.restoreDialogFocus(dialog);
+  }
+
+  focusHistoryDialog(dialog) {
+    const target = dialog.querySelector(DIALOG_FOCUSABLE) || dialog;
+    target.focus({ preventScroll: true });
+  }
+
+  openHistoryDialog(dialog, invoker) {
+    this.dialogReturnFocus.set(dialog, invoker);
+
+    let nativeDialog = false;
+    if (typeof dialog.showModal === "function") {
+      try {
+        if (!dialog.open) dialog.showModal();
+        nativeDialog = true;
+      } catch {
+        nativeDialog = false;
+      }
+    }
+
+    if (nativeDialog) {
+      dialog.hidden = false;
+      dialog.dataset.hrvDialogMode = "native";
+    } else {
+      this.portalFallbackDialog(dialog);
+      dialog.hidden = false;
+      dialog.setAttribute("open", "");
+      dialog.dataset.hrvDialogMode = "fallback";
+      dialog.classList.add("history-dialog-fallback-open");
+      this.isolateFallbackDialog(dialog);
+    }
+
+    this.focusHistoryDialog(dialog);
+  }
+
+  trapHistoryDialogFocus(dialog, event) {
+    const focusable = [...dialog.querySelectorAll(DIALOG_FOCUSABLE)]
+      .filter((element) => (
+        !element.hidden &&
+        !element.closest("[hidden]") &&
+        !element.hasAttribute("disabled")
+      ));
+    if (!focusable.length) {
+      event.preventDefault();
+      dialog.focus({ preventScroll: true });
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) {
+      event.preventDefault();
+      last.focus({ preventScroll: true });
+    } else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) {
+      event.preventDefault();
+      first.focus({ preventScroll: true });
+    }
+  }
+
   historyDialog(id, label, content) {
     const dialog = node("dialog", "history-dialog");
     dialog.id = id;
     dialog.setAttribute("aria-label", label);
+    dialog.setAttribute("role", "dialog");
+    dialog.setAttribute("aria-modal", "true");
+    dialog.tabIndex = -1;
+    if (typeof dialog.showModal !== "function") dialog.hidden = true;
 
     const surface = node("div", "history-dialog-surface");
     const close = node("button", "history-dialog-close", "Close");
@@ -478,14 +760,33 @@ class HubController {
     surface.append(close, content);
     dialog.append(surface);
 
-    this.on(close, "click", () => {
-      if (typeof dialog.close === "function") dialog.close();
-      else dialog.removeAttribute("open");
-    });
+    this.on(close, "click", () => this.closeHistoryDialog(dialog));
     this.on(dialog, "click", (event) => {
       if (event.target !== dialog) return;
-      if (typeof dialog.close === "function") dialog.close();
-      else dialog.removeAttribute("open");
+      this.closeHistoryDialog(dialog);
+    });
+    this.on(dialog, "close", () => {
+      dialog.classList.remove("history-dialog-fallback-open");
+      delete dialog.dataset.hrvDialogMode;
+      this.restoreDialogFocus(dialog);
+    });
+    this.on(document, "focusin", (event) => {
+      if (
+        dialog.dataset.hrvDialogMode === "fallback" &&
+        !dialog.contains(event.target)
+      ) {
+        this.focusHistoryDialog(dialog);
+      }
+    });
+    this.on(dialog, "keydown", (event) => {
+      const mode = dialog.dataset.hrvDialogMode;
+      if (!mode) return;
+      if (event.key === "Escape" && mode === "fallback") {
+        event.preventDefault();
+        this.closeHistoryDialog(dialog);
+      } else if (event.key === "Tab") {
+        this.trapHistoryDialogFocus(dialog, event);
+      }
     });
     return dialog;
   }
@@ -522,8 +823,7 @@ class HubController {
       button.append(artwork, node("span", "history-door-shade"), copy);
 
       this.on(button, "click", () => {
-        if (typeof entry.dialog.showModal === "function") entry.dialog.showModal();
-        else entry.dialog.setAttribute("open", "");
+        this.openHistoryDialog(entry.dialog, button);
       });
       navigation.append(button);
     }
@@ -552,13 +852,69 @@ class HubController {
     header.append(headingCopy, theaterBadge);
 
     const screen = node("div", "welcome-screen");
+    const embedUrl = typeof media?.embedUrl === "string" ? media.embedUrl : "";
+    const alternateUrl = youtubeWatchUrl(embedUrl);
+    const alternate = alternateUrl
+      ? link("Open video in a new tab", alternateUrl, "welcome-video-alternate")
+      : null;
+    if (alternate) {
+      alternate.target = "_blank";
+      alternate.rel = "noopener noreferrer";
+      alternate.hidden = true;
+    }
     const iframe = node("iframe");
-    iframe.src = media.embedUrl;
-    iframe.title = media.title;
+    iframe.title = media?.title || "Classroom Explorations welcome video";
     iframe.loading = "lazy";
     iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
     iframe.allowFullscreen = true;
-    screen.append(iframe, node("span", "screen-glint"), node("span", "screen-footlight"));
+
+    const fallback = mediaFallback(
+      "Welcome video unavailable",
+      "The video could not play here. Use the alternate link to open it directly.",
+      "hub-media-fallback-video"
+    );
+    const showVideoFallback = () => {
+      iframe.hidden = true;
+      fallback.hidden = false;
+      if (alternate) alternate.hidden = false;
+      screen.classList.add("has-media-fallback");
+      screen.dataset.mediaState = "unavailable";
+    };
+    const showVideo = () => {
+      iframe.hidden = false;
+      fallback.hidden = true;
+      if (alternate) alternate.hidden = true;
+      screen.classList.remove("has-media-fallback");
+      screen.dataset.mediaState = "ready";
+    };
+    let videoSettlementTimer = 0;
+    const clearVideoSettlementTimer = () => {
+      if (!videoSettlementTimer) return;
+      window.clearTimeout(videoSettlementTimer);
+      videoSettlementTimer = 0;
+    };
+    const settleVideoFallback = () => {
+      clearVideoSettlementTimer();
+      showVideoFallback();
+    };
+    const settleVideo = () => {
+      if (!embedUrl) return;
+      clearVideoSettlementTimer();
+      showVideo();
+    };
+    this.on(iframe, "load", settleVideo);
+    this.on(iframe, "error", settleVideoFallback);
+    this.listeners.push(clearVideoSettlementTimer);
+    if (embedUrl) {
+      screen.dataset.mediaState = "loading";
+      iframe.src = embedUrl;
+      videoSettlementTimer = window.setTimeout(settleVideoFallback, 8_000);
+    }
+    else showVideoFallback();
+
+    screen.append(iframe, fallback);
+    if (alternate) screen.append(alternate);
+    screen.append(node("span", "screen-glint"), node("span", "screen-footlight"));
 
     card.append(header, screen);
     shell.append(card);
@@ -623,9 +979,15 @@ class HubController {
     const visual = node("figure", "current-visual");
     const mediaStage = node("div", "current-media-stage");
     mediaStage.dataset.tilt = "";
+    mediaStage.append(atmosphere);
+    const currentMedia = appendImageWithFallback(mediaStage, item.image, "current-image", {
+      loading: "eager",
+      fallbackTitle: "Current Exploration image unavailable",
+      fallbackBody: "The exhibit details and Explore Now link are still available.",
+      fallbackClass: "hub-media-fallback-current"
+    });
+    this.listeners.push(currentMedia.cancel);
     mediaStage.append(
-      atmosphere,
-      imageNode(item.image, "current-image", "eager"),
       node("span", "greenhouse-grid"),
       node("span", "current-glass")
     );
@@ -700,15 +1062,20 @@ class HubController {
         link("Learn with Us", item.href, "hub-action learning-action")
       );
 
-      if (item.image) {
-        visual.classList.add(subjectClass(item));
-        mediaStage.classList.add(subjectClass(item));
-        mediaStage.append(
-          imageNode(item.image, "current-twwl-image"),
-          node("span", "twwl-glass"),
-          node("span", "twwl-visual-label", "CURRENT LEARNING")
-        );
-      }
+      visual.classList.add(subjectClass(item));
+      mediaStage.classList.add(subjectClass(item));
+      const twwlMedia = appendImageWithFallback(mediaStage, item.image, "current-twwl-image", {
+        fallbackTitle: item.image ? "Learning story image unavailable" : "Learning story visual coming soon",
+        fallbackBody: item.image
+          ? "The image could not load, but the learning story is ready to open."
+          : "This published learning story does not have an image yet. Use Learn with Us to open it.",
+        fallbackClass: "hub-media-fallback-twwl"
+      });
+      this.listeners.push(twwlMedia.cancel);
+      mediaStage.append(
+        node("span", "twwl-glass"),
+        node("span", "twwl-visual-label", "CURRENT LEARNING")
+      );
     }
 
     visual.append(mediaStage);
@@ -745,21 +1112,25 @@ class HubController {
     const frame = node("section", "hub-card gallery-frame exploration-gallery-frame");
     frame.setAttribute("aria-label", copy.title);
 
-    const { header, input, count } = this.galleryHeader(
+    const entries = Array.isArray(items) ? items : [];
+    const { header, input, count, clear } = this.galleryHeader(
       copy,
       "Filter by title or tag…",
-      "Filter explorations"
+      "Filter explorations",
+      entries.length > 0
     );
     frame.append(header);
 
-    if (!items.length) {
-      frame.append(this.emptyGallery(copy.emptyText));
+    if (!entries.length) {
+      frame.append(this.emptyGallery(copy.emptyText, "gallery-empty-state"));
     } else {
       const grid = node("div", "gallery-grid exploration-grid");
-      const cards = items.map((item, index) => this.explorationCard(item, index));
+      const cards = entries.map((item, index) => this.explorationCard(item, index));
       cards.forEach((card) => grid.append(card));
-      frame.append(grid);
-      this.wireGallerySearch(input, cards, count, "exhibit");
+      const noResults = this.emptyGallery("No exhibits match this filter.", "gallery-no-results");
+      noResults.hidden = true;
+      frame.append(grid, noResults);
+      this.wireGallerySearch(input, cards, count, clear, "exhibit", noResults);
     }
 
     shell.append(frame);
@@ -775,21 +1146,25 @@ class HubController {
     const frame = node("section", "hub-card gallery-frame learning-gallery-frame");
     frame.setAttribute("aria-label", copy.title);
 
-    const { header, input, count } = this.galleryHeader(
+    const entries = Array.isArray(items) ? items : [];
+    const { header, input, count, clear } = this.galleryHeader(
       copy,
       "Filter by title or tag…",
-      "Filter past learning"
+      "Filter past learning",
+      entries.length > 0
     );
     frame.append(header);
 
-    if (!items.length) {
-      frame.append(this.emptyGallery(copy.emptyText));
+    if (!entries.length) {
+      frame.append(this.emptyGallery(copy.emptyText, "gallery-empty-state"));
     } else {
       const grid = node("div", "gallery-grid learning-grid");
-      const cards = items.map((item, index) => this.twwlCard(item, index));
+      const cards = entries.map((item, index) => this.twwlCard(item, index));
       cards.forEach((card) => grid.append(card));
-      frame.append(grid);
-      this.wireGallerySearch(input, cards, count, "learning display");
+      const noResults = this.emptyGallery("No learning displays match this filter.", "gallery-no-results");
+      noResults.hidden = true;
+      frame.append(grid, noResults);
+      this.wireGallerySearch(input, cards, count, clear, "learning display", noResults);
     }
 
     shell.append(frame);
@@ -797,13 +1172,19 @@ class HubController {
     return section;
   }
 
-  galleryHeader(copy, placeholder, ariaLabel) {
+  galleryHeader(copy, placeholder, ariaLabel, interactive = true) {
     const header = node("header", "gallery-header");
     const heading = node("div", "gallery-heading");
     heading.append(
       node("p", `section-kicker ${copy.nodeId.includes("twwl") ? "learning-kicker" : "exploration-kicker"}`, copy.eyebrow),
       node("h2", "section-title gallery-title", copy.title)
     );
+
+    if (!interactive) {
+      header.classList.add("gallery-header-empty");
+      header.append(heading);
+      return { header, input: null, count: null, clear: null };
+    }
 
     const tools = node("div", "gallery-tools");
     const input = node("input", "gallery-search");
@@ -812,15 +1193,19 @@ class HubController {
     input.setAttribute("aria-label", ariaLabel);
     input.autocomplete = "off";
 
+    const clear = node("button", "gallery-clear", "Clear filter");
+    clear.type = "button";
+    clear.hidden = true;
+
     const count = node("p", "gallery-count", "");
     count.setAttribute("aria-live", "polite");
 
-    tools.append(input, count);
+    tools.append(input, clear, count);
     header.append(heading, tools);
-    return { header, input, count };
+    return { header, input, count, clear };
   }
 
-  wireGallerySearch(input, cards, countNode, noun) {
+  wireGallerySearch(input, cards, countNode, clearButton, noun, noResults) {
     const total = cards.length;
     const updateCount = (visible) => {
       countNode.textContent = `${visible} ${noun}${visible === 1 ? "" : "s"} on display`;
@@ -828,7 +1213,7 @@ class HubController {
 
     updateCount(total);
 
-    this.on(input, "input", () => {
+    const applyFilter = () => {
       const query = input.value.trim().toLocaleLowerCase();
       let visible = 0;
 
@@ -839,11 +1224,20 @@ class HubController {
       }
 
       updateCount(visible);
+      clearButton.hidden = !query;
+      noResults.hidden = !query || visible > 0;
+    };
+
+    this.on(input, "input", applyFilter);
+    this.on(clearButton, "click", () => {
+      input.value = "";
+      applyFilter();
+      input.focus({ preventScroll: true });
     });
   }
 
-  emptyGallery(text) {
-    const empty = node("div", "empty-gallery");
+  emptyGallery(text, modifier = "") {
+    const empty = node("div", ["empty-gallery", modifier].filter(Boolean).join(" "));
     empty.append(node("span", "empty-gallery-light"), node("p", "", text));
     return empty;
   }
@@ -859,8 +1253,13 @@ class HubController {
     anchor.setAttribute("aria-label", `Open ${item.title}`);
 
     const visual = node("div", "collection-visual");
+    const cardMedia = appendImageWithFallback(visual, item.image, "collection-image", {
+      fallbackTitle: "Exhibit preview unavailable",
+      fallbackBody: `${item.title} is still ready to open.`,
+      fallbackClass: "hub-media-fallback-card"
+    });
+    this.listeners.push(cardMedia.cancel);
     visual.append(
-      imageNode(item.image, "collection-image"),
       node("span", "collection-effect"),
       node("span", "collection-label", "PAST EXHIBIT"),
       node("span", "collection-year", item.schoolYearLabel || item.schoolYear)
@@ -890,7 +1289,12 @@ class HubController {
     anchor.setAttribute("aria-label", `Open ${item.title}`);
 
     const visual = node("div", "collection-visual");
-    if (item.image) visual.append(imageNode(item.image, "collection-image"));
+    const cardMedia = appendImageWithFallback(visual, item.image, "collection-image", {
+      fallbackTitle: item.image ? "Learning preview unavailable" : "Learning preview coming soon",
+      fallbackBody: `${item.title} is still ready to open.`,
+      fallbackClass: "hub-media-fallback-card"
+    });
+    this.listeners.push(cardMedia.cancel);
     visual.append(
       node("span", "collection-effect"),
       node("span", "collection-label", "PAST LEARNING"),
@@ -926,7 +1330,17 @@ class HubController {
     );
 
     const controlWrap = node("div", "archive-door-wrap");
-    for (const archive of archives) {
+    const entries = Array.isArray(archives) ? archives : [];
+    if (!entries.length) {
+      const empty = this.emptyGallery(
+        "No previous school-year archives are available yet.",
+        "archive-empty-state"
+      );
+      empty.setAttribute("role", "status");
+      controlWrap.append(empty);
+    }
+
+    for (const archive of entries) {
       if (archive.state === "published" && archive.href) {
         const door = link(archive.label, archive.href, "archive-door");
         door.append(node("span", "archive-door-caption", "Open school-year gallery"));
@@ -968,10 +1382,26 @@ export function mountClassroomExplorationsHub(root, manifest, runtimeAssets = {}
   const existing = mounted.get(root);
   if (existing) return existing;
 
+  const currentTwwl = manifest?.current?.twwl;
+  const publishedTwwlContentIsUsable = currentTwwl?.state !== "published" || Boolean(
+    currentTwwl.content &&
+    typeof currentTwwl.content.id === "string" &&
+    typeof currentTwwl.content.title === "string" &&
+    typeof currentTwwl.content.summary === "string" &&
+    typeof currentTwwl.content.href === "string" &&
+    Array.isArray(currentTwwl.content.tags)
+  );
+
   if (
     !manifest ||
     manifest.runtimeSchemaVersion !== "1.0" ||
-    manifest.page?.id !== "hrv-page:classroom-explorations"
+    manifest.page?.id !== "hrv-page:classroom-explorations" ||
+    !runtimeCopyIsUsable(manifest.page?.copy) ||
+    !["coming-soon", "published"].includes(currentTwwl?.state) ||
+    !publishedTwwlContentIsUsable ||
+    !Array.isArray(manifest.galleries?.pastExplorations) ||
+    !Array.isArray(manifest.galleries?.pastTwwl) ||
+    !Array.isArray(manifest.archives)
   ) {
     throw new Error("Unsupported Classroom Explorations runtime manifest.");
   }

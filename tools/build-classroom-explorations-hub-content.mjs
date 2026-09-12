@@ -2,7 +2,12 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateSchema } from "./lib/json-schema-lite.mjs";
-import { projectHubRuntime, validateAuthoringCompatibility, validateRouteRegistryCompatibility } from "./lib/classroom-explorations-hub-contract.mjs";
+import {
+  projectHubRuntime,
+  validateAuthoringCompatibility,
+  validateRouteRegistryCompatibility,
+  validateRuntimeManifestCompatibility
+} from "./lib/classroom-explorations-hub-contract.mjs";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), "utf8"));
 const source = await readJson("apps/classroom-explorations-hub/source/hub.source.json");
@@ -14,6 +19,7 @@ validateSchema(source.data, await readJson("schemas/classroom-explorations-hub.s
 validateSchema(routes, await readJson("schemas/hrv-route-registry.schema.json"));
 const runtime = projectHubRuntime(source, routes);
 validateSchema(runtime, await readJson("schemas/classroom-explorations-hub.runtime.schema.json"));
+validateRuntimeManifestCompatibility(runtime);
 const hash = runtime.snapshotId.slice("sha256:".length);
 const out = resolve(root, `dist/classroom-explorations-hub/content/${hash}/manifest.json`);
 await rm(resolve(root, "dist/classroom-explorations-hub/content"), { recursive: true, force: true });

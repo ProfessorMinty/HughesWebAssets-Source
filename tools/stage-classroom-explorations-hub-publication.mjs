@@ -2,6 +2,8 @@ import { copyFile, mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFil
 import { createHash } from "node:crypto";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateRuntimeManifestCompatibility } from "./lib/classroom-explorations-hub-contract.mjs";
+import { validateSchema } from "./lib/json-schema-lite.mjs";
 
 const [runtimeVersion, publicationId, sourceRevision, previousPublicationId = "none"] = process.argv.slice(2);
 if (!/^\d{4}\.\d{2}\.\d{2}\.\d+$/.test(runtimeVersion || "")) throw new Error("runtimeVersion must be YYYY.MM.DD.N");
@@ -65,6 +67,11 @@ const hash = snapshot.canonicalSha256;
 const contentTarget = resolve(contentParent, hash);
 const incomingManifest = resolve(dist, snapshot.manifestPath);
 const incomingContent = JSON.parse(await readFile(incomingManifest, "utf8"));
+validateSchema(
+  incomingContent,
+  JSON.parse(await readFile(resolve(root, "schemas/classroom-explorations-hub.runtime.schema.json"), "utf8"))
+);
+validateRuntimeManifestCompatibility(incomingContent);
 if (
   incomingContent.runtimeSchemaVersion !== "1.0" ||
   incomingContent.snapshotId !== snapshot.snapshotId ||

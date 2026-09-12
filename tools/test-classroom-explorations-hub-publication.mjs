@@ -56,13 +56,43 @@ const assertNoStagingResidue = async (publicationId) => {
     );
   }
   for (const parent of ["runtime", "content", "publications"]) {
+    let entries = [];
+    try {
+      entries = await readdir(resolve(releaseRoot, parent));
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
     assert.deepEqual(
-      await readdir(resolve(releaseRoot, parent)),
+      entries,
       [],
       `Failed staging must remove every temporary ${parent} entry.`
     );
   }
 };
+
+const malformedContentContainer = await mkdtemp(resolve(tmpdir(), "hrv-hub-malformed-content-dist-"));
+const malformedContentRoot = resolve(malformedContentContainer, "classroom-explorations-hub");
+await cp(resolve(root, "dist/classroom-explorations-hub"), malformedContentRoot, { recursive: true });
+const malformedContentSnapshot = JSON.parse(
+  await readFile(resolve(malformedContentRoot, "content-snapshot.json"), "utf8")
+);
+const malformedContentPath = resolve(malformedContentRoot, malformedContentSnapshot.manifestPath);
+const malformedContent = JSON.parse(await readFile(malformedContentPath, "utf8"));
+malformedContent.page.copy.welcome.title = " \t\n ";
+await writeFile(malformedContentPath, `${JSON.stringify(malformedContent, null, 2)}\n`, "utf8");
+
+const malformedContentStage = runStage(
+  "pub-2099-01-01-000",
+  "0".repeat(40),
+  "none",
+  { HRV_HUB_DIST_ROOT: malformedContentRoot }
+);
+assert.notEqual(malformedContentStage.status, 0, "Unusable runtime copy must reject staging.");
+assert.match(
+  malformedContentStage.stderr + malformedContentStage.stdout,
+  /Runtime page copy is incomplete or unusable\./
+);
+await assertNoStagingResidue("pub-2099-01-01-000");
 
 const malformedDistContainer = await mkdtemp(resolve(tmpdir(), "hrv-hub-malformed-dist-"));
 const malformedDistRoot = resolve(malformedDistContainer, "classroom-explorations-hub");

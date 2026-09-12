@@ -8,9 +8,295 @@
   "properties": {
     "runtimeSchemaVersion": { "const": "1.0" },
     "snapshotId": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
-    "page": {"type":"object","additionalProperties":false,"required":["id","type","href","currentSchoolYear","schoolYearLabel","copy"],"properties":{"id":{"const":"hrv-page:classroom-explorations"},"type":{"const":"classroom-explorations-hub"},"href":{"type":"string","pattern":"^https://"},"currentSchoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"schoolYearLabel":{"type":"string","minLength":1},"copy":{"type":"object"}}},
-    "current": {"type":"object","additionalProperties":false,"required":["exploration","twwl","featuredMedia"],"properties":{"exploration":{"type":"object","additionalProperties":false,"required":["id","title","summary","href","image","learningPoints","tags"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"title":{"type":"string","minLength":1},"summary":{"type":"string","minLength":1},"href":{"type":"string","pattern":"^https://"},"image":{"type":"object","additionalProperties":false,"required":["src","alt"],"properties":{"src":{"type":"string","pattern":"^https://"},"alt":{"type":"string","minLength":1}}},"learningPoints":{"type":"array","items":{"type":"string","minLength":1}},"tags":{"type":"array","items":{"type":"string","minLength":1}}}},"twwl":{"type":"object","additionalProperties":false,"required":["id","state"],"properties":{"id":{"type":"string","minLength":1},"state":{"enum":["coming-soon","published"]},"content":{"type":"object"}}},"featuredMedia":{"type":"object","additionalProperties":false,"required":["id","kind","title","embedUrl"],"properties":{"id":{"type":"string","pattern":"^[a-z0-9]+(?:-[a-z0-9]+)*$"},"kind":{"const":"youtube"},"title":{"type":"string","minLength":1},"embedUrl":{"type":"string","pattern":"^https://www\\.youtube-nocookie\\.com/embed/"}}}}},
-    "galleries": {"type":"object","additionalProperties":false,"required":["pastExplorations","pastTwwl"],"properties":{"pastExplorations":{"type":"array","items":{"type":"object"}},"pastTwwl":{"type":"array","items":{"type":"object"}}}},
-    "archives": {"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","schoolYear","label","state","href"],"properties":{"id":{"type":"string","minLength":1},"schoolYear":{"type":"string","pattern":"^[0-9]{4}-[0-9]{4}$"},"label":{"type":"string","minLength":1},"state":{"enum":["coming-soon","published"]},"href":{"type":["string","null"]}}}}
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "href", "currentSchoolYear", "schoolYearLabel", "copy"],
+      "properties": {
+        "id": { "const": "hrv-page:classroom-explorations" },
+        "type": { "const": "classroom-explorations-hub" },
+        "href": { "type": "string", "pattern": "^https://" },
+        "currentSchoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+        "schoolYearLabel": { "type": "string", "minLength": 1 },
+        "copy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "hero",
+            "welcome",
+            "currentExploration",
+            "currentTwwl",
+            "pastExplorations",
+            "pastTwwl",
+            "archives",
+            "footer"
+          ],
+          "properties": {
+            "hero": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title", "intro", "invitation"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "intro": { "type": "string", "minLength": 1 },
+                "invitation": { "type": "string", "minLength": 1 },
+                "pillars": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": { "type": "string", "minLength": 1 }
+                },
+                "oathTitle": { "type": "string", "minLength": 1 },
+                "oathBody": { "type": "string", "minLength": 1 }
+              }
+            },
+            "welcome": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title", "summary"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "summary": { "type": "string", "minLength": 1 }
+              }
+            },
+            "currentExploration": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 }
+              }
+            },
+            "currentTwwl": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title", "comingSoonTitle", "comingSoonBody"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "comingSoonTitle": { "type": "string", "minLength": 1 },
+                "comingSoonBody": { "type": "string", "minLength": 1 }
+              }
+            },
+            "pastExplorations": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title", "emptyText"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "emptyText": { "type": "string", "minLength": 1 }
+              }
+            },
+            "pastTwwl": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title", "emptyText"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "emptyText": { "type": "string", "minLength": 1 }
+              }
+            },
+            "archives": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "eyebrow", "title", "intro"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "eyebrow": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "intro": { "type": "string", "minLength": 1 }
+              }
+            },
+            "footer": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["nodeId", "text"],
+              "properties": {
+                "nodeId": { "type": "string", "pattern": "^hub-node:[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "text": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "current": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exploration", "twwl", "featuredMedia"],
+      "properties": {
+        "exploration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "title", "summary", "href", "image", "learningPoints", "tags"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "title": { "type": "string", "minLength": 1 },
+            "summary": { "type": "string", "minLength": 1 },
+            "href": { "type": "string", "pattern": "^https://" },
+            "image": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["src", "alt"],
+              "properties": {
+                "src": { "type": "string", "pattern": "^https://" },
+                "alt": { "type": "string", "minLength": 1 }
+              }
+            },
+            "learningPoints": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "tags": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "twwl": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "state"],
+          "properties": {
+            "id": { "type": "string", "minLength": 1 },
+            "state": { "enum": ["coming-soon", "published"] },
+            "content": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "schoolYear", "schoolYearLabel", "title", "summary", "href", "tags"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+                "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+                "schoolYearLabel": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "summary": { "type": "string", "minLength": 1 },
+                "href": { "type": "string", "pattern": "^https://" },
+                "image": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["src", "alt"],
+                  "properties": {
+                    "src": { "type": "string", "pattern": "^https://" },
+                    "alt": { "type": "string", "minLength": 1 }
+                  }
+                },
+                "tags": {
+                  "type": "array",
+                  "items": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        },
+        "featuredMedia": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "kind", "title", "embedUrl"],
+          "properties": {
+            "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+            "kind": { "const": "youtube" },
+            "title": { "type": "string", "minLength": 1 },
+            "embedUrl": {
+              "type": "string",
+              "pattern": "^https://www\\.youtube-nocookie\\.com/embed/"
+            }
+          }
+        }
+      }
+    },
+    "galleries": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pastExplorations", "pastTwwl"],
+      "properties": {
+        "pastExplorations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "schoolYear", "schoolYearLabel", "title", "summary", "href", "image", "learningPoints", "tags"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+              "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+              "schoolYearLabel": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "summary": { "type": "string", "minLength": 1 },
+              "href": { "type": "string", "pattern": "^https://" },
+              "image": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["src", "alt"],
+                "properties": {
+                  "src": { "type": "string", "pattern": "^https://" },
+                  "alt": { "type": "string", "minLength": 1 }
+                }
+              },
+              "learningPoints": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "tags": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        },
+        "pastTwwl": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "schoolYear", "schoolYearLabel", "title", "summary", "href", "tags"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+              "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+              "schoolYearLabel": { "type": "string", "minLength": 1 },
+              "title": { "type": "string", "minLength": 1 },
+              "summary": { "type": "string", "minLength": 1 },
+              "href": { "type": "string", "pattern": "^https://" },
+              "image": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["src", "alt"],
+                "properties": {
+                  "src": { "type": "string", "pattern": "^https://" },
+                  "alt": { "type": "string", "minLength": 1 }
+                }
+              },
+              "tags": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "archives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "schoolYear", "label", "state", "href"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "schoolYear": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{4}$" },
+          "label": { "type": "string", "minLength": 1 },
+          "state": { "enum": ["coming-soon", "published"] },
+          "href": { "type": ["string", "null"], "pattern": "^https://" }
+        }
+      }
+    }
   }
 }

@@ -20,6 +20,9 @@ const runtimePath = "apps/classroom-explorations-hub/src/runtime.js";
 const cssPath = "apps/classroom-explorations-hub/src/hub.css";
 const bootstrapPath = "apps/classroom-explorations-hub/src/bootstrap.js";
 const hostCompatPath = "apps/classroom-explorations-hub/src/host-compat.css";
+const contentBuildPath = "tools/build-classroom-explorations-hub-content.mjs";
+const testDoorwayCssPath = "docs/edublogs-integration/classroom-explorations-hub-test/CSS-BOX.css";
+const productionDoorwayCssPath = "docs/edublogs-integration/classroom-explorations-hub/CSS-BOX.css";
 const artworkPaths = {
   pastExplorations: "apps/classroom-explorations-hub/src/assets/history/past-explorations.webp",
   pastTwwl: "apps/classroom-explorations-hub/src/assets/history/past-twwl.webp",
@@ -43,9 +46,9 @@ const originalFramePaths = {
 assert.equal(sha256(sourcePath), "3c85a2ce02f4ff11c337c8d28444604907971d4c2ca59d74d65e20b3ee009977");
 assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73");
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
-assert.equal(sha256(bootstrapPath), "fe7015cabad35b3a3442ac9787185a2b63fee9890a4e2fde431a1ce06e817496");
-assert.equal(sha256(runtimePath), "2b7bde132b7afd2646d9952e199452826fc5c8029b0eec617d65e75361be59f8");
-assert.equal(sha256(cssPath), "e32ba48fe6774d2fc1924be1ce15673dd97c54a75bb99b3b266b126af0bb2bc7");
+assert.equal(sha256(bootstrapPath), "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159");
+assert.equal(sha256(runtimePath), "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081");
+assert.equal(sha256(cssPath), "22a50907403d2a0bb370de44f121b33bb7df41ae966f41715c7c5842dfa5b3d8");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
@@ -82,7 +85,15 @@ const runtimeText = readText(runtimePath);
 const css = readText(cssPath);
 const bootstrap = readText(bootstrapPath);
 const hostCompat = readText(hostCompatPath);
+const contentBuild = readText(contentBuildPath);
+const testDoorwayCss = readText(testDoorwayCssPath);
+const productionDoorwayCss = readText(productionDoorwayCssPath);
 const staticInvariantNote = "Static source invariant only; real-browser visual acceptance remains a separate gate.";
+assert.match(
+  contentBuild,
+  /const runtime = projectHubRuntime\(source, routes\);[\s\S]*validateSchema\(runtime,[\s\S]*validateRuntimeManifestCompatibility\(runtime\);/,
+  "The content builder must reject projected runtime data that the browser runtime would refuse."
+);
 const parseCssRules = (cssText) => [...cssText.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((match) => ({
   selectors: match[1].split(",").map((selector) => selector.trim()),
   body: match[2]
@@ -123,7 +134,7 @@ assert.notEqual(
   -1,
   `The active desktop composition must retain its explicit authority marker. ${staticInvariantNote}`
 );
-const authoritativeDesktopHeader = "@media (min-width: 1440px)";
+const authoritativeDesktopHeader = "@media (width >= 1440px)";
 const authoritativeDesktopHeaderIndex = css.indexOf(authoritativeDesktopHeader, authoritativeDesktopMarkerIndex);
 const authoritativeDesktopCss = extractCssBlockAt(
   css,
@@ -132,7 +143,7 @@ const authoritativeDesktopCss = extractCssBlockAt(
 );
 const authoritativeDesktopRules = parseCssRules(authoritativeDesktopCss);
 
-const compactDesktopHeader = "@media (min-width: 1440px) and (max-width: 1679px)";
+const compactDesktopHeader = "@media (1440px <= width < 1680px)";
 const compactDesktopHeaderIndex = css.indexOf(
   compactDesktopHeader,
   authoritativeDesktopHeaderIndex + authoritativeDesktopHeader.length
@@ -160,7 +171,7 @@ assert.ok(
   responsiveFrameMarkerIndex > desktopNormalizationHeaderIndex,
   `Responsive frame containment must remain a late-cascade correction. ${staticInvariantNote}`
 );
-const responsiveFrameHeader = "@media (max-width: 1439px)";
+const responsiveFrameHeader = "@media (width < 1440px)";
 const responsiveFrameHeaderIndex = css.indexOf(responsiveFrameHeader, responsiveFrameMarkerIndex);
 const responsiveFrameCss = extractCssBlockAt(
   css,
@@ -169,10 +180,37 @@ const responsiveFrameCss = extractCssBlockAt(
 );
 const responsiveFrameRules = parseCssRules(responsiveFrameCss);
 
-const responsiveTabletHeader = "@media (max-width: 1180px)";
+const compactResponsiveMarker = "Compact identity and global navigation.";
+const compactResponsiveMarkerIndex = css.indexOf(compactResponsiveMarker, responsiveFrameHeaderIndex);
+assert.ok(
+  compactResponsiveMarkerIndex > responsiveFrameHeaderIndex,
+  `Compact identity and navigation must follow the general sub-desktop frame correction. ${staticInvariantNote}`
+);
+const compactResponsiveHeader = "@media (720px < width < 1440px)";
+const compactResponsiveHeaderIndex = css.indexOf(compactResponsiveHeader, compactResponsiveMarkerIndex);
+const compactResponsiveCss = extractCssBlockAt(
+  css,
+  compactResponsiveHeaderIndex,
+  "721-1439 compact identity and navigation"
+);
+const compactResponsiveRules = parseCssRules(compactResponsiveCss);
+
+const narrowCompactHeader = "@media (720px < width < 1000px)";
+const narrowCompactHeaderIndex = css.indexOf(
+  narrowCompactHeader,
+  compactResponsiveHeaderIndex + compactResponsiveHeader.length
+);
+const narrowCompactCss = extractCssBlockAt(
+  css,
+  narrowCompactHeaderIndex,
+  "721-999 compact navigation reflow"
+);
+const narrowCompactRules = parseCssRules(narrowCompactCss);
+
+const responsiveTabletHeader = "@media (width <= 1180px)";
 const responsiveTabletHeaderIndex = css.indexOf(
   responsiveTabletHeader,
-  responsiveFrameHeaderIndex + responsiveFrameHeader.length
+  narrowCompactHeaderIndex + narrowCompactHeader.length
 );
 const responsiveTabletCss = extractCssBlockAt(
   css,
@@ -181,7 +219,7 @@ const responsiveTabletCss = extractCssBlockAt(
 );
 const responsiveTabletRules = parseCssRules(responsiveTabletCss);
 
-const responsiveMobileHeader = "@media (max-width: 720px)";
+const responsiveMobileHeader = "@media (width <= 720px)";
 const responsiveMobileHeaderIndex = css.indexOf(
   responsiveMobileHeader,
   responsiveTabletHeaderIndex + responsiveTabletHeader.length
@@ -193,10 +231,15 @@ const responsiveMobileCss = extractCssBlockAt(
 );
 const responsiveMobileRules = parseCssRules(responsiveMobileCss);
 
-const inactiveLegacyHeader = "@media (min-width: 1440px) and (max-width: 1439px)";
-assert.ok(
-  css.indexOf(inactiveLegacyHeader, desktopNormalizationHeaderIndex) > desktopNormalizationHeaderIndex,
-  `Superseded desktop blocks must remain mathematically inactive and must not be mistaken for the active composition. ${staticInvariantNote}`
+assert.doesNotMatch(
+  css,
+  /@media\s*\(min-width:\s*1440px\)\s*and\s*\(max-width:\s*1439px\)/,
+  `Mathematically impossible superseded desktop blocks must be deleted once the active composition is verified. ${staticInvariantNote}`
+);
+assert.doesNotMatch(
+  css,
+  /@media\s*\((?:min-width:\s*1440px|max-width:\s*1439px)\)/,
+  `The active 1440px boundary must use complementary range queries with no fractional-width hole. ${staticInvariantNote}`
 );
 assert.doesNotMatch(
   css,
@@ -208,6 +251,16 @@ assert.doesNotMatch(
   /-?(?:\d+(?:\.\d+)?|\.\d+)rem\b/,
   `Host compatibility dimensions must not depend on the Amadeus document root font size. ${staticInvariantNote}`
 );
+[
+  [testDoorwayCssPath, testDoorwayCss],
+  [productionDoorwayCssPath, productionDoorwayCss]
+].forEach(([relativePath, doorwayCss]) => {
+  assert.doesNotMatch(
+    doorwayCss,
+    /-?(?:\d+(?:\.\d+)?|\.\d+)rem\b/,
+    `${relativePath} must not shrink its loading or outage fallback under Amadeus html font sizing. ${staticInvariantNote}`
+  );
+});
 const assertAuthoritativeDesktopRule = (selector, expected, description) => {
   assertCssRuleIn(authoritativeDesktopRules, selector, expected, description);
 };
@@ -219,6 +272,12 @@ const assertDesktopNormalizationRule = (selector, expected, description) => {
 };
 const assertResponsiveFrameRule = (selector, expected, description) => {
   assertCssRuleIn(responsiveFrameRules, selector, expected, description);
+};
+const assertCompactResponsiveRule = (selector, expected, description) => {
+  assertCssRuleIn(compactResponsiveRules, selector, expected, description);
+};
+const assertNarrowCompactRule = (selector, expected, description) => {
+  assertCssRuleIn(narrowCompactRules, selector, expected, description);
 };
 const assertResponsiveTabletRule = (selector, expected, description) => {
   assertCssRuleIn(responsiveTabletRules, selector, expected, description);
@@ -278,13 +337,33 @@ assertCssRule(
 );
 assertCssRule(
   ".hrv-classroom-hub",
-  /font-size:\s*18px/,
-  "The Hub must retain its readable base type scale"
+  /--text-body:\s*18px;[\s\S]*--text-ui:\s*16px;[\s\S]*--text-secondary:\s*16px;[\s\S]*--text-small:\s*15px;[\s\S]*--text-eyebrow:\s*15px;[\s\S]*font-size:\s*var\(--text-body\)/,
+  "The Hub must retain and consume its readable semantic type scale"
 );
 assertCssRule(
   ".hrv-classroom-hub",
   /--hub-font-display:\s*Georgia,\s*Cambria,\s*"Times New Roman",\s*serif;[\s\S]*--hub-font-ui:\s*system-ui,\s*-apple-system,\s*BlinkMacSystemFont,\s*"Segoe UI",\s*sans-serif;[\s\S]*font-family:\s*var\(--hub-font-ui\)/,
   "The Hub root must define and consume dependable display and system-UI typography tokens"
+);
+assertCssRule(
+  ".hrv-classroom-hub .current-summary",
+  /font-size:\s*var\(--text-body\)/,
+  "Current summary copy must consume the semantic body token"
+);
+assertCssRule(
+  ".hrv-classroom-hub .site-navigation-link",
+  /font-size:\s*var\(--text-ui\)/,
+  "Global navigation must consume the semantic UI token"
+);
+assertCssRule(
+  ".hrv-classroom-hub .current-caption",
+  /font-size:\s*var\(--text-small\)/,
+  "Current media captions must consume the semantic small-text token"
+);
+assertCssRule(
+  ".hrv-classroom-hub .section-kicker",
+  /font-size:\s*var\(--text-eyebrow\)/,
+  "Section labels must consume the semantic eyebrow token"
 );
 const hubRootRule = cssRules.find((rule) => (
   rule.selectors.length === 1
@@ -309,7 +388,7 @@ assert.doesNotMatch(
 );
 assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .hub-museum",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*minmax\(88px,\s*auto\)\s+minmax\(480px,\s*auto\)\s+minmax\(300px,\s*auto\)\s+auto;[\s\S]*gap:\s*14px;[\s\S]*padding:\s*14px\s+24px\s+20px;[\s\S]*overflow:\s*clip/,
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*grid-template-rows:\s*minmax\(88px,\s*auto\)\s+minmax\(480px,\s*auto\)\s+minmax\(300px,\s*auto\)\s+auto;[\s\S]*gap:\s*13px\s+14px;[\s\S]*padding:\s*14px\s+24px\s+20px;[\s\S]*overflow:\s*clip/,
   "The 1920 desktop must use the expandable 88/480/300/auto twelve-column composition"
 );
 assertCompactDesktopRule(
@@ -374,7 +453,7 @@ assertAuthoritativeDesktopRule(
 );
 assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .welcome-theater-card",
-  /grid-template-columns:\s*clamp\(220px,\s*26%,\s*250px\)\s+minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*border:\s*1px\s+solid/,
+  /grid-template-columns:\s*clamp\(250px,\s*30%,\s*280px\)\s+minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*border:\s*1px\s+solid/,
   "Welcome copy and full-width video must remain contained in a balanced two-pane card"
 );
 assertAuthoritativeDesktopRule(
@@ -384,7 +463,7 @@ assertAuthoritativeDesktopRule(
 );
 assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .current-exploration-card",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(310px,\s*43%,\s*390px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*18px/,
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(390px,\s*48%,\s*440px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*12px\s+18px/,
   "Current Exploration must be a clipped two-pane card with copy and subject media in normal flow"
 );
 assertAuthoritativeDesktopRule(
@@ -404,7 +483,7 @@ assertAuthoritativeDesktopRule(
 );
 assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .current-twwl-card",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(360px,\s*27%,\s*420px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*18px/,
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(440px,\s*32%,\s*500px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*18px/,
   "Current TWWL must use one expandable row with a concise copy pane and broad contained visual"
 );
 assertAuthoritativeDesktopRule(
@@ -490,6 +569,105 @@ assertResponsiveFrameRule(
   /width:\s*100%;[\s\S]*height:\s*auto;[\s\S]*aspect-ratio:\s*2\s*\/\s*1/,
   "Past Years must be the same responsive height as the other archive doors"
 );
+assertCssRule(
+  ".hrv-classroom-hub .history-door-pastYears",
+  /aspect-ratio:\s*2\s*\/\s*1/,
+  "Past Years must share the base two-to-one doorway geometry at every tier"
+);
+[
+  ".hrv-classroom-hub .welcome-theater-card",
+  ".hrv-classroom-hub .current-exploration-card",
+  ".hrv-classroom-hub .current-twwl-card"
+].forEach((selector) => {
+  assertCssRule(
+    selector,
+    /min-width:\s*0;[\s\S]*min-height:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*isolation:\s*isolate/,
+    `${selector} must clip every subject and fallback layer to its owning card`
+  );
+});
+[
+  ".hrv-classroom-hub .welcome-screen",
+  ".hrv-classroom-hub .current-visual",
+  ".hrv-classroom-hub .current-twwl-visual"
+].forEach((selector) => {
+  assertCssRule(
+    selector,
+    /position:\s*relative;[\s\S]*min-width:\s*0;[\s\S]*min-height:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*isolation:\s*isolate;[\s\S]*contain:\s*paint/,
+    `${selector} must be a true cross-tier paint-containment viewport`
+  );
+});
+[
+  ".hrv-classroom-hub .current-media-stage",
+  ".hrv-classroom-hub .twwl-media-stage"
+].forEach((selector) => {
+  assertCssRule(
+    selector,
+    /position:\s*absolute;[\s\S]*inset:\s*0;[\s\S]*width:\s*100%;[\s\S]*height:\s*100%;[\s\S]*min-width:\s*0;[\s\S]*min-height:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*border-radius:\s*inherit/,
+    `${selector} must fill and remain clipped by its owning media viewport`
+  );
+});
+assertCssRule(
+  ".hrv-classroom-hub .hub-media-fallback",
+  /position:\s*absolute;[\s\S]*inset:\s*0;[\s\S]*overflow:\s*hidden;[\s\S]*font-family:\s*var\(--hub-font-ui\)/,
+  "Media recovery UI must remain legible and contained in its owning viewport"
+);
+[
+  ".hrv-classroom-hub .hub-media-fallback[hidden]",
+  ".hrv-classroom-hub .welcome-video-alternate[hidden]",
+  ".hrv-classroom-hub .gallery-no-results[hidden]",
+  ".hrv-classroom-hub .archive-empty-state[hidden]"
+].forEach((selector) => {
+  assertCssRule(
+    selector,
+    /display:\s*none\s*!important/,
+    `${selector} must not occupy layout while hidden`
+  );
+});
+assertCssRule(
+  ".hrv-classroom-hub .history-dialog[hidden]",
+  /display:\s*none\s*!important/,
+  "Non-native dialog fallback must start closed even when author styles outrank user-agent hidden behavior"
+);
+assertCompactResponsiveRule(
+  ".hrv-classroom-hub .hub-museum",
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*repeat\(12,\s*minmax\(0,\s*1fr\)\);[\s\S]*gap:\s*12px;[\s\S]*padding:\s*12px\s+clamp\(14px,\s*2vw,\s*24px\)\s+24px;[\s\S]*overflow:\s*clip/,
+  "The complete 721-1439 tier must use one compact twelve-column room grid"
+);
+assertCompactResponsiveRule(
+  ".hrv-classroom-hub .hub-museum > .hero-section",
+  /grid-column:\s*1\s*\/\s*span\s+4/,
+  "Compact identity must share the upper rail at narrowed-desktop widths"
+);
+assertCompactResponsiveRule(
+  ".hrv-classroom-hub .hub-museum > .site-navigation",
+  /grid-column:\s*5\s*\/\s*-1/,
+  "Compact global navigation must complete the narrowed-desktop upper rail"
+);
+assertCompactResponsiveRule(
+  ".hrv-classroom-hub .hub-hero-card",
+  /grid-template-columns:\s*minmax\(0,\s*1fr\)\s+52px;[\s\S]*min-height:\s*88px;[\s\S]*padding:\s*8px\s+12px\s+8px\s+16px/,
+  "Zoomed and narrowed desktops must use the compact identity treatment"
+);
+assertCompactResponsiveRule(
+  ".hrv-classroom-hub .site-navigation-links",
+  /grid-template-columns:\s*repeat\(7,\s*minmax\(0,\s*1fr\)\);[\s\S]*gap:\s*4px/,
+  "The global navigation must remain a single seven-item rail where width permits"
+);
+assertCompactResponsiveRule(
+  ".hrv-classroom-hub .site-navigation-link",
+  /min-width:\s*0;[\s\S]*min-height:\s*44px;[\s\S]*font-size:\s*clamp\(11px,\s*1vw,\s*13px\);[\s\S]*font-weight:\s*600;[\s\S]*overflow-wrap:\s*anywhere/,
+  "Compact global links must keep accessible targets without forcing horizontal overflow"
+);
+assertNarrowCompactRule(
+  ".hrv-classroom-hub .site-navigation-links",
+  /grid-template-columns:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/,
+  "The 721-999 tier must reflow seven links into two balanced rows rather than seven"
+);
+assertNarrowCompactRule(
+  ".hrv-classroom-hub .site-navigation-link:last-child",
+  /grid-column:\s*span\s+2/,
+  "The final compact navigation item must complete the second row"
+);
 assertResponsiveTabletRule(
   ".hrv-classroom-hub .hub-banner-frame-piece",
   /width:\s*clamp\(54px,\s*7vw,\s*76px\);[\s\S]*opacity:\s*0\.64/,
@@ -501,9 +679,29 @@ assertResponsiveMobileRule(
   "True-mobile frame art must remain a restrained side accent"
 );
 assertResponsiveMobileRule(
+  ".hrv-classroom-hub .welcome-theater-card",
+  /grid-template-columns:\s*minmax\(0,\s*1fr\)/,
+  "True-mobile Welcome Theater must use a shrinkable track at WCAG reflow widths"
+);
+assertResponsiveMobileRule(
+  ".hrv-classroom-hub .welcome-heading",
+  /width:\s*100%;[\s\S]*max-width:\s*100%;[\s\S]*min-width:\s*0/,
+  "True-mobile Welcome copy must remain geometrically inside its card"
+);
+assertResponsiveMobileRule(
   ".hrv-classroom-hub .history-door-grid",
   /grid-template-columns:\s*1fr/,
   "True-mobile archive doors must share one full-width column"
+);
+assertResponsiveMobileRule(
+  ".hrv-classroom-hub .site-navigation-links",
+  /grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/,
+  "True-mobile global navigation must use two accessible columns rather than seven amplified rows"
+);
+assertResponsiveMobileRule(
+  ".hrv-classroom-hub .site-navigation-link:last-child",
+  /grid-column:\s*1\s*\/\s*-1/,
+  "The final mobile navigation item must use the full last row"
 );
 
 const authoritativeFontWeights = [...authoritativeDesktopCss.matchAll(/font-weight:\s*(\d+)\s*;/g)]
@@ -523,34 +721,34 @@ assert.deepEqual(
 
 [
   [".hrv-classroom-hub .hub-title", /font-family:\s*var\(--hub-font-display\);[\s\S]*font-size:\s*32px;[\s\S]*font-weight:\s*700;[\s\S]*line-height:\s*0\.98;/, "The Hub identity must remain a compact personality heading"],
-  [".hrv-classroom-hub .site-navigation-link", /font-family:\s*var\(--hub-font-ui\);[\s\S]*font-size:\s*clamp\(14px,\s*0\.78vw,\s*15px\);[\s\S]*font-weight:\s*600;/, "Global navigation must retain a readable UI role"],
-  [".hrv-classroom-hub .section-kicker", /min-height:\s*28px;[\s\S]*font-family:\s*var\(--hub-font-ui\);[\s\S]*font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "Section pills must share a 13px minimum type floor and 28px height"],
+  [".hrv-classroom-hub .site-navigation-link", /font-family:\s*var\(--hub-font-ui\);[\s\S]*font-weight:\s*600;/, "Global navigation must retain its UI role"],
+  [".hrv-classroom-hub .section-kicker", /min-height:\s*28px;[\s\S]*font-family:\s*var\(--hub-font-ui\);[\s\S]*font-weight:\s*700;/, "Section pills must share an aligned 28px structural row"],
   [".hrv-classroom-hub .welcome-heading .section-title", /font-size:\s*clamp\(29px,\s*1\.62vw,\s*32px\);[\s\S]*line-height:\s*1\.08;/, "Welcome must retain a clear structural heading"],
   [".hrv-classroom-hub .current-section-title", /font-size:\s*21px;[\s\S]*line-height:\s*1\.16;/, "Current Exploration must retain its structural heading"],
   [".hrv-classroom-hub .current-title", /font-family:\s*var\(--hub-font-display\);[\s\S]*font-size:\s*clamp\(35px,\s*1\.9vw,\s*36px\);[\s\S]*line-height:\s*1\.01;/, "The Current subject must remain the dominant exhibit title"],
-  [".hrv-classroom-hub .current-topline > *", /min-height:\s*28px;[\s\S]*font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "Current pills must align to one 13px by 28px status row"],
-  [".hrv-classroom-hub .current-tags li", /font-size:\s*13px;[\s\S]*font-weight:\s*600;/, "Current tag pills must retain the 13px metadata floor"],
-  [".hrv-classroom-hub .current-caption", /font-size:\s*13px;[\s\S]*font-weight:\s*600;/, "Current media captions must remain inside the card at 13px"],
-  [".hrv-classroom-hub .hub-action", /min-height:\s*44px;[\s\S]*font-size:\s*15px;[\s\S]*font-weight:\s*700;/, "The primary action must retain a strong readable control label"],
+  [".hrv-classroom-hub .current-topline > *", /min-height:\s*28px;[\s\S]*font-weight:\s*700;/, "Current pills must align to one explicit status row"],
+  [".hrv-classroom-hub .current-tags li", /font-weight:\s*600;/, "Current tag pills must retain their metadata role"],
+  [".hrv-classroom-hub .current-caption", /font-weight:\s*600;/, "Current media captions must remain inside the card"],
+  [".hrv-classroom-hub .hub-action", /min-height:\s*44px;[\s\S]*font-weight:\s*700;/, "The primary action must retain a strong readable control role"],
   [".hrv-classroom-hub .twwl-section-title", /font-size:\s*30px;[\s\S]*line-height:\s*1\.08;/, "Current TWWL must retain a clear structural heading"],
   [".hrv-classroom-hub .twwl-statusline", /display:\s*flex;[\s\S]*min-height:\s*28px;[\s\S]*align-items:\s*center;[\s\S]*gap:\s*8px/, "TWWL status pills must share one explicit aligned row"],
-  [".hrv-classroom-hub .preparing-label", /font-size:\s*13px;[\s\S]*font-weight:\s*700;/, "The TWWL state pill must retain the 13px floor"],
+  [".hrv-classroom-hub .preparing-label", /font-weight:\s*700;/, "The TWWL state pill must retain its emphasized status role"],
   [".hrv-classroom-hub .twwl-title", /font-family:\s*var\(--hub-font-display\);[\s\S]*font-size:\s*26px;[\s\S]*line-height:\s*1\.08;/, "The TWWL story title must remain subordinate to its section heading"],
   [".hrv-classroom-hub .preparing-display-title", /font-size:\s*16px;[\s\S]*font-weight:\s*600;/, "The lantern status must remain readable inside the expanded visual"],
-  [".hrv-classroom-hub .footer-message", /font-size:\s*14px;[\s\S]*font-weight:\s*600;[\s\S]*line-height:\s*1\.4;/, "The supporting footer must remain readable below the opening canvas"]
+  [".hrv-classroom-hub .footer-message", /font-weight:\s*600;[\s\S]*line-height:\s*1\.4;/, "The supporting footer must remain readable below the opening canvas"]
 ].forEach(([selector, expected, description]) => {
   assertAuthoritativeDesktopRule(selector, expected, description);
 });
 
 [
   [".hrv-classroom-hub .welcome-heading .section-summary", "Welcome summary", "1.5"],
-  [".hrv-classroom-hub .current-summary", "Current summary", "1.4"],
+  [".hrv-classroom-hub .current-summary", "Current summary", "1.35"],
   [".hrv-classroom-hub .twwl-summary", "Current TWWL summary", "1.48"]
 ].forEach(([selector, label, lineHeight]) => {
   assertAuthoritativeDesktopRule(
     selector,
-    new RegExp(`display:\\s*block;[\\s\\S]*overflow:\\s*visible;[\\s\\S]*font-size:\\s*16px;[\\s\\S]*font-weight:\\s*400;[\\s\\S]*line-height:\\s*${lineHeight.replace(".", "\\.")};[\\s\\S]*-webkit-line-clamp:\\s*initial;`),
-    `${label} must remain fully visible at the 16px body floor rather than line-clamped`
+    new RegExp(`display:\\s*block;[\\s\\S]*overflow:\\s*visible;[\\s\\S]*font-weight:\\s*400;[\\s\\S]*line-height:\\s*${lineHeight.replace(".", "\\.")};[\\s\\S]*-webkit-line-clamp:\\s*initial;`),
+    `${label} must remain fully visible under the semantic body-size contract rather than line-clamped`
   );
 });
 assert.doesNotMatch(
@@ -589,13 +787,13 @@ assert.match(css, /@keyframes hub-leaf-breathe/);
 assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 assert.match(
   css,
-  /@media \(max-width: 720px\)[\s\S]*?\.site-navigation-links,[\s\S]*?\.history-door-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/,
-  `The global menu and history doors must stack without horizontal clipping on narrow screens. ${staticInvariantNote}`
+  /@media \(width <= 720px\)[\s\S]*?\.site-navigation-links\s*\{[\s\S]*?grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)[\s\S]*?\.history-door-grid\s*\{[\s\S]*?grid-template-columns:\s*1fr/,
+  `The mobile menu must avoid seven-row amplification while equal history doors stack without clipping. ${staticInvariantNote}`
 );
 assert.doesNotMatch(
   css,
-  /@media \(min-width: 1600px\) and \(max-height: 820px\)[\s\S]*?\.current-exploration-card\s*,\s*\.hrv-classroom-hub \.current-visual/,
-  `Short desktop viewports must not clip Current Exploration copy with a fixed card height. ${staticInvariantNote}`
+  /@media\s*\(min-width:\s*1600px\)\s*and\s*\(max-height:\s*820px\)/,
+  `Short desktop viewports must not reactivate the forced-height failure. ${staticInvariantNote}`
 );
 assert.match(bootstrap, /style\.dataset\.hrvClassroomHubStyle = "app"/);
 assert.match(bootstrap, /compat\.dataset\.hrvClassroomHubStyle = "host"/);

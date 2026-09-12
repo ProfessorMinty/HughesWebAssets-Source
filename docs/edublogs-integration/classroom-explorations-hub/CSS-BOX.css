@@ -5,11 +5,11 @@
 #hrv-classroom-explorations-root .hrv-hub-outage {
   box-sizing: border-box;
   width: min(92%, 680px);
-  margin: 2.25rem auto;
-  padding: clamp(1.25rem, 3vw, 1.8rem);
+  margin: 36px auto;
+  padding: clamp(20px, 3vw, 28.8px);
   display: grid;
   grid-template-columns: minmax(110px, 155px) minmax(0, 1fr);
-  gap: 1rem 1.35rem;
+  gap: 16px 21.6px;
   align-items: center;
   border: 1px solid #d9dfef;
   border-radius: 24px;
@@ -36,12 +36,12 @@
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 28px;
+  height: 28px;
   border-radius: 999px;
   background: #edf4ff;
   color: #40588b;
-  font: 800 1.05rem/1 system-ui, sans-serif;
+  font: 800 16.8px/1 system-ui, sans-serif;
   box-shadow: 0 5px 14px rgba(40, 64, 112, .15);
 }
 
@@ -58,22 +58,22 @@
 }
 
 #hrv-classroom-explorations-root .hrv-outage-copy h1 {
-  margin: 0 0 .45rem;
+  margin: 0 0 7.2px;
   color: #17243f;
-  font-size: clamp(1.65rem, 5vw, 2.25rem);
+  font-size: clamp(26.4px, 5vw, 36px);
   line-height: 1.08;
 }
 
 #hrv-classroom-explorations-root .hrv-outage-copy p {
-  margin: .25rem 0;
+  margin: 4px 0;
 }
 
 #hrv-classroom-explorations-root .hrv-outage-credit {
   grid-column: 1 / -1;
-  margin: .1rem 0 0;
+  margin: 1.6px 0 0;
   text-align: center;
   color: #65708a;
-  font-size: .75rem;
+  font-size: 12px;
   line-height: 1.4;
 }
 

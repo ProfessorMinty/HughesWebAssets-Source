@@ -22,7 +22,8 @@
     "preview": "vite preview --config vite.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:hub": "node --check apps/classroom-explorations-hub/src/bootstrap.js && node --check apps/classroom-explorations-hub/src/runtime.js && node tools/test-classroom-explorations-hub.mjs && node tools/test-classroom-explorations-hub-v2.mjs && node tools/test-classroom-explorations-hub-presentation.mjs && node tools/test-classroom-explorations-hub-host-compat.mjs",
+    "test:hub": "node --check apps/classroom-explorations-hub/src/bootstrap.js && node --check apps/classroom-explorations-hub/src/runtime.js && node tools/test-classroom-explorations-hub.mjs && node tools/test-classroom-explorations-hub-v2.mjs && node tools/test-classroom-explorations-hub-lifecycle.mjs && node tools/test-classroom-explorations-hub-presentation.mjs && node tools/test-classroom-explorations-hub-host-compat.mjs",
+    "test:hub:browser": "node tools/test-classroom-explorations-hub-browser.mjs",
     "test:archive:contract": "node tools/test-classroom-explorations-archive.mjs",
     "test:archive:presentation": "node tools/test-classroom-explorations-archive-presentation.mjs",
     "test:archive:host-compat": "node tools/test-classroom-explorations-archive-host-compat.mjs",
@@ -37,7 +38,7 @@
     "check:archive:contract": "npm run test:archive:contract && npm run build:archive:content && npm run verify:archive:content",
     "check:archive": "npm run test:archive && npm run build:archive && npm run test:archive:publication && npm run test:archive:release && npm run verify:archive:release && npm run test:archive:cdn && npm run test:archive:doorway && npm run verify:archive:doorway",
     "check": "npm run test && npm run build",
-    "check:hub": "npm run test:hub && npm run build:hub && npm run test:hub:publication",
+    "check:hub": "npm run test:hub && npm run build:hub && npm run test:hub:browser && npm run test:hub:publication",
     "test:hub:publication": "node tools/test-classroom-explorations-hub-publication.mjs"
   },
   "devDependencies": {

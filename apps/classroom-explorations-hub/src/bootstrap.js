@@ -7,6 +7,48 @@
   const outageHtml = root?.innerHTML || "";
   const outageClassName = root?.className || "";
 
+  const showLoading = () => {
+    if (!root) return;
+    root.setAttribute("aria-busy", "true");
+    root.dataset.hrvState = "loading";
+
+    let notice = root.querySelector("[data-hrv-outage-notice]");
+    if (!notice) {
+      notice = document.createElement("section");
+      notice.className = "hrv-hub-outage";
+      notice.dataset.hrvOutageNotice = "";
+      notice.append(
+        Object.assign(document.createElement("p"), { className: "hrv-hub-outage__eyebrow" }),
+        Object.assign(document.createElement("h2"), { className: "hrv-hub-outage__title" }),
+        Object.assign(document.createElement("p"), { className: "hrv-hub-outage__copy" })
+      );
+      root.append(notice);
+    }
+
+    notice.hidden = false;
+    notice.classList.add("hrv-hub-loading");
+    notice.dataset.hrvLoadingNotice = "";
+    notice.setAttribute("role", "status");
+    notice.setAttribute("aria-live", "polite");
+
+    const eyebrow = notice.querySelector(".hrv-hub-outage__eyebrow");
+    const title = notice.querySelector(".hrv-hub-outage__title");
+    const copy = notice.querySelector(".hrv-hub-outage__copy");
+    if (eyebrow) eyebrow.textContent = "The museum doors are opening";
+    if (title) title.textContent = "Opening Classroom Explorations…";
+    if (copy) copy.textContent = "Gathering the latest exhibit, learning lantern, and classroom archives.";
+
+    const productionTitle = notice.querySelector(".hrv-outage-copy h1");
+    const productionCopy = notice.querySelectorAll(".hrv-outage-copy p");
+    if (productionTitle) productionTitle.textContent = "Opening Classroom Explorations…";
+    if (productionCopy[0]) {
+      productionCopy[0].textContent = "Gathering the latest exhibit, learning lantern, and classroom archives.";
+    }
+    if (productionCopy[1]) {
+      productionCopy[1].textContent = "The museum will open automatically when everything is ready.";
+    }
+  };
+
   const showOutage = (message, error) => {
     if (root) {
       document.documentElement.classList.remove("hrv-page-classroom-explorations-ready");
@@ -46,9 +88,6 @@
   ].forEach((attribute) => root.removeAttribute(attribute));
 
   root.dataset.hrvBootstrapStarted = "true";
-  const initialNotice = root.querySelector("[data-hrv-outage-notice]");
-  if (initialNotice) initialNotice.hidden = true;
-
   let publicationResolved;
   try {
     publicationResolved = new URL(publicationUrl, window.location.href);
@@ -65,8 +104,7 @@
     return;
   }
 
-  root.setAttribute("aria-busy", "true");
-  root.dataset.hrvState = "loading";
+  showLoading();
 
   const hashBytes = async (bytes) => {
     const digest = await crypto.subtle.digest("SHA-256", bytes);
