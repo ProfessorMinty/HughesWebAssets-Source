@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0",
+  "pageId": "hrv-page:classroom-explorations-archive-2025-2026",
+  "pageType": "classroom-explorations-archive",
+  "runtimeSchemaVersion": "1.0",
+  "assets": {
+    "bootstrap": {
+      "path": "bootstrap.js",
+      "sha256": "45e0e3bff41a94016188107bf4989d1513fdad4522142ae5f4978a63426a0726"
+    },
+    "script": {
+      "path": "runtime.js",
+      "sha256": "1e48db11841a381971a782e7bae4cb536eab60e9f5d8ba347321eeefb9b27e70"
+    },
+    "style": {
+      "path": "archive.css",
+      "sha256": "db704cf267c242390fc0c166bd17288ee85759e8677de9b84cf7578ad2d21cb8"
+    },
+    "hostCompat": {
+      "path": "host-compat.css",
+      "sha256": "b59423e5a9778ca7f50a74d24c340545a0809ae4f78ed23a40e34684ecaee50b"
+    }
+  },
+  "artwork": {
+    "pastYears": {
+      "path": "assets/history/past-years.webp",
+      "sha256": "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+      "mediaType": "image/webp"
+    },
+    "frameTopLeft": {
+      "path": "assets/frame/top-left.webp",
+      "sha256": "7a7a9cebcad631d3287211f8e7529e301cdaf9d70de55cd21a64fc505ead7c54",
+      "mediaType": "image/webp"
+    },
+    "frameTopRight": {
+      "path": "assets/frame/top-right.webp",
+      "sha256": "c74cee00ba8504186647f8641126accabd0a2fcc8a832d9e0ffd6e017c79ba11",
+      "mediaType": "image/webp"
+    },
+    "frameMiddleLeft": {
+      "path": "assets/frame/middle-left.webp",
+      "sha256": "81b0ee9ee9e93687ee1aaffb214feca1d31de986751318405b29f258eff565b7",
+      "mediaType": "image/webp"
+    },
+    "frameMiddleRight": {
+      "path": "assets/frame/middle-right.webp",
+      "sha256": "ec015b8e4f98f0eca9d48254b6b719e3826ea8927a78891151627378ce13c889",
+      "mediaType": "image/webp"
+    },
+    "frameBottomLeft": {
+      "path": "assets/frame/bottom-left.webp",
+      "sha256": "4c41de2d714d324e565ab779fcd8e9c80e9ae181d654a95380ecfa3deed248b6",
+      "mediaType": "image/webp"
+    },
+    "frameBottomRight": {
+      "path": "assets/frame/bottom-right.webp",
+      "sha256": "ad4450dba040a20a393fd026d00df644faed9be86e8e265ce730ee481ae91074",
+      "mediaType": "image/webp"
+    }
+  }
+}

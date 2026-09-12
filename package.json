@@ -27,7 +27,7 @@
     "test:archive:host-compat": "node tools/test-classroom-explorations-archive-host-compat.mjs",
     "test:archive:publication": "node tools/test-classroom-explorations-archive-publication.mjs",
     "test:archive:release": "node tools/test-classroom-explorations-archive-release.mjs",
-    "verify:archive:release": "node tools/verify-classroom-explorations-archive-release.mjs --allow-empty",
+    "verify:archive:release": "node tools/verify-classroom-explorations-archive-release.mjs",
     "test:archive:cdn": "node tools/test-classroom-explorations-archive-cdn.mjs",
     "verify:archive:cdn": "node tools/verify-classroom-explorations-archive-cdn.mjs",
     "test:archive:doorway": "node tools/test-classroom-explorations-archive-doorway.mjs",
