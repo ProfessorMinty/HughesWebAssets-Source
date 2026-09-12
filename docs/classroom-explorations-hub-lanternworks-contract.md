@@ -5,6 +5,8 @@
 **Production WordPress page:** `17` at `/hub/`  
 **Review WordPress page:** `2589` at `/hub-test/`
 
+**Presentation profile:** `hrv-presentation-policy:classroom-explorations-hub` / documentation version `2026-09-12.1`; machine-readable binding pending
+
 ## The three-document model
 
 Lanternworks must treat the Hub as one coordinated state assembled from three repository documents:
@@ -16,6 +18,8 @@ Lanternworks must treat the Hub as one coordinated state assembled from three re
 | `apps/classroom-explorations-hub/source/hub.control.json` | Stable editor nodes, allowed operations, concurrency rules, transaction invariants, and host safety | No ordinary page edit |
 
 The generated browser manifest and immutable publication files are outputs. They are never ordinary editor targets.
+
+Structural and semantic validity are necessary but not sufficient for a publishable page state. Future Hub Swapper/Lanternworks forms and publication review must also apply [the Hub manifest authoring and presentation rubric](classroom-explorations-hub-manifest-authoring-rubric.md). It defines copy budgets, media/fallback policy, empty and error states, accessible dialogs, and responsive/zoom acceptance without turning generated output into a second authoring source. Today it is a documentation profile, not a machine-enforced extension of `hub.control.json`; the common presentation policy and Hub-specific profile still need stable IDs, versions, hashes, schemas, and exact bindings in review, publication, and evidence records. The findings and current covered subset are recorded in [the 2026-09-12 card-state and responsive audit](classroom-explorations-hub-card-state-responsive-audit-2026-09-12.md).
 
 ## Stable identity
 
@@ -56,7 +60,7 @@ The same rule applies to the Current TWWL slot. `coming-soon` is a truthful slot
 
 ## Concurrency and stale-state rejection
 
-Every Lanternworks command must include the exact SHA-256 revision of both editable documents:
+Every Lanternworks command must include the exact canonical JSON SHA-256 revision of both editable documents:
 
 ```json
 {
@@ -67,7 +71,9 @@ Every Lanternworks command must include the exact SHA-256 revision of both edita
 }
 ```
 
-The transaction projector rejects the command when either hash differs. A Hub swap prepared against an older title, order, route, or Current relationship cannot silently overwrite newer work.
+The transaction projector rejects the command when either revision differs. A Hub swap prepared against an older title, order, route, or Current relationship cannot silently overwrite newer work.
+
+These transaction revisions are not raw file-byte hashes. The canonical value is formed by recursively sorting object keys, preserving array order and value types, serializing with JavaScript `JSON.stringify` semantics, encoding as UTF-8, and hashing those bytes. The future common manifest standard must assign that algorithm a version and publish cross-language golden vectors before non-JavaScript clients may claim compatible revisions. Review and evidence records must name raw byte SHA-256 and canonical transaction revision separately.
 
 ## Command envelope
 
@@ -131,6 +137,8 @@ The review runtime mirrors those stable identities into the DOM:
 
 This gives a future Lanternworks visual editor a deterministic bridge from a selected rendered element back to its authoring record.
 
+The future presentation profile must complete that bridge with a machine-readable mapping from source JSON Pointer and `nodeId` to DOM identity, owning card/state, applicable rules, and required fixtures. Visible-text or DOM-position matching is not a stable authoring contract.
+
 ## Publication boundary
 
 A successful projection is not a publication. The production publisher must still:
@@ -142,6 +150,10 @@ A successful projection is not a publication. The production publisher must stil
 5. verify hashes and public retrieval;
 6. update only the approved Edublogs doorway;
 7. record the publication and rollback target.
+
+An actionable production route must do more than resolve by ID: at the exact route-registry revision it must be unique, published, of the kind expected by the card, and compatible with the Hub hierarchy. Review-only, draft, wrong-kind, or hierarchy-incompatible entries may not become visitor links. A `coming-soon` relationship must eventually be schema-bound to either `routeRef: null` or a deliberately dormant route with a recorded rationale; the current contract does not yet encode that conditional rule.
+
+Once the presentation policies exist, transaction review, approval, immutable publication, and browser evidence must bind the common-policy and Hub-profile IDs, versions, and hashes. Fit-warning acknowledgements must bind the warning code, pointer, normalized-value hash, both canonical document revisions, both policy identities, actor, and time; they cannot float across later content, route, or policy changes.
 
 The review page may load the branch-backed source directly for visual review. Page `17` must never use the review channel.
 
