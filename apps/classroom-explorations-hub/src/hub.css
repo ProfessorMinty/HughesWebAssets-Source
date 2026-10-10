@@ -2218,7 +2218,7 @@
 
   .hrv-classroom-hub .current-exploration-card {
     display: grid;
-    grid-template-columns: clamp(390px, 48%, 440px) minmax(0, 1fr);
+    grid-template-columns: clamp(390px, 52%, 480px) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr);
     align-items: stretch;
     gap: 18px;
