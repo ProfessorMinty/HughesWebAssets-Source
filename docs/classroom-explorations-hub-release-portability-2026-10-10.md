@@ -10,3 +10,5 @@ Reference catalog: https://googlechromelabs.github.io/chrome-for-testing/last-kn
 The first local staging candidate (`2026.10.10.1`, `pub-2026-10-10-001`) was not pushed or installed. It is not accepted release evidence. Subsequent browser checks, publication identity, CDN byte verification, and authenticated editor readback must be recorded separately before claiming installation.
 
 For the future manifest rubric: acceptance must include cross-platform font fallback geometry, an available reproducible browser version, and the actual runtime bytes. Windows-only preview evidence does not establish portable opening-viewport fit.
+
+The 52% candidate also failed Linux fit at `59e901f`. Its retained failure diagnostic confirms a two-line title, four-line summary, and three two-line learning points in a 453.40625px inner copy width; the Current copy's intrinsic height was 492.203125px. The next candidate budgets 58% (maximum 520px) for that copy. This is a reading-width correction within the same equal-sized Welcome/Current cards, not smaller typography or a relaxed fit test. Failure screenshots are explicitly labeled FAILED and are not accepted release evidence.
