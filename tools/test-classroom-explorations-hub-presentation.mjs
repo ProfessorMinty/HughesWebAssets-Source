@@ -48,7 +48,7 @@ assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3e
 assert.equal(sha256(controlPath), "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be");
 assert.equal(sha256(bootstrapPath), "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159");
 assert.equal(sha256(runtimePath), "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081");
-assert.equal(sha256(cssPath), "22a50907403d2a0bb370de44f121b33bb7df41ae966f41715c7c5842dfa5b3d8");
+assert.equal(sha256(cssPath), "d2886a43077d33c8a48c95194e8c5788c0d59d1170e002c2d36c2337c31c7244");
 assert.equal(sha256(hostCompatPath), "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),

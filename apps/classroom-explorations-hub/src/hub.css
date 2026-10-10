@@ -2286,7 +2286,9 @@
   }
 
   .hrv-classroom-hub .current-title {
-    max-width: 16ch;
+    /* Use the full copy column: ch differs across Georgia fallbacks on Linux
+       and Windows and previously added a third title line to the 911px canvas. */
+    max-width: none;
     margin: 2px 0 4px;
     font-family: var(--hub-font-display);
     font-size: clamp(35px, 1.9vw, 36px);
