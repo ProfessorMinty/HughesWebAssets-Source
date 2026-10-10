@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { historicalGalleryFixture, assertCanonicalCurrentYearCollections } from './lib/classroom-explorations-hub-test-fixtures.mjs';
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -29,8 +30,10 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, "..");
 const readJson = (relativePath) => JSON.parse(readFileSync(path.join(root, relativePath), "utf8"));
 
-const source = readJson("apps/classroom-explorations-hub/source/hub.source.json");
+const canonicalSource = readJson("apps/classroom-explorations-hub/source/hub.source.json");
+const source = historicalGalleryFixture(canonicalSource);
 const routes = readJson("registry/hrv-routes.source.json");
+assertCanonicalCurrentYearCollections(canonicalSource, routes);
 const control = readJson("apps/classroom-explorations-hub/source/hub.control.json");
 const sourceSchema = readJson("schemas/classroom-explorations-hub.source.schema.json");
 const runtimeSchema = readJson("schemas/classroom-explorations-hub.runtime.schema.json");

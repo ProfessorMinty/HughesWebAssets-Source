@@ -270,18 +270,8 @@
         "state": "coming-soon"
       },
       "featuredMediaId": "welcome-classroom-explorations",
-      "pastExplorationIds": [
-        "mushrooms",
-        "butterflies-in-the-classroom",
-        "great-barrier-reef"
-      ],
-      "pastTwwlIds": [
-        "botany-lets-talk-about-tubers",
-        "traditions-of-russian-winter",
-        "silent-wings-wise-eyes-learning-about-owls",
-        "bats-dont-go-bump-in-the-night",
-        "autumn-spiders-gentle-web-artists"
-      ],
+      "pastExplorationIds": [],
+      "pastTwwlIds": [],
       "previousYears": [
         {
           "id": "hub-archive:2025-2026",

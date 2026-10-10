@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { historicalGalleryFixture, assertCanonicalCurrentYearCollections } from './lib/classroom-explorations-hub-test-fixtures.mjs';
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -19,7 +20,8 @@ const readJson = (relativePath) =>
 
 const source = readJson("apps/classroom-explorations-hub/source/hub.source.json");
 const routes = readJson("registry/hrv-routes.source.json");
-const manifest = projectHubRuntime(source, routes);
+const canonicalManifest = assertCanonicalCurrentYearCollections(source, routes);
+const manifest = projectHubRuntime(historicalGalleryFixture(source), routes);
 const runtimeSchema = readJson("schemas/classroom-explorations-hub.runtime.schema.json");
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>", {
@@ -60,6 +62,14 @@ const addMount = () => {
   dom.window.document.body.append(mount);
   return mount;
 };
+
+const canonicalMount = addMount();
+runtime.mountClassroomExplorationsHub(canonicalMount, canonicalManifest);
+assert.equal(canonicalMount.querySelectorAll('.gallery-search, .gallery-count').length, 0);
+assert.equal(canonicalMount.querySelectorAll('.gallery-empty-state').length, 2);
+assert.equal(canonicalMount.querySelectorAll('a.archive-door').length, 1);
+runtime.unmountClassroomExplorationsHub(canonicalMount);
+canonicalMount.remove();
 
 const emptyManifest = structuredClone(manifest);
 emptyManifest.galleries.pastExplorations = [];

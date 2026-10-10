@@ -7,8 +7,9 @@ import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const [commit, runtime, publicationId, evidencePath, ...extra] = process.argv.slice(2);
+const [commit, runtime, publicationId, evidencePath, target = 'review', ...extra] = process.argv.slice(2);
 assert.equal(extra.length, 0);
+assert.ok(['review', 'production'].includes(target), 'Only the approved review and production Hub hosts are supported.');
 assert.match(commit || '', /^[a-f0-9]{40}$/, 'Supply a full immutable asset commit.');
 assert.match(runtime || '', /^\d{4}\.\d{2}\.\d{2}\.\d+$/);
 assert.match(publicationId || '', /^pub-\d{4}-\d{2}-\d{2}-\d{3}$/);
@@ -59,8 +60,33 @@ assert.equal(publication.sourceRevision, evidence.sourceRevision);
 const bootstrap = committedFile(`${prefix}runtime/${runtime}/bootstrap.js`);
 assert.equal(createHash('sha256').update(bootstrap).digest('hex'), publication.runtime.bootstrap.sha256);
 const sri = `sha256-${createHash('sha256').update(bootstrap).digest('base64')}`;
-const outputRoot = resolve(root, 'docs/edublogs-integration/classroom-explorations-hub-test');
-let javascript = await readFile(resolve(outputRoot, 'JAVASCRIPT-BOX.template.js'), 'utf8');
+const reviewRoot = resolve(root, 'docs/edublogs-integration/classroom-explorations-hub-test');
+const outputRoot = target === 'review' ? reviewRoot : resolve(root, 'docs/edublogs-integration/classroom-explorations-hub');
+if (target === 'production') {
+  const manifestUrl = new URL(publication.content.manifest.path, `${base}publications/${publicationId}/publication.json`).href;
+  assert.ok(manifestUrl.startsWith(base));
+  const manifest = JSON.parse(committedFile(`${prefix}${manifestUrl.slice(base.length)}`));
+  assert.equal(manifest.page.currentSchoolYear, '2026-2027');
+  assert.deepEqual(manifest.galleries.pastExplorations, []);
+  assert.deepEqual(manifest.galleries.pastTwwl, []);
+  assert.equal(manifest.archives.length, 1);
+  const beforeRoot = resolve(root, 'evidence/classroom-explorations-hub/page17-migration-2026-10-10');
+  const preservation = JSON.parse(await readFile(resolve(beforeRoot, 'page17-preservation.json'), 'utf8'));
+  assert.equal(preservation.wordpressPageId, 17);
+  assert.equal(preservation.targetUrl, 'https://rmhughes.edublogs.org/hub/');
+  for (const [name, expected] of Object.entries(preservation.fields)) {
+    assert.match(name, /^page17-before-(?:HTML\.html|CSS\.css|JavaScript\.js)$/);
+    const bytes = await readFile(resolve(beforeRoot, name));
+    assert.equal(bytes.length, expected.bytes);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), expected.sha256);
+  }
+  assert.equal(Object.keys(preservation.fields).length, 3);
+  for (const name of ['HTML-BOX.html', 'CSS-BOX.css']) {
+    await writeFile(resolve(outputRoot, name), await readFile(resolve(reviewRoot, name)));
+  }
+  await writeFile(resolve(outputRoot, 'HOST-COMPATIBILITY.css'), committedFile(`${prefix}runtime/${runtime}/host-compat.css`));
+}
+let javascript = await readFile(resolve(reviewRoot, 'JAVASCRIPT-BOX.template.js'), 'utf8');
 for (const [token, value] of Object.entries({
   __ASSET_COMMIT__: commit, __RUNTIME_VERSION__: runtime,
   __PUBLICATION_ID__: publicationId, __BOOTSTRAP_SRI__: sri
@@ -70,7 +96,8 @@ for (const [token, value] of Object.entries({
 }
 new vm.Script(javascript);
 const pin = {
-  wordpressPageId: 2589, targetUrl: 'https://rmhughes.edublogs.org/hub-test/',
+  wordpressPageId: target === 'production' ? 17 : 2589,
+  targetUrl: `https://rmhughes.edublogs.org/${target === 'production' ? 'hub' : 'hub-test'}/`,
   assetCommit: commit, runtimeVersion: runtime, publicationId,
   sourceRevision: publication.sourceRevision,
   previousKnownGoodPublication: publication.previousKnownGoodPublication,
@@ -84,4 +111,4 @@ const pin = {
 };
 await writeFile(resolve(outputRoot, 'JAVASCRIPT-BOX.js'), javascript);
 await writeFile(resolve(outputRoot, 'RELEASE-PIN.json'), `${JSON.stringify(pin, null, 2)}\n`);
-console.log(`[hub-doorway] generated Page 2589 package at ${commit}; Edublogs not modified.`);
+console.log(`[hub-doorway] generated Page ${pin.wordpressPageId} package at ${commit}; Edublogs not modified.`);

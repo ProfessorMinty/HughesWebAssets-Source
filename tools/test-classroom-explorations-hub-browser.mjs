@@ -8,6 +8,7 @@ import { tmpdir } from "node:os";
 import { basename, dirname, extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { canonicalJson, projectHubRuntime } from "./lib/classroom-explorations-hub-contract.mjs";
+import { historicalGalleryFixture, assertCanonicalCurrentYearCollections } from './lib/classroom-explorations-hub-test-fixtures.mjs';
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const verifierPath = fileURLToPath(import.meta.url);
@@ -214,6 +215,10 @@ async function verifyFreshPreviewBuild() {
 }
 
 const buildFreshness = await verifyFreshPreviewBuild();
+const canonicalSource = JSON.parse(await readFile(resolve(root, 'apps/classroom-explorations-hub/source/hub.source.json'), 'utf8'));
+const canonicalRoutes = JSON.parse(await readFile(resolve(root, 'registry/hrv-routes.source.json'), 'utf8'));
+assertCanonicalCurrentYearCollections(canonicalSource, canonicalRoutes);
+const historicalTestGalleries = projectHubRuntime(historicalGalleryFixture(canonicalSource), canonicalRoutes).galleries;
 let evidenceStagingDir = null;
 if (evidenceDir) {
   await mkdir(dirname(evidenceDir), { recursive: true });
@@ -275,8 +280,11 @@ function fixtureHtml() {
         }
       }
 
+      if (mode === "historical-collections" || params.get("dialog") === "fallback") {
+        manifest.galleries = structuredClone(${JSON.stringify(historicalTestGalleries)});
+      }
       if (mode === "published-twwl" || mode === "published-twwl-no-image") {
-        const content = structuredClone(manifest.galleries.pastTwwl[0]);
+        const content = structuredClone(${JSON.stringify(historicalTestGalleries.pastTwwl[0])});
         if (content.image) content.image.src = ${JSON.stringify(runtimeArtwork.pastTwwl)};
         if (mode === "published-twwl-no-image") delete content.image;
         manifest.current.twwl = {
@@ -284,7 +292,7 @@ function fixtureHtml() {
           state: "published",
           content
         };
-        manifest.galleries.pastTwwl = manifest.galleries.pastTwwl.slice(1);
+        manifest.galleries.pastTwwl = ${JSON.stringify(historicalTestGalleries.pastTwwl.slice(1))};
       }
 
       if (mode === "empty-collections") {
@@ -1055,7 +1063,7 @@ try {
       screenWidth: entry.width,
       screenHeight: entry.height
     });
-    await navigateReady(client, `${baseUrl}/preview.html?case=dialogs-${entry.width}`);
+    await navigateReady(client, `${baseUrl}/fixture.html?mode=historical-collections&case=dialogs-${entry.width}`);
     for (const id of [
       "hrv-past-explorations-dialog",
       "hrv-past-learning-dialog",

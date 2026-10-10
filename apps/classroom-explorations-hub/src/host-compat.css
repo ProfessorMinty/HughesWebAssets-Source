@@ -2,8 +2,8 @@ html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #
   overflow-x: clip !important;
 }
 
-html.hrv-page-classroom-explorations-ready body.page-id-2589 #masthead.site-header,
-html.hrv-page-classroom-explorations-ready body.page-id-2589 #sidebar-footer.footer-widget-area {
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #masthead.site-header,
+html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) #sidebar-footer.footer-widget-area {
   display: none !important;
 }
 
