@@ -919,6 +919,28 @@ try {
     }
 
     if (entry.label === "approved-desktop") {
+      if (metrics.mainBottom > entry.height + 1) {
+        const diagnosis = await evaluate(client, `(() => ({
+          metrics: ${JSON.stringify(metrics)},
+          children: [...document.querySelectorAll('.welcome-heading, .welcome-screen, .current-copy, .current-copy > *')].map(element => ({
+            selector: element.className,
+            rect: element.getBoundingClientRect().toJSON(),
+            fontFamily: getComputedStyle(element).fontFamily,
+            fontSize: getComputedStyle(element).fontSize,
+            lineHeight: getComputedStyle(element).lineHeight,
+            minHeight: getComputedStyle(element).minHeight,
+            padding: getComputedStyle(element).padding
+          }))
+        }))()`);
+        console.error('[hub browser] opening-viewport diagnosis', JSON.stringify(diagnosis));
+        if (evidenceDir) {
+          // Failure artifacts are distinct from the atomic accepted-evidence bundle.
+          await mkdir(evidenceDir, { recursive: true });
+          await writeFile(resolve(evidenceDir, 'FAILED-opening-viewport.json'), `${JSON.stringify(diagnosis, null, 2)}\n`);
+          const failureScreenshot = await client.call('Page.captureScreenshot', { format: 'png', fromSurface: true });
+          await writeFile(resolve(evidenceDir, 'FAILED-opening-viewport.png'), Buffer.from(failureScreenshot.data, 'base64'));
+        }
+      }
       assert.ok(
         metrics.mainBottom <= entry.height + 1,
         `1920x911: Welcome, Current, and TWWL must fit in the opening viewport; got ${JSON.stringify(metrics.primaryCards)}.`
