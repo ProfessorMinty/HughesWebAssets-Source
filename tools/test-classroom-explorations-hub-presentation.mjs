@@ -463,7 +463,7 @@ assertAuthoritativeDesktopRule(
 );
 assertAuthoritativeDesktopRule(
   ".hrv-classroom-hub .current-exploration-card",
-  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(390px,\s*48%,\s*440px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*12px\s+18px/,
+  /display:\s*grid;[\s\S]*grid-template-columns:\s*clamp\(390px,\s*52%,\s*480px\)\s+minmax\(0,\s*1fr\);[\s\S]*grid-template-rows:\s*minmax\(0,\s*1fr\);[\s\S]*gap:\s*18px;[\s\S]*overflow:\s*hidden;[\s\S]*padding:\s*12px\s+18px/,
   "Current Exploration must be a clipped two-pane card with copy and subject media in normal flow"
 );
 assertAuthoritativeDesktopRule(
