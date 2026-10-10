@@ -1,0 +1,27 @@
+{
+  "explorations": {
+    "cards": 0,
+    "counts": 0,
+    "filters": 0,
+    "text": "CloseExploration GalleryPast ExplorationsThe gallery cases are ready for classroom explorations worth revisiting.",
+    "viewport": {
+      "dpr": 1.0000000447034836,
+      "height": 911,
+      "width": 1920
+    }
+  },
+  "twwl": {
+    "cards": 0,
+    "counts": 0,
+    "filters": 0,
+    "text": "CloseLearning Memory HallPast “This Week We Learned”Past learning stories will appear here as the museum collection grows."
+  },
+  "years": {
+    "links": [
+      {
+        "href": "https://rmhughes.edublogs.org/hub/archive-2025-2026/",
+        "text": "2025–2026Open school-year gallery"
+      }
+    ]
+  }
+}

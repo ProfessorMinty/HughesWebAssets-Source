@@ -2,6 +2,8 @@
 
 Date: 2026-09-12
 
+Later 2026-10-10 continuation completed: production Hub cutover, current-year separation and four historical backlink repairs. The archive release itself remains unchanged; see [the current cutover record](classroom-explorations-page17-cutover-2026-10-10.md). Earlier boundaries below are checkpoint-scoped, not current blockers.
+
 Current status (2026-10-10): installed and live-verified on Page 2627; see [the October installation record](classroom-explorations-live-installation-2026-10-10.md). The September evidence and pre-installation boundary below are historical checkpoints, not current deployment status.
 
 Branch: `hub-authoring-v2-2026-08-28`

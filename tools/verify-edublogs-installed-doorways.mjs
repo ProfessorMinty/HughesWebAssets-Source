@@ -3,7 +3,13 @@ import { createHash } from 'node:crypto';
 import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
 
+// Historical publication-002 checkpoint, retained with its original evidence.
+// Use verify-edublogs-hub-cutover.mjs for the current production/review Hub.
 // Read-only service verification. Captured editor fields are never submitted here.
+assert.ok(
+  (await readFile('docs/edublogs-integration/classroom-explorations-hub-test/JAVASCRIPT-BOX.js', 'utf8')).includes('pub-2026-10-10-002'),
+  'This is the earlier publication-002 checkpoint verifier. Current packages use publication 003; run tools/verify-edublogs-hub-cutover.mjs instead. Historical evidence was not overwritten.'
+);
 const sha256 = value => createHash('sha256').update(value).digest('hex');
 const tree = node => {
   if (node.nodeType === 3) return node.textContent.replace(/\s+/gu, ' ').trim() || null;

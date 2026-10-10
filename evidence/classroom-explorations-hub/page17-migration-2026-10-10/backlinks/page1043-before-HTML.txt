@@ -1,0 +1,863 @@
+<!-- ============== RUSSIAN WINTER TRADITIONS — PORTAL EDITION (ONE-PASTE BLOCK) ============== -->
+<!-- Paste this whole block into a Custom HTML block on Edublogs. It includes:
+     • Snowy background behind the content
+     • Hero “portal” card, glowing section cards, parade, and 5 YouTube videos
+     • All styling inline (no extra CSS files needed)                                  -->
+
+<div id="rusw-portal-wrap">
+
+  <!-- Snowy background that sits behind everything -->
+  <div class="rusw-snowfield" aria-hidden="true"></div>
+
+  <!-- Content stage -->
+  <div class="rusw-stage">
+    <div class="rusw-backdrop" aria-hidden="true"></div>
+
+    <a class="rusw-home" href="https://rmhughes.edublogs.org/classroom-explorations/" aria-label="Back to Exploration Hub">
+      ← Back to Exploration Hub
+    </a>
+
+    <!-- HERO / PORTAL -->
+    <section class="rusw-hero" aria-label="Russian Winter Hero">
+      <div class="rusw-hero-top">
+        <div class="rusw-hero-icons" aria-hidden="true">
+          <span class="rusw-hero-icon rusw-bob-slow">❄️</span>
+          <span class="rusw-hero-icon rusw-bob-med">🎄</span>
+          <span class="rusw-hero-icon rusw-bob-fast">🎅</span>
+          <span class="rusw-hero-icon rusw-bob-med">🐻</span>
+        </div>
+
+        <h1 class="rusw-title">
+          Russian Winter Traditions ❄️🇷🇺
+        </h1>
+
+        <p class="rusw-intro">
+          Welcome, bright explorers! Today we are stepping through a <strong>snowy portal</strong> into
+          <strong>Russia</strong> — the <strong>biggest country in the world</strong> and a place with
+          very cold, snowy winters. Can you imagine your breath puffing like a tiny cloud in the frosty air? 😮❄️
+        </p>
+        <p class="rusw-intro">
+          On the other side we will meet <strong>Grandfather Frost</strong>, open
+          <strong>nesting dolls</strong>, ride across the <strong>tundra</strong> with reindeer, and watch
+          amazing <strong>winter animals</strong> survive the snow. Zip up your coat — let’s go! 🧥🧣
+        </p>
+      </div>
+
+      <!-- Quick jump “ice chips” -->
+      <div class="rusw-quickjump">
+        <p class="rusw-quickjump-title">Quick Jump 🧭</p>
+        <div class="rusw-chip-row">
+          <a href="#rusw-santa" class="rusw-chip rusw-chip-blue">🎅 Russian Santa</a>
+          <a href="#rusw-toys" class="rusw-chip rusw-chip-gold">🪆 Winter Toys</a>
+          <a href="#rusw-tundra" class="rusw-chip rusw-chip-green">🦌 Tundra Life</a>
+          <a href="#rusw-animals" class="rusw-chip rusw-chip-plum">🐻 Winter Animals</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: RUSSIAN SANTA -->
+    <section id="rusw-santa" class="rusw-sec rusw-sec-santa" aria-label="Russian Santa and Traditions">
+      <div class="rusw-sec-inner">
+        <div class="rusw-sec-text">
+          <h2>1. The Russian “Santa”: Ded Moroz &amp; Snegurochka 🎅❄️</h2>
+
+          <p>
+            In many places, children talk about <strong>Santa Claus</strong>. In Russia, children usually talk
+            about someone a little different! They have a magical winter helper named
+            <strong>Ded Moroz</strong> (say it like: <em>Dyed Muh-ROHZ</em>), which means
+            <strong>Grandfather Frost</strong>.
+          </p>
+
+          <p>
+            Ded Moroz is tall, gentle, and wrapped in a long <strong>blue or red coat</strong>.
+            He carries a shining staff and loves cold, snowy nights. Instead of coming on December 25th,
+            many families in Russia celebrate <strong>New Year’s Eve</strong> first and have
+            <strong>Christmas on January 7th</strong>.
+          </p>
+
+          <div class="rusw-highlight">
+            <p>
+              Ded Moroz has a kind granddaughter named <strong>Snegurochka</strong>
+              (say it like: <em>Sneh-GOOR-och-ka</em>), the <strong>Snow Maiden</strong> 👧❄️.
+              She sparkles like fresh snow. Children sing songs and dance in a circle to welcome
+              Ded Moroz and Snegurochka to the party.
+            </p>
+          </div>
+
+          <ul class="rusw-list">
+            <li><strong>Dec 31 – New Year’s Eve:</strong> Big family dinner, TV shows, and fireworks. 🎆</li>
+            <li><strong>Jan 1 – New Year:</strong> Many children find gifts from Ded Moroz. 🎁</li>
+            <li><strong>Jan 7 – Christmas:</strong> A quiet, peaceful holiday for many Russian Christians. 🕯️</li>
+          </ul>
+
+          <p class="rusw-think">
+            ❓ <strong>Think about it:</strong> Would you like to have two big winter celebrations in the same week?
+            What special things would you do for each one?
+          </p>
+        </div>
+
+        <div class="rusw-video-card rusw-video-santa">
+          <div class="rusw-video-frame">
+            <iframe src="https://www.youtube.com/embed/bDERepD7XtI" title="Russian Winter and New Year Traditions" frameborder="0" allowfullscreen="">
+            </iframe>
+          </div>
+          <p class="rusw-video-caption">
+            🎥 Watch how families in Russia decorate, celebrate, and welcome Ded Moroz and Snegurochka.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MATRYOSHKA TOYS -->
+    <section id="rusw-toys" class="rusw-sec rusw-sec-toys" aria-label="Russian Winter Toys">
+      <div class="rusw-sec-inner">
+        <div class="rusw-sec-text">
+          <h2>2. Matryoshka Dolls: Surprises Inside 🪆</h2>
+
+          <p>
+            Have you ever opened a toy and found <strong>more toys inside</strong>? In Russia, one of the most
+            famous toys is the <strong>Matryoshka doll</strong> (say it like: <em>Mah-TREE-osh-ka</em>),
+            also called a <strong>nesting doll</strong>.
+          </p>
+
+          <p>
+            A Matryoshka set looks like one beautiful wooden doll. But when you twist it open,
+            <strong>another doll</strong> is hiding inside… and another… and another!
+            Each doll is smaller than the one before. They are painted with bright clothing, flowers,
+            and smiling faces.
+          </p>
+
+          <div class="rusw-highlight rusw-highlight-toys">
+            <p>
+              Some sets tell a story: a whole <strong>family</strong>, a group of
+              <strong>animals</strong>, or even characters from fairy tales. Opening the dolls is like
+              reading a story from biggest to smallest.
+            </p>
+          </div>
+
+          <p class="rusw-think">
+            🤔 <strong>Imagine this:</strong> If you designed your own Matryoshka set, who or what would
+            be inside the dolls? Maybe your family, your favorite animals, or a line of silly penguins?
+          </p>
+        </div>
+
+        <div class="rusw-video-card rusw-video-toys">
+          <div class="rusw-video-frame">
+            <iframe src="https://www.youtube.com/embed/IC4O3F7018c" title="Matryoshka Dolls - Russian Toys" frameborder="0" allowfullscreen="">
+            </iframe>
+          </div>
+          <p class="rusw-video-caption">
+            🎥 See how Matryoshka dolls open and what surprises hide inside each one.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TUNDRA LIFE + PARADE -->
+    <section id="rusw-tundra" class="rusw-sec rusw-sec-tundra" aria-label="Life in the Tundra">
+      <div class="rusw-sec-inner">
+        <div class="rusw-sec-text">
+          <h2>3. Life in the Snow: The Tundra &amp; the Nenets 🦌⛄</h2>
+
+          <p>
+            Far in the north of Russia there is a place so cold that trees can hardly grow.
+            This icy land is called the <strong>tundra</strong>. The ground can stay frozen most of the year,
+            and the wind can be very strong.
+          </p>
+
+          <p>
+            Some people, called the <strong>Nenets</strong>, live in the tundra. They are
+            <strong>nomads</strong>, which means they move from place to place. They travel with
+            <strong>reindeer</strong> and live in tents called <strong>chums</strong> that can be taken down
+            and built again when it is time to move.
+          </p>
+
+          <div class="rusw-highlight rusw-highlight-tundra">
+            <p>
+              When the Nenets move, it can look like a <strong>reindeer parade</strong> across the snow.
+              Long lines of reindeer pull sleds carrying people, food, and tents. Can you imagine riding
+              on a sled, wrapped in warm fur blankets, gliding over the sparkling tundra? ❄️🛷
+            </p>
+          </div>
+        </div>
+
+        <div class="rusw-video-card rusw-video-tundra">
+          <div class="rusw-video-frame">
+            <iframe src="https://www.youtube.com/embed/_0BMz38dnTs" title="Nenets Life in the Russian Tundra" frameborder="0" allowfullscreen="">
+            </iframe>
+          </div>
+          <p class="rusw-video-caption">
+            🎥 Watch how Nenets families and their reindeer live and travel in the snowy tundra.
+          </p>
+        </div>
+      </div>
+
+      <!-- Reindeer & Lights Parade -->
+      <div class="rusw-parade">
+        <h3>Reindeer &amp; Lights Parade 🦌🎄</h3>
+        <p class="rusw-parade-intro">
+          Imagine our classroom is a snowy town square. The music starts, the lights glow,
+          and a winter parade begins to roll by…
+        </p>
+
+        <div class="rusw-parade-window" aria-hidden="true">
+          <div class="rusw-parade-track">
+            <div class="rusw-float rusw-float-blue">
+              🛷❄️<br>
+              <span>Reindeer sleds gliding past, bells jingling softly in the snow.</span>
+            </div>
+            <div class="rusw-float rusw-float-red">
+              🎅👧<br>
+              <span>Ded Moroz and Snegurochka waving from a sparkling sleigh.</span>
+            </div>
+            <div class="rusw-float rusw-float-green">
+              🎄✨<br>
+              <span>A tall winter tree glowing with golden and blue lights.</span>
+            </div>
+            <div class="rusw-float rusw-float-plum">
+              🧒🎶<br>
+              <span>Children in colorful scarves singing gentle winter songs.</span>
+            </div>
+            <div class="rusw-float rusw-float-gold">
+              ✨❄️<br>
+              <span>Snowflakes and stars twinkling above the parade.</span>
+            </div>
+            <!-- duplicate for smooth loop -->
+            <div class="rusw-float rusw-float-blue">
+              🛷❄️<br>
+              <span>Reindeer sleds gliding past, bells jingling softly in the snow.</span>
+            </div>
+            <div class="rusw-float rusw-float-red">
+              🎅👧<br>
+              <span>Ded Moroz and Snegurochka waving from a sparkling sleigh.</span>
+            </div>
+            <div class="rusw-float rusw-float-green">
+              🎄✨<br>
+              <span>A tall winter tree glowing with golden and blue lights.</span>
+            </div>
+            <div class="rusw-float rusw-float-plum">
+              🧒🎶<br>
+              <span>Children in colorful scarves singing gentle winter songs.</span>
+            </div>
+            <div class="rusw-float rusw-float-gold">
+              ✨❄️<br>
+              <span>Snowflakes and stars twinkling above the parade.</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="rusw-class-idea">
+          💡 <strong>Classroom idea:</strong> Choose a float (reindeer, singers, tree, snowflakes) and walk
+          slowly around the room as your own parade!
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: WINTER ANIMALS -->
+    <section id="rusw-animals" class="rusw-sec rusw-sec-animals" aria-label="Russian Winter Animals">
+      <div class="rusw-sec-inner rusw-sec-inner-animals">
+        <div class="rusw-sec-text">
+          <h2>4. Winter Animals: Staying Warm in the Cold 🐻‍❄️🐂</h2>
+
+          <p>
+            Russia is home to many <strong>winter animals</strong> that are experts at staying warm.
+            They have thick fur, strong hooves or paws, and smart behaviors that help them survive
+            freezing temperatures.
+          </p>
+
+          <div class="rusw-animal-card rusw-animal-musk">
+            <h3>Musk Ox 🐂</h3>
+            <p>
+              A <strong>musk ox</strong> looks like a big, shaggy cow with long hair that can almost
+              touch the ground. Its thick fur keeps it warm in icy winds. Musk oxen stand close together
+              in a circle to protect their babies and block the cold. It’s like a living, fuzzy shield!
+            </p>
+          </div>
+
+          <div class="rusw-animal-card rusw-animal-others">
+            <h3>Other Winter Friends ❄️</h3>
+            <p>
+              In snowy parts of Russia you might also find <strong>arctic foxes</strong>,
+              <strong>snowy owls</strong>, and big bears that sleep through the coldest months.
+              Each animal has special body parts and habits that help it stay safe and warm.
+            </p>
+          </div>
+
+          <p class="rusw-think">
+            ❓ <strong>Think about it:</strong> If you were a winter animal in Russia, what kind of fur,
+            feet, or tail would you need to survive the snow?
+          </p>
+        </div>
+
+        <div class="rusw-animal-videos">
+          <div class="rusw-video-card rusw-video-animal">
+            <div class="rusw-video-frame">
+              <iframe src="https://www.youtube.com/embed/Uz8eeZABhyA" title="Musk Ox and Winter Wildlife" frameborder="0" allowfullscreen="">
+              </iframe>
+            </div>
+            <p class="rusw-video-caption">
+              🎥 Watch how the musk ox and other animals move, eat, and stay warm in the cold.
+            </p>
+          </div>
+
+          <div class="rusw-video-card rusw-video-animal">
+            <div class="rusw-video-frame">
+              <iframe src="https://www.youtube.com/embed/j4Hr3TKUqhM" title="More Winter Animals in the Snow" frameborder="0" allowfullscreen="">
+              </iframe>
+            </div>
+            <p class="rusw-video-caption">
+              🎥 Look closely at each animal’s fur, feet, and behavior. How are they built for winter?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING / PORTAL OUT -->
+    <section class="rusw-sec rusw-sec-closing" aria-label="Russian Winter Closing">
+      <div class="rusw-sec-inner rusw-sec-inner-closing">
+        <div class="rusw-closing-icons" aria-hidden="true">
+          <span>❄️</span><span>🐻</span><span>🎅</span><span>🎄</span>
+        </div>
+        <h2>Stepping Back Through the Portal 💫</h2>
+        <p>
+          You did it, winter explorers! You stepped into <strong>Russian winter traditions</strong> and
+          met <strong>Grandfather Frost and the Snow Maiden</strong>, opened <strong>Matryoshka dolls</strong>,
+          crossed the <strong>tundra with reindeer</strong>, and watched brave
+          <strong>winter animals</strong> in the snow.
+        </p>
+        <p>
+          Remember: every country and every family has its own <strong>special ways</strong> to celebrate
+          winter. Learning about other traditions makes our hearts more curious, kind, and brave. 🌍❤️
+        </p>
+        <p class="rusw-signoff">
+          With frosty hugs and snowflake smiles,<br>
+          <span>Aurora ✨</span>
+        </p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<style>
+/* =============== RUSSIAN WINTER PORTAL – STYLES (SCOPED BY #rusw-portal-wrap) =============== */
+
+#rusw-portal-wrap {
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0d47a1;
+}
+
+/* Make all sizing predictable inside the portal */
+#rusw-portal-wrap *,
+#rusw-portal-wrap *::before,
+#rusw-portal-wrap *::after {
+  box-sizing: border-box;
+}
+
+/* Snowy background covering the whole viewport */
+.rusw-snowfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1600px 700px at 50% 0%, rgba(227, 242, 253, 0.45), transparent 60%),
+    linear-gradient(#020817, #0b295f);
+}
+.rusw-snowfield::before {
+  content: "";
+  position: absolute;
+  inset: -200px;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+    radial-gradient(3px 3px at 120px 80px, rgba(227, 242, 253, 0.9) 0, transparent 55%),
+    radial-gradient(2px 2px at 220px 10px, rgba(187, 222, 251, 0.9) 0, transparent 55%);
+  background-size: 220px 320px, 260px 340px, 210px 280px;
+  opacity: 0.9;
+  animation: ruswSnowfall 42s linear infinite;
+}
+
+/* Main content stage */
+.rusw-stage {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  max-width: 1040px;
+  margin: 32px auto 42px auto;
+  padding: 20px 18px 22px 18px;
+  border-radius: 28px;
+  border: 1px solid rgba(187, 222, 251, 0.4);
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(227, 242, 253, 0.22), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(144, 202, 249, 0.16), transparent 60%),
+    rgba(5, 10, 26, 0.94);
+  box-shadow: 0 24px 60px rgba(5, 10, 26, 0.75);
+}
+.rusw-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 450px at 12% 0%, rgba(33, 150, 243, 0.16), transparent 55%),
+    radial-gradient(700px 380px at 88% 6%, rgba(187, 222, 251, 0.18), transparent 60%),
+    linear-gradient(#020617, #020824);
+}
+
+/* Back link */
+.rusw-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #42a5f5, #d32f2f);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  margin-bottom: 14px;
+}
+.rusw-home:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+}
+
+/* HERO */
+.rusw-hero {
+  position: relative;
+  border-radius: 22px;
+  padding: 20px 18px 18px 18px;
+  background:
+    radial-gradient(900px 420px at 10% 0%, rgba(227, 242, 253, 0.9), transparent 70%),
+    radial-gradient(800px 420px at 90% 0%, rgba(179, 229, 252, 0.9), transparent 70%),
+    linear-gradient(135deg, #0d47a1, #1565c0);
+  box-shadow: 0 18px 40px rgba(3, 12, 30, 0.75);
+  color: #0b1b3f;
+  overflow: hidden;
+}
+.rusw-hero::before {
+  content: "";
+  position: absolute;
+  inset: -120px -40px auto;
+  opacity: 0.3;
+  background-image:
+    radial-gradient(2px 2px at 10px 20px, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+    radial-gradient(3px 3px at 80px 40px, rgba(226, 239, 255, 0.9) 0, transparent 55%);
+  background-size: 120px 200px, 200px 260px;
+  animation: ruswSnowHero 30s linear infinite;
+  pointer-events: none;
+}
+.rusw-hero-top {
+  position: relative;
+  text-align: center;
+}
+.rusw-hero-icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 4px;
+}
+.rusw-hero-icon {
+  font-size: 1.8rem;
+}
+.rusw-title {
+  margin: 4px 0 6px 0;
+  font-size: 2.15rem;
+  line-height: 1.15;
+  color: #021023;
+  letter-spacing: 0.02em;
+}
+.rusw-intro {
+  margin: 4px auto 6px auto;
+  max-width: 45rem;
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: #051022;
+}
+
+/* Quick jump box */
+.rusw-quickjump {
+  margin-top: 10px;
+  padding: 10px 12px 9px 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 10px 24px rgba(13, 71, 161, 0.4);
+}
+.rusw-quickjump-title {
+  margin: 0 0 6px 0;
+  font-weight: 800;
+  font-size: 0.96rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #0d47a1;
+  text-align: center;
+}
+.rusw-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+}
+.rusw-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+}
+.rusw-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+}
+.rusw-chip-blue { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
+.rusw-chip-gold { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+.rusw-chip-green { background: linear-gradient(135deg, #66bb6a, #2e7d32); }
+.rusw-chip-plum { background: linear-gradient(135deg, #ab47bc, #6a1b9a); }
+
+/* Generic sections */
+.rusw-sec {
+  margin-top: 18px;
+  border-radius: 22px;
+  padding: 16px 16px 14px 16px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 16px 38px rgba(3, 12, 30, 0.6);
+  color: #0b295f;
+}
+.rusw-sec-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: stretch;
+}
+.rusw-sec-text {
+  flex: 1 1 260px;
+  min-width: 240px;
+}
+.rusw-sec h2 {
+  margin: 2px 0 8px 0;
+  font-size: 1.65rem;
+  color: #0b295f;
+}
+.rusw-sec p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  margin: 4px 0 6px 0;
+}
+
+/* Section palettes */
+.rusw-sec-santa {
+  border: 2px solid #90caf9;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+}
+.rusw-sec-toys {
+  border: 2px solid #ffb74d;
+  background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+}
+.rusw-sec-tundra {
+  border: 2px solid #4dd0e1;
+  background: linear-gradient(135deg, #e0f7fa, #e1f5fe);
+}
+.rusw-sec-animals {
+  border: 2px solid #ba68c8;
+  background: linear-gradient(135deg, #f3e5f5, #e3f2fd);
+}
+
+/* Highlight boxes */
+.rusw-highlight {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background-color: #ffebee;
+  border-left: 5px solid #d32f2f;
+}
+.rusw-highlight-toys {
+  background: linear-gradient(135deg, #ffe0b2, #fff8e1);
+  border-left-color: #fb8c00;
+}
+.rusw-highlight-tundra {
+  background-color: #e0f2f1;
+  border-left-color: #00838f;
+}
+.rusw-list {
+  margin: 4px 0 6px 1.1rem;
+  padding-left: 0.4rem;
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+.rusw-think {
+  font-size: 0.96rem;
+}
+
+/* Video cards */
+.rusw-video-card {
+  flex: 1 1 260px;
+  min-width: 240px;
+  border-radius: 18px;
+  padding: 8px;
+  background: radial-gradient(circle at top, #0d47a1, #0b1b3f);
+  border: 3px solid #e3f2fd;
+  box-shadow: 0 16px 36px rgba(3, 12, 30, 0.85);
+  color: #e3f2fd;
+}
+.rusw-video-toys {
+  background: radial-gradient(circle at top, #ffb74d, #f57c00);
+  border-color: #fff3e0;
+}
+.rusw-video-tundra {
+  background: radial-gradient(circle at top, #4dd0e1, #006064);
+  border-color: #e0f7fa;
+}
+.rusw-video-animal {
+  background: radial-gradient(circle at top, #4fc3f7, #01579b);
+  border-color: #e1f5fe;
+}
+.rusw-video-frame {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+}
+.rusw-video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.rusw-video-caption {
+  margin: 6px 0 0 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Tundra parade */
+.rusw-parade {
+  margin-top: 12px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0b295f, #1a237e);
+  border: 3px solid #e3f2fd;
+  color: #e3f2fd;
+  box-shadow: 0 16px 36px rgba(3, 12, 30, 0.85);
+}
+.rusw-parade h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.25rem;
+  text-align: center;
+}
+.rusw-parade-intro {
+  margin: 4px 0 8px 0;
+  font-size: 0.94rem;
+  text-align: center;
+}
+.rusw-parade-window {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(700px 360px at 10% 0%, rgba(33, 150, 243, 0.35), transparent 60%),
+    radial-gradient(700px 360px at 90% 0%, rgba(144, 202, 249, 0.3), transparent 60%),
+    #020617;
+}
+.rusw-parade-window::before {
+  content: "";
+  position: absolute;
+  inset: -100px -40px;
+  opacity: 0.6;
+  background-image:
+    radial-gradient(2px 2px at 10px 20px, rgba(255, 255, 255, 0.9) 0, transparent 55%),
+    radial-gradient(3px 3px at 80px 40px, rgba(226, 239, 255, 0.9) 0, transparent 55%);
+  background-size: 120px 200px, 200px 260px;
+  animation: ruswSnowParade 28s linear infinite;
+  pointer-events: none;
+}
+.rusw-parade-track {
+  position: relative;
+  display: flex;
+  gap: 0.75rem;
+  padding: 8px 10px 10px 10px;
+  min-width: max-content;
+  animation: ruswParadeScroll 40s linear infinite;
+}
+.rusw-float {
+  min-width: 180px;
+  max-width: 200px;
+  padding: 8px 9px 9px 9px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #0b295f;
+  font-size: 0.9rem;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+}
+.rusw-float span {
+  display: block;
+  margin-top: 2px;
+}
+.rusw-float-blue { background: linear-gradient(135deg, #bbdefb, #e3f2fd); color: #0b295f; }
+.rusw-float-red { background: linear-gradient(135deg, #ffcdd2, #ffebee); color: #b71c1c; }
+.rusw-float-green { background: linear-gradient(135deg, #c8e6c9, #e8f5e9); color: #1b5e20; }
+.rusw-float-plum { background: linear-gradient(135deg, #e1bee7, #f3e5f5); color: #4a148c; }
+.rusw-float-gold { background: linear-gradient(135deg, #ffe082, #fff8e1); color: #e65100; }
+
+.rusw-class-idea {
+  margin: 8px 0 0 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Animals layout */
+.rusw-sec-inner-animals {
+  align-items: flex-start;
+}
+.rusw-animal-card {
+  margin: 6px 0 8px 0;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background-color: #e3f2fd;
+  border: 2px solid #90caf9;
+}
+.rusw-animal-musk {
+  background-color: #e8f5e9;
+  border-color: #66bb6a;
+}
+.rusw-animal-others {
+  background-color: #ede7f6;
+  border-color: #ba68c8;
+}
+.rusw-animal-videos {
+  flex: 1 1 260px;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Closing section */
+.rusw-sec-closing {
+  border: 2px solid #d32f2f;
+  background: linear-gradient(135deg, #fff3e0, #ffcdd2);
+}
+.rusw-sec-inner-closing {
+  text-align: center;
+}
+.rusw-closing-icons {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+.rusw-signoff span {
+  color: #0b295f;
+  font-weight: 700;
+}
+
+/* Hero bobbing icons */
+.rusw-bob-slow { animation: ruswBob 6s ease-in-out infinite; }
+.rusw-bob-med { animation: ruswBob 4.8s ease-in-out infinite; }
+.rusw-bob-fast { animation: ruswBob 4s ease-in-out infinite; }
+
+/* Keyframes */
+@keyframes ruswSnowfall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(240px); }
+}
+@keyframes ruswSnowHero {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(180px); }
+}
+@keyframes ruswSnowParade {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(160px); }
+}
+@keyframes ruswParadeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes ruswBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .rusw-stage {
+    margin: 20px auto 28px auto;
+    padding: 14px 10px 16px 10px;
+    border-radius: 22px;
+  }
+  .rusw-hero {
+    padding: 16px 12px 14px 12px;
+  }
+  .rusw-sec {
+    padding: 14px 12px 12px 12px;
+  }
+}
+
+/* Reduced motion: keep it calm for sensitive viewers */
+@media (prefers-reduced-motion: reduce) {
+  .rusw-snowfield::before,
+  .rusw-hero::before,
+  .rusw-parade-window::before,
+  .rusw-parade-track,
+  .rusw-bob-slow,
+  .rusw-bob-med,
+  .rusw-bob-fast {
+    animation: none !important;
+  }
+}
+
+/* === Contrast patch: keep light text on dark gradients === */
+
+/* Hero text on dark-ish gradient */
+#rusw-portal-wrap .rusw-hero h1 {
+  color: #ffffff !important;
+}
+#rusw-portal-wrap .rusw-hero p {
+  color: #e3f2fd !important;
+}
+
+/* Parade text: light outside cards, dark inside cards */
+#rusw-portal-wrap .rusw-parade h3,
+#rusw-portal-wrap .rusw-parade .rusw-parade-intro,
+#rusw-portal-wrap .rusw-parade .rusw-class-idea {
+  color: #e3f2fd !important;
+}
+#rusw-portal-wrap .rusw-parade .rusw-float,
+#rusw-portal-wrap .rusw-parade .rusw-float span {
+  color: #0b295f !important;
+}
+
+/* Video captions on dark cards */
+#rusw-portal-wrap .rusw-video-card,
+#rusw-portal-wrap .rusw-video-card p,
+#rusw-portal-wrap .rusw-video-caption {
+  color: #e3f2fd !important;
+}
+
+/* === Button size + bubble style patch (still theme-controlled font size) === */
+
+#rusw-portal-wrap .rusw-chip {
+  font-size: inherit;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+#rusw-portal-wrap .rusw-chip-row {
+  gap: 0.6rem;
+}
+</style>

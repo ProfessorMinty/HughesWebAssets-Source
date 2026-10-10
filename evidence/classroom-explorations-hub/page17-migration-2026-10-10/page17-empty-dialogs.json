@@ -1,0 +1,134 @@
+[
+  {
+    "box": {
+      "bottom": 669.0178680419922,
+      "left": 362.5714416503906,
+      "right": 1542.5714416503906,
+      "top": 242.4107208251953
+    },
+    "cards": 0,
+    "countLabels": 0,
+    "filters": 0,
+    "focusInside": true,
+    "height": 911,
+    "overflow": 0,
+    "text": "CloseExploration GalleryPast ExplorationsThe gallery cases are ready for classroom explorations worth revisiting.",
+    "title": null,
+    "width": 1920,
+    "singleControlTabStays": true,
+    "afterClose": {
+      "focus": "Past Explorations: Choose an exhibit",
+      "openDialogs": 0
+    }
+  },
+  {
+    "box": {
+      "bottom": 669.0178680419922,
+      "left": 362.5714416503906,
+      "right": 1542.5714416503906,
+      "top": 242.4107208251953
+    },
+    "cards": 0,
+    "countLabels": 0,
+    "filters": 0,
+    "focusInside": true,
+    "height": 911,
+    "overflow": 0,
+    "text": "CloseLearning Memory HallPast “This Week We Learned”Past learning stories will appear here as the museum collection grows.",
+    "title": null,
+    "width": 1920,
+    "singleControlTabStays": true,
+    "afterClose": {
+      "focus": "Past TWWL: Choose a learning story",
+      "openDialogs": 0
+    }
+  },
+  {
+    "box": {
+      "bottom": 667.3661193847656,
+      "left": 16.571430206298828,
+      "right": 948.5714912414552,
+      "top": 244.0535888671875
+    },
+    "cards": 0,
+    "countLabels": 0,
+    "filters": 0,
+    "focusInside": true,
+    "height": 911,
+    "overflow": 0,
+    "text": "CloseExploration GalleryPast ExplorationsThe gallery cases are ready for classroom explorations worth revisiting.",
+    "title": null,
+    "width": 980,
+    "singleControlTabStays": true,
+    "afterClose": {
+      "focus": "Past Explorations: Choose an exhibit",
+      "openDialogs": 0
+    }
+  },
+  {
+    "box": {
+      "bottom": 667.3661193847656,
+      "left": 16.571430206298828,
+      "right": 948.5714912414552,
+      "top": 244.0535888671875
+    },
+    "cards": 0,
+    "countLabels": 0,
+    "filters": 0,
+    "focusInside": true,
+    "height": 911,
+    "overflow": 0,
+    "text": "CloseLearning Memory HallPast “This Week We Learned”Past learning stories will appear here as the museum collection grows.",
+    "title": null,
+    "width": 980,
+    "singleControlTabStays": true,
+    "afterClose": {
+      "focus": "Past TWWL: Choose a learning story",
+      "openDialogs": 0
+    }
+  },
+  {
+    "box": {
+      "bottom": 653.6518249511719,
+      "left": 2.5714287757873535,
+      "right": 372.8571648597718,
+      "top": 190.33929443359375
+    },
+    "cards": 0,
+    "countLabels": 0,
+    "filters": 0,
+    "focusInside": true,
+    "height": 844,
+    "overflow": 0,
+    "text": "CloseExploration GalleryPast ExplorationsThe gallery cases are ready for classroom explorations worth revisiting.",
+    "title": null,
+    "width": 390,
+    "singleControlTabStays": true,
+    "afterClose": {
+      "focus": "Past Explorations: Choose an exhibit",
+      "openDialogs": 0
+    }
+  },
+  {
+    "box": {
+      "bottom": 675.544677734375,
+      "left": 2.5714287757873535,
+      "right": 372.8571648597718,
+      "top": 168.44644165039062
+    },
+    "cards": 0,
+    "countLabels": 0,
+    "filters": 0,
+    "focusInside": true,
+    "height": 844,
+    "overflow": 0,
+    "text": "CloseLearning Memory HallPast “This Week We Learned”Past learning stories will appear here as the museum collection grows.",
+    "title": null,
+    "width": 390,
+    "singleControlTabStays": true,
+    "afterClose": {
+      "focus": "Past TWWL: Choose a learning story",
+      "openDialogs": 0
+    }
+  }
+]

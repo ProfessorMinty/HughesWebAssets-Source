@@ -1,0 +1,502 @@
+[
+  {
+    "cards": [
+      {
+        "class": "hub-card welcome-theater-card",
+        "height": 480.0000305175781,
+        "width": 929.0000610351562,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-exploration-card",
+        "height": 480.0000305175781,
+        "width": 929.0000610351562,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-twwl-card",
+        "height": 300,
+        "width": 1557.6607666015625,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastExplorations",
+        "height": 93.33036041259766,
+        "width": 300.33929443359375,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastTwwl",
+        "height": 93.33036041259766,
+        "width": 300.33929443359375,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastYears",
+        "height": 93.33036041259766,
+        "width": 300.33929443359375,
+        "xOverflow": 0,
+        "yOverflow": 0
+      }
+    ],
+    "images": [
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-right",
+        "loaded": true
+      },
+      {
+        "class": "current-image",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      }
+    ],
+    "main": {
+      "bottom": 997.6607666015624,
+      "height": 965.6607666015624,
+      "top": 32
+    },
+    "overflow": 0,
+    "ready": "ready",
+    "viewport": {
+      "dpr": 1.0000000447034836,
+      "height": 911,
+      "width": 1920
+    }
+  },
+  {
+    "cards": [
+      {
+        "class": "hub-card welcome-theater-card",
+        "height": 413.6160888671875,
+        "width": 1229.65185546875,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-exploration-card",
+        "height": 563.8125,
+        "width": 1284.3035888671875,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-twwl-card",
+        "height": 362.27679443359375,
+        "width": 1229.65185546875,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastExplorations",
+        "height": 209.38394165039065,
+        "width": 418.7678833007813,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastTwwl",
+        "height": 209.38394165039065,
+        "width": 418.7678833007813,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastYears",
+        "height": 209.38394165039065,
+        "width": 418.7678833007813,
+        "xOverflow": 0,
+        "yOverflow": 0
+      }
+    ],
+    "images": [
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-right",
+        "loaded": true
+      },
+      {
+        "class": "current-image",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      }
+    ],
+    "main": {
+      "bottom": 2021.857177734375,
+      "height": 1989.857177734375,
+      "top": 32
+    },
+    "overflow": 0,
+    "ready": "ready",
+    "viewport": {
+      "dpr": 1.0000000447034836,
+      "height": 768,
+      "width": 1366
+    }
+  },
+  {
+    "cards": [
+      {
+        "class": "hub-card welcome-theater-card",
+        "height": 907.7678833007812,
+        "width": 900.8035888671876,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-exploration-card",
+        "height": 1040.02685546875,
+        "width": 900.8035888671876,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-twwl-card",
+        "height": 724.4375610351562,
+        "width": 882.0000610351562,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastExplorations",
+        "height": 145.46429443359375,
+        "width": 290.9285888671875,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastTwwl",
+        "height": 145.46429443359375,
+        "width": 290.9375,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastYears",
+        "height": 145.46429443359375,
+        "width": 290.9285888671875,
+        "xOverflow": 0,
+        "yOverflow": 0
+      }
+    ],
+    "images": [
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-right",
+        "loaded": true
+      },
+      {
+        "class": "current-image",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      }
+    ],
+    "main": {
+      "bottom": 3372.125244140625,
+      "height": 3340.125244140625,
+      "top": 32
+    },
+    "overflow": 0,
+    "ready": "ready",
+    "viewport": {
+      "dpr": 1.0000000447034836,
+      "height": 911,
+      "width": 980
+    }
+  },
+  {
+    "cards": [
+      {
+        "class": "hub-card welcome-theater-card",
+        "height": 656.169677734375,
+        "width": 370.2857360839844,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-exploration-card",
+        "height": 1057.4910888671875,
+        "width": 370.2857360839844,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-twwl-card",
+        "height": 692.2589721679688,
+        "width": 326.2857360839844,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastExplorations",
+        "height": 185.1428680419922,
+        "width": 370.2857360839844,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastTwwl",
+        "height": 185.1428680419922,
+        "width": 370.2857360839844,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastYears",
+        "height": 185.1428680419922,
+        "width": 370.2857360839844,
+        "xOverflow": 0,
+        "yOverflow": 0
+      }
+    ],
+    "images": [
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-right",
+        "loaded": true
+      },
+      {
+        "class": "current-image",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      }
+    ],
+    "main": {
+      "bottom": 4638.151859283447,
+      "height": 4592.15185546875,
+      "top": 46.000003814697266
+    },
+    "overflow": 0,
+    "ready": "ready",
+    "viewport": {
+      "dpr": 1.0000000447034836,
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "cards": [
+      {
+        "class": "hub-card welcome-theater-card",
+        "height": 696.3839721679688,
+        "width": 300,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-exploration-card",
+        "height": 1094.02685546875,
+        "width": 300,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "hub-card current-twwl-card",
+        "height": 835.2767944335938,
+        "width": 256,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastExplorations",
+        "height": 150,
+        "width": 300,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastTwwl",
+        "height": 150,
+        "width": 300,
+        "xOverflow": 0,
+        "yOverflow": 0
+      },
+      {
+        "class": "history-door history-door-pastYears",
+        "height": 150,
+        "width": 300,
+        "xOverflow": 0,
+        "yOverflow": 0
+      }
+    ],
+    "images": [
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-top-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-middle-right",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-left",
+        "loaded": true
+      },
+      {
+        "class": "hub-banner-frame-piece hub-banner-frame-bottom-right",
+        "loaded": true
+      },
+      {
+        "class": "current-image",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      },
+      {
+        "class": "history-door-artwork",
+        "loaded": true
+      }
+    ],
+    "main": {
+      "bottom": 4815.643070220947,
+      "height": 4769.64306640625,
+      "top": 46.000003814697266
+    },
+    "overflow": 0,
+    "ready": "ready",
+    "viewport": {
+      "dpr": 1.0000000447034836,
+      "height": 640,
+      "width": 320
+    }
+  }
+]

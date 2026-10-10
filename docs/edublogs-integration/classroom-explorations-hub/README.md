@@ -1,5 +1,7 @@
 # Production Hub doorway — Page 17
 
+Installed, reloaded and live-verified on 2026-10-10; see the cutover record linked below. No additional user paste is required for this installation.
+
 Target: `https://rmhughes.edublogs.org/hub/`, WordPress Page 17, Full width template. Current generated package: immutable asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`, runtime `2026.10.10.3`, publication `pub-2026-10-10-003`, source `be5836526e02212dd693a13cf9abc6a53b8501e0`. All three fields belong together. Never paste template tokens or independently mix releases.
 
 Production generation requires the exact captured Page 17 preservation fields, successful 16-file CDN byte evidence, full immutable commit binding and empty current-year collections. It does not write to Edublogs or enable Lanternworks. Install `HTML-BOX.html`, `CSS-BOX.css`, and `JAVASCRIPT-BOX.js` into the page's existing Custom HTML block; `HOST-COMPATIBILITY.css` is release evidence, not a fourth editor field.

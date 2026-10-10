@@ -39,11 +39,15 @@ Managed Edublogs destinations use stable `routeRef` values resolved through `reg
 
 Normal Hub content changes do not require rebuilding browser JS/CSS while the runtime schema remains compatible. Renderer/host changes mint a new immutable runtime.
 
-## Current Hub visual-review state
+## Current Hub production state
+
+The approved panoramic Hub is installed on Page 17 at `/hub/` and HUB TEST, using immutable publication `pub-2026-10-10-003`, runtime `2026.10.10.3`, and asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`. Current-year history is genuinely empty; the 2025–2026 catalog remains behind the installed dedicated archive. Four stale historical returns are repaired. CI, exact CDN bytes, saved-editor readback and live browser evidence are in [the completed cutover](docs/classroom-explorations-page17-cutover-2026-10-10.md). Lanternworks production writes remain disabled; PR 22 is not merged.
+
+## Historical August Hub visual-review state
 
 The selected historical Hub is the visual/compositional baseline for the permanent modernization. The new implementation preserves its recognizable furniture and hierarchy while replacing the old inline/hybrid implementation architecture.
 
-The current review build preserves:
+The August review build preserved:
 
 ```text
 Hero
@@ -59,9 +63,9 @@ Hero
 
 It also preserves the compass/discovery identity, green Exploration family, purple TWWL family, card-based gallery organization, and subject-specific identities inside a new repository-owned full-viewport magical museum environment.
 
-During human visual review, recovered `2025–2026` content intentionally remains visible in the actual Hub while retaining truthful school-year metadata. Current Zinnia remains `2026–2027` and Current TWWL remains truthfully Coming Soon. After Arctic/Poppet approve the permanent visual model, older material can move behind Previous School Years through composition.
+During that human visual review, recovered `2025–2026` content intentionally remained visible in the actual Hub while retaining truthful school-year metadata. This placeholder phase ended with the October cutover above. Current Zinnia remains `2026–2027` and Current TWWL remains truthfully Coming Soon.
 
-The current immutable review package is:
+The historical August immutable review package was:
 
 ```text
 Artifact commit: 1dc599dea9ae5caf01600292f153681009962ee7

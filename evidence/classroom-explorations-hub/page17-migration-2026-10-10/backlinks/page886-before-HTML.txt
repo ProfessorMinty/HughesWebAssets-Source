@@ -1,0 +1,595 @@
+<!-- ======================= SPIDER SAFE ZONE (Kid-Friendly) ======================= -->
+<a class="sp-home-btn" href="https://rmhughes.edublogs.org/classroom-explorations/" aria-label="Back to Exploration Hub">← Back to Exploration Hub</a>
+
+<section class="sp-hero" role="region" aria-label="Spider Safe Zone Hero">
+    <!-- Cute Spider Parade (SVG, not scary) -->
+    <div class="sp-parade" aria-hidden="true">
+        <div class="sp-string">
+            <div class="sp-spider s1"><span class="eye"></span><span class="eye"></span><span class="smile"></span>
+            </div>
+        </div>
+        <div class="sp-string">
+            <div class="sp-spider s2"><span class="eye"></span><span class="eye"></span><span class="smile"></span>
+            </div>
+        </div>
+        <div class="sp-string">
+            <div class="sp-spider s3"><span class="eye"></span><span class="eye"></span><span class="smile"></span>
+            </div>
+        </div>
+        <div class="sp-string">
+            <div class="sp-spider s4"><span class="eye"></span><span class="eye"></span><span class="smile"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sp-hero-inner">
+        <h1 class="reveal">🕷️ Spider Safe Zone</h1>
+        <p class="reveal">Learn about amazing spiders from the safety of your screen. No touching—just looking and
+            learning!</p>
+        <ul class="sp-facts reveal">
+            <li><strong>Spiders aren’t insects</strong>—they have <em>eight</em> legs and two main body parts.</li>
+            <li>Spiders make <strong>silk</strong> to build webs, homes, and safety lines.</li>
+            <li>Most spiders want to hide, not bother people.</li>
+        </ul>
+        <a class="sp-btn reveal" href="#learn">Start Learning ↓</a>
+    </div>
+</section>
+
+<!-- ======================= WHAT IS A SPIDER? (ELI5) ======================= -->
+<section id="learn" class="sp-section reveal" role="region" aria-label="What is a spider">
+    <h2>What is a Spider?</h2>
+    <p><strong>ELI5:</strong> A spider is a tiny animal with <strong>eight legs</strong> and <strong>two main body
+            parts</strong> (a head-chest and a belly). Spiders are <em>helpers</em> because they eat bugs that might
+        bother plants or people. They live almost everywhere on Earth!</p>
+    <ul class="sp-list">
+        <li>8 legs (not 6 like insects)</li>
+        <li>2 main body parts (no neck)</li>
+        <li>Makes silk from small nozzles called <em>spinnerets</em></li>
+    </ul>
+</section>
+
+<!-- ======================= HOW DO SPIDER LEGS WORK? (ELI5) ======================= -->
+<section class="sp-section reveal" role="region" aria-label="How spider legs work">
+    <h2>How Do Spider Legs Work?</h2>
+    <p><strong>ELI5:</strong> Spiders use body fluid (like “bug juice”) to <em>push</em> their legs straight—like tiny
+        water balloons filling up. Then little muscles <em>pull</em> the legs back in. Push out, pull in. That’s their
+        walk!</p>
+    <div class="sp-demo">
+        <div class="leg"><span class="label">push out</span></div>
+        <div class="leg back"><span class="label">pull in</span></div>
+    </div>
+    <p class="sp-note">This “push with fluid” system helps them climb webs quietly and quickly.</p>
+</section>
+
+<!-- ======================= WEB WONDERS (ELI5) ======================= -->
+<section class="sp-section reveal" role="region" aria-label="Spider webs">
+    <h2>Web Wonders</h2>
+    <p><strong>ELI5:</strong> Spiders make silk threads with their <em>spinnerets</em>. Some spiders are like
+        <strong>artists</strong> and build circle webs (called <em>orb webs</em>). Others make <em>sheet webs</em> or
+        <em>funnel webs</em>. Silk can be stretchy and strong—great for bridges, blankets, and safety lines.
+    </p>
+    <ul class="sp-chips">
+        <li>🎨 <strong>Orb artists</strong> — neat circle webs</li>
+        <li>🏠 <strong>Sheet makers</strong> — flat blanket webs</li>
+        <li>⛺ <strong>Funnel builders</strong> — silk tunnels</li>
+        <li>🧵 <strong>Safety lines</strong> — tiny seatbelts</li>
+    </ul>
+</section>
+
+<!-- ======================= MEET SOME SPIDERS (Friendly Gallery) ======================= -->
+<section class="sp-section reveal" role="region" aria-label="Meet some spiders">
+    <h2>Meet Some Spiders</h2>
+    <p class="sp-sub">Click a card to open the full picture and credits. We picked gentle photos and famous
+        species—including some from <strong>Australia</strong>!</p>
+
+    <div class="sp-grid">
+        <!-- Jumping Spider -->
+        <a class="sp-card" href="https://rmhughes.edublogs.org/files/2025/10/Jumping_spiders_Salticidae.jpg" target="_blank" rel="noopener">
+            <figure>
+                <img src="https://rmhughes.edublogs.org/files/2025/10/Jumping_spiders_Salticidae.jpg" alt="Jumping spider with big front eyes" loading="lazy" decoding="async">
+                <figcaption>Jumping Spider (Salticidae)</figcaption>
+            </figure>
+        </a>
+
+        <!-- Peacock Spider (Australia) -->
+        <a class="sp-card" href="https://rmhughes.edublogs.org/files/2025/10/MalePeacockSpider.jpg" target="_blank" rel="noopener">
+            <figure>
+                <img src="https://rmhughes.edublogs.org/files/2025/10/MalePeacockSpider.jpg" alt="Peacock spider with bright colorful fan" loading="lazy" decoding="async">
+                <figcaption>Peacock Spider (Australia)</figcaption>
+            </figure>
+        </a>
+
+        <!-- Golden Orb-Weaver (Australia) -->
+        <a class="sp-card" href="https://rmhughes.edublogs.org/files/2025/10/Nephila_edulis_Australian_Golden_Orb_Weaver.jpg" target="_blank" rel="noopener">
+            <figure>
+                <img src="https://rmhughes.edublogs.org/files/2025/10/Nephila_edulis_Australian_Golden_Orb_Weaver.jpg" alt="Golden orb-weaver on her web" loading="lazy" decoding="async">
+                <figcaption>Golden Orb-Weaver (Australia)</figcaption>
+            </figure>
+        </a>
+
+        <!-- Huntsman (Australia) -->
+        <a class="sp-card" href="https://rmhughes.edublogs.org/files/2025/10/Huntsman_spider_24888117961.jpg" target="_blank" rel="noopener">
+            <figure>
+                <img src="https://rmhughes.edublogs.org/files/2025/10/Huntsman_spider_24888117961.jpg" alt="Huntsman spider on a leaf" loading="lazy" decoding="async">
+                <figcaption>Huntsman (Australia)</figcaption>
+            </figure>
+        </a>
+
+        <!-- Redback (Australia) -->
+        <a class="sp-card" href="https://rmhughes.edublogs.org/files/2025/10/Redback_spider_in_its_web.jpg" target="_blank" rel="noopener">
+            <figure>
+                <img src="https://rmhughes.edublogs.org/files/2025/10/Redback_spider_in_its_web.jpg" alt="Redback spider in web with small red stripe" loading="lazy" decoding="async">
+                <figcaption>Redback (Australia) — look, don’t touch</figcaption>
+            </figure>
+        </a>
+
+        <!-- Tarantula -->
+        <a class="sp-card" href="https://rmhughes.edublogs.org/files/2025/10/Unidentified_tarantula_closeup.jpg" target="_blank" rel="noopener">
+            <figure>
+                <img src="https://rmhughes.edublogs.org/files/2025/10/Unidentified_tarantula_closeup.jpg" alt="Tarantula close-up on sand" loading="lazy" decoding="async">
+                <figcaption>Tarantula (close-up)</figcaption>
+            </figure>
+        </a>
+    </div>
+
+</section>
+
+<!-- ======================= VIDEO (Kid-Safe) ======================= -->
+<section class="sp-section reveal" role="region" aria-label="Spider video">
+    <h2>Video Corner</h2>
+    <p>Short, friendly video to help us feel calm around spiders.</p>
+    <div class="sp-video">
+        <iframe src="https://www.youtube.com/embed/3qdxEiIB_Sw" title="SciShow Kids — Don't Be Afraid of Spiders!" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+
+<!-- ======================= SAFETY FIRST ======================= -->
+<section class="sp-section reveal sp-safe" role="region" aria-label="Safety">
+    <h2>Safety First</h2>
+    <ul class="sp-list">
+        <li><strong>Look, don’t touch.</strong> Spiders are helpers—give them space.</li>
+        <li><strong>Tell a grown-up</strong> if you see a spider inside your home or school.</li>
+        <li><strong>Australia note:</strong> Some spiders there (like <em>redbacks</em> and <em>funnel-webs</em>) can
+            make people feel very unwell. Adults handle those. Kids stay back.</li>
+    </ul>
+</section>
+
+<!-- ======================= KID-SAFE LINKS ======================= -->
+<section class="sp-section reveal" role="region" aria-label="Learn more with kid-safe links">
+    <h2>Learn More (Kid-Safe Links)</h2>
+    <div class="sp-links">
+        <a class="sp-pill" target="_blank" rel="noopener" href="https://kids.britannica.com/kids/article/spider/353800">Britannica Kids: Spiders</a>
+        <a class="sp-pill" target="_blank" rel="noopener" href="https://kids.nationalgeographic.com/animals/invertebrates/facts/tarantula">NatGeo Kids: Tarantulas</a>
+        <a class="sp-pill" target="_blank" rel="noopener" href="https://australian.museum/learn/animals/spiders/spider-facts/">Australian Museum: Spider Facts</a>
+        <a class="sp-pill" target="_blank" rel="noopener" href="https://australian.museum/learn/animals/spiders/funnel-web-spiders-group/">Australian Museum:
+            Funnel-webs</a>
+        <a class="sp-pill" target="_blank" rel="noopener" href="https://australian.museum/learn/animals/spiders/redback-spider/">Australian Museum: Redback</a>
+    </div>
+    <details class="sp-teacher">
+        <summary>Resources for grown-ups &amp; teachers</summary>
+        <ul>
+            <li><a target="_blank" rel="noopener" href="https://asknature.org/strategy/leg-uses-hydraulics-and-muscle-flex/">How spider legs extend
+                    (hydraulics)</a></li>
+            <li><a target="_blank" rel="noopener" href="https://www.smithsonianmag.com/science-nature/fourteen-ways-spiders-use-their-silk-180978354/">Ways
+                    spiders use silk</a></li>
+        </ul>
+    </details>
+</section>
+
+<!-- ======================= STYLES ======================= -->
+<style>
+    :root {
+        --ink: #183043;
+        --muted: #4e6574;
+        --bg: #f8fbff;
+        --panel: #ffffff;
+        --leaf: #64c2a6;
+        --violet: #7b6cf6;
+        --gold: #ffd166;
+        --ring: 0 0 0 3px rgba(123, 108, 246, .25);
+        --shadow: 0 12px 28px rgba(16, 32, 48, .12);
+        --radius: 18px;
+        --tap: 44px;
+        --font: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    * {
+        box-sizing: border-box
+    }
+
+    section {
+        scroll-margin-top: 80px
+    }
+
+    body .sp-hero,
+    .sp-section {
+        font-family: var(--font)
+    }
+
+    /* Back button */
+    .sp-home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        padding: .55rem .85rem;
+        border-radius: 12px;
+        text-decoration: none;
+        background: linear-gradient(135deg, var(--leaf), var(--violet));
+        color: #fff;
+        font-weight: 800;
+        box-shadow: var(--shadow);
+        margin-bottom: .5rem;
+    }
+
+    .sp-home-btn:hover {
+        transform: translateY(-1px)
+    }
+
+    .sp-home-btn:focus-visible {
+        outline: none;
+        box-shadow: var(--ring)
+    }
+
+    /* Hero */
+    .sp-hero {
+        position: relative;
+        overflow: hidden;
+        color: var(--ink);
+        background:
+            radial-gradient(60% 80% at 10% 10%, rgba(123, 108, 246, .18), transparent 60%),
+            radial-gradient(50% 60% at 90% 20%, rgba(100, 194, 166, .18), transparent 60%),
+            linear-gradient(180deg, #f2f8ff, #ffffff);
+        border-radius: clamp(0px, 2vw, 22px);
+        margin: 1rem auto;
+        padding: clamp(1.2rem, 2vw, 2rem);
+        box-shadow: var(--shadow);
+        max-width: 1100px;
+    }
+
+    .sp-hero-inner {
+        max-width: 900px;
+        margin-inline: auto;
+        text-align: center
+    }
+
+    .sp-hero h1 {
+        margin: .2rem 0 .4rem;
+        font-size: clamp(1.6rem, 2.4vw, 2.6rem);
+        color: #153347
+    }
+
+    .sp-hero p {
+        margin: .2rem auto 1rem;
+        max-width: 60ch;
+        color: var(--muted)
+    }
+
+    .sp-facts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .35rem;
+        margin: 0 auto 1rem;
+        max-width: 900px;
+        padding: 0
+    }
+
+    .sp-facts li {
+        list-style: none;
+        background: #eef5ff;
+        border: 1px solid #dbe9ff;
+        border-radius: 12px;
+        padding: .5rem .7rem
+    }
+
+    /* Parade (cute spiders dangling) */
+    .sp-parade {
+        position: absolute;
+        inset: auto 0 0 0;
+        top: -12px;
+        height: 90px;
+        pointer-events: none
+    }
+
+    .sp-string {
+        position: absolute;
+        top: -60px;
+        width: 1px;
+        height: 120px;
+        left: 10%;
+        background: linear-gradient(#cdddf0, transparent);
+        animation: sway 6s ease-in-out infinite
+    }
+
+    .sp-string:nth-child(2) {
+        left: 35%;
+        animation-delay: .7s
+    }
+
+    .sp-string:nth-child(3) {
+        left: 60%;
+        animation-delay: 1.3s
+    }
+
+    .sp-string:nth-child(4) {
+        left: 80%;
+        animation-delay: 2.1s
+    }
+
+    @keyframes sway {
+
+        0%,
+        100% {
+            transform: rotate(-2deg)
+        }
+
+        50% {
+            transform: rotate(2deg)
+        }
+    }
+
+    .sp-spider {
+        position: absolute;
+        top: 60px;
+        left: -14px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #ffffff 2px, #5b80a0 4px, #3b5670 100%);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, .12);
+    }
+
+    .sp-spider .eye {
+        position: absolute;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        background: #fff;
+        border-radius: 50%
+    }
+
+    .sp-spider .eye:nth-child(1) {
+        left: 9px
+    }
+
+    .sp-spider .eye:nth-child(2) {
+        right: 9px
+    }
+
+    .sp-spider .smile {
+        position: absolute;
+        left: 9px;
+        right: 9px;
+        bottom: 8px;
+        height: 6px;
+        border-radius: 0 0 8px 8px;
+        background: #fff;
+        transform: scaleX(.8)
+    }
+
+    .sp-spider:after,
+    .sp-spider:before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        right: -10px;
+        top: 14px;
+        height: 1px;
+        background: #2b4358;
+        box-shadow: 0 -6px 0 #2b4358, 0 6px 0 #2b4358;
+        /* little legs */
+    }
+
+    .s1 {
+        transform: scale(1)
+    }
+
+    .s2 {
+        transform: scale(.9)
+    }
+
+    .s3 {
+        transform: scale(1.1)
+    }
+
+    .s4 {
+        transform: scale(.95)
+    }
+
+    /* Sections */
+    .sp-section {
+        max-width: 1100px;
+        margin: 1.4rem auto;
+        padding: 1rem;
+        border-radius: var(--radius);
+        background: var(--panel);
+        border: 1px solid #e6eef7;
+        box-shadow: var(--shadow)
+    }
+
+    .sp-section h2 {
+        margin: .2rem 0 .6rem
+    }
+
+    .sp-sub {
+        color: var(--muted);
+        margin: .2rem 0 1rem
+    }
+
+    .sp-list {
+        padding-left: 1.2rem
+    }
+
+    .sp-note {
+        color: var(--muted);
+        margin-top: .4rem
+    }
+
+    /* Little leg demo */
+    .sp-demo {
+        display: flex;
+        gap: .8rem;
+        align-items: center;
+        margin: .6rem 0
+    }
+
+    .leg {
+        width: 110px;
+        height: 28px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #d9f5ea, #f1fff9);
+        border: 1px solid #c9ecdf;
+        position: relative
+    }
+
+    .leg.back {
+        background: linear-gradient(90deg, #f4ecff, #f8f5ff);
+        border-color: #e5def9
+    }
+
+    .leg .label {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        font-size: .85rem;
+        color: #2b4a5e
+    }
+
+    /* Gallery */
+    .sp-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .8rem
+    }
+
+    @media (min-width:700px) {
+        .sp-grid {
+            grid-template-columns: repeat(3, 1fr)
+        }
+    }
+
+    .sp-card {
+        display: block;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #e3edf7;
+        background: #f6fbff;
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        color: inherit
+    }
+
+    .sp-card figure {
+        margin: 0
+    }
+
+    .sp-card img {
+        display: block;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform .35s ease
+    }
+
+    .sp-card:hover img {
+        transform: scale(1.03)
+    }
+
+    .sp-card figcaption {
+        padding: .6rem .75rem;
+        font-weight: 700;
+        color: #21465d
+    }
+
+    /* Video */
+    .sp-video {
+        position: relative;
+        aspect-ratio: 16/9;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        border: 1px solid #e6eef7
+    }
+
+    .sp-video iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0
+    }
+
+    /* Links */
+    .sp-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem
+    }
+
+    .sp-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        padding: .5rem .8rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-weight: 800;
+        background: #eef5ff;
+        color: #1c3c54;
+        border: 1px solid #dbe9ff
+    }
+
+    .sp-pill:hover {
+        background: #e6f0ff
+    }
+
+    .sp-teacher summary {
+        cursor: pointer;
+        font-weight: 800
+    }
+
+    /* Safety box */
+    .sp-safe {
+        background: linear-gradient(180deg, #fbffef, #ffffff);
+        border-color: #f0f4d3
+    }
+
+    .sp-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .4rem;
+        padding: 0;
+        margin: .6rem 0 0
+    }
+
+    .sp-chips li {
+        list-style: none;
+        background: #f2f5ff;
+        border: 1px solid #e1e8ff;
+        padding: .35rem .6rem;
+        border-radius: 999px;
+        font-weight: 700
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity .6s ease, transform .6s ease
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: none
+    }
+</style>
+
+<!-- ======================= TINY JS ======================= -->
+<script>
+    /* Scroll reveal */
+    const io = new IntersectionObserver((entries) => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+<!-- ======================= END SPIDER SAFE ZONE ======================= -->

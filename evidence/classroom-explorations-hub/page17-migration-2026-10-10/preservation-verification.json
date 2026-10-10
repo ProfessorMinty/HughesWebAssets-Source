@@ -1,0 +1,32 @@
+{
+  "baselineCommit": "45a14d7d14928cc4bb66042b8c13bd335154a8e8",
+  "sourceDiff": "Only the two composition placement arrays were cleared; every other source value is unchanged.",
+  "historicalCatalogPreserved": true,
+  "unchangedFiles": [
+    {
+      "path": "registry/hrv-routes.source.json",
+      "bytes": 3364,
+      "sha256": "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73"
+    },
+    {
+      "path": "apps/classroom-explorations-archive/source/archive-2025-2026.source.json",
+      "bytes": 2175,
+      "sha256": "631f7e26e2e394e7cb694b5a79295a0c3b29c704f6d47e5c0c34f309a9d96a2a"
+    },
+    {
+      "path": "apps/classroom-explorations-hub/src/bootstrap.js",
+      "bytes": 9363,
+      "sha256": "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159"
+    },
+    {
+      "path": "apps/classroom-explorations-hub/src/runtime.js",
+      "bytes": 49912,
+      "sha256": "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081"
+    },
+    {
+      "path": "apps/classroom-explorations-hub/src/hub.css",
+      "bytes": 91631,
+      "sha256": "4878f856ca379a7b9771a0fc6cdd4ffca1a18808221d49c494f3fbed8e85e940"
+    }
+  ]
+}

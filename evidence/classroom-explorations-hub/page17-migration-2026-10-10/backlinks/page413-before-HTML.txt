@@ -1,0 +1,4 @@
+<!-- Back to Hub button -->
+<a class="hub-home-btn" href="https://rmhughes.edublogs.org/classroom-explorations/">
+  ← Back to Exploration Hub
+</a>

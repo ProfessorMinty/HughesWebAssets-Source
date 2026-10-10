@@ -1,0 +1,1117 @@
+<!-- ============== Caterpillar Exploration (updated Oct 17, 2025 – Week 3 chrysalis & photo gallery) ============== -->
+<a class="hub-home-btn" href="https://rmhughes.edublogs.org/hub/" aria-label="Back to Exploration Hub">← Back to Exploration Hub</a>
+
+<section class="cat-hero" role="region" aria-label="Caterpillar Exploration Hero">
+  <!-- Caterpillar Parade (animated) -->
+  <div class="parade" aria-hidden="true">
+    <img src="https://rmhughes.edublogs.org/files/2025/10/caterpillar1.png" alt="" class="crawler c1">
+    <img src="https://rmhughes.edublogs.org/files/2025/10/caterpillar1.png" alt="" class="crawler c2">
+    <img src="https://rmhughes.edublogs.org/files/2025/10/caterpillar1.png" alt="" class="crawler c3">
+  </div>
+
+  <div class="cat-hero-inner">
+    <h1 class="reveal">Our Classroom Caterpillar Exploration</h1>
+    <p class="reveal">Follow six tiny explorers as they nibble, grow, and transform into butterflies.</p>
+    <div class="cat-hero-facts reveal">
+      <div><strong>Likely species:</strong> Small White (Cabbage) Butterfly</div>
+      <div><strong>Where we found them:</strong> Brassica leaves (purple stems!)</div>
+      <div><strong>What we’re observing:</strong> Eating, molting, chrysalis, and emergence</div>
+    </div>
+    <a class="btn-solid reveal" href="#meet">Meet the Caterpillars ↓</a>
+  </div>
+</section>
+
+<section class="quick-links reveal" aria-label="Teacher &amp; Family Resources">
+  <h2 class="sr-only">Resources</h2>
+  <ul>
+    <li><a target="_blank" rel="noopener" href="https://www.caterpillaridentification.org/caterpillars-by-state-listing.php?reach=Utah">Caterpillar ID
+        (Utah)</a></li>
+    <li><a target="_blank" rel="noopener" href="https://butterfly-conservation.org/butterflies/small-white">Small White
+        Butterfly</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.natgeokids.com/nz/discover/animals/insects/butterfly-life-cycle/">NatGeo Kids: Butterfly Life
+        Cycle</a></li>
+    <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=VPFUibx1tX4">Life Cycle Video</a></li>
+  </ul>
+</section>
+
+<!-- ===================== Latest Update ===================== -->
+<section class="update reveal" role="region" aria-label="Week 4 Update">
+  <h2>Week 4 — Emergence &amp; Release 🦋</h2>
+  <p>Metamorphosis complete! Our caterpillars became butterflies. Leafie struggled at first (see the portrait video of
+    Leafie wiggling), but with patience and careful watching, Leafie made it out and is now a beautiful butterfly.</p>
+  <div class="callout">
+    <strong>Note:</strong> Green Bean did not emerge. We took a quiet moment to say goodbye. 🌱💚
+  </div>
+</section>
+
+<section class="release reveal" role="region" aria-label="Emergence Videos &amp; Release Photos">
+  <h2>Emergence Videos &amp; Release Photos</h2>
+
+  <div class="video-grid">
+    <figure class="video-card portrait">
+      <video controls="" playsinline="" preload="metadata" aria-label="Leafie wiggling in chrysalis (portrait)">
+        <source src="https://rmhughes.edublogs.org/files/2025/10/CaterpillarVideoPortrait.mp4" type="video/mp4">
+      </video>
+      <figcaption>Leafie wiggling in the chrysalis (portrait).</figcaption>
+    </figure>
+
+    <figure class="video-card landscape">
+      <video controls="" playsinline="" preload="metadata" aria-label="Releasing butterflies outdoors (landscape)">
+        <source src="https://rmhughes.edublogs.org/files/2025/10/CaterpillarVideoLandScape_1.mp4" type="video/mp4">
+      </video>
+      <figcaption>Releasing our butterflies to the open sky (landscape).</figcaption>
+    </figure>
+  </div>
+
+  <div class="gallery-grid release-photos">
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/IMG_3592-1.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/IMG_3592-1.jpg" alt="Butterfly close-up 1" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/IMG_4200.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/IMG_4200.jpg" alt="Butterfly close-up 2" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/IMG_4204.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/IMG_4204.jpg" alt="Butterfly close-up 3" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/IMG_4210.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/IMG_4210.jpg" alt="Butterfly close-up 4" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/IMG_4151.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/IMG_4151.jpg" alt="Butterfly close-up 5" loading="lazy">
+    </a>
+  </div>
+</section>
+
+<section class="quotes reveal" role="region" aria-label="Student Reflections">
+  <h2>Student Reflections</h2>
+  <ul class="quote-list">
+    <li>
+      <blockquote>“I think it is weird that the chrysalis is wet, how come the butterflies aren't wet?”</blockquote>
+      <cite>— J</cite>
+    </li>
+    <li>
+      <blockquote>“None of the butterflies are moving lately. Also Green Bean is still in his chrysalis and I think he's
+        dead. And I think I know why they are still. They are waiting for the lid to open and fly out.”</blockquote>
+      <cite>— A</cite>
+    </li>
+    <li>
+      <blockquote>“I think all of the six caterpillars will come out of their chrysalis because they've been in there a
+        long time.”</blockquote><cite>— G</cite>
+    </li>
+    <li>
+      <blockquote>“New development in the caterpillar department they came out with green wings and the wings have black
+        dots on their wings. I was surprised.”</blockquote><cite>— J</cite>
+    </li>
+    <li>
+      <blockquote>“I feel elated that they hatched.”</blockquote><cite>— H</cite>
+    </li>
+    <li>
+      <blockquote>“I think something is going to happen to them to them because they're going to eat Ms. Hughes'
+        cabbage.”</blockquote><cite>— B</cite>
+    </li>
+    <li>
+      <blockquote>“I like them as class pets because I like watching them grow!”</blockquote><cite>— N</cite>
+    </li>
+    <li>
+      <blockquote>“When caterpillars become butterflies it is really cool and weird and I think butterflies are pretty
+        cool and weird.”</blockquote><cite>— T</cite>
+    </li>
+    <li>
+      <blockquote>“I think it is crazy that three caterpillars hatched at the same time because they were having a hard
+        time.”</blockquote><cite>— G</cite>
+    </li>
+    <li>
+      <blockquote>“Cross your fingers that Leafie and Amethyst are alive. Actually cross your fingers because Leafie is
+        my favorite butterfly. I love you Leafie!”</blockquote><cite>— A</cite>
+    </li>
+  </ul>
+</section>
+
+<!-- ===================== Chrysalis Photo Gallery ===================== -->
+<section class="gallery reveal" role="region" aria-label="Chrysalis Photo Gallery">
+  <h2>Chrysalides — Fresh Classroom Photos</h2>
+  <p class="gallery-sub">Tap any photo to view the full image.</p>
+  <div class="gallery-grid">
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar1.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar1.jpg" alt="Classroom chrysalis close-up 1" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar2.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar2.jpg" alt="Classroom chrysalis close-up 2" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar3.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar3.jpg" alt="Classroom chrysalis close-up 3" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar4.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar4.jpg" alt="Classroom chrysalis close-up 4" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar5.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar5.jpg" alt="Classroom chrysalis close-up 5" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar6.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar6.jpg" alt="Classroom chrysalis close-up 6" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar7.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar7.jpg" alt="Classroom chrysalis close-up 7" loading="lazy">
+    </a>
+    <a class="gal-item" href="https://rmhughes.edublogs.org/files/2025/10/Caterpillar8.jpg" target="_blank" rel="noopener">
+      <img src="https://rmhughes.edublogs.org/files/2025/10/Caterpillar8.jpg" alt="Classroom chrysalis close-up 8" loading="lazy">
+    </a>
+  </div>
+</section>
+
+<!-- ===================== Meet the Caterpillars ===================== -->
+<section id="meet" class="profiles" role="region" aria-label="Meet the Caterpillars">
+  <h2 class="reveal">Meet the Caterpillars</h2>
+  <p class="profiles-sub reveal">Student-named, student-observed, and very hungry.</p>
+
+  <div class="profile-grid">
+    <!-- Philosopher Phil -->
+    <article class="card reveal wiggleable">
+      <figure class="card-media">
+        <img alt="Philosopher Phil the caterpillar beginning chrysalis" src="https://rmhughes.edublogs.org/files/2025/10/Philospher-Phil.png" loading="lazy">
+        <span class="status-badge" aria-label="Butterfly emerged">🦋 Butterfly</span>
+      </figure>
+      <div class="card-body">
+        <h3>Philosopher Phil</h3>
+        <p class="tag">Guild Leader · First to Chrysalis</p>
+        <p>Calm, thoughtful, and always first to try big changes. Phil led the way into chrysalis.</p>
+        <dl class="mini">
+          <dt>Status</dt>
+          <dd>Butterfly — emerged &amp; released ✅</dd>
+          <dt>Chrysalis color</dt>
+          <dd>Green/yellow (matches light/background)</dd>
+          <dt>Favorite spot</dt>
+          <dd>Ceiling ledge</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Green Bean -->
+    <article class="card reveal wiggleable">
+      <figure class="card-media">
+        <img alt="Green Bean zipping around the top" src="https://rmhughes.edublogs.org/files/2025/10/Green-Bean.png" loading="lazy">
+        <span class="status-badge" aria-label="Did not emerge">🤍 In Chrysalis</span>
+      </figure>
+      <div class="card-body">
+        <h3>Green Bean</h3>
+        <p class="tag">Speedster · Second to Chrysalis</p>
+        <p>Has so much energy—does laps around the top and even zooms past Phil!</p>
+        <dl class="mini">
+          <dt>Status</dt>
+          <dd>Did not emerge.</dd>
+          <dt>Chrysalis color</dt>
+          <dd>Green/yellow (depends on setup)</dd>
+          <dt>Favorite spot</dt>
+          <dd>Top rails (zoom!)</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Leafie -->
+    <article class="card reveal wiggleable">
+      <figure class="card-media">
+        <img alt="Leafie camouflaged on cabbage leaf" src="https://rmhughes.edublogs.org/files/2025/10/CaterpillaronaLeaf.png" loading="lazy">
+        <span class="status-badge" aria-label="Butterfly emerged">🦋 Butterfly</span>
+      </figure>
+      <div class="card-body">
+        <h3>Leafie</h3>
+        <p class="tag">Camouflage Expert</p>
+        <p>Quiet observer who blends in perfectly with the green. Students love playing “find Leafie.”</p>
+        <p class="note">Leafie wiggled and struggled at first, but made it out! 🦋</p>
+        <dl class="mini">
+          <dt>Status</dt>
+          <dd>Butterfly — emerged &amp; released ✅</dd>
+          <dt>Chrysalis color</dt>
+          <dd>Green/yellow (camouflage)</dd>
+          <dt>Favorite spot</dt>
+          <dd>Biggest leaf midrib</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Shrek -->
+    <article class="card reveal wiggleable">
+      <figure class="card-media">
+        <img alt="Shrek munching near purple-veined stem" src="https://rmhughes.edublogs.org/files/2025/10/Munchin-Caterpillars-1.jpg" loading="lazy">
+        <span class="status-badge" aria-label="Butterfly emerged">🦋 Butterfly</span>
+      </figure>
+      <div class="card-body">
+        <h3>Shrek</h3>
+        <p class="tag">Mighty Muncher</p>
+        <p>Big and bold—leaves the most impressive bite marks. “Onion layers? No, cabbage layers!”</p>
+        <dl class="mini">
+          <dt>Status</dt>
+          <dd>Butterfly — emerged &amp; released ✅</dd>
+          <dt>Chrysalis color</dt>
+          <dd>Green/yellow (varies by light)</dd>
+          <dt>Favorite spot</dt>
+          <dd>Thick purple veins</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Amethyst -->
+    <article class="card reveal wiggleable">
+      <figure class="card-media">
+        <img alt="Amethyst resting near purple leaf veins" src="https://rmhughes.edublogs.org/files/2025/10/caterpillar1.png" loading="lazy">
+        <span class="status-badge" aria-label="Butterfly emerged">🦋 Butterfly</span>
+      </figure>
+      <div class="card-body">
+        <h3>Amethyst</h3>
+        <p class="tag">Shy &amp; Sparkly</p>
+        <p>Named for the purple leaf veins she loves. Prefers cozy shade and quiet corners.</p>
+        <dl class="mini">
+          <dt>Status</dt>
+          <dd>Butterfly — emerged &amp; released ✅</dd>
+          <dt>Chrysalis color</dt>
+          <dd>Green/yellow (lighting effect)</dd>
+          <dt>Favorite spot</dt>
+          <dd>Shady leaf underside</dd>
+        </dl>
+      </div>
+    </article>
+
+    <!-- Pumpkin -->
+    <article class="card reveal wiggleable">
+      <figure class="card-media">
+        <img alt="Pumpkin and habitat frass pellets (poop) showing healthy eating" src="https://rmhughes.edublogs.org/files/2025/10/Random-Caterpillar-Image-2.jpg" loading="lazy">
+        <span class="status-badge" aria-label="Butterfly emerged">🦋 Butterfly</span>
+      </figure>
+      <div class="card-body">
+        <h3>Pumpkin</h3>
+        <p class="tag">Gentle Dreamer</p>
+        <p>Smallest of the crew, very chill. We think Pumpkin is already dreaming of wings.</p>
+        <dl class="mini">
+          <dt>Status</dt>
+          <dd>Butterfly — emerged &amp; released ✅</dd>
+          <dt>Chrysalis color</dt>
+          <dd>Green/yellow (background match)</dd>
+          <dt>Favorite spot</dt>
+          <dd>Soft leaves &amp; cozy corners</dd>
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================== Life Cycle Explorer ===================== -->
+<section class="lifecycle reveal" role="region" aria-label="Butterfly Life Cycle">
+  <h2>The Butterfly Life Cycle</h2>
+  <div class="steps">
+    <div class="step">
+      <h3>1) Egg</h3>
+      <p>Tiny eggs are laid on host plants (like cabbage!).</p>
+      <p class="didyouknow"><strong>Did you know?</strong> Parents choose plants that will feed their babies.</p>
+    </div>
+    <div class="step">
+      <h3>2) Caterpillar (Larva)</h3>
+      <p>Chomp, chomp! Caterpillars eat and grow, shedding their skin in stages called instars.</p>
+      <p class="didyouknow"><strong>Did you know?</strong> Those little black dots in our habitat are frass (poop) — a
+        sign of healthy eaters!</p>
+    </div>
+    <div class="step">
+      <h3>3) Chrysalis (Pupa)</h3>
+      <p>Inside the chrysalis, the body is re-arranged into a butterfly. It’s quiet on the outside, busy on the inside.
+      </p>
+      <p class="didyouknow"><strong>Did you know?</strong> Phil and Green Bean were our pioneers into this stage!</p>
+    </div>
+    <div class="step">
+      <h3>4) Butterfly</h3>
+      <p>Wings pump up and dry. Then—lift off! We’ll release them outdoors where they belong.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== Observation Log ===================== -->
+<section class="log reveal" role="region" aria-label="Observation Log">
+  <h2>Observation Log</h2>
+  <details open="">
+    <summary><strong>Week 4 of Journey</strong> — Emergence &amp; Release</summary>
+    <ul>
+      <li>All caterpillars completed metamorphosis <strong>except Green Bean</strong>.</li>
+      <li>Leafie wiggled and struggled at first, then emerged successfully. 🦋</li>
+      <li>We released the butterflies outdoors where they belong—see videos and photos above!</li>
+    </ul>
+  </details>
+  <details open="">
+    <summary><strong>Week 1 of Journey</strong> — Arrival &amp; Big Appetites</summary>
+    <ul>
+      <li>Students discovered caterpillars on brassica leaves with purple veins.</li>
+      <li>Lots of leaf bites and frass pellets observed (healthy eaters!).</li>
+    </ul>
+  </details>
+  <details open="">
+    <summary><strong>Week 2 of Journey</strong> — First Chrysalides!</summary>
+    <ul>
+      <li><strong>Philosopher Phil</strong> began chrysalis formation.</li>
+      <li><strong>Green Bean</strong> followed shortly after.</li>
+      <li>Others continued feeding and preparing.</li>
+    </ul>
+  </details>
+  <details open="">
+    <summary><strong>Week 3 of Journey</strong> — All Cocooned</summary>
+    <ul>
+      <li>All six are now in the chrysalis stage. ✅</li>
+      <li>Color note: some appear <em>green</em> near leafy, dimmer spots; others appear <em>yellow</em> in the bright,
+        white room.</li>
+      <li>We’re watching quietly—next up will be emergence!</li>
+    </ul>
+  </details>
+</section>
+
+<!-- ===================== Vocabulary & Try-At-Home ===================== -->
+<section class="vocab reveal" role="region" aria-label="Vocabulary">
+  <h2>Words We’re Using</h2>
+  <ul class="vocab-list">
+    <li><strong>Metamorphosis:</strong> changing shape from caterpillar to butterfly.</li>
+    <li><strong>Chrysalis:</strong> the protective case where change happens.</li>
+    <li><strong>Instar:</strong> a growth stage between molts.</li>
+    <li><strong>Camouflage:</strong> blending in to stay safe.</li>
+  </ul>
+</section>
+
+<section class="try reveal" role="region" aria-label="Try it at Home">
+  <h2>Try it at Home</h2>
+  <ol>
+    <li>Go on a leaf-look to spot bites, eggs, or camouflaged friends.</li>
+    <li>Draw your dream butterfly and label the parts.</li>
+    <li>Keep a mini journal: What changed today?</li>
+  </ol>
+  <div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/VPFUibx1tX4" title="Butterfly Life Cycle" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+  </div>
+</section>
+
+<!-- ============================== Styles ============================== -->
+<style>
+  :root {
+    --leaf: #6dbf4a;
+    --leaf-dark: #2f7d32;
+    --vein: #8a5fb5;
+    /* cabbage purple */
+    --cream: #f6fff0;
+    --ink: #1e2b1f;
+    --muted: #5a6b58;
+    --card: #ffffff;
+    --ring: 0 0 0 3px rgba(109, 191, 74, .25);
+    --radius: 18px;
+    --shadow: 0 12px 28px rgba(23, 43, 13, .12);
+    --tap: 44px;
+    --font: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+  section {
+    scroll-margin-top: 80px
+  }
+
+  body .cat-hero,
+  .profiles,
+  .lifecycle,
+  .log,
+  .vocab,
+  .try,
+  .quick-links,
+  .update,
+  .gallery {
+    font-family: var(--font)
+  }
+
+  .hub-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .55rem .85rem;
+    border-radius: 12px;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--leaf), var(--leaf-dark));
+    color: #fff;
+    font-weight: 800;
+    box-shadow: var(--shadow);
+  }
+
+  .hub-home-btn:hover {
+    transform: translateY(-1px)
+  }
+
+  .hub-home-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--ring)
+  }
+
+  /* Hero */
+  .cat-hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 80% at 10% 10%, rgba(141, 200, 120, .25), transparent 60%),
+      radial-gradient(50% 60% at 90% 20%, rgba(138, 95, 181, .18), transparent 60%),
+      linear-gradient(180deg, #eff9e6, #ffffff);
+    border-radius: clamp(0px, 2vw, 22px);
+    margin: 1rem auto;
+    padding: clamp(1.2rem, 2vw, 2rem);
+    box-shadow: var(--shadow);
+    color: var(--ink);
+    max-width: 1100px;
+  }
+
+  .cat-hero-inner {
+    max-width: 900px;
+    margin-inline: auto;
+    text-align: center
+  }
+
+  .cat-hero h1 {
+    margin: .2rem 0 .4rem;
+    font-size: clamp(1.6rem, 2.4vw, 2.6rem);
+    color: #153517
+  }
+
+  .cat-hero p {
+    margin: 0 auto 1rem;
+    max-width: 60ch;
+    color: var(--muted)
+  }
+
+  .cat-hero-facts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5rem;
+    margin: .8rem auto 1.2rem;
+    max-width: 900px;
+  }
+
+  @media (min-width:700px) {
+    .cat-hero-facts {
+      grid-template-columns: repeat(3, 1fr)
+    }
+  }
+
+  .btn-solid {
+    display: inline-block;
+    min-height: var(--tap);
+    line-height: var(--tap);
+    padding: 0 1rem;
+    border-radius: 999px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--leaf-dark), var(--vein));
+    box-shadow: var(--shadow)
+  }
+
+  .btn-solid:focus-visible {
+    outline: none;
+    box-shadow: var(--ring)
+  }
+
+  .btn-solid:hover {
+    transform: translateY(-1px)
+  }
+
+  /* Parade animation */
+  .parade {
+    position: absolute;
+    left: -20%;
+    right: -20%;
+    top: -24px;
+    height: 72px;
+    pointer-events: none
+  }
+
+  .crawler {
+    position: absolute;
+    height: 64px;
+    width: auto;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .1));
+    animation: inch 26s linear infinite;
+  }
+
+  .c1 {
+    left: -15%;
+    animation-delay: 0s
+  }
+
+  .c2 {
+    left: -45%;
+    animation-delay: 6s;
+    transform: scale(.9) rotateY(180deg)
+  }
+
+  .c3 {
+    left: -75%;
+    animation-delay: 12s;
+    transform: scale(1.1)
+  }
+
+  @keyframes inch {
+    0% {
+      transform: translateX(0)
+    }
+
+    7% {
+      transform: translateX(80px)
+    }
+
+    14% {
+      transform: translateX(120px)
+    }
+
+    21% {
+      transform: translateX(200px)
+    }
+
+    28% {
+      transform: translateX(240px)
+    }
+
+    35% {
+      transform: translateX(320px)
+    }
+
+    42% {
+      transform: translateX(360px)
+    }
+
+    49% {
+      transform: translateX(440px)
+    }
+
+    56% {
+      transform: translateX(520px)
+    }
+
+    63% {
+      transform: translateX(600px)
+    }
+
+    70% {
+      transform: translateX(680px)
+    }
+
+    77% {
+      transform: translateX(760px)
+    }
+
+    84% {
+      transform: translateX(840px)
+    }
+
+    91% {
+      transform: translateX(920px)
+    }
+
+    100% {
+      transform: translateX(1100px)
+    }
+  }
+
+  /* Quick links */
+  .quick-links {
+    max-width: 1100px;
+    margin: 1rem auto
+  }
+
+  .quick-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    padding: 0;
+    list-style: none
+  }
+
+  .quick-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    text-decoration: none;
+    font-weight: 700;
+    background: #f1f7ea;
+    color: #1f3a1f;
+    padding: .45rem .7rem;
+    border-radius: 999px;
+    border: 1px solid #def0d2;
+  }
+
+  .quick-links a:hover {
+    background: #e8f3de
+  }
+
+  /* Update section */
+  .update {
+    max-width: 1100px;
+    margin: 1.4rem auto;
+    padding: 1rem;
+    border-radius: var(--radius);
+    background: #ffffff;
+    border: 1px solid #e6f2da;
+    box-shadow: var(--shadow)
+  }
+
+  .update h2 {
+    margin: .2rem 0 .6rem
+  }
+
+  .callout {
+    background: #f5fbef;
+    border-left: 4px solid var(--vein);
+    padding: .7rem .8rem;
+    border-radius: 10px
+  }
+
+  /* Gallery */
+  .gallery {
+    max-width: 1100px;
+    margin: 1.4rem auto;
+    padding: 0 .5rem
+  }
+
+  .gallery h2 {
+    margin: .2rem 0
+  }
+
+  .gallery-sub {
+    color: var(--muted);
+    margin: .2rem 0 1rem
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px
+  }
+
+  @media (min-width:640px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr)
+    }
+  }
+
+  @media (min-width:1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(4, 1fr)
+    }
+  }
+
+  .gal-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid #e6f2da;
+    background: #f4fbef;
+    box-shadow: var(--shadow)
+  }
+
+  .gal-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    transition: transform .4s ease
+  }
+
+  .gal-item:hover img {
+    transform: scale(1.03)
+  }
+
+  /* Profiles */
+  .profiles {
+    max-width: 1100px;
+    margin: 1.4rem auto;
+    padding: 0 .5rem
+  }
+
+  .profiles h2 {
+    font-size: clamp(1.2rem, 1.8vw, 2rem);
+    margin: .2rem 0
+  }
+
+  .profiles-sub {
+    color: var(--muted);
+    margin: 0 0 1rem
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(.8rem, 1vw, 1rem)
+  }
+
+  @media (min-width:720px) {
+    .profile-grid {
+      grid-template-columns: repeat(2, 1fr)
+    }
+  }
+
+  @media (min-width:1024px) {
+    .profile-grid {
+      grid-template-columns: repeat(3, 1fr)
+    }
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e7f4df;
+    transition: transform .2s ease;
+  }
+
+  .card-media {
+    aspect-ratio: 4/3;
+    background: #f4fbef;
+    position: relative;
+    overflow: hidden
+  }
+
+  .card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease
+  }
+
+  .card:hover .card-media img {
+    transform: scale(1.03)
+  }
+
+  .status-badge {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: 800;
+    font-size: .85rem;
+    background: #fff8d6;
+    color: #5a4c09;
+    border: 1px solid #efe0a2;
+    padding: .2rem .5rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+  }
+
+  .card-body {
+    padding: .9rem
+  }
+
+  .card h3 {
+    margin: .1rem 0 .25rem;
+    font-size: 1.1rem;
+    color: #143418
+  }
+
+  .card .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin: .15rem 0 .6rem;
+    font-size: .85rem;
+    font-weight: 700;
+    color: #2b532d;
+    background: #e9f6e3;
+    padding: .2rem .55rem;
+    border-radius: 999px;
+    border: 1px solid #d8efce;
+  }
+
+  .mini {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: .6rem;
+    row-gap: .25rem;
+    margin: .4rem 0 0
+  }
+
+  .mini dt {
+    font-weight: 800;
+    color: #274527
+  }
+
+  .mini dd {
+    margin: 0;
+    color: #3e523e
+  }
+
+  /* Wiggle on hover (gentle) */
+  .wiggleable:hover {
+    transform: translateY(-2px) rotate(-.3deg)
+  }
+
+  .wiggleable:hover .card-media img {
+    transform: scale(1.05)
+  }
+
+  /* Lifecycle */
+  .lifecycle {
+    max-width: 1100px;
+    margin: 1.6rem auto;
+    padding: 1rem;
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, #fcfff7, #f3fbed);
+    border: 1px solid #e4f1d9;
+    box-shadow: var(--shadow)
+  }
+
+  .lifecycle h2 {
+    margin: .2rem 0 1rem
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .8rem
+  }
+
+  @media (min-width:800px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr)
+    }
+  }
+
+  .step {
+    background: #fff;
+    border: 1px solid #e6f2da;
+    border-radius: 14px;
+    padding: .8rem
+  }
+
+  .step h3 {
+    margin: .1rem 0 .3rem;
+    color: #1d3a1e
+  }
+
+  .didyouknow {
+    background: #f5fbef;
+    border-left: 4px solid var(--vein);
+    padding: .5rem;
+    border-radius: 8px;
+    margin: .5rem 0 0
+  }
+
+  /* Log */
+  .log {
+    max-width: 1100px;
+    margin: 1.6rem auto
+  }
+
+  .log h2 {
+    margin: .2rem 0 .6rem
+  }
+
+  .log details {
+    background: #fff;
+    border: 1px solid #e6f2da;
+    border-radius: 14px;
+    padding: .6rem .8rem;
+    margin: .5rem 0;
+    box-shadow: var(--shadow)
+  }
+
+  .log summary {
+    cursor: pointer;
+    font-weight: 800;
+    color: #213b21
+  }
+
+  /* Vocab / Try */
+  .vocab,
+  .try {
+    max-width: 1100px;
+    margin: 1.6rem auto;
+    padding: 1rem;
+    border-radius: var(--radius);
+    background: #ffffff;
+    border: 1px solid #e6f2da;
+    box-shadow: var(--shadow)
+  }
+
+  .vocab h2,
+  .try h2 {
+    margin: .2rem 0 .6rem
+  }
+
+  .vocab-list {
+    columns: 1;
+    column-gap: 1.2rem;
+    padding-left: 1rem
+  }
+
+  @media (min-width:700px) {
+    .vocab-list {
+      columns: 2
+    }
+  }
+
+  .video {
+    margin-top: 1rem;
+    aspect-ratio: 16/9;
+    position: relative
+  }
+
+  .video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 12px
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .6s ease, transform .6s ease
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none
+  }
+
+  .release {
+    max-width: 1100px;
+    margin: 1.4rem auto;
+    padding: 0 .5rem;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: .6rem 0 1rem;
+  }
+
+  .video-card {
+    background: #fff;
+    border: 1px solid #e6f2da;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: .6rem;
+  }
+
+  .video-card video,
+  .video-placeholder {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .video-card.portrait video {
+    aspect-ratio: 9/16;
+    object-fit: cover;
+  }
+
+  .video-card.landscape video {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  .video-placeholder {
+    aspect-ratio: 16/9;
+    display: grid;
+    place-items: center;
+    background: #f4fbef;
+    color: #3e523e;
+    font-weight: 700;
+  }
+
+  .release-photos .gal-item img {
+    aspect-ratio: 4/3;
+  }
+
+  .quotes {
+    max-width: 1100px;
+    margin: 1.4rem auto;
+    padding: 1rem;
+    border-radius: var(--radius);
+    background: #ffffff;
+    border: 1px solid #e6f2da;
+    box-shadow: var(--shadow);
+  }
+
+  .quote-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .quote-list li {
+    background: #f5fbef;
+    border: 1px solid #e4f1d9;
+    border-radius: 12px;
+    padding: .7rem .8rem;
+  }
+
+  .quote-list blockquote {
+    margin: 0 0 .35rem;
+    color: #1d3a1e;
+  }
+
+  .quote-list cite {
+    font-style: normal;
+    font-weight: 800;
+    color: #2b532d;
+  }
+
+  @media (min-width: 820px) {
+    .video-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .quote-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .note {
+    margin: .4rem 0 0;
+    color: #2b532d;
+    font-weight: 700;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+  }
+</style>
+
+<!-- ============================== Tiny JS ============================== -->
+<script>
+  /* Scroll reveal */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* (Optional) Tap-to-pause parade on mobile for fun */
+  const parade = document.querySelector('.parade');
+  if (parade) {
+    parade.addEventListener('click', () => {
+      parade.style.animationPlayState = parade.style.animationPlayState === 'paused' ? 'running' : 'paused';
+      document.querySelectorAll('.crawler').forEach(c => {
+        c.style.animationPlayState = c.style.animationPlayState === 'paused' ? 'running' : 'paused';
+      });
+    });
+  }
+</script>
+<!-- ========================== End Caterpillar Page ========================== -->

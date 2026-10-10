@@ -1,6 +1,6 @@
 # Page 17 cutover and current-year separation
 
-Status: implementation prepared; live cutover pending verification. This is the next explicitly authorized step after the separate HUB TEST and archive installation recorded in `classroom-explorations-live-installation-2026-10-10.md`.
+Status: completed and live-verified on 2026-10-10. This explicitly authorized cutover supersedes the earlier Page 17/placeholder/backlink exclusions in `classroom-explorations-live-installation-2026-10-10.md`; that earlier record remains valid evidence of publication 002 and the initial archive installation.
 
 Scope: clear temporary 2025–2026 placements from the 2026–2027 Hub dialogs, preserve the complete historical catalog and archive, install the approved Hub on Page 17 at `/hub/`, and repair stale historical child-page return links. No palette or presentation redesign, route moves, child-page deletions, PR merge, Cloudflare/photo-album changes, or Hub Swapper activation.
 
@@ -10,4 +10,30 @@ Production Page 17 has an authenticated, exact three-field preservation capture 
 
 Public read-only backlink inventory: pages 886 (spiders), 674 (butterflies), 413 (mushrooms), and 1043 (Russian winter) have explicit return links to the retired `/classroom-explorations/` path. Those exact links should be changed to canonical `/hub/`, preserving their labels and all other content. Page 906 already has a correct explicit return link; the other managed child pages expose the correct native global Hub menu. The archive's existing return link already points to `/hub/`. No new navigation design or historical page reparenting is required.
 
-Release, CI, CDN, live readback, browser evidence, and completion status will be added after execution; this document does not claim that prepared changes are already live.
+## Installed release
+
+Both HUB TEST (2589, `/hub-test/`) and production Page 17 (`/hub/`) now load asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`, source revision `be5836526e02212dd693a13cf9abc6a53b8501e0`, runtime `2026.10.10.3`, and publication `pub-2026-10-10-003`. Content snapshot: `sha256:75d8e5f76acdd4c6abc26e3a2aa63eead72f3c24c2b5f7848124d4560226e468`. Previous known good: `pub-2026-10-10-002`. Bootstrap SRI: `sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk=`.
+
+All 16 CDN GETs returned 200 and matched the immutable Git blob lengths and SHA-256 digests. Bootstrap, renderer, page CSS, all nine artwork derivatives and original frames retain their previously accepted bytes. Only current-year composition, the production control note and the Page 17-ready native-shell seam changed. The archive still builds to snapshot `sha256:c95146e9f6850df0bb3c6ff2b8c0ad43a0bfe825f6fdf9797d231425f7fa5b06`; its runtime/publication and live page were not rewritten in this cutover.
+
+## Verification
+
+Asset commit CI passed: push Hub [38085025318](https://github.com/ProfessorMinty/HughesWebAssets-Source/actions/runs/38085025318), PR Hub [38085027532](https://github.com/ProfessorMinty/HughesWebAssets-Source/actions/runs/38085027532), push Archive [38085025351](https://github.com/ProfessorMinty/HughesWebAssets-Source/actions/runs/38085025351), and PR Archive [38085027536](https://github.com/ProfessorMinty/HughesWebAssets-Source/actions/runs/38085027536). The pinned-package commit `fb51051df6f8f3625a205beac432d65d19ea3888` also passed push Hub [38085222367](https://github.com/ProfessorMinty/HughesWebAssets-Source/actions/runs/38085222367) and Archive [38085222341](https://github.com/ProfessorMinty/HughesWebAssets-Source/actions/runs/38085222341). Hub CI includes 27 responsive/zoom geometry states, populated test-only native/fallback dialogs, published TWWL/media-unavailable/empty/loading states, and Windows native browser zoom. Local browser work used only the positively identified existing Yumii Chrome extension session, never an alternate local browser.
+
+Both pages' three editor fields were saved, reloaded and captured. HTML passes structural comparison allowing WordPress attribute ordering/whitespace serialization; CSS/JavaScript match after WordPress's trailing-newline removal. Unauthenticated public HTTP independently verifies page identity, one mount, immutable pin, publication and SRI. `tools/verify-edublogs-hub-cutover.mjs` writes the current evidence; the prior installed-doorway verifier is the publication-002 checkpoint, not the current verifier.
+
+Live production viewport checks: 1920×911, 1366×768, 980×911, 390×844 and 320×640 CSS pixels. All have zero horizontal page overflow, zero measured internal card overflow, ten loaded Hub images and equal dimensions for the three history doors. Both empty dialogs were exercised at desktop, tablet and phone: no historical cards, no unusable filters/counts, one Close control retaining Tab focus, Escape closure and focus return to the invoking button. Past Years retains one 2025–2026 archive link; Current TWWL remains genuinely Coming Soon.
+
+The signed-in normal browser was 2195×1010 CSS pixels at DPR 1.75, with all primary cards/doors visible (major-content bottom 941.70px). At 1920×911, unchanged major-content bottom is also 941.70px with the 32px WordPress admin toolbar, equivalent to 909.70px without it. An authenticated 1920×911 viewport may therefore need that small extra scroll; reading sizes were not shrunk for an editor-only toolbar. Browser/DPR evidence is not proof of every physical Windows display-scaling configuration; YouTube load is not playback proof. The page footer/minimum-height area is not another hidden primary card.
+
+The live navigation round trip was followed: repaired Russian Winter return → `/hub/` → Past Years → `/hub/archive-2025-2026/` → Back to Current Classroom Explorations → `/hub/`. The archive retains three exploration cards, five learning cards, all 15 images loaded, and canonical Butterflies Page 674. Public verification covers all nine managed exploration/learning children. Only four stale hrefs were edited; reloaded child fields are byte-exact one-substitution derivatives. Mushrooms' separate lesson block was proved completely unchanged.
+
+## Evidence and restoration
+
+Directory: `evidence/classroom-explorations-hub/page17-migration-2026-10-10/`. It contains exact Page 17/HUB TEST prior and saved fields, public HTML, CDN proof, responsive metrics, keyboard-dialog evidence, screenshots, archive recheck and child-page before/after fields. Screenshot output is JPEG, named `.jpg`; `page17-desktop-coordinate-check.jpg` is an initial capture-coordinate diagnostic, not acceptance evidence. Corrected captures are `page17-desktop-1920x911.jpg` and `page17-normal-browser.jpg`.
+
+Restore Page 17's three original fields together, retaining ID 17, `/hub/`, Parent None, Full width template, title and existing empty Paragraph block. HUB TEST restoration uses its separate publication-002 capture. Historical-page restoration is block-specific; never replace Mushrooms' lesson block with its small backlink block. Nothing was deleted or reparented.
+
+## Next boundary
+
+Current-year separation, production migration and stale-backlink repair are complete. PR 22 remains open, not merged. Photo Album/Cloudflare and asset-control systems were not touched. Hub Swapper/Lanternworks production publishing remains disabled. Its next separately scoped work is binding the existing operation contract to the webapp: current-year placement rules, archive preservation, stale-revision rejection, explicit production authority, immutable publication/CDN proof, writer recovery and presentation rubric. Legacy lesson captures are not newly adopted editable page manifests.

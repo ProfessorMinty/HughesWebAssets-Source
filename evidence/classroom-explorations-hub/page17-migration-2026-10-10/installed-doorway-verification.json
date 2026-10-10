@@ -1,0 +1,72 @@
+[
+  {
+    "generatedAt": "2026-10-10T21:10:57.612Z",
+    "pageId": 2589,
+    "url": "https://rmhughes.edublogs.org/hub-test/",
+    "fields": [
+      {
+        "field": "HTML",
+        "expectedSha256": "61017a51c23d450b2e102bf7b3d26e213d4a026b453a5f48d8cf473316efdb2c",
+        "savedSha256": "75dddbe8f1c2b13a8837ab1ab30e973a58c3e216758887fbf2fb12131e9d258a",
+        "passed": true
+      },
+      {
+        "field": "CSS",
+        "expectedSha256": "2d737c1c4faaf4249e1a70516219fec091aee28bbc6c406a7dd918f4b74f9ed3",
+        "savedSha256": "8fce3247526888e61ed5e58088ceef67b57a5c5d1c5519e4ab9d900e54de39f6",
+        "passed": true
+      },
+      {
+        "field": "JAVASCRIPT",
+        "expectedSha256": "312af81e672ab180d5ff91f920a4f0107809259a91f02e44af06acdac0cc2a4a",
+        "savedSha256": "a77a9e8289431855ea5dcf38c2e0b8527ba59ca270d04d8c92d9219681a4be86",
+        "passed": true
+      }
+    ],
+    "publicHttp": {
+      "authenticated": false,
+      "status": 200,
+      "bytes": 47238,
+      "sha256": "ca5beab90ea43644d04b7b77301af2a044be8541c60e8a212574f27bc005c1f1",
+      "assetCommit": "d819f5c1493e725624a09adcbf0de258aa88bd8f",
+      "publicationId": "pub-2026-10-10-003",
+      "bootstrapSri": "sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk="
+    },
+    "limitation": "Unauthenticated HTTP is not signed-out browser rendering; live browser acceptance is recorded separately."
+  },
+  {
+    "generatedAt": "2026-10-10T21:10:58.033Z",
+    "pageId": 17,
+    "url": "https://rmhughes.edublogs.org/hub/",
+    "fields": [
+      {
+        "field": "HTML",
+        "expectedSha256": "61017a51c23d450b2e102bf7b3d26e213d4a026b453a5f48d8cf473316efdb2c",
+        "savedSha256": "75dddbe8f1c2b13a8837ab1ab30e973a58c3e216758887fbf2fb12131e9d258a",
+        "passed": true
+      },
+      {
+        "field": "CSS",
+        "expectedSha256": "2d737c1c4faaf4249e1a70516219fec091aee28bbc6c406a7dd918f4b74f9ed3",
+        "savedSha256": "8fce3247526888e61ed5e58088ceef67b57a5c5d1c5519e4ab9d900e54de39f6",
+        "passed": true
+      },
+      {
+        "field": "JAVASCRIPT",
+        "expectedSha256": "312af81e672ab180d5ff91f920a4f0107809259a91f02e44af06acdac0cc2a4a",
+        "savedSha256": "a77a9e8289431855ea5dcf38c2e0b8527ba59ca270d04d8c92d9219681a4be86",
+        "passed": true
+      }
+    ],
+    "publicHttp": {
+      "authenticated": false,
+      "status": 200,
+      "bytes": 48165,
+      "sha256": "76a08b0dfe5d5b8833baacf8f6e4b9335d9d06585cd5d9741821eca75c87c4a8",
+      "assetCommit": "d819f5c1493e725624a09adcbf0de258aa88bd8f",
+      "publicationId": "pub-2026-10-10-003",
+      "bootstrapSri": "sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk="
+    },
+    "limitation": "Unauthenticated HTTP is not signed-out browser rendering; live browser acceptance is recorded separately."
+  }
+]

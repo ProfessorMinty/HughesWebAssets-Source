@@ -1,0 +1,224 @@
+{
+  "generatedAt": "2026-10-10T21:10:55.957Z",
+  "method": "Unauthenticated public GET plus authenticated-editor readback captures",
+  "repairedPageCount": 4,
+  "checkedManagedChildCount": 9,
+  "mushroomsMainBlockByteExact": true,
+  "pages": [
+    {
+      "pageId": 886,
+      "url": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
+      "status": 200,
+      "publicSha256": "ce6beb436e8ffbda3e0b1c46d6d7d6c188146a098fe0e1b3fb2f64855cc3d9b1",
+      "repaired": true,
+      "explicitReturns": [
+        {
+          "label": "← Back to Exploration Hub",
+          "href": "https://rmhughes.edublogs.org/hub/"
+        }
+      ],
+      "canonicalGlobalMenu": true,
+      "fields": [
+        {
+          "field": "HTML",
+          "beforeBytes": 19053,
+          "beforeSha256": "618b930e6c486f41b7f76de7f855e293a02ff6c124a4312926affce02061e801",
+          "savedBytes": 19034,
+          "savedSha256": "e43febcfb020c3617e72349e81bfd2004aee424beaff25a2ad42ab318dd52c0c",
+          "change": "one exact href substitution"
+        },
+        {
+          "field": "CSS",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        },
+        {
+          "field": "JavaScript",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        }
+      ]
+    },
+    {
+      "pageId": 906,
+      "url": "https://rmhughes.edublogs.org/hub/twwl-bats/",
+      "status": 200,
+      "publicSha256": "a71c7acf89493206ffadf1b7d8a79b6bb9a8ac0b677e5c901eb2de902e14877d",
+      "repaired": false,
+      "explicitReturns": [
+        {
+          "label": "← Back to Exploration Hub",
+          "href": "https://rmhughes.edublogs.org/hub/"
+        }
+      ],
+      "canonicalGlobalMenu": true,
+      "fields": []
+    },
+    {
+      "pageId": 674,
+      "url": "https://rmhughes.edublogs.org/hub/exploration-butterflies/",
+      "status": 200,
+      "publicSha256": "470e2693b6f37e5745f2c95dd2e7a5336fbd84fd1cbeee8b3dc69905a631e9a6",
+      "repaired": true,
+      "explicitReturns": [
+        {
+          "label": "← Back to Exploration Hub",
+          "href": "https://rmhughes.edublogs.org/hub/"
+        }
+      ],
+      "canonicalGlobalMenu": true,
+      "fields": [
+        {
+          "field": "HTML",
+          "beforeBytes": 32274,
+          "beforeSha256": "127a3529432263338d06bbf2124acae76c8ccbce051c8f3243708bd91ca2063e",
+          "savedBytes": 32255,
+          "savedSha256": "babeb6d0604d339cf6d469d2ee78272e6b3a0a3e52dda75c030fa538516f3715",
+          "change": "one exact href substitution"
+        },
+        {
+          "field": "CSS",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        },
+        {
+          "field": "JavaScript",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        }
+      ]
+    },
+    {
+      "pageId": 1518,
+      "url": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+      "status": 200,
+      "publicSha256": "119d99717264f5f013463da34aa090295b7658219934a8eb51b63fc2696e4ba2",
+      "repaired": false,
+      "explicitReturns": [],
+      "canonicalGlobalMenu": true,
+      "fields": []
+    },
+    {
+      "pageId": 413,
+      "url": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
+      "status": 200,
+      "publicSha256": "806a0353698ee642e5846416dfe492ac0d84b5fcb1072910139539e70421d6a1",
+      "repaired": true,
+      "explicitReturns": [
+        {
+          "label": "← Back to Exploration Hub",
+          "href": "https://rmhughes.edublogs.org/hub/"
+        }
+      ],
+      "canonicalGlobalMenu": true,
+      "fields": [
+        {
+          "field": "HTML",
+          "beforeBytes": 148,
+          "beforeSha256": "5cbeb9df9fe80b4ce75e8da7d1143ffe854bf79fdec28e936cf67bb01b314f53",
+          "savedBytes": 129,
+          "savedSha256": "f767e0955042c18ae1434e90eb1e1d76dd75fd1b2a0eeb241c6b22a83e7c9823",
+          "change": "one exact href substitution"
+        },
+        {
+          "field": "CSS",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        },
+        {
+          "field": "JavaScript",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        }
+      ]
+    },
+    {
+      "pageId": 954,
+      "url": "https://rmhughes.edublogs.org/hub/twwl-owls/",
+      "status": 200,
+      "publicSha256": "3ed3ba4e1ccf680b4f9bc26628ba15466941ebabfcf8bdb2ccc355e66eb53174",
+      "repaired": false,
+      "explicitReturns": [],
+      "canonicalGlobalMenu": true,
+      "fields": []
+    },
+    {
+      "pageId": 1043,
+      "url": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
+      "status": 200,
+      "publicSha256": "6cfe7244ceec144c8cab2f619e7d3ca11ebe73a709448c2ad0d048ee707a0efb",
+      "repaired": true,
+      "explicitReturns": [
+        {
+          "label": "← Back to Exploration Hub",
+          "href": "https://rmhughes.edublogs.org/hub/"
+        }
+      ],
+      "canonicalGlobalMenu": true,
+      "fields": [
+        {
+          "field": "HTML",
+          "beforeBytes": 28511,
+          "beforeSha256": "8002e120ff1b364c94aa61e280aa47267e0d8c976a925603fe8e8e24e8418ccd",
+          "savedBytes": 28492,
+          "savedSha256": "d0834b83f5769496d2a53f0887c1873611ed214871ba3270c88ff67a7c8d89dc",
+          "change": "one exact href substitution"
+        },
+        {
+          "field": "CSS",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        },
+        {
+          "field": "JavaScript",
+          "beforeBytes": 0,
+          "beforeSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "savedBytes": 0,
+          "savedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "change": "none"
+        }
+      ]
+    },
+    {
+      "pageId": 2392,
+      "url": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
+      "status": 200,
+      "publicSha256": "d30d36e0e1d1354c94d3fb3535d3d0442becdc672e196befde7ff69ad1668ab9",
+      "repaired": false,
+      "explicitReturns": [],
+      "canonicalGlobalMenu": true,
+      "fields": []
+    },
+    {
+      "pageId": 2463,
+      "url": "https://rmhughes.edublogs.org/hub/exploration-zinnia-page/",
+      "status": 200,
+      "publicSha256": "73812feebd0b92e6e45cdac3a9b65a699b128c2116f6ca1d8b5b82134d8c7eb5",
+      "repaired": false,
+      "explicitReturns": [],
+      "canonicalGlobalMenu": true,
+      "fields": []
+    }
+  ]
+}

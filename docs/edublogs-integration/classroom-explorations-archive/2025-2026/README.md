@@ -10,6 +10,8 @@ The approved archive application stays in the repository. The HTML field supplie
 
 ## Current state
 
+The later [production Hub cutover](../../../classroom-explorations-page17-cutover-2026-10-10.md) is complete. This archive still uses the same verified release and its return links now reach the approved production Hub. The Page 2627-only installation boundary below does not prohibit that separately authorized later cutover.
+
 Installed on Page 2627 on 2026-10-10, replacing the preserved legacy archive. Reloaded editor fields, public HTTP pin/SRI, live filtering, images, and responsive checks are verified in [the installation record](../../../classroom-explorations-live-installation-2026-10-10.md). The September release identity below remains the installed identity; installation does not require a newly numbered archive runtime.
 
 The final repository handoff exists and is pinned to one immutable release:

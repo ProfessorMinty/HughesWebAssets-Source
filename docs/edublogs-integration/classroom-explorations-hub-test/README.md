@@ -1,5 +1,7 @@
 # Classroom Explorations Hub approved responsive doorway
 
+Publication 003 is now installed and verified on both HUB TEST and production Page 17. The current source has no previous-year placeholders in current-year dialogs; historical release sections below are retained as checkpoints.
+
 This directory contains the Edublogs doorway blocks for the review page:
 
 - Public review URL: `https://rmhughes.edublogs.org/hub-test/`

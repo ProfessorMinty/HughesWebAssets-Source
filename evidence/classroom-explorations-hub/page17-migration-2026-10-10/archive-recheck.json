@@ -1,0 +1,65 @@
+{
+  "cards": [
+    {
+      "class": "collection-card archive-collection-card exploration-card subject-mushrooms",
+      "href": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
+      "title": "Mushrooms"
+    },
+    {
+      "class": "collection-card archive-collection-card exploration-card subject-caterpillars",
+      "href": "https://rmhughes.edublogs.org/hub/exploration-butterflies/",
+      "title": "Butterflies in the Classroom"
+    },
+    {
+      "class": "collection-card archive-collection-card exploration-card subject-reef",
+      "href": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+      "title": "Great Barrier Reef"
+    },
+    {
+      "class": "collection-card archive-collection-card learning-card subject-tubers",
+      "href": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
+      "title": "Botany: Let’s Talk About Tubers"
+    },
+    {
+      "class": "collection-card archive-collection-card learning-card subject-winter",
+      "href": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
+      "title": "The Traditions of Russian Winter"
+    },
+    {
+      "class": "collection-card archive-collection-card learning-card subject-owls",
+      "href": "https://rmhughes.edublogs.org/hub/twwl-owls/",
+      "title": "Silent Wings, Wise Eyes: Learning About Owls"
+    },
+    {
+      "class": "collection-card archive-collection-card learning-card subject-bats",
+      "href": "https://rmhughes.edublogs.org/hub/twwl-bats/",
+      "title": "Bats Don’t Go Bump in the Night"
+    },
+    {
+      "class": "collection-card archive-collection-card learning-card subject-spiders",
+      "href": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
+      "title": "Autumn Spiders: Gentle Web Artists"
+    }
+  ],
+  "explorations": 3,
+  "images": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "learning": 5,
+  "snapshot": "sha256:c95146e9f6850df0bb3c6ff2b8c0ad43a0bfe825f6fdf9797d231425f7fa5b06",
+  "url": "https://rmhughes.edublogs.org/hub/archive-2025-2026/"
+}

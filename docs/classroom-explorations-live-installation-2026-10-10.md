@@ -1,6 +1,6 @@
 # HUB TEST and 2025–2026 archive: live installation
 
-Date: 2026-10-10. Status: both authorized Edublogs installations completed and verified. Page 17 and historical child-page backlinks were not changed.
+Date: 2026-10-10. Checkpoint status: both initial authorized Edublogs installations completed and verified. Page 17 and historical child-page backlinks were unchanged at this checkpoint. **Later same-day cutover completed:** Page 17 now runs the approved Hub, current-year placeholders are cleared and four stale backlinks are repaired; see [the current cutover record](classroom-explorations-page17-cutover-2026-10-10.md). Publication-002 evidence below is historical, not the newest Hub pin.
 
 ## Installed identities
 
