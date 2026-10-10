@@ -7,7 +7,23 @@ This directory contains the Edublogs doorway blocks for the review page:
 
 Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
 
-## Current responsive immutable publication
+## Current release package — 2026-10-10
+
+Asset commit `f2381f5b9e284e87e17c3b45b25f381a55663c1c`; source `4e1631c45aefcd3b9d637e7760cc89ea8a05bb08`; runtime `2026.10.10.2`; publication `pub-2026-10-10-002`; previous known good `pub-2026-08-31-002`. The content snapshot and all approved artwork are unchanged.
+
+Push Hub CI `38081902272` and pull-request Hub CI `38081905400` passed, including Linux geometry and Windows native zoom. Archive CI `38081905343` passed. Exact GET-and-byte proof for all 16 dependency files is `evidence/classroom-explorations-hub/release-2026-10-10/cdn-byte-verification.json`. The September repair and October portability notes describe the changes; the historical measurements below are not measurements of this release.
+
+Regenerate the current JavaScript and release pin with:
+
+```text
+node tools/generate-classroom-explorations-hub-doorway.mjs f2381f5b9e284e87e17c3b45b25f381a55663c1c 2026.10.10.2 pub-2026-10-10-002 evidence/classroom-explorations-hub/release-2026-10-10/cdn-byte-verification.json
+```
+
+This release requires the current HTML, CSS, and generated JavaScript fields together on Page 2589: its host fallback CSS now uses pixel sizing so it cannot be distorted by Amadeus's 10px root. Preserve/restore the exact prior editor capture in `evidence/classroom-explorations-hub/pre-install-2026-10-10/`. WordPress may reorder HTML attributes, serialize empty attributes, and strip the trailing field newline; compare normalized HTML structure and exact CSS/JavaScript after that known trailing-newline normalization. Installation and live acceptance are recorded separately from repository/CI/CDN proof.
+
+Page 17 remains untouched. Do not paste the `.template.js` file.
+
+## Historical August responsive publication
 
 ```text
 Asset commit:       b372871d9ff882eed37260da8a98c8c85a861363
@@ -83,9 +99,7 @@ Runtime `2026.08.31.1` and publication `pub-2026-08-31-001` remain immutable int
 
 ## Editor update boundary
 
-Do not change page `17`. Do not change page `2589` HTML or CSS for this release.
-
-When Arctic is authorized to update Edublogs, replace only the page-2589 JavaScript field with `JAVASCRIPT-BOX.js`.
+The August JS-only update boundary below has been superseded by the explicitly authorized October all-three-field Page 2589 installation. Page 17 is still excluded.
 
 ## Failure behavior
 

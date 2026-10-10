@@ -3,7 +3,7 @@
 
   var MOUNT_ID = "hrv-classroom-explorations-root";
   var PAGE_ID = "hrv-page:classroom-explorations";
-  var RELEASE_COMMIT = "b372871d9ff882eed37260da8a98c8c85a861363";
+  var RELEASE_COMMIT = "f2381f5b9e284e87e17c3b45b25f381a55663c1c";
   var RELEASE_BASE =
     "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@" +
     RELEASE_COMMIT +
@@ -61,13 +61,13 @@
     window.addEventListener("hrv:page-error", onError);
 
     var bootstrap = document.createElement("script");
-    bootstrap.src = RELEASE_BASE + "runtime/2026.08.31.2/bootstrap.js";
+    bootstrap.src = RELEASE_BASE + "runtime/2026.10.10.2/bootstrap.js";
     bootstrap.crossOrigin = "anonymous";
-    bootstrap.integrity = "sha256-/nAVyrrTWzo0QqyXhxhaK2P+6YkKTi/eQxoc4G6BdJY=";
+    bootstrap.integrity = "sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk=";
     bootstrap.setAttribute("data-mount", MOUNT_ID);
     bootstrap.setAttribute(
       "data-publication",
-      RELEASE_BASE + "publications/pub-2026-08-31-002/publication.json"
+      RELEASE_BASE + "publications/pub-2026-10-10-002/publication.json"
     );
 
     bootstrap.addEventListener(
