@@ -11,3 +11,6 @@
 # Preserve read-only live-service captures byte-for-byte for restoration evidence.
 evidence/classroom-explorations-archive/pre-install-*/page2627-public.html binary
 evidence/classroom-explorations-archive/pre-install-*/page2627-rest-view.json binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-editor-HTML-BOX.html binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-editor-CSS-BOX.css binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-editor-JAVASCRIPT-BOX.js binary

@@ -31,27 +31,42 @@
     }
   },
   "authenticatedEditorFields": {
-    "status": "pending-authenticated-export",
+    "status": "complete",
+    "capturedOn": "2026-10-10",
+    "captureMethod": "Read-only DOM value export from the visible HTML, CSS, and JavaScript tabs of Page 2627's Custom HTML block in the authenticated Yumii Chrome-Control session; all three fields matched after Cancel and reopening the editor.",
+    "encoding": "UTF-8 without BOM; exact textarea strings, LF line endings, no final newline; no trimming or content normalization.",
+    "observedPageState": {
+      "editorUrl": "https://rmhughes.edublogs.org/wp-admin/post.php?post=2627&action=edit",
+      "status": "published",
+      "slug": "archive-2025-2026",
+      "template": "page_fullwidth.php",
+      "parentLabel": "Classroom Explorations",
+      "revisionsCount": 3,
+      "latestRevisionId": 2630,
+      "undoDisabledAfterCapture": true,
+      "fieldsEdited": false,
+      "updateOrSaveSubmitted": false
+    },
     "requiredBeforeReplacement": true,
     "fields": {
       "html": {
-        "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-editor-HTML-BOX.html",
-        "bytes": null,
-        "sha256": null
+        "path": "evidence/classroom-explorations-archive/pre-install-2026-10-10/page2627-editor-HTML-BOX.html",
+        "bytes": 4995,
+        "sha256": "3842210b76e9f87a37c9dfd2101d0d0fd9868b07906dc3674c5185cabf2cc51f"
       },
       "css": {
-        "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-editor-CSS-BOX.css",
-        "bytes": null,
-        "sha256": null
+        "path": "evidence/classroom-explorations-archive/pre-install-2026-10-10/page2627-editor-CSS-BOX.css",
+        "bytes": 12841,
+        "sha256": "f8853aa11008c3f324e1905cf7fec4277ab1a38bd638e57996155a136f2036e8"
       },
       "javascript": {
-        "path": "evidence/classroom-explorations-archive/pre-install-2026-09-12/page2627-editor-JAVASCRIPT-BOX.js",
-        "bytes": null,
-        "sha256": null
+        "path": "evidence/classroom-explorations-archive/pre-install-2026-10-10/page2627-editor-JAVASCRIPT-BOX.js",
+        "bytes": 909,
+        "sha256": "0b8a199490e409eee9f390ad28dfd06e2e867c35982d7bab39b141f36be1367d"
       }
     }
   },
-  "installationGate": "blocked-until-authenticated-editor-fields-are-exported-and-hashed",
+  "installationGate": "satisfied",
   "restorationRule": "Restore the three authenticated editor-field captures together on WordPress Page 2627 using page_fullwidth.php. Never mix fields from the legacy and replacement doorway generations.",
   "scopeBoundary": "This record covers Page 2627 only. It does not authorize or describe a Page 17, child-page backlink, or live Edublogs change."
 }

@@ -79,4 +79,18 @@ The source/runtime/style/image hashes exercised by those accepted local-build sc
 
 No Edublogs field was edited. Page 2627 still runs its legacy `8331606ba430e039a78174da3825c275fefa9c46` archive, Page 17 remains unchanged, current-Hub historical placeholders remain unchanged, and child-page backlinks remain unchanged.
 
-Before Page 2627 can be replaced, its authenticated HTML, CSS, and JavaScript editor fields must be exported and hashed into `PRE-INSTALL-PRESERVATION.json`. Then the user can paste the three final doorway boxes together, retain `page_fullwidth.php`, and request signed-out live-browser verification. Only after that succeeds should the Hub current-year galleries be cleared of the temporary 2025–2026 placements and the later Page 17 migration proceed.
+The original authenticated-editor preservation requirement was completed on 2026-10-10; see the addendum below. The three final doorway boxes can then be installed together while retaining `page_fullwidth.php`, followed by signed-out live-browser verification. Only after that succeeds should the Hub current-year galleries be cleared of the temporary 2025–2026 placements and the later Page 17 migration proceed.
+
+## Authenticated preservation addendum — 2026-10-10
+
+Page 2627's visible Custom HTML editor supplied the exact HTML, CSS, and JavaScript strings through the existing beacon-identified Yumii Chrome-Control session. Local UTF-8 files match the browser-captured SHA-256 hashes and byte lengths, including the absence of a final newline. Git attributes preserve these restoration files byte-for-byte. The fields matched a second read after Cancel and reopening the editor.
+
+| Editor field | UTF-8 bytes | SHA-256 |
+| --- | --- | --- |
+| HTML | 4,995 | `3842210b76e9f87a37c9dfd2101d0d0fd9868b07906dc3674c5185cabf2cc51f` |
+| CSS | 12,841 | `f8853aa11008c3f324e1905cf7fec4277ab1a38bd638e57996155a136f2036e8` |
+| JavaScript | 909 | `0b8a199490e409eee9f390ad28dfd06e2e867c35982d7bab39b141f36be1367d` |
+
+The files are in `evidence/classroom-explorations-archive/pre-install-2026-10-10/`; the completed record remains `docs/edublogs-integration/classroom-explorations-archive/2025-2026/PRE-INSTALL-PRESERVATION.json`. The editor confirms Published, parent Classroom Explorations, slug `archive-2025-2026`, and selected template `page_fullwidth.php`. Its preview and installed JavaScript still use the legacy archive with Caterpillars rather than the approved Butterflies destination. No editor value, template, Update, or Save was changed or submitted; this addendum proves preservation, not installation. Recheck these field hashes before a later replacement and preserve a new set if the page has changed.
+
+Local verification passed on 2026-10-10: `node tools/verify-classroom-explorations-archive-doorway.mjs --require-final --require-editor-preservation` and `npm run test:archive:doorway`. The existing replacement package still verifies against immutable archive asset commit `9deaf1723109c5259b5813d271a23d336d68559d`.

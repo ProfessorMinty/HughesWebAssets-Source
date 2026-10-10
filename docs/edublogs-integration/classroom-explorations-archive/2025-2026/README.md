@@ -45,7 +45,9 @@ npm run preview:archive:doorway
 
 The read-only public HTML and REST captures taken on 2026-09-12 are recorded in `PRE-INSTALL-PRESERVATION.json`. They prove the observed route, template, legacy `8331606…` pin, and stale Caterpillars state, but they are not substitutes for the three authenticated editor fields.
 
-Before anyone replaces Page 2627:
+On 2026-10-10 the exact HTML, CSS, and JavaScript fields were exported read-only from the authenticated Page 2627 editor through the beacon-identified Yumii Chrome-Control session. The files are in `evidence/classroom-explorations-archive/pre-install-2026-10-10/`, and their exact UTF-8 byte lengths and SHA-256 hashes are recorded in `PRE-INSTALL-PRESERVATION.json`. Every field matched after cancelling and reopening the block editor. The selected template was verified as `page_fullwidth.php`; the page remains published with its legacy archive and no Update or Save was submitted. The editor-preservation gate is now satisfied.
+
+Before a later replacement, recheck the editor fields against these hashes. If any field or template has changed, capture a new restoration set before installation. The complete preservation procedure is:
 
 1. Export its exact existing HTML, CSS, and JavaScript editor fields to the paths named in `PRE-INSTALL-PRESERVATION.json`.
 2. Record each byte length and SHA-256 digest.
