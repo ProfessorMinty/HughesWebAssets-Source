@@ -1,0 +1,27 @@
+{
+  "wordpressPageId": 17,
+  "targetUrl": "https://rmhughes.edublogs.org/hub/",
+  "assetCommit": "d819f5c1493e725624a09adcbf0de258aa88bd8f",
+  "runtimeVersion": "2026.10.10.3",
+  "publicationId": "pub-2026-10-10-003",
+  "sourceRevision": "be5836526e02212dd693a13cf9abc6a53b8501e0",
+  "previousKnownGoodPublication": "pub-2026-10-10-002",
+  "bootstrapSri": "sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk=",
+  "bootstrapUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/bootstrap.js",
+  "publicationUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/publications/pub-2026-10-10-003/publication.json",
+  "cdnEvidencePath": "evidence/classroom-explorations-hub/page17-migration-2026-10-10/cdn-verification.json",
+  "fields": {
+    "HTML-BOX.html": {
+      "bytes": 959,
+      "sha256": "61017a51c23d450b2e102bf7b3d26e213d4a026b453a5f48d8cf473316efdb2c"
+    },
+    "CSS-BOX.css": {
+      "bytes": 3837,
+      "sha256": "2d737c1c4faaf4249e1a70516219fec091aee28bbc6c406a7dd918f4b74f9ed3"
+    },
+    "JAVASCRIPT-BOX.js": {
+      "bytes": 2880,
+      "sha256": "312af81e672ab180d5ff91f920a4f0107809259a91f02e44af06acdac0cc2a4a"
+    }
+  }
+}

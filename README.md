@@ -14,7 +14,7 @@ Nothing in this repository by itself deploys Cloudflare, Google Drive, Edublogs,
 
 ### Classroom Explorations Hub
 
-`apps/classroom-explorations-hub/` is the first standardized repository-owned HRV page application. Its stable platform doorway is WordPress page 17 at `/classroom-explorations/`.
+`apps/classroom-explorations-hub/` is the first standardized repository-owned HRV page application. Its stable platform doorway is WordPress page 17 at `/hub/`. The retired `/classroom-explorations/` path in historical handoff documents is not current route truth; use `registry/hrv-routes.source.json` and the [October cutover record](docs/classroom-explorations-page17-cutover-2026-10-10.md).
 
 The permanent flow is:
 

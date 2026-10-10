@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0",
+  "verifier": "classroom-explorations-hub-cdn",
+  "repository": "ProfessorMinty/HughesWebAssets-Source",
+  "releaseCommit": "d819f5c1493e725624a09adcbf0de258aa88bd8f",
+  "runtimeVersion": "2026.10.10.3",
+  "publicationId": "pub-2026-10-10-003",
+  "sourceRevision": "be5836526e02212dd693a13cf9abc6a53b8501e0",
+  "previousKnownGoodPublication": "pub-2026-10-10-002",
+  "contentSnapshotId": "sha256:75d8e5f76acdd4c6abc26e3a2aa63eead72f3c24c2b5f7848124d4560226e468",
+  "cdnBase": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/",
+  "requestMethod": "GET",
+  "fileCount": 16,
+  "files": [
+    {
+      "path": "content/75d8e5f76acdd4c6abc26e3a2aa63eead72f3c24c2b5f7848124d4560226e468/manifest.json",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/content/75d8e5f76acdd4c6abc26e3a2aa63eead72f3c24c2b5f7848124d4560226e468/manifest.json",
+      "httpStatus": 200,
+      "bytes": 4360,
+      "sha256": "a4390074a198c8239082bd3b9fb15264abeea9f358770ebf7bcdbd5e0da52aa6",
+      "contract": "publication.content.manifest"
+    },
+    {
+      "path": "publications/pub-2026-10-10-003/publication.json",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/publications/pub-2026-10-10-003/publication.json",
+      "httpStatus": 200,
+      "bytes": 3487,
+      "sha256": "c8b097add527a3a7f221fea0dcbeee293bb2d712d796b09fc5c8d50fe9c42c9c",
+      "contract": "committed publication.json"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/frame/bottom-left.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/frame/bottom-left.webp",
+      "httpStatus": 200,
+      "bytes": 129972,
+      "sha256": "4c41de2d714d324e565ab779fcd8e9c80e9ae181d654a95380ecfa3deed248b6",
+      "contract": "runtime-release.artwork.frameBottomLeft"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/frame/bottom-right.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/frame/bottom-right.webp",
+      "httpStatus": 200,
+      "bytes": 127304,
+      "sha256": "ad4450dba040a20a393fd026d00df644faed9be86e8e265ce730ee481ae91074",
+      "contract": "runtime-release.artwork.frameBottomRight"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/frame/middle-left.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/frame/middle-left.webp",
+      "httpStatus": 200,
+      "bytes": 117164,
+      "sha256": "81b0ee9ee9e93687ee1aaffb214feca1d31de986751318405b29f258eff565b7",
+      "contract": "runtime-release.artwork.frameMiddleLeft"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/frame/middle-right.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/frame/middle-right.webp",
+      "httpStatus": 200,
+      "bytes": 90762,
+      "sha256": "ec015b8e4f98f0eca9d48254b6b719e3826ea8927a78891151627378ce13c889",
+      "contract": "runtime-release.artwork.frameMiddleRight"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/frame/top-left.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/frame/top-left.webp",
+      "httpStatus": 200,
+      "bytes": 103226,
+      "sha256": "7a7a9cebcad631d3287211f8e7529e301cdaf9d70de55cd21a64fc505ead7c54",
+      "contract": "runtime-release.artwork.frameTopLeft"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/frame/top-right.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/frame/top-right.webp",
+      "httpStatus": 200,
+      "bytes": 85800,
+      "sha256": "c74cee00ba8504186647f8641126accabd0a2fcc8a832d9e0ffd6e017c79ba11",
+      "contract": "runtime-release.artwork.frameTopRight"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/history/past-explorations.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/history/past-explorations.webp",
+      "httpStatus": 200,
+      "bytes": 59992,
+      "sha256": "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
+      "contract": "runtime-release.artwork.pastExplorations"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/history/past-twwl.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/history/past-twwl.webp",
+      "httpStatus": 200,
+      "bytes": 63156,
+      "sha256": "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
+      "contract": "runtime-release.artwork.pastTwwl"
+    },
+    {
+      "path": "runtime/2026.10.10.3/assets/history/past-years.webp",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/assets/history/past-years.webp",
+      "httpStatus": 200,
+      "bytes": 33934,
+      "sha256": "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+      "contract": "runtime-release.artwork.pastYears"
+    },
+    {
+      "path": "runtime/2026.10.10.3/bootstrap.js",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/bootstrap.js",
+      "httpStatus": 200,
+      "bytes": 9363,
+      "sha256": "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159",
+      "contract": "runtime-release.assets.bootstrap"
+    },
+    {
+      "path": "runtime/2026.10.10.3/host-compat.css",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/host-compat.css",
+      "httpStatus": 200,
+      "bytes": 4813,
+      "sha256": "77f631c75050e5215b01b3c79d929427891b77dd150efe4237066eb6226905ce",
+      "contract": "runtime-release.assets.hostCompat"
+    },
+    {
+      "path": "runtime/2026.10.10.3/hub.css",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/hub.css",
+      "httpStatus": 200,
+      "bytes": 91631,
+      "sha256": "4878f856ca379a7b9771a0fc6cdd4ffca1a18808221d49c494f3fbed8e85e940",
+      "contract": "runtime-release.assets.style"
+    },
+    {
+      "path": "runtime/2026.10.10.3/runtime-release.json",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/runtime-release.json",
+      "httpStatus": 200,
+      "bytes": 2482,
+      "sha256": "e4bee1070bdce8a8951a23289b5e454293f55b06e4837a22b181d910da715711",
+      "contract": "committed runtime-release.json"
+    },
+    {
+      "path": "runtime/2026.10.10.3/runtime.js",
+      "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/runtime.js",
+      "httpStatus": 200,
+      "bytes": 49912,
+      "sha256": "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081",
+      "contract": "runtime-release.assets.script"
+    }
+  ]
+}

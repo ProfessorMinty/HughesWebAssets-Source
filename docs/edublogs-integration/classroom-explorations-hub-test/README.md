@@ -5,9 +5,9 @@ This directory contains the Edublogs doorway blocks for the review page:
 - Public review URL: `https://rmhughes.edublogs.org/hub-test/`
 - WordPress page ID: `2589`
 
-Page `17` at `/hub/` remains untouched. It is a route identity and compatibility target, not a visual reference.
+The current generated package is `pub-2026-10-10-003`, asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`, runtime `2026.10.10.3`. It clears the temporary previous-year placements while retaining the historical catalog and archive. See [the cutover record](../../classroom-explorations-page17-cutover-2026-10-10.md) for live status and Page 17 migration. The earlier installation record and release section below describe publication 002, not this regenerated package.
 
-## Current release package — 2026-10-10
+## Earlier October installation — publication 002
 
 Installed on HUB TEST (Page 2589) on 2026-10-10. Reloaded editor fields, public HTTP pin/SRI, live responsive states, and restoration evidence are verified in [the installation record](../../classroom-explorations-live-installation-2026-10-10.md). Page 17 is not installed with this release. Current-year history still contains the temporary 2025–2026 placements pending the next content-migration gate.
 
