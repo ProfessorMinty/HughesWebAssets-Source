@@ -10,6 +10,8 @@ The approved archive application stays in the repository. The HTML field supplie
 
 ## Current state
 
+Installed on Page 2627 on 2026-10-10, replacing the preserved legacy archive. Reloaded editor fields, public HTTP pin/SRI, live filtering, images, and responsive checks are verified in [the installation record](../../../classroom-explorations-live-installation-2026-10-10.md). The September release identity below remains the installed identity; installation does not require a newly numbered archive runtime.
+
 The final repository handoff exists and is pinned to one immutable release:
 
 - Asset commit: `9deaf1723109c5259b5813d271a23d336d68559d`
@@ -45,7 +47,7 @@ npm run preview:archive:doorway
 
 The read-only public HTML and REST captures taken on 2026-09-12 are recorded in `PRE-INSTALL-PRESERVATION.json`. They prove the observed route, template, legacy `8331606…` pin, and stale Caterpillars state, but they are not substitutes for the three authenticated editor fields.
 
-On 2026-10-10 the exact HTML, CSS, and JavaScript fields were exported read-only from the authenticated Page 2627 editor through the beacon-identified Yumii Chrome-Control session. The files are in `evidence/classroom-explorations-archive/pre-install-2026-10-10/`, and their exact UTF-8 byte lengths and SHA-256 hashes are recorded in `PRE-INSTALL-PRESERVATION.json`. Every field matched after cancelling and reopening the block editor. The selected template was verified as `page_fullwidth.php`; the page remains published with its legacy archive and no Update or Save was submitted. The editor-preservation gate is now satisfied.
+On 2026-10-10 the exact HTML, CSS, and JavaScript fields were exported read-only from the authenticated Page 2627 editor through the beacon-identified Yumii Chrome-Control session. The files are in `evidence/classroom-explorations-archive/pre-install-2026-10-10/`, and their exact UTF-8 byte lengths and SHA-256 hashes are recorded in `PRE-INSTALL-PRESERVATION.json`. Every field matched after cancelling and reopening the block editor. At this preservation checkpoint the legacy archive was unchanged. After a further exact recheck, the authorized replacement was saved and verified; `page_fullwidth.php` was retained. The preservation record is a historical restoration baseline, not the current installed package.
 
 Before a later replacement, recheck the editor fields against these hashes. If any field or template has changed, capture a new restoration set before installation. The complete preservation procedure is:
 
@@ -63,4 +65,4 @@ If rollback is necessary, restore the three preserved editor fields together and
 - Do not move application or Amadeus host-compatibility rules into `CSS-BOX.css`.
 - Do not edit the generated JavaScript or release pin by hand.
 - Do not change Page 17 or historical child-page backlinks as part of the Page 2627 installation.
-- Do not claim installation from repository or CDN evidence; verify the signed-out Edublogs page after the user pastes all three fields.
+- Do not claim installation from repository or CDN evidence alone. Preserve editor readback, public HTTP delivery, and live browser evidence separately; the October installation used the authorized existing signed-in browser and did not log the user out.

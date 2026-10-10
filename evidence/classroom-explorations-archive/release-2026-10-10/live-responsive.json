@@ -1,0 +1,223 @@
+{
+  "signedIn": true,
+  "physicalWindowsScalingVerified": false,
+  "filterChecks": [
+    "butterflies:1",
+    "no-match:0 with status",
+    "clear:3",
+    "owls:1",
+    "clear:5"
+  ],
+  "results": [
+    {
+      "cardCount": 8,
+      "frame": [
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        }
+      ],
+      "links": [
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
+          "title": "Open Mushrooms"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-butterflies/",
+          "title": "Open Butterflies in the Classroom"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+          "title": "Open Great Barrier Reef"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
+          "title": "Open Botany: Let’s Talk About Tubers"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
+          "title": "Open The Traditions of Russian Winter"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-owls/",
+          "title": "Open Silent Wings, Wise Eyes: Learning About Owls"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-bats/",
+          "title": "Open Bats Don’t Go Bump in the Night"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
+          "title": "Open Autumn Spiders: Gentle Web Artists"
+        }
+      ],
+      "overflow": 0,
+      "state": "ready",
+      "viewport": {
+        "dpr": 0.6666667418820538,
+        "height": 911,
+        "width": 980
+      }
+    },
+    {
+      "cardCount": 8,
+      "frame": [
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        }
+      ],
+      "links": [
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
+          "title": "Open Mushrooms"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-butterflies/",
+          "title": "Open Butterflies in the Classroom"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+          "title": "Open Great Barrier Reef"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
+          "title": "Open Botany: Let’s Talk About Tubers"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
+          "title": "Open The Traditions of Russian Winter"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-owls/",
+          "title": "Open Silent Wings, Wise Eyes: Learning About Owls"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-bats/",
+          "title": "Open Bats Don’t Go Bump in the Night"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
+          "title": "Open Autumn Spiders: Gentle Web Artists"
+        }
+      ],
+      "overflow": 0,
+      "state": "ready",
+      "viewport": {
+        "dpr": 0.6666667418820538,
+        "height": 845,
+        "width": 390
+      }
+    },
+    {
+      "cardCount": 8,
+      "frame": [
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        },
+        {
+          "loaded": true,
+          "position": "absolute"
+        }
+      ],
+      "links": [
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
+          "title": "Open Mushrooms"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-butterflies/",
+          "title": "Open Butterflies in the Classroom"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+          "title": "Open Great Barrier Reef"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
+          "title": "Open Botany: Let’s Talk About Tubers"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
+          "title": "Open The Traditions of Russian Winter"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-owls/",
+          "title": "Open Silent Wings, Wise Eyes: Learning About Owls"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-bats/",
+          "title": "Open Bats Don’t Go Bump in the Night"
+        },
+        {
+          "href": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
+          "title": "Open Autumn Spiders: Gentle Web Artists"
+        }
+      ],
+      "overflow": 0,
+      "state": "ready",
+      "viewport": {
+        "dpr": 0.6666667418820538,
+        "height": 911,
+        "width": 1920
+      }
+    }
+  ]
+}

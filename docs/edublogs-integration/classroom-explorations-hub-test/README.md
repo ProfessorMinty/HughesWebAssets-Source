@@ -9,6 +9,8 @@ Page `17` at `/hub/` remains untouched. It is a route identity and compatibility
 
 ## Current release package — 2026-10-10
 
+Installed on HUB TEST (Page 2589) on 2026-10-10. Reloaded editor fields, public HTTP pin/SRI, live responsive states, and restoration evidence are verified in [the installation record](../../classroom-explorations-live-installation-2026-10-10.md). Page 17 is not installed with this release. Current-year history still contains the temporary 2025–2026 placements pending the next content-migration gate.
+
 Asset commit `f2381f5b9e284e87e17c3b45b25f381a55663c1c`; source `4e1631c45aefcd3b9d637e7760cc89ea8a05bb08`; runtime `2026.10.10.2`; publication `pub-2026-10-10-002`; previous known good `pub-2026-08-31-002`. The content snapshot and all approved artwork are unchanged.
 
 Push Hub CI `38081902272` and pull-request Hub CI `38081905400` passed, including Linux geometry and Windows native zoom. Archive CI `38081905343` passed. Exact GET-and-byte proof for all 16 dependency files is `evidence/classroom-explorations-hub/release-2026-10-10/cdn-byte-verification.json`. The September repair and October portability notes describe the changes; the historical measurements below are not measurements of this release.

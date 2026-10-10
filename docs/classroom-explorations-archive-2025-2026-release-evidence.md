@@ -2,7 +2,7 @@
 
 Date: 2026-09-12
 
-Status: immutable repository release, CDN bytes, and final Page 2627 doorway verified; not installed on Edublogs
+Current status (2026-10-10): installed and live-verified on Page 2627; see [the October installation record](classroom-explorations-live-installation-2026-10-10.md). The September evidence and pre-installation boundary below are historical checkpoints, not current deployment status.
 
 Branch: `hub-authoring-v2-2026-08-28`
 
@@ -76,6 +76,8 @@ The structured observation is `evidence/classroom-explorations-archive/release-2
 The source/runtime/style/image hashes exercised by those accepted local-build screenshots are identical to the 14-file CDN proof.
 
 ## Installation boundary and next gate
+
+Historical September boundary; superseded for Page 2627 installation by the October record linked above. Page 17, current-year placeholder placements, and child-page backlinks still remain unchanged.
 
 No Edublogs field was edited. Page 2627 still runs its legacy `8331606ba430e039a78174da3825c275fefa9c46` archive, Page 17 remains unchanged, current-Hub historical placeholders remain unchanged, and child-page backlinks remain unchanged.
 
