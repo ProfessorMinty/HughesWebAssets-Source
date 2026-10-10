@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-10-10",
+  "wordpressPageId": 17,
+  "targetUrl": "https://rmhughes.edublogs.org/hub/",
+  "editorUrl": "https://rmhughes.edublogs.org/wp-admin/post.php?post=17&action=edit",
+  "title": "Classroom Explorations",
+  "status": "Published",
+  "slug": "hub",
+  "parent": "None",
+  "template": "Full width",
+  "blocks": ["Custom HTML", "empty Paragraph"],
+  "captureMethod": "Authenticated Custom HTML HTML/CSS/JavaScript editor fields; Cancel without saving",
+  "fields": {
+    "page17-before-HTML.html": {"bytes": 12606, "sha256": "b08978a017d629de7f10ce9de5398bb231cbda5e7faeead945d3be4d63eb791f"},
+    "page17-before-CSS.css": {"bytes": 35430, "sha256": "7986e83fbc06913f181980cd98874689f98dba6fcda97b38f8ae60c90d851edf"},
+    "page17-before-JavaScript.js": {"bytes": 3710, "sha256": "9a301a84885d1063828d3d26458c360dbe91b7aae3318d028c35f0bed2408856"}
+  },
+  "restoration": "Restore all three fields together using the exact preserved bytes, update the Custom HTML block, Save the page, reload and verify readback. Preserve page identity, template, parent and slug."
+}

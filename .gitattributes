@@ -7,3 +7,14 @@
 *.webp binary
 *.woff binary
 *.woff2 binary
+
+# Preserve read-only live-service captures byte-for-byte for restoration evidence.
+evidence/classroom-explorations-archive/pre-install-*/page2627-public.html binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-rest-view.json binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-editor-HTML-BOX.html binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-editor-CSS-BOX.css binary
+evidence/classroom-explorations-archive/pre-install-*/page2627-editor-JAVASCRIPT-BOX.js binary
+evidence/classroom-explorations-hub/pre-install-*/page2589-editor-*-BOX.* binary
+evidence/classroom-explorations-*/release-*/page*-saved-*-BOX.* binary
+evidence/classroom-explorations-*/release-*/page*-public.html binary
+evidence/classroom-explorations-hub/page17-migration-*/page17-before-* binary

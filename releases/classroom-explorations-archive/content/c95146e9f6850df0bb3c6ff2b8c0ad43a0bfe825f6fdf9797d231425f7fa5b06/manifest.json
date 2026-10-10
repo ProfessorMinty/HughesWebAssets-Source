@@ -1,0 +1,206 @@
+{
+  "runtimeSchemaVersion": "1.0",
+  "snapshotId": "sha256:c95146e9f6850df0bb3c6ff2b8c0ad43a0bfe825f6fdf9797d231425f7fa5b06",
+  "page": {
+    "id": "hrv-page:classroom-explorations-archive-2025-2026",
+    "type": "classroom-explorations-archive",
+    "href": "https://rmhughes.edublogs.org/hub/archive-2025-2026/",
+    "hubHref": "https://rmhughes.edublogs.org/hub/",
+    "archiveId": "hub-archive:2025-2026",
+    "schoolYear": "2025-2026",
+    "schoolYearLabel": "2025–2026",
+    "copy": {
+      "hero": {
+        "nodeId": "archive-node:hero",
+        "eyebrow": "Museum Archives • Preserved Classroom Discoveries",
+        "title": "Classroom Explorations: 2025–2026 Archive",
+        "intro": "Step back into last year’s classroom museum. These exhibits and learning displays are preserved here so families and students can revisit the discoveries anytime."
+      },
+      "explorations": {
+        "nodeId": "archive-node:explorations",
+        "eyebrow": "Exploration Collection",
+        "title": "Past Explorations",
+        "intro": "Hands-on investigations and classroom projects from the 2025–2026 school year.",
+        "emptyText": "No exploration matches that search."
+      },
+      "twwl": {
+        "nodeId": "archive-node:twwl",
+        "eyebrow": "Learning Memory Hall",
+        "title": "Past “This Week We Learned”",
+        "intro": "Weekly learning displays preserved from the 2025–2026 classroom year.",
+        "emptyText": "No learning story matches that search."
+      },
+      "navigation": {
+        "nodeId": "archive-node:navigation",
+        "backLabel": "Back to Current Classroom Explorations",
+        "returnLabel": "Return to the current school year"
+      },
+      "footer": {
+        "nodeId": "archive-node:footer",
+        "text": "The museum doors stay open for old discoveries."
+      }
+    }
+  },
+  "collections": {
+    "explorations": [
+      {
+        "id": "mushrooms",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Mushrooms",
+        "summary": "A forest-floor investigation of fungi, mushroom structures, spores, and the hidden work of decomposers.",
+        "href": "https://rmhughes.edublogs.org/hub/exploration-mushrooms/",
+        "image": {
+          "src": "https://rmhughes.edublogs.org/files/2025/10/Mushroom-Banner.jpg",
+          "alt": "Mushrooms growing together on a forest floor."
+        },
+        "tags": [
+          "Fungi",
+          "Forest Floor",
+          "Life Cycles"
+        ],
+        "learningPoints": [
+          "Fungi are different from plants and animals",
+          "Mushrooms help return nutrients to an ecosystem",
+          "Careful observation reveals many shapes, textures, and structures"
+        ]
+      },
+      {
+        "id": "butterflies-in-the-classroom",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Butterflies in the Classroom",
+        "summary": "Follow a remarkable classroom life cycle from tiny caterpillars through chrysalis changes to newly emerged butterflies.",
+        "href": "https://rmhughes.edublogs.org/hub/exploration-butterflies/",
+        "image": {
+          "src": "https://rmhughes.edublogs.org/files/2025/10/CaterpillarBanner.jpg",
+          "alt": "A caterpillar representing the classroom butterfly life-cycle exploration."
+        },
+        "tags": [
+          "Butterflies",
+          "Metamorphosis",
+          "Life Cycles"
+        ],
+        "learningPoints": [
+          "A butterfly changes through four distinct life-cycle stages",
+          "Growth can be documented with dates, drawings, and measurements",
+          "Living classroom guests require gentle, responsible care"
+        ]
+      },
+      {
+        "id": "great-barrier-reef",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Great Barrier Reef",
+        "summary": "Dive into coral reef habitats, meet the animals that depend on them, and investigate why healthy oceans matter.",
+        "href": "https://rmhughes.edublogs.org/hub/exploration-great-barrier-reef/",
+        "image": {
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/SeaTurt.png",
+          "alt": "Sea turtle illustration from the Great Barrier Reef exploration."
+        },
+        "tags": [
+          "Coral Reefs",
+          "Ocean Habitats",
+          "Marine Life"
+        ],
+        "learningPoints": [
+          "Coral reefs are living habitats built by tiny animals",
+          "Reef species depend on one another in a connected ecosystem",
+          "People can make choices that help protect ocean habitats"
+        ]
+      }
+    ],
+    "twwl": [
+      {
+        "id": "botany-lets-talk-about-tubers",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Botany: Let’s Talk About Tubers",
+        "summary": "We dug into botany to discover how tubers store energy, grow underground, and help plants begin again.",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-botany-tubers/",
+        "image": {
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Tubers.png",
+          "alt": "Botany illustration used for the Tubers learning story."
+        },
+        "tags": [
+          "Botany",
+          "Tubers",
+          "Plant Parts"
+        ]
+      },
+      {
+        "id": "traditions-of-russian-winter",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "The Traditions of Russian Winter",
+        "summary": "We explored winter traditions, celebrations, art, and everyday life in cold and snowy climates.",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-traditions-of-russian-winter/",
+        "image": {
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Russian.png",
+          "alt": "Winter illustration used for the Russian Winter learning story."
+        },
+        "tags": [
+          "Winter",
+          "Russia",
+          "Traditions"
+        ]
+      },
+      {
+        "id": "silent-wings-wise-eyes-learning-about-owls",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Silent Wings, Wise Eyes: Learning About Owls",
+        "summary": "We investigated owl adaptations and learned what makes these birds such skilled nighttime hunters.",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-owls/",
+        "image": {
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Owl.png",
+          "alt": "Owl illustration used for the owl learning story."
+        },
+        "tags": [
+          "Owls",
+          "Adaptations",
+          "Nocturnal"
+        ]
+      },
+      {
+        "id": "bats-dont-go-bump-in-the-night",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Bats Don’t Go Bump in the Night",
+        "summary": "We explored echolocation, nocturnal adaptations, and the many ways bats help their ecosystems.",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-bats/",
+        "image": {
+          "src": "https://rmhughes.edublogs.org/files/2025/10/BatBanner.jpg",
+          "alt": "Bat banner used for the bat learning story."
+        },
+        "tags": [
+          "Bats",
+          "Echolocation",
+          "Nocturnal"
+        ]
+      },
+      {
+        "id": "autumn-spiders-gentle-web-artists",
+        "schoolYear": "2025-2026",
+        "schoolYearLabel": "2025–2026",
+        "title": "Autumn Spiders: Gentle Web Artists",
+        "summary": "We studied silk, web patterns, body structures, and the helpful role spiders play in an ecosystem.",
+        "href": "https://rmhughes.edublogs.org/hub/twwl-spiders/",
+        "image": {
+          "src": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets/main/Spider.png",
+          "alt": "Spider illustration used for the autumn spiders learning story."
+        },
+        "tags": [
+          "Spiders",
+          "Webs",
+          "Observation"
+        ]
+      }
+    ]
+  },
+  "stats": {
+    "explorations": 3,
+    "twwl": 5,
+    "total": 8
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0",
+  "publicationId": "pub-2026-08-30-006",
+  "pageId": "hrv-page:classroom-explorations",
+  "pageType": "classroom-explorations-hub",
+  "sourceRevision": "b7fd2a67297513f5e617d00d9d457df63eb76ac9",
+  "previousKnownGoodPublication": "pub-2026-08-14-005",
+  "runtime": {
+    "version": "2026.08.30.6",
+    "runtimeSchemaVersion": "1.0",
+    "bootstrap": {
+      "path": "../../runtime/2026.08.30.6/bootstrap.js",
+      "sha256": "23d850ddad85cd17a25a32c2545565cfad84073ad290845448db2486ed1d7e2c"
+    },
+    "script": {
+      "path": "../../runtime/2026.08.30.6/runtime.js",
+      "sha256": "d650bebb20bdc32fd9270c5e9b93ad805d8e687ff31073214dff35fea93061b7"
+    },
+    "style": {
+      "path": "../../runtime/2026.08.30.6/hub.css",
+      "sha256": "2405ed7c960e7f27a660b22a6ff9d8cd6a4503f9bf9fb3de4c06a56690e763be"
+    },
+    "hostCompat": {
+      "path": "../../runtime/2026.08.30.6/host-compat.css",
+      "sha256": "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300"
+    },
+    "artwork": {
+      "pastExplorations": {
+        "path": "../../runtime/2026.08.30.6/assets/history/past-explorations.webp",
+        "sha256": "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
+        "mediaType": "image/webp"
+      },
+      "pastTwwl": {
+        "path": "../../runtime/2026.08.30.6/assets/history/past-twwl.webp",
+        "sha256": "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
+        "mediaType": "image/webp"
+      },
+      "pastYears": {
+        "path": "../../runtime/2026.08.30.6/assets/history/past-years.webp",
+        "sha256": "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+        "mediaType": "image/webp"
+      }
+    }
+  },
+  "content": {
+    "snapshotId": "sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b",
+    "runtimeSchemaVersion": "1.0",
+    "manifest": {
+      "path": "../../content/46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b/manifest.json",
+      "sha256": "99f92a626f362b37fea48a358ae786ac3a980d4a877823913f790c1080d4a054"
+    }
+  }
+}

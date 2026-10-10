@@ -1,0 +1,113 @@
+{
+  "runtimeSchemaVersion": "1.0",
+  "snapshotId": "sha256:75d8e5f76acdd4c6abc26e3a2aa63eead72f3c24c2b5f7848124d4560226e468",
+  "page": {
+    "id": "hrv-page:classroom-explorations",
+    "type": "classroom-explorations-hub",
+    "href": "https://rmhughes.edublogs.org/hub/",
+    "currentSchoolYear": "2026-2027",
+    "schoolYearLabel": "2026–2027",
+    "copy": {
+      "hero": {
+        "nodeId": "hub-node:hero",
+        "eyebrow": "Classroom Museum • Curiosity Starts Here",
+        "title": "Classroom Explorations",
+        "intro": "A living museum of questions, experiments, field notes, and student-made discoveries.",
+        "invitation": "Choose an exhibit, follow the clues, and see where curiosity leads.",
+        "pillars": [
+          "Observe",
+          "Wonder",
+          "Investigate",
+          "Share"
+        ],
+        "oathTitle": "Our Exploration Promise",
+        "oathBody": "We look closely, ask brave questions, test ideas safely, learn from surprises, and share what we discover."
+      },
+      "welcome": {
+        "nodeId": "hub-node:welcome",
+        "eyebrow": "Welcome Theater",
+        "title": "Welcome to Classroom Explorations",
+        "summary": "Meet the museum, discover how our exhibits work, and begin with the questions that make learning come alive."
+      },
+      "currentExploration": {
+        "nodeId": "hub-node:current-exploration",
+        "eyebrow": "Featured Exhibit Hall",
+        "title": "Current Exploration"
+      },
+      "currentTwwl": {
+        "nodeId": "hub-node:current-twwl",
+        "eyebrow": "The Learning Lantern",
+        "title": "This Week We Learned",
+        "comingSoonTitle": "A new learning story is being prepared.",
+        "comingSoonBody": "The lantern will glow when the first approved 2026–2027 classroom recap is ready to share."
+      },
+      "pastExplorations": {
+        "nodeId": "hub-node:past-explorations",
+        "eyebrow": "Exploration Gallery",
+        "title": "Past Explorations",
+        "emptyText": "The gallery cases are ready for classroom explorations worth revisiting."
+      },
+      "pastTwwl": {
+        "nodeId": "hub-node:past-twwl",
+        "eyebrow": "Learning Memory Hall",
+        "title": "Past “This Week We Learned”",
+        "emptyText": "Past learning stories will appear here as the museum collection grows."
+      },
+      "archives": {
+        "nodeId": "hub-node:archives",
+        "eyebrow": "Museum Archives",
+        "title": "Previous School Years",
+        "intro": "Open an older museum wing to revisit the questions, creatures, cultures, and discoveries from another school year."
+      },
+      "footer": {
+        "nodeId": "hub-node:footer",
+        "text": "Keep wondering. The next discovery may begin with your question."
+      }
+    }
+  },
+  "current": {
+    "exploration": {
+      "id": "summer-bloom-adoption-project",
+      "title": "Summer Bloom Adoption Project",
+      "summary": "Step into the zinnia greenhouse as students raise mystery seedlings, record their growth, and discover what each one-of-a-kind bloom becomes.",
+      "href": "https://rmhughes.edublogs.org/hub/exploration-zinnia-page/",
+      "image": {
+        "src": "https://images.squarespace-cdn.com/content/v1/65397b8c01ff584e2d7834e3/ee61742a-ec98-449f-9475-53a345566da7/IMG_2850.jpg?format=750w",
+        "alt": "Pink zinnia blooms from the Summer Bloom Adoption Project."
+      },
+      "learningPoints": [
+        "Care for living plants and notice what they need",
+        "Measure change through observation journals and field notes",
+        "Compare mystery seedlings as their unique blooms are revealed"
+      ],
+      "tags": [
+        "Zinnias",
+        "Plant Care",
+        "Observation"
+      ]
+    },
+    "twwl": {
+      "id": "hub-slot:current-twwl",
+      "state": "coming-soon"
+    },
+    "featuredMedia": {
+      "id": "welcome-classroom-explorations",
+      "kind": "youtube",
+      "title": "Welcome to Classroom Explorations",
+      "embedUrl": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg"
+    }
+  },
+  "galleries": {
+    "pastExplorations": [],
+    "pastTwwl": []
+  },
+  "archives": [
+    {
+      "id": "hub-archive:2025-2026",
+      "schoolYear": "2025-2026",
+      "label": "2025–2026",
+      "state": "published",
+      "href": "https://rmhughes.edublogs.org/hub/archive-2025-2026/"
+    }
+  ]
+}

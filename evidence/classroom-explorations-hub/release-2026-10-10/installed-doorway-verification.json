@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-10-10T20:12:22.956Z",
+  "pageId": 2589,
+  "url": "https://rmhughes.edublogs.org/hub-test/",
+  "fields": [
+    {
+      "field": "HTML",
+      "expectedSha256": "61017a51c23d450b2e102bf7b3d26e213d4a026b453a5f48d8cf473316efdb2c",
+      "savedSha256": "75dddbe8f1c2b13a8837ab1ab30e973a58c3e216758887fbf2fb12131e9d258a",
+      "normalization": "DOM attributes and whitespace-only formatting",
+      "passed": true
+    },
+    {
+      "field": "CSS",
+      "expectedSha256": "2d737c1c4faaf4249e1a70516219fec091aee28bbc6c406a7dd918f4b74f9ed3",
+      "savedSha256": "8fce3247526888e61ed5e58088ceef67b57a5c5d1c5519e4ab9d900e54de39f6",
+      "normalization": "trailing field newline only",
+      "passed": true
+    },
+    {
+      "field": "JAVASCRIPT",
+      "expectedSha256": "f693d06a8ca4952c5631da2890a330d2f6152648a85708b1227e8d88d85003eb",
+      "savedSha256": "314a9264eb09a48b9b163b9074b18540bd3e302083e2e2b49950c02068f29539",
+      "normalization": "trailing field newline only",
+      "passed": true
+    }
+  ],
+  "publicHttp": {
+    "authenticated": false,
+    "status": 200,
+    "byteLength": 47238,
+    "sha256": "46d26f43acdf9cb1c2e989590de30f389f4518488b5023cc1aac7a341124e804",
+    "assetCommit": "f2381f5b9e284e87e17c3b45b25f381a55663c1c",
+    "publication": "pub-2026-10-10-002",
+    "bootstrapSri": "sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk=",
+    "pinPresent": true,
+    "publicationPresent": true,
+    "sriPresent": true
+  },
+  "limitation": "Unauthenticated HTTP readback is not a signed-out browser rendering or playback test."
+}

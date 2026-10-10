@@ -446,6 +446,54 @@ export function validateRuntimeManifestCompatibility(manifest) {
     );
   }
 
+  const copy = manifest.page?.copy;
+  const copyRequirements = {
+    hero: ["nodeId", "eyebrow", "title", "intro", "invitation"],
+    welcome: ["nodeId", "eyebrow", "title", "summary"],
+    currentExploration: ["nodeId", "eyebrow", "title"],
+    currentTwwl: ["nodeId", "eyebrow", "title", "comingSoonTitle", "comingSoonBody"],
+    pastExplorations: ["nodeId", "eyebrow", "title", "emptyText"],
+    pastTwwl: ["nodeId", "eyebrow", "title", "emptyText"],
+    archives: ["nodeId", "eyebrow", "title", "intro"],
+    footer: ["nodeId", "text"]
+  };
+  const copyIsUsable = copy && Object.entries(copyRequirements).every(([section, fields]) => (
+    copy[section] &&
+    fields.every((field) => typeof copy[section][field] === "string" && copy[section][field].trim())
+  )) && (copy.hero.pillars === undefined || (
+    Array.isArray(copy.hero.pillars) && copy.hero.pillars.length > 0 &&
+    copy.hero.pillars.every((pillar) => typeof pillar === "string" && pillar.trim())
+  ));
+  if (!copyIsUsable) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Runtime page copy is incomplete or unusable."
+    );
+  }
+
+  const currentTwwl = manifest.current?.twwl;
+  if (
+    !["coming-soon", "published"].includes(currentTwwl?.state) ||
+    (currentTwwl.state === "coming-soon" && currentTwwl.content !== undefined) ||
+    (currentTwwl.state === "published" && !currentTwwl.content)
+  ) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Runtime Current TWWL state and content do not agree."
+    );
+  }
+
+  if (
+    !Array.isArray(manifest.galleries?.pastExplorations) ||
+    !Array.isArray(manifest.galleries?.pastTwwl) ||
+    !Array.isArray(manifest.archives)
+  ) {
+    throw new HubContractError(
+      "HUB_RUNTIME_CONTENT_INCOMPATIBLE",
+      "Runtime galleries and archives must be arrays, including when they are empty."
+    );
+  }
+
   return manifest;
 }
 

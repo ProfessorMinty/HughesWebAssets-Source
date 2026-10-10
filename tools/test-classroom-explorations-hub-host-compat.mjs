@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = resolve(new URL("..", import.meta.url).pathname);
+const root = fileURLToPath(new URL("..", import.meta.url));
 const css = await readFile(resolve(root, "apps/classroom-explorations-hub/src/host-compat.css"), "utf8");
 const scope = "html.hrv-page-classroom-explorations-ready body:is(.page-id-17, .page-id-2589) ";
 
@@ -29,12 +30,26 @@ for (const required of [
   assert(css.includes(required), `Host compatibility is missing required breakout/reset contract: ${required}`);
 }
 
+assert.match(
+  css,
+  /html\.hrv-page-classroom-explorations-ready body:is\(\.page-id-17, \.page-id-2589\) #masthead\.site-header,\s*html\.hrv-page-classroom-explorations-ready body:is\(\.page-id-17, \.page-id-2589\) #sidebar-footer\.footer-widget-area\s*\{\s*display:\s*none\s*!important;\s*\}/,
+  "Authorized production and review hosts remove duplicate native menus only after successful Hub readiness."
+);
+assert.doesNotMatch(
+  css,
+  /#wpadminbar|body\.(?:logged-in|admin-bar)/,
+  "Hub host compatibility must not depend on authentication state or suppress the Edublogs toolbar."
+);
+
 for (const match of css.matchAll(/([^{}]+)\{[^{}]*\}/g)) {
   const selectorBlock = match[1].trim();
   if (!selectorBlock || selectorBlock.startsWith("@")) continue;
   for (const selector of selectorBlock.split(/,\s*\n/).map((value) => value.trim()).filter(Boolean)) {
-    assert(selector.startsWith(scope), `Host compatibility selector escaped approved Hub host scope: ${selector}`);
+    assert(
+      selector.startsWith(scope),
+      `Host compatibility selector escaped approved Hub host scope: ${selector}`
+    );
   }
 }
 
-console.log("[hub host compat] page 17 + page 2589 ready-state scoping + Amadeus reset + viewport breakout contract passed");
+console.log("[hub host compat] ready-only page 17/2589 seam removal + viewport breakout contract passed");

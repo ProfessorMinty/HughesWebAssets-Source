@@ -1,0 +1,6229 @@
+{
+  "schemaVersion": "1.0",
+  "generatedAt": "2026-10-10T19:59:42.945Z",
+  "presentationRubric": {
+    "id": "hrv-presentation-policy:classroom-explorations-hub",
+    "version": "2026-09-12.1",
+    "path": "docs/classroom-explorations-hub-manifest-authoring-rubric.md",
+    "bindingStatus": "documented-local-preview-profile; machine-readable publication binding pending"
+  },
+  "tolerances": {
+    "containmentPixels": 1,
+    "equalDoorDeltaPixels": 1.5,
+    "minimumTargetCssPixels": 44,
+    "targetRenderingTolerancePixels": 1
+  },
+  "coverage": {
+    "geometry": "CSS viewport and device-pixel-ratio matrix through Chrome DevTools Protocol",
+    "nativeBrowserZoom": {
+      "status": "passed",
+      "platform": "win32",
+      "scenarios": [
+        {
+          "label": "desktop-window-metrics-proxy",
+          "width": 1920,
+          "height": 911,
+          "dpr": 1,
+          "targets": [
+            0.8,
+            1,
+            1.25,
+            1.5,
+            2
+          ]
+        },
+        {
+          "label": "windows-150-percent-display-proxy",
+          "width": 1280,
+          "height": 607,
+          "dpr": 1.5,
+          "targets": [
+            0.8,
+            1,
+            1.25,
+            1.5,
+            2
+          ]
+        }
+      ]
+    },
+    "platformModel": {
+      "chromeZoom": "native browser accelerator and Page.getLayoutMetrics verification on Windows",
+      "windowAndDisplayMetrics": "headless CDP device-metric emulation proxy; not proof of a physical monitor or Windows OS display setting"
+    },
+    "screenshotMedia": {
+      "requirement": "settled-ready-or-unavailable",
+      "capturedStates": "recorded per geometry screenshot",
+      "welcomeIframeEvidence": "iframe-load-event-only",
+      "playbackProof": "not-claimed"
+    }
+  },
+  "buildFreshness": {
+    "projectionSnapshotId": "sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b",
+    "projectionManifestSha256": "99f92a626f362b37fea48a358ae786ac3a980d4a877823913f790c1080d4a054",
+    "verifier": {
+      "path": "tools/test-classroom-explorations-hub-browser.mjs",
+      "sha256": "f2e9cb3a56f5687b9712f5e12537272881f7ed7009b9f7a702aa289c4215b2e7"
+    },
+    "canonicalTransactionRevisions": {
+      "algorithm": "sha256-canonical-json-v1",
+      "authoringSha256": "696c09c63695b6a8c0360aa5e5e32029cf418e21dcac9bf2b5ad5d810bac5be3",
+      "routesSha256": "3af5e8c391e67d19e8a68f3dd444b8735d660e825c44b47bc2deada335b98a90",
+      "controlSha256": "207a0ba051218194111c81f8a2af95fcfc0e7e48e886501b3b3e6774fbbe1b6b"
+    },
+    "rawDocumentBytes": {
+      "authoring": {
+        "byteLength": 10997,
+        "sha256": "3c85a2ce02f4ff11c337c8d28444604907971d4c2ca59d74d65e20b3ee009977"
+      },
+      "routes": {
+        "byteLength": 3364,
+        "sha256": "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73"
+      },
+      "control": {
+        "byteLength": 9783,
+        "sha256": "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be"
+      }
+    },
+    "runtimeSources": {
+      "bootstrap": "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159",
+      "script": "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081",
+      "style": "4878f856ca379a7b9771a0fc6cdd4ffca1a18808221d49c494f3fbed8e85e940",
+      "hostCompat": "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300"
+    },
+    "artwork": {
+      "pastExplorations": "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
+      "pastTwwl": "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
+      "pastYears": "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+      "frameTopLeft": "7a7a9cebcad631d3287211f8e7529e301cdaf9d70de55cd21a64fc505ead7c54",
+      "frameTopRight": "c74cee00ba8504186647f8641126accabd0a2fcc8a832d9e0ffd6e017c79ba11",
+      "frameMiddleLeft": "81b0ee9ee9e93687ee1aaffb214feca1d31de986751318405b29f258eff565b7",
+      "frameMiddleRight": "ec015b8e4f98f0eca9d48254b6b719e3826ea8927a78891151627378ce13c889",
+      "frameBottomLeft": "4c41de2d714d324e565ab779fcd8e9c80e9ae181d654a95380ecfa3deed248b6",
+      "frameBottomRight": "ad4450dba040a20a393fd026d00df644faed9be86e8e265ce730ee481ae91074"
+    },
+    "previewHtmlSha256": "831e28896074f63ec74ed79bffc17ca23ec602de888a8ce37d224b9aa60a6852"
+  },
+  "source": {
+    "publicationId": "local-preview",
+    "publicationSourceRevision": "working-tree",
+    "runtimeVersion": "local-preview",
+    "snapshotId": "sha256:46c27660085a39902ca043bdedd804010129937fd0cb1dc0b1199ddd18333a7b",
+    "canonicalTransactionRevisions": {
+      "algorithm": "sha256-canonical-json-v1",
+      "authoringSha256": "696c09c63695b6a8c0360aa5e5e32029cf418e21dcac9bf2b5ad5d810bac5be3",
+      "routesSha256": "3af5e8c391e67d19e8a68f3dd444b8735d660e825c44b47bc2deada335b98a90",
+      "controlSha256": "207a0ba051218194111c81f8a2af95fcfc0e7e48e886501b3b3e6774fbbe1b6b"
+    },
+    "rawDocumentBytes": {
+      "authoring": {
+        "byteLength": 10997,
+        "sha256": "3c85a2ce02f4ff11c337c8d28444604907971d4c2ca59d74d65e20b3ee009977"
+      },
+      "routes": {
+        "byteLength": 3364,
+        "sha256": "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73"
+      },
+      "control": {
+        "byteLength": 9783,
+        "sha256": "7784b2d569ba13bf45ef512ca48c431166d6e249a75ad13058f848dca55110be"
+      }
+    },
+    "bootstrapSha256": "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159",
+    "runtimeSha256": "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081",
+    "styleSha256": "4878f856ca379a7b9771a0fc6cdd4ffca1a18808221d49c494f3fbed8e85e940",
+    "hostCompatSha256": "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300"
+  },
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/155.0.8059.39",
+    "revision": "@3ff7ac5a9224be9156d7f8703a06e22890aafd34",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "jsVersion": "15.5.35.20"
+  },
+  "browserObservations": {
+    "policy": {
+      "failing": "top-page runtime exceptions and console errors, local JavaScript log errors, and uncancelled local Document/Fetch/Image/Media/Script/Stylesheet/XHR loading or HTTP errors",
+      "nonFailing": "observed external-media loading/status failures and canceled local requests; media fallbacks are asserted in page state",
+      "retainedPerCategory": 250
+    },
+    "droppedAfterLimit": {
+      "runtimeExceptions": 0,
+      "consoleErrors": 0,
+      "logErrors": 0,
+      "networkFailures": 0,
+      "httpErrors": 0
+    },
+    "unexpected": {
+      "runtimeExceptions": [],
+      "consoleErrors": [],
+      "logErrors": [],
+      "networkFailures": [],
+      "httpErrors": []
+    },
+    "observed": {
+      "runtimeExceptions": [],
+      "consoleErrors": [],
+      "logErrors": [],
+      "networkFailures": [
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        },
+        {
+          "url": "https://www.youtube-nocookie.com/embed/kRTJp4pqbtg",
+          "type": "Document",
+          "errorText": "net::ERR_ABORTED",
+          "canceled": true,
+          "blockedReason": null
+        }
+      ],
+      "httpErrors": []
+    }
+  },
+  "results": [
+    {
+      "kind": "geometry",
+      "label": "zoom-out-large",
+      "state": "ready",
+      "viewport": {
+        "width": 2560,
+        "height": 1139,
+        "dpr": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1139,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 852,
+        "bottom": 104.546875,
+        "width": 828,
+        "height": 90.546875
+      },
+      "navigation": {
+        "left": 866,
+        "top": 14,
+        "right": 2536,
+        "bottom": 104.546875,
+        "width": 1670,
+        "height": 90.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 117.546875,
+          "right": 1273,
+          "bottom": 667.359375,
+          "width": 1249,
+          "height": 549.8125
+        },
+        "currentExploration": {
+          "left": 1287,
+          "top": 117.546875,
+          "right": 2536,
+          "bottom": 667.359375,
+          "width": 1249,
+          "height": 549.8125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 680.359375,
+          "right": 2115,
+          "bottom": 980.359375,
+          "width": 2091,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 407,
+          "height": 93.328125
+        },
+        {
+          "width": 407,
+          "height": 93.328125
+        },
+        {
+          "width": 407,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "31.36px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 980.359375
+    },
+    {
+      "kind": "geometry",
+      "label": "approved-desktop",
+      "state": "ready",
+      "viewport": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 967,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 633.65625,
+        "bottom": 104.546875,
+        "width": 609.65625,
+        "height": 90.546875
+      },
+      "navigation": {
+        "left": 647.65625,
+        "top": 14,
+        "right": 1881,
+        "bottom": 104.546875,
+        "width": 1233.34375,
+        "height": 90.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 117.546875,
+          "right": 945.5,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentExploration": {
+          "left": 959.5,
+          "top": 117.546875,
+          "right": 1881,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 610.546875,
+          "right": 1569.15625,
+          "bottom": 910.546875,
+          "width": 1545.15625,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "31.36px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 910.546875,
+      "screenshot": {
+        "file": "approved-desktop-1920x911.png",
+        "sha256": "92697ae5fe5b0fe9ee18c6d61cb05e30685c655a473dfa9bf92bf24e2612732e",
+        "byteLength": 1736014,
+        "cssViewport": {
+          "width": 1920,
+          "height": 911
+        },
+        "devicePixels": {
+          "width": 1920,
+          "height": 911
+        },
+        "deviceScaleFactor": 1,
+        "media": {
+          "currentImage": "ready",
+          "currentImagePaintEligible": true,
+          "currentImageNaturalSize": {
+            "width": 750,
+            "height": 1125
+          },
+          "welcomeIframeLoad": "load-event"
+        }
+      }
+    },
+    {
+      "kind": "geometry",
+      "label": "short-wide-boundary-pass",
+      "state": "ready",
+      "viewport": {
+        "width": 1920,
+        "height": 821,
+        "dpr": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 967,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 633.65625,
+        "bottom": 104.546875,
+        "width": 609.65625,
+        "height": 90.546875
+      },
+      "navigation": {
+        "left": 647.65625,
+        "top": 14,
+        "right": 1881,
+        "bottom": 104.546875,
+        "width": 1233.34375,
+        "height": 90.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 117.546875,
+          "right": 945.5,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentExploration": {
+          "left": 959.5,
+          "top": 117.546875,
+          "right": 1881,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 610.546875,
+          "right": 1569.15625,
+          "bottom": 910.546875,
+          "width": 1545.15625,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "31.36px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 910.546875
+    },
+    {
+      "kind": "geometry",
+      "label": "short-wide-former-failure",
+      "state": "ready",
+      "viewport": {
+        "width": 1920,
+        "height": 820,
+        "dpr": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 967,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 633.65625,
+        "bottom": 104.546875,
+        "width": 609.65625,
+        "height": 90.546875
+      },
+      "navigation": {
+        "left": 647.65625,
+        "top": 14,
+        "right": 1881,
+        "bottom": 104.546875,
+        "width": 1233.34375,
+        "height": 90.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 117.546875,
+          "right": 945.5,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentExploration": {
+          "left": 959.5,
+          "top": 117.546875,
+          "right": 1881,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 610.546875,
+          "right": 1569.15625,
+          "bottom": 910.546875,
+          "width": 1545.15625,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "31.36px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 910.546875,
+      "screenshot": {
+        "file": "short-wide-former-failure-1920x820.png",
+        "sha256": "bedd91e47531ccce4f836755e2e604022ce2cc8eeb477d880f0f96321794a7c5",
+        "byteLength": 1581381,
+        "cssViewport": {
+          "width": 1920,
+          "height": 820
+        },
+        "devicePixels": {
+          "width": 1920,
+          "height": 820
+        },
+        "deviceScaleFactor": 1,
+        "media": {
+          "currentImage": "ready",
+          "currentImagePaintEligible": true,
+          "currentImageNaturalSize": {
+            "width": 750,
+            "height": 1125
+          },
+          "welcomeIframeLoad": "load-event"
+        }
+      }
+    },
+    {
+      "kind": "geometry",
+      "label": "short-wide-boundary-low",
+      "state": "ready",
+      "viewport": {
+        "width": 1920,
+        "height": 819,
+        "dpr": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 967,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 633.65625,
+        "bottom": 104.546875,
+        "width": 609.65625,
+        "height": 90.546875
+      },
+      "navigation": {
+        "left": 647.65625,
+        "top": 14,
+        "right": 1881,
+        "bottom": 104.546875,
+        "width": 1233.34375,
+        "height": 90.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 117.546875,
+          "right": 945.5,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentExploration": {
+          "left": 959.5,
+          "top": 117.546875,
+          "right": 1881,
+          "bottom": 597.546875,
+          "width": 921.5,
+          "height": 480
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 610.546875,
+          "right": 1569.15625,
+          "bottom": 910.546875,
+          "width": 1545.15625,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.328125
+        },
+        {
+          "width": 297.84375,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "31.36px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 910.546875
+    },
+    {
+      "kind": "geometry",
+      "label": "wide-seam-high",
+      "state": "ready",
+      "viewport": {
+        "width": 1680,
+        "height": 911,
+        "dpr": 1.149999976158142
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 967,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 553.65625,
+        "bottom": 104.546875,
+        "width": 529.65625,
+        "height": 90.546875
+      },
+      "navigation": {
+        "left": 567.65625,
+        "top": 14,
+        "right": 1640.984375,
+        "bottom": 104.546875,
+        "width": 1073.328125,
+        "height": 90.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 117.546875,
+          "right": 825.484375,
+          "bottom": 597.546875,
+          "width": 801.484375,
+          "height": 480
+        },
+        "currentExploration": {
+          "left": 839.484375,
+          "top": 117.546875,
+          "right": 1640.984375,
+          "bottom": 597.546875,
+          "width": 801.5,
+          "height": 480
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 610.546875,
+          "right": 1369.15625,
+          "bottom": 910.546875,
+          "width": 1345.15625,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 257.828125,
+          "height": 93.328125
+        },
+        {
+          "width": 257.828125,
+          "height": 93.328125
+        },
+        {
+          "width": 257.828125,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "31.36px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 910.546875
+    },
+    {
+      "kind": "geometry",
+      "label": "wide-seam-low",
+      "state": "ready",
+      "viewport": {
+        "width": 1679,
+        "height": 911,
+        "dpr": 1.149999976158142
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1011,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 553.328125,
+        "bottom": 102,
+        "width": 529.328125,
+        "height": 88
+      },
+      "navigation": {
+        "left": 567.328125,
+        "top": 14,
+        "right": 1640,
+        "bottom": 102,
+        "width": 1072.671875,
+        "height": 88
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 115,
+          "right": 825,
+          "bottom": 641.203125,
+          "width": 801,
+          "height": 526.203125
+        },
+        "currentExploration": {
+          "left": 839,
+          "top": 115,
+          "right": 1640,
+          "bottom": 641.203125,
+          "width": 801,
+          "height": 526.203125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 654.203125,
+          "right": 1232.5,
+          "bottom": 954.203125,
+          "width": 1208.5,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 393.5,
+          "height": 93.328125
+        },
+        {
+          "width": 393.5,
+          "height": 93.328125
+        },
+        {
+          "width": 393.5,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "27.44px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 954.203125
+    },
+    {
+      "kind": "geometry",
+      "label": "scaled-short-boundary-pass",
+      "state": "ready",
+      "viewport": {
+        "width": 1600,
+        "height": 821,
+        "dpr": 1.2000000476837158
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1011,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 527,
+        "bottom": 102,
+        "width": 503,
+        "height": 88
+      },
+      "navigation": {
+        "left": 541,
+        "top": 14,
+        "right": 1561,
+        "bottom": 102,
+        "width": 1020,
+        "height": 88
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 115,
+          "right": 785.5,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentExploration": {
+          "left": 799.5,
+          "top": 115,
+          "right": 1561,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 654.203125,
+          "right": 1173.25,
+          "bottom": 954.203125,
+          "width": 1149.25,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "27.44px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 954.203125
+    },
+    {
+      "kind": "geometry",
+      "label": "scaled-short-former-failure",
+      "state": "ready",
+      "viewport": {
+        "width": 1600,
+        "height": 820,
+        "dpr": 1.2000000476837158
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1011,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 527,
+        "bottom": 102,
+        "width": 503,
+        "height": 88
+      },
+      "navigation": {
+        "left": 541,
+        "top": 14,
+        "right": 1561,
+        "bottom": 102,
+        "width": 1020,
+        "height": 88
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 115,
+          "right": 785.5,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentExploration": {
+          "left": 799.5,
+          "top": 115,
+          "right": 1561,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 654.203125,
+          "right": 1173.25,
+          "bottom": 954.203125,
+          "width": 1149.25,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "27.44px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 954.203125
+    },
+    {
+      "kind": "geometry",
+      "label": "scaled-short-boundary-low",
+      "state": "ready",
+      "viewport": {
+        "width": 1600,
+        "height": 819,
+        "dpr": 1.2000000476837158
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1011,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 527,
+        "bottom": 102,
+        "width": 503,
+        "height": 88
+      },
+      "navigation": {
+        "left": 541,
+        "top": 14,
+        "right": 1561,
+        "bottom": 102,
+        "width": 1020,
+        "height": 88
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 115,
+          "right": 785.5,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentExploration": {
+          "left": 799.5,
+          "top": 115,
+          "right": 1561,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 654.203125,
+          "right": 1173.25,
+          "bottom": 954.203125,
+          "width": 1149.25,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "27.44px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 954.203125
+    },
+    {
+      "kind": "geometry",
+      "label": "windows-150-zoom-80",
+      "state": "ready",
+      "viewport": {
+        "width": 1600,
+        "height": 759,
+        "dpr": 1.2000000476837158
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1011,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 527,
+        "bottom": 102,
+        "width": 503,
+        "height": 88
+      },
+      "navigation": {
+        "left": 541,
+        "top": 14,
+        "right": 1561,
+        "bottom": 102,
+        "width": 1020,
+        "height": 88
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 115,
+          "right": 785.5,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentExploration": {
+          "left": 799.5,
+          "top": 115,
+          "right": 1561,
+          "bottom": 641.203125,
+          "width": 761.5,
+          "height": 526.203125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 654.203125,
+          "right": 1173.25,
+          "bottom": 954.203125,
+          "width": 1149.25,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.328125
+        },
+        {
+          "width": 373.75,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "27.44px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 954.203125
+    },
+    {
+      "kind": "geometry",
+      "label": "desktop-floor",
+      "state": "ready",
+      "viewport": {
+        "width": 1440,
+        "height": 900,
+        "dpr": 1.25
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1011,
+      "hero": {
+        "left": 24,
+        "top": 14,
+        "right": 473.65625,
+        "bottom": 102,
+        "width": 449.65625,
+        "height": 88
+      },
+      "navigation": {
+        "left": 487.65625,
+        "top": 14,
+        "right": 1401,
+        "bottom": 102,
+        "width": 913.34375,
+        "height": 88
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 24,
+          "top": 115,
+          "right": 705.484375,
+          "bottom": 641.203125,
+          "width": 681.484375,
+          "height": 526.203125
+        },
+        "currentExploration": {
+          "left": 719.484375,
+          "top": 115,
+          "right": 1401,
+          "bottom": 641.203125,
+          "width": 681.515625,
+          "height": 526.203125
+        },
+        "currentTwwl": {
+          "left": 24,
+          "top": 654.203125,
+          "right": 1053.25,
+          "bottom": 954.203125,
+          "width": 1029.25,
+          "height": 300
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 333.75,
+          "height": 93.328125
+        },
+        {
+          "width": 333.75,
+          "height": 93.328125
+        },
+        {
+          "width": 333.75,
+          "height": 93.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "27.44px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "21px",
+          "fontWeight": "700",
+          "lineHeight": "24.36px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "36px",
+          "fontWeight": "700",
+          "lineHeight": "36.36px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "24.3px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "700",
+          "lineHeight": "15px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 954.203125
+    },
+    {
+      "kind": "geometry",
+      "label": "fractional-boundary",
+      "state": "ready",
+      "viewport": {
+        "width": 1439,
+        "height": 900,
+        "dpr": 1.25
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 2038,
+      "hero": {
+        "left": 24,
+        "top": 12,
+        "right": 474.65625,
+        "bottom": 139.59375,
+        "width": 450.65625,
+        "height": 127.59375
+      },
+      "navigation": {
+        "left": 486.65625,
+        "top": 12,
+        "right": 1400,
+        "bottom": 139.59375,
+        "width": 913.34375,
+        "height": 127.59375
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 64.453125,
+          "top": 161.59375,
+          "right": 1359.546875,
+          "bottom": 596.203125,
+          "width": 1295.09375,
+          "height": 434.609375
+        },
+        "currentExploration": {
+          "left": 35.671875,
+          "top": 628.203125,
+          "right": 1388.328125,
+          "bottom": 1196.609375,
+          "width": 1352.65625,
+          "height": 568.40625
+        },
+        "currentTwwl": {
+          "left": 64.453125,
+          "top": 1228.609375,
+          "right": 1359.546875,
+          "bottom": 1598.5,
+          "width": 1295.09375,
+          "height": 369.890625
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 441.546875,
+          "height": 220.78125
+        },
+        {
+          "width": 441.546875,
+          "height": 220.78125
+        },
+        {
+          "width": 441.5625,
+          "height": 220.78125
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 1598.5
+    },
+    {
+      "kind": "geometry",
+      "label": "narrow-desktop",
+      "state": "ready",
+      "viewport": {
+        "width": 1366,
+        "height": 768,
+        "dpr": 1.25
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1996,
+      "hero": {
+        "left": 24,
+        "top": 12,
+        "right": 450.328125,
+        "bottom": 137.0625,
+        "width": 426.328125,
+        "height": 125.0625
+      },
+      "navigation": {
+        "left": 462.328125,
+        "top": 12,
+        "right": 1327,
+        "bottom": 137.0625,
+        "width": 864.671875,
+        "height": 125.0625
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 60.796875,
+          "top": 159.0625,
+          "right": 1290.1875,
+          "bottom": 574.375,
+          "width": 1229.390625,
+          "height": 415.3125
+        },
+        "currentExploration": {
+          "left": 33.484375,
+          "top": 606.375,
+          "right": 1317.515625,
+          "bottom": 1171.6875,
+          "width": 1284.03125,
+          "height": 565.3125
+        },
+        "currentTwwl": {
+          "left": 60.796875,
+          "top": 1203.6875,
+          "right": 1290.1875,
+          "bottom": 1567.640625,
+          "width": 1229.390625,
+          "height": 363.953125
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 418.671875,
+          "height": 209.34375
+        },
+        {
+          "width": 418.671875,
+          "height": 209.34375
+        },
+        {
+          "width": 418.6875,
+          "height": 209.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "30.735px",
+          "fontWeight": "700",
+          "lineHeight": "30.735px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 1567.640625,
+      "screenshot": {
+        "file": "narrow-desktop-1366x768.png",
+        "sha256": "98acce62019927ba6446200a9a40eaa82f41603477b2d29008056fd331106a00",
+        "byteLength": 1476833,
+        "cssViewport": {
+          "width": 1366,
+          "height": 768
+        },
+        "devicePixels": {
+          "width": 1708,
+          "height": 960
+        },
+        "deviceScaleFactor": 1.25,
+        "media": {
+          "currentImage": "ready",
+          "currentImagePaintEligible": true,
+          "currentImageNaturalSize": {
+            "width": 750,
+            "height": 1125
+          },
+          "welcomeIframeLoad": "load-event"
+        }
+      }
+    },
+    {
+      "kind": "geometry",
+      "label": "stack-boundary-high",
+      "state": "ready",
+      "viewport": {
+        "width": 1331,
+        "height": 800,
+        "dpr": 1.25
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1984,
+      "hero": {
+        "left": 24,
+        "top": 12,
+        "right": 438.65625,
+        "bottom": 135.5,
+        "width": 414.65625,
+        "height": 123.5
+      },
+      "navigation": {
+        "left": 450.65625,
+        "top": 12,
+        "right": 1292,
+        "bottom": 135.5,
+        "width": 841.34375,
+        "height": 123.5
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 59.046875,
+          "top": 157.5,
+          "right": 1256.9375,
+          "bottom": 570.875,
+          "width": 1197.890625,
+          "height": 413.375
+        },
+        "currentExploration": {
+          "left": 32.4375,
+          "top": 602.875,
+          "right": 1283.5625,
+          "bottom": 1166.71875,
+          "width": 1251.125,
+          "height": 563.84375
+        },
+        "currentTwwl": {
+          "left": 59.046875,
+          "top": 1198.71875,
+          "right": 1256.9375,
+          "bottom": 1560.765625,
+          "width": 1197.890625,
+          "height": 362.046875
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 407.703125,
+          "height": 203.859375
+        },
+        {
+          "width": 407.703125,
+          "height": 203.859375
+        },
+        {
+          "width": 407.71875,
+          "height": 203.859375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "29.9475px",
+          "fontWeight": "700",
+          "lineHeight": "29.9475px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 1560.765625
+    },
+    {
+      "kind": "geometry",
+      "label": "stack-boundary-low",
+      "state": "ready",
+      "viewport": {
+        "width": 1330,
+        "height": 800,
+        "dpr": 1.25
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3599,
+      "hero": {
+        "left": 24,
+        "top": 12,
+        "right": 438.328125,
+        "bottom": 135.4375,
+        "width": 414.328125,
+        "height": 123.4375
+      },
+      "navigation": {
+        "left": 450.328125,
+        "top": 12,
+        "right": 1291,
+        "bottom": 135.4375,
+        "width": 840.671875,
+        "height": 123.4375
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 59,
+          "top": 157.4375,
+          "right": 1256,
+          "bottom": 1289.28125,
+          "width": 1197,
+          "height": 1131.84375
+        },
+        "currentExploration": {
+          "left": 32.40625,
+          "top": 1321.28125,
+          "right": 1282.59375,
+          "bottom": 2382.328125,
+          "width": 1250.1875,
+          "height": 1061.046875
+        },
+        "currentTwwl": {
+          "left": 59,
+          "top": 2414.328125,
+          "right": 1256,
+          "bottom": 3176.234375,
+          "width": 1197,
+          "height": 761.90625
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 407.390625,
+          "height": 203.703125
+        },
+        {
+          "width": 407.390625,
+          "height": 203.703125
+        },
+        {
+          "width": 407.40625,
+          "height": 203.703125
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "29.925px",
+          "fontWeight": "700",
+          "lineHeight": "29.925px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 3176.234375
+    },
+    {
+      "kind": "geometry",
+      "label": "nav-boundary-high",
+      "state": "ready",
+      "viewport": {
+        "width": 1181,
+        "height": 800,
+        "dpr": 1.5
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3475,
+      "hero": {
+        "left": 23.609375,
+        "top": 12,
+        "right": 388.53125,
+        "bottom": 149.546875,
+        "width": 364.921875,
+        "height": 137.546875
+      },
+      "navigation": {
+        "left": 400.53125,
+        "top": 12,
+        "right": 1142.390625,
+        "bottom": 149.546875,
+        "width": 741.859375,
+        "height": 137.546875
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 51.546875,
+          "top": 171.546875,
+          "right": 1114.4375,
+          "bottom": 1212.1875,
+          "width": 1062.890625,
+          "height": 1040.640625
+        },
+        "currentExploration": {
+          "left": 27.9375,
+          "top": 1244.1875,
+          "right": 1138.0625,
+          "bottom": 2294.8125,
+          "width": 1110.125,
+          "height": 1050.625
+        },
+        "currentTwwl": {
+          "left": 51.546875,
+          "top": 2326.8125,
+          "right": 1114.4375,
+          "bottom": 3075.40625,
+          "width": 1062.890625,
+          "height": 748.59375
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 360.703125,
+          "height": 180.359375
+        },
+        {
+          "width": 360.703125,
+          "height": 180.359375
+        },
+        {
+          "width": 360.71875,
+          "height": 180.359375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "26.5725px",
+          "fontWeight": "700",
+          "lineHeight": "26.5725px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 3075.40625
+    },
+    {
+      "kind": "geometry",
+      "label": "nav-boundary-low",
+      "state": "ready",
+      "viewport": {
+        "width": 1180,
+        "height": 800,
+        "dpr": 1.5
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3398,
+      "hero": {
+        "left": 23.59375,
+        "top": 12,
+        "right": 388.1875,
+        "bottom": 149.484375,
+        "width": 364.59375,
+        "height": 137.484375
+      },
+      "navigation": {
+        "left": 400.1875,
+        "top": 12,
+        "right": 1141.40625,
+        "bottom": 149.484375,
+        "width": 741.21875,
+        "height": 137.484375
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 102.5,
+          "top": 171.484375,
+          "right": 1062.5,
+          "bottom": 1154.0625,
+          "width": 960,
+          "height": 982.578125
+        },
+        "currentExploration": {
+          "left": 82.5,
+          "top": 1186.0625,
+          "right": 1082.5,
+          "bottom": 2236.59375,
+          "width": 1000,
+          "height": 1050.53125
+        },
+        "currentTwwl": {
+          "left": 51.5,
+          "top": 2268.59375,
+          "right": 1113.5,
+          "bottom": 3017.09375,
+          "width": 1062,
+          "height": 748.5
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 324,
+          "height": 162
+        },
+        {
+          "width": 324,
+          "height": 162
+        },
+        {
+          "width": 324,
+          "height": 162
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "26.55px",
+          "fontWeight": "700",
+          "lineHeight": "26.55px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 3017.09375
+    },
+    {
+      "kind": "geometry",
+      "label": "compact-nav-seam-high",
+      "state": "ready",
+      "viewport": {
+        "width": 1000,
+        "height": 800,
+        "dpr": 1.5
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3285,
+      "hero": {
+        "left": 20,
+        "top": 12,
+        "right": 327,
+        "bottom": 148.390625,
+        "width": 307,
+        "height": 136.390625
+      },
+      "navigation": {
+        "left": 339,
+        "top": 12,
+        "right": 965,
+        "bottom": 148.390625,
+        "width": 626,
+        "height": 136.390625
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 40,
+          "top": 170.390625,
+          "right": 945,
+          "bottom": 1085.421875,
+          "width": 905,
+          "height": 915.03125
+        },
+        "currentExploration": {
+          "left": 40,
+          "top": 1117.421875,
+          "right": 945,
+          "bottom": 2159.390625,
+          "width": 905,
+          "height": 1041.96875
+        },
+        "currentTwwl": {
+          "left": 42.5,
+          "top": 2191.390625,
+          "right": 942.5,
+          "bottom": 2919.4375,
+          "width": 900,
+          "height": 728.046875
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 292.328125,
+          "height": 146.171875
+        },
+        {
+          "width": 292.328125,
+          "height": 146.171875
+        },
+        {
+          "width": 292.34375,
+          "height": 146.171875
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "26px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 2919.4375
+    },
+    {
+      "kind": "geometry",
+      "label": "compact-nav-seam-low",
+      "state": "ready",
+      "viewport": {
+        "width": 999,
+        "height": 800,
+        "dpr": 1.5
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3355,
+      "hero": {
+        "left": 19.96875,
+        "top": 12,
+        "right": 964.03125,
+        "bottom": 101.59375,
+        "width": 944.0625,
+        "height": 89.59375
+      },
+      "navigation": {
+        "left": 19.96875,
+        "top": 113.59375,
+        "right": 964.03125,
+        "bottom": 219.59375,
+        "width": 944.0625,
+        "height": 106
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 39.96875,
+          "top": 241.59375,
+          "right": 944.03125,
+          "bottom": 1155.90625,
+          "width": 904.0625,
+          "height": 914.3125
+        },
+        "currentExploration": {
+          "left": 39.96875,
+          "top": 1187.90625,
+          "right": 944.03125,
+          "bottom": 2229.8125,
+          "width": 904.0625,
+          "height": 1041.90625
+        },
+        "currentTwwl": {
+          "left": 42.453125,
+          "top": 2261.8125,
+          "right": 941.546875,
+          "bottom": 2989.75,
+          "width": 899.09375,
+          "height": 727.9375
+        }
+      },
+      "navRows": 2,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 292.015625,
+          "height": 146.015625
+        },
+        {
+          "width": 292.015625,
+          "height": 146.015625
+        },
+        {
+          "width": 292.03125,
+          "height": 146.015625
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "26px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 2989.75
+    },
+    {
+      "kind": "geometry",
+      "label": "tablet",
+      "state": "ready",
+      "viewport": {
+        "width": 980,
+        "height": 911,
+        "dpr": 1.5
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3336,
+      "hero": {
+        "left": 19.59375,
+        "top": 12,
+        "right": 945.40625,
+        "bottom": 101.59375,
+        "width": 925.8125,
+        "height": 89.59375
+      },
+      "navigation": {
+        "left": 19.59375,
+        "top": 113.59375,
+        "right": 945.40625,
+        "bottom": 219.59375,
+        "width": 925.8125,
+        "height": 106
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 39.59375,
+          "top": 241.59375,
+          "right": 925.40625,
+          "bottom": 1142.703125,
+          "width": 885.8125,
+          "height": 901.109375
+        },
+        "currentExploration": {
+          "left": 39.59375,
+          "top": 1174.703125,
+          "right": 925.40625,
+          "bottom": 2216.265625,
+          "width": 885.8125,
+          "height": 1041.5625
+        },
+        "currentTwwl": {
+          "left": 41.5,
+          "top": 2248.265625,
+          "right": 923.5,
+          "bottom": 2974.40625,
+          "width": 882,
+          "height": 726.140625
+        }
+      },
+      "navRows": 2,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 285.9375,
+          "height": 142.96875
+        },
+        {
+          "width": 285.9375,
+          "height": 142.96875
+        },
+        {
+          "width": 285.9375,
+          "height": 142.96875
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "26px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 2974.40625,
+      "screenshot": {
+        "file": "tablet-980x911.png",
+        "sha256": "4f82ff16f8db23632b8716944abadaceaf7447f58978ebf119d53f418be9eac6",
+        "byteLength": 1474124,
+        "cssViewport": {
+          "width": 980,
+          "height": 911
+        },
+        "devicePixels": {
+          "width": 1470,
+          "height": 1367
+        },
+        "deviceScaleFactor": 1.5,
+        "media": {
+          "currentImage": "ready",
+          "currentImagePaintEligible": true,
+          "currentImageNaturalSize": {
+            "width": 750,
+            "height": 1125
+          },
+          "welcomeIframeLoad": "load-event"
+        }
+      }
+    },
+    {
+      "kind": "geometry",
+      "label": "mobile-boundary-high",
+      "state": "ready",
+      "viewport": {
+        "width": 721,
+        "height": 900,
+        "dpr": 2
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 3098,
+      "hero": {
+        "left": 14.40625,
+        "top": 12,
+        "right": 691.59375,
+        "bottom": 101.59375,
+        "width": 677.1875,
+        "height": 89.59375
+      },
+      "navigation": {
+        "left": 14.40625,
+        "top": 113.59375,
+        "right": 691.59375,
+        "bottom": 240.34375,
+        "width": 677.1875,
+        "height": 126.75
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 34.40625,
+          "top": 262.34375,
+          "right": 671.59375,
+          "bottom": 1018.578125,
+          "width": 637.1875,
+          "height": 756.234375
+        },
+        "currentExploration": {
+          "left": 34.40625,
+          "top": 1050.578125,
+          "right": 671.59375,
+          "bottom": 2079.46875,
+          "width": 637.1875,
+          "height": 1028.890625
+        },
+        "currentTwwl": {
+          "left": 28.546875,
+          "top": 2111.46875,
+          "right": 677.4375,
+          "bottom": 2777.46875,
+          "width": 648.890625,
+          "height": 666
+        }
+      },
+      "navRows": 2,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 203.0625,
+          "height": 101.53125
+        },
+        {
+          "width": 203.0625,
+          "height": 101.53125
+        },
+        {
+          "width": 203.0625,
+          "height": 101.53125
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "26px",
+          "fontWeight": "700",
+          "lineHeight": "26px",
+          "lines": 1
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 3
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 2777.46875
+    },
+    {
+      "kind": "geometry",
+      "label": "mobile-boundary-low",
+      "state": "ready",
+      "viewport": {
+        "width": 720,
+        "height": 900,
+        "dpr": 2
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 5040,
+      "hero": {
+        "left": 10,
+        "top": 21.59375,
+        "right": 695,
+        "bottom": 953.078125,
+        "width": 685,
+        "height": 931.484375
+      },
+      "navigation": {
+        "left": 10,
+        "top": 998.203125,
+        "right": 695,
+        "bottom": 1205.203125,
+        "width": 685,
+        "height": 207
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 10,
+          "top": 1236.390625,
+          "right": 695,
+          "bottom": 2039.125,
+          "width": 685,
+          "height": 802.734375
+        },
+        "currentExploration": {
+          "left": 10,
+          "top": 2081.515625,
+          "right": 695,
+          "bottom": 3077.421875,
+          "width": 685,
+          "height": 995.90625
+        },
+        "currentTwwl": {
+          "left": 28.5,
+          "top": 3117.421875,
+          "right": 676.5,
+          "bottom": 3788,
+          "width": 648,
+          "height": 670.578125
+        }
+      },
+      "navRows": 4,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 685,
+          "height": 342.5
+        },
+        {
+          "width": 685,
+          "height": 342.5
+        },
+        {
+          "width": 685,
+          "height": 342.5
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "67.2px",
+          "fontWeight": "700",
+          "lineHeight": "63.168px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "17px",
+          "fontWeight": "400",
+          "lineHeight": "27.54px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 2
+        }
+      },
+      "mainBottom": 3788
+    },
+    {
+      "kind": "geometry",
+      "label": "mobile-boundary-below",
+      "state": "ready",
+      "viewport": {
+        "width": 719,
+        "height": 900,
+        "dpr": 2
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 5037,
+      "hero": {
+        "left": 10,
+        "top": 21.59375,
+        "right": 694,
+        "bottom": 953.078125,
+        "width": 684,
+        "height": 931.484375
+      },
+      "navigation": {
+        "left": 10,
+        "top": 998.203125,
+        "right": 694,
+        "bottom": 1205.203125,
+        "width": 684,
+        "height": 207
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 10,
+          "top": 1236.390625,
+          "right": 694,
+          "bottom": 2038.5625,
+          "width": 684,
+          "height": 802.171875
+        },
+        "currentExploration": {
+          "left": 10,
+          "top": 2080.953125,
+          "right": 694,
+          "bottom": 3076.28125,
+          "width": 684,
+          "height": 995.328125
+        },
+        "currentTwwl": {
+          "left": 28.453125,
+          "top": 3116.28125,
+          "right": 675.546875,
+          "bottom": 3786.4375,
+          "width": 647.09375,
+          "height": 670.15625
+        }
+      },
+      "navRows": 4,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 684,
+          "height": 342
+        },
+        {
+          "width": 684,
+          "height": 342
+        },
+        {
+          "width": 684,
+          "height": 342
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "67.2px",
+          "fontWeight": "700",
+          "lineHeight": "63.168px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "17px",
+          "fontWeight": "400",
+          "lineHeight": "27.54px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 2
+        }
+      },
+      "mainBottom": 3786.4375
+    },
+    {
+      "kind": "geometry",
+      "label": "short-narrow-desktop",
+      "state": "ready",
+      "viewport": {
+        "width": 1366,
+        "height": 667,
+        "dpr": 1.25
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 1996,
+      "hero": {
+        "left": 24,
+        "top": 12,
+        "right": 450.328125,
+        "bottom": 137.0625,
+        "width": 426.328125,
+        "height": 125.0625
+      },
+      "navigation": {
+        "left": 462.328125,
+        "top": 12,
+        "right": 1327,
+        "bottom": 137.0625,
+        "width": 864.671875,
+        "height": 125.0625
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 60.796875,
+          "top": 159.0625,
+          "right": 1290.1875,
+          "bottom": 574.375,
+          "width": 1229.390625,
+          "height": 415.3125
+        },
+        "currentExploration": {
+          "left": 33.484375,
+          "top": 606.375,
+          "right": 1317.515625,
+          "bottom": 1171.6875,
+          "width": 1284.03125,
+          "height": 565.3125
+        },
+        "currentTwwl": {
+          "left": 60.796875,
+          "top": 1203.6875,
+          "right": 1290.1875,
+          "bottom": 1567.640625,
+          "width": 1229.390625,
+          "height": 363.953125
+        }
+      },
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 418.671875,
+          "height": 209.34375
+        },
+        {
+          "width": 418.671875,
+          "height": 209.34375
+        },
+        {
+          "width": 418.6875,
+          "height": 209.34375
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 46.546875,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, Cambria, \"Times New Roman\", serif",
+          "fontSize": "30.735px",
+          "fontWeight": "700",
+          "lineHeight": "30.735px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "32px",
+          "fontWeight": "700",
+          "lineHeight": "32.64px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 2
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "400",
+          "lineHeight": "29.16px",
+          "lines": 2
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 1
+        }
+      },
+      "mainBottom": 1567.640625
+    },
+    {
+      "kind": "geometry",
+      "label": "phone",
+      "state": "ready",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 3
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 4620,
+      "hero": {
+        "left": 10,
+        "top": 16,
+        "right": 365,
+        "bottom": 1023.90625,
+        "width": 355,
+        "height": 1007.90625
+      },
+      "navigation": {
+        "left": 10,
+        "top": 1074.640625,
+        "right": 365,
+        "bottom": 1305.078125,
+        "width": 355,
+        "height": 230.4375
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 10,
+          "top": 1329.875,
+          "right": 365,
+          "bottom": 2022.796875,
+          "width": 355,
+          "height": 692.921875
+        },
+        "currentExploration": {
+          "left": 10,
+          "top": 2054.796875,
+          "right": 365,
+          "bottom": 3115.625,
+          "width": 355,
+          "height": 1060.828125
+        },
+        "currentTwwl": {
+          "left": 24.5,
+          "top": 3147.625,
+          "right": 350.5,
+          "bottom": 3841.515625,
+          "width": 326,
+          "height": 693.890625
+        }
+      },
+      "navRows": 4,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 355,
+          "height": 177.5
+        },
+        {
+          "width": 355,
+          "height": 177.5
+        },
+        {
+          "width": 355,
+          "height": 177.5
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "50.7px",
+          "fontWeight": "700",
+          "lineHeight": "47.658px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "31.98px",
+          "fontWeight": "700",
+          "lineHeight": "32.6196px",
+          "lines": 1
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "48px",
+          "lines": 4
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "17px",
+          "fontWeight": "400",
+          "lineHeight": "27.54px",
+          "lines": 4
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 3
+        }
+      },
+      "mainBottom": 3841.515625,
+      "screenshot": {
+        "file": "phone-390x844.png",
+        "sha256": "c44403583707d1edc05f227f91b03467fc386668b6b260c4e27ff19d2b5c9d13",
+        "byteLength": 1924514,
+        "cssViewport": {
+          "width": 390,
+          "height": 844
+        },
+        "devicePixels": {
+          "width": 1170,
+          "height": 2532
+        },
+        "deviceScaleFactor": 3,
+        "media": {
+          "currentImage": "ready",
+          "currentImagePaintEligible": true,
+          "currentImageNaturalSize": {
+            "width": 750,
+            "height": 1125
+          },
+          "welcomeIframeLoad": "load-event"
+        }
+      }
+    },
+    {
+      "kind": "geometry",
+      "label": "wcag-reflow",
+      "state": "ready",
+      "viewport": {
+        "width": 320,
+        "height": 640,
+        "dpr": 4
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "documentHeight": 4863,
+      "hero": {
+        "left": 10,
+        "top": 16,
+        "right": 295,
+        "bottom": 1069.203125,
+        "width": 285,
+        "height": 1053.203125
+      },
+      "navigation": {
+        "left": 10,
+        "top": 1119.9375,
+        "right": 295,
+        "bottom": 1368.28125,
+        "width": 285,
+        "height": 248.34375
+      },
+      "primaryCards": {
+        "welcome": {
+          "left": 10,
+          "top": 1393.078125,
+          "right": 295,
+          "bottom": 2126.34375,
+          "width": 285,
+          "height": 733.265625
+        },
+        "currentExploration": {
+          "left": 10,
+          "top": 2158.34375,
+          "right": 295,
+          "bottom": 3295.515625,
+          "width": 285,
+          "height": 1137.171875
+        },
+        "currentTwwl": {
+          "left": 24.5,
+          "top": 3327.515625,
+          "right": 280.5,
+          "bottom": 4164.65625,
+          "width": 256,
+          "height": 837.140625
+        }
+      },
+      "navRows": 4,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "doors": [
+        {
+          "width": 285,
+          "height": 142.5
+        },
+        {
+          "width": 285,
+          "height": 142.5
+        },
+        {
+          "width": 285,
+          "height": 142.5
+        }
+      ],
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "minimumMainControlHeight": 44,
+      "typography": {
+        "identity": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "48px",
+          "fontWeight": "700",
+          "lineHeight": "45.12px",
+          "lines": 2
+        },
+        "section": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "28px",
+          "fontWeight": "700",
+          "lineHeight": "28.56px",
+          "lines": 2
+        },
+        "subject": {
+          "fontFamily": "Georgia, \"Times New Roman\", serif",
+          "fontSize": "42px",
+          "fontWeight": "700",
+          "lineHeight": "42px",
+          "lines": 4
+        },
+        "body": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "17px",
+          "fontWeight": "400",
+          "lineHeight": "27.54px",
+          "lines": 5
+        },
+        "metadata": {
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "15px",
+          "fontWeight": "900",
+          "lineHeight": "23.25px",
+          "lines": 3
+        }
+      },
+      "mainBottom": 4164.65625
+    },
+    {
+      "kind": "dialog",
+      "size": "1920x911",
+      "id": "hrv-past-explorations-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 362.5,
+        "top": 79.9375,
+        "right": 1542.5,
+        "bottom": 831.046875
+      },
+      "close": {
+        "left": 1431.5,
+        "top": 104.9375,
+        "right": 1517.5,
+        "bottom": 148.9375,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1920x911",
+      "id": "hrv-past-learning-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 362.5,
+        "top": 45.5,
+        "right": 1542.5,
+        "bottom": 865.5
+      },
+      "close": {
+        "left": 1416.5,
+        "top": 70.5,
+        "right": 1502.5,
+        "bottom": 114.5,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 478,
+        "observedScrollTop": 478,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1920x911",
+      "id": "hrv-school-year-archives-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 362.5,
+        "top": 315.875,
+        "right": 1542.5,
+        "bottom": 595.125
+      },
+      "close": {
+        "left": 1431.5,
+        "top": 340.875,
+        "right": 1517.5,
+        "bottom": 384.875,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1600x820",
+      "id": "hrv-past-explorations-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 202.5,
+        "top": 52.4375,
+        "right": 1382.5,
+        "bottom": 767.546875
+      },
+      "close": {
+        "left": 1271.5,
+        "top": 77.4375,
+        "right": 1357.5,
+        "bottom": 121.4375,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1600x820",
+      "id": "hrv-past-learning-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 202.5,
+        "top": 24,
+        "right": 1382.5,
+        "bottom": 796
+      },
+      "close": {
+        "left": 1256.5,
+        "top": 49,
+        "right": 1342.5,
+        "bottom": 93,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 448,
+        "observedScrollTop": 448,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1600x820",
+      "id": "hrv-school-year-archives-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 202.5,
+        "top": 270.375,
+        "right": 1382.5,
+        "bottom": 549.625
+      },
+      "close": {
+        "left": 1271.5,
+        "top": 295.375,
+        "right": 1357.5,
+        "bottom": 339.375,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1180x800",
+      "id": "hrv-past-explorations-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 16.5,
+        "top": 24,
+        "right": 1148.5,
+        "bottom": 776
+      },
+      "close": {
+        "left": 1022.5,
+        "top": 49,
+        "right": 1108.5,
+        "bottom": 93,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 453,
+        "observedScrollTop": 453,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1180x800",
+      "id": "hrv-past-learning-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 16.5,
+        "top": 24,
+        "right": 1148.5,
+        "bottom": 776
+      },
+      "close": {
+        "left": 1022.5,
+        "top": 49,
+        "right": 1108.5,
+        "bottom": 93,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 1082,
+        "observedScrollTop": 1082,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "1180x800",
+      "id": "hrv-school-year-archives-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 16.5,
+        "top": 235.25,
+        "right": 1148.5,
+        "bottom": 564.75
+      },
+      "close": {
+        "left": 1037.5,
+        "top": 260.25,
+        "right": 1123.5,
+        "bottom": 304.25,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "720x900",
+      "id": "hrv-past-explorations-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 2.5,
+        "top": 10,
+        "right": 702.5,
+        "bottom": 890
+      },
+      "close": {
+        "left": 586.5,
+        "top": 25,
+        "right": 672.5,
+        "bottom": 69,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 837,
+        "observedScrollTop": 837,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "720x900",
+      "id": "hrv-past-learning-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 2.5,
+        "top": 10,
+        "right": 702.5,
+        "bottom": 890
+      },
+      "close": {
+        "left": 586.5,
+        "top": 25,
+        "right": 672.5,
+        "bottom": 69,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 1901,
+        "observedScrollTop": 1901,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "720x900",
+      "id": "hrv-school-year-archives-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 2.5,
+        "top": 245.71875,
+        "right": 702.5,
+        "bottom": 654.265625
+      },
+      "close": {
+        "left": 601.5,
+        "top": 260.71875,
+        "right": 687.5,
+        "bottom": 304.71875,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "390x844",
+      "id": "hrv-past-explorations-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 2.5,
+        "top": 10,
+        "right": 372.5,
+        "bottom": 834
+      },
+      "close": {
+        "left": 256.5,
+        "top": 25,
+        "right": 342.5,
+        "bottom": 69,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 1302,
+        "observedScrollTop": 1302,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "390x844",
+      "id": "hrv-past-learning-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 2.5,
+        "top": 10,
+        "right": 372.5,
+        "bottom": 834
+      },
+      "close": {
+        "left": 256.5,
+        "top": 25,
+        "right": 342.5,
+        "bottom": 69,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 2702,
+        "observedScrollTop": 2702,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "dialog",
+      "size": "390x844",
+      "id": "hrv-school-year-archives-dialog",
+      "mode": "native",
+      "open": true,
+      "focusInside": true,
+      "box": {
+        "left": 2.5,
+        "top": 127.28125,
+        "right": 372.5,
+        "bottom": 716.71875
+      },
+      "close": {
+        "left": 271.5,
+        "top": 142.28125,
+        "right": 357.5,
+        "bottom": 186.28125,
+        "width": 86,
+        "height": 44
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "overflowX": 0,
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "closed": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "fallback-dialog",
+      "size": "1920x911",
+      "mode": "fallback",
+      "open": true,
+      "rootLocked": true,
+      "backgroundInert": true,
+      "focusInside": true,
+      "viewport": {
+        "width": 1905,
+        "height": 911
+      },
+      "box": {
+        "left": 0,
+        "top": 0,
+        "right": 1905,
+        "bottom": 911
+      },
+      "surface": {
+        "left": 362.5,
+        "top": 24,
+        "right": 1542.5,
+        "bottom": 775.109375
+      },
+      "close": {
+        "width": 86,
+        "height": 44
+      },
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 0,
+        "observedScrollTop": 0,
+        "reachedEnd": true
+      },
+      "closed": true,
+      "backgroundRestored": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "fallback-dialog",
+      "size": "720x900",
+      "mode": "fallback",
+      "open": true,
+      "rootLocked": true,
+      "backgroundInert": true,
+      "focusInside": true,
+      "viewport": {
+        "width": 705,
+        "height": 900
+      },
+      "box": {
+        "left": 0,
+        "top": 0,
+        "right": 705,
+        "bottom": 900
+      },
+      "surface": {
+        "left": 24,
+        "top": 24,
+        "right": 681,
+        "bottom": 844
+      },
+      "close": {
+        "width": 86,
+        "height": 44
+      },
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 897,
+        "observedScrollTop": 897,
+        "reachedEnd": true
+      },
+      "closed": true,
+      "backgroundRestored": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "fallback-dialog",
+      "size": "390x844",
+      "mode": "fallback",
+      "open": true,
+      "rootLocked": true,
+      "backgroundInert": true,
+      "focusInside": true,
+      "viewport": {
+        "width": 375,
+        "height": 844
+      },
+      "box": {
+        "left": 0,
+        "top": 0,
+        "right": 375,
+        "bottom": 844
+      },
+      "surface": {
+        "left": 24,
+        "top": 24,
+        "right": 351,
+        "bottom": 820
+      },
+      "close": {
+        "width": 86,
+        "height": 44
+      },
+      "focusLoop": {
+        "forwardWrapped": true,
+        "backwardWrapped": true
+      },
+      "scrolling": {
+        "overflowY": "auto",
+        "maximumScrollTop": 1528,
+        "observedScrollTop": 1528,
+        "reachedEnd": true
+      },
+      "closed": true,
+      "backgroundRestored": true,
+      "focusReturned": true
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "published-twwl",
+      "size": {
+        "width": 1920,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 325.25,
+            "top": 211.875,
+            "right": 928.5,
+            "bottom": 551.203125,
+            "width": 603.25,
+            "height": 339.328125
+          },
+          "fallback": {
+            "left": 326.25,
+            "top": 212.875,
+            "right": 927.5,
+            "bottom": 550.203125,
+            "width": 601.25,
+            "height": 337.328125
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": "ready",
+        "loadedImage": true,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "published-twwl",
+      "size": {
+        "width": 980,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 39.59375,
+            "top": 668.4375,
+            "right": 925.40625,
+            "bottom": 1166.703125,
+            "width": 885.8125,
+            "height": 498.265625
+          },
+          "fallback": {
+            "left": 40.59375,
+            "top": 669.4375,
+            "right": 924.40625,
+            "bottom": 1165.703125,
+            "width": 883.8125,
+            "height": 496.265625
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": "ready",
+        "loadedImage": true,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "published-twwl",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 26,
+            "top": 1849.109375,
+            "right": 349,
+            "bottom": 2030.796875,
+            "width": 323,
+            "height": 181.6875
+          },
+          "fallback": {
+            "left": 27,
+            "top": 1850.109375,
+            "right": 348,
+            "bottom": 2029.796875,
+            "width": 321,
+            "height": 179.6875
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": "ready",
+        "loadedImage": true,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "published-twwl-no-image",
+      "size": {
+        "width": 1920,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 325.25,
+            "top": 211.875,
+            "right": 928.5,
+            "bottom": 551.203125,
+            "width": 603.25,
+            "height": 339.328125
+          },
+          "fallback": {
+            "left": 326.25,
+            "top": 212.875,
+            "right": 927.5,
+            "bottom": 550.203125,
+            "width": 601.25,
+            "height": 337.328125
+          },
+          "contained": true
+        },
+        {
+          "className": "hub-media-fallback hub-media-fallback-twwl",
+          "ownerClassName": "twwl-media-stage subject-tubers has-media-fallback",
+          "owner": {
+            "left": 544.28125,
+            "top": 654.546875,
+            "right": 1549.15625,
+            "bottom": 986.21875,
+            "width": 1004.875,
+            "height": 331.671875
+          },
+          "fallback": {
+            "left": 544.28125,
+            "top": 654.546875,
+            "right": 1549.15625,
+            "bottom": 986.21875,
+            "width": 1004.875,
+            "height": 331.671875
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": "unavailable",
+        "loadedImage": false,
+        "visibleFallback": true
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "published-twwl-no-image",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 26,
+            "top": 1849.109375,
+            "right": 349,
+            "bottom": 2030.796875,
+            "width": 323,
+            "height": 181.6875
+          },
+          "fallback": {
+            "left": 27,
+            "top": 1850.109375,
+            "right": 348,
+            "bottom": 2029.796875,
+            "width": 321,
+            "height": 179.6875
+          },
+          "contained": true
+        },
+        {
+          "className": "hub-media-fallback hub-media-fallback-twwl",
+          "ownerClassName": "twwl-media-stage subject-tubers has-media-fallback",
+          "owner": {
+            "left": 42.5,
+            "top": 3728.609375,
+            "right": 332.5,
+            "bottom": 3966.609375,
+            "width": 290,
+            "height": 238
+          },
+          "fallback": {
+            "left": 42.5,
+            "top": 3728.609375,
+            "right": 332.5,
+            "bottom": 3966.609375,
+            "width": 290,
+            "height": 238
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": "unavailable",
+        "loadedImage": false,
+        "visibleFallback": true
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "empty-collections",
+      "size": {
+        "width": 1920,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 325.25,
+            "top": 211.875,
+            "right": 928.5,
+            "bottom": 551.203125,
+            "width": 603.25,
+            "height": 339.328125
+          },
+          "fallback": {
+            "left": 326.25,
+            "top": 212.875,
+            "right": 927.5,
+            "bottom": 550.203125,
+            "width": 601.25,
+            "height": 337.328125
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": null,
+        "loadedImage": false,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "empty-collections",
+      "size": {
+        "width": 980,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 39.59375,
+            "top": 668.4375,
+            "right": 925.40625,
+            "bottom": 1166.703125,
+            "width": 885.8125,
+            "height": 498.265625
+          },
+          "fallback": {
+            "left": 40.59375,
+            "top": 669.4375,
+            "right": 924.40625,
+            "bottom": 1165.703125,
+            "width": 883.8125,
+            "height": 496.265625
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": null,
+        "loadedImage": false,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "empty-collections",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 26,
+            "top": 1849.109375,
+            "right": 349,
+            "bottom": 2030.796875,
+            "width": 323,
+            "height": 181.6875
+          },
+          "fallback": {
+            "left": 27,
+            "top": 1850.109375,
+            "right": 348,
+            "bottom": 2029.796875,
+            "width": 321,
+            "height": 179.6875
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": null,
+        "loadedImage": false,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "ready",
+        "currentFallback": false,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": true,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "media-unavailable",
+      "size": {
+        "width": 1920,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 325.25,
+            "top": 211.875,
+            "right": 928.5,
+            "bottom": 551.203125,
+            "width": 603.25,
+            "height": 339.328125
+          },
+          "fallback": {
+            "left": 326.25,
+            "top": 212.875,
+            "right": 927.5,
+            "bottom": 550.203125,
+            "width": 601.25,
+            "height": 337.328125
+          },
+          "contained": true
+        },
+        {
+          "className": "hub-media-fallback hub-media-fallback-current",
+          "ownerClassName": "current-media-stage has-media-fallback",
+          "owner": {
+            "left": 1509.921875,
+            "top": 155.546875,
+            "right": 1861,
+            "bottom": 607.546875,
+            "width": 351.078125,
+            "height": 452
+          },
+          "fallback": {
+            "left": 1509.921875,
+            "top": 155.546875,
+            "right": 1861,
+            "bottom": 607.546875,
+            "width": 351.078125,
+            "height": 452
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": null,
+        "loadedImage": false,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "unavailable",
+        "currentFallback": true,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "media-unavailable",
+      "size": {
+        "width": 980,
+        "height": 911
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 39.59375,
+            "top": 668.4375,
+            "right": 925.40625,
+            "bottom": 1166.703125,
+            "width": 885.8125,
+            "height": 498.265625
+          },
+          "fallback": {
+            "left": 40.59375,
+            "top": 669.4375,
+            "right": 924.40625,
+            "bottom": 1165.703125,
+            "width": 883.8125,
+            "height": 496.265625
+          },
+          "contained": true
+        },
+        {
+          "className": "hub-media-fallback hub-media-fallback-current",
+          "ownerClassName": "current-media-stage has-media-fallback",
+          "owner": {
+            "left": 67.390625,
+            "top": 1226.5,
+            "right": 897.609375,
+            "bottom": 1674.5,
+            "width": 830.21875,
+            "height": 448
+          },
+          "fallback": {
+            "left": 67.390625,
+            "top": 1226.5,
+            "right": 897.609375,
+            "bottom": 1674.5,
+            "width": 830.21875,
+            "height": 448
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": null,
+        "loadedImage": false,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "unavailable",
+        "currentFallback": true,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "lifecycle",
+      "mode": "media-unavailable",
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "ready": true,
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "visibleFallbackContainment": [
+        {
+          "className": "hub-media-fallback hub-media-fallback-video",
+          "ownerClassName": "welcome-screen has-media-fallback",
+          "owner": {
+            "left": 26,
+            "top": 1849.109375,
+            "right": 349,
+            "bottom": 2030.796875,
+            "width": 323,
+            "height": 181.6875
+          },
+          "fallback": {
+            "left": 27,
+            "top": 1850.109375,
+            "right": 348,
+            "bottom": 2029.796875,
+            "width": 321,
+            "height": 179.6875
+          },
+          "contained": true
+        },
+        {
+          "className": "hub-media-fallback hub-media-fallback-current",
+          "ownerClassName": "current-media-stage has-media-fallback",
+          "owner": {
+            "left": 31,
+            "top": 2099.796875,
+            "right": 344,
+            "bottom": 2317.984375,
+            "width": 313,
+            "height": 218.1875
+          },
+          "fallback": {
+            "left": 31,
+            "top": 2099.796875,
+            "right": 344,
+            "bottom": 2317.984375,
+            "width": 313,
+            "height": 218.1875
+          },
+          "contained": true
+        }
+      ],
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "publishedVisual": {
+        "mediaState": null,
+        "loadedImage": false,
+        "visibleFallback": false
+      },
+      "unavailableMedia": {
+        "currentState": "unavailable",
+        "currentFallback": true,
+        "welcomeState": "unavailable",
+        "welcomeFallback": true
+      },
+      "emptyDialogs": [
+        {
+          "id": "hrv-past-explorations-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-past-learning-dialog",
+          "hasStatus": true,
+          "hasSearch": true
+        },
+        {
+          "id": "hrv-school-year-archives-dialog",
+          "hasStatus": false,
+          "hasSearch": false
+        }
+      ]
+    },
+    {
+      "kind": "loading",
+      "visible": true,
+      "rootBusy": true,
+      "role": "status",
+      "live": "polite"
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "desktop-window-metrics-proxy",
+      "baseMetrics": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1
+      },
+      "requestedZoom": 0.8,
+      "actualZoom": 0.800000011920929,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 610,
+          "top": 192.3828125,
+          "right": 1790,
+          "bottom": 946.34765625
+        },
+        "close": {
+          "width": 85.99609375,
+          "height": 43.984375
+        },
+        "maximumScrollTop": 0,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 2400,
+        "height": 1138,
+        "dpr": 0.800000011920929,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 90.99609375,
+      "navigationHeight": 90.99609375
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "desktop-window-metrics-proxy",
+      "baseMetrics": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1
+      },
+      "requestedZoom": 1,
+      "actualZoom": 1,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 362.5,
+          "top": 79.9375,
+          "right": 1542.5,
+          "bottom": 831.046875
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 0,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 90.546875,
+      "navigationHeight": 90.546875
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "desktop-window-metrics-proxy",
+      "baseMetrics": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1
+      },
+      "requestedZoom": 1.25,
+      "actualZoom": 1.25,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 172,
+          "top": 24,
+          "right": 1352,
+          "bottom": 704.7999877929688
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 28,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 1536,
+        "height": 729,
+        "dpr": 1.25,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 88,
+      "navigationHeight": 88
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "desktop-window-metrics-proxy",
+      "baseMetrics": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1
+      },
+      "requestedZoom": 1.5,
+      "actualZoom": 1.5,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 45,
+          "top": 24,
+          "right": 1225,
+          "bottom": 583.3333740234375
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 282,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 141.3125,
+      "navigationHeight": 141.3125
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "desktop-window-metrics-proxy",
+      "baseMetrics": {
+        "width": 1920,
+        "height": 911,
+        "dpr": 1
+      },
+      "requestedZoom": 2,
+      "actualZoom": 2,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 20.25,
+          "top": 24,
+          "right": 932.25,
+          "bottom": 431.5
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 848,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 960,
+        "height": 455,
+        "dpr": 2,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 2,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 89.59375,
+      "navigationHeight": 106
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "windows-150-percent-display-proxy",
+      "baseMetrics": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5
+      },
+      "requestedZoom": 0.8,
+      "actualZoom": 0.800000011920929,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 200.625,
+          "top": 24.00390625,
+          "right": 1380.625,
+          "bottom": 734.74609375
+        },
+        "close": {
+          "width": 85.99609375,
+          "height": 43.984375
+        },
+        "maximumScrollTop": 7,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 1600,
+        "height": 758,
+        "dpr": 1.2000000178813934,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 87.98828125,
+      "navigationHeight": 87.98828125
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "windows-150-percent-display-proxy",
+      "baseMetrics": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5
+      },
+      "requestedZoom": 1,
+      "actualZoom": 1,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 42.5,
+          "top": 24,
+          "right": 1222.5,
+          "bottom": 583
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 286,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 141.984375,
+      "navigationHeight": 141.984375
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "windows-150-percent-display-proxy",
+      "baseMetrics": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5
+      },
+      "requestedZoom": 1.25,
+      "actualZoom": 1.25,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 18,
+          "top": 24,
+          "right": 994,
+          "bottom": 461.6000061035156
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 820,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 1024,
+        "height": 486,
+        "dpr": 1.875,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 1,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 136,
+      "navigationHeight": 136
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "windows-150-percent-display-proxy",
+      "baseMetrics": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5
+      },
+      "requestedZoom": 1.5,
+      "actualZoom": 1.5,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 19,
+          "top": 24,
+          "right": 824.3333740234375,
+          "bottom": 380.66668701171875
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 936,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 853,
+        "height": 405,
+        "dpr": 2.25,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 2,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 88.91667175292969,
+      "navigationHeight": 115.0625
+    },
+    {
+      "kind": "native-zoom",
+      "scenario": "windows-150-percent-display-proxy",
+      "baseMetrics": {
+        "width": 1280,
+        "height": 607,
+        "dpr": 1.5
+      },
+      "requestedZoom": 2,
+      "actualZoom": 2,
+      "representativeDialog": {
+        "open": true,
+        "focusInside": true,
+        "box": {
+          "left": 6.25,
+          "top": 10,
+          "right": 626.25,
+          "bottom": 293.5
+        },
+        "close": {
+          "width": 86,
+          "height": 44
+        },
+        "maximumScrollTop": 1433,
+        "reachedEnd": true,
+        "closed": true,
+        "focusReturned": true
+      },
+      "ready": true,
+      "viewport": {
+        "width": 640,
+        "height": 303,
+        "dpr": 3,
+        "visualScale": 1
+      },
+      "documentOverflowX": 0,
+      "bodyOverflowX": 0,
+      "mountOverflowX": 0,
+      "cardsContained": true,
+      "mediaContained": true,
+      "primaryCardOverflow": {
+        "welcome": {
+          "x": 0,
+          "y": 0
+        },
+        "currentExploration": {
+          "x": 0,
+          "y": 0
+        },
+        "currentTwwl": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "doorsEqual": true,
+      "navRows": 4,
+      "navLinkCount": 7,
+      "visibleNavLinkCount": 7,
+      "navLinksContained": true,
+      "navLinksNonOverlapping": true,
+      "navLabelsUnclipped": true,
+      "heroHeight": 931.5703125,
+      "navigationHeight": 207
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0",
+  "pageId": "hrv-page:classroom-explorations",
+  "pageType": "classroom-explorations-hub",
+  "runtimeSchemaVersion": "1.0",
+  "assets": {
+    "bootstrap": {
+      "path": "bootstrap.js",
+      "sha256": "23d850ddad85cd17a25a32c2545565cfad84073ad290845448db2486ed1d7e2c"
+    },
+    "script": {
+      "path": "runtime.js",
+      "sha256": "d650bebb20bdc32fd9270c5e9b93ad805d8e687ff31073214dff35fea93061b7"
+    },
+    "style": {
+      "path": "hub.css",
+      "sha256": "d55e773aebb5832d46b9bde7b91c938f3222061b6a82591c2f77d57764bdee99"
+    },
+    "hostCompat": {
+      "path": "host-compat.css",
+      "sha256": "cd3bdebe94f39533e895764e126de568fb8221f7030157c79713df09c3d8d300"
+    }
+  },
+  "artwork": {
+    "pastExplorations": {
+      "path": "assets/history/past-explorations.webp",
+      "sha256": "b524f0839bc50a38fde72ed418cb288753ca238eadb7e9cea3bf33d93625e983",
+      "mediaType": "image/webp"
+    },
+    "pastTwwl": {
+      "path": "assets/history/past-twwl.webp",
+      "sha256": "dcece4282c73dce3026c8233d333bdde78082249392b45d159eb090fef76d425",
+      "mediaType": "image/webp"
+    },
+    "pastYears": {
+      "path": "assets/history/past-years.webp",
+      "sha256": "5c221b1f900d49cdc01c6c6fe45ea8340fabbb5ae299094e5708df05770941a4",
+      "mediaType": "image/webp"
+    }
+  }
+}

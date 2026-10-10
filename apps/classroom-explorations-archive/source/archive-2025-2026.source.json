@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0",
+  "page": {
+    "id": "hrv-page:classroom-explorations-archive-2025-2026",
+    "type": "classroom-explorations-archive",
+    "routeRef": "hrv-route:archive-2025-2026"
+  },
+  "data": {
+    "copy": {
+      "hero": {
+        "nodeId": "archive-node:hero",
+        "eyebrow": "Museum Archives • Preserved Classroom Discoveries",
+        "title": "Classroom Explorations: 2025–2026 Archive",
+        "intro": "Step back into last year’s classroom museum. These exhibits and learning displays are preserved here so families and students can revisit the discoveries anytime."
+      },
+      "explorations": {
+        "nodeId": "archive-node:explorations",
+        "eyebrow": "Exploration Collection",
+        "title": "Past Explorations",
+        "intro": "Hands-on investigations and classroom projects from the 2025–2026 school year.",
+        "emptyText": "No exploration matches that search."
+      },
+      "twwl": {
+        "nodeId": "archive-node:twwl",
+        "eyebrow": "Learning Memory Hall",
+        "title": "Past “This Week We Learned”",
+        "intro": "Weekly learning displays preserved from the 2025–2026 classroom year.",
+        "emptyText": "No learning story matches that search."
+      },
+      "navigation": {
+        "nodeId": "archive-node:navigation",
+        "backLabel": "Back to Current Classroom Explorations",
+        "returnLabel": "Return to the current school year"
+      },
+      "footer": {
+        "nodeId": "archive-node:footer",
+        "text": "The museum doors stay open for old discoveries."
+      }
+    },
+    "composition": {
+      "nodeId": "archive-node:composition",
+      "relationshipId": "hub-archive:2025-2026",
+      "schoolYear": "2025-2026",
+      "hubRouteRef": "hrv-route:classroom-explorations",
+      "explorationIds": [
+        "mushrooms",
+        "butterflies-in-the-classroom",
+        "great-barrier-reef"
+      ],
+      "twwlIds": [
+        "botany-lets-talk-about-tubers",
+        "traditions-of-russian-winter",
+        "silent-wings-wise-eyes-learning-about-owls",
+        "bats-dont-go-bump-in-the-night",
+        "autumn-spiders-gentle-web-artists"
+      ]
+    }
+  }
+}
