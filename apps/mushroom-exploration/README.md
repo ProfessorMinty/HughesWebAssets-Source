@@ -6,7 +6,7 @@ This branch does not activate a new Edublogs route, swap the Hub, or deploy Lant
 
 The current follow-up scope is in [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md):
 46 stable fix IDs with acceptance criteria, baseline protections, execution order and separately
-deferred classroom/editor work. Its items start open; the document is a plan, not completed fixes.
+deferred classroom/editor work. Completed items have dated evidence; unchecked items remain open.
 
 ## The page
 
@@ -17,10 +17,13 @@ ancestor chain to exercise the mount-scoped compatibility rules.
 
 The nine stable source blocks now render as a shorter journey: entrance → two full-width
 learning stations → classroom growing story. Station one contains kingdom, anatomy,
-hidden threads and fungal jobs. Station two contains spores/growing, light/sound and
-discoveries/questions. The journal is directly linked from the entrance and sticky navigation.
+hidden threads and fungal jobs. Station two has seven direct choices: tiny launch, breeze,
+puffball cloud, life cycle, glowing fungi, mushroom music and explorer questions. Desktop
+tabs become a single native activity picker below 1100 px. The primary entrance starts
+the exhibit; the secondary journal destination says coming soon. The journal stays directly
+linked from the sticky navigation. A local Next action provides an optional guided path.
 Tabs retain all block IDs and content, support arrows/Home/End, and reveal direct hash links. Hands-on stations include five anatomy selections, a detailed mycelium
-cutaway, drop-launch/wind models beside real microscope footage, photographic bioluminescence,
+cutaway, a drop-launch model beside real microscope footage, a separate wind model, photographic bioluminescence,
 an invented signal-to-sound model, and three discovery questions. Animations and audio start on request; spore movement, network growth and dough rise can be paused.
 Changing an exhibit suspends its active media. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
@@ -64,7 +67,14 @@ Images were resized and converted for delivery without retouching or recolouring
 ## Source and future editing
 
 source/mushrooms.source.json separates content, source references, image references,
-captions, observation points and supported records from rendering. Data renders as text,
+captions, observation points and supported records from rendering. Contract 1.5.0 adds
+authored activity titles/intros, action/observation prompts, safety/teacher notes, science-word
+definitions and checked written pronunciation. Entrance/station copy is also editable.
+These fields are validated; all nine blocks required by the renderer must be present.
+The five anatomy parts have named selection buttons. On phones the diagram numbers are
+static markers and the separate buttons provide full-size targets. The gill photograph is
+shown only for Gills, so it cannot be mistaken for a photograph of mycelium or spores.
+Some older model-state/control copy is still renderer-owned; M42 remains in progress. Data renders as text,
 never arbitrary HTML. Stable IDs, year, viewport method and reference size are protected.
 Content edits invalidate the document's research/publication review state. Add/remove
 operations for nested records remain a future explicit command.
@@ -80,8 +90,9 @@ journal authoring and Lanternworks home button are not implemented in this phase
 
 The actual class kit/species, observation dates, photos and current growth stage remain
 unknown. No journal entries or classroom outcomes are invented. The journal block is reserved.
-Research has been independently checked, but publication state remains scaffold until
-Arctic reviews the exhibit and we prepare an immutable release.
+The edited source is marked researchStatus pending while the remaining model/music content
+is revised and reviewed. Publication state remains scaffold. Final review and an immutable
+release belong to the later publication phase.
 
 ## Run and review
 

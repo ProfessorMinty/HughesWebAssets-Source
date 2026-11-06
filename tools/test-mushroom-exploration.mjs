@@ -150,3 +150,50 @@ test('the rendered cutaway starts its threads at both visible stem bases', async
   const life=lifecycleArtwork('test-life');
   assert.match(life,/class='life-stem-connection'/,'life-cycle fruiting body needs a connection to its existing mycelium');
 });
+
+test('wind transport cannot display the launch recording and each spore activity owns one view', async function () {
+  const {sporeActivityState}=await import('../apps/mushroom-exploration/src/labs.js');
+  for(const view of ['launch','wind','puffball','cycle']){
+    const state=sporeActivityState(view);
+    assert.equal(['launch','wind','puffball','cycle'].filter(key=>state[key]).length,1);
+    assert.equal(state.launchFilm,view==='launch');
+  }
+  assert.equal(sporeActivityState('wind').comparison,true);
+  assert.equal(sporeActivityState('wind').launchFilm,false);
+  assert.throws(()=>sporeActivityState('unknown'),/Unknown spore activity/);
+});
+
+test('activity context is editable without renaming a view or admitting arbitrary controls', function () {
+  const block=source.data.blocks.find(b=>b.type==='lifecycle'),activities=structuredClone(block.activities);
+  const wind=activities.find(a=>a.view==='wind');wind.title='Where will the breeze take it?';wind.learning.observe='What changes when air stops moving?';
+  const changed=editMushroomBlock(source,block.id,{activities});
+  assert.equal(changed.data.blocks.find(b=>b.id===block.id).activities.find(a=>a.view==='wind').title,wind.title);
+  assert.equal(changed.data.meta.researchStatus,'pending');
+  wind.view='launch';assert.throws(()=>editMushroomBlock(source,block.id,{activities}),/distinct spore activities/);
+  wind.view='wind';wind.learning.html='<script>bad()</script>';assert.throws(()=>editMushroomBlock(source,block.id,{activities}),/unsupported field/);
+});
+
+test('science word definitions are validated, cited, editable, and keep their identities', function () {
+  const block=source.data.blocks.find(b=>b.type==='anatomy'),learning=structuredClone(block.learning);
+  learning.words[0].body='A network of branching fungal threads.';
+  assert.equal(editMushroomBlock(source,block.id,{learning}).data.blocks.find(b=>b.id===block.id).learning.words[0].body,learning.words[0].body);
+  learning.words[0].id='mushroom-word:renamed';assert.throws(()=>editMushroomBlock(source,block.id,{learning}),/science word IDs/);
+  learning.words[0].id=block.learning.words[0].id;learning.words[0].sourceRefs=['mushroom-source:missing'];assert.throws(()=>editMushroomBlock(source,block.id,{learning}),/unresolved research citation/);
+});
+
+test('new content retains all old nested IDs and leaves classroom publication reserved', function () {
+  const family=source.data.blocks.find(b=>b.type==='family'),facts=source.data.blocks.find(b=>b.type==='facts');
+  assert.ok(family.cards.some(card=>card.id==='mushroom-family:moulds'&&card.title==='Fuzzy molds'));
+  assert.ok(facts.questions.flatMap(q=>q.choices).some(choice=>choice.id==='mushroom-answer:colour'));
+  const journal=source.data.blocks.find(b=>b.type==='journal');
+  assert.equal(journal.currentStage,null);assert.deepEqual(journal.entries,[]);
+  assert.equal(MUSHROOM_EDITOR_CONTRACT.editorImplementation,'not-built');
+  assert.equal(MUSHROOM_EDITOR_CONTRACT.publicationAvailable,false);
+});
+
+test('a validated source cannot omit a block required by the two-station renderer', function () {
+  for(const type of ['family','roles','lab']){
+    const changed=fresh();changed.data.blocks=changed.data.blocks.filter(b=>b.type!==type);
+    assert.throws(()=>validateMushroomSource(changed,{allowDraft:true}),/core exhibit/);
+  }
+});

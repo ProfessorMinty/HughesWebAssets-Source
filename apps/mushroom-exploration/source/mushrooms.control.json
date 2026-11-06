@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "mushroom-exploration/1.4.0",
+  "schemaVersion": "mushroom-exploration/1.5.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
@@ -30,7 +30,9 @@
         "title",
         "intro",
         "sourceRefs",
-        "media"
+        "media",
+        "entry",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -41,7 +43,9 @@
         "title",
         "intro",
         "sourceRefs",
-        "cards"
+        "cards",
+        "station",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -54,7 +58,8 @@
         "sourceRefs",
         "media",
         "detailMedia",
-        "hotspots"
+        "hotspots",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -66,7 +71,8 @@
         "intro",
         "sourceRefs",
         "media",
-        "views"
+        "views",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -79,7 +85,10 @@
         "sourceRefs",
         "steps",
         "video",
-        "plumeVideo"
+        "plumeVideo",
+        "activities",
+        "station",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -90,7 +99,8 @@
         "title",
         "intro",
         "sourceRefs",
-        "cards"
+        "cards",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -101,7 +111,8 @@
         "title",
         "intro",
         "sourceRefs",
-        "experiments"
+        "experiments",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -113,7 +124,8 @@
         "intro",
         "sourceRefs",
         "cards",
-        "questions"
+        "questions",
+        "learning"
       ],
       "identityField": "id"
     },
@@ -125,7 +137,8 @@
         "intro",
         "sourceRefs",
         "currentStage",
-        "entries"
+        "entries",
+        "learning"
       ],
       "identityField": "id"
     }

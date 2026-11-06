@@ -93,3 +93,40 @@ S1 footage. S1b.mp4 is copied unchanged at 1068×600, 30 fps playback, 8.9 secon
 A poster and English visual-description track accompany it. Credits, transformations,
 source ZIP hash and each delivery-file hash are in src/video-assets.js and VIDEO-CREDITS.md.
 The earlier microscopic gilled-fungus recording remains a separate registered asset.
+
+
+## Checklist batch 1 — content and context, 2026-11-06
+
+The new short explanations were cross-checked against ANBG's existing fungus, mycelium
+and discharge sources, Kew's fungi overview and the existing Kew hidden-dimension source.
+The plant-partner card also cites that Kew source for water/nutrient uptake in exchange
+for plant sugars. Some/many qualifiers remain: these are examples and processes in certain
+fungi, not a claim that all fungi make mushrooms, glow or partner with plants. Simplified
+life-cycle copy keeps compatible-thread joining in the optional teacher layer.
+
+Written pronunciation was checked at the publishers' dictionary entries:
+
+- [American Heritage: mycelium](https://www.ahdictionary.com/word/search.html?q=mycelium),
+  [hypha/hyphae](https://www.ahdictionary.com/word/search.html?q=hypha),
+  [spore](https://www.ahdictionary.com/word/search.html?q=spore) and
+  [nutrient](https://www.ahdictionary.com/word/search.html?q=nutrient).
+- [Dictionary.com: sonification](https://www.dictionary.com/browse/sonification).
+
+Definitions are short original classroom paraphrases. Written syllables are reading help,
+not tested speech-engine output. Optional read-aloud remains M41. The outdoor rule was
+checked against the existing Poison Control source. The safety question now asks about
+a safe action outdoors instead of asking pupils to judge a mushroom's edibility.
+
+M33 sourcing has begun. The device creator's
+[PlantWave mushroom demonstration](https://plantwave.com/blogs/blog/listen-to-mushroom-music)
+describes conductivity changes mapped to notes and a human-designed instrument collection.
+The page is marked all rights reserved; no rehosting permission has been verified. It is a
+candidate for further rights/player review, not a shipped or cleared asset.
+[Xamk's project account](https://julkaisut.xamk.fi/elo/yleinen/can-mushrooms-sing-bioelectrical-signals-as-a-component-in-creative-work/)
+documents noise problems with one setup and selected, accelerated resistance waveforms in
+a different setup. This is useful device-specific context, not proof of fungal language
+or permission to reuse a recording. No candidate media was downloaded into the exhibit.
+
+No specimen photograph, video or diagram geometry changed in this batch. Registered asset
+hashes and licences remain intact. Edited source research status is pending; this batch
+does not certify the unfinished electrical-activity lesson or real-music example.

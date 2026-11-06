@@ -120,7 +120,7 @@
         },
         "blocks": {
           "type": "array",
-          "minItems": 6,
+          "minItems": 9,
           "maxItems": 12,
           "items": {
             "oneOf": [
@@ -134,7 +134,9 @@
                   "title",
                   "intro",
                   "sourceRefs",
-                  "media"
+                  "learning",
+                  "media",
+                  "entry"
                 ],
                 "properties": {
                   "id": {
@@ -163,6 +165,76 @@
                     "maxItems": 12,
                     "items": {
                       "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "media": {
@@ -214,6 +286,37 @@
                         }
                       }
                     ]
+                  },
+                  "entry": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "exploreLabel",
+                      "journalLabel",
+                      "journalReadyLabel",
+                      "note"
+                    ],
+                    "properties": {
+                      "exploreLabel": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "journalLabel": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "journalReadyLabel": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "note": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
                   }
                 }
               },
@@ -227,6 +330,8 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
+                  "station",
                   "cards"
                 ],
                 "properties": {
@@ -256,6 +361,95 @@
                     "maxItems": 12,
                     "items": {
                       "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "station": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "title",
+                      "intro"
+                    ],
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "intro": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
                     }
                   },
                   "cards": {
@@ -368,6 +562,7 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
                   "media",
                   "detailMedia",
                   "hotspots"
@@ -399,6 +594,76 @@
                     "maxItems": 12,
                     "items": {
                       "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "media": {
@@ -561,6 +826,7 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
                   "media",
                   "views"
                 ],
@@ -591,6 +857,76 @@
                     "maxItems": 12,
                     "items": {
                       "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "media": {
@@ -692,6 +1028,9 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
+                  "station",
+                  "activities",
                   "steps",
                   "video",
                   "plumeVideo"
@@ -724,6 +1063,218 @@
                     "items": {
                       "type": "string"
                     }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "station": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "title",
+                      "intro"
+                    ],
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "intro": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "activities": {
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "view",
+                        "label",
+                        "title",
+                        "intro",
+                        "learning",
+                        "sourceRefs"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "view": {
+                          "enum": [
+                            "launch",
+                            "wind",
+                            "puffball",
+                            "cycle"
+                          ]
+                        },
+                        "label": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "intro": {
+                          "type": "string",
+                          "maxLength": 1600
+                        },
+                        "learning": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "action",
+                            "observe",
+                            "safety",
+                            "teacher",
+                            "words"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "observe": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "safety": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "teacher": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "words": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                  "id",
+                                  "term",
+                                  "pronunciation",
+                                  "body",
+                                  "sourceRefs"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                  },
+                                  "term": {
+                                    "type": "string",
+                                    "maxLength": 140,
+                                    "minLength": 1
+                                  },
+                                  "pronunciation": {
+                                    "type": "string",
+                                    "maxLength": 120
+                                  },
+                                  "body": {
+                                    "type": "string",
+                                    "maxLength": 6000
+                                  },
+                                  "sourceRefs": {
+                                    "type": "array",
+                                    "maxItems": 12,
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "minItems": 4
                   },
                   "steps": {
                     "type": "array",
@@ -916,6 +1467,7 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
                   "cards"
                 ],
                 "properties": {
@@ -947,6 +1499,76 @@
                       "type": "string"
                     }
                   },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
                   "cards": {
                     "type": "array",
                     "maxItems": 6,
@@ -959,7 +1581,8 @@
                         "sourceRefs",
                         "title",
                         "visual",
-                        "media"
+                        "media",
+                        "learning"
                       ],
                       "properties": {
                         "id": {
@@ -1041,6 +1664,76 @@
                               }
                             }
                           ]
+                        },
+                        "learning": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "action",
+                            "observe",
+                            "safety",
+                            "teacher",
+                            "words"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "observe": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "safety": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "teacher": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "words": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                  "id",
+                                  "term",
+                                  "pronunciation",
+                                  "body",
+                                  "sourceRefs"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                  },
+                                  "term": {
+                                    "type": "string",
+                                    "maxLength": 140,
+                                    "minLength": 1
+                                  },
+                                  "pronunciation": {
+                                    "type": "string",
+                                    "maxLength": 120
+                                  },
+                                  "body": {
+                                    "type": "string",
+                                    "maxLength": 6000
+                                  },
+                                  "sourceRefs": {
+                                    "type": "array",
+                                    "maxItems": 12,
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -1057,6 +1750,7 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
                   "experiments"
                 ],
                 "properties": {
@@ -1088,6 +1782,76 @@
                       "type": "string"
                     }
                   },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
                   "experiments": {
                     "type": "array",
                     "maxItems": 2,
@@ -1099,8 +1863,10 @@
                         "body",
                         "sourceRefs",
                         "title",
+                        "label",
                         "mode",
-                        "media"
+                        "media",
+                        "learning"
                       ],
                       "properties": {
                         "id": {
@@ -1119,6 +1885,11 @@
                           }
                         },
                         "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "label": {
                           "type": "string",
                           "maxLength": 140,
                           "minLength": 1
@@ -1178,6 +1949,76 @@
                               }
                             }
                           ]
+                        },
+                        "learning": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "action",
+                            "observe",
+                            "safety",
+                            "teacher",
+                            "words"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "observe": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "safety": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "teacher": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "words": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                  "id",
+                                  "term",
+                                  "pronunciation",
+                                  "body",
+                                  "sourceRefs"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                  },
+                                  "term": {
+                                    "type": "string",
+                                    "maxLength": 140,
+                                    "minLength": 1
+                                  },
+                                  "pronunciation": {
+                                    "type": "string",
+                                    "maxLength": 120
+                                  },
+                                  "body": {
+                                    "type": "string",
+                                    "maxLength": 6000
+                                  },
+                                  "sourceRefs": {
+                                    "type": "array",
+                                    "maxItems": 12,
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -1194,6 +2035,7 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
                   "cards",
                   "questions"
                 ],
@@ -1224,6 +2066,76 @@
                     "maxItems": 12,
                     "items": {
                       "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "cards": {
@@ -1339,6 +2251,7 @@
                   "title",
                   "intro",
                   "sourceRefs",
+                  "learning",
                   "currentStage",
                   "entries"
                 ],
@@ -1369,6 +2282,76 @@
                     "maxItems": 12,
                     "items": {
                       "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "currentStage": {

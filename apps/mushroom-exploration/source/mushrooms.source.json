@@ -9,7 +9,7 @@
     "meta": {
       "schoolYear": "2026-2027",
       "state": "scaffold",
-      "researchStatus": "reviewed",
+      "researchStatus": "pending",
       "layout": "viewport-breakout",
       "designViewport": {
         "width": 1920,
@@ -76,6 +76,31 @@
         "id": "mushroom-source:puffball-study",
         "title": "Puffball spore-cloud research — Zhirnov and colleagues, PLOS ONE (2019)",
         "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210754"
+      },
+      {
+        "id": "mushroom-source:word-mycelium",
+        "title": "American Heritage · mycelium pronunciation",
+        "url": "https://www.ahdictionary.com/word/search.html?q=mycelium"
+      },
+      {
+        "id": "mushroom-source:word-hypha",
+        "title": "American Heritage · hypha and hyphae pronunciation",
+        "url": "https://www.ahdictionary.com/word/search.html?q=hypha"
+      },
+      {
+        "id": "mushroom-source:word-spore",
+        "title": "American Heritage · spore pronunciation",
+        "url": "https://www.ahdictionary.com/word/search.html?q=spore"
+      },
+      {
+        "id": "mushroom-source:word-nutrient",
+        "title": "American Heritage · nutrient pronunciation",
+        "url": "https://www.ahdictionary.com/word/search.html?q=nutrient"
+      },
+      {
+        "id": "mushroom-source:word-sonification",
+        "title": "Dictionary.com · sonification pronunciation",
+        "url": "https://www.dictionary.com/browse/sonification"
       }
     ],
     "blocks": [
@@ -88,14 +113,27 @@
         "sourceRefs": [
           "mushroom-source:basics"
         ],
-        "media": null
+        "media": null,
+        "learning": {
+          "action": "",
+          "observe": "",
+          "safety": "",
+          "teacher": "",
+          "words": []
+        },
+        "entry": {
+          "exploreLabel": "Explore fungi",
+          "journalLabel": "Our class project · coming soon",
+          "journalReadyLabel": "Our growing story",
+          "note": "Two exhibits to explore. Our classroom discoveries are coming next."
+        }
       },
       {
         "id": "mushroom-block:kingdom",
         "type": "family",
         "eyebrow": "01 / MEET THE KINGDOM",
         "title": "Small. Strange. Extraordinary.",
-        "intro": "Fungi aren’t plants or animals. They belong to a kingdom of their own. Meet three very different examples. These pictures show different zoom levels.",
+        "intro": "Fungi have a kingdom of their own. Here are three examples, shown at different zoom levels.",
         "sourceRefs": [
           "mushroom-source:kingdom"
         ],
@@ -103,7 +141,7 @@
           {
             "id": "mushroom-family:mushrooms",
             "title": "Mushroom makers",
-            "body": "Some fungi grow mushrooms: the parts that make and release spores.",
+            "body": "Some fungi grow mushrooms. A mushroom is the part that makes and releases spores.",
             "sourceRefs": [
               "mushroom-source:kingdom"
             ],
@@ -112,13 +150,13 @@
               "kind": "image",
               "url": "asset:mushroom-photo:blue-mycena",
               "alt": "A group of small blue Mycena interrupta mushrooms growing among moss and wood.",
-              "caption": "Real blue mushrooms! These are Mycena interrupta, photographed in Tasmania."
+              "caption": "Real blue mushrooms growing on wood. Can you find the smallest cap?"
             }
           },
           {
             "id": "mushroom-family:moulds",
-            "title": "Fuzzy moulds",
-            "body": "Many moulds grow as tiny branching threads. That fuzz is a fungus growing!",
+            "title": "Fuzzy molds",
+            "body": "Many molds grow as tiny branching threads. That fuzz is a fungus growing.",
             "sourceRefs": [
               "mushroom-source:kingdom"
             ],
@@ -126,8 +164,8 @@
             "media": {
               "kind": "image",
               "url": "asset:mushroom-photo:rhizopus-macro",
-              "alt": "Fine pale Rhizopus mould threads on a strawberry, topped by tiny dark round spore cases.",
-              "caption": "Look for the tiny dark dots. They are spore cases on Rhizopus mould."
+              "alt": "Fine pale Rhizopus mold threads on a strawberry, topped by tiny dark round spore cases.",
+              "caption": "The tiny dark dots are cases that hold spores."
             }
           },
           {
@@ -142,17 +180,38 @@
               "kind": "image",
               "url": "asset:mushroom-photo:yeast-dic",
               "alt": "Oval Saccharomyces cerevisiae yeast cells seen with a microscope; several have small buds.",
-              "caption": "A microscope brings these yeast cells into view. Some have a tiny bud growing from them."
+              "caption": "A microscope shows these yeast cells. Some have a tiny bud growing from them."
             }
           }
-        ]
+        ],
+        "learning": {
+          "action": "Choose a photograph to look closer.",
+          "observe": "What can you see in one picture that you cannot see in another?",
+          "safety": "",
+          "teacher": "These are examples of fungal forms, not three separate scientific groups. A single fungus can have more than one growth form.",
+          "words": [
+            {
+              "id": "mushroom-word:kingdom",
+              "term": "Kingdom",
+              "pronunciation": "",
+              "body": "A large group scientists use to organize living things.",
+              "sourceRefs": [
+                "mushroom-source:kingdom"
+              ]
+            }
+          ]
+        },
+        "station": {
+          "title": "Fungi up close",
+          "intro": "Meet real fungi. Peek under a cap. Follow the hidden threads."
+        }
       },
       {
         "id": "mushroom-block:anatomy",
         "type": "anatomy",
         "eyebrow": "02 / THE SPECIMEN TABLE",
         "title": "There’s more under that cap.",
-        "intro": "Tap a numbered point to investigate this gilled mushroom. Other mushrooms can have different shapes and parts.",
+        "intro": "Choose a number to find a part. This model shows a mushroom with gills. Other mushrooms can look different.",
         "sourceRefs": [
           "mushroom-source:basics"
         ],
@@ -193,7 +252,7 @@
             "x": 35,
             "y": 87,
             "label": "Mycelium",
-            "body": "These branching threads are part of the fungus. A single thread is called a hypha. A network of threads is mycelium.",
+            "body": "A network of tiny branching threads is called mycelium. These threads are part of the fungus.",
             "sourceRefs": [
               "mushroom-source:mycelium"
             ]
@@ -203,7 +262,7 @@
             "x": 84.3,
             "y": 44,
             "label": "Spores",
-            "body": "Spores can start new fungal growth when conditions are right. They are enlarged here so we can see them.",
+            "body": "A spore can start new fungal growth in the right conditions. The spores in this model are enlarged.",
             "sourceRefs": [
               "mushroom-source:mycelium"
             ]
@@ -213,7 +272,45 @@
           "kind": "image",
           "url": "asset:mushroom-photo:gill-macro",
           "alt": "A real close-up of the thin ridges under a mushroom cap, radiating out from its stem.",
-          "caption": "Follow the ridges under a real mushroom cap. These are its gills."
+          "caption": "A real example of gills: the ridges under a mushroom cap. This photograph stays the same as you explore the model."
+        },
+        "learning": {
+          "action": "Choose a numbered part.",
+          "observe": "Which part makes spores? Which part is a network of threads?",
+          "safety": "",
+          "teacher": "This is one model of a gilled mushroom. It is not a mushroom identification guide.",
+          "words": [
+            {
+              "id": "mushroom-word:mycelium",
+              "term": "Mycelium",
+              "pronunciation": "my-SEE-lee-um",
+              "body": "A network of tiny branching threads that is part of a fungus.",
+              "sourceRefs": [
+                "mushroom-source:mycelium",
+                "mushroom-source:word-mycelium"
+              ]
+            },
+            {
+              "id": "mushroom-word:hypha",
+              "term": "Hypha / hyphae",
+              "pronunciation": "HY-fuh / HY-fee",
+              "body": "One fungal thread is a hypha. More than one are hyphae.",
+              "sourceRefs": [
+                "mushroom-source:mycelium",
+                "mushroom-source:word-hypha"
+              ]
+            },
+            {
+              "id": "mushroom-word:spore",
+              "term": "Spore",
+              "pronunciation": "spor",
+              "body": "A tiny structure that can start new fungal growth in the right conditions.",
+              "sourceRefs": [
+                "mushroom-source:mycelium",
+                "mushroom-source:word-spore"
+              ]
+            }
+          ]
         }
       },
       {
@@ -221,7 +318,7 @@
         "type": "cutaway",
         "eyebrow": "03 / A HIDDEN WORLD",
         "title": "The mushroom is just the beginning.",
-        "intro": "What could be growing where we can’t see? Switch views, then grow the branching threads.",
+        "intro": "A mushroom is only part of this fungus. What else could be growing inside the wood or soil?",
         "sourceRefs": [
           "mushroom-source:mycelium"
         ],
@@ -235,7 +332,7 @@
           {
             "id": "mushroom-view:surface",
             "label": "Above the surface",
-            "body": "We notice the mushroom. It is a fruiting body: the spore-making part of this fungus.",
+            "body": "The mushroom makes and releases spores. Much of this fungus can be hidden from view.",
             "sourceRefs": [
               "mushroom-source:basics"
             ]
@@ -243,12 +340,29 @@
           {
             "id": "mushroom-view:below",
             "label": "Below the surface",
-            "body": "Mycelium can grow through soil or inside wood. Its threads branch as they grow and absorb food from their surroundings.",
+            "body": "Mycelium is a network of tiny threads. It can spread through soil or wood and take in food.",
             "sourceRefs": [
               "mushroom-source:mycelium"
             ]
           }
-        ]
+        ],
+        "learning": {
+          "action": "Switch views, then grow the threads.",
+          "observe": "Where do new branches begin? Follow them back to a mushroom.",
+          "safety": "",
+          "teacher": "The fruiting body and mycelium are connected parts of a fungus. The highlighted threads are enlarged and growth is greatly sped up.",
+          "words": [
+            {
+              "id": "mushroom-word:fruiting-body",
+              "term": "Fruiting body",
+              "pronunciation": "",
+              "body": "The spore-making part of a fungus. A mushroom is one kind.",
+              "sourceRefs": [
+                "mushroom-source:basics"
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "mushroom-block:lifecycle",
@@ -275,7 +389,7 @@
           {
             "id": "mushroom-step:threads",
             "title": "Threads spread",
-            "body": "Threads grow and branch into mycelium. For many mushroom makers, compatible threads must join before fruiting is possible.",
+            "body": "Tiny threads grow and branch into a network. That network is mycelium.",
             "sourceRefs": [
               "mushroom-source:lifecycle"
             ],
@@ -317,14 +431,109 @@
           "sourceRefs": [
             "mushroom-source:puffball-study"
           ]
-        }
+        },
+        "learning": {
+          "action": "",
+          "observe": "",
+          "safety": "",
+          "teacher": "",
+          "words": [
+            {
+              "id": "mushroom-word:spores-motion",
+              "term": "Spores",
+              "pronunciation": "sporz",
+              "body": "Tiny structures that can start new fungal growth in suitable conditions.",
+              "sourceRefs": [
+                "mushroom-source:spores",
+                "mushroom-source:word-spore"
+              ]
+            }
+          ]
+        },
+        "station": {
+          "title": "Life in motion",
+          "intro": "Choose an investigation. Follow spores, discover living light, or turn a pattern into music."
+        },
+        "activities": [
+          {
+            "id": "mushroom-activity:launch",
+            "view": "launch",
+            "label": "Tiny launch",
+            "title": "A tiny drop. An incredible launch.",
+            "intro": "How can a water drop help a spore leave a gill? Compare the model with a real microscope recording.",
+            "learning": {
+              "action": "Launch the model, then play the microscope video.",
+              "observe": "What joins just before the spore moves?",
+              "safety": "",
+              "teacher": "Many gilled fungi use this surface-tension mechanism. The model enlarges and slows it; the recording is a real microscope view.",
+              "words": []
+            },
+            "sourceRefs": [
+              "mushroom-source:spores",
+              "mushroom-source:spore-launch-study"
+            ]
+          },
+          {
+            "id": "mushroom-activity:wind",
+            "view": "wind",
+            "label": "Ride the breeze",
+            "title": "Where can the breeze take a spore?",
+            "intro": "Once a spore falls clear of a cap, moving air can carry it away. Try changing the breeze in this model.",
+            "learning": {
+              "action": "Release spores, then change the breeze.",
+              "observe": "What changes when the breeze goes the other way?",
+              "safety": "",
+              "teacher": "This model shows transport after release. It does not show the water-drop launch through a microscope. Spores are enlarged; speed and distances are illustrative.",
+              "words": []
+            },
+            "sourceRefs": [
+              "mushroom-source:spores"
+            ]
+          },
+          {
+            "id": "mushroom-activity:puffball",
+            "view": "puffball",
+            "label": "Spore cloud",
+            "title": "A puffball sends out a cloud.",
+            "intro": "Puffballs hold spores inside. Many tiny spores together make the cloud you see in this research video.",
+            "learning": {
+              "action": "Play the video.",
+              "observe": "Where does the cloud leave the puffball?",
+              "safety": "Watch only. Do not squeeze wild mushrooms or breathe in a spore cloud.",
+              "teacher": "A scientist compresses a dried puffball in a research demonstration. This differs from discharge by a gilled mushroom. Playback is slowed five times; capture frame rate is not supplied.",
+              "words": []
+            },
+            "sourceRefs": [
+              "mushroom-source:puffball-study"
+            ]
+          },
+          {
+            "id": "mushroom-activity:cycle",
+            "view": "cycle",
+            "label": "Life cycle",
+            "title": "From a spore to more spores.",
+            "intro": "Explore four stages of a mushroom-making fungus. A spore needs suitable conditions to grow. Many never grow into mushrooms.",
+            "learning": {
+              "action": "Choose each stage.",
+              "observe": "Where could the story start again?",
+              "safety": "",
+              "teacher": "This is a simplified cycle. For many mushroom-forming fungi, compatible threads must join before a mushroom can form.",
+              "words": []
+            },
+            "sourceRefs": [
+              "mushroom-source:lifecycle",
+              "mushroom-source:mycelium",
+              "mushroom-source:spores"
+            ]
+          }
+        ]
       },
       {
         "id": "mushroom-block:roles",
         "type": "roles",
         "eyebrow": "05 / FUNGI AT WORK",
-        "title": "The forest has a behind-the-scenes crew.",
-        "intro": "Different fungi do different jobs. Some recycle, some team up with plants, and some help make our food.",
+        "title": "Fungi have many jobs.",
+        "intro": "Some fungi recycle dead leaves and wood. Some partner with plants. Others help us make bread.",
         "sourceRefs": [
           "mushroom-source:roles"
         ],
@@ -337,36 +546,76 @@
               "mushroom-source:roles"
             ],
             "visual": "leaf",
-            "media": null
+            "media": null,
+            "learning": {
+              "action": "Follow the recycling, one step at a time.",
+              "observe": "What happens before the fungus takes in food?",
+              "safety": "",
+              "teacher": "Fungi release enzymes outside their threads. These break down complex material into smaller molecules that can be absorbed. Nutrients are recycled through decomposition.",
+              "words": []
+            }
           },
           {
             "id": "mushroom-role:partners",
             "title": "The plant partners",
-            "body": "Some fungi exchange with plant roots: the fungus helps gather nutrients, and the plant supplies sugars.",
+            "body": "Some fungi partner with plant roots. The plant gives sugar. The fungus helps the plant get water and minerals.",
             "sourceRefs": [
-              "mushroom-source:roles"
+              "mushroom-source:roles",
+              "mushroom-source:lifecycle"
             ],
             "visual": "tree",
-            "media": null
+            "media": null,
+            "learning": {
+              "action": "Choose a direction to follow the trade.",
+              "observe": "What goes to the fungus? What goes to the plant?",
+              "safety": "",
+              "teacher": "Plants make sugars using light. This partnership occurs in some plant–fungus relationships; it does not describe all fungi.",
+              "words": []
+            }
           },
           {
             "id": "mushroom-role:bakers",
             "title": "The tiny bakers",
-            "body": "Baker’s yeast makes carbon dioxide gas. Those little gas bubbles help bread dough rise.",
+            "body": "Baker’s yeast makes gas as it feeds on sugars. Little gas bubbles help bread dough rise.",
             "sourceRefs": [
               "mushroom-source:roles"
             ],
             "visual": "bread",
-            "media": null
+            "media": null,
+            "learning": {
+              "action": "Watch the dough rise.",
+              "observe": "What happens to the dough as the gas pockets grow?",
+              "safety": "",
+              "teacher": "The gas is carbon dioxide. This is a sped-up model of fermentation, with enlarged gas pockets, not yeast cells.",
+              "words": []
+            }
           }
-        ]
+        ],
+        "learning": {
+          "action": "Choose a job to investigate.",
+          "observe": "How does this fungus get food? What changes around it?",
+          "safety": "",
+          "teacher": "",
+          "words": [
+            {
+              "id": "mushroom-word:nutrients",
+              "term": "Nutrients",
+              "pronunciation": "NOO-tree-unts",
+              "body": "Substances living things need to grow and do their work.",
+              "sourceRefs": [
+                "mushroom-source:roles",
+                "mushroom-source:word-nutrient"
+              ]
+            }
+          ]
+        }
       },
       {
         "id": "mushroom-block:lab",
         "type": "lab",
         "eyebrow": "06 / THE WONDER LAB",
         "title": "Light. Electricity. A little mystery.",
-        "intro": "Real discoveries can be stranger than stories. Explore what we know—and a question scientists are still investigating.",
+        "intro": "Some fungi make light. People can also turn measurements from fungi into sound. Those are two different things.",
         "sourceRefs": [
           "mushroom-source:glow",
           "mushroom-source:electricity",
@@ -386,6 +635,14 @@
               "url": "asset:mushroom-photo:glowing-panellus",
               "alt": "Panellus stipticus mushrooms emitting a green glow in the dark in a long-exposure photograph.",
               "caption": "Real glowing fungi: Panellus stipticus. The camera collected light for over eight minutes to make the glow easier to see."
+            },
+            "label": "Glowing fungi",
+            "learning": {
+              "action": "Look closely at the real photograph.",
+              "observe": "Where can you see light? What does the camera help us see?",
+              "safety": "",
+              "teacher": "Bioluminescence is light from a chemical reaction. This long exposure makes a faint glow more visible; most fungi do not glow.",
+              "words": []
             }
           },
           {
@@ -397,16 +654,42 @@
               "mushroom-source:music"
             ],
             "mode": "sound",
-            "media": null
+            "media": null,
+            "label": "Mushroom music",
+            "learning": {
+              "action": "Play the example pattern.",
+              "observe": "What happens to the notes when the line is higher?",
+              "safety": "",
+              "teacher": "This activity uses invented data to show a sound-mapping rule. It is not a recording of mushroom measurements. Measurements require careful control of sensor and environmental effects.",
+              "words": [
+                {
+                  "id": "mushroom-word:sonification",
+                  "term": "Sonification",
+                  "pronunciation": "sah-ni-fi-KAY-shun",
+                  "body": "Turning information into sound using a rule chosen by a person.",
+                  "sourceRefs": [
+                    "mushroom-source:music",
+                    "mushroom-source:word-sonification"
+                  ]
+                }
+              ]
+            }
           }
-        ]
+        ],
+        "learning": {
+          "action": "",
+          "observe": "",
+          "safety": "",
+          "teacher": "",
+          "words": []
+        }
       },
       {
         "id": "mushroom-block:discoveries",
         "type": "facts",
         "eyebrow": "07 / KEEP WONDERING",
-        "title": "Take a little wonder with you.",
-        "intro": "Try a few discoveries, then test your explorer thinking.",
+        "title": "Think like a scientist.",
+        "intro": "Look for clues. Use what you noticed in the exhibits to explain your choices.",
         "sourceRefs": [
           "mushroom-source:basics",
           "mushroom-source:kingdom",
@@ -483,36 +766,50 @@
           },
           {
             "id": "mushroom-question:safety",
-            "prompt": "Can a mushroom’s colour tell us it is safe to eat?",
+            "prompt": "You spot a mushroom outdoors. What should you do?",
             "sourceRefs": [
               "mushroom-source:safety"
             ],
             "choices": [
               {
                 "id": "mushroom-answer:colour",
-                "label": "Yes, bright ones are the dangerous ones",
+                "label": "Use its color to decide if I can taste it",
                 "correct": false,
-                "feedback": "Colour cannot tell us. Safe and poisonous mushrooms can look very similar. Never taste a wild mushroom."
+                "feedback": "Pictures and colors cannot tell us a mushroom is safe. Leave it where it is and ask an adult."
               },
               {
                 "id": "mushroom-answer:expert",
-                "label": "No. Colour is not a safety test.",
+                "label": "Look without tasting, and tell an adult",
                 "correct": true,
-                "feedback": "That’s careful explorer thinking. Never taste a wild mushroom. Ask a trusted adult."
+                "feedback": "That is careful exploring. Never taste a wild mushroom."
               }
             ]
           }
-        ]
+        ],
+        "learning": {
+          "action": "Choose an answer, then read the clue.",
+          "observe": "Which exhibit helps explain your answer?",
+          "safety": "Look closely outdoors, but never taste a wild mushroom. Pictures and colors cannot tell us it is safe to eat. Leave moldy food to an adult.",
+          "teacher": "",
+          "words": []
+        }
       },
       {
         "id": "mushroom-block:journal",
         "type": "journal",
         "eyebrow": "OUR CLASSROOM / 2026–2027",
         "title": "Now it’s our turn to wonder.",
-        "intro": "Our growing story will live here: photographs, observations, and discoveries from the classroom.",
+        "intro": "Our classroom photographs, observations, and discoveries will appear here when our journal is ready.",
         "sourceRefs": [],
         "currentStage": null,
-        "entries": []
+        "entries": [],
+        "learning": {
+          "action": "",
+          "observe": "",
+          "safety": "",
+          "teacher": "",
+          "words": []
+        }
       }
     ]
   }
