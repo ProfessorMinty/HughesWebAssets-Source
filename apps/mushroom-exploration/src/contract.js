@@ -1,9 +1,10 @@
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.1.0";
+import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.2.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media"],
   family: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
-  anatomy: ["eyebrow", "title", "intro", "sourceRefs", "media", "hotspots"],
+  anatomy: ["eyebrow", "title", "intro", "sourceRefs", "media", "detailMedia", "hotspots"],
   cutaway: ["eyebrow", "title", "intro", "sourceRefs", "media", "views"],
   lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps"],
   roles: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
@@ -15,6 +16,7 @@ const fields = {
 export const MUSHROOM_EDITOR_CONTRACT = {
   schemaVersion: MUSHROOM_CONTRACT_VERSION,
   sourceDocument: "apps/mushroom-exploration/source/mushrooms.source.json",
+  photoCatalog: "apps/mushroom-exploration/source/mushrooms.assets.json",
   editorRoute: "/mushrooms",
   editorLabel: "Mushinator",
   editorImplementation: "not-built",
@@ -34,16 +36,17 @@ export function mushroomSourceJsonSchema() {
   const sourceRefs = { type: "array", maxItems: 12, items: { type: "string" } };
   const obj = function (properties) { return { type: "object", additionalProperties: false, required: Object.keys(properties), properties: properties }; };
   const list = function (items, maxItems) { return { type: "array", maxItems: maxItems, items: items }; };
-  const image = { anyOf: [{ type: "null" }, obj({ kind: { const: "image" }, url: { type: "string", format: "uri", pattern: "^https://" }, alt: { type: "string", minLength: 1, maxLength: 500 }, caption: { type: "string", maxLength: 600 } })] };
+  const imageUrl = { anyOf: [{ type: "string", format: "uri", pattern: "^https://" }, { enum: MUSHROOM_PHOTOS.map(photo => 'asset:' + photo.id) }] };
+  const image = { anyOf: [{ type: "null" }, obj({ kind: { const: "image" }, url: imageUrl, alt: { type: "string", minLength: 1, maxLength: 500 }, caption: { type: "string", maxLength: 600 } })] };
   const research = { id: recordId, body: body, sourceRefs: sourceRefs };
   const shapes = {
     hero: { media: image },
-    family: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] } }), 6) },
-    anatomy: { media: image, hotspots: list(obj({ ...research, label: short, x: { type: "number", minimum: 0, maximum: 100 }, y: { type: "number", minimum: 0, maximum: 100 } }), 12) },
+    family: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
+    anatomy: { media: image, detailMedia: image, hotspots: list(obj({ ...research, label: short, x: { type: "number", minimum: 0, maximum: 100 }, y: { type: "number", minimum: 0, maximum: 100 } }), 12) },
     cutaway: { media: image, views: { ...list(obj({ ...research, label: short }), 2), minItems: 2 } },
     lifecycle: { steps: list(obj({ ...research, title: short, media: image }), 12) },
-    roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] } }), 6) },
-    lab: { experiments: list(obj({ ...research, title: short, mode: { enum: ["glow", "sound"] } }), 2) },
+    roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
+    lab: { experiments: list(obj({ ...research, title: short, mode: { enum: ["glow", "sound"] }, media: image }), 2) },
     facts: { cards: list(obj({ ...research, title: short }), 12), questions: list(obj({ id: recordId, prompt: short, sourceRefs: sourceRefs, choices: list(obj({ id: recordId, label: short, correct: { type: "boolean" }, feedback: { type: "string", minLength: 1, maxLength: 600 } }), 4) }), 6) },
     journal: { currentStage: { type: "null" }, entries: { type: "array", maxItems: 0 } }
   };
@@ -89,7 +92,9 @@ function media(value, label) {
   if (value === null) return;
   object(value, ["kind", "url", "alt", "caption"], label);
   requireThat(value.kind === "image", label + " supports image references only in this scaffold");
-  https(value.url, label + ".url");
+  if (typeof value.url === 'string' && value.url.startsWith('asset:')) {
+    requireThat(MUSHROOM_PHOTOS.some(photo => 'asset:' + photo.id === value.url), 'unknown bundled photo reference');
+  } else https(value.url, label + ".url");
   text(value.alt, label + ".alt", 500, true);
   text(value.caption, label + ".caption", 600, false);
 }
@@ -148,6 +153,7 @@ export function validateMushroomSource(source, options) {
     requireThat(block.sourceRefs.every(function (ref) { return sourceIds.has(ref); }), "unresolved block research citation");
     if (!allowDraft && block.type !== "journal") requireThat(block.sourceRefs.length > 0, "section requires reviewed citations");
     if (Object.hasOwn(block, "media")) media(block.media, "block media");
+    if (Object.hasOwn(block, "detailMedia")) media(block.detailMedia, "specimen detail media");
     if (block.type === "anatomy") {
       array(block.hotspots, "hotspots", 12);
       requireThat(block.hotspots.length > 0, "anatomy needs observation points");
@@ -201,19 +207,21 @@ export function validateMushroomSource(source, options) {
       array(block.cards, "specimen cards", 6);
       if (!allowDraft) requireThat(block.cards.length > 0, "reviewed specimen cards are missing");
       block.cards.forEach(function (card) {
-        object(card, ["id", "title", "body", "sourceRefs", "visual"], "specimen card");
+        object(card, ["id", "title", "body", "sourceRefs", "visual", "media"], "specimen card");
         id(card.id, block.type === "family" ? "mushroom-family" : "mushroom-role");
         text(card.title, "card title", 140, true); research(card, "specimen card");
         requireThat(["mushroom", "mould", "yeast", "leaf", "tree", "bread"].includes(card.visual), "unknown specimen illustration");
+        media(card.media, "specimen photo");
       });
     }
     if (block.type === "lab") {
       array(block.experiments, "lab exhibits", 2);
       requireThat(block.experiments.length === 2 && new Set(block.experiments.map(function (item) { return item.mode; })).size === 2, "lab needs distinct light and sound exhibits");
       block.experiments.forEach(function (item) {
-        object(item, ["id", "title", "body", "sourceRefs", "mode"], "lab exhibit");
+        object(item, ["id", "title", "body", "sourceRefs", "mode", "media"], "lab exhibit");
         id(item.id, "mushroom-lab"); text(item.title, "lab title", 140, true); research(item, "lab exhibit");
         requireThat(["glow", "sound"].includes(item.mode), "unknown lab activity");
+        media(item.media, "lab photograph");
       });
     }
     if (block.type === "journal") {

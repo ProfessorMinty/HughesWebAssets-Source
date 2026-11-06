@@ -41,9 +41,24 @@ presented as a count of all species.
 Each scientific content record points to stable source IDs in mushrooms.source.json.
 No external text or diagrams have been copied wholesale. Page copy is a short, original,
 child-facing explanation. The entrance WebP was generated for this exhibit on 2026-11-06;
-no external specimen photo or unverified reuse licence is involved.
+its fantasy atmosphere is separate from the real specimen photographs added below.
 
 ## Still requiring classroom information
 
 The kit/species, growing setup, dates, photographs, videos, student writing and observed
 stage have not been supplied. This review establishes general science, not classroom facts.
+
+## Real photograph sourcing — 2026-11-06
+
+Six source file pages were inspected for authorship, subject and licence, and the original
+images were downloaded and visually inspected. Delivery copies preserve colours and subject
+content; they are resized/WebP conversions. Display previews may crop; the inspection dialog
+shows the complete delivered image. No species is inferred for the generic gill photograph
+or the mycelium photograph. Microscopy is labelled separately from ordinary close-up views.
+The Panellus exposure is documented as 517 seconds; its caption explains that the camera
+collected light for over eight minutes. These are general exhibit images, not class records.
+
+The generated source/mushrooms.assets.json records exact source and original download URLs,
+creators, licence links, original/delivery dimensions and hashes, and transformation notes.
+The asset files and all provenance are committed with the application; browser rendering
+does not hotlink Commons. The standalone preview embeds the same verified WebP bytes.

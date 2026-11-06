@@ -24,3 +24,42 @@
 @media(max-width:350px){.hrv-mushrooms{--gutter:20px}.mushroom-hero-title{font-size:45px}.mushroom-section-hero>.mushroom-inner{min-height:870px}.mushroom-section-heading h2{font-size:35px}.mushroom-specimen{grid-template-columns:68px 1fr;gap:15px}.mushroom-hotspot{width:39px;height:39px;min-height:39px!important}.mushroom-navigation{padding-inline:18px}.mushroom-brand{font-size:12px}.mushroom-quiz{padding:20px}}
 
 [data-view=below] .cutaway-network{filter:drop-shadow(0 0 5px #72d1a55c)}
+/* Real specimens: photographs keep their original colours; teaching models stay separate. */
+.mushroom-section-family .mushroom-section-heading{max-width:none}
+.mushroom-section-family .section-intro{max-width:1350px}
+.mushroom-section-family .mushroom-specimens{gap:38px;margin-top:34px}
+.mushroom-specimen-with-photo{display:flex;flex-direction:column;min-width:0}
+.mushroom-specimen-with-photo .mushroom-specimen-copy{margin-top:22px;padding-top:19px}
+.mushroom-photo{width:100%;min-width:0}
+.mushroom-photo-inspect{display:block;position:relative;width:100%;padding:0;border:1px solid #9da88b70;border-radius:7px;overflow:hidden;background:#142a25;color:#f9f1d9!important;text-align:left;box-shadow:0 12px 35px #112d2410}
+.mushroom-photo-inspect:hover{box-shadow:0 12px 35px #112d2428;border-color:#bca270}
+.mushroom-photo-image{display:block!important;width:100%;height:auto;aspect-ratio:1.6;object-fit:cover;background:#242e29}
+.mushroom-photo[data-photo-fit=contain] .mushroom-photo-image{object-fit:contain;background:#aaa9a1}
+.mushroom-photo-type{position:absolute;top:12px;left:12px;right:12px;max-width:fit-content;padding:5px 8px;background:#082a26c9;color:#f2f0d9;font-size:9px;letter-spacing:.09em;line-height:1.5;border-radius:2px}
+.mushroom-photo-zoom{position:absolute;right:12px;bottom:12px;padding:7px 11px;background:#e7cc92;color:#183d30;font-size:11px;font-weight:700;border-radius:3px;box-shadow:0 2px 10px #001d2430}
+.mushroom-photo-zoom::before{content:"+";font-size:16px;line-height:1;display:inline-block;margin-right:6px}
+.mushroom-photo-caption{font-size:13px;line-height:1.6;margin-top:13px!important;color:#52694f}
+.mushroom-photo-credit{font-size:10px;line-height:1.65;margin-top:6px!important;color:#6b7d62}
+.mushroom-photo-credit a{text-decoration:underline;text-underline-offset:2px}
+.mushroom-anatomy-aside{min-width:0;display:flex;flex-direction:column;gap:24px}
+.mushroom-anatomy-photo .mushroom-photo-image{aspect-ratio:1.8;object-position:center 60%}
+.mushroom-real-mycelium{margin-top:44px;display:grid;grid-template-columns:.7fr 1.3fr;gap:55px;align-items:center;border-top:1px solid #8ea88b40;padding-top:40px}
+.mushroom-real-mycelium h3{font-size:clamp(32px,3vw,49px);line-height:1.2;margin-top:18px!important;max-width:13ch}
+.mushroom-cutaway-photo .mushroom-photo-image{aspect-ratio:2;object-position:center}
+.mushroom-section-cutaway .mushroom-photo-caption,.mushroom-section-lab .mushroom-photo-caption{color:#c8d6be}
+.mushroom-section-cutaway .mushroom-photo-credit,.mushroom-section-lab .mushroom-photo-credit{color:#a8bea5}
+.mushroom-lab-photo{padding:0 32px 30px}
+.mushroom-lab-photo .mushroom-photo-image{aspect-ratio:1.5}
+.mushroom-photo-dialog{width:min(1100px,calc(100vw - 40px));max-width:calc(100vw - 40px);max-height:92vh;padding:25px 30px 30px;border:1px solid #a7bd9b;border-radius:10px;background:#102e29;color:#f1ecd5;box-shadow:0 30px 100px #00110dcc;overscroll-behavior:contain}
+.mushroom-photo-dialog::backdrop{background:#031b18e8;backdrop-filter:blur(6px)}
+.mushroom-photo-dialog-title{font-size:clamp(25px,3vw,40px)!important;line-height:1.2;margin:8px 0 24px!important}
+.mushroom-photo-close{float:right;border:1px solid #c3cfaa70;border-radius:4px;background:#d9dcb9;color:#153e31;padding:9px 15px;font-size:13px!important;margin:0 0 12px 20px!important}
+.mushroom-photo-full{clear:both;width:100%;height:auto;max-height:61vh;object-fit:contain;background:#061d1b}
+.mushroom-photo-full-caption{font-size:17px;margin-top:19px!important;max-width:70ch}
+.mushroom-photo-subject{margin-top:9px!important;color:#bacbb2;font-size:13px}
+.mushroom-photo-dialog .mushroom-photo-credit{color:#c5d5b9;font-size:12px}
+.mushroom-photo-changes{font-size:11px;color:#93b09a;margin-top:10px!important;line-height:1.7}
+@media(min-width:851px){.mushroom-section-family{padding-block:64px!important}}
+@media(max-width:850px){.mushroom-section-family .mushroom-specimens{gap:25px}.mushroom-photo-type{font-size:8px;left:8px;top:8px;right:8px}.mushroom-photo-zoom{font-size:10px;padding:5px 8px;right:8px;bottom:8px}.mushroom-photo-caption{font-size:12px}.mushroom-photo-credit{font-size:9px}.mushroom-anatomy-aside{max-width:660px;width:100%;margin:auto}.mushroom-real-mycelium{grid-template-columns:1fr;gap:25px}.mushroom-real-mycelium h3{max-width:none}.mushroom-real-mycelium .mushroom-photo{max-width:700px}.mushroom-lab-photo{padding:0 26px 28px}}
+@media(max-width:560px){.mushroom-section-family .mushroom-specimens{gap:38px}.mushroom-specimen.mushroom-specimen-with-photo{display:flex;border:0;padding:0;gap:0}.mushroom-specimen-with-photo .mushroom-specimen-copy{margin-top:17px;padding-top:0}.mushroom-photo-image{aspect-ratio:1.5}.mushroom-photo-type{font-size:8px}.mushroom-photo-caption{font-size:13px}.mushroom-photo-credit{font-size:10px}.mushroom-anatomy-photo .mushroom-photo-image{aspect-ratio:1.4}.mushroom-cutaway-photo .mushroom-photo-image{aspect-ratio:1.5}.mushroom-real-mycelium{margin-top:25px;padding-top:30px}.mushroom-lab-photo{padding:0 25px 25px}.mushroom-photo-dialog{width:calc(100vw - 22px);max-width:calc(100vw - 22px);padding:18px;max-height:94vh}.mushroom-photo-close{float:none;display:block;margin:0 0 20px!important;width:100%}.mushroom-photo-dialog-title{font-size:29px!important}.mushroom-photo-full{max-height:50vh}.mushroom-photo-full-caption{font-size:15px}.mushroom-photo-subject{font-size:12px}}
+.hrv-mushrooms .mushroom-photo .mushroom-photo-credit{font-size:11px;line-height:1.7;max-width:none}

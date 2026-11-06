@@ -85,7 +85,7 @@
         "type": "family",
         "eyebrow": "01 / MEET THE KINGDOM",
         "title": "Small. Strange. Extraordinary.",
-        "intro": "Fungi aren’t plants or animals. They belong to a kingdom of their own. Meet three very different examples.",
+        "intro": "Fungi aren’t plants or animals. They belong to a kingdom of their own. Meet three very different examples. These pictures show different zoom levels.",
         "sourceRefs": [
           "mushroom-source:kingdom"
         ],
@@ -97,7 +97,13 @@
             "sourceRefs": [
               "mushroom-source:kingdom"
             ],
-            "visual": "mushroom"
+            "visual": "mushroom",
+            "media": {
+              "kind": "image",
+              "url": "asset:mushroom-photo:blue-mycena",
+              "alt": "A group of small blue Mycena interrupta mushrooms growing among moss and wood.",
+              "caption": "Real blue mushrooms! These are Mycena interrupta, photographed in Tasmania."
+            }
           },
           {
             "id": "mushroom-family:moulds",
@@ -106,7 +112,13 @@
             "sourceRefs": [
               "mushroom-source:kingdom"
             ],
-            "visual": "mould"
+            "visual": "mould",
+            "media": {
+              "kind": "image",
+              "url": "asset:mushroom-photo:rhizopus-macro",
+              "alt": "Fine pale Rhizopus mould threads on a strawberry, topped by tiny dark round spore cases.",
+              "caption": "Look for the tiny dark dots. They are spore cases on Rhizopus mould."
+            }
           },
           {
             "id": "mushroom-family:yeasts",
@@ -115,7 +127,13 @@
             "sourceRefs": [
               "mushroom-source:mycelium"
             ],
-            "visual": "yeast"
+            "visual": "yeast",
+            "media": {
+              "kind": "image",
+              "url": "asset:mushroom-photo:yeast-dic",
+              "alt": "Oval Saccharomyces cerevisiae yeast cells seen with a microscope; several have small buds.",
+              "caption": "A microscope brings these yeast cells into view. Some have a tiny bud growing from them."
+            }
           }
         ]
       },
@@ -180,7 +198,13 @@
               "mushroom-source:mycelium"
             ]
           }
-        ]
+        ],
+        "detailMedia": {
+          "kind": "image",
+          "url": "asset:mushroom-photo:gill-macro",
+          "alt": "A real close-up of the thin ridges under a mushroom cap, radiating out from its stem.",
+          "caption": "Follow the ridges under a real mushroom cap. These are its gills."
+        }
       },
       {
         "id": "mushroom-block:below",
@@ -191,7 +215,12 @@
         "sourceRefs": [
           "mushroom-source:mycelium"
         ],
-        "media": null,
+        "media": {
+          "kind": "image",
+          "url": "asset:mushroom-photo:mycelium-wood",
+          "alt": "White cottony mycelium spreading in a branching patch over a piece of wood.",
+          "caption": "Real mycelium on wood. Can you find where the fine threads spread out?"
+        },
         "views": [
           {
             "id": "mushroom-view:surface",
@@ -277,7 +306,8 @@
             "sourceRefs": [
               "mushroom-source:roles"
             ],
-            "visual": "leaf"
+            "visual": "leaf",
+            "media": null
           },
           {
             "id": "mushroom-role:partners",
@@ -286,7 +316,8 @@
             "sourceRefs": [
               "mushroom-source:roles"
             ],
-            "visual": "tree"
+            "visual": "tree",
+            "media": null
           },
           {
             "id": "mushroom-role:bakers",
@@ -295,7 +326,8 @@
             "sourceRefs": [
               "mushroom-source:roles"
             ],
-            "visual": "bread"
+            "visual": "bread",
+            "media": null
           }
         ]
       },
@@ -318,7 +350,13 @@
             "sourceRefs": [
               "mushroom-source:glow"
             ],
-            "mode": "glow"
+            "mode": "glow",
+            "media": {
+              "kind": "image",
+              "url": "asset:mushroom-photo:glowing-panellus",
+              "alt": "Panellus stipticus mushrooms emitting a green glow in the dark in a long-exposure photograph.",
+              "caption": "Real glowing fungi: Panellus stipticus. The camera collected light for over eight minutes to make the glow easier to see."
+            }
           },
           {
             "id": "mushroom-lab:sound",
@@ -328,7 +366,8 @@
               "mushroom-source:electricity",
               "mushroom-source:music"
             ],
-            "mode": "sound"
+            "mode": "sound",
+            "media": null
           }
         ]
       },

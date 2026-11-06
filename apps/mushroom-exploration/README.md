@@ -25,6 +25,16 @@ The spore tunnel enlarges particles, simplifies airflow and speeds time; it is n
 quantitative dispersal simulation. The glow illustration exaggerates visibility. The
 sound graph is explicitly invented, without physical units or purported fungal recordings.
 
+Six real photographs now complement the models: blue Mycena interrupta, Rhizopus mould,
+yeast under DIC microscopy, a gill macro, mycelium on wood and bioluminescent Panellus
+stipticus. Cards open an accessible native dialog showing the uncropped delivery image.
+Creators, original sources, licences, dimensions and original/delivery SHA-256 values live
+in src/photo-catalog.js; source/mushrooms.assets.json is its generated editor-readable view.
+The shipped WebP files remain under their individual image licences, including share-alike
+where specified. The page and full-view dialog retain credits and licence/source links.
+See src/assets/PHOTO-CREDITS.md for the readable per-file licence list.
+Images were resized and converted for delivery without retouching or recolouring.
+
 ## Source and future editing
 
 source/mushrooms.source.json separates content, source references, image references,
@@ -32,6 +42,10 @@ captions, observation points and supported records from rendering. Data renders 
 never arbitrary HTML. Stable IDs, year, viewport method and reference size are protected.
 Content edits invalidate the document's research/publication review state. Add/remove
 operations for nested records remain a future explicit command.
+
+Bundled photo references use stable asset:mushroom-photo:* identifiers; unknown IDs fail
+validation. Captions and alternatives remain editable. The anatomy detail photograph is a
+separate field from its diagram, so selecting a photograph does not move diagram hotspots.
 
 source/mushrooms.control.json and schemas/mushroom-exploration.source.schema.json are
 generated from src/contract.js; checks reject drift. These are the contract for the future
@@ -49,7 +63,7 @@ Arctic reviews the exhibit and we prepare an immutable release.
 - npm run build:mushrooms — creates dist/mushroom-exploration/index.html and internal qa.html.
 - node tools/build-mushroom-exploration-preview.mjs --write-contracts — regenerate contracts after reviewing authority changes.
 
-The standalone index includes code, source and WebP artwork; it requires no network to
+The standalone index includes code, source, all six real photographs and WebP artwork; it requires no network to
 render or play its models. Research and navigation links go to external sites if followed.
 Open index.html directly in a modern browser. Optional ?review=1 reveals adult block-outline
 tools outside the exhibit. qa.html is an internal screen-size harness, not a contained page

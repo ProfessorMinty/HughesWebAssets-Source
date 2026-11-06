@@ -1,6 +1,7 @@
 {
-  "schemaVersion": "mushroom-exploration/1.1.0",
+  "schemaVersion": "mushroom-exploration/1.2.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
+  "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "editorRoute": "/mushrooms",
   "editorLabel": "Mushinator",
   "editorImplementation": "not-built",
@@ -51,6 +52,7 @@
         "intro",
         "sourceRefs",
         "media",
+        "detailMedia",
         "hotspots"
       ],
       "identityField": "id"

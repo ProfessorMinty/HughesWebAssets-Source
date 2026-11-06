@@ -184,9 +184,23 @@
                             "const": "image"
                           },
                           "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "pattern": "^https://"
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
                           },
                           "alt": {
                             "type": "string",
@@ -255,7 +269,8 @@
                         "body",
                         "sourceRefs",
                         "title",
-                        "visual"
+                        "visual",
+                        "media"
                       ],
                       "properties": {
                         "id": {
@@ -287,6 +302,56 @@
                             "tree",
                             "bread"
                           ]
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }
@@ -304,6 +369,7 @@
                   "intro",
                   "sourceRefs",
                   "media",
+                  "detailMedia",
                   "hotspots"
                 ],
                 "properties": {
@@ -354,9 +420,73 @@
                             "const": "image"
                           },
                           "url": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
+                          },
+                          "alt": {
                             "type": "string",
-                            "format": "uri",
-                            "pattern": "^https://"
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "caption": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "detailMedia": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "alt",
+                          "caption"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "image"
+                          },
+                          "url": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
                           },
                           "alt": {
                             "type": "string",
@@ -482,9 +612,23 @@
                             "const": "image"
                           },
                           "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "pattern": "^https://"
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
                           },
                           "alt": {
                             "type": "string",
@@ -632,9 +776,23 @@
                                   "const": "image"
                                 },
                                 "url": {
-                                  "type": "string",
-                                  "format": "uri",
-                                  "pattern": "^https://"
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
                                 },
                                 "alt": {
                                   "type": "string",
@@ -706,7 +864,8 @@
                         "body",
                         "sourceRefs",
                         "title",
-                        "visual"
+                        "visual",
+                        "media"
                       ],
                       "properties": {
                         "id": {
@@ -737,6 +896,56 @@
                             "leaf",
                             "tree",
                             "bread"
+                          ]
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
                           ]
                         }
                       }
@@ -796,7 +1005,8 @@
                         "body",
                         "sourceRefs",
                         "title",
-                        "mode"
+                        "mode",
+                        "media"
                       ],
                       "properties": {
                         "id": {
@@ -823,6 +1033,56 @@
                           "enum": [
                             "glow",
                             "sound"
+                          ]
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
                           ]
                         }
                       }

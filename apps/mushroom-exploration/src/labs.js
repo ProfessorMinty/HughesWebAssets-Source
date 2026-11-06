@@ -43,13 +43,14 @@ export function createSporeLab() {
   const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)suspend();});observer.observe(node);cleanups.push(()=>observer.disconnect());
   return {node,destroy(){destroyed=true;cancelAnimationFrame(frame);cleanups.forEach(f=>f());particles=[];}};
 }
-export function createWonderLab(experiments) {
+export function createWonderLab(experiments, photoRenderer) {
   const node=labNode('div','mushroom-wonder-labs'),cleanups=[];let audio=null,oscillators=[],raf=0,playing=false,destroyed=false,start=0,seed=0,run=0;
   const glow=experiments.find(e=>e.mode==='glow'),sound=experiments.find(e=>e.mode==='sound');
   const light=labNode('article','mushroom-light-lab');light.dataset.recordId=glow.id;light.dataset.night='false';
   const visual=labNode('div','mushroom-glow-scene');visual.append(labSVG(glowArtwork()),labNode('span','mushroom-model-label','ILLUSTRATED MODEL · GLOW EXAGGERATED'));
   const lightCopy=labNode('div','mushroom-lab-copy');lightCopy.append(labNode('p','mushroom-eyebrow','LIGHT LAB'),labNode('h3','',glow.title),labNode('p','',glow.body));
   const night=labButton('Turn out the lights',()=>{const enabled=light.dataset.night!=='true';light.dataset.night=String(enabled);night.setAttribute('aria-pressed',String(enabled));night.textContent=enabled?'Bring back daylight':'Turn out the lights';},cleanups);night.setAttribute('aria-pressed','false');lightCopy.append(night);light.append(visual,lightCopy);
+  if(glow.media && photoRenderer)light.append(photoRenderer(glow.media,'mushroom-lab-photo'));
   const music=labNode('article','mushroom-sound-lab');music.dataset.recordId=sound.id;
   const graph=labNode('div','mushroom-signal-graph');
   graph.append(labSVG('<svg viewBox="0 0 650 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An invented changing pattern, not a recording from a fungus. The height of the line is mapped to a musical note."><g fill="none" stroke="#8fc3ab" stroke-opacity=".18"><path d="M30 50H620M30 100H620M30 150H620M30 200H620M80 30V225M180 30V225M280 30V225M380 30V225M480 30V225M580 30V225"/></g><path class="model-signal-line" fill="none" stroke="#b6dca1" stroke-width="3"/><circle class="model-signal-cursor" r="7" fill="#f6d298" cx="30" cy="130"/></svg>'),labNode('span','mushroom-model-label','INVENTED PATTERN · NOT FUNGAL DATA'));

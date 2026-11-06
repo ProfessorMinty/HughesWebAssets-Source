@@ -1,9 +1,9 @@
 # Observed draft checks — 2026-11-06
 
-`npm run check:mushrooms` passed: syntax checks, eight source/edit/publication-guard tests,
+`npm run check:mushrooms` passed: syntax checks, ten source/edit/publication-guard tests,
 generated schema/control consistency and the standalone build. No dependency install is
-needed for this isolated application. Standalone preview size: 466,003 bytes, including
-its optimized 285,228-byte WebP artwork, source data, SVG models, styles and JavaScript.
+needed for this isolated application. Standalone preview size: 1,780,675 bytes, including
+its 285,228-byte entrance WebP, six real photographs, source data, SVG models, styles and JavaScript.
 
 ## Full viewport breakout
 
@@ -42,3 +42,26 @@ edge-to-edge root, no review toolbar by default, no horizontal overflow.
 The draft has not been installed in live Edublogs or tested against the exact live DOM,
 on Safari/Firefox, or with a screen reader. The preview uses an Amadeus-like ancestor
 simulation. Publication, actual classroom content and the Mushinator editor remain later work.
+
+## Real photograph edition — 2026-11-06
+
+Ten local tests now pass, including registered-asset URL refusal, editable photo captions,
+provenance catalog consistency, WebP signatures and delivery SHA-256 checks. The build
+independently verifies the byte count and SHA-256 of every embedded photograph.
+
+The same five CSS viewport checks above passed again with nine sections and zero horizontal
+overflow. At 320 px, the open photo dialog stayed inside the available 305 px width
+(left 4 px, right 302 px). Escape closed it; a subsequent descendant-bounds check found
+no exhibit element outside the viewport.
+
+All six photo buttons opened their inspection dialogs and returned to the exhibit. Chrome
+reported complete image loads with natural sizes 1600×1084, 720×540, 1560×1560, 1200×1600,
+1600×1200 and 1200×800 respectively. The gallery uses real photos in place of the first
+three specimen icons, with additional gill, mycelium and glowing-fungus views. The full
+viewer retains original aspect ratios; microscopy is labelled. Photo creators and licence
+links remain available on each figure and in its dialog. Application-filtered warning/error
+logs were empty during this pass.
+
+Current self-contained photo-preview size: 1,780,675 bytes. It embeds all six image files.
+The initial scaffold used eight tests and a 466,003-byte preview; its source remains in Git
+history. This photo edition is the current draft. Live Edublogs remains untested/unchanged.

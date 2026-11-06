@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { createHash } from "node:crypto";
+import { MUSHROOM_PHOTOS } from "../apps/mushroom-exploration/src/photo-catalog.js";
 import assert from "node:assert/strict";
 import { validateMushroomSource, editMushroomBlock, MUSHROOM_EDITOR_CONTRACT, mushroomSourceJsonSchema } from "../apps/mushroom-exploration/src/contract.js";
 
@@ -66,4 +68,26 @@ test("answer identities remain stable when a future editor changes a question", 
   const questions=structuredClone(source.data.blocks.find(b=>b.type==="facts").questions);
   questions[0].choices[0].id="mushroom-answer:renamed";
   assert.throws(()=>editMushroomBlock(source,"mushroom-block:discoveries",{questions}),/nested answer IDs/);
+});
+
+test("photographs resolve only registered assets and preserve editable captions", function () {
+  const family=source.data.blocks.find(b=>b.type==="family");
+  const cards=structuredClone(family.cards);cards[0].media.caption="Look at the blue caps.";
+  const changed=editMushroomBlock(source,family.id,{cards});
+  assert.equal(changed.data.blocks.find(b=>b.type==="family").cards[0].media.caption,"Look at the blue caps.");
+  for(const url of ["asset:mushroom-photo:missing","data:image/svg+xml,<svg/>","file:///private.jpg","../private.jpg"]){
+    cards[0].media.url=url;
+    assert.throws(()=>editMushroomBlock(source,family.id,{cards}),/unknown bundled|HTTPS|not a URL/);
+  }
+});
+test("photo provenance and image bytes match the generated catalog", async function () {
+  const catalog=JSON.parse(await readFile(root+"/apps/mushroom-exploration/source/mushrooms.assets.json","utf8"));
+  assert.deepEqual(catalog.photos,MUSHROOM_PHOTOS);
+  assert.equal(new Set(MUSHROOM_PHOTOS.map(p=>p.id)).size,MUSHROOM_PHOTOS.length);
+  for(const photo of MUSHROOM_PHOTOS){
+    assert.match(photo.id,/^mushroom-photo:[a-z0-9-]+$/);assert.match(photo.file,/^\.\/assets\/[a-z0-9-]+\.webp$/);
+    assert.ok(photo.creator&&photo.license&&photo.changes);assert.match(photo.page,/^https:\/\//);assert.match(photo.licenseUrl,/^https:\/\//);
+    const bytes=await readFile(root+"/apps/mushroom-exploration/src/"+photo.file);
+    assert.equal(bytes.toString("ascii",8,12),"WEBP");assert.equal(createHash("sha256").update(bytes).digest("hex"),photo.sha256);
+  }
 });
