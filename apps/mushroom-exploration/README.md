@@ -21,17 +21,24 @@ an invented signal-to-sound model, and three discovery questions. Animations and
 Changing an exhibit suspends its active media. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
 
-The palette comes from the woodland entrance image: deep forest `#01231b`, forest surface
-`#023327`, moss `#769e53`, cap amber `#e1ad4d`, luminous threads `#2ad9c8` and warm
-highlights `#f2dec4`. Representative colors were extracted from the image; secondary text
-uses a lighter moss tint for readability. Both learning stations use forest surfaces and
-warm text. The classroom story uses moss and bark tones. Selected controls remain dark
-teal with a cyan inset marker; amber identifies primary actions. Keyboard focus uses amber
-or cyan on dark surfaces. The sticky chapter panels track the section at the reading edge
-with `aria-current="location"` and a visible marker. Specimen names precede photographs;
-descriptions precede compact captions and credits. Contained photographs retain the full
-image in dark specimen displays with explanatory side labels where space permits. The
-inspection dialog remains uncropped.
+The woodland entrance supplies the forest, wood, moss, amber and cyan color families.
+Three distinct row surfaces provide wayfinding, with derived shades for each row's panels
+and controls:
+
+| Role | Destination | Surface |
+| --- | --- | --- |
+| Primary | Fungi up close | Forest teal `#06443f` |
+| Secondary | Life in motion | Warm bark `#46311f` |
+| Tertiary | Our growing story | Moss green `#465a2b` |
+
+Chapter buttons use the matching destination family. Selected controls inherit their row's
+colors with a cyan inset marker; amber identifies primary actions. Warm text remains common
+across the rows, with lighter moss and gold labels in the tertiary row for contrast.
+Keyboard focus uses amber or cyan on dark surfaces. The sticky chapter panels track the
+section at the reading edge with `aria-current="location"` and a visible marker. Specimen
+names precede photographs; descriptions precede compact captions and credits. Contained
+photographs retain the full image in dark specimen displays with explanatory side labels
+where space permits. The inspection dialog remains uncropped.
 
 The woodland entrance is generated imaginative artwork, not a specimen photograph or
 classroom record. Its cyan threads are fantasy atmosphere. All scientific diagrams are

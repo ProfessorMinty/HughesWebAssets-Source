@@ -1,4 +1,28 @@
-# Current checks — banner palette, 2026-11-06
+# Current checks — three row palettes, 2026-11-06
+
+- Three full-width surfaces distinguish the destinations: primary forest teal `#06443f`
+  for Fungi up close, secondary warm bark `#46311f` for Life in motion, and tertiary moss
+  `#465a2b` for Our growing story. Navigation panels match those destination families.
+  The secondary row's tabs, model displays, video panels, graph and questions use warm
+  bark shades. Its palette change includes the workbenches, not only the outer background.
+- All 16 tests, syntax checks, contract/media-integrity checks and the build passed through
+  `npm run check:mushrooms`. This pass changes styles and documentation, not lesson data,
+  scientific geometry, media, routes or the editor contract.
+- Chrome checked seven main tabs at five CSS sizes (1920×911, 1366×768, 820×1180,
+  390×844 and 320×640): 35 combinations passed. Each showed the intended panel, ready
+  state, root x=0, no horizontal overflow, nine stable blocks and the correct distinct
+  selected colors for the two stations.
+- All seven desktop panels passed the bounded computed text check against nearest opaque
+  CSS backgrounds. This excludes gradient/image contrast analysis and is not a whole-site
+  accessibility certification. Body text contrast on the three bases is approximately
+  8.40:1, 9.32:1 and 5.81:1. Tertiary secondary text is 5.44:1; its gold labels are 5.22:1.
+- Actual desktop backgrounds were `rgb(6,68,63)`, `rgb(70,49,31)` and `rgb(70,90,43)`.
+  Secondary workbenches were `rgb(52,39,27)`. The default page remains about 2564 px tall,
+  with the journal around 2230 px from the top. Geometry and scrolling distance are preserved.
+
+The exhibit remains an unpublished draft.
+
+## Previous banner palette checks — retained history
 
 The entrance artwork is the color reference. The representative forest, moss, cap-amber,
 cyan-thread and warm-highlight colors are recorded in README.md. This pass changes styles
