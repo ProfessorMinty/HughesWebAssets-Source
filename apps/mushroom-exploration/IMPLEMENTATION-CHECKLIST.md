@@ -1,12 +1,16 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.1 · November 6, 2026 · First implementation batch verified; remaining fixes open.
+Version 1.2 · November 6, 2026 · Process batch verified; music and final checks remain open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
 `2026-11-06_15-44-35.mp4` recording, and the current repository source. Creating this
 document alone did not complete any fixes. All 46 items started open; checked items now
 have dated implementation evidence below.
+
+**Current status: 26 of 46 complete.** M01 and M03–M27 are checked. M02 and M28–M46
+remain open. The next implementation batch is electrical activity and mushroom music
+(M28–M35), followed by remaining audience/access/ownership checks. J01–J05 stay deferred.
 
 ## Baseline and evidence
 
@@ -199,48 +203,48 @@ already within the requested scope.
 
 ## C. Process visuals and spore investigations
 
-- [ ] **M16 — Polish connected mycelium growth.**
+- [x] **M16 — Polish connected mycelium growth.**
   Preserve the existing attachments and parent-first animation. Use clear Watch it grow,
   Pause/Resume and Replay states, an informative starting/completed view and inspectable
   pacing. Done when branches visibly extend from existing growth, replay starts cleanly,
   pause/resume preserves finished strands, and reduced-motion users can inspect the process.
 
-- [ ] **M17 — Build a recycling process visual.**
+- [x] **M17 — Build a recycling process visual.**
   Show dead leaf/wood material breaking down outside fungal threads, smaller food particles
   being absorbed, and nutrients becoming available in the surroundings. Keep the real photo
   as supporting evidence. Done when advancing the sequence changes the explanatory visual,
   not only a sentence or underline, and each stage has an observable takeaway.
 
-- [ ] **M18 — Give plant partnerships whole-plant context.**
+- [x] **M18 — Give plant partnerships whole-plant context.**
   Add a small plant with leaves above the root and explain where its sugar comes from.
   Scope the partnership to some fungi/plants. Done when children can distinguish plant root,
   fungal threads and the above-ground plant, and connect sunlight, plant sugar and the exchange.
 
-- [ ] **M19 — Clarify both exchange directions.**
+- [x] **M19 — Clarify both exchange directions.**
   Label Sugar to the fungus and Water and minerals to the plant. Use direction, text and
   distinguishable arrow/marker styles alongside color. Offer Watch the trade and optional
   one-direction highlighting. Done when the arrows, selected control and explanation agree
   for both directions, and exchange can be paused and inspected.
 
-- [ ] **M20 — Strengthen the dough comparison.**
+- [x] **M20 — Strengthen the dough comparison.**
   Make enlarging gas pockets visually explain rising dough and retain a starting-level
   outline for comparison. Preserve the sped-up label, finite rise and held ending already
   shown at 01:23–01:30. Done when replay is explicit, Pause/Resume works, and the model
   never implies a natural shrink/rise cycle.
 
-- [ ] **M21 — Clarify the tiny-drop mechanism.**
+- [x] **M21 — Clarify the tiny-drop mechanism.**
   Preserve attached starting spore → water joining → short release. Directly label the
   water drop, wet spore surface and tiny stalk; keep enlarged/slowed disclosures. Done when
   labels, stage indicators and movement agree, the release remains short, and the sequence
   stops for inspection with replay/step alternatives rather than resembling a cannon shot.
 
-- [ ] **M22 — Improve breeze controls while retaining live response.**
+- [x] **M22 — Improve breeze controls while retaining live response.**
   Use one clear Try the breeze start action; retain the slider's existing effect on moving
   spores. Add Left / Still air / Right alternatives and Reset, with Pause/Resume. Done when
   still air shows settling, direction changes affect the current run, and all controls work
   without precise dragging or creating uncontrolled overlapping runs.
 
-- [ ] **M23 — Make research-video viewing clear and useful.**
+- [x] **M23 — Make research-video viewing clear and useful.**
   Give the microscope recording a larger useful display and one prominent Play video
   affordance, retaining accessible pause, replay and fullscreen access. Synchronize any custom
   control with actual native-player state. Done when playback is tested live, captions and
@@ -252,13 +256,13 @@ already within the requested scope.
   or give the wind model more space; a new video is not required. Done when no wind view
   presents launch footage or launch instructions as if they show air transport.
 
-- [ ] **M25 — Keep the puffball comparison accurate and watch-only.**
+- [x] **M25 — Keep the puffball comparison accurate and watch-only.**
   Retain the working footage and distinct release mechanism. Explain that many tiny spores
   form the visible cloud; put a brief warning beside it against squeezing wild mushrooms
   or breathing spore clouds. Done when its heading/prompt match puffballs, the slowed-five-
   times label and attribution remain, and no unknown capture frame rate is invented.
 
-- [ ] **M26 — Make the life cycle visibly repeat.**
+- [x] **M26 — Make the life cycle visibly repeat.**
   Keep four illustrated stages visible with arrows returning from release to a new spore.
   Use a readable vertical equivalent on small screens; keep a selected stage's explanation.
   Preserve connected growth, the simplified mushroom-making-fungus scope and the fact that
@@ -445,7 +449,7 @@ now records completed work; earlier baseline evidence remains in `QA.md`.
 
 ## Implementation evidence — November 6, 2026, batch 1
 
-**16 of 46 items complete:** M01, M03–M15, M24 and M27. All other boxes remain open.
+**Historical batch 1 snapshot — 16 of 46 were complete:** M01, M03–M15, M24 and M27. All other boxes remain open.
 The original fixed requirements and deferred J01–J05 remain in force.
 
 Implementation commit: [93aee2f3c59b7b76ecbc19610230341865ebaa88](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/93aee2f3c59b7b76ecbc19610230341865ebaa88).
@@ -491,7 +495,7 @@ station about **836 px**, second about **787 px**. Baseline was 2564/2230/835 px
 instructions and direct chooser preserve approximately the same default scrolling distance.
 The three measured row bases remain #06443f / #46311f / #465a2b.
 
-### Open work after this batch
+### Historical open work after batch 1 — superseded by batch 2
 
 - **M02 in progress:** source explanations are shorter; older model-stage/status wording and
   the electrical/music lesson still need their audience-specific pass.
@@ -512,6 +516,65 @@ The three measured row bases remain #06443f / #46311f / #465a2b.
 New lesson edits are correctly marked `researchStatus: pending`; source remains `scaffold`.
 Continue from the next open batch and record new evidence by these same IDs.
 
+## Implementation evidence — November 6, 2026, batch 2
+
+**Ten additional items complete:** M16–M23, M25 and M26. Together with batch 1 this is
+**26/46**. M24 was already complete and remains preserved. All remaining boxes stay open.
+
+Implementation commit: [f1fddbae950817a9cbcf260c9886312d9fc9e902](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/f1fddbae950817a9cbcf260c9886312d9fc9e902).
+Its tree `0b230e1a5c9318d124510519948793395d808002` matches local implementation commit
+`8d891acac702ed0c2d444b176cf062b6ce99f323`. The entries below share this date and commit.
+
+| Completed ID | Changed files | Acceptance evidence and limits |
+| --- | --- | --- |
+| M16 | `src/process.js`, `src/labs.js`, `src/runtime.js`, source/contract/CSS | Watch it grow, Pause/Resume, Replay/Reset and manual checkpoints use the original connected parent-first path schedule and specimen anchors. Browser checkpoint had 116 finished strands; after resume/pause, 131 remained finished with time increasing from 2.667 to 2.933 seconds. A later read stayed at 2.933. The eight-second ending held all paths finished. Unit samples require every visible child to have a completed parent. Reduced-motion/manual controls were verified; no detached geometry introduced. |
+| M17 | `src/art.js`, labs, source/contract/CSS | Three manual views visibly change outside food particles → particles at actual thread junctions → nutrients in the surroundings. Browser checked all three layer states and matching explanation. Real mycelium photo remains behind a labeled disclosure; opening/enlarging/return worked. These are illustrative particles, not measured chemistry. |
+| M18 | art, labs, source/contract/CSS | Whole leafy plant and sunlight appear above the soil, with a thick root connected to a fine fungal mat below. Visible copy links light, leaf-made sugar and the exchange. Some-partnership scope and Kew citation retained; all three fungal-job views fit five tested layouts. |
+| M19 | art, labs, `process.js`, source/contract/CSS | Both directions are directly labeled and use arrows, round sugar markers and diamond water/mineral markers. Selecting sugar/water changed the highlighted route and matching explanation. Browser pause held time and marker position; resume reached a finite six-second ending. Both directions is an explicit view; Watch the trade replays both. No quantitative flow claim. |
+| M20 | art, labs, `process.js`, source/contract/CSS | Fixed dashed starting outline stays visible. Browser measured dough scale .62 → .81 → 1 and a gas-pocket radius 2.25 → 3.625 → 5; the six-second ending remained risen after leaving and returning. Pause/resume, steps and explicit Replay/Reset share the tested finite clock. Sped-up/enlarged labels remain. |
+| M21 | art, labs, process, source/contract/CSS | Direct HTML labels and leaders identify spore, drop, wet surface and tiny stalk. Manual middle state showed merged water with spore still at translate(0 0); ending held translate(-105 0), drop opacity 0 and the spore leader followed it. Water joins before release; the short movement stops for inspection. Model remains enlarged/slowed and is not assigned physical speed units. |
+| M22 | labs, process, source/contract/CSS | Try the breeze, live slider, Left/Still air/Right presets, Pause/Resume and Reset are present. Browser reversed an active run: at 3.000 s x=550.37, then after choosing Left and resuming/pausing, at 3.267 s x=532.63. Still-air end held all 36 spores visibly settled at y=470. Clock tests prevent overlapping replays; settling stops later drift. |
+| M23 | labs, source/contract/CSS, repository-root tests | Microscope display is about 465 CSS px wide at the reference desktop, with one prominent Play video control plus native controls. Live playback reached readyState 4 and advancing time; pause, ended/replay text, full-screen image and native Escape return were observed. Silent/slow labels and English description track remain separate from status. Native error/retry state mapping is unit-tested; no live network failure was injected. Original clip is still 256×128: larger display adds no source detail. |
+| M25 | labs, source/contract/CSS, `RESEARCH.md` | Puffball has its own heading, observation context and watch-only warning inside its player panel. Caption distinguishes its mechanism and many-spore cloud; persistent slowed-five-times label remains. Existing footage/provenance is retained, and integrity tests preserve captureFps null. Safety note checked against CDC. This batch's live full-screen/player test used the microscope clip; the prior recorded puffball playback remains baseline evidence. |
+| M26 | art, labs, source/contract/CSS | All four illustrated stages remain present, with a return arrow from released spores to a possible new beginning. Closer crops remove early-stage empty space; connected growth/fruiting artwork remains. Desktop shows a horizontal cycle; 320 px shows four 247×132 px buttons in a vertical sequence with return cue. Keyboard selection updated the explanation. Source enforces the four-stage order and retains the suitable-conditions/many-spores-do-not-succeed scope. |
+
+Shared evidence:
+
+- `npm run check:mushrooms`: **30 tests pass**, all syntax checks, generated source/control/
+  schema agreement, registered-photo/video integrity and standalone build. `git diff --check` passes.
+- **55 activity/layout combinations** at all five reference sizes: selected topic correct,
+  one active block panel per station, no horizontal overflow; four cycle cards remain present.
+- **15 additional fungal-job/layout cases**: recycling, partners and baking at all five sizes,
+  no overflow. New visible job buttons at 320 px measured at least 48 px tall.
+- **11 activity choices at actual 200% Chrome zoom**, 681 px CSS viewport: no overflow.
+  Journal focused correctly; heading≈208 px, sticky nav bottom≈122 px. At 320 px, heading≈210 px,
+  nav bottom≈124 px. This is not physical-device, screen-reader, projector or pupil certification.
+- Persistent Step-by-step view was enabled in the browser: all five animated process controls
+  adopted it; reload retained it. Next step made a stable growth snapshot. Native system-
+  preference behavior and runtime changes are covered by injected-preference unit tests.
+  Storage-write failure and listener cleanup are also tested; a blocked store still permits
+  a current-page motion choice. No automatic resume occurs when more motion is reenabled.
+- Final default 1920×911 journey: page≈**2602 px**, journal y≈**2268 px**, first station≈**836 px**,
+  second≈**822 px**. This adds about 35 px versus batch 1 while expanding the research image
+  and adding process controls. Two learning stations, three row palettes and direct journal
+  access remain. No new vertical learning chapter was added.
+- Screenshot: `qa/batch-2-cycle.png`. Full observations and limits are in `QA.md`.
+
+### Current open work after batch 2
+
+- **M02:** finish audience wording as the electrical/music lesson is revised.
+- **M28–M35:** electrical activity, the measurement-to-sound chain, controlled instruments,
+  transport/volume/coordination, verified real example, glow distinction and observation task.
+- **M36–M45:** finish cross-exhibit reading, contrast, target, keyboard, reduced-motion,
+  narration, authoring/research and validation work after the music changes. M40 is partly
+  implemented for five process clocks; the music cursor and remaining shared behavior still
+  need their pass. M41 read-aloud remains unbuilt. M42 now owns process and recording copy
+  under contract 1.6.0; remaining music/narration copy still needs its ownership pass.
+- **M46:** actual teacher/pupil feedback remains pending. **J01–J05 remain deferred.**
+
+No classroom entries, kit details or observations are invented. The source remains an
+unpublished `scaffold` with research review pending. Continue with M28–M35 using these IDs.
+
 ## Implementation map and source references
 
 | Concern | Owning files |
@@ -519,7 +582,7 @@ Continue from the next open batch and record new evidence by these same IDs.
 | Authored lessons, claims and media references | `source/mushrooms.source.json`, `src/contract.js` |
 | Generated editor/schema descriptions | `source/mushrooms.control.json`, `schemas/mushroom-exploration.source.schema.json` |
 | Station navigation, anatomy, cutaway, gallery and binding | `src/runtime.js` |
-| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js` |
+| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js` |
 | Scientific illustrations and connected specimen geometry | `src/art.js` |
 | Palettes, responsive layout, targets, labels and focus | `src/exhibit.css`, `src/host-compat.css` |
 | Registered photographs, footage and integrity | `src/photo-catalog.js`, `src/photos.js`, `src/video-assets.js`, `src/assets/`, `source/mushrooms.assets.json` |

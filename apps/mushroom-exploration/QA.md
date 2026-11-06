@@ -1,4 +1,87 @@
-# Current checks — checklist batch 1, 2026-11-06
+# Current checks — process batch 2, 2026-11-06
+
+Implementation: [f1fddbae950817a9cbcf260c9886312d9fc9e902](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/f1fddbae950817a9cbcf260c9886312d9fc9e902).
+Its tree `0b230e1a5c9318d124510519948793395d808002` matches local implementation
+`8d891acac702ed0c2d444b176cf062b6ce99f323`. Checklist items M16–M23, M25–M26 now have
+acceptance evidence. This is 26/46 complete including batch 1; music and final checks stay open.
+
+## Automated validation
+
+`npm run check:mushrooms` passes **30 tests**, syntax, generated contract/schema consistency,
+registered asset hashes and build. Nine additions cover finite pause/resume/end/replay with
+no overlapping clock; manual/reduced-motion behavior and preference changes; connected
+parent-first growth samples; breeze direction/settling; dough/pocket comparison; editable
+process text with protected IDs; life-cycle ordering/crops; video error/play/pause/replay
+mapping; and motion preference operation/cleanup when storage cannot be written. No dependency
+was added. `git diff --check` passes. All old photo/video bytes remain unchanged.
+
+## Actual browser checks
+
+- All **55** first/second-station activity combinations at 1920×911, 1366×768, 820×1180,
+  390×844 and 320×640 passed: selected topic agrees, one active block panel per station,
+  no horizontal overflow. All four cycle buttons remain available. One initial long QA
+  automation call timed out and reset its session; its partial results were discarded.
+  The completed matrix was rerun in shorter calls and all 55 results were collected.
+- All **15** recycling/partner/baker layout cases at the same sizes passed without overflow.
+  At 320 px, new visible job controls were at least 48 px tall. Cycle buttons were each
+  247×132 px in a vertical sequence with downward and return cues.
+- Actual **200% browser zoom**, confirmed in Chrome: 681 px CSS viewport, all eleven activities
+  selectable, no horizontal overflow. Journal heading≈207.5 px below a nav ending≈121.7 px;
+  section received focus. Zoom restored to 100%. At 320 px the corresponding values were
+  heading≈210.2 px / nav≈124.3 px with correct focus. This does not test independent OS text sizing.
+- Growth: manual step selected below-ground view, paused at 2.667 s with 116 completed paths.
+  After resume/pause it was at 2.933 s with 131 completed paths; a later read remained frozen.
+  Full run later completed at 8.000 s with zero unfinished paths. Some short selector waits
+  expired before the finite animations ended; subsequent state reads confirmed completion.
+- Motion preference: checking Step-by-step view updated all five process toggles, hid animated
+  Play and provided manual Next. Growth stepped to a stable 5.333 s view. Reload retained the
+  preference. It was restored to normal playback for the remaining checks. System changes and
+  unavailable storage are unit-covered; no physical OS preference was changed in this run.
+- Recycling: each step changed the illustrated layer and explanation. Outside food, inside
+  food at actual thread junctions, then surrounding nutrient markers were observed separately.
+  The real-photo disclosure opened, its image enlarged, and the return button worked.
+- Plant: sugar selection highlighted its round-marker route; water/mineral selection highlighted
+  the reverse diamond-marker route with matching text. Pause held both time and marker transform;
+  resume reached the finite 6.000 s ending with both directions shown.
+- Dough: browser poses were scale .62 / pocket radius 2.25, scale .81 / radius 3.625, then
+  scale 1 / radius 5 at 6.000 s. Leaving/returning held the risen pose. The original-size dashed
+  outline stayed in the artwork. The run has no shrink/rise loop.
+- Launch: the middle manual view held translate(0 0) with merged-water opacity≈.533. Ending
+  held translate(-105 0), drop opacity 0 and the leader ending at the moved spore. Labels remain
+  readable HTML; launch is enlarged/slowed and follows joining water. The clock does not loop.
+- Wind: a current Right run was at x=550.37 / 3.000 s. After Left and resume/pause, the same
+  first spore was x=532.63 / 3.267 s. After Reset in Still air, the ending showed all 36 spores
+  visible at y=470. Presets supplement the slider; paused positions remain inspectable.
+- Microscope video: playback had readyState 4 and advancing currentTime; pause and final Replay
+  text were observed. Full screen displayed the actual video; native Escape returned to the
+  page. Desktop player was about 465 px wide, versus the prior narrow comparison window.
+  Its silent/extreme-slow label and English description track remain. Native load-failure/retry
+  mapping is unit-tested; no live network failure was injected. The 256×128 source is enlarged
+  for viewing, not upscaled with invented detail. Puffball's original playback remains recorded
+  baseline evidence; this batch checked its separate context, warning, slowdown label and hashes.
+- Keyboard Enter selected the recycling nutrient view and the fourth cycle explanation. Ordinary
+  chapter navigation, activity choice and journal focus remained available. This is not a full
+  screen-reader/keyboard certification; M39/M45 remain open for the final cross-exhibit pass.
+
+Final default desktop journey is about **2602 px** tall, journal starts≈**2268 px**, first
+station≈**836 px**, second≈**822 px**. Batch 1 was 2567/2233/836/787 px. The roughly 35 px
+increase retains two compact learning rows while making the video and process controls useful.
+The #06443f / #46311f / #465a2b row families remain. Final new-state contrast checks are M37.
+
+![Four visible life-cycle stages and the return to a possible new spore](qa/batch-2-cycle.png)
+
+Screenshot shows the rendered final batch layout at the browser's normal standalone width.
+A final storage-failure fallback correction was unit-tested and rebuilt after capture; it does
+not change that layout. The working preview was updated with the final built file.
+
+No actual classroom, projector, physical-touchscreen or screen-reader trial is claimed.
+Music transport/instruments/real example, the remaining reduced-motion cursor behavior and
+read-aloud stay open. Research/publication state remains pending/scaffold. Journal authoring,
+Mushinator and production publication/swap remain deferred.
+
+---
+
+## Previous checks — checklist batch 1, 2026-11-06
 
 Implementation: [93aee2f3c59b7b76ecbc19610230341865ebaa88](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/93aee2f3c59b7b76ecbc19610230341865ebaa88).
 Tree `0cb69d7c5f882a85bb90411e9a9c0607ab8b5f0d` matches the tested local tree.
