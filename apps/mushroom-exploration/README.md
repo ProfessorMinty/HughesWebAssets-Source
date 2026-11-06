@@ -21,14 +21,17 @@ an invented signal-to-sound model, and three discovery questions. Animations and
 Changing an exhibit suspends its active media. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
 
-The forest laboratory palette uses soft paper and dark ink for reading, mint with an inset
-marker for selected controls, amber for primary actions, and outlined secondary controls.
-Cyan and violet accents distinguish the light and sound workbenches. Keyboard focus uses
-dark amber on light surfaces and luminous mint on dark surfaces. The sticky chapter panels
-track the section at the reading edge with `aria-current="location"` and a visible marker.
-Specimen names precede the photographs; descriptions precede compact captions and credits.
-Contained photographs retain the full image in dark specimen displays with explanatory
-side labels where space permits. The inspection dialog remains uncropped.
+The palette comes from the woodland entrance image: deep forest `#01231b`, forest surface
+`#023327`, moss `#769e53`, cap amber `#e1ad4d`, luminous threads `#2ad9c8` and warm
+highlights `#f2dec4`. Representative colors were extracted from the image; secondary text
+uses a lighter moss tint for readability. Both learning stations use forest surfaces and
+warm text. The classroom story uses moss and bark tones. Selected controls remain dark
+teal with a cyan inset marker; amber identifies primary actions. Keyboard focus uses amber
+or cyan on dark surfaces. The sticky chapter panels track the section at the reading edge
+with `aria-current="location"` and a visible marker. Specimen names precede photographs;
+descriptions precede compact captions and credits. Contained photographs retain the full
+image in dark specimen displays with explanatory side labels where space permits. The
+inspection dialog remains uncropped.
 
 The woodland entrance is generated imaginative artwork, not a specimen photograph or
 classroom record. Its cyan threads are fantasy atmosphere. All scientific diagrams are

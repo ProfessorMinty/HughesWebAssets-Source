@@ -1,4 +1,34 @@
-# Current checks — palette and hierarchy, 2026-11-06
+# Current checks — banner palette, 2026-11-06
+
+The entrance artwork is the color reference. The representative forest, moss, cap-amber,
+cyan-thread and warm-highlight colors are recorded in README.md. This pass changes styles
+and documentation only; content, source identities, model geometry and media are preserved.
+
+- Cream reading surfaces, pastel mint selection fills and violet accents are replaced by
+  forest surfaces, warm highlight text, dark teal selections, amber actions and cyan markers.
+  The classroom story uses moss and bark tones. Scientific photographs are not recolored.
+- All 16 tests passed through `npm run check:mushrooms`; the final CSS passed the standalone
+  build and whitespace check.
+- Chrome checked seven main tabs at five CSS sizes: 1920×911, 1366×768, 820×1180,
+  390×844 and 320×640. All 35 combinations showed the intended panel, ready state,
+  root x=0, no horizontal overflow, nine stable blocks and matching dark teal selected
+  controls with warm text. Measurements waited for the breakout width after resizing.
+- All seven desktop panels were checked for computed text contrast against their nearest
+  opaque CSS surface. The skip link was separately confirmed to use dark text on amber.
+  This is a bounded CSS check, not image-background, screen-reader or accessibility certification.
+- Calculated base color pairs: warm text/forest surface 10.64:1, secondary text/surface
+  8.23:1, selected text/teal 6.87:1, primary action text/amber 8.18:1, amber focus/surface
+  6.83:1 and cyan selection marker/teal 5.08:1. Gradients use subtle overlays on these bases.
+- Desktop default page remains about 2564 px tall, journal starts around 2230 px and
+  station one is about 835 px. No rows or additional scrolling were introduced.
+- At 320 px the journal jump still placed its heading below the sticky navigation
+  (section top about 148 px; navigation bottom about 124 px). The journal and notebook
+  backgrounds are moss and bark, respectively, with warm readable text.
+
+The exhibit remains an unpublished draft; production installation and classroom authoring
+remain separate work.
+
+## Previous palette and hierarchy checks — retained history
 
 - `npm run check:mushrooms` passes all 16 tests, syntax checks, contract/media-integrity
   checks and the standalone build. No source data, scientific diagrams or asset bytes changed.
