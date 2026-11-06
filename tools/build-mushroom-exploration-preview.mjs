@@ -28,8 +28,8 @@ if (await readFile(controlPath, "utf8") !== control || await readFile(schemaPath
 const source = JSON.parse(await readFile(resolve(app, "source/mushrooms.source.json"), "utf8"));
 validateMushroomSource(source, { allowDraft: true });
 const read = function (name) { return readFile(resolve(app, "src", name), "utf8"); };
-const [contractJS, artJS, labsJS, runtimeJS, exhibitCSS, hostCSS, entrance, catalogJS, photosJS,videoJS] = await Promise.all([
-  read("contract.js"), read("art.js"), read("labs.js"), read("runtime.js"), read("exhibit.css"), read("host-compat.css"), readFile(resolve(app,"src/assets/entrance-v1.webp")),read('photo-catalog.js'),read('photos.js'),read('video-assets.js')
+const [contractJS, artJS, processJS, labsJS, runtimeJS, exhibitCSS, hostCSS, entrance, catalogJS, photosJS,videoJS] = await Promise.all([
+  read("contract.js"), read("art.js"), read("process.js"), read("labs.js"), read("runtime.js"), read("exhibit.css"), read("host-compat.css"), readFile(resolve(app,"src/assets/entrance-v1.webp")),read('photo-catalog.js'),read('photos.js'),read('video-assets.js')
 ]);
 let inlineCatalog=catalogJS;
 for(const photo of MUSHROOM_PHOTOS){
@@ -45,7 +45,7 @@ for(const video of MUSHROOM_VIDEOS)for(const file of video.files){
   if(createHash('sha256').update(bytes).digest('hex')!==file.sha256||bytes.byteLength!==file.bytes)throw new Error('Research video integrity mismatch');
   inlineVideo=inlineVideo.replaceAll(JSON.stringify(file.path),JSON.stringify('data:'+file.mime+';base64,'+bytes.toString('base64')));
 }
-const runtime = [inlineCatalog, photosJS,inlineVideo, contractJS, artJS, labsJS, runtimeJS].map(js=>js.replace(/^import .+;$/gm, "")).join("\n");
+const runtime = [inlineCatalog, photosJS,inlineVideo, contractJS, artJS, processJS, labsJS, runtimeJS].map(js=>js.replace(/^import .+;$/gm, "")).join("\n");
 const safeSource = JSON.stringify(source).replaceAll("<", "\\u003c");
 const template = await readFile(resolve(app, "preview.template.html"), "utf8");
 const substitutions = {

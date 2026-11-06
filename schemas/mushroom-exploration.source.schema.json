@@ -827,6 +827,7 @@
                   "intro",
                   "sourceRefs",
                   "learning",
+                  "growth",
                   "media",
                   "views"
                 ],
@@ -926,6 +927,153 @@
                             }
                           }
                         }
+                      }
+                    }
+                  },
+                  "growth": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "mode",
+                      "label",
+                      "initial",
+                      "playing",
+                      "finished",
+                      "lessMotion",
+                      "controls",
+                      "steps",
+                      "labels"
+                    ],
+                    "properties": {
+                      "id": {
+                        "const": "mushroom-process:growth"
+                      },
+                      "mode": {
+                        "const": "growth"
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "initial": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "lessMotion": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "replay",
+                          "pause",
+                          "resume",
+                          "step",
+                          "reset",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "step": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "reset": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "steps": {
+                        "type": "array",
+                        "maxItems": 4,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 4
+                      },
+                      "labels": {
+                        "type": "array",
+                        "maxItems": 0,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "text"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "text": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "minItems": 0
                       }
                     }
                   },
@@ -1030,6 +1178,10 @@
                   "sourceRefs",
                   "learning",
                   "station",
+                  "launch",
+                  "wind",
+                  "cycle",
+                  "recording",
                   "activities",
                   "steps",
                   "video",
@@ -1148,6 +1300,391 @@
                         "minLength": 1
                       },
                       "intro": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "launch": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "mode",
+                      "label",
+                      "initial",
+                      "playing",
+                      "finished",
+                      "lessMotion",
+                      "controls",
+                      "steps",
+                      "labels"
+                    ],
+                    "properties": {
+                      "id": {
+                        "const": "mushroom-process:launch"
+                      },
+                      "mode": {
+                        "const": "launch"
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "initial": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "lessMotion": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "replay",
+                          "pause",
+                          "resume",
+                          "step",
+                          "reset",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "step": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "reset": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "steps": {
+                        "type": "array",
+                        "maxItems": 3,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 3
+                      },
+                      "labels": {
+                        "type": "array",
+                        "maxItems": 4,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "text"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "text": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "minItems": 4
+                      }
+                    }
+                  },
+                  "wind": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "mode",
+                      "label",
+                      "initial",
+                      "playing",
+                      "finished",
+                      "lessMotion",
+                      "controls",
+                      "steps",
+                      "labels"
+                    ],
+                    "properties": {
+                      "id": {
+                        "const": "mushroom-process:wind"
+                      },
+                      "mode": {
+                        "const": "wind"
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "initial": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "lessMotion": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "replay",
+                          "pause",
+                          "resume",
+                          "step",
+                          "reset",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "step": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "reset": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "steps": {
+                        "type": "array",
+                        "maxItems": 3,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 3
+                      },
+                      "labels": {
+                        "type": "array",
+                        "maxItems": 6,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "text"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "text": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "minItems": 6
+                      }
+                    }
+                  },
+                  "cycle": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "label",
+                      "returnLabel",
+                      "scopeNote"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "returnLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "scopeNote": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "recording": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "play",
+                      "pause",
+                      "replay",
+                      "fullscreen",
+                      "paused",
+                      "playing",
+                      "finished",
+                      "error",
+                      "retry",
+                      "fullscreenError",
+                      "silentMicroscope",
+                      "silentPuffball"
+                    ],
+                    "properties": {
+                      "play": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "pause": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "replay": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "fullscreen": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "paused": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "error": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "retry": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "fullscreenError": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "silentMicroscope": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "silentPuffball": {
                         "type": "string",
                         "maxLength": 600
                       }
@@ -1278,7 +1815,7 @@
                   },
                   "steps": {
                     "type": "array",
-                    "maxItems": 12,
+                    "maxItems": 4,
                     "items": {
                       "type": "object",
                       "additionalProperties": false,
@@ -1361,7 +1898,8 @@
                           ]
                         }
                       }
-                    }
+                    },
+                    "minItems": 4
                   },
                   "video": {
                     "anyOf": [
@@ -1571,7 +2109,7 @@
                   },
                   "cards": {
                     "type": "array",
-                    "maxItems": 6,
+                    "maxItems": 3,
                     "items": {
                       "type": "object",
                       "additionalProperties": false,
@@ -1582,7 +2120,8 @@
                         "title",
                         "visual",
                         "media",
-                        "learning"
+                        "learning",
+                        "process"
                       ],
                       "properties": {
                         "id": {
@@ -1607,9 +2146,6 @@
                         },
                         "visual": {
                           "enum": [
-                            "mushroom",
-                            "mould",
-                            "yeast",
                             "leaf",
                             "tree",
                             "bread"
@@ -1734,6 +2270,451 @@
                               }
                             }
                           }
+                        },
+                        "process": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "id",
+                                "mode",
+                                "label",
+                                "initial",
+                                "playing",
+                                "finished",
+                                "lessMotion",
+                                "controls",
+                                "steps",
+                                "labels"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "const": "mushroom-process:recycle"
+                                },
+                                "mode": {
+                                  "const": "recycle"
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "initial": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "playing": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "finished": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "lessMotion": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "controls": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "required": [
+                                    "play",
+                                    "replay",
+                                    "pause",
+                                    "resume",
+                                    "step",
+                                    "reset",
+                                    "motion"
+                                  ],
+                                  "properties": {
+                                    "play": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "replay": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "pause": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "resume": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "reset": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "motion": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    }
+                                  }
+                                },
+                                "steps": {
+                                  "type": "array",
+                                  "maxItems": 3,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "label",
+                                      "body"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "maxLength": 600
+                                      }
+                                    }
+                                  },
+                                  "minItems": 3
+                                },
+                                "labels": {
+                                  "type": "array",
+                                  "maxItems": 5,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "text"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      }
+                                    }
+                                  },
+                                  "minItems": 5
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "id",
+                                "mode",
+                                "label",
+                                "initial",
+                                "playing",
+                                "finished",
+                                "lessMotion",
+                                "controls",
+                                "steps",
+                                "labels"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "const": "mushroom-process:trade"
+                                },
+                                "mode": {
+                                  "const": "trade"
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "initial": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "playing": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "finished": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "lessMotion": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "controls": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "required": [
+                                    "play",
+                                    "replay",
+                                    "pause",
+                                    "resume",
+                                    "step",
+                                    "reset",
+                                    "motion"
+                                  ],
+                                  "properties": {
+                                    "play": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "replay": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "pause": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "resume": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "reset": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "motion": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    }
+                                  }
+                                },
+                                "steps": {
+                                  "type": "array",
+                                  "maxItems": 2,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "label",
+                                      "body"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "maxLength": 600
+                                      }
+                                    }
+                                  },
+                                  "minItems": 2
+                                },
+                                "labels": {
+                                  "type": "array",
+                                  "maxItems": 6,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "text"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      }
+                                    }
+                                  },
+                                  "minItems": 6
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "id",
+                                "mode",
+                                "label",
+                                "initial",
+                                "playing",
+                                "finished",
+                                "lessMotion",
+                                "controls",
+                                "steps",
+                                "labels"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "const": "mushroom-process:dough"
+                                },
+                                "mode": {
+                                  "const": "dough"
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "initial": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "playing": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "finished": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "lessMotion": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "controls": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "required": [
+                                    "play",
+                                    "replay",
+                                    "pause",
+                                    "resume",
+                                    "step",
+                                    "reset",
+                                    "motion"
+                                  ],
+                                  "properties": {
+                                    "play": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "replay": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "pause": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "resume": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "reset": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "motion": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    }
+                                  }
+                                },
+                                "steps": {
+                                  "type": "array",
+                                  "maxItems": 3,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "label",
+                                      "body"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "maxLength": 600
+                                      }
+                                    }
+                                  },
+                                  "minItems": 3
+                                },
+                                "labels": {
+                                  "type": "array",
+                                  "maxItems": 3,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "text"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      }
+                                    }
+                                  },
+                                  "minItems": 3
+                                }
+                              }
+                            }
+                          ]
                         }
                       }
                     }

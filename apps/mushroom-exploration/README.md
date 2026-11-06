@@ -28,6 +28,21 @@ an invented signal-to-sound model, and three discovery questions. Animations and
 Changing an exhibit suspends its active media. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
 
+The process workbenches now show recycling outside the threads, food uptake and nutrient
+return; a whole plant with sunlight and both directions of its fungal partnership; and
+gas pockets growing above a fixed starting-dough outline. The four life-cycle illustrations
+remain visible together with a return arrow, stacking vertically on phones. The launch model
+has direct water/surface/stalk labels and a short finite release. Breeze presets supplement
+the live slider, and settled spores stay visible. The enlarged research player keeps its
+silent/slow labels, native controls, replay, full-screen access and recoverable error message.
+
+Growth, trade, dough, launch and wind use finite teaching clocks with pause/resume, explicit
+replay/reset and manual checkpoints. System reduced motion defaults to manual steps; the
+Step-by-step view choice is shared across these models and persists when browser storage is
+available. If storage cannot be written, the choice still works for the current page.
+Changing the preference stops active model motion without auto-resuming it. The music cursor
+and remaining narration/access work are still covered by open M28–M45 items.
+
 The woodland entrance supplies the forest, wood, moss, amber and cyan color families.
 Three distinct row surfaces provide wayfinding, with derived shades for each row's panels
 and controls:
@@ -67,14 +82,15 @@ Images were resized and converted for delivery without retouching or recolouring
 ## Source and future editing
 
 source/mushrooms.source.json separates content, source references, image references,
-captions, observation points and supported records from rendering. Contract 1.5.0 adds
+captions, observation points and supported records from rendering. Contract 1.6.0 adds
 authored activity titles/intros, action/observation prompts, safety/teacher notes, science-word
 definitions and checked written pronunciation. Entrance/station copy is also editable.
 These fields are validated; all nine blocks required by the renderer must be present.
 The five anatomy parts have named selection buttons. On phones the diagram numbers are
 static markers and the separate buttons provide full-size targets. The gill photograph is
 shown only for Gills, so it cannot be mistaken for a photograph of mycelium or spores.
-Some older model-state/control copy is still renderer-owned; M42 remains in progress. Data renders as text,
+The new process labels, stages, status text, control names and recording messages are also
+source-owned. Remaining music/narration copy still needs M42; the actual editor is not built. Data renders as text,
 never arbitrary HTML. Stable IDs, year, viewport method and reference size are protected.
 Content edits invalidate the document's research/publication review state. Add/remove
 operations for nested records remain a future explicit command.

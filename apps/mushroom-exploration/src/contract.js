@@ -1,13 +1,13 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
 import { MUSHROOM_VIDEOS } from "./video-assets.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.5.0";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.6.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media", "entry"],
   family: ["eyebrow", "title", "intro", "sourceRefs", "cards", "station"],
   anatomy: ["eyebrow", "title", "intro", "sourceRefs", "media", "detailMedia", "hotspots"],
-  cutaway: ["eyebrow", "title", "intro", "sourceRefs", "media", "views"],
-  lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps", "video", "plumeVideo", "activities", "station"],
+  cutaway: ["eyebrow", "title", "intro", "sourceRefs", "media", "views", "growth"],
+  lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps", "video", "plumeVideo", "activities", "station", "launch", "wind", "cycle", "recording"],
   roles: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
   lab: ["eyebrow", "title", "intro", "sourceRefs", "experiments"],
   facts: ["eyebrow", "title", "intro", "sourceRefs", "cards", "questions"],
@@ -15,6 +15,9 @@ const fields = {
 };
 Object.values(fields).forEach(list => list.push("learning"));
 export const MUSHROOM_ACTIVITY_VIEWS = ["launch", "wind", "puffball", "cycle"];
+const processLabels={growth:[],recycle:['material','threads','food','nutrients','evidence'],trade:['sunlight','root','threads','sugar','water','both'],dough:['outline','gas','bowl'],launch:['spore','drop','film','stalk'],wind:['breeze','left','still','right','left-state','right-state']};
+const processStepCounts={growth:4,recycle:3,trade:2,dough:3,launch:3,wind:3};
+const recordingFields=['play','pause','replay','fullscreen','paused','playing','finished','error','retry','fullscreenError','silentMicroscope','silentPuffball'];
 
 export const MUSHROOM_EDITOR_CONTRACT = {
   schemaVersion: MUSHROOM_CONTRACT_VERSION,
@@ -24,7 +27,7 @@ export const MUSHROOM_EDITOR_CONTRACT = {
   editorRoute: "/mushrooms",
   editorLabel: "Mushinator",
   editorImplementation: "not-built",
-  protectedFields: ["schemaVersion", "page", "data.meta", "data.sources", "block.id", "block.type", "nested record IDs"],
+  protectedFields: ["schemaVersion", "page", "data.meta", "data.sources", "block.id", "block.type", "nested record IDs", "process mode and phase/label IDs"],
   layout: { mode: "viewport-breakout", referenceViewport: { width: 1920, height: 911 } },
   blocks: Object.entries(fields).map(function (entry) {
     return { type: entry[0], editableFields: entry[1], identityField: "id" };
@@ -47,14 +50,15 @@ export function mushroomSourceJsonSchema() {
     words: list(obj({ id: recordId, term: short, pronunciation: {type:"string",maxLength:120}, body, sourceRefs }), 12) });
   function shortText(){ return { type:"string", maxLength:600 }; }
   const station = obj({ title: short, intro: {type:"string",maxLength:600} });
+  const process = mode => obj({id:{const:'mushroom-process:'+mode},mode:{const:mode},label:shortText(),initial:shortText(),playing:shortText(),finished:shortText(),lessMotion:shortText(),controls:obj(Object.fromEntries(['play','replay','pause','resume','step','reset','motion'].map(key=>[key,short]))),steps:{...list(obj({id:recordId,label:short,body:shortText()}),processStepCounts[mode]),minItems:processStepCounts[mode]},labels:{...list(obj({id:recordId,text:short}),processLabels[mode].length),minItems:processLabels[mode].length}});
   const video = {anyOf:[{type:'null'},obj({kind:{const:'video'},url:{enum:MUSHROOM_VIDEOS.map(item=>'asset:'+item.id)},title:short,caption:{type:'string',minLength:1,maxLength:600},sourceRefs})]};
   const shapes = {
     hero: { media: image, entry: obj({exploreLabel:short,journalLabel:short,journalReadyLabel:short,note:{type:"string",maxLength:600}}) },
     family: { station, cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
     anatomy: { media: image, detailMedia: image, hotspots: list(obj({ ...research, label: short, x: { type: "number", minimum: 0, maximum: 100 }, y: { type: "number", minimum: 0, maximum: 100 } }), 12) },
-    cutaway: { media: image, views: { ...list(obj({ ...research, label: short }), 2), minItems: 2 } },
-    lifecycle: { station, activities: {...list(obj({id:recordId,view:{enum:MUSHROOM_ACTIVITY_VIEWS},label:short,title:short,intro:{type:"string",maxLength:1600},learning,sourceRefs}),4),minItems:4}, steps: list(obj({ ...research, title: short, media: image }), 12), video, plumeVideo: video },
-    roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image, learning }), 6) },
+    cutaway: { growth:process('growth'),media: image, views: { ...list(obj({ ...research, label: short }), 2), minItems: 2 } },
+    lifecycle: { station, launch:process('launch'),wind:process('wind'),cycle:obj({label:shortText(),returnLabel:shortText(),scopeNote:shortText()}),recording:obj(Object.fromEntries(recordingFields.map(key=>[key,shortText()]))), activities: {...list(obj({id:recordId,view:{enum:MUSHROOM_ACTIVITY_VIEWS},label:short,title:short,intro:{type:"string",maxLength:1600},learning,sourceRefs}),4),minItems:4}, steps: {...list(obj({ ...research, title: short, media: image }), 4),minItems:4}, video, plumeVideo: video },
+    roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["leaf", "tree", "bread"] }, media: image, learning,process:{oneOf:['recycle','trade','dough'].map(process)} }), 3) },
     lab: { experiments: list(obj({ ...research, title: short, label: short, mode: { enum: ["glow", "sound"] }, media: image, learning }), 2) },
     facts: { cards: list(obj({ ...research, title: short }), 12), questions: list(obj({ id: recordId, prompt: short, sourceRefs: sourceRefs, choices: list(obj({ id: recordId, label: short, correct: { type: "boolean" }, feedback: { type: "string", minLength: 1, maxLength: 600 } }), 4) }), 6) },
     journal: { currentStage: { type: "null" }, entries: { type: "array", maxItems: 0 } }
@@ -153,6 +157,16 @@ export function validateMushroomSource(source, options) {
     text(value.teacher,"teacher detail",6000,false);array(value.words,"science words",12);
     value.words.forEach(word=>{object(word,["id","term","pronunciation","body","sourceRefs"],"science word");id(word.id,"mushroom-word");text(word.term,"science term",140,true);text(word.pronunciation,"pronunciation",120,false);research(word,"science word");});
   }
+  function process(value,mode){
+    object(value,['id','mode','label','initial','playing','finished','lessMotion','controls','steps','labels'],'process');id(value.id,'mushroom-process');
+    requireThat(value.mode===mode&&value.id==='mushroom-process:'+mode,'protected process mode changed');
+    ['label','initial','playing','finished','lessMotion'].forEach(key=>text(value[key],'process '+key,600,key!=='playing'));
+    object(value.controls,['play','replay','pause','resume','step','reset','motion'],'process controls');Object.values(value.controls).forEach(label=>text(label,'process control',140,true));
+    array(value.steps,'process steps',processStepCounts[mode]);requireThat(value.steps.length===processStepCounts[mode],'process stage count changed');
+    value.steps.forEach((step,i)=>{object(step,['id','label','body'],'process step');id(step.id,'mushroom-phase');requireThat(step.id==='mushroom-phase:'+mode+'-'+(i+1),'protected process step order changed');text(step.label,'process step label',140,true);text(step.body,'process step explanation',600,true);});
+    array(value.labels,'process labels',processLabels[mode].length);requireThat(value.labels.length===processLabels[mode].length,'process label count changed');
+    value.labels.forEach(label=>{object(label,['id','text'],'process label');id(label.id,'mushroom-label');requireThat(processLabels[mode].some(key=>label.id==='mushroom-label:'+mode+'-'+key),'unknown process label');text(label.text,'diagram label',140,true);});
+  }
   const kinds = new Set();
   array(source.data.blocks, "blocks", 12);
   requireThat(source.data.blocks.length >= 9, "core exhibit sections must be present");
@@ -188,6 +202,7 @@ export function validateMushroomSource(source, options) {
       });
     }
     if (block.type === "cutaway") {
+      process(block.growth,'growth');
       array(block.views, "cutaway views", 2);
       requireThat(block.views.length === 2, "cutaway needs two views");
       block.views.forEach(function (view) {
@@ -196,6 +211,9 @@ export function validateMushroomSource(source, options) {
       });
     }
     if (block.type === "lifecycle") {
+      process(block.launch,'launch');process(block.wind,'wind');
+      object(block.cycle,['label','returnLabel','scopeNote'],'cycle context');Object.values(block.cycle).forEach(value=>text(value,'cycle copy',600,true));
+      object(block.recording,recordingFields,'recording copy');Object.values(block.recording).forEach(value=>text(value,'recording copy',600,true));
       array(block.activities,"spore activities",4);
       requireThat(block.activities.length===4&&new Set(block.activities.map(a=>a.view)).size===4,"four distinct spore activities are required");
       block.activities.forEach(activity=>{object(activity,["id","view","label","title","intro","learning","sourceRefs"],"spore activity");id(activity.id,"mushroom-activity");requireThat(MUSHROOM_ACTIVITY_VIEWS.includes(activity.view)&&activity.id==='mushroom-activity:'+activity.view,"protected activity view changed");["label","title"].forEach(key=>text(activity[key],"activity "+key,140,true));text(activity.intro,"activity intro",1600,true);research({body:activity.intro,sourceRefs:activity.sourceRefs},"activity");lesson(activity.learning);});
@@ -209,6 +227,7 @@ export function validateMushroomSource(source, options) {
         }else if(!allowDraft&&key==='video')requireThat(false,'reviewed spore recording is missing');
       }
       array(block.steps, "lifecycle steps", 12);
+      requireThat(block.steps.length===4&&block.steps.every((step,i)=>step.id==='mushroom-step:'+['spore','threads','fruit','release'][i]),'protected life-cycle stage order changed');
       if (!allowDraft) requireThat(block.steps.length > 0, "reviewed lifecycle is missing");
       block.steps.forEach(function (step) {
         object(step, ["id", "title", "body", "sourceRefs", "media"], "lifecycle step");
@@ -242,8 +261,8 @@ export function validateMushroomSource(source, options) {
       array(block.cards, "specimen cards", 6);
       if (!allowDraft) requireThat(block.cards.length > 0, "reviewed specimen cards are missing");
       block.cards.forEach(function (card) {
-        object(card, ["id", "title", "body", "sourceRefs", "visual", "media"].concat(block.type==='roles'?["learning"]:[]), "specimen card");
-        if(block.type==='roles')lesson(card.learning);
+        object(card, ["id", "title", "body", "sourceRefs", "visual", "media"].concat(block.type==='roles'?["learning","process"]:[]), "specimen card");
+        if(block.type==='roles'){lesson(card.learning);const mode={leaf:'recycle',tree:'trade',bread:'dough'}[card.visual];requireThat(!!mode,'unknown fungal job visual');process(card.process,mode);}
         id(card.id, block.type === "family" ? "mushroom-family" : "mushroom-role");
         text(card.title, "card title", 140, true); research(card, "specimen card");
         requireThat(["mushroom", "mould", "yeast", "leaf", "tree", "bread"].includes(card.visual), "unknown specimen illustration");
@@ -294,6 +313,8 @@ export function editMushroomBlock(source, blockId, patch) {
   // Lesson text is editable; word identities are stable across those edits too.
   function wordIds(value,result=[]) { if(!value||typeof value!=="object")return result;if(Array.isArray(value.words))result.push(...value.words.map(w=>w.id));Object.entries(value).filter(([key])=>key!=="words").forEach(([,item])=>{if(Array.isArray(item))item.forEach(v=>wordIds(v,result));else if(item&&typeof item==="object")wordIds(item,result);});return result.sort(); }
   requireThat(JSON.stringify(wordIds(block))===JSON.stringify(wordIds({...block,...patch})),"science word IDs require a separate add/remove operation");
+  function processIds(value,result=[]){if(!value||typeof value!=='object')return result;if(typeof value.id==='string'&&/^mushroom-(process|phase|label):/.test(value.id))result.push(value.id+(value.mode?':'+value.mode:''));Object.values(value).forEach(item=>{if(Array.isArray(item))item.forEach(v=>processIds(v,result));else if(item&&typeof item==='object')processIds(item,result);});return result.sort();}
+  requireThat(JSON.stringify(processIds(block))===JSON.stringify(processIds({...block,...patch})),"process identities require a separate add/remove operation");
   Object.assign(block, structuredClone(patch));
   next.data.meta.state = "scaffold";
   next.data.meta.researchStatus = "pending";

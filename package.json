@@ -42,7 +42,7 @@
     "test:hub:publication": "node tools/test-classroom-explorations-hub-publication.mjs",
     "build:mushrooms": "node tools/build-mushroom-exploration-preview.mjs",
     "test:mushrooms": "node --test tools/test-mushroom-exploration.mjs",
-    "check:mushrooms": "node --check apps/mushroom-exploration/src/bootstrap.js && node --check apps/mushroom-exploration/src/runtime.js && node --check apps/mushroom-exploration/src/contract.js && node --check apps/mushroom-exploration/src/art.js && node --check apps/mushroom-exploration/src/labs.js && node --check apps/mushroom-exploration/src/photos.js && node --check apps/mushroom-exploration/src/photo-catalog.js && node --check apps/mushroom-exploration/src/video-assets.js && npm run test:mushrooms && npm run build:mushrooms"
+    "check:mushrooms": "node --check apps/mushroom-exploration/src/bootstrap.js && node --check apps/mushroom-exploration/src/runtime.js && node --check apps/mushroom-exploration/src/contract.js && node --check apps/mushroom-exploration/src/art.js && node --check apps/mushroom-exploration/src/labs.js && node --check apps/mushroom-exploration/src/process.js && node --check apps/mushroom-exploration/src/photos.js && node --check apps/mushroom-exploration/src/photo-catalog.js && node --check apps/mushroom-exploration/src/video-assets.js && npm run test:mushrooms && npm run build:mushrooms"
   },
   "devDependencies": {
     "@types/node": "26.2.0",

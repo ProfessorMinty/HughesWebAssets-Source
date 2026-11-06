@@ -130,3 +130,43 @@ or permission to reuse a recording. No candidate media was downloaded into the e
 No specimen photograph, video or diagram geometry changed in this batch. Registered asset
 hashes and licences remain intact. Edited source research status is pending; this batch
 does not certify the unfinished electrical-activity lesson or real-music example.
+
+
+## Checklist batch 2 — process interpretation, 2026-11-06
+
+The recycling illustration separates three manual views: digestion outside fungal threads,
+absorption of smaller food particles, and nutrients available in the surroundings. It follows
+the existing Kew/ANBG account of external enzymes and absorption. The wood photograph remains
+a credited supporting example behind a clearly labeled disclosure. The model particles are
+illustrative; shapes/colors do not represent measured molecules, sizes or transport rates.
+
+The plant illustration now includes leaves, sunlight, a root and its connected fungal
+partner. It follows [Kew's existing source](https://www.kew.org/read-and-watch/fungi-hidden-dimension):
+plant-produced sugars go to the fungus; the fungus helps the plant obtain water and mineral
+nutrients. Some-partnership scope is explicit. A thick root and a fine branching fungal mat,
+round sugar markers and diamond water/mineral markers distinguish the parts and directions.
+The markers illustrate a trade; a six-second run does not represent its actual rate.
+
+The launch model was rechecked against [ANBG's discharge account](https://www.anbg.gov.au/fungi/spore-discharge-mushrooms.html),
+including the attached spore, water drop and wet surface joining before discharge. The
+illustrated displacement is shorter than before; no physical units, quantitative speed or
+species-specific capture claim is attached to the model. Wind transport remains a separate
+qualitative model. Still air now ends with visible settled particles.
+
+The puffball caption and adjacent watch-only note retain the distinction from gilled fungi.
+The safety note is supported by [CDC's primary case investigation](https://www.cdc.gov/Mmwr/preview/mmwrhtml/00032029.htm)
+of respiratory illness after inhaling puffball spores. Only the calm prevention instruction
+appears in the lesson; the case details are not pupil-facing content. The existing PLOS
+recording remains silent and slowed five times, with unknown capture fps preserved as null.
+No media was re-encoded, retimed, interpolated or recolored.
+
+The cycle is scoped to a mushroom-making fungus. Four views remain visible, return from
+released spores to a possible new beginning, and explicitly state that many spores do not
+succeed. Joining of compatible threads remains in the optional teacher detail. This is
+general science; it does not assert a classroom kit's starting stage or actual observations.
+
+All new scientific art is repository-native original code. The real photo/video catalogs,
+licences and bytes remain unchanged and pass their integrity checks. All new lesson/model
+labels, stage explanations, controls and recording messages live in validated source fields
+under contract 1.6.0. Full source research/publication review remains pending for the unfinished
+music/electrical lesson and final release checks.

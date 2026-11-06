@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "mushroom-exploration/1.5.0",
+  "schemaVersion": "mushroom-exploration/1.6.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
@@ -13,7 +13,8 @@
     "data.sources",
     "block.id",
     "block.type",
-    "nested record IDs"
+    "nested record IDs",
+    "process mode and phase/label IDs"
   ],
   "layout": {
     "mode": "viewport-breakout",
@@ -72,6 +73,7 @@
         "sourceRefs",
         "media",
         "views",
+        "growth",
         "learning"
       ],
       "identityField": "id"
@@ -88,6 +90,10 @@
         "plumeVideo",
         "activities",
         "station",
+        "launch",
+        "wind",
+        "cycle",
+        "recording",
         "learning"
       ],
       "identityField": "id"

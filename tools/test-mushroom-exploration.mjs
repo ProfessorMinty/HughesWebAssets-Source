@@ -197,3 +197,66 @@ test('a validated source cannot omit a block required by the two-station rendere
     assert.throws(()=>validateMushroomSource(changed,{allowDraft:true}),/core exhibit/);
   }
 });
+
+function teachingHarness(reduced=false){
+  let id=0;const pending=new Map(),listeners=new Set();
+  const preference={matches:reduced,addEventListener(_type,fn){listeners.add(fn);},removeEventListener(_type,fn){listeners.delete(fn);},setMatches(value){this.matches=value;listeners.forEach(fn=>fn({matches:value}));}};
+  return {pending,listeners,preference,request(fn){pending.set(++id,fn);return id;},cancel(id){pending.delete(id);},tick(time){const batch=[...pending.values()];pending.clear();batch.forEach(fn=>fn(time));}};
+}
+test('finite teaching clocks pause, resume without a time jump, end, and replay without overlapping runs',async function(){
+  const {createTeachingTimeline}=await import('../apps/mushroom-exploration/src/process.js'),h=teachingHarness(),rendered=[];
+  const clock=createTeachingTimeline({duration:1,checkpoints:[0,.5,1],request:h.request,cancel:h.cancel,preference:h.preference,onRender:t=>rendered.push(t)});
+  clock.play();h.tick(0);h.tick(50);h.tick(100);const before=clock.snapshot().time,stale=[...h.pending.values()][0];clock.pause();assert.equal(h.pending.size,0);h.tick(5000);assert.equal(clock.snapshot().time,before);
+  clock.play();h.tick(9000);assert.equal(clock.snapshot().time,before);h.tick(9050);assert.ok(clock.snapshot().time>before);
+  clock.restart();assert.equal(h.pending.size,1);const reset=clock.snapshot().time;stale(10000);assert.equal(clock.snapshot().time,reset);
+  for(let i=0;i<30;i++)h.tick(11000+i*50);assert.equal(clock.snapshot().state,'complete');assert.equal(clock.snapshot().time,1);assert.equal(h.pending.size,0);h.tick(50000);assert.equal(clock.snapshot().time,1);
+  clock.restart();assert.equal(clock.snapshot().time,0);assert.equal(h.pending.size,1);clock.destroy();assert.equal(h.pending.size,0);assert.equal(h.listeners.size,0);assert.ok(rendered.length>20);
+});
+test('less motion and manual stages schedule no animation and changing preference stops a current run',async function(){
+  const {createTeachingTimeline}=await import('../apps/mushroom-exploration/src/process.js'),h=teachingHarness(true),clock=createTeachingTimeline({duration:2,checkpoints:[0,1,2],request:h.request,cancel:h.cancel,preference:h.preference});
+  clock.play();assert.equal(clock.snapshot().time,1);assert.equal(clock.snapshot().state,'paused');assert.equal(h.pending.size,0);clock.step();assert.equal(clock.snapshot().state,'complete');assert.equal(h.pending.size,0);
+  clock.reset();h.preference.setMatches(false);clock.play();h.tick(0);h.tick(50);const time=clock.snapshot().time;h.preference.setMatches(true);assert.equal(clock.snapshot().state,'paused');assert.equal(h.pending.size,0);h.tick(10000);assert.equal(clock.snapshot().time,time);h.preference.setMatches(false);assert.equal(clock.snapshot().state,'paused');clock.destroy();assert.equal(h.listeners.size,0);
+});
+test('rendered growth samples remain attached and wait for parents at every manual checkpoint',async function(){
+  const {hyphalNetwork}=await import('../apps/mushroom-exploration/src/art.js'),{connectedGrowthProgress}=await import('../apps/mushroom-exploration/src/process.js');
+  const paths=hyphalNetwork(15,239,970,245,6,[{x:346.48,y:229.98},{x:680.64,y:229.64}]),byId=new Map(paths.map(p=>[p.id,p])),end=Math.max(...paths.map(p=>p.start+p.duration));
+  for(const time of [0,end/3,end*2/3,end])for(const path of paths){const visible=connectedGrowthProgress(time,path.start,path.duration);if(visible>0)for(const parent of path.parents){const p=byId.get(parent);assert.equal(connectedGrowthProgress(time,p.start,p.duration),1,'a visible child requires a finished connected parent');}}
+  assert.ok(paths.every(p=>connectedGrowthProgress(end,p.start,p.duration)===1));
+});
+test('wind responds in both directions, settles in still air and stops drifting after settling',async function(){
+  const {advanceWindParticle}=await import('../apps/mushroom-exploration/src/process.js');const p={x:300,y:300,speed:5};
+  assert.ok(advanceWindParticle(p,1,-70).x<p.x);assert.ok(advanceWindParticle(p,1,70).x>p.x);assert.equal(advanceWindParticle(p,2,0).x,p.x);
+  const settled=advanceWindParticle(p,20,0);assert.equal(settled.y,470);assert.deepEqual(advanceWindParticle(settled,10,90),settled);
+  const hiddenUnderCap={...p,y:225};assert.equal(advanceWindParticle(hiddenUnderCap,.5,70).x,p.x);assert.ok(advanceWindParticle(hiddenUnderCap,3,70).x>p.x);
+});
+test('dough expands with visibly larger gas pockets and retains a fixed starting outline',async function(){
+  const {doughRiseState}=await import('../apps/mushroom-exploration/src/process.js'),{roleArtwork}=await import('../apps/mushroom-exploration/src/art.js');
+  const start=doughRiseState(0),middle=doughRiseState(.5),end=doughRiseState(1);assert.equal(start.scale,.62);assert.ok(middle.scale>start.scale&&middle.scale<end.scale);assert.ok(middle.pocketScale>start.pocketScale);assert.equal(end.scale,1);assert.deepEqual(doughRiseState(5),end);
+  assert.match(roleArtwork('bread','dough-test'),/class='dough-start-outline'/);assert.match(roleArtwork('bread','dough-test'),/data-rx=/);
+});
+test('process explanations can change without changing model, phase, or diagram-label identity',function(){
+  const original=source.data.blocks.find(b=>b.type==='cutaway'),growth=structuredClone(original.growth);growth.steps[1].body='New growth branches from existing threads.';
+  assert.equal(editMushroomBlock(source,original.id,{growth}).data.blocks.find(b=>b.id===original.id).growth.steps[1].body,growth.steps[1].body);
+  growth.mode='launch';assert.throws(()=>editMushroomBlock(source,original.id,{growth}),/process identities/);growth.mode='growth';growth.steps[0].id='mushroom-phase:renamed';assert.throws(()=>editMushroomBlock(source,original.id,{growth}),/process identities/);
+  growth.steps[0].id=original.growth.steps[0].id;growth.controls.html='<b>bad</b>';assert.throws(()=>editMushroomBlock(source,original.id,{growth}),/unsupported field/);
+});
+test('life-cycle stage ordering is protected and early illustrations use closer crops',async function(){
+  const block=source.data.blocks.find(b=>b.type==='lifecycle'),steps=structuredClone(block.steps);[steps[0],steps[1]]=[steps[1],steps[0]];assert.throws(()=>editMushroomBlock(source,block.id,{steps}),/life-cycle stage order/);
+  const {lifecycleStageArtwork}=await import('../apps/mushroom-exploration/src/art.js');const boxes=new Set([0,1,2,3].map((i)=>lifecycleStageArtwork(i,'preview-'+i).match(/viewBox='([^']+)'/)[1]));assert.equal(boxes.size,3);
+});
+
+test('native video states produce consistent play/pause/replay and a recoverable load-error message',async function(){
+  const {recordingPlaybackState}=await import('../apps/mushroom-exploration/src/labs.js'),copy=source.data.blocks.find(b=>b.type==='lifecycle').recording;
+  assert.equal(recordingPlaybackState({paused:false,ended:false,failed:false},copy).button,copy.pause);
+  assert.equal(recordingPlaybackState({paused:true,ended:false,failed:false},copy).button,copy.play);
+  assert.equal(recordingPlaybackState({paused:true,ended:true,failed:false},copy).button,copy.replay);
+  const error=recordingPlaybackState({paused:true,ended:false,failed:true},copy);assert.equal(error.status,copy.error);assert.equal(error.retry,true);assert.equal(error.disabled,true);
+});
+
+test('a user can request less motion even when preference storage cannot be written, and listeners are released',async function(t){
+  const previous=globalThis.window,nativeListeners=new Set(),events=new Map();
+  t.after(()=>{if(previous===undefined)delete globalThis.window;else globalThis.window=previous;});
+  globalThis.window={matchMedia(){return {matches:true,addEventListener(_type,fn){nativeListeners.add(fn);},removeEventListener(_type,fn){nativeListeners.delete(fn);}};},localStorage:{getItem(){return '0';},setItem(){throw new Error('Storage unavailable');}},addEventListener(type,fn){if(!events.has(type))events.set(type,new Set());events.get(type).add(fn);},removeEventListener(type,fn){events.get(type)?.delete(fn);},dispatchEvent(event){events.get(event.type)?.forEach(fn=>fn(event));}};
+  const {browserMotionPreference,createTeachingTimeline}=await import('../apps/mushroom-exploration/src/process.js'),pref=browserMotionPreference(),observed=[];const listen=event=>observed.push(event.matches);pref.addEventListener('change',listen);assert.equal(pref.matches,false);pref.setMatches(true);assert.equal(pref.matches,true);assert.deepEqual(observed,[true]);
+  const h=teachingHarness(),clock=createTeachingTimeline({duration:1,preference:pref,request:h.request,cancel:h.cancel});clock.play();assert.equal(h.pending.size,0);clock.destroy();pref.removeEventListener('change',listen);assert.equal(nativeListeners.size,0);assert.ok([...events.values()].every(set=>set.size===0));
+});

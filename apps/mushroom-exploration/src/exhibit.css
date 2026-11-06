@@ -35,7 +35,7 @@
 .mushroom-wind-stage{position:relative;min-width:0;padding:6px 12px}.mushroom-wind-stage svg{width:100%;height:auto;max-height:285px}.mushroom-wind-stage .mushroom-model-label{position:absolute;left:18px;top:12px}.mushroom-wind-controls{display:grid;grid-template-columns:1fr auto;gap:12px 20px;padding:15px 20px}.mushroom-wind-label{display:grid;gap:7px;font-size:17px}.mushroom-wind-label input{width:100%;accent-color:#e4c58b;min-height:34px}.mushroom-wind-output{align-self:center;font-size:17px}.mushroom-wind-controls .mushroom-lab-actions{margin:0}.mushroom-wind-controls .mushroom-model-status{grid-column:1/-1;min-height:3em}
 .mushroom-cloud-workbench{display:grid;grid-template-columns:.7fr 1.3fr;gap:40px;align-items:center}.mushroom-cloud-copy h3{font-size:38px;margin:12px 0 20px!important}.mushroom-cloud-copy>p:not(.mushroom-eyebrow){font-size:19px;max-width:42ch}.mushroom-cloud-difference{margin-top:22px!important;padding:16px 20px;border-left:3px solid #e4bf7e;background:#1b493b}.mushroom-cloud-workbench .mushroom-research-video{max-width:760px;aspect-ratio:1068/600}.mushroom-cloud-workbench .mushroom-spore-film h3{display:none}
 .mushroom-lifecycle-workbench{display:grid;grid-template-columns:1.3fr .75fr;gap:35px;align-items:center}.mushroom-lifecycle-canvas{background:#173f35;border:1px solid #719171;border-radius:6px;overflow:hidden;min-width:0}.mushroom-lifecycle-art{width:100%;height:auto;max-height:400px}.mushroom-lifecycle-canvas .mushroom-model-label{padding:10px 18px}.mushroom-life-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mushroom-life-controls button{text-align:left;background:transparent;border-color:#82a07c;color:#e3ebd4;min-height:60px}.mushroom-life-controls button[aria-pressed=true]{background:#13533d;color:#183d2e}.mushroom-step-detail{min-height:150px;margin-top:22px}.mushroom-step-detail h3{font-size:31px;margin-bottom:12px!important}.mushroom-step-detail p{font-size:19px}.mushroom-lifecycle-canvas .life-germ,.mushroom-lifecycle-canvas .life-network,.mushroom-lifecycle-canvas .life-fruit,.mushroom-lifecycle-canvas .life-release{opacity:0;transition:opacity .35s}.mushroom-lifecycle-canvas[data-step='0'] .life-germ,.mushroom-lifecycle-canvas[data-step='1'] .life-network,.mushroom-lifecycle-canvas[data-step='2'] .life-network,.mushroom-lifecycle-canvas[data-step='2'] .life-fruit,.mushroom-lifecycle-canvas[data-step='3'] .life-network,.mushroom-lifecycle-canvas[data-step='3'] .life-fruit,.mushroom-lifecycle-canvas[data-step='3'] .life-release{opacity:1}
-.mushroom-role-labs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.mushroom-role-exhibit{min-width:0;border:1px solid #9cad8e;border-radius:6px;overflow:hidden;background:var(--panel)}.mushroom-role-picture{position:relative;background:#173f34;color:#e8eddb}.mushroom-role-art{width:100%;height:auto;aspect-ratio:600/320}.mushroom-role-picture .mushroom-model-label{position:absolute;left:15px;top:10px;max-width:90%;padding:3px 6px;background:#143d33d9}.mushroom-role-photo .mushroom-photo-image{aspect-ratio:2.35}.mushroom-role-photo .mushroom-photo-inspect{border:0;border-radius:0}.mushroom-role-photo .mushroom-photo-caption{font-size:15px;color:#f2dec4;padding:0 16px 12px}.mushroom-role-photo .mushroom-photo-credit{color:#c1cba9}.mushroom-role-copy{padding:18px 22px}.mushroom-role-copy h3{font-size:29px;margin:6px 0 12px!important}.mushroom-role-copy>p:not(.mushroom-eyebrow){font-size:17px}.mushroom-role-explanation{min-height:4.6em;margin-top:14px!important;color:var(--muted)}.mushroom-role-copy .mushroom-lab-button{font-size:15px!important;padding:9px 12px}.mushroom-recycle-stages{display:flex;gap:8px;list-style:none;counter-reset:recycle;padding:0;margin:15px 0 0}.mushroom-recycle-stages li{counter-increment:recycle;flex:1;border-bottom:2px solid #91a681;padding:6px 0;font-size:15px}.mushroom-recycle-stages li::before{content:counter(recycle)' / '}.mushroom-recycle-stages [aria-current=true]{border-color:var(--glow);font-weight:700}.exchange-sugars,.exchange-nutrients{opacity:.2}.mushroom-role-exhibit[data-exchange=sugars] .exchange-sugars,.mushroom-role-exhibit[data-exchange=nutrients] .exchange-nutrients{opacity:1;animation:fungal-exchange 1.8s linear infinite;animation-play-state:paused}.mushroom-role-exhibit[data-running=true] :is(.exchange-sugars,.exchange-nutrients){animation-play-state:running}.dough-volume{transform-box:fill-box;transform-origin:center bottom;transform:scaleY(.62)}@keyframes fungal-exchange{to{stroke-dashoffset:-96}}
+.mushroom-role-labs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.mushroom-role-exhibit{min-width:0;border:1px solid #9cad8e;border-radius:6px;overflow:hidden;background:var(--panel)}.mushroom-role-picture{position:relative;background:#173f34;color:#e8eddb}.mushroom-role-art{width:100%;height:auto;aspect-ratio:600/320}.mushroom-role-picture .mushroom-model-label{position:absolute;left:15px;top:10px;max-width:90%;padding:3px 6px;background:#143d33d9}.mushroom-role-photo .mushroom-photo-image{aspect-ratio:2.35}.mushroom-role-photo .mushroom-photo-inspect{border:0;border-radius:0}.mushroom-role-photo .mushroom-photo-caption{font-size:15px;color:#f2dec4;padding:0 16px 12px}.mushroom-role-photo .mushroom-photo-credit{color:#c1cba9}.mushroom-role-copy{padding:18px 22px}.mushroom-role-copy h3{font-size:29px;margin:6px 0 12px!important}.mushroom-role-copy>p:not(.mushroom-eyebrow){font-size:17px}.mushroom-role-explanation{min-height:4.6em;margin-top:14px!important;color:var(--muted)}.mushroom-role-copy .mushroom-lab-button{font-size:15px!important;padding:9px 12px}.mushroom-recycle-stages{display:flex;gap:8px;list-style:none;counter-reset:recycle;padding:0;margin:15px 0 0}.mushroom-recycle-stages li{counter-increment:recycle;flex:1;border-bottom:2px solid #91a681;padding:6px 0;font-size:15px}.mushroom-recycle-stages li::before{content:counter(recycle)' / '}.mushroom-recycle-stages [aria-current=true]{border-color:var(--glow);font-weight:700}.exchange-sugars,.exchange-nutrients{opacity:.2}.mushroom-role-exhibit[data-exchange=sugars] .exchange-sugars,.mushroom-role-exhibit[data-exchange=nutrients] .exchange-nutrients{opacity:1;animation:fungal-exchange 1.8s linear infinite;animation-play-state:paused}.mushroom-role-exhibit[data-running=true] :is(.exchange-sugars,.exchange-nutrients){animation-play-state:running}@keyframes fungal-exchange{to{stroke-dashoffset:-96}}
 .mushroom-wonder-labs{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}.mushroom-light-lab,.mushroom-sound-lab{min-width:0;background:#043d2e;border:1px solid #6e906f;border-radius:6px;overflow:hidden}.mushroom-light-lab .mushroom-photo-image{aspect-ratio:2.4}.mushroom-light-lab .mushroom-photo-inspect{border:0;border-radius:0}.mushroom-light-lab .mushroom-photo-caption{color:#f2dec4;padding-inline:22px}.mushroom-light-lab .mushroom-photo-credit{color:#c1cba9}.mushroom-lab-copy{padding:18px 24px 22px}.mushroom-lab-copy h3{font-size:30px;margin:7px 0 13px!important}.mushroom-lab-copy>p:not(.mushroom-eyebrow){font-size:18px;line-height:1.55}.mushroom-signal-graph{position:relative;background:#082a27;padding:26px 16px 30px;min-height:195px}.mushroom-signal-graph svg{width:100%;height:150px}.mushroom-signal-graph .mushroom-model-label{position:absolute;left:20px;top:10px;color:#f2dec4;font-size:14px}.mushroom-graph-high,.mushroom-graph-low{position:absolute;right:18px;font-size:16px;line-height:1.4;color:#c1cba9}.mushroom-graph-high{top:35px}.mushroom-graph-low{bottom:9px}.mushroom-sound-mapping{display:flex;gap:15px;list-style:none;counter-reset:music;margin:0 0 17px;padding:0}.mushroom-sound-mapping li{counter-increment:music;flex:1;font-size:15px;border-left:2px solid #8baa81;padding-left:10px}.mushroom-sound-mapping li::before{content:counter(music)' / ';color:#e7c48a}.mushroom-learn-more{font-size:16px;margin-top:13px;padding:11px 0;border-block:1px solid #70906c}.mushroom-learn-more p{margin-top:12px!important}.mushroom-sound-explanation{font-size:16px!important;margin-top:14px!important}
 .mushroom-fact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}.mushroom-fact{border-top:1px solid #7d9b73;padding-top:12px}.mushroom-fact-mark{font-size:22px;color:#d8c28a}.mushroom-fact h3{font-size:28px;margin:9px 0 12px!important}.mushroom-fact p{font-size:18px}.mushroom-quiz{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px 25px;margin-top:20px;padding:20px 24px;background:#043d2e;border:1px solid #74936c;border-radius:5px}.mushroom-quiz>.mushroom-eyebrow,.mushroom-safety-rule{grid-column:1/-1}.mushroom-question{border:0;padding:0;margin:0;min-width:0}.mushroom-question legend{font-size:18px;font-weight:650;padding:0 0 12px;min-height:70px;line-height:1.5}.mushroom-answer-options{display:grid;gap:9px}.mushroom-answer-options button{text-align:left;font-size:16px!important;background:#043d2e;color:var(--ink);min-height:48px}.mushroom-answer-options button[aria-pressed=true]{background:#13533d}.mushroom-answer-feedback{font-size:16px;min-height:3em;line-height:1.5;margin-top:10px!important}.mushroom-safety-rule{font-size:17px;font-weight:650;border-top:1px solid #6f9367;padding-top:12px}
 .mushroom-section-journal{background:#263a18;padding:38px 0 42px}.mushroom-section-journal .mushroom-inner{display:grid;grid-template-columns:.7fr 1.3fr;gap:45px;align-items:center}.mushroom-section-journal .mushroom-section-heading{display:block;margin:0}.mushroom-section-journal .mushroom-eyebrow{display:block;color:var(--muted)}.mushroom-section-journal .mushroom-section-heading h2{font-size:42px;margin-top:10px!important}.mushroom-section-journal .section-intro{margin-top:16px!important;font-size:19px}.mushroom-journal-placeholder{background:var(--surface);border:1px solid #b2bfa0;border-left:5px solid #6e8d56;border-radius:6px;padding:30px 38px}.mushroom-journal-year{font-size:15px;letter-spacing:.12em;color:var(--muted)}.mushroom-journal-placeholder h3{font-size:32px;margin:12px 0 16px!important}.mushroom-journal-placeholder p{font-size:19px;max-width:65ch}.mushroom-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px var(--gutter);background:var(--forest);color:var(--ink);font-size:15px}.mushroom-footer a{text-decoration:underline;text-underline-offset:4px}
@@ -294,3 +294,147 @@
  .mushroom-learning-station{padding-block:18px}
  .mushroom-photo-window{height:210px}
 }
+
+/* Checklist batch 2: finite processes with stable labels and optional manual steps. */
+.mushroom-process-controls{min-width:0}
+.mushroom-process-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;list-style:none;padding:0;margin:15px 0}
+.mushroom-process-steps li{min-width:0}
+.hrv-mushrooms .mushroom-process-steps button{width:100%;height:100%;min-height:48px;padding:9px 10px;font-size:17px!important;text-align:left;line-height:1.4}
+.hrv-mushrooms .mushroom-process-steps button[aria-pressed=true]{background:var(--selected);color:var(--ink);border-color:var(--glow);box-shadow:inset 0 -3px var(--glow);font-weight:750}
+.mushroom-process-controls .mushroom-model-status{font-size:18px;min-height:3em;color:var(--muted)}
+.mushroom-motion-note{font-size:16px;line-height:1.5;margin-top:12px!important;color:var(--muted)}
+.mushroom-cutaway-controls .mushroom-process-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mushroom-cutaway-controls .mushroom-process-controls{width:100%}
+.mushroom-role-picture .mushroom-model-label{position:static;max-width:none;padding:10px 18px;margin:0;background:transparent;font-size:15px;line-height:1.5}
+.mushroom-role-picture{justify-content:center}
+.mushroom-role-picture .mushroom-role-art{aspect-ratio:auto;width:100%;max-height:360px}
+.mushroom-role-copy{padding:20px 28px}
+.mushroom-role-copy .mushroom-learning-notes{font-size:17px}
+.mushroom-role-exhibit .mushroom-diagram-key{display:grid;grid-template-columns:1fr 1fr;text-align:left;font-size:17px;gap:8px 15px;padding:12px 18px}
+.mushroom-role-exhibit .mushroom-diagram-key span::before{content:'';display:inline-block;width:14px;height:14px;margin-right:8px;vertical-align:-1px;border:1px solid currentColor;background:#e6d6b2}
+.mushroom-diagram-key .key-material::before{background:#986d42!important}
+.mushroom-diagram-key .key-food::before,.mushroom-diagram-key .key-sugar::before{background:#efbd70!important;border-radius:50%}
+.mushroom-diagram-key .key-nutrients::before,.mushroom-diagram-key .key-water::before{background:#b0d9c6!important;transform:rotate(45deg);width:11px!important;height:11px!important;margin-right:11px!important}
+.mushroom-diagram-key .key-root::before{background:#dfc38b!important}
+.mushroom-diagram-key .key-outline::before{background:transparent!important;border:2px dashed #fff1cf!important}
+.mushroom-diagram-key .key-gas::before{background:#946535!important;border-color:#f6dca1!important;border-radius:50%}
+.mushroom-diagram-key .key-bowl::before{background:transparent!important;border-color:#c1d9cb!important}
+.mushroom-role-evidence{padding:0 18px 12px;font-size:17px}
+.mushroom-role-evidence summary{min-height:44px;padding:8px 0}
+.mushroom-role-evidence .mushroom-photo-image{aspect-ratio:2.5;max-height:200px}
+.mushroom-sunlight-label{padding:12px 18px 0;font-size:18px;color:#f0d391!important}
+.recycle-fragments,.recycle-food-outside,.recycle-food-inside,.recycle-nutrients{opacity:0}
+.mushroom-role-exhibit[data-stage='0'] .recycle-fragments,.mushroom-role-exhibit[data-stage='1'] .recycle-fragments,.mushroom-role-exhibit[data-stage='2'] .recycle-fragments{opacity:1}
+.mushroom-role-exhibit[data-stage='0'] .recycle-food-outside{opacity:1}
+.mushroom-role-exhibit[data-stage='1'] .recycle-food-inside{opacity:1}
+.mushroom-role-exhibit[data-stage='2'] .recycle-nutrients{opacity:1}
+.mushroom-role-exhibit :is(.exchange-sugars,.exchange-nutrients){opacity:1;animation:none;stroke-dasharray:none}
+.mushroom-role-exhibit .exchange-nutrients{stroke-dasharray:9 5}
+.mushroom-role-exhibit[data-exchange=sugar] :is(.exchange-nutrients,.trade-water-marker),.mushroom-role-exhibit[data-exchange=water] :is(.exchange-sugars,.trade-sugar-marker){opacity:.18}
+.mushroom-role-exhibit[data-role=tree] .mushroom-process-steps{grid-template-columns:1fr 1fr}
+.dough-volume{transform-box:view-box;transform-origin:0 0}
+
+/* Labels stay readable HTML, with leaders that follow the moving spore. */
+.mushroom-catapult-stage{padding:12px 14px 16px}
+.mushroom-catapult-stage>.mushroom-model-label{position:static;font-size:15px;margin-bottom:10px}
+.mushroom-callout-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;font-size:17px;font-weight:650;line-height:1.4}
+.mushroom-callout-diagram{position:relative;min-width:0}
+.mushroom-callout-diagram .mushroom-catapult-art{width:100%;height:auto;max-height:none}
+.mushroom-catapult-panel>.mushroom-process-controls{padding:16px 18px}
+.mushroom-catapult-panel .mushroom-process-steps{grid-template-columns:1fr;margin-top:0}
+.mushroom-catapult-panel .mushroom-model-status{font-size:17px}
+.mushroom-breeze-directions{display:flex;gap:8px;flex-wrap:wrap;grid-column:1/-1}
+.mushroom-breeze-directions button{flex:1;min-width:80px}
+.hrv-mushrooms .mushroom-breeze-directions [aria-pressed=true]{background:var(--selected);color:var(--ink);border-color:var(--glow);box-shadow:inset 0 -3px var(--glow);font-weight:750}
+.mushroom-wind-controls .mushroom-process-controls{grid-column:1/-1}
+.mushroom-wind-controls .mushroom-process-steps{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* The research image gets the whole player width, not half of a narrow card. */
+.hrv-mushrooms .mushroom-spore-film{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:12px 20px;align-content:start}
+.hrv-mushrooms .mushroom-spore-film>:is(.mushroom-eyebrow,h3,.mushroom-research-video,.mushroom-film-credit){grid-column:1/-1;grid-row:auto;margin:0!important}
+.hrv-mushrooms .mushroom-spore-film h3{font-size:26px}
+.hrv-mushrooms .mushroom-spore-film .mushroom-research-video{width:min(100%,480px);max-width:none;height:auto;aspect-ratio:2;object-fit:contain;justify-self:center}
+.mushroom-film-description{grid-column:1;min-width:0}
+.hrv-mushrooms .mushroom-film-description .mushroom-film-caption{font-size:17px;margin:0!important;line-height:1.5}
+.mushroom-film-timing{font-size:15px;line-height:1.5;margin-top:10px!important;color:var(--muted)}
+.mushroom-film-description .mushroom-safety-rule{font-size:17px;margin-top:12px!important}
+.mushroom-film-actions{grid-column:2;display:flex;flex-wrap:wrap;align-content:start;align-items:start;gap:8px}
+.mushroom-film-actions .mushroom-lab-button{flex:1 1 auto}
+.mushroom-film-actions .mushroom-model-status{flex:1 1 100%;font-size:16px;min-height:0}
+.hrv-mushrooms .mushroom-cloud-workbench .mushroom-spore-film .mushroom-research-video{width:min(100%,680px);aspect-ratio:1068/600}
+
+/* Four complete illustrations and a return arrow make the cycle visible at once. */
+.mushroom-lifecycle-workbench{grid-template-columns:minmax(0,3fr) minmax(0,1fr);gap:28px;align-items:center}
+.mushroom-cycle-map{min-width:0}
+.mushroom-cycle-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:25px;list-style:none;padding:0;margin:0}
+.mushroom-cycle-overview li{position:relative;min-width:0}
+.mushroom-cycle-overview li:not(:last-child)::after{content:'→';position:absolute;right:-22px;top:40%;font-size:22px;color:var(--gold)}
+.hrv-mushrooms .mushroom-cycle-stage{display:flex;flex-direction:column;align-items:stretch;width:100%;min-height:220px;padding:8px;border:1px solid var(--line);border-radius:5px;background:var(--panel);color:var(--ink);text-align:left}
+.hrv-mushrooms .mushroom-cycle-stage[aria-pressed=true]{background:var(--selected);border:2px solid var(--glow);box-shadow:inset 0 -4px var(--glow)}
+.mushroom-life-preview{display:block;min-width:0;width:100%;height:160px;overflow:hidden;background:#183e33;border-radius:3px}
+.mushroom-life-preview .mushroom-lifecycle-art{width:100%;height:100%;max-height:none}
+.mushroom-life-preview :is(.life-network,.life-fruit,.life-release){opacity:0}
+.mushroom-life-preview[data-step='0'] .life-germ path{opacity:0}
+.mushroom-life-preview:not([data-step='0']) .life-network,.mushroom-life-preview[data-step='2'] .life-fruit,.mushroom-life-preview[data-step='3'] :is(.life-fruit,.life-release){opacity:1}
+.mushroom-life-preview .life-release ellipse{rx:5px;ry:7px}
+.mushroom-cycle-stage-label{display:block;font-size:18px;font-weight:650;padding:12px 6px 5px;line-height:1.4}
+.mushroom-cycle-return svg{display:block;width:100%;height:42px}
+.mushroom-cycle-return p{text-align:center;font-size:18px;margin:8px 0 16px!important}
+.mushroom-lifecycle-copy .mushroom-step-detail{margin:0;min-height:0}
+.mushroom-cycle-scope{margin-top:18px!important;font-size:17px;color:var(--muted)}
+@media(min-width:1280px){
+ .mushroom-spore-comparison{grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+ .mushroom-catapult-panel{grid-template-columns:1.05fr 1fr}
+ .mushroom-wind-panel{grid-template-columns:1.2fr 1fr}
+ .mushroom-catapult-panel>.mushroom-process-controls{border-left:1px solid var(--line)}
+}
+@media(max-width:1100px){
+ .mushroom-role-exhibit{grid-template-columns:1fr 1fr;align-items:center}
+ .mushroom-process-steps{grid-template-columns:1fr}
+ .mushroom-lifecycle-workbench{grid-template-columns:1fr}
+ .mushroom-life-preview{height:150px}
+ .mushroom-cycle-stage{min-height:210px!important}
+ .mushroom-lifecycle-copy{max-width:70ch}
+}
+@media(max-width:700px){
+ .mushroom-role-exhibit{display:block}
+ .mushroom-role-copy{padding:20px}
+ .mushroom-role-copy .mushroom-learning-notes{font-size:18px}
+ .mushroom-role-picture .mushroom-role-art{max-height:none}
+ .mushroom-role-exhibit .mushroom-diagram-key{font-size:17px;gap:8px 12px}
+ .mushroom-process-controls .mushroom-model-status{min-height:0;font-size:18px}
+ .mushroom-process-steps,.mushroom-cutaway-controls .mushroom-process-steps,.mushroom-wind-controls .mushroom-process-steps{grid-template-columns:1fr}
+ .mushroom-callout-row{font-size:17px;gap:10px}
+ .mushroom-catapult-panel{display:block}
+ .mushroom-catapult-stage>.mushroom-model-label{margin-bottom:14px}
+ .mushroom-catapult-panel .mushroom-process-steps{grid-template-columns:1fr}
+ .hrv-mushrooms .mushroom-spore-film{display:block;padding:16px}
+ .hrv-mushrooms .mushroom-spore-film h3{margin:10px 0 14px!important}
+ .hrv-mushrooms .mushroom-spore-film .mushroom-film-description{margin-top:14px}
+ .mushroom-film-actions{margin-top:14px}
+ .hrv-mushrooms .mushroom-spore-film .mushroom-film-credit{margin-top:14px!important}
+ .mushroom-lifecycle-workbench{display:block}
+ .mushroom-cycle-overview{display:flex;flex-direction:column;gap:26px;padding-left:16px;border-left:2px solid var(--gold)}
+ .hrv-mushrooms .mushroom-cycle-stage{display:grid;grid-template-columns:100px minmax(0,1fr);align-items:center;min-height:132px!important;gap:8px}
+ .mushroom-life-preview{height:110px}
+ .mushroom-cycle-stage-label{font-size:18px;padding:6px 2px}
+ .mushroom-cycle-overview li:not(:last-child)::after{content:'↓';left:46px;right:auto;top:auto;bottom:-27px}
+ .mushroom-cycle-overview li:first-child::before{content:'↑';position:absolute;left:-28px;top:-9px;font-size:21px;color:var(--gold)}
+ .mushroom-cycle-return svg{display:none}
+ .mushroom-cycle-return p{padding-left:16px;margin-top:16px!important;text-align:left}
+ .mushroom-cycle-return p::before{content:'↑ ';color:var(--gold)}
+ .mushroom-lifecycle-copy{margin-top:24px}
+}
+.mushroom-motion-choice{display:flex;align-items:center;gap:10px;min-height:44px;font-size:16px;margin-top:10px;color:var(--muted)}
+.mushroom-motion-choice input{width:22px;height:22px;flex:none;accent-color:var(--glow)}
+@media(min-width:1280px){
+ .hrv-mushrooms .mushroom-spore-film .mushroom-research-video{grid-column:1;grid-row:3/span 2;width:100%;max-width:480px;align-self:start}
+ .hrv-mushrooms .mushroom-spore-film .mushroom-film-description{grid-column:2;grid-row:3}
+ .hrv-mushrooms .mushroom-spore-film .mushroom-film-actions{grid-column:2;grid-row:4}
+ .hrv-mushrooms .mushroom-spore-film .mushroom-film-credit{grid-row:5}
+ .hrv-mushrooms .mushroom-cloud-workbench .mushroom-spore-film .mushroom-research-video{max-width:680px}
+}
+.mushroom-process-options{display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:8px 12px;margin-top:10px}
+.mushroom-process-options .mushroom-motion-choice{margin-top:0}
+@media(min-width:1280px){.mushroom-catapult-panel .mushroom-process-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.hrv-mushrooms .mushroom-process-controls>.mushroom-lab-actions>[aria-pressed=true]{background:var(--selected);color:var(--ink);border-color:var(--glow);box-shadow:inset 0 -3px var(--glow)}
