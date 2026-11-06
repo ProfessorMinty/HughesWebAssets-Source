@@ -1,3 +1,45 @@
+# Current checks — two-station edition, 2026-11-06
+
+This edition supersedes the earlier flat/reading-rail measurements below. All nine source
+blocks remain, rendered in two learning stations and the classroom story.
+
+- Fifteen local tests cover source/edit/refusal rules, registered media integrity, launch
+  phase order and connected parent-before-child network growth. Syntax and generated
+  source/control/schema checks pass through `npm run check:mushrooms`.
+- Chrome UI checks exercised every main tab at 1920×911, 1366×768, 820×1180,
+  390×844 and 320×640: **35 combinations**, all ready, x=0, no horizontal overflow.
+  All scientific SVGs have zero text elements; their labels are HTML.
+- At 1920×911, station-one defaults: family about 830 px, anatomy 834 px, cutaway 799 px,
+  roles 808 px. Station-two defaults: spores 788 px, light/sound 808 px, questions 830 px.
+  The 72 px sticky navigation and each selected station fit within the 911 px reference
+  viewport. Expanded explanations, credits and answer feedback can grow a station.
+- Default page height is 2636 px. Classroom-story position: approximately 2302 px from page top. The prior
+  reading-rail edition placed it around 6038 px down. An entrance button and sticky
+  navigation link bypass both learning stations. The jump brought the entire reserved
+  classroom story into view during a 1363×936 standalone-browser check.
+- Keyboard End selected the last station-one tab; one tab remained in the Tab order and
+  selection/tabpanel visibility matched. A direct `#mushrooms-anatomy` load revealed
+  the hidden panel. Sources and nested record identities remain attached.
+- Root/fungus sugar flow, pause, dough rise/pause, all selected anatomy details, connected
+  network replay/pause, leftward wind/release/pause, and all four illustrated life stages
+  were exercised. Selecting a life stage changed its graphic state and explanation.
+- Real puffball playback loaded at 1068×600, readyState 4, duration 8.9 seconds; currentTime
+  advanced to 1.0022 seconds and paused on changing the view. Autoplay and looping are off.
+  The lower-resolution microscopic clip remains separately identified.
+- The invented sound model started on request and stopped on changing tabs. Audio notes
+  and cursor use the same AudioContext clock and eight-second mapping. Its invented-data
+  disclosure remains visible. Extended ion/mapping explanation is under the disclosure.
+- The uncropped photo dialog opened with a loaded original-aspect image, closed back to
+  the exhibit, and a discovery answer showed its authored feedback. Photos remain real
+  specimen examples, not classroom observations.
+
+These are Chrome CSS-viewport/interaction checks, not physical-device, assistive-technology
+or cross-browser certification. The journal still has no invented entries, stage or species.
+The Mushinator editor, classroom uploads, immutable release and live Edublogs installation
+remain outside this implementation.
+
+## Earlier observations — retained history
+
 # Observed draft checks — 2026-11-06
 
 `npm run check:mushrooms` passed: syntax checks, thirteen source/edit/publication-guard tests,

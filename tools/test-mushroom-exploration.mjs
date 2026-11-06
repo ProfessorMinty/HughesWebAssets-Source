@@ -108,7 +108,28 @@ test("only the credited registered research recording can be selected", function
 });
 test("the recording, poster and description match the credited catalog", async function () {
   const catalog=JSON.parse(await readFile(root+"/apps/mushroom-exploration/source/mushrooms.assets.json","utf8"));assert.deepEqual(catalog.videos,MUSHROOM_VIDEOS);
-  for(const video of MUSHROOM_VIDEOS){assert.equal(video.captureFps,50000);assert.equal(video.playbackFps,20);assert.equal(video.silent,true);assert.match(video.page,/^https:\/\//);
+  const microscopic=MUSHROOM_VIDEOS.find(v=>v.id==='mushroom-video:armillaria-release');assert.equal(microscopic.captureFps,50000);assert.equal(microscopic.playbackFps,20);
+  const cloud=MUSHROOM_VIDEOS.find(v=>v.id==='mushroom-video:puffball-cloud');assert.equal(cloud.captureFps,null);assert.equal(cloud.slowdownFactor,5);assert.equal(cloud.license,'CC BY 4.0');
+  for(const video of MUSHROOM_VIDEOS){assert.equal(video.silent,true);assert.match(video.page,/^https:\/\//);
     for(const file of video.files){const bytes=await readFile(root+"/apps/mushroom-exploration/src/"+file.path);assert.equal(bytes.byteLength,file.bytes);assert.equal(createHash("sha256").update(bytes).digest("hex"),file.sha256);if(file.mime==="video/mp4")assert.equal(bytes.toString("ascii",4,8),"ftyp");}
   }
+});
+
+
+test('hyphal growth stays connected: branches and cross-links wait for their parents', async function () {
+  const {hyphalNetwork}=await import('../apps/mushroom-exploration/src/art.js');
+  const network=hyphalNetwork(15,240,970,245,6),byId=new Map(network.map(p=>[p.id,p]));
+  assert.ok(network.length>100);
+  for(const segment of network)for(const parentId of segment.parents){
+    const parent=byId.get(parentId);assert.ok(parent,'missing connected parent');
+    assert.ok(segment.start>=parent.start+parent.duration,'a branch started before its parent reached the junction');
+  }
+  assert.ok(network.some(p=>p.parents.length>1),'network needs cross-connections');
+});
+
+test('both spore recordings are registered and reject arbitrary video URLs', function () {
+  const block=source.data.blocks.find(b=>b.type==='lifecycle');
+  assert.equal(block.plumeVideo.url,'asset:mushroom-video:puffball-cloud');
+  const changed=fresh();changed.data.blocks.find(b=>b.type==='lifecycle').plumeVideo.url='https://example.invalid/cloud.mp4';
+  assert.throws(()=>validateMushroomSource(changed,{allowDraft:true}),/unknown research video/);
 });

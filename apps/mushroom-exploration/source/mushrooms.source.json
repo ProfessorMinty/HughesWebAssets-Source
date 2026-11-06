@@ -71,6 +71,11 @@
         "id": "mushroom-source:spore-launch-study",
         "title": "Stolze-Rybczynski and colleagues · Real spore-launch footage (PLOS ONE, 2009)",
         "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0004163"
+      },
+      {
+        "id": "mushroom-source:puffball-study",
+        "title": "Puffball spore-cloud research — Zhirnov and colleagues, PLOS ONE (2019)",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210754"
       }
     ],
     "blocks": [
@@ -155,8 +160,8 @@
         "hotspots": [
           {
             "id": "mushroom-point:cap",
-            "x": 44.5,
-            "y": 19,
+            "x": 42,
+            "y": 20,
             "label": "Cap",
             "body": "The cap holds the spore-making surface underneath it. Look below the umbrella!",
             "sourceRefs": [
@@ -175,8 +180,8 @@
           },
           {
             "id": "mushroom-point:stem",
-            "x": 47,
-            "y": 59.7,
+            "x": 44,
+            "y": 61,
             "label": "Stem",
             "body": "The stem lifts the cap. This helps spores reach moving air.",
             "sourceRefs": [
@@ -185,8 +190,8 @@
           },
           {
             "id": "mushroom-point:mycelium",
-            "x": 34,
-            "y": 86.4,
+            "x": 35,
+            "y": 87,
             "label": "Mycelium",
             "body": "These branching threads are part of the fungus. A single thread is called a hypha. A network of threads is mycelium.",
             "sourceRefs": [
@@ -195,8 +200,8 @@
           },
           {
             "id": "mushroom-point:spores",
-            "x": 81.5,
-            "y": 56,
+            "x": 84.3,
+            "y": 44,
             "label": "Spores",
             "body": "Spores can start new fungal growth when conditions are right. They are enlarged here so we can see them.",
             "sourceRefs": [
@@ -254,7 +259,8 @@
         "sourceRefs": [
           "mushroom-source:spores",
           "mushroom-source:mycelium",
-          "mushroom-source:spore-launch-study"
+          "mushroom-source:spore-launch-study",
+          "mushroom-source:puffball-study"
         ],
         "steps": [
           {
@@ -301,6 +307,15 @@
           "caption": "Watch the round spore jump from right to left. Scientists filmed this through a microscope and slowed it down.",
           "sourceRefs": [
             "mushroom-source:spore-launch-study"
+          ]
+        },
+        "plumeVideo": {
+          "kind": "video",
+          "url": "asset:mushroom-video:puffball-cloud",
+          "title": "A puffball sends out a cloud",
+          "caption": "Watch the cloud of spores! In this research recording, a scientist squeezes a dried puffball. Its spores leave through a small opening. Puffballs release spores differently from gilled mushrooms. The video is slowed five times.",
+          "sourceRefs": [
+            "mushroom-source:puffball-study"
           ]
         }
       },

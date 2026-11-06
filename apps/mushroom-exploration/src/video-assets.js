@@ -50,6 +50,59 @@ export const MUSHROOM_VIDEOS = [
         "mime": "text/vtt"
       }
     ]
+  },
+  {
+    "id": "mushroom-video:puffball-cloud",
+    "name": "A puffball sends out a cloud",
+    "subject": "Lycoperdon pyriforme (name in the 2019 paper); a dried puffball squeezed in a research demonstration",
+    "file": "./assets/puffball-spore-cloud.mp4",
+    "poster": "./assets/puffball-cloud-poster.webp",
+    "captions": "./assets/puffball-description.vtt",
+    "width": 1068,
+    "height": 600,
+    "duration": 8.9,
+    "captureFps": null,
+    "playbackFps": 30,
+    "slowdownFactor": 5,
+    "silent": true,
+    "creator": "Zhirnov and colleagues (2019), S1b",
+    "authors": [
+      "Anatoliy A. Zhirnov",
+      "Nina N. Kudryashova",
+      "Olga B. Kudryashova",
+      "Nataliya V. Korovina",
+      "Anatoliy A. Pavlenko",
+      "Sergey S. Titov"
+    ],
+    "page": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210754",
+    "originalUrl": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0210754.s001&type=supplementary",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "licenseNote": "The primary article copyright notice grants Creative Commons Attribution; its linked license resolves to CC BY 4.0. S1 is identified as supporting information and has no separate restrictive credit notice.",
+    "changes": "Video copied unchanged from the primary S1 ZIP; no crop, interpolation, retiming, colour alteration or added audio. Poster extracted at 4.0 seconds and encoded as WebP.",
+    "originalSha256": "ddb7b075aefbb14392a3ccf0b5616485197b8c8b5a79211d6d37f9e23d01607b",
+    "sourceArchiveSha256": "238e8a627e687a45ab19f363b898c09bc1f221d7c28474785bffae68821a892f",
+    "verified": "2026-11-06",
+    "files": [
+      {
+        "path": "./assets/puffball-spore-cloud.mp4",
+        "sha256": "ddb7b075aefbb14392a3ccf0b5616485197b8c8b5a79211d6d37f9e23d01607b",
+        "bytes": 742745,
+        "mime": "video/mp4"
+      },
+      {
+        "path": "./assets/puffball-cloud-poster.webp",
+        "sha256": "a61c5881635adae003123ea258c9ce8f8bcb5e0460cd2856a068e9f15da52ef9",
+        "bytes": 22268,
+        "mime": "image/webp"
+      },
+      {
+        "path": "./assets/puffball-description.vtt",
+        "sha256": "811b7dd14fc299a5542e9be3e06cd83ce2f00c4c95478a325b6728612d740255",
+        "bytes": 222,
+        "mime": "text/vtt"
+      }
+    ]
   }
 ];
 

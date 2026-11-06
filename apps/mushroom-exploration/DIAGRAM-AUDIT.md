@@ -1,5 +1,9 @@
 # Diagram and desktop layout audit — 2026-11-06
 
+Implementation follow-up: the two-station edition implements the recorded rebuild order.
+See [current QA](QA.md) and [the current page structure](README.md). The findings and
+measurements below describe the earlier draft; visual acceptance remains with Arctic.
+
 Follow-up: [the recording-based re-audit](DIAGRAM-REAUDIT-2026-11-06.md) identifies remaining visual, teaching, animation and readability problems. The resolutions below describe changes made in the first pass; they do not constitute acceptance of the exhibit's visual quality. The exhibit remains an unpublished draft.
 
 Current implementation: unpublished exhibit draft on feature/mushroom-exhibit-scaffold. The audit covers the visual scientific models, their photographic companions, and desktop reading order.

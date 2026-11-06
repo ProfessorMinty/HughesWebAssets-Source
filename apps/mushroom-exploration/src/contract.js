@@ -1,13 +1,13 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
 import { MUSHROOM_VIDEOS } from "./video-assets.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.3.0";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.4.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media"],
   family: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
   anatomy: ["eyebrow", "title", "intro", "sourceRefs", "media", "detailMedia", "hotspots"],
   cutaway: ["eyebrow", "title", "intro", "sourceRefs", "media", "views"],
-  lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps", "video"],
+  lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps", "video", "plumeVideo"],
   roles: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
   lab: ["eyebrow", "title", "intro", "sourceRefs", "experiments"],
   facts: ["eyebrow", "title", "intro", "sourceRefs", "cards", "questions"],
@@ -47,7 +47,7 @@ export function mushroomSourceJsonSchema() {
     family: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
     anatomy: { media: image, detailMedia: image, hotspots: list(obj({ ...research, label: short, x: { type: "number", minimum: 0, maximum: 100 }, y: { type: "number", minimum: 0, maximum: 100 } }), 12) },
     cutaway: { media: image, views: { ...list(obj({ ...research, label: short }), 2), minItems: 2 } },
-    lifecycle: { steps: list(obj({ ...research, title: short, media: image }), 12), video },
+    lifecycle: { steps: list(obj({ ...research, title: short, media: image }), 12), video, plumeVideo: video },
     roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
     lab: { experiments: list(obj({ ...research, title: short, mode: { enum: ["glow", "sound"] }, media: image }), 2) },
     facts: { cards: list(obj({ ...research, title: short }), 12), questions: list(obj({ id: recordId, prompt: short, sourceRefs: sourceRefs, choices: list(obj({ id: recordId, label: short, correct: { type: "boolean" }, feedback: { type: "string", minLength: 1, maxLength: 600 } }), 4) }), 6) },
@@ -176,12 +176,15 @@ export function validateMushroomSource(source, options) {
       });
     }
     if (block.type === "lifecycle") {
-      if(block.video!==null){
-        object(block.video,['kind','url','title','caption','sourceRefs'],'research video');
-        requireThat(block.video.kind==='video'&&MUSHROOM_VIDEOS.some(item=>'asset:'+item.id===block.video.url),'unknown research video reference');
-        text(block.video.title,'video title',140,true);text(block.video.caption,'video caption',600,true);
-        research({body:block.video.caption,sourceRefs:block.video.sourceRefs},'research video');
-      } else if(!allowDraft)requireThat(false,'reviewed spore recording is missing');
+      for(const key of ['video','plumeVideo']){
+        const recording=block[key];
+        if(recording!==null){
+          object(recording,['kind','url','title','caption','sourceRefs'],'research video');
+          requireThat(recording.kind==='video'&&MUSHROOM_VIDEOS.some(item=>'asset:'+item.id===recording.url),'unknown research video reference');
+          text(recording.title,'video title',140,true);text(recording.caption,'video caption',600,true);
+          research({body:recording.caption,sourceRefs:recording.sourceRefs},'research video');
+        }else if(!allowDraft&&key==='video')requireThat(false,'reviewed spore recording is missing');
+      }
       array(block.steps, "lifecycle steps", 12);
       if (!allowDraft) requireThat(block.steps.length > 0, "reviewed lifecycle is missing");
       block.steps.forEach(function (step) {

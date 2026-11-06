@@ -72,3 +72,24 @@ and visual content were inspected. The visual model slows and enlarges the mecha
 the wind view remains a qualitative dispersal model. No current species-count claim is
 borrowed from that older paper. Full provenance is in src/video-assets.js and the generated
 asset catalog; DIAGRAM-AUDIT.md records the visual/scientific review.
+
+
+## Two-station media and model update — 2026-11-06
+
+The models were reviewed again against ANBG’s mycelium and gilled-spore discharge
+explanations. Distributed connected hyphae replace downward root-like fans. Growth
+segments wait for their connected parents; enlarged labels are HTML rather than
+scaled SVG text. These remain qualitative models, not measurements of growth or airflow.
+
+The added whole-fruiting-body cloud is the S1b recording in [Zhirnov et al., PLOS ONE
+2019](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0210754). The primary
+article identifies the fungus as Lycoperdon pyriforme and describes the small opening
+through which squeezing releases spores. The page states that S1 is slowed five times.
+The clip shows a scientist squeezing a dried puffball; it is explicitly distinguished
+from gilled-mushroom Buller’s-drop discharge. The capture frame rate is not stated.
+
+The primary copyright notice and linked CC BY 4.0 license were inspected, as was the
+S1 footage. S1b.mp4 is copied unchanged at 1068×600, 30 fps playback, 8.9 seconds, silent.
+A poster and English visual-description track accompany it. Credits, transformations,
+source ZIP hash and each delivery-file hash are in src/video-assets.js and VIDEO-CREDITS.md.
+The earlier microscopic gilled-fungus recording remains a separate registered asset.

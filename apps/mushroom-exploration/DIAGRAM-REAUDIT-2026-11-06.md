@@ -1,5 +1,9 @@
 # Mushroom exhibit: recording-based re-audit
 
+Implementation follow-up: the two-station edition implements the recorded rebuild order.
+See [current QA](QA.md) and [the current page structure](README.md). The findings and
+measurements below describe the earlier draft; visual acceptance remains with Arctic.
+
 Date: 2026-11-06. Verdict: **the visual exhibit needs another design pass before acceptance.** The previous audit overstated completion of the role illustrations and treated working code, valid SVG and absence of overflow as stronger evidence of readiness than they are.
 
 This is an audit, not an implementation update. No exhibit source, media, journal data, Edublogs configuration or production release was changed during this pass.

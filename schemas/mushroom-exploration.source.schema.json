@@ -693,7 +693,8 @@
                   "intro",
                   "sourceRefs",
                   "steps",
-                  "video"
+                  "video",
+                  "plumeVideo"
                 ],
                 "properties": {
                   "id": {
@@ -832,7 +833,54 @@
                           },
                           "url": {
                             "enum": [
-                              "asset:mushroom-video:armillaria-release"
+                              "asset:mushroom-video:armillaria-release",
+                              "asset:mushroom-video:puffball-cloud"
+                            ]
+                          },
+                          "title": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "caption": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 600
+                          },
+                          "sourceRefs": {
+                            "type": "array",
+                            "maxItems": 12,
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "plumeVideo": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "title",
+                          "caption",
+                          "sourceRefs"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "video"
+                          },
+                          "url": {
+                            "enum": [
+                              "asset:mushroom-video:armillaria-release",
+                              "asset:mushroom-video:puffball-cloud"
                             ]
                           },
                           "title": {

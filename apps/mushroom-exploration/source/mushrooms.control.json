@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "mushroom-exploration/1.3.0",
+  "schemaVersion": "mushroom-exploration/1.4.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
@@ -78,7 +78,8 @@
         "intro",
         "sourceRefs",
         "steps",
-        "video"
+        "video",
+        "plumeVideo"
       ],
       "identityField": "id"
     },

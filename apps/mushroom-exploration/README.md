@@ -11,11 +11,14 @@ Responsive styles recompose the same exhibit at smaller widths. Breakout uses av
 client width, excluding the vertical scrollbar. The preview supplies an Amadeus-like narrow
 ancestor chain to exercise the mount-scoped compatibility rules.
 
-Nine stable blocks: welcome, kingdom, anatomy, below, lifecycle, roles, lab, discoveries,
-and journal. Hands-on stations include five anatomy selections, a detailed mycelium
+The nine stable source blocks now render as a shorter journey: entrance → two full-width
+learning stations → classroom growing story. Station one contains kingdom, anatomy,
+hidden threads and fungal jobs. Station two contains spores/growing, light/sound and
+discoveries/questions. The journal is directly linked from the entrance and sticky navigation.
+Tabs retain all block IDs and content, support arrows/Home/End, and reveal direct hash links. Hands-on stations include five anatomy selections, a detailed mycelium
 cutaway, drop-launch/wind models beside real microscope footage, photographic bioluminescence,
-an invented signal-to-sound model, and three discovery questions. Animation/audio have finite runs; spore
-movement can be paused. Sound starts only on a button press and stops on demand, when
+an invented signal-to-sound model, and three discovery questions. Animations and audio start on request; spore movement, network growth and dough rise can be paused.
+Changing an exhibit suspends its active media. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
 
 The woodland entrance is generated imaginative artwork, not a specimen photograph or
@@ -65,7 +68,7 @@ Arctic reviews the exhibit and we prepare an immutable release.
 
 The standalone index includes code, source, all six real photographs and WebP artwork; it requires no network to
 render or play its models. Research and navigation links go to external sites if followed.
-Open index.html directly in a modern browser. Optional ?review=1 reveals adult block-outline
+Open index.html directly in a modern browser. Both credited research videos are embedded. Optional ?review=1 reveals adult block-outline
 tools outside the exhibit. qa.html is an internal screen-size harness, not a contained page
 layout option or the user-facing preview.
 
@@ -78,14 +81,28 @@ to 2026–2027 Past and preserve the 2025–2026 archive.
 
 See RESEARCH.md for independent source review and QA.md for observed browser checks.
 
-## Audited wide stations
+## Two full-width learning stations
 
-At 1280 px and above, each section uses a reading rail alongside its visual workbench.
-The desktop default is about 42% shorter while preserving nine blocks. Diagrams, photos
-and the real research clip sit beside their related controls. At narrower widths the
-same sections stack for reading. DIAGRAM-AUDIT.md records the audit and measurements.
+The current two-station implementation supersedes the earlier nine-section reading-rail
+layout. At 1920×911, the default stations are about 830 and 788 px tall; the classroom
+story begins around 2300 px from the page top, versus about 6038 px in the earlier edition.
+Other main tab defaults range from about 790 to 840 px. Expanded sources/explanations
+may grow the selected station intentionally. Smaller screens recompose at readable sizes.
+There is no fixed-height clipping, internal content scroller or contained layout mode.
 
-The curated research video uses a protected asset:mushroom-video:* reference; it is not
-a general video uploader. src/video-assets.js owns its provenance and the generated
-mushrooms.assets.json exposes the record to the future editor. The build verifies all
-media bytes and embeds the MP4, poster and description in the standalone preview.
+Scientific SVG models carry no embedded text. HTML carries their labels and explanations.
+The three old role pictograms and dormant family picture fallbacks have been retired.
+Roles now use a full workbench per job: real mycelium photography and a recycling sequence;
+a magnified plant-root/fungus exchange; and dough expanding around gas pockets.
+Mycelial models use irregular cross-connected networks with dependency-ordered growth.
+The life cycle reveals illustrated stages instead of changing text alone.
+
+The spore workbench offers a gilled-fungus catapult, wind journey, real puffball cloud and
+illustrated life cycle. The puffball is a dried specimen squeezed in a research demonstration,
+clearly distinguished from gilled-mushroom discharge. Unknown capture fps remains unknown.
+Registered asset:mushroom-video:* references are not a general upload mechanism.
+src/video-assets.js owns provenance; the generated asset catalog exposes both records.
+The build verifies and embeds each MP4, poster and description. Contract version is 1.4.0.
+
+See QA.md for current measured checks, RESEARCH.md for sources, and the dated diagram
+audits for the earlier findings. Their earlier measurements are historical evidence.
