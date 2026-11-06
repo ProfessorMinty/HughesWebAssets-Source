@@ -1,4 +1,78 @@
-# Current checks — three row palettes, 2026-11-06
+# Current checks — checklist batch 1, 2026-11-06
+
+Implementation: [93aee2f3c59b7b76ecbc19610230341865ebaa88](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/93aee2f3c59b7b76ecbc19610230341865ebaa88).
+Tree `0cb69d7c5f882a85bb90411e9a9c0607ab8b5f0d` matches the tested local tree.
+Completion by stable ID is in IMPLEMENTATION-CHECKLIST.md. This is batch verification,
+not completion of the remaining diagrams/music, full accessibility certification or a pupil trial.
+
+## Automated checks
+
+`npm run check:mushrooms` passed 21 tests, syntax checks, generated control/schema equality,
+registered asset-byte integrity and standalone build. New tests protect wind/launch film
+binding, validated editable context, cited glossary/word identity, stable legacy IDs and
+reserved journal, and the nine blocks the renderer requires. No dependencies were added.
+Existing launch-order, finite-state inputs and physically connected parent-first network
+checks still pass. `git diff --check` passed.
+
+## Browser observations
+
+Chrome selected all four first-station views and seven second-station activities at
+1920×911, 1366×768, 820×1180, 390×844 and 320×640: **55 combinations**. Every case had
+one selected/visible block panel per station and zero horizontal overflow. At smaller
+widths the native labeled chooser exposes the same choices. The final roles/questions
+content follow-up was rechecked at all five sizes: nine stable blocks, root x=0, no overflow,
+and one visible safety rule. Breakout width was allowed to settle after each resize.
+
+Actual browser zoom was set to **200%**, confirmed in Chrome's zoom popup. On the
+1363 px browser window this produced a 681 px CSS viewport / 674 px client width.
+All eleven activity choices remained selectable with zero horizontal overflow. The journal
+jump focused its section with heading about 207 px down and nav bottom about 122 px.
+Zoom was restored to 100%. This checks browser zoom, not independent OS text-size settings.
+
+- Entrance Explore fungi starts at Meet the kingdom, including after free exploration.
+  Header Next advances locally, focuses the destination and does not auto-advance.
+  First-station final Next enters Life in motion at Tiny launch even if a different
+  second-station activity was visited earlier.
+- First-station Home/End and second-station End/ArrowRight selection/focus were exercised.
+  Desktop destination top was about 95 px with nav bottom 77 px. At 320 px the journal
+  heading was about 211 px with nav bottom 124 px. Top-level Back/Forward restored the
+  proper selected view/focused section and current-location cue.
+- New direct hashes wind/puffball/cycle/sound load their own topic. Legacy lifecycle loads
+  launch and legacy lab loads glow. The appropriate heading and selected state were observed.
+- Launch shows only the microscope film; wind shows no film; puffball shows only its own film.
+  All other direct activities show no spore film. Launch playback entered readyState 4 and
+  playing state; switching to wind paused and hid it. Native/custom video redesign is M23.
+- Sound Play entered its expected active state; switching to glow set Sound is off and
+  reenabled Play. This verifies control/cleanup state; it does not establish timbre quality
+  or finish the transport/instrument requirements.
+- At 320 px all three kingdom dialogs opened with `object-fit: contain`, 300 px dialog
+  width within the 305 px client width, then returned focus to the correct Enlarge button.
+  Gill-dialog Escape also closed and returned focus. Scientific image bytes stayed unchanged.
+- Selecting Mycelium hid the static gill photograph; Gills showed it with a specific caption.
+  Five existing map positions remain. Small screens use static map numbers and separate
+  named part buttons, measured at least 48 px tall and 128.5 px wide at 320 px. No overlapping
+  small overlay targets or continuous hotspot animation were introduced.
+- Optional science-word/teacher detail is text, not dependent on audio or automatic timing.
+  These authored fields and the entrance/activity copy are in contract 1.5.0; pending M42
+  still includes renderer-owned model-state/control text.
+
+Final default desktop geometry: page about **2567 px**, journal y≈**2233 px**, first
+station≈**836 px**, second≈**787 px**. Earlier default was 2564/2230/835 px. Row colors
+remain actual rgb(6,68,63), rgb(70,49,31), rgb(70,90,43). New state/text combinations
+still require the final contrast audit in M37; this batch does not extend the earlier
+bounded CSS measurements into a whole-page compliance claim.
+
+![Direct wind activity with its own heading and no launch footage](qa/batch-1-wind.png)
+
+Screenshot records the rendered batch UI before the final nonvisual required-block guard,
+source-citation and unmount-style cleanup changes; those changes passed the final build/check.
+No physical touchscreen, screen reader, projector or pupil trial was performed. System
+reduced-motion handling in JavaScript and optional narration remain open. No real mushroom-
+music demo was shipped. The source is an unpublished scaffold with research review pending.
+
+---
+
+## Previous checks — three row palettes, 2026-11-06
 
 - Three full-width surfaces distinguish the destinations: primary forest teal `#06443f`
   for Fungi up close, secondary warm bark `#46311f` for Life in motion, and tertiary moss

@@ -1,11 +1,12 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.0 · November 6, 2026 · Planning reference; implementation pending.
+Version 1.1 · November 6, 2026 · First implementation batch verified; remaining fixes open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
 `2026-11-06_15-44-35.mp4` recording, and the current repository source. Creating this
-document does not complete any of the fixes below. All 46 implementation items start open.
+document alone did not complete any fixes. All 46 items started open; checked items now
+have dated implementation evidence below.
 
 ## Baseline and evidence
 
@@ -105,7 +106,7 @@ already within the requested scope.
 
 ## A. Entry, copy and interpretation
 
-- [ ] **M01 — Make the entrance match classroom-project readiness.**
+- [x] **M01 — Make the entrance match classroom-project readiness.**
   Make Explore fungi the primary action while the journal has no real published content.
   Keep a secondary Our class project — coming soon destination and the direct chapter link.
   Reduce repeated placeholder shortcuts in station headers. Done when the first action opens
@@ -117,41 +118,41 @@ already within the requested scope.
   and the wider fungus. Done when every core explanation has an age-appropriate main layer
   and optional technical detail without losing the scientific meaning.
 
-- [ ] **M03 — Add usable science-word help.**
+- [x] **M03 — Add usable science-word help.**
   Supply short definitions and checked pronunciation for relevant words such as mycelium,
   hypha/hyphae, spores, nutrients and sonification. Move stacked specialist vocabulary into
   optional Science words/teacher detail. Done when definitions remain available without audio
   and the main explanation does not depend on opening the drawer.
 
-- [ ] **M04 — Use American spelling in visible content.**
+- [x] **M04 — Use American spelling in visible content.**
   Review titles, bodies, captions, alternatives, questions and feedback for mold/molds,
   color and comparable US wording. Done when visible copy is consistent and existing IDs
   such as `mushroom-family:moulds` and `mushroom-answer:colour` remain unchanged.
 
-- [ ] **M05 — Author context for every selectable activity.**
+- [x] **M05 — Author context for every selectable activity.**
   Give each activity an appropriate question/title, introduction, short explanation, action
   and observation prompt. Reserve the tiny-drop heading for launch; give wind, puffball and
   life cycle their own context. Done when an activity can be understood independently and
   the prompt asks about something its visual actually reveals. State switching is M13.
 
-- [ ] **M06 — Make the fungal-jobs heading fit all jobs.**
+- [x] **M06 — Make the fungal-jobs heading fit all jobs.**
   Replace the forest-only heading with Fungi have many jobs or equivalent wording that
   includes baker's yeast. Done when recycling, plant partnerships and baking all fit their
   shared introduction, with clear local questions and observations.
 
-- [ ] **M07 — Simplify the three kingdom cards.**
+- [x] **M07 — Simplify the three kingdom cards.**
   Keep mushrooms, molds and yeasts as familiar examples, not exhaustive or mutually exclusive
   categories. Lead with one short takeaway; put specialist taxonomy in optional detail.
   Done when title, photograph and essential explanation lead the reading order, while image
   type, magnification context, source and licence information remain accessible.
 
-- [ ] **M08 — Polish image inspection without rebuilding a working viewer.**
+- [x] **M08 — Polish image inspection without rebuilding a working viewer.**
   Keep the uncropped large image and obvious return control. Use specific accessible names,
   such as Enlarge the yeast photograph, and keep technical metadata secondary. Done when
   enlargement, close/Escape, focus return and a small-screen inspection all work; credits
   remain available. Do not treat the recording's ChatGPT overlays as page elements.
 
-- [ ] **M09 — Add calm safety language and remove imitation ambiguity.**
+- [x] **M09 — Add calm safety language and remove imitation ambiguity.**
   Include that outdoor mushrooms must not be tasted and pictures/color do not establish
   edibility. Rename Try it yourself to Think like a scientist or another clear question-
   activity label. Done when there is no edibility-guessing game or implied invitation to
@@ -159,38 +160,38 @@ already within the requested scope.
 
 ## B. Navigation and visual context
 
-- [ ] **M10 — Preserve useful chapter navigation and reliable destinations.**
+- [x] **M10 — Preserve useful chapter navigation and reliable destinations.**
   Keep the three numbered top panels, destination colors, current-location cue and direct
   classroom link. Done when anchors and keyboard focus land below the sticky bar at desktop,
   mobile and zoomed sizes. Ordinary overlap while freely scrolling is not sufficient evidence
   of a broken anchor. Do not restore the removed duplicate lower chapter strip.
 
-- [ ] **M11 — Simplify the extra activity layer in Life in motion.**
+- [x] **M11 — Simplify the extra activity layer in Life in motion.**
   Provide one discoverable activity chooser within the second station. Candidate direct
   destinations are launch, wind, puffball, life cycle, glowing fungi, mushroom music and
   explorer questions. Seven equal tabs is a layout option, not a locked requirement.
   Done when the tested desktop/mobile presentation reduces selection steps, keeps every
   activity discoverable, and adds no new vertical learning section.
 
-- [ ] **M12 — Provide an optional guided route.**
+- [x] **M12 — Provide an optional guided route.**
   Let a child start with the first exhibit and use a clearly labeled local Next exhibit
   action, while all activities remain freely selectable. Done when the next destination
   is predictable, the current activity stays identifiable, and nothing auto-advances essential
   text. Avoid adding another global navigation toolbar or duplicate chapter bar.
 
-- [ ] **M13 — Synchronize selected activity, headings, media and controls.**
+- [x] **M13 — Synchronize selected activity, headings, media and controls.**
   Switch the selected state, title, explanation, visual, recording and prompt together.
   Suspend the previous activity's media and retain compatible direct links/view aliases and
   existing history semantics. Done when every reachable state presents one coherent topic
   through direct loads, keyboard selection, applicable browser navigation and guided Next.
 
-- [ ] **M14 — Correct the anatomy supporting-image context.**
+- [x] **M14 — Correct the anatomy supporting-image context.**
   The current static gill image is accurately captioned but remains next to other selected
   parts (00:26–00:30). Use matching registered images where available, or clearly separate
   the fixed gills example. Done when Mycelium/Spores cannot reasonably be read as labels for
   that photograph. Never invent an unverified specimen image to fill a slot.
 
-- [ ] **M15 — Make anatomy selections easy to identify.**
+- [x] **M15 — Make anatomy selections easy to identify.**
   Preserve all five markers and their correct part positions, including 05. Make the active
   part, its number/name and corresponding explanation unmistakable using more than hue.
   Done when mouse, touch and keyboard selection are clear, targets meet M38, and there is
@@ -245,7 +246,7 @@ already within the requested scope.
   control with actual native-player state. Done when playback is tested live, captions and
   silent/slow-motion labels remain available, and completion/load failure is understandable.
 
-- [ ] **M24 — Remove the launch-recording mismatch from wind travel.**
+- [x] **M24 — Remove the launch-recording mismatch from wind travel.**
   At 01:40–01:46 the wind model remains beside a microscope caption describing launch.
   Restrict that recording to the launch comparison. Use wind-specific supporting content
   or give the wind model more space; a new video is not required. Done when no wind view
@@ -266,7 +267,7 @@ already within the requested scope.
 
 ## D. Electrical activity, music and glowing fungi
 
-- [ ] **M27 — Review the live lab and give glow/music focused activity views.**
+- [x] **M27 — Review the live lab and give glow/music focused activity views.**
   Inventory actual playback, labels and cleanup before changes; the recording does not open
   these tabs. Present glow and music as clearly identifiable activities using the existing
   source records. Done when both are directly reachable and their visuals and controls are
@@ -439,8 +440,77 @@ required to implement the museum fixes above. Do not mark them complete from thi
 - Progress updates should identify completed IDs, verified behavior, remaining IDs and any
   blocker or scope decision. Keep progressing on independent authorized work.
 
-No M01–M46 item has implementation evidence at checklist creation. Existing baseline evidence
-belongs to `QA.md` and the recorded/source observations above.
+At checklist creation no M01–M46 item had implementation evidence. The first batch below
+now records completed work; earlier baseline evidence remains in `QA.md`.
+
+## Implementation evidence — November 6, 2026, batch 1
+
+**16 of 46 items complete:** M01, M03–M15, M24 and M27. All other boxes remain open.
+The original fixed requirements and deferred J01–J05 remain in force.
+
+Implementation commit: [93aee2f3c59b7b76ecbc19610230341865ebaa88](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/93aee2f3c59b7b76ecbc19610230341865ebaa88).
+Its tree `0cb69d7c5f882a85bb90411e9a9c0607ab8b5f0d` matches the tested local implementation
+commit `45a9b48ffb1e19ddee71d7d3b698216ba20fd6c8`. The entries below share this date/commit;
+paths are relative to this application unless stated otherwise.
+
+Design choice for M11: seven direct desktop choices in station two, with one native labeled
+activity picker at widths at or below 1100 px. This removes the former nested spore chooser
+and separates glow from music. No third learning station was added. The first station uses
+the same responsive chooser behavior. A local Next action sits in the station heading so it
+does not add a separate row below each exhibit. Explore fungi starts at the first exhibit;
+the guided path enters Life in motion at Tiny launch. Manual chapter links retain the chosen view.
+
+| Completed ID | Changed files | Evidence and practical limits |
+| --- | --- | --- |
+| M01 | `source/mushrooms.source.json`, `src/runtime.js` | Entrance starts a working exhibit; the secondary class-project link says coming soon. Top chapter link remains. Repeated station-header journal shortcuts removed. Empty journal remains empty. |
+| M03 | source, `src/contract.js`, runtime, generated control/schema, `RESEARCH.md` | Optional text definitions and written pronunciation for mycelium, hypha/hyphae, spores, nutrients and sonification. Pronunciation checked at publisher dictionary entries; no speech-engine claim. Drawer includes teacher detail without making it essential to the main explanation. |
+| M04 | source, `src/labs.js` | Visible mold/color/traveling wording uses US spelling. `mushroom-family:moulds`, visual enum `mould`, and `mushroom-answer:colour` remain stable; test confirms IDs. Historical documentation and bibliography are not renamed. |
+| M05 | source, contract, runtime, labs | All selectable exhibit/activity contexts have appropriate introductions, action and observation prompts. Launch/wind/puffball/cycle contexts switch separately; roles have local prompts. Main visuals are still the existing models; process upgrades remain M16–M26. |
+| M06 | source | Fungi have many jobs introduces recycling, partnerships and baking. Local copy/prompts fit each job. Plant/recycling/dough visual improvements remain M17–M20. |
+| M07 | source, `src/exhibit.css` | Three examples keep title/photo/takeaway first. Specialist names remain available in alternatives/full-view metadata. Different zoom levels and example scope stated. Credits remain on each card and dialog. |
+| M08 | runtime | Specific Enlarge names; explicit focus return. All three kingdom photographs opened uncropped at 320 px, dialog 300 px in a 305 px client area, all returned to their opener. Gill dialog Escape also verified. |
+| M09 | source, labs | Think like a scientist replaces Try it yourself. Question asks for a safe outdoor action, with no specimen edibility-guessing task. One visible calm safety rule explains that pictures/colors cannot determine safety and leaves moldy food to adults. Puffball watch-only note is authored; M25 still covers its final presentation. |
+| M10 | runtime, CSS | Three numbered destination-color links and current-location cue retained. Sticky offset derives from actual nav height. Desktop, 320 px and actual 200% zoom jumps/focus tested below the bar; Back/Forward restores the journal destination. No lower duplicate chapter strip. |
+| M11 | runtime, labs, CSS | All eleven choices (four first-station, seven second-station) selected at five sizes: 55 combinations, one visible block panel per station and no horizontal overflow. Desktop tabs and mobile native picker expose every destination directly. |
+| M12 | runtime, CSS | Explore fungi resets to Meet the kingdom. Local named Next moves to the shown next destination and focuses it; first-to-second station guided jump starts at Tiny launch. Other activities remain freely selectable; no timed advance. |
+| M13 | runtime, labs | Title, intro, selected state, model/film and prompt update together. Direct new activity hashes and legacy lifecycle/lab hashes verified. History remains replace for in-station selection, push for chapter links. Launch video pauses/hides on wind selection; model sound stops on switching to glow. |
+| M14 | runtime, source | Gill photograph appears only for Gills. Mycelium selection shows its own explanation without that photo. Caption explicitly identifies the real gill example. No unverified replacement media introduced. |
+| M15 | runtime, CSS | Five correct existing point positions retained. Number/name buttons, Part NN of 5 and selected border/text make the choice explicit. At 320 px, static diagram numbers pair with separate named buttons of at least 48 px height and 128 px width, avoiding overlapping targets. Native buttons support keyboard; no bounce added. |
+| M24 | labs, CSS, repository-root test file | Launch film is restricted to launch; wind uses the model width. Browser matrix shows zero films in wind and the correct film in launch/puffball. Regression exercises the state function used by the renderer and rejects unknown views. |
+| M27 | labs, runtime, CSS | Glow/music now have individual direct destinations using their existing source records. Source inventory preserved the real long-exposure photo, explicitly synthetic graph/sample function and audio-clock mapping. Live Play entered playing state; changing to glow stopped sound and reenabled Play. M28–M35 are not complete from this structural split. |
+
+Shared validation: `npm run check:mushrooms` passed **21 tests**, syntax, regenerated
+contract/schema consistency, registered media hashes and standalone build. Five new tests
+cover view/film binding, editable activity context/unknown fields, stable cited word records,
+old IDs/journal boundary and required renderer blocks. Existing connected-growth and launch-
+ordering tests still pass. `git diff --check` passed. Full current observations and screenshot
+are in `QA.md`; the screenshot is `qa/batch-1-wind.png`.
+
+Default 1920×911 journey: page about **2567 px**, journal begins about **2233 px**, first
+station about **836 px**, second about **787 px**. Baseline was 2564/2230/835 px. The new
+instructions and direct chooser preserve approximately the same default scrolling distance.
+The three measured row bases remain #06443f / #46311f / #465a2b.
+
+### Open work after this batch
+
+- **M02 in progress:** source explanations are shorter; older model-stage/status wording and
+  the electrical/music lesson still need their audience-specific pass.
+- **M16–M26, except completed M24:** next process batch. Preserve the working connected
+  growth, launch, wind, finite dough ending and real recordings while improving their teaching.
+- **M28–M35:** electrical explanation, signal chain, controlled instrument comparison,
+  transport, real example and observation. M33 has a creator-documented candidate; reuse/
+  embedding rights and exact permitted presentation are not yet verified. It is not a shipped asset.
+- **M36–M45 in progress where touched:** selection/readability, touch alternatives, keyboard,
+  content ownership, scientific checks, regressions and browser QA have batch evidence.
+  They remain open until the remaining models/music and final checks are finished.
+  M42 contract 1.5.0 now owns the new contexts, glossary, safety/teacher notes and entry/station
+  copy; older model control/status strings remain renderer-owned. M40 JS reduced-motion and
+  M41 read-aloud are not implemented by this batch.
+- **M46 pending actual teacher/pupil feedback.** No classroom trial or projector result is claimed.
+- **J01–J05 remain deferred.** No journal authoring, Mushinator editor, production install or Hub swap.
+
+New lesson edits are correctly marked `researchStatus: pending`; source remains `scaffold`.
+Continue from the next open batch and record new evidence by these same IDs.
 
 ## Implementation map and source references
 
