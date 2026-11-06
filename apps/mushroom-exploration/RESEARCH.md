@@ -62,3 +62,13 @@ The generated source/mushrooms.assets.json records exact source and original dow
 creators, licence links, original/delivery dimensions and hashes, and transformation notes.
 The asset files and all provenance are committed with the application; browser rendering
 does not hotlink Commons. The standalone preview embeds the same verified WebP bytes.
+
+## Diagram review and spore recording
+
+The new drop-launch model was checked against the ANBG discharge explanation already
+listed above and the [2009 PLOS primary study](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0004163).
+The specific real clip is its Video S1. Its file, licence notice, capture/playback timing
+and visual content were inspected. The visual model slows and enlarges the mechanism;
+the wind view remains a qualitative dispersal model. No current species-count claim is
+borrowed from that older paper. Full provenance is in src/video-assets.js and the generated
+asset catalog; DIAGRAM-AUDIT.md records the visual/scientific review.

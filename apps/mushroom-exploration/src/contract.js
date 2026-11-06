@@ -1,12 +1,13 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.2.0";
+import { MUSHROOM_VIDEOS } from "./video-assets.js";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.3.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media"],
   family: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
   anatomy: ["eyebrow", "title", "intro", "sourceRefs", "media", "detailMedia", "hotspots"],
   cutaway: ["eyebrow", "title", "intro", "sourceRefs", "media", "views"],
-  lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps"],
+  lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps", "video"],
   roles: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
   lab: ["eyebrow", "title", "intro", "sourceRefs", "experiments"],
   facts: ["eyebrow", "title", "intro", "sourceRefs", "cards", "questions"],
@@ -17,6 +18,7 @@ export const MUSHROOM_EDITOR_CONTRACT = {
   schemaVersion: MUSHROOM_CONTRACT_VERSION,
   sourceDocument: "apps/mushroom-exploration/source/mushrooms.source.json",
   photoCatalog: "apps/mushroom-exploration/source/mushrooms.assets.json",
+  videoCatalog: "apps/mushroom-exploration/source/mushrooms.assets.json",
   editorRoute: "/mushrooms",
   editorLabel: "Mushinator",
   editorImplementation: "not-built",
@@ -39,12 +41,13 @@ export function mushroomSourceJsonSchema() {
   const imageUrl = { anyOf: [{ type: "string", format: "uri", pattern: "^https://" }, { enum: MUSHROOM_PHOTOS.map(photo => 'asset:' + photo.id) }] };
   const image = { anyOf: [{ type: "null" }, obj({ kind: { const: "image" }, url: imageUrl, alt: { type: "string", minLength: 1, maxLength: 500 }, caption: { type: "string", maxLength: 600 } })] };
   const research = { id: recordId, body: body, sourceRefs: sourceRefs };
+  const video = {anyOf:[{type:'null'},obj({kind:{const:'video'},url:{enum:MUSHROOM_VIDEOS.map(item=>'asset:'+item.id)},title:short,caption:{type:'string',minLength:1,maxLength:600},sourceRefs})]};
   const shapes = {
     hero: { media: image },
     family: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
     anatomy: { media: image, detailMedia: image, hotspots: list(obj({ ...research, label: short, x: { type: "number", minimum: 0, maximum: 100 }, y: { type: "number", minimum: 0, maximum: 100 } }), 12) },
     cutaway: { media: image, views: { ...list(obj({ ...research, label: short }), 2), minItems: 2 } },
-    lifecycle: { steps: list(obj({ ...research, title: short, media: image }), 12) },
+    lifecycle: { steps: list(obj({ ...research, title: short, media: image }), 12), video },
     roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["mushroom", "mould", "yeast", "leaf", "tree", "bread"] }, media: image }), 6) },
     lab: { experiments: list(obj({ ...research, title: short, mode: { enum: ["glow", "sound"] }, media: image }), 2) },
     facts: { cards: list(obj({ ...research, title: short }), 12), questions: list(obj({ id: recordId, prompt: short, sourceRefs: sourceRefs, choices: list(obj({ id: recordId, label: short, correct: { type: "boolean" }, feedback: { type: "string", minLength: 1, maxLength: 600 } }), 4) }), 6) },
@@ -173,6 +176,12 @@ export function validateMushroomSource(source, options) {
       });
     }
     if (block.type === "lifecycle") {
+      if(block.video!==null){
+        object(block.video,['kind','url','title','caption','sourceRefs'],'research video');
+        requireThat(block.video.kind==='video'&&MUSHROOM_VIDEOS.some(item=>'asset:'+item.id===block.video.url),'unknown research video reference');
+        text(block.video.title,'video title',140,true);text(block.video.caption,'video caption',600,true);
+        research({body:block.video.caption,sourceRefs:block.video.sourceRefs},'research video');
+      } else if(!allowDraft)requireThat(false,'reviewed spore recording is missing');
       array(block.steps, "lifecycle steps", 12);
       if (!allowDraft) requireThat(block.steps.length > 0, "reviewed lifecycle is missing");
       block.steps.forEach(function (step) {

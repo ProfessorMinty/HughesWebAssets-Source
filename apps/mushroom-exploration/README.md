@@ -12,9 +12,9 @@ client width, excluding the vertical scrollbar. The preview supplies an Amadeus-
 ancestor chain to exercise the mount-scoped compatibility rules.
 
 Nine stable blocks: welcome, kingdom, anatomy, below, lifecycle, roles, lab, discoveries,
-and journal. Hands-on stations include five anatomy selections, an animated mycelium
-cutaway, a wind-controlled spore model, illustrated bioluminescence, an invented signal-to-
-sound model, and three discovery questions. Animation/audio have finite runs; spore
+and journal. Hands-on stations include five anatomy selections, a detailed mycelium
+cutaway, drop-launch/wind models beside real microscope footage, photographic bioluminescence,
+an invented signal-to-sound model, and three discovery questions. Animation/audio have finite runs; spore
 movement can be paused. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
 
@@ -22,7 +22,7 @@ The woodland entrance is generated imaginative artwork, not a specimen photograp
 classroom record. Its cyan threads are fantasy atmosphere. All scientific diagrams are
 code-owned SVG models. Gilled-mushroom anatomy is generic, not an identification guide.
 The spore tunnel enlarges particles, simplifies airflow and speeds time; it is not a
-quantitative dispersal simulation. The glow illustration exaggerates visibility. The
+quantitative dispersal simulation. The retired glow cartoon is replaced by the real long-exposure photograph. The
 sound graph is explicitly invented, without physical units or purported fungal recordings.
 
 Six real photographs now complement the models: blue Mycena interrupta, Rhizopus mould,
@@ -49,7 +49,7 @@ separate field from its diagram, so selecting a photograph does not move diagram
 
 source/mushrooms.control.json and schemas/mushroom-exploration.source.schema.json are
 generated from src/contract.js; checks reject drift. These are the contract for the future
-Lanternworks /mushrooms module, named Mushinator. The editor, media upload/video support,
+Lanternworks /mushrooms module, named Mushinator. The editor, classroom media uploads,
 journal authoring and Lanternworks home button are not implemented in this phase.
 
 The actual class kit/species, observation dates, photos and current growth stage remain
@@ -77,3 +77,15 @@ outside this change. The later manual swap must register the new-year route, mov
 to 2026–2027 Past and preserve the 2025–2026 archive.
 
 See RESEARCH.md for independent source review and QA.md for observed browser checks.
+
+## Audited wide stations
+
+At 1280 px and above, each section uses a reading rail alongside its visual workbench.
+The desktop default is about 42% shorter while preserving nine blocks. Diagrams, photos
+and the real research clip sit beside their related controls. At narrower widths the
+same sections stack for reading. DIAGRAM-AUDIT.md records the audit and measurements.
+
+The curated research video uses a protected asset:mushroom-video:* reference; it is not
+a general video uploader. src/video-assets.js owns its provenance and the generated
+mushrooms.assets.json exposes the record to the future editor. The build verifies all
+media bytes and embeds the MP4, poster and description in the standalone preview.

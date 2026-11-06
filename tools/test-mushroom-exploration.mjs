@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { sporeLaunchState } from "../apps/mushroom-exploration/src/labs.js";
+import { MUSHROOM_VIDEOS } from "../apps/mushroom-exploration/src/video-assets.js";
 import { createHash } from "node:crypto";
 import { MUSHROOM_PHOTOS } from "../apps/mushroom-exploration/src/photo-catalog.js";
 import assert from "node:assert/strict";
@@ -89,5 +91,24 @@ test("photo provenance and image bytes match the generated catalog", async funct
     assert.ok(photo.creator&&photo.license&&photo.changes);assert.match(photo.page,/^https:\/\//);assert.match(photo.licenseUrl,/^https:\/\//);
     const bytes=await readFile(root+"/apps/mushroom-exploration/src/"+photo.file);
     assert.equal(bytes.toString("ascii",8,12),"WEBP");assert.equal(createHash("sha256").update(bytes).digest("hex"),photo.sha256);
+  }
+});
+
+test("the launch model joins the droplets before the spore leaves the stalk", function () {
+  assert.equal(sporeLaunchState(0).phase,0);
+  const grown=sporeLaunchState(1.4);assert.equal(grown.x,0);assert.ok(grown.dropRadius>sporeLaunchState(0).dropRadius);
+  const merged=sporeLaunchState(1.7);assert.equal(merged.phase,1);assert.equal(merged.x,0);assert.ok(merged.mergedOpacity>0);
+  const launched=sporeLaunchState(3.8);assert.equal(launched.phase,2);assert.ok(launched.x<0);assert.equal(launched.dropOpacity,0);
+  assert.deepEqual(sporeLaunchState(-2),sporeLaunchState(0));assert.deepEqual(sporeLaunchState(100),launched);
+});
+test("only the credited registered research recording can be selected", function () {
+  const changed=fresh(),block=changed.data.blocks.find(b=>b.type==="lifecycle");
+  assert.equal(block.video.url,"asset:mushroom-video:armillaria-release");
+  for(const url of ["https://example.invalid/unreviewed.mp4","asset:mushroom-video:unknown","javascript:alert(1)"]){block.video.url=url;assert.throws(()=>validateMushroomSource(changed,{allowDraft:true}),/unknown research video/);}
+});
+test("the recording, poster and description match the credited catalog", async function () {
+  const catalog=JSON.parse(await readFile(root+"/apps/mushroom-exploration/source/mushrooms.assets.json","utf8"));assert.deepEqual(catalog.videos,MUSHROOM_VIDEOS);
+  for(const video of MUSHROOM_VIDEOS){assert.equal(video.captureFps,50000);assert.equal(video.playbackFps,20);assert.equal(video.silent,true);assert.match(video.page,/^https:\/\//);
+    for(const file of video.files){const bytes=await readFile(root+"/apps/mushroom-exploration/src/"+file.path);assert.equal(bytes.byteLength,file.bytes);assert.equal(createHash("sha256").update(bytes).digest("hex"),file.sha256);if(file.mime==="video/mp4")assert.equal(bytes.toString("ascii",4,8),"ftyp");}
   }
 });

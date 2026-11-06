@@ -66,6 +66,11 @@
         "id": "mushroom-source:lifecycle",
         "title": "Royal Botanic Gardens, Kew · The hidden dimension of fungi",
         "url": "https://www.kew.org/read-and-watch/fungi-hidden-dimension"
+      },
+      {
+        "id": "mushroom-source:spore-launch-study",
+        "title": "Stolze-Rybczynski and colleagues · Real spore-launch footage (PLOS ONE, 2009)",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0004163"
       }
     ],
     "blocks": [
@@ -150,8 +155,8 @@
         "hotspots": [
           {
             "id": "mushroom-point:cap",
-            "x": 51,
-            "y": 22,
+            "x": 44.5,
+            "y": 19,
             "label": "Cap",
             "body": "The cap holds the spore-making surface underneath it. Look below the umbrella!",
             "sourceRefs": [
@@ -160,8 +165,8 @@
           },
           {
             "id": "mushroom-point:gills",
-            "x": 30,
-            "y": 43,
+            "x": 27.5,
+            "y": 47.5,
             "label": "Gills",
             "body": "These thin plates under the cap make spores. Not all mushrooms have gills.",
             "sourceRefs": [
@@ -170,8 +175,8 @@
           },
           {
             "id": "mushroom-point:stem",
-            "x": 56,
-            "y": 57,
+            "x": 47,
+            "y": 59.7,
             "label": "Stem",
             "body": "The stem lifts the cap. This helps spores reach moving air.",
             "sourceRefs": [
@@ -180,8 +185,8 @@
           },
           {
             "id": "mushroom-point:mycelium",
-            "x": 38,
-            "y": 86,
+            "x": 34,
+            "y": 86.4,
             "label": "Mycelium",
             "body": "These branching threads are part of the fungus. A single thread is called a hypha. A network of threads is mycelium.",
             "sourceRefs": [
@@ -190,8 +195,8 @@
           },
           {
             "id": "mushroom-point:spores",
-            "x": 77,
-            "y": 60,
+            "x": 81.5,
+            "y": 56,
             "label": "Spores",
             "body": "Spores can start new fungal growth when conditions are right. They are enlarged here so we can see them.",
             "sourceRefs": [
@@ -243,12 +248,13 @@
       {
         "id": "mushroom-block:lifecycle",
         "type": "lifecycle",
-        "eyebrow": "04 / THE SPORE WIND TUNNEL",
-        "title": "Tiny travellers. A huge adventure.",
-        "intro": "How do spores get away from a mushroom? Try the wind tunnel, then follow a simplified mushroom life cycle.",
+        "eyebrow": "04 / THE SPORE LAUNCH LAB",
+        "title": "A tiny drop. An incredible launch.",
+        "intro": "Compare the model with a real microscope recording. Then follow the spores into the breeze.",
         "sourceRefs": [
           "mushroom-source:spores",
-          "mushroom-source:mycelium"
+          "mushroom-source:mycelium",
+          "mushroom-source:spore-launch-study"
         ],
         "steps": [
           {
@@ -287,7 +293,16 @@
             ],
             "media": null
           }
-        ]
+        ],
+        "video": {
+          "kind": "video",
+          "url": "asset:mushroom-video:armillaria-release",
+          "title": "Through a microscope",
+          "caption": "Watch the round spore jump from right to left. Scientists filmed this through a microscope and slowed it down.",
+          "sourceRefs": [
+            "mushroom-source:spore-launch-study"
+          ]
+        }
       },
       {
         "id": "mushroom-block:roles",

@@ -1,9 +1,9 @@
 # Observed draft checks — 2026-11-06
 
-`npm run check:mushrooms` passed: syntax checks, ten source/edit/publication-guard tests,
+`npm run check:mushrooms` passed: syntax checks, thirteen source/edit/publication-guard tests,
 generated schema/control consistency and the standalone build. No dependency install is
-needed for this isolated application. Standalone preview size: 1,780,675 bytes, including
-its 285,228-byte entrance WebP, six real photographs, source data, SVG models, styles and JavaScript.
+needed for this isolated application. Standalone preview size: 1,908,262 bytes, including the entrance illustration, six real
+photographs, the research clip/poster/description, source data, models, styles and JavaScript.
 
 ## Full viewport breakout
 
@@ -31,7 +31,8 @@ edge-to-edge root, no review toolbar by default, no horizontal overflow.
 - Release spores created 36 model particles. Their positions advanced from the gills;
   Pause model stopped the run. Moving the slider to its left endpoint changed the output
   to “Breeze to the left · 100%”.
-- Turn out the lights changed the light-lab state to night and displayed illustrated glow.
+- The earlier cartoon light switch was exercised in the first scaffold; it has now been
+  retired in favour of the real glowing-fungus photograph.
 - Play model sound showed its playing state; Stop sound restored the off state. Scrolling
   to a discovery answer while the sound was playing also restored the off state. This
   checks application control state and cleanup, not a calibrated audio measurement.
@@ -65,3 +66,13 @@ logs were empty during this pass.
 Current self-contained photo-preview size: 1,780,675 bytes. It embeds all six image files.
 The initial scaffold used eight tests and a 466,003-byte preview; its source remains in Git
 history. This photo edition is the current draft. Live Edublogs remains untested/unchanged.
+
+## Diagram and width audit — current edition
+
+See DIAGRAM-AUDIT.md for findings, resolutions and the before/after section measurements.
+The current default desktop height is 6461 px, versus 11125 px before the audit.
+The current thirteen-test suite supersedes the earlier eight- and ten-test counts.
+The spore station has two model views and a real 5.35-second research clip. Its native
+metadata loaded without error; playback started and advanced, then paused on leaving view.
+At the smallest viewport, the retained wind controls and new life-cycle step selector
+worked. The final five-size breakout check again showed no horizontal overflow.

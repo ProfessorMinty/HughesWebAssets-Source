@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { validateMushroomSource, MUSHROOM_EDITOR_CONTRACT, mushroomSourceJsonSchema } from "../apps/mushroom-exploration/src/contract.js";
 import { MUSHROOM_PHOTOS } from "../apps/mushroom-exploration/src/photo-catalog.js";
+import { MUSHROOM_VIDEOS } from "../apps/mushroom-exploration/src/video-assets.js";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const app = resolve(root, "apps/mushroom-exploration");
@@ -14,7 +15,7 @@ const controlPath = resolve(app, "source/mushrooms.control.json");
 const schemaPath = resolve(root, "schemas/mushroom-exploration.source.schema.json");
 const assetsPath = resolve(app, "source/mushrooms.assets.json");
 const control = json(MUSHROOM_EDITOR_CONTRACT), schema = json(mushroomSourceJsonSchema());
-const assets = json({ schemaVersion: '1.0', photos: MUSHROOM_PHOTOS });
+const assets = json({ schemaVersion: '1.1', photos: MUSHROOM_PHOTOS, videos: MUSHROOM_VIDEOS });
 if (args.includes("--write-contracts")) {
   await writeFile(controlPath, control);
   await writeFile(schemaPath, schema);
@@ -27,8 +28,8 @@ if (await readFile(controlPath, "utf8") !== control || await readFile(schemaPath
 const source = JSON.parse(await readFile(resolve(app, "source/mushrooms.source.json"), "utf8"));
 validateMushroomSource(source, { allowDraft: true });
 const read = function (name) { return readFile(resolve(app, "src", name), "utf8"); };
-const [contractJS, artJS, labsJS, runtimeJS, exhibitCSS, hostCSS, entrance, catalogJS, photosJS] = await Promise.all([
-  read("contract.js"), read("art.js"), read("labs.js"), read("runtime.js"), read("exhibit.css"), read("host-compat.css"), readFile(resolve(app,"src/assets/entrance-v1.webp")),read('photo-catalog.js'),read('photos.js')
+const [contractJS, artJS, labsJS, runtimeJS, exhibitCSS, hostCSS, entrance, catalogJS, photosJS,videoJS] = await Promise.all([
+  read("contract.js"), read("art.js"), read("labs.js"), read("runtime.js"), read("exhibit.css"), read("host-compat.css"), readFile(resolve(app,"src/assets/entrance-v1.webp")),read('photo-catalog.js'),read('photos.js'),read('video-assets.js')
 ]);
 let inlineCatalog=catalogJS;
 for(const photo of MUSHROOM_PHOTOS){
@@ -37,7 +38,14 @@ for(const photo of MUSHROOM_PHOTOS){
   if(createHash('sha256').update(bytes).digest('hex')!==photo.sha256 || bytes.byteLength!==photo.bytes)throw new Error('Photograph integrity mismatch: '+photo.id);
   inlineCatalog=inlineCatalog.replace(JSON.stringify(photo.file),JSON.stringify('data:image/webp;base64,'+bytes.toString('base64')));
 }
-const runtime = [inlineCatalog, photosJS, contractJS, artJS, labsJS, runtimeJS].map(js=>js.replace(/^import .+;$/gm, "")).join("\n");
+let inlineVideo=videoJS;
+for(const video of MUSHROOM_VIDEOS)for(const file of video.files){
+  if(!/^\.\/assets\/[a-z0-9-]+\.(mp4|webp|vtt)$/.test(file.path))throw new Error('Unsafe research video path');
+  const bytes=await readFile(resolve(app,'src',file.path));
+  if(createHash('sha256').update(bytes).digest('hex')!==file.sha256||bytes.byteLength!==file.bytes)throw new Error('Research video integrity mismatch');
+  inlineVideo=inlineVideo.replaceAll(JSON.stringify(file.path),JSON.stringify('data:'+file.mime+';base64,'+bytes.toString('base64')));
+}
+const runtime = [inlineCatalog, photosJS,inlineVideo, contractJS, artJS, labsJS, runtimeJS].map(js=>js.replace(/^import .+;$/gm, "")).join("\n");
 const safeSource = JSON.stringify(source).replaceAll("<", "\\u003c");
 const template = await readFile(resolve(app, "preview.template.html"), "utf8");
 const substitutions = {
@@ -62,6 +70,7 @@ await writeFile(resolve(out, "preview-record.json"), json({
   publicationAvailable: false, sourceSha256: createHash("sha256").update(json(source)).digest("hex"),
   referenceViewport: source.data.meta.designViewport,
   photographs: MUSHROOM_PHOTOS.map(photo=>({id:photo.id,sha256:photo.sha256})),
+  researchVideos:MUSHROOM_VIDEOS.map(video=>({id:video.id,files:video.files})),
   immutableReleaseCreated: false, edublogsChanged: false
 }));
 console.log("Mushroom scaffold built: " + resolve(out, "index.html"));

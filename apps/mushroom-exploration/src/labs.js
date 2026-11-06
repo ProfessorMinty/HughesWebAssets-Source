@@ -1,5 +1,6 @@
-// Interactive, explicitly labelled teaching models. No classroom data or live measurements.
-import { glowArtwork } from "./art.js";
+// Interactive teaching models and separately credited, real research footage.
+import { catapultArtwork, sporeMushroomArtwork } from "./art.js";
+import { mushroomVideoAsset, mushroomVideoURL } from "./video-assets.js";
 function labNode(tag, className, text) {
   const node=document.createElement(tag); if(className)node.className=className;
   if(text!==undefined)node.textContent=text; return node;
@@ -9,51 +10,80 @@ function labButton(label, action, cleanups) {
   button.addEventListener('click',action);cleanups.push(()=>button.removeEventListener('click',action));return button;
 }
 function labSVG(markup) { const t=document.createElement('template');t.innerHTML=markup;return t.content; }
-export function createSporeLab() {
-  const node=labNode('div','mushroom-wind-lab'); const cleanups=[];
-  const stage=labNode('div','mushroom-wind-stage');
-  stage.append(labSVG(`<svg viewBox="0 0 1000 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spore wind tunnel model. Enlarged spores fall from gills and drift when clear of the cap."><g class="wind-guides" fill="none" stroke="#8bb6a3" stroke-opacity=".22"><path d="M30 155H160m35 0h80M580 155h385M30 245H180m430 0h355M30 335H965" stroke-dasharray="12 12"/></g><path d="M398 145L388 390H450L438 145" fill="#d8c5a1"/><path d="M259 145Q412 -61 575 145Q415 188 259 145" fill="#ba8452"/><path d="M270 146Q416 118 562 146" fill="none" stroke="#f1d4a0" stroke-width="9"/><g class="spore-particles" fill="#f5dca0"></g></svg>`));
-  stage.append(labNode('span','mushroom-model-label','MODEL · SPORES ENLARGED'));
-  const controls=labNode('div','mushroom-wind-controls'); const title=labNode('h3','', 'Where will the wind take them?');
-  const description=labNode('p','', 'Release the spores. Then change the wind. Watch them fall clear of the gills before the breeze carries them.');
-  const label=labNode('label','mushroom-wind-label','Wind direction'); const range=labNode('input');range.type='range';range.min='-100';range.max='100';range.value='35';range.step='5';range.setAttribute('aria-label','Wind direction');label.append(range);
+export function sporeLaunchState(seconds) {
+  const time=Math.max(0,Math.min(3.8,Number.isFinite(seconds)?seconds:0));
+  return {phase:time<1.4?0:time<1.85?1:2,dropRadius:6+Math.min(time/1.4,1)*17,dropOpacity:1-Math.max(0,Math.min((time-1.4)/.45,1)),mergedOpacity:Math.max(0,Math.min((time-1.4)/.45,1))*.8,x:time<=1.85?0:-250*Math.min((time-1.85)/1.5,1)};
+}
+function createCatapultLab() {
+  const node=labNode('div','mushroom-catapult-panel'),cleanups=[];
+  const stage=labNode('div','mushroom-catapult-stage');stage.append(labSVG(catapultArtwork()),labNode('span','mushroom-model-label','MODEL · ENLARGED AND SLOWED'));
+  const sequence=labNode('ol','mushroom-launch-sequence');const labels=['A drop grows','The drops join','The spore launches'];labels.forEach(label=>sequence.append(labNode('li','',label)));
+  const status=labNode('p','mushroom-model-status','A tiny water drop can power a spore’s launch.');status.setAttribute('aria-live','polite');
+  const controls=labNode('div','mushroom-catapult-controls'),actions=labNode('div','mushroom-lab-actions');
+  let running=false,paused=false,frame=0,last=0,elapsed=0,lastPhase=-1,destroyed=false;
+  const spore=stage.querySelector('.catapult-moving-spore'),drop=stage.querySelector('.catapult-drop'),merged=stage.querySelector('.catapult-merged');
+  function draw(){const state=sporeLaunchState(elapsed);drop.setAttribute('r',String(state.dropRadius));drop.setAttribute('opacity',String(state.dropOpacity));merged.setAttribute('opacity',String(state.mergedOpacity));spore.setAttribute('transform',`translate(${state.x} 0)`);stage.querySelector('.catapult-drop-label').setAttribute('opacity',state.phase===2?'0':'1');Array.from(sequence.children).forEach((item,i)=>item.setAttribute('aria-current',String(i===state.phase)));if(lastPhase!==state.phase){status.textContent=['Water gathers into a drop at the base of the spore.','The drop joins water on the spore’s surface.','The quick movement of water helps launch the spore away.'][state.phase];lastPhase=state.phase;}}
+  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused)cancelAnimationFrame(frame);else{last=0;frame=requestAnimationFrame(tick);}},cleanups);pause.disabled=true;pause.setAttribute('aria-pressed','false');
+  function tick(t){if(destroyed||!running||paused)return;elapsed+=last?Math.min((t-last)/1000,.04):0;last=t;draw();if(elapsed>=3.8){running=false;play.disabled=false;pause.disabled=true;status.textContent='A tiny launch! In nature, this final jump is much faster.';return;}frame=requestAnimationFrame(tick);}
+  const play=labButton('Launch a spore',()=>{cancelAnimationFrame(frame);elapsed=0;last=0;lastPhase=-1;running=true;paused=false;play.disabled=true;pause.disabled=false;pause.textContent='Pause model';pause.setAttribute('aria-pressed','false');draw();frame=requestAnimationFrame(tick);},cleanups);
+  actions.append(play,pause);controls.append(sequence,actions,status);node.append(stage,controls);
+  function suspend(){if(running&&!paused)pause.click();}
+  const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)suspend();});observer.observe(node);cleanups.push(()=>observer.disconnect());
+  return {node,suspend,destroy(){destroyed=true;cancelAnimationFrame(frame);cleanups.forEach(fn=>fn());}};
+}
+function createWindLab(){
+  const node=labNode('div','mushroom-wind-panel'),cleanups=[];
+  const stage=labNode('div','mushroom-wind-stage');stage.append(labSVG(sporeMushroomArtwork()),labNode('span','mushroom-model-label','MODEL · SPORES ENLARGED'));
+  const controls=labNode('div','mushroom-wind-controls'),label=labNode('label','mushroom-wind-label','Change the breeze');
+  const range=labNode('input');range.type='range';range.min='-100';range.max='100';range.value='35';range.step='5';range.setAttribute('aria-label','Wind direction');label.append(range);
   const wind=labNode('output','mushroom-wind-output','Breeze to the right');wind.setAttribute('aria-live','polite');
-  const updateWind=()=>{const v=Number(range.value);wind.textContent=v===0?'Still air':`Breeze to the ${v<0?'left':'right'} · ${Math.abs(v)}%`;};
-  range.addEventListener('input',updateWind);cleanups.push(()=>range.removeEventListener('input',updateWind));
-  const actions=labNode('div','mushroom-lab-actions'); const status=labNode('p','mushroom-model-status','Ready for a spore adventure.');status.setAttribute('aria-live','polite');
+  const update=()=>{const value=Number(range.value);wind.textContent=value===0?'Still air':`Breeze to the ${value<0?'left':'right'} · ${Math.abs(value)}%`;};range.addEventListener('input',update);cleanups.push(()=>range.removeEventListener('input',update));
+  const status=labNode('p','mushroom-model-status','Spores fall clear of the gills, then drift on air.');status.setAttribute('aria-live','polite');
   let particles=[],frame=0,last=0,elapsed=0,running=false,paused=false,destroyed=false;
   const group=stage.querySelector('.spore-particles');
-  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused){cancelAnimationFrame(frame);status.textContent='Model paused.';}else{last=0;status.textContent='Spores travelling.';frame=requestAnimationFrame(tick);}},cleanups);
-  pause.disabled=true;pause.setAttribute('aria-pressed','false');
-  function tick(t){
-    if(destroyed||!running||paused)return;
-    const dt=last?Math.min((t-last)/1000,.04):0;last=t;elapsed+=dt;
-    particles.forEach(p=>{if(elapsed<p.delay)return;p.y+=dt*(34+p.speed);if(p.y>190)p.x+=Number(range.value)*dt*.95;p.dot.setAttribute('cx',p.x.toFixed(1));p.dot.setAttribute('cy',p.y.toFixed(1));p.dot.setAttribute('opacity',p.y>400||p.x<0||p.x>1000?'0':'.9');});
-    if(elapsed>9){running=false;pause.disabled=true;release.disabled=false;status.textContent='One journey finished. Change the wind and try again.';return;}
-    frame=requestAnimationFrame(tick);
-  }
-  const release=labButton('Release spores',()=>{
-    cancelAnimationFrame(frame);group.replaceChildren();particles=[];elapsed=0;last=0;paused=false;running=true;release.disabled=true;pause.disabled=false;pause.textContent='Pause model';pause.setAttribute('aria-pressed','false');
-    for(let i=0;i<36;i++){const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('r',String(2.2+i%3*.45));dot.setAttribute('opacity','0');group.append(dot);particles.push({dot,x:i%2?295+(i*29)%64:478+(i*23)%63,y:151,delay:(i%9)*.16,speed:i%7*3});}
-    status.textContent='Spores travelling. Try changing the breeze.';frame=requestAnimationFrame(tick);
-  },cleanups);
-  actions.append(release,pause); controls.append(title,description,label,wind,actions,status);node.append(stage,controls);
+  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused){cancelAnimationFrame(frame);status.textContent='Model paused.';}else{last=0;status.textContent='Spores travelling.';frame=requestAnimationFrame(tick);}},cleanups);pause.disabled=true;pause.setAttribute('aria-pressed','false');
+  function tick(t){if(destroyed||!running||paused)return;const dt=last?Math.min((t-last)/1000,.04):0;last=t;elapsed+=dt;particles.forEach(p=>{if(elapsed<p.delay)return;p.y+=dt*(34+p.speed);if(p.y>190)p.x+=Number(range.value)*dt*.95;p.dot.setAttribute('cx',p.x.toFixed(1));p.dot.setAttribute('cy',p.y.toFixed(1));p.dot.setAttribute('opacity',p.y>400||p.x<0||p.x>1000?'0':'.9');});if(elapsed>9){running=false;pause.disabled=true;release.disabled=false;status.textContent='Change the wind and try another journey.';return;}frame=requestAnimationFrame(tick);}
+  const release=labButton('Release spores',()=>{cancelAnimationFrame(frame);group.replaceChildren();particles=[];elapsed=0;last=0;paused=false;running=true;release.disabled=true;pause.disabled=false;pause.textContent='Pause model';pause.setAttribute('aria-pressed','false');for(let i=0;i<36;i++){const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('r',String(2.2+i%3*.45));dot.setAttribute('opacity','0');group.append(dot);particles.push({dot,x:i%2?295+(i*29)%64:478+(i*23)%63,y:151,delay:(i%9)*.16,speed:i%7*3});}status.textContent='Spores travelling. Try changing the breeze.';frame=requestAnimationFrame(tick);},cleanups);
+  const actions=labNode('div','mushroom-lab-actions');actions.append(release,pause);controls.append(label,wind,actions,status);node.append(stage,controls);
   function suspend(){if(running&&!paused)pause.click();}
-  const hidden=()=>{if(document.hidden)suspend();};document.addEventListener('visibilitychange',hidden);cleanups.push(()=>document.removeEventListener('visibilitychange',hidden));
   const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)suspend();});observer.observe(node);cleanups.push(()=>observer.disconnect());
-  return {node,destroy(){destroyed=true;cancelAnimationFrame(frame);cleanups.forEach(f=>f());particles=[];}};
+  return {node,suspend,destroy(){destroyed=true;cancelAnimationFrame(frame);cleanups.forEach(fn=>fn());particles=[];}};
+}
+export function createSporeLab(videoReference) {
+  const node=labNode('div','mushroom-spore-station'),cleanups=[];
+  const model=labNode('div','mushroom-spore-model'),switcher=labNode('div','mushroom-spore-view-switch');switcher.setAttribute('role','group');switcher.setAttribute('aria-label','Spore model view');
+  const catapult=createCatapultLab(),wind=createWindLab(),buttons=[];
+  function select(index){catapult.node.hidden=index!==0;wind.node.hidden=index!==1;buttons.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));if(index===0)wind.suspend();else catapult.suspend();}
+  ['The tiny drop catapult','Ride the breeze'].forEach((label,index)=>{const button=labButton(label,()=>select(index),cleanups);buttons.push(button);switcher.append(button);});
+  model.append(switcher,catapult.node,wind.node);select(0);node.append(model);
+  let recording=null;
+  if(videoReference){
+    const asset=mushroomVideoAsset(videoReference.url);if(!asset)throw new Error('Unregistered research recording.');
+    const film=labNode('article','mushroom-spore-film');film.append(labNode('p','mushroom-eyebrow','REAL RESEARCH FOOTAGE'),labNode('h3','',videoReference.title));
+    recording=labNode('video','mushroom-research-video');recording.src=mushroomVideoURL(asset.file);recording.poster=mushroomVideoURL(asset.poster);recording.controls=true;recording.crossOrigin='anonymous';recording.preload='metadata';recording.playsInline=true;recording.muted=true;recording.width=asset.width;recording.height=asset.height;recording.setAttribute('aria-label',videoReference.title);
+    const track=labNode('track');track.kind='captions';track.srclang='en';track.label='English description';track.src=mushroomVideoURL(asset.captions);recording.append(track);
+    const caption=labNode('p','mushroom-film-caption',videoReference.caption);caption.id='mushroom-spore-film-description';recording.setAttribute('aria-describedby',caption.id);
+    const play=labButton('Play recording',()=>{if(recording.paused){recording.play().catch(()=>{status.textContent='Use the recording’s play control to start it.';});}else recording.pause();},cleanups);
+    const status=labNode('p','mushroom-model-status','Silent microscope recording · extreme slow motion');status.setAttribute('aria-live','polite');
+    function recordEvent(){play.textContent=recording.ended?'Replay recording':recording.paused?'Play recording':'Pause recording';status.textContent=recording.ended?'Recording finished. You can replay it.':recording.paused?'Recording paused.':'Watch the round spore move from right to left.';}
+    ['play','pause','ended'].forEach(event=>{recording.addEventListener(event,recordEvent);cleanups.push(()=>recording.removeEventListener(event,recordEvent));});
+    const credits=labNode('p','mushroom-film-credit');const link=labNode('a','',asset.creator+' · PLOS ONE · CC BY');link.href=asset.page;link.target='_blank';link.rel='noopener noreferrer';credits.append(link,document.createTextNode(' · converted to MP4'));
+    film.append(recording,caption,play,status,credits);node.append(film);
+    const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)recording.pause();});observer.observe(film);cleanups.push(()=>observer.disconnect());
+  }
+  const hidden=()=>{if(document.hidden){catapult.suspend();wind.suspend();if(recording)recording.pause();}};document.addEventListener('visibilitychange',hidden);cleanups.push(()=>document.removeEventListener('visibilitychange',hidden));
+  return {node,destroy(){catapult.destroy();wind.destroy();if(recording){recording.pause();recording.removeAttribute('src');recording.load();}cleanups.forEach(fn=>fn());}};
 }
 export function createWonderLab(experiments, photoRenderer) {
   const node=labNode('div','mushroom-wonder-labs'),cleanups=[];let audio=null,oscillators=[],raf=0,playing=false,destroyed=false,start=0,seed=0,run=0;
   const glow=experiments.find(e=>e.mode==='glow'),sound=experiments.find(e=>e.mode==='sound');
   const light=labNode('article','mushroom-light-lab');light.dataset.recordId=glow.id;light.dataset.night='false';
-  const visual=labNode('div','mushroom-glow-scene');visual.append(labSVG(glowArtwork()),labNode('span','mushroom-model-label','ILLUSTRATED MODEL · GLOW EXAGGERATED'));
   const lightCopy=labNode('div','mushroom-lab-copy');lightCopy.append(labNode('p','mushroom-eyebrow','LIGHT LAB'),labNode('h3','',glow.title),labNode('p','',glow.body));
-  const night=labButton('Turn out the lights',()=>{const enabled=light.dataset.night!=='true';light.dataset.night=String(enabled);night.setAttribute('aria-pressed',String(enabled));night.textContent=enabled?'Bring back daylight':'Turn out the lights';},cleanups);night.setAttribute('aria-pressed','false');lightCopy.append(night);light.append(visual,lightCopy);
   if(glow.media && photoRenderer)light.append(photoRenderer(glow.media,'mushroom-lab-photo'));
+  light.append(lightCopy);
   const music=labNode('article','mushroom-sound-lab');music.dataset.recordId=sound.id;
   const graph=labNode('div','mushroom-signal-graph');
-  graph.append(labSVG('<svg viewBox="0 0 650 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An invented changing pattern, not a recording from a fungus. The height of the line is mapped to a musical note."><g fill="none" stroke="#8fc3ab" stroke-opacity=".18"><path d="M30 50H620M30 100H620M30 150H620M30 200H620M80 30V225M180 30V225M280 30V225M380 30V225M480 30V225M580 30V225"/></g><path class="model-signal-line" fill="none" stroke="#b6dca1" stroke-width="3"/><circle class="model-signal-cursor" r="7" fill="#f6d298" cx="30" cy="130"/></svg>'),labNode('span','mushroom-model-label','INVENTED PATTERN · NOT FUNGAL DATA'));
+  graph.append(labSVG('<svg viewBox="0 0 650 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An invented changing pattern, not a recording from a fungus. The height of the line is mapped to a musical note."><g fill="none" stroke="#8fc3ab" stroke-opacity=".18"><path d="M30 50H620M30 100H620M30 150H620M30 200H620M80 30V225M180 30V225M280 30V225M380 30V225M480 30V225M580 30V225"/></g><text x="30" y="20" fill="#b4c9af" font-size="11">higher note</text><text x="30" y="249" fill="#b4c9af" font-size="11">lower note</text><path class="model-signal-line" fill="none" stroke="#b6dca1" stroke-width="3"/><circle class="model-signal-cursor" r="7" fill="#f6d298" cx="30" cy="130"/></svg>'),labNode('span','mushroom-model-label','INVENTED PATTERN · NOT FUNGAL DATA'));
   const signal=graph.querySelector('.model-signal-line'),cursor=graph.querySelector('.model-signal-cursor');
   function sample(x){return .5+Math.sin(x*.052+seed)*.22+Math.sin(x*.127+seed*2)*.1;}
   function draw(){signal.setAttribute('d',Array.from({length:119},(_,i)=>`${i?'L':'M'}${30+i*5},${(220-sample(i*5)*180).toFixed(1)}`).join(' '));}

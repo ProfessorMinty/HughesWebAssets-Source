@@ -89,15 +89,21 @@ export function mountMushroomExhibit(root,source,options){
         const aside=element('div','mushroom-anatomy-aside');aside.append(detail);if(block.detailMedia)aside.append(photoFigure(block.detailMedia,'mushroom-anatomy-photo'));
         layout.append(desk,aside);inner.append(layout);
       }else if(block.type==='cutaway'){
-        const panel=element('div','mushroom-cutaway-panel'),illustration=element('div','mushroom-cutaway-illustration');illustration.append(artwork(cutawayArtwork()));
+        const panel=element('div','mushroom-cutaway-panel'),illustration=element('div','mushroom-cutaway-illustration');illustration.append(artwork(cutawayArtwork(idPrefix+"-cutaway")));
         const controls=element('div','mushroom-cutaway-controls'),switcher=element('div','mushroom-view-switch'),explanation=element('div','mushroom-cutaway-copy');switcher.setAttribute('role','group');switcher.setAttribute('aria-label','Cutaway view');explanation.setAttribute('aria-live','polite');const buttons=[];let animations=[];
         function chooseView(index){panel.dataset.view=index===0?'surface':'below';buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));explanation.replaceChildren(element('h3','',block.views[index].label),element('p','',block.views[index].body));}
         block.views.forEach((view,i)=>{const b=button(view.label,()=>chooseView(i),'');switcher.append(b);buttons.push(b);});chooseView(0);
         const grow=button('Grow the threads',()=>{chooseView(1);animations.forEach(a=>a.cancel());animations=Array.from(illustration.querySelectorAll('.cutaway-network path')).map((path,i)=>path.animate([{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:1800,delay:i<4?0:700+(i%4)*200,easing:'ease-out',fill:'backwards'}));});
         cleanups.push(()=>animations.forEach(a=>a.cancel()));controls.append(switcher,explanation,grow,element('p','mushroom-diagram-note','Threads are highlighted to make them visible. Growth is greatly sped up.'));panel.append(illustration,controls);inner.append(panel);
-        if(block.media){const real=element('div','mushroom-real-mycelium');const copy=element('div');copy.append(element('p','mushroom-eyebrow','FROM THE MODEL TO THE REAL WORLD'),element('h3','','Now look at real mycelium.'));real.append(copy,photoFigure(block.media,'mushroom-cutaway-photo'));inner.append(real);}
+        if(block.media)panel.append(photoFigure(block.media,'mushroom-cutaway-photo'));
       }else if(block.type==='lifecycle'){
-        attachLab(inner,createSporeLab());const steps=element('ol','mushroom-lifecycle');block.steps.forEach((step,i)=>{const item=element('li','mushroom-step');item.dataset.recordId=step.id;item.append(element('span','mushroom-step-number',String(i+1).padStart(2,'0')),element('h3','',step.title),element('p','',step.body));if(step.media)item.append(sourceImage(step.media,'mushroom-step-image'));steps.append(item);});inner.append(steps,element('p','mushroom-diagram-note','A simplified life cycle for mushroom-forming fungi. Fungi have many different ways of growing and reproducing.'));
+        attachLab(inner,createSporeLab(block.video));
+        const journey=element('div','mushroom-lifecycle-journey'),steps=element('ol','mushroom-lifecycle'),stepDetail=element('div','mushroom-step-detail');
+        stepDetail.id=idPrefix+'-life-step';stepDetail.setAttribute('aria-live','polite');const stepButtons=[];
+        function chooseStep(index){const step=block.steps[index];stepDetail.replaceChildren(element('h3','',step.title),element('p','',step.body));if(step.media)stepDetail.append(sourceImage(step.media,'mushroom-step-image'));stepButtons.forEach((button,i)=>button.setAttribute('aria-pressed',String(index===i)));}
+        block.steps.forEach((step,index)=>{const item=element('li','mushroom-step');item.dataset.recordId=step.id;const stepButton=button('',()=>chooseStep(index),'mushroom-step-select');stepButton.append(element('span','mushroom-step-number',String(index+1).padStart(2,'0')),element('span','',step.title));stepButton.setAttribute('aria-controls',stepDetail.id);stepButtons.push(stepButton);item.append(stepButton);steps.append(item);});
+        if(block.steps.length)chooseStep(0);journey.append(element('p','mushroom-eyebrow','FOLLOW A SIMPLIFIED LIFE CYCLE'),steps,stepDetail);inner.append(journey);
+
       }else if(block.type==='lab')attachLab(inner,createWonderLab(block.experiments,photoFigure));
       else if(block.type==='facts'){
         const grid=element('div','mushroom-fact-grid');block.cards.forEach((fact,i)=>{const card=element('article','mushroom-fact');card.dataset.recordId=fact.id;const symbol=element('span','mushroom-fact-mark',String(i+1).padStart(2,'0'));symbol.setAttribute('aria-hidden','true');card.append(symbol,element('h3','',fact.title),element('p','',fact.body));grid.append(card);});inner.append(grid);attachLab(inner,createDiscoveryQuestions(block.questions));
