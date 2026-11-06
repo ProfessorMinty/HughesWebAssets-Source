@@ -371,7 +371,7 @@
         "growth": {
           "id": "mushroom-process:growth",
           "mode": "growth",
-          "label": "Enlarged threads · growth greatly sped up",
+          "label": "Model · threads enlarged and highlighted, not naturally glowing. Growth sped up.",
           "initial": "This model shows the connected network. Watch it grow from the stem bases.",
           "playing": "Follow the new branches out from each stem base.",
           "finished": "The network has spread. The new branches stay connected.",

@@ -575,6 +575,11 @@ Shared evidence:
 No classroom entries, kit details or observations are invented. The source remains an
 unpublished `scaffold` with research review pending. Continue with M28–M35 using these IDs.
 
+Final copy review: the source-owned growth label explicitly retains the earlier disclosure
+that diagram threads are enlarged/highlighted, not naturally glowing. This preserves the
+model/light distinction while M34 remains open for the full glow/music lesson. The copy-only
+caption change was validated/built after browser QA; no diagram geometry or default view changed.
+
 ## Implementation map and source references
 
 | Concern | Owning files |

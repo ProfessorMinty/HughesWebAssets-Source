@@ -72,7 +72,10 @@ The #06443f / #46311f / #465a2b row families remain. Final new-state contrast ch
 
 Screenshot shows the rendered final batch layout at the browser's normal standalone width.
 A final storage-failure fallback correction was unit-tested and rebuilt after capture; it does
-not change that layout. The working preview was updated with the final built file.
+not change that layout. A copy-only review also restored the cutaway’s explicit not-naturally-
+glowing disclosure in its source-owned label. That caption edit was built/validated after the
+browser matrix; the cycle screenshot and default journey are unaffected. The working preview
+was updated with the final built file.
 
 No actual classroom, projector, physical-touchscreen or screen-reader trial is claimed.
 Music transport/instruments/real example, the remaining reduced-motion cursor behavior and
