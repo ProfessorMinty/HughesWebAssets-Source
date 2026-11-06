@@ -4,6 +4,10 @@ Unpublished 2026–2027 exhibit for second and third graders. Based on the verif
 Hub workstream dc7237d3912746afbe9f15dc215dfd18aad6b31f, rather than the older default main.
 This branch does not activate a new Edublogs route, swap the Hub, or deploy Lanternworks.
 
+The current follow-up scope is in [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md):
+46 stable fix IDs with acceptance criteria, baseline protections, execution order and separately
+deferred classroom/editor work. Its items start open; the document is a plan, not completed fixes.
+
 ## The page
 
 Viewport breakout is the only layout method. The reference viewport is 1920 × 911 CSS px.
