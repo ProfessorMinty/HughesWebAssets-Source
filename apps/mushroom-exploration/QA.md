@@ -1,4 +1,34 @@
-# Current checks — two-station edition, 2026-11-06
+# Current checks — palette and hierarchy, 2026-11-06
+
+- `npm run check:mushrooms` passes all 16 tests, syntax checks, contract/media-integrity
+  checks and the standalone build. No source data, scientific diagrams or asset bytes changed.
+- Chrome checked the seven main tabs at 1920×911, 1366×768, 820×1180, 390×844 and
+  320×640: 35 combinations with the requested panel visible, state ready, root x=0,
+  zero horizontal overflow, nine stable content blocks and mint selected tabs in both stations.
+  Viewport measurements wait for the breakout width to settle after the resize observer runs.
+- At 1920×911, all three specimen titles align at the same y position. Names now lead
+  each card, followed by image, explanation, caption and credit. Contained images use dark
+  displays and retain `object-fit: contain`; no microscopy is cropped to fill a landscape box.
+- Default page height: about 2564 px; journal begins around 2230 px. Station one default
+  is about 835 px; Light & sound is about 811 px. The two-station structure is preserved.
+- Measured CSS color pairs: ink/paper 11.25:1, ink/mint 9.47:1, ink/amber 7.62:1,
+  dark focus/paper 6.61:1, luminous focus/forest 9.09:1. Actual keyboard focus was observed
+  on light and dark tabpanels. These checks do not constitute a whole-site accessibility audit.
+- Chapter links display the current section with `aria-current="location"`, a visible
+  underline and stronger label. Desktop chapter tracking and a 320 px journal jump worked;
+  the journal heading landed below the sticky bar. Destroy cleanup disconnects its observer
+  and cancels a scheduled chapter update.
+- The yeast inspection dialog loaded its full image at 320 px and stayed within the
+  305 px available width (approximately x=2.5 to x=302.5). Returning to the exhibit worked.
+- Sound play/stop worked. The recording's primary Play control becomes an outlined Pause
+  control while playing, then returns to its primary role. Spore investigation selections
+  use the same mint fill plus inset marker as the main tabs.
+
+The page remains an unpublished draft. Physical-device, screen-reader and other-browser
+validation, classroom uploads, Mushinator, immutable release and live installation remain
+outside this change.
+
+## Previous two-station checks — retained history
 
 This edition supersedes the earlier flat/reading-rail measurements below. All nine source
 blocks remain, rendered in two learning stations and the classroom story.

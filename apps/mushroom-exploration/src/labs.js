@@ -5,8 +5,8 @@ function labNode(tag, className, text) {
   const node=document.createElement(tag); if(className)node.className=className;
   if(text!==undefined)node.textContent=text; return node;
 }
-function labButton(label, action, cleanups) {
-  const button=labNode('button','mushroom-lab-button',label);button.type='button';
+function labButton(label, action, cleanups, priority='primary') {
+  const button=labNode('button','mushroom-lab-button',label);button.type='button';button.dataset.actionPriority=priority;
   button.addEventListener('click',action);cleanups.push(()=>button.removeEventListener('click',action));return button;
 }
 function labSVG(markup) { const t=document.createElement('template');t.innerHTML=markup;return t.content; }
@@ -23,7 +23,7 @@ function createCatapultLab() {
   let running=false,paused=false,frame=0,last=0,elapsed=0,lastPhase=-1,destroyed=false;
   const spore=stage.querySelector('.catapult-moving-spore'),drop=stage.querySelector('.catapult-drop'),merged=stage.querySelector('.catapult-merged');
   function draw(){const state=sporeLaunchState(elapsed);drop.setAttribute('r',String(state.dropRadius));drop.setAttribute('opacity',String(state.dropOpacity));merged.setAttribute('opacity',String(state.mergedOpacity));spore.setAttribute('transform',`translate(${state.x} 0)`);stage.querySelector('.catapult-drop-label').setAttribute('opacity',state.phase===2?'0':'1');Array.from(sequence.children).forEach((item,i)=>item.setAttribute('aria-current',String(i===state.phase)));if(lastPhase!==state.phase){status.textContent=['Water gathers into a drop at the base of the spore.','The drop joins water on the spore’s surface.','The quick movement of water helps launch the spore away.'][state.phase];lastPhase=state.phase;}}
-  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused)cancelAnimationFrame(frame);else{last=0;frame=requestAnimationFrame(tick);}},cleanups);pause.disabled=true;pause.setAttribute('aria-pressed','false');
+  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused)cancelAnimationFrame(frame);else{last=0;frame=requestAnimationFrame(tick);}},cleanups,'secondary');pause.disabled=true;pause.setAttribute('aria-pressed','false');
   function tick(t){if(destroyed||!running||paused)return;elapsed+=last?Math.min((t-last)/1000,.04):0;last=t;draw();if(elapsed>=3.8){running=false;play.disabled=false;pause.disabled=true;status.textContent='A tiny launch! In nature, this final jump is much faster.';return;}frame=requestAnimationFrame(tick);}
   const play=labButton('Launch a spore',()=>{cancelAnimationFrame(frame);elapsed=0;last=0;lastPhase=-1;running=true;paused=false;play.disabled=true;pause.disabled=false;pause.textContent='Pause model';pause.setAttribute('aria-pressed','false');draw();frame=requestAnimationFrame(tick);},cleanups);
   actions.append(play,pause);controls.append(sequence,actions,status);node.append(stage,controls);
@@ -41,7 +41,7 @@ function createWindLab(){
   const status=labNode('p','mushroom-model-status','Spores fall clear of the gills, then drift on air.');status.setAttribute('aria-live','polite');
   let particles=[],frame=0,last=0,elapsed=0,running=false,paused=false,destroyed=false;
   const group=stage.querySelector('.spore-particles');
-  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused){cancelAnimationFrame(frame);status.textContent='Model paused.';}else{last=0;status.textContent='Spores travelling.';frame=requestAnimationFrame(tick);}},cleanups);pause.disabled=true;pause.setAttribute('aria-pressed','false');
+  const pause=labButton('Pause model',()=>{if(!running)return;paused=!paused;pause.textContent=paused?'Resume model':'Pause model';pause.setAttribute('aria-pressed',String(paused));if(paused){cancelAnimationFrame(frame);status.textContent='Model paused.';}else{last=0;status.textContent='Spores travelling.';frame=requestAnimationFrame(tick);}},cleanups,'secondary');pause.disabled=true;pause.setAttribute('aria-pressed','false');
   function tick(t){if(destroyed||!running||paused)return;const dt=last?Math.min((t-last)/1000,.04):0;last=t;elapsed+=dt;particles.forEach(p=>{if(elapsed<p.delay)return;p.y+=dt*(34+p.speed);if(p.y>290)p.x+=Number(range.value)*dt*.95;p.dot.setAttribute('cx',p.x.toFixed(1));p.dot.setAttribute('cy',p.y.toFixed(1));p.dot.setAttribute('opacity',p.y>490||p.x<0||p.x>1000?'0':'.9');});if(elapsed>9){running=false;pause.disabled=true;release.disabled=false;status.textContent='Change the wind and try another journey.';return;}frame=requestAnimationFrame(tick);}
   const release=labButton('Release spores',()=>{cancelAnimationFrame(frame);group.replaceChildren();particles=[];elapsed=0;last=0;paused=false;running=true;release.disabled=true;pause.disabled=false;pause.textContent='Pause model';pause.setAttribute('aria-pressed','false');for(let i=0;i<36;i++){const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('r',String(2.2+i%3*.45));dot.setAttribute('opacity','0');group.append(dot);particles.push({dot,x:i%2?295+(i*29)%64:478+(i*23)%63,y:225,delay:(i%9)*.16,speed:i%7*3});}status.textContent='Spores travelling. Try changing the breeze.';frame=requestAnimationFrame(tick);},cleanups);
   const actions=labNode('div','mushroom-lab-actions');actions.append(release,pause);controls.append(label,wind,actions,status);node.append(stage,controls);
@@ -57,7 +57,7 @@ function recordingPanel(reference,prefix,cleanups) {
   const caption=labNode('p','mushroom-film-caption',reference.caption);caption.id=prefix+'-description';video.setAttribute('aria-describedby',caption.id);
   const status=labNode('p','mushroom-model-status',asset.id.endsWith('puffball-cloud')?'Silent recording · slowed five times':'Silent microscope recording · extreme slow motion');status.setAttribute('aria-live','polite');
   const play=labButton('Play recording',()=>{if(video.paused)video.play().catch(()=>{status.textContent='Use the recording’s play control to start it.';});else video.pause();},cleanups);
-  function update(){play.textContent=video.ended?'Replay recording':video.paused?'Play recording':'Pause recording';status.textContent=video.ended?'Recording finished. You can replay it.':video.paused?'Recording paused.':'Watch closely. You can pause to inspect a moment.';}
+  function update(){play.dataset.actionPriority=video.paused?'primary':'secondary';play.textContent=video.ended?'Replay recording':video.paused?'Play recording':'Pause recording';status.textContent=video.ended?'Recording finished. You can replay it.':video.paused?'Recording paused.':'Watch closely. You can pause to inspect a moment.';}
   ['play','pause','ended'].forEach(event=>{video.addEventListener(event,update);cleanups.push(()=>video.removeEventListener(event,update));});
   const credit=labNode('p','mushroom-film-credit'),link=labNode('a','',asset.creator+' · '+asset.license);link.href=asset.page;link.target='_blank';link.rel='noopener noreferrer';credit.append(link);
   node.append(video,caption,play,status,credit);
@@ -110,10 +110,10 @@ export function createRolesLab(cards,photoRenderer,prefix) {
       const key=labNode('div','mushroom-diagram-key');key.append(labNode('span','key-root','Plant root'),labNode('span','key-fungus','Fungal threads'));picture.append(key);let timer;
       function stop(){clearTimeout(timer);article.dataset.running='false';}
       function follow(direction){stop();article.dataset.exchange=direction;article.dataset.running='true';status.textContent=direction==='sugars'?'The plant supplies sugars to its fungal partner. Follow the gold markers away from the root.':'The fungus helps gather nutrients for the plant. Follow the blue markers toward the root.';timer=setTimeout(stop,5000);}
-      actions.append(labButton('Follow sugars',()=>follow('sugars'),cleanups),labButton('Follow nutrients',()=>follow('nutrients'),cleanups),labButton('Pause exchange',stop,cleanups));activities.push({suspend:stop});status.textContent='Some fungi form partnerships with plant roots. Choose a direction to follow.';
+      actions.append(labButton('Follow sugars',()=>follow('sugars'),cleanups),labButton('Follow nutrients',()=>follow('nutrients'),cleanups),labButton('Pause exchange',stop,cleanups,'secondary'));activities.push({suspend:stop});status.textContent='Some fungi form partnerships with plant roots. Choose a direction to follow.';
     }else if(card.visual==='bread'){
       picture.append(labNode('p','mushroom-model-label','Dough cross-section · gas pockets enlarged'));let animation=null,run=0;const dough=picture.querySelector('.dough-volume');
-      const pause=labButton('Pause rise',()=>{if(!animation)return;if(animation.playState==='paused'){animation.play();pause.textContent='Pause rise';}else{animation.pause();pause.textContent='Resume rise';}},cleanups);pause.disabled=true;
+      const pause=labButton('Pause rise',()=>{if(!animation)return;if(animation.playState==='paused'){animation.play();pause.textContent='Pause rise';}else{animation.pause();pause.textContent='Resume rise';}},cleanups,'secondary');pause.disabled=true;
       const play=labButton('Watch the dough rise',()=>{const ticket=++run;if(animation)animation.cancel();pause.disabled=false;pause.textContent='Pause rise';animation=dough.animate([{transform:'scaleY(.62)'},{transform:'scaleY(1)'}],{duration:2600,fill:'forwards',easing:'ease-in-out'});status.textContent='Gas pockets grow inside the dough. Watch the dough expand.';animation.finished.then(()=>{if(ticket===run){pause.disabled=true;status.textContent='Tiny gas bubbles helped the dough rise. This is a greatly sped-up model.';}}).catch(()=>{});},cleanups);actions.append(play,pause);activities.push({suspend(){if(animation&&animation.playState==='running'){animation.pause();pause.textContent='Resume rise';}},destroy(){run++;animation?.cancel();}});status.textContent='A model of dough rising. The bubbles are much larger than real yeast cells.';
     }
     copy.append(actions,status);article.append(picture,copy);exhibits.push(article);const choose=labButton(card.title,()=>selectRole(index),cleanups);roleButtons.push(choose);roleSwitch.append(choose);node.append(article);
@@ -159,8 +159,8 @@ export function createWonderLab(experiments, photoRenderer) {
       raf=requestAnimationFrame(move);
     }catch{if(ticket===run){halt();status.textContent='Sound could not start. Try Play model sound again.';}}
   }
-  play=labButton('Play model sound',begin,cleanups);stop=labButton('Stop sound',halt,cleanups);stop.disabled=true;
-  const another=labButton('Try another pattern',()=>{halt();seed=(seed+1)%9;draw();cursor.setAttribute('cx','30');cursor.setAttribute('cy',String(220-sample(0)*180));status.textContent='New invented pattern ready. Press Play to hear it.';},cleanups);
+  play=labButton('Play model sound',begin,cleanups);stop=labButton('Stop sound',halt,cleanups,'secondary');stop.disabled=true;
+  const another=labButton('Try another pattern',()=>{halt();seed=(seed+1)%9;draw();cursor.setAttribute('cx','30');cursor.setAttribute('cy',String(220-sample(0)*180));status.textContent='New invented pattern ready. Press Play to hear it.';},cleanups,'secondary');
   actions.append(play,stop,another);musicCopy.append(actions,status);music.append(graph,musicCopy);node.append(light,music);
   const hidden=()=>{if(document.hidden&&playing)halt();};document.addEventListener('visibilitychange',hidden);cleanups.push(()=>document.removeEventListener('visibilitychange',hidden));
   const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting&&playing)halt();});observer.observe(music);cleanups.push(()=>observer.disconnect());

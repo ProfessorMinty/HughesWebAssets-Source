@@ -44,12 +44,20 @@ export function mountMushroomExhibit(root,source,options){
     if(photo){photoDialogContent.append(element('p','mushroom-photo-subject',photo.subject+' · '+photo.type),creditLine(photo),element('p','mushroom-photo-changes',photo.changes));}
     photoDialog.showModal();
   }
-  function photoFigure(reference,className){
+  function photoFigure(reference,className,specimen=false){
     const photo=mushroomPhotoAsset(reference.url),figure=element('figure','mushroom-photo '+(className||''));
     if(photo){figure.dataset.photoId=photo.id;figure.dataset.photoFit=photo.fit;}
     const inspect=button('',()=>openPhoto(reference),'mushroom-photo-inspect');
     inspect.setAttribute('aria-label','Look closer: '+(photo?.name||'photograph'));inspect.setAttribute('aria-haspopup','dialog');
-    inspect.append(sourceImage(reference,'mushroom-photo-image'),element('span','mushroom-photo-type',photo?.type.split(' · ')[0]||'Photograph'),element('span','mushroom-photo-zoom','Look closer'));
+    const image=sourceImage(reference,'mushroom-photo-image'),type=element('span','mushroom-photo-type',photo?.type.split(' · ')[0]||'Photograph');
+    if(specimen){
+      const window=element('span','mushroom-photo-window');window.append(image,type);inspect.append(window);
+      if(photo?.fit==='contain'){
+        const plate=element('span','mushroom-specimen-plate');plate.setAttribute('aria-hidden','true');
+        plate.append(element('span','mushroom-specimen-view',photo.type.split(' · ')[0]),element('span','mushroom-specimen-name',photo.name));inspect.append(plate);
+      }
+    }else inspect.append(image,type);
+    inspect.append(element('span','mushroom-photo-zoom','Look closer'));
     const caption=element('figcaption','mushroom-photo-caption',reference.caption);figure.append(inspect,caption);if(photo)caption.append(creditLine(photo));
     return figure;
   }
@@ -64,11 +72,11 @@ export function mountMushroomExhibit(root,source,options){
     const nav=element('nav','mushroom-navigation');nav.setAttribute('aria-label','Mushroom exhibit navigation');
     const brand=anchor('Hughes Room Views','https://rmhughes.edublogs.org/','mushroom-brand');
     const mark=element('span','mushroom-brand-mark');mark.setAttribute('aria-hidden','true');mark.append(artwork('<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 20L15 34H25L23 20" fill="currentColor"/><path d="M4 21Q20 -6 36 21Q20 29 4 21" fill="none" stroke="currentColor" stroke-width="2"/></svg>'));brand.prepend(mark);
-    const links=element('div','mushroom-navigation-links');
+    const links=element('div','mushroom-navigation-links'),chapterLinks=[];
     [['01','Fungi up close','discover'],['02','Life in motion','motion'],['03','Our growing story','journal']].forEach(([number,label,target])=>{
       const link=anchor('','#mushrooms-'+target,'mushroom-chapter-link');
       const badge=element('span','chapter-number',number),arrow=element('span','chapter-arrow');badge.setAttribute('aria-hidden','true');arrow.setAttribute('aria-hidden','true');
-      link.append(badge,element('span','chapter-label',label),arrow);links.append(link);
+      link.append(badge,element('span','chapter-label',label),arrow);links.append(link);chapterLinks.push(link);
     });nav.append(brand,links);root.append(skip,nav);
     const main=element('div','mushroom-main');main.id='mushrooms-main';root.append(main);
     source.data.blocks.forEach(block=>{
@@ -84,7 +92,13 @@ export function mountMushroomExhibit(root,source,options){
       }
       const heading=element('header','mushroom-section-heading');const h2=element('h2','',block.title);h2.id=section.id+'-title';heading.append(element('p','mushroom-eyebrow',block.eyebrow),h2);if(block.intro)heading.append(element('p','section-intro',block.intro));inner.append(heading);
       if(block.type==='family'){
-        const grid=element('div','mushroom-specimens');block.cards.forEach((card,i)=>{const article=element('article','mushroom-specimen');article.dataset.recordId=card.id;article.classList.add('mushroom-specimen-with-photo');if(card.media)article.append(photoFigure(card.media,'mushroom-specimen-photo'));const copy=element('div','mushroom-specimen-copy');copy.append(element('p','mushroom-object-number','MEET / '+String(i+1).padStart(2,'0')),element('h3','',card.title),element('p','',card.body));article.append(copy);grid.append(article);});inner.append(grid);
+        const grid=element('div','mushroom-specimens');block.cards.forEach(card=>{
+          const article=element('article','mushroom-specimen mushroom-specimen-with-photo');article.dataset.recordId=card.id;
+          const title=element('h3','mushroom-specimen-title',card.title);title.id=idPrefix+'-'+card.id.replace(/[^a-z0-9-]/gi,'-');article.setAttribute('aria-labelledby',title.id);article.append(title);
+          const copy=element('div','mushroom-specimen-copy');copy.append(element('p','',card.body));
+          if(card.media){const figure=photoFigure(card.media,'mushroom-specimen-photo',true);figure.insertBefore(copy,figure.querySelector('figcaption'));article.append(figure);}else article.append(copy);
+          grid.append(article);
+        });inner.append(grid);
       }else if(block.type==='roles'){
         attachLab(inner,createRolesLab(block.cards,photoFigure,idPrefix));
       }else if(block.type==='anatomy'){
@@ -103,7 +117,7 @@ export function mountMushroomExhibit(root,source,options){
         block.views.forEach((view,i)=>{const b=button(view.label,()=>chooseView(i),'');switcher.append(b);buttons.push(b);});chooseView(0);
         const grow=element('button','mushroom-lab-button','Grow the threads');grow.type='button';let growthRun=0;
         const growthStatus=element('p','mushroom-model-status','The mushrooms and the threads below are connected parts of a fungus.');growthStatus.setAttribute('aria-live','polite');
-        const pauseGrowth=button('Pause growth',()=>{const paused=pauseGrowth.getAttribute('aria-pressed')!=='true';animations.filter(a=>a.playState===(paused?'running':'paused')).forEach(a=>paused?a.pause():a.play());pauseGrowth.setAttribute('aria-pressed',String(paused));pauseGrowth.textContent=paused?'Resume growth':'Pause growth';});pauseGrowth.disabled=true;
+        const pauseGrowth=button('Pause growth',()=>{const paused=pauseGrowth.getAttribute('aria-pressed')!=='true';animations.filter(a=>a.playState===(paused?'running':'paused')).forEach(a=>paused?a.pause():a.play());pauseGrowth.setAttribute('aria-pressed',String(paused));pauseGrowth.textContent=paused?'Resume growth':'Pause growth';});pauseGrowth.disabled=true;pauseGrowth.dataset.actionPriority='secondary';
         // Replace flat-list delays with the illustration's connected parent-first schedule.
         listen(grow,'click',()=>{const ticket=++growthRun;chooseView(1);animations.forEach(a=>a.cancel());pauseGrowth.disabled=false;pauseGrowth.textContent='Pause growth';pauseGrowth.setAttribute('aria-pressed','false');
           const growthStart=document.timeline.currentTime;
@@ -150,6 +164,18 @@ export function mountMushroomExhibit(root,source,options){
     listen(window,'hashchange',revealHash);
     listen(root,'click',event=>{const link=event.target.closest('a[href]');if(!link)return;const url=new URL(link.href,location.href);if(url.origin!==location.origin||url.pathname!==location.pathname||url.search!==location.search)return;const panel=Array.from(root.querySelectorAll('[role=tabpanel]')).find(node=>'#'+node.id===url.hash);if(panel)for(const station of stationControllers){const index=station.sections.indexOf(panel);if(index>=0)station.select(index);}});
     revealHash();
+    // Track the section at the reading edge without changing scroll position or history.
+    const chapters=chapterLinks.map(link=>root.querySelector(link.getAttribute('href')));let chapterFrame=0;
+    function updateChapter(){
+      chapterFrame=0;if(destroyed)return;
+      const edge=nav.getBoundingClientRect().bottom+24;let current=-1;
+      chapters.forEach((section,index)=>{if(section.getBoundingClientRect().top<=edge)current=index;});
+      if(chapters.at(-1).getBoundingClientRect().top<window.innerHeight&&document.documentElement.getBoundingClientRect().bottom<=window.innerHeight+2)current=chapters.length-1;
+      chapterLinks.forEach((link,index)=>{if(index===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+    }
+    function scheduleChapter(){if(!chapterFrame)chapterFrame=requestAnimationFrame(updateChapter);}
+    listen(window,'scroll',scheduleChapter);listen(window,'resize',scheduleChapter);listen(window,'hashchange',scheduleChapter);
+    const chapterObserver=new ResizeObserver(scheduleChapter);chapterObserver.observe(main);cleanups.push(()=>{chapterObserver.disconnect();cancelAnimationFrame(chapterFrame);});scheduleChapter();
     const footer=element('footer','mushroom-footer');footer.append(element('span','','Hughes Room Views · Keep wondering.'),anchor('Back to Classroom Explorations','https://rmhughes.edublogs.org/hub/'));root.append(footer);
     const observer=new ResizeObserver(fitViewport);observer.observe(document.documentElement);cleanups.push(()=>observer.disconnect());root.dataset.hrvState='ready';
   }catch(error){cleanups.forEach(f=>f());root.innerHTML=original.html;root.className=original.className;root.removeAttribute('data-hrv-state');root.removeAttribute('data-research-status');root.style.removeProperty('--mushroom-viewport-width');throw error;}
