@@ -118,13 +118,18 @@ test("the recording, poster and description match the credited catalog", async f
 
 test('hyphal growth stays connected: branches and cross-links wait for their parents', async function () {
   const {hyphalNetwork}=await import('../apps/mushroom-exploration/src/art.js');
-  const network=hyphalNetwork(15,240,970,245,6),byId=new Map(network.map(p=>[p.id,p]));
+  const network=hyphalNetwork(15,239,970,245,6,[{x:346.48,y:229.98},{x:680.64,y:229.64}]),byId=new Map(network.map(p=>[p.id,p]));
   assert.ok(network.length>100);
   for(const segment of network)for(const parentId of segment.parents){
     const parent=byId.get(parentId);assert.ok(parent,'missing connected parent');
     assert.ok(segment.start>=parent.start+parent.duration,'a branch started before its parent reached the junction');
+    assert.ok(Math.hypot(segment.from.x-parent.to.x,segment.from.y-parent.to.y)<.001||Math.hypot(segment.to.x-parent.to.x,segment.to.y-parent.to.y)<.001,'a dependency must physically meet its child strand');
   }
   assert.ok(network.some(p=>p.parents.length>1),'network needs cross-connections');
+  assert.ok(network.some(p=>p.id==='join-1'),'the two stem networks must meet');
+  for(const strand of network.filter(p=>p.parents.length===0)){
+    assert.ok([[346.48,229.98],[680.64,229.64]].some(([x,y])=>Math.hypot(strand.from.x-x,strand.from.y-y)<.001),'a strand appeared away from both stems');
+  }
 });
 
 test('both spore recordings are registered and reject arbitrary video URLs', function () {
@@ -132,4 +137,16 @@ test('both spore recordings are registered and reject arbitrary video URLs', fun
   assert.equal(block.plumeVideo.url,'asset:mushroom-video:puffball-cloud');
   const changed=fresh();changed.data.blocks.find(b=>b.type==='lifecycle').plumeVideo.url='https://example.invalid/cloud.mp4';
   assert.throws(()=>validateMushroomSource(changed,{allowDraft:true}),/unknown research video/);
+});
+
+test('the rendered cutaway starts its threads at both visible stem bases', async function () {
+  const {cutawayArtwork,anatomyArtwork,lifecycleArtwork}=await import('../apps/mushroom-exploration/src/art.js');
+  function anchorStarts(svg){return [...svg.matchAll(/<path\b[^>]*>/g)].filter(m=>/data-growth-anchor=/.test(m[0])).map(m=>{
+    const d=m[0].match(/\bd='([^']+)'/)[1];return d.match(/^M([\d.-]+) ([\d.-]+)/).slice(1).map(Number);
+  });}
+  const cutaway=anchorStarts(cutawayArtwork('test-cutaway'));
+  for(const [x,y] of [[346.48,229.98],[680.64,229.64]])assert.ok(cutaway.some(p=>Math.hypot(p[0]-x,p[1]-y)<.02),'a visible mushroom has no thread attached to its base');
+  assert.ok(anchorStarts(anatomyArtwork('test-anatomy')).some(p=>Math.hypot(p[0]-438,p[1]-463)<.02),'anatomy stem is detached');
+  const life=lifecycleArtwork('test-life');
+  assert.match(life,/class='life-stem-connection'/,'life-cycle fruiting body needs a connection to its existing mycelium');
 });

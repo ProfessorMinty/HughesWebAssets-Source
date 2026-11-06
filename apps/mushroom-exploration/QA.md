@@ -3,17 +3,17 @@
 This edition supersedes the earlier flat/reading-rail measurements below. All nine source
 blocks remain, rendered in two learning stations and the classroom story.
 
-- Fifteen local tests cover source/edit/refusal rules, registered media integrity, launch
-  phase order and connected parent-before-child network growth. Syntax and generated
+- Sixteen local tests cover source/edit/refusal rules, registered media integrity, launch
+  phase order, parent-before-child network growth and rendered stem-base attachments. Syntax and generated
   source/control/schema checks pass through `npm run check:mushrooms`.
 - Chrome UI checks exercised every main tab at 1920×911, 1366×768, 820×1180,
   390×844 and 320×640: **35 combinations**, all ready, x=0, no horizontal overflow.
   All scientific SVGs have zero text elements; their labels are HTML.
 - At 1920×911, station-one defaults: family about 830 px, anatomy 834 px, cutaway 799 px,
   roles 808 px. Station-two defaults: spores 788 px, light/sound 808 px, questions 830 px.
-  The 72 px sticky navigation and each selected station fit within the 911 px reference
+  The 77 px sticky navigation and each selected station fit within the 911 px reference
   viewport. Expanded explanations, credits and answer feedback can grow a station.
-- Default page height is 2636 px. Classroom-story position: approximately 2302 px from page top. The prior
+- Default page height is about 2560 px. Classroom-story position: approximately 2220 px from page top. The prior
   reading-rail edition placed it around 6038 px down. An entrance button and sticky
   navigation link bypass both learning stations. The jump brought the entire reserved
   classroom story into view during a 1363×936 standalone-browser check.
@@ -32,6 +32,22 @@ blocks remain, rendered in two learning stations and the classroom story.
 - The uncropped photo dialog opened with a loaded original-aspect image, closed back to
   the exhibit, and a discovery answer showed its authored feedback. Photos remain real
   specimen examples, not classroom observations.
+
+The stem-connection follow-up rechecked the 35 tab/viewport combinations above. All three
+numbered chapter panels remain visible down to 320 px; the lower chapter strip is absent.
+The three top links were exercised at both 1920×911 and 320×640, landing their headings
+below the sticky navigation. The removed strip also leaves no reserved blank image band.
+
+The new rendered-SVG regression failed against the previous detached drawing, then passed
+with both stem anchors attached. Cutaway paths start at (346.48,229.98) and (680.64,229.64);
+anatomy starts at (438,463). Specimen positions/scales also define their corresponding
+anchors. The life cycle connects the early mycelium to the visible germ tube, then connects
+the fruiting stem to that network. The stage-two germ tube remained visible in Chrome.
+
+During a paused growth replay, both base strands were complete while 254 later paths
+remained undrawn. Resuming kept both base strands complete. All paths share one document
+animation start time; finished strands are not rewound by pause/resume. Anatomy, cutaway
+and life-cycle SVGs parse successfully. Current measurements are approximate CSS pixels.
 
 These are Chrome CSS-viewport/interaction checks, not physical-device, assistive-technology
 or cross-browser certification. The journal still has no invented entries, stage or species.

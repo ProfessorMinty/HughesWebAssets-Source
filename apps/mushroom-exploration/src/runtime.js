@@ -64,7 +64,12 @@ export function mountMushroomExhibit(root,source,options){
     const nav=element('nav','mushroom-navigation');nav.setAttribute('aria-label','Mushroom exhibit navigation');
     const brand=anchor('Hughes Room Views','https://rmhughes.edublogs.org/','mushroom-brand');
     const mark=element('span','mushroom-brand-mark');mark.setAttribute('aria-hidden','true');mark.append(artwork('<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 20L15 34H25L23 20" fill="currentColor"/><path d="M4 21Q20 -6 36 21Q20 29 4 21" fill="none" stroke="currentColor" stroke-width="2"/></svg>'));brand.prepend(mark);
-    const links=element('div','mushroom-navigation-links');links.append(anchor('Explore fungi','#mushrooms-discover'),anchor('Life in motion','#mushrooms-motion'),anchor('Our growing story','#mushrooms-journal','mushroom-journal-link'));nav.append(brand,links);root.append(skip,nav);
+    const links=element('div','mushroom-navigation-links');
+    [['01','Fungi up close','discover'],['02','Life in motion','motion'],['03','Our growing story','journal']].forEach(([number,label,target])=>{
+      const link=anchor('','#mushrooms-'+target,'mushroom-chapter-link');
+      const badge=element('span','chapter-number',number),arrow=element('span','chapter-arrow');badge.setAttribute('aria-hidden','true');arrow.setAttribute('aria-hidden','true');
+      link.append(badge,element('span','chapter-label',label),arrow);links.append(link);
+    });nav.append(brand,links);root.append(skip,nav);
     const main=element('div','mushroom-main');main.id='mushrooms-main';root.append(main);
     source.data.blocks.forEach(block=>{
       const section=element('section','mushroom-block mushroom-section-'+block.type);section.dataset.blockId=block.id;section.dataset.blockType=block.type;section.id='mushrooms-'+block.type;section.setAttribute('aria-labelledby',section.id+'-title');
@@ -75,8 +80,7 @@ export function mountMushroomExhibit(root,source,options){
         copy.append(element('p','mushroom-eyebrow',block.eyebrow),title,element('p','mushroom-hero-intro',block.intro));
         const actions=element('div','mushroom-hero-actions');actions.append(anchor('Our growing story','#mushrooms-journal','mushroom-button'),anchor('Explore the hidden world','#mushrooms-discover','mushroom-text-link'));copy.append(actions,element('p','mushroom-hero-note','TWO EXHIBITS. A WORLD TO DISCOVER. OUR OWN GROWING STORY.'));inner.append(copy);
         section.append(element('p','mushroom-art-caption',block.media?.caption||'Imagined woodland artwork · the science starts below'));
-        const chapters=element('nav','mushroom-chapters');chapters.setAttribute('aria-label','Exhibit stations');
-        [['01','Fungi up close','discover'],['02','Life in motion','motion'],['03','Our growing story','journal']].forEach(([n,label,target])=>{const a=anchor('','#mushrooms-'+target);a.append(element('span','chapter-number',n),element('span','',label),element('span','chapter-arrow'));chapters.append(a);});section.append(chapters);return;
+        return;
       }
       const heading=element('header','mushroom-section-heading');const h2=element('h2','',block.title);h2.id=section.id+'-title';heading.append(element('p','mushroom-eyebrow',block.eyebrow),h2);if(block.intro)heading.append(element('p','section-intro',block.intro));inner.append(heading);
       if(block.type==='family'){
@@ -98,11 +102,12 @@ export function mountMushroomExhibit(root,source,options){
         function chooseView(index){panel.dataset.view=index===0?'surface':'below';buttons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));explanation.replaceChildren(element('h3','',block.views[index].label),element('p','',block.views[index].body));}
         block.views.forEach((view,i)=>{const b=button(view.label,()=>chooseView(i),'');switcher.append(b);buttons.push(b);});chooseView(0);
         const grow=element('button','mushroom-lab-button','Grow the threads');grow.type='button';let growthRun=0;
-        const growthStatus=element('p','mushroom-model-status','An interconnected fungus, growing through its surroundings.');growthStatus.setAttribute('aria-live','polite');
-        const pauseGrowth=button('Pause growth',()=>{const paused=pauseGrowth.getAttribute('aria-pressed')!=='true';animations.forEach(a=>paused?a.pause():a.play());pauseGrowth.setAttribute('aria-pressed',String(paused));pauseGrowth.textContent=paused?'Resume growth':'Pause growth';});pauseGrowth.disabled=true;
+        const growthStatus=element('p','mushroom-model-status','The mushrooms and the threads below are connected parts of a fungus.');growthStatus.setAttribute('aria-live','polite');
+        const pauseGrowth=button('Pause growth',()=>{const paused=pauseGrowth.getAttribute('aria-pressed')!=='true';animations.filter(a=>a.playState===(paused?'running':'paused')).forEach(a=>paused?a.pause():a.play());pauseGrowth.setAttribute('aria-pressed',String(paused));pauseGrowth.textContent=paused?'Resume growth':'Pause growth';});pauseGrowth.disabled=true;
         // Replace flat-list delays with the illustration's connected parent-first schedule.
         listen(grow,'click',()=>{const ticket=++growthRun;chooseView(1);animations.forEach(a=>a.cancel());pauseGrowth.disabled=false;pauseGrowth.textContent='Pause growth';pauseGrowth.setAttribute('aria-pressed','false');
-          animations=Array.from(illustration.querySelectorAll('.cutaway-network path')).map(path=>path.animate([{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:Number(path.dataset.growthDuration)||240,delay:Number(path.dataset.growthStart)||0,easing:'linear',fill:'backwards'}));growthStatus.textContent='Threads grow from connected tips, then branch. This model is greatly sped up.';
+          const growthStart=document.timeline.currentTime;
+          animations=Array.from(illustration.querySelectorAll('.cutaway-network path')).map(path=>{const animation=path.animate([{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:Number(path.dataset.growthDuration)||240,delay:Number(path.dataset.growthStart)||0,easing:'linear',fill:'backwards'});animation.startTime=growthStart;return animation;});growthStatus.textContent='Follow the threads out from each stem base. Growth is greatly sped up.';
           Promise.allSettled(animations.map(a=>a.finished)).then(()=>{if(destroyed||ticket!==growthRun)return;pauseGrowth.disabled=true;growthStatus.textContent='The network has spread. You can replay its growth.';});
         });
         listen(document,'visibilitychange',()=>{if(document.hidden){animations.filter(a=>a.playState==='running').forEach(a=>a.pause());if(!pauseGrowth.disabled){pauseGrowth.setAttribute('aria-pressed','true');pauseGrowth.textContent='Resume growth';}}});

@@ -85,7 +85,7 @@ See RESEARCH.md for independent source review and QA.md for observed browser che
 
 The current two-station implementation supersedes the earlier nine-section reading-rail
 layout. At 1920×911, the default stations are about 830 and 788 px tall; the classroom
-story begins around 2300 px from the page top, versus about 6038 px in the earlier edition.
+story begins around 2220 px from the page top, versus about 6038 px in the earlier edition.
 Other main tab defaults range from about 790 to 840 px. Expanded sources/explanations
 may grow the selected station intentionally. Smaller screens recompose at readable sizes.
 There is no fixed-height clipping, internal content scroller or contained layout mode.
@@ -95,6 +95,11 @@ The three old role pictograms and dormant family picture fallbacks have been ret
 Roles now use a full workbench per job: real mycelium photography and a recycling sequence;
 a magnified plant-root/fungus exchange; and dough expanding around gas pockets.
 Mycelial models use irregular cross-connected networks with dependency-ordered growth.
+Each cutaway growth origin is attached to its visible stem base, using the same specimen
+position and scale. Anatomy is connected too. The life cycle retains spore/germ-tube
+growth before fruiting, with a continuous connection once the mushroom appears.
+There is one numbered chapter navigation in the sticky header; the redundant lower strip
+is removed. All three chapter links remain visible on narrow layouts.
 The life cycle reveals illustrated stages instead of changing text alone.
 
 The spore workbench offers a gilled-fungus catapult, wind journey, real puffball cloud and
