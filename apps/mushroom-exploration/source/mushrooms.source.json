@@ -1,0 +1,450 @@
+{
+  "schemaVersion": "1.0",
+  "page": {
+    "id": "hrv-page:mushrooms-2026-2027",
+    "type": "mushroom-exploration",
+    "routeRef": "hrv-route:mushrooms-2026-2027"
+  },
+  "data": {
+    "meta": {
+      "schoolYear": "2026-2027",
+      "state": "scaffold",
+      "researchStatus": "reviewed",
+      "layout": "viewport-breakout",
+      "designViewport": {
+        "width": 1920,
+        "height": 911
+      }
+    },
+    "sources": [
+      {
+        "id": "mushroom-source:basics",
+        "title": "Australian National Botanic Gardens · What is a fungus?",
+        "url": "https://www.anbg.gov.au/fungi/what-is-fungus.html"
+      },
+      {
+        "id": "mushroom-source:mycelium",
+        "title": "Australian National Botanic Gardens · Mycelium",
+        "url": "https://www.anbg.gov.au/fungi/mycelium.html"
+      },
+      {
+        "id": "mushroom-source:spores",
+        "title": "Australian National Botanic Gardens · Spore discharge",
+        "url": "https://www.anbg.gov.au/fungi/spore-discharge-mushrooms.html"
+      },
+      {
+        "id": "mushroom-source:kingdom",
+        "title": "Royal Botanic Gardens, Kew · What are fungi?",
+        "url": "https://www.kew.org/sites/default/files/2020-02/What-are-fungi-infographic-KS2.pdf"
+      },
+      {
+        "id": "mushroom-source:roles",
+        "title": "Kew Grow Wild · Why fungi matter",
+        "url": "https://growwild.kew.org/championing-nature/fungi/why-fungi-matter"
+      },
+      {
+        "id": "mushroom-source:glow",
+        "title": "Kotlobay and colleagues · Fungal bioluminescence, PNAS (2018)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6294908/"
+      },
+      {
+        "id": "mushroom-source:electricity",
+        "title": "Buffi and colleagues · Electrical signaling in fungi, FEMS (2025)",
+        "url": "https://academic.oup.com/femsre/article/doi/10.1093/femsre/fuaf009/8090185"
+      },
+      {
+        "id": "mushroom-source:music",
+        "title": "MIDI Sprout · How the instrument works",
+        "url": "https://github.com/electricityforprogress/MIDIsprout"
+      },
+      {
+        "id": "mushroom-source:safety",
+        "title": "National Capital Poison Center · Wild mushroom warning",
+        "url": "https://www.poison.org/articles/wild-mushroom-warning"
+      },
+      {
+        "id": "mushroom-source:lifecycle",
+        "title": "Royal Botanic Gardens, Kew · The hidden dimension of fungi",
+        "url": "https://www.kew.org/read-and-watch/fungi-hidden-dimension"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "mushroom-block:welcome",
+        "type": "hero",
+        "eyebrow": "HUGHES ROOM VIEWS · THE LIVING WORLD",
+        "title": "The hidden\nworld of fungi.",
+        "intro": "A mushroom is only part of the story. Step into a world of tiny spores, secret threads, and surprising science.",
+        "sourceRefs": [
+          "mushroom-source:basics"
+        ],
+        "media": null
+      },
+      {
+        "id": "mushroom-block:kingdom",
+        "type": "family",
+        "eyebrow": "01 / MEET THE KINGDOM",
+        "title": "Small. Strange. Extraordinary.",
+        "intro": "Fungi aren’t plants or animals. They belong to a kingdom of their own. Meet three very different examples.",
+        "sourceRefs": [
+          "mushroom-source:kingdom"
+        ],
+        "cards": [
+          {
+            "id": "mushroom-family:mushrooms",
+            "title": "Mushroom makers",
+            "body": "Some fungi grow mushrooms: the parts that make and release spores.",
+            "sourceRefs": [
+              "mushroom-source:kingdom"
+            ],
+            "visual": "mushroom"
+          },
+          {
+            "id": "mushroom-family:moulds",
+            "title": "Fuzzy moulds",
+            "body": "Many moulds grow as tiny branching threads. That fuzz is a fungus growing!",
+            "sourceRefs": [
+              "mushroom-source:kingdom"
+            ],
+            "visual": "mould"
+          },
+          {
+            "id": "mushroom-family:yeasts",
+            "title": "Tiny yeasts",
+            "body": "Yeasts are fungi too. They usually live as single cells, too small to see on their own.",
+            "sourceRefs": [
+              "mushroom-source:mycelium"
+            ],
+            "visual": "yeast"
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:anatomy",
+        "type": "anatomy",
+        "eyebrow": "02 / THE SPECIMEN TABLE",
+        "title": "There’s more under that cap.",
+        "intro": "Tap a numbered point to investigate this gilled mushroom. Other mushrooms can have different shapes and parts.",
+        "sourceRefs": [
+          "mushroom-source:basics"
+        ],
+        "media": null,
+        "hotspots": [
+          {
+            "id": "mushroom-point:cap",
+            "x": 51,
+            "y": 22,
+            "label": "Cap",
+            "body": "The cap holds the spore-making surface underneath it. Look below the umbrella!",
+            "sourceRefs": [
+              "mushroom-source:basics"
+            ]
+          },
+          {
+            "id": "mushroom-point:gills",
+            "x": 30,
+            "y": 43,
+            "label": "Gills",
+            "body": "These thin plates under the cap make spores. Not all mushrooms have gills.",
+            "sourceRefs": [
+              "mushroom-source:basics"
+            ]
+          },
+          {
+            "id": "mushroom-point:stem",
+            "x": 56,
+            "y": 57,
+            "label": "Stem",
+            "body": "The stem lifts the cap. This helps spores reach moving air.",
+            "sourceRefs": [
+              "mushroom-source:basics"
+            ]
+          },
+          {
+            "id": "mushroom-point:mycelium",
+            "x": 38,
+            "y": 86,
+            "label": "Mycelium",
+            "body": "These branching threads are part of the fungus. A single thread is called a hypha. A network of threads is mycelium.",
+            "sourceRefs": [
+              "mushroom-source:mycelium"
+            ]
+          },
+          {
+            "id": "mushroom-point:spores",
+            "x": 77,
+            "y": 60,
+            "label": "Spores",
+            "body": "Spores can start new fungal growth when conditions are right. They are enlarged here so we can see them.",
+            "sourceRefs": [
+              "mushroom-source:mycelium"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:below",
+        "type": "cutaway",
+        "eyebrow": "03 / A HIDDEN WORLD",
+        "title": "The mushroom is just the beginning.",
+        "intro": "What could be growing where we can’t see? Switch views, then grow the branching threads.",
+        "sourceRefs": [
+          "mushroom-source:mycelium"
+        ],
+        "media": null,
+        "views": [
+          {
+            "id": "mushroom-view:surface",
+            "label": "Above the surface",
+            "body": "We notice the mushroom. It is a fruiting body: the spore-making part of this fungus.",
+            "sourceRefs": [
+              "mushroom-source:basics"
+            ]
+          },
+          {
+            "id": "mushroom-view:below",
+            "label": "Below the surface",
+            "body": "Mycelium can grow through soil or inside wood. Its threads branch as they grow and absorb food from their surroundings.",
+            "sourceRefs": [
+              "mushroom-source:mycelium"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:lifecycle",
+        "type": "lifecycle",
+        "eyebrow": "04 / THE SPORE WIND TUNNEL",
+        "title": "Tiny travellers. A huge adventure.",
+        "intro": "How do spores get away from a mushroom? Try the wind tunnel, then follow a simplified mushroom life cycle.",
+        "sourceRefs": [
+          "mushroom-source:spores",
+          "mushroom-source:mycelium"
+        ],
+        "steps": [
+          {
+            "id": "mushroom-step:spore",
+            "title": "A spore lands",
+            "body": "In a suitable place, a spore can start growing a tiny thread.",
+            "sourceRefs": [
+              "mushroom-source:mycelium"
+            ],
+            "media": null
+          },
+          {
+            "id": "mushroom-step:threads",
+            "title": "Threads spread",
+            "body": "Threads grow and branch into mycelium. For many mushroom makers, compatible threads must join before fruiting is possible.",
+            "sourceRefs": [
+              "mushroom-source:lifecycle"
+            ],
+            "media": null
+          },
+          {
+            "id": "mushroom-step:fruit",
+            "title": "A mushroom grows",
+            "body": "With suitable conditions, the fungus may grow a mushroom. Not every spore gets this far!",
+            "sourceRefs": [
+              "mushroom-source:basics"
+            ],
+            "media": null
+          },
+          {
+            "id": "mushroom-step:release",
+            "title": "Spores set off",
+            "body": "A gilled mushroom releases spores from its gills. Once clear of the cap, they can drift on air currents.",
+            "sourceRefs": [
+              "mushroom-source:spores"
+            ],
+            "media": null
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:roles",
+        "type": "roles",
+        "eyebrow": "05 / FUNGI AT WORK",
+        "title": "The forest has a behind-the-scenes crew.",
+        "intro": "Different fungi do different jobs. Some recycle, some team up with plants, and some help make our food.",
+        "sourceRefs": [
+          "mushroom-source:roles"
+        ],
+        "cards": [
+          {
+            "id": "mushroom-role:recyclers",
+            "title": "The recyclers",
+            "body": "Some fungi break down dead wood and leaves. Nutrients return to the environment and can be used again.",
+            "sourceRefs": [
+              "mushroom-source:roles"
+            ],
+            "visual": "leaf"
+          },
+          {
+            "id": "mushroom-role:partners",
+            "title": "The plant partners",
+            "body": "Some fungi exchange with plant roots: the fungus helps gather nutrients, and the plant supplies sugars.",
+            "sourceRefs": [
+              "mushroom-source:roles"
+            ],
+            "visual": "tree"
+          },
+          {
+            "id": "mushroom-role:bakers",
+            "title": "The tiny bakers",
+            "body": "Baker’s yeast makes carbon dioxide gas. Those little gas bubbles help bread dough rise.",
+            "sourceRefs": [
+              "mushroom-source:roles"
+            ],
+            "visual": "bread"
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:lab",
+        "type": "lab",
+        "eyebrow": "06 / THE WONDER LAB",
+        "title": "Light. Electricity. A little mystery.",
+        "intro": "Real discoveries can be stranger than stories. Explore what we know—and a question scientists are still investigating.",
+        "sourceRefs": [
+          "mushroom-source:glow",
+          "mushroom-source:electricity",
+          "mushroom-source:music"
+        ],
+        "experiments": [
+          {
+            "id": "mushroom-lab:glow",
+            "title": "A living night-light",
+            "body": "Some fungi make light through a chemical reaction. This is called bioluminescence. Most fungi do not glow.",
+            "sourceRefs": [
+              "mushroom-source:glow"
+            ],
+            "mode": "glow"
+          },
+          {
+            "id": "mushroom-lab:sound",
+            "title": "Can we hear a pattern?",
+            "body": "Scientists have measured electrical changes in fungi. What those changes do is still being studied. A change on a graph is not proof of a message.",
+            "sourceRefs": [
+              "mushroom-source:electricity",
+              "mushroom-source:music"
+            ],
+            "mode": "sound"
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:discoveries",
+        "type": "facts",
+        "eyebrow": "07 / KEEP WONDERING",
+        "title": "Take a little wonder with you.",
+        "intro": "Try a few discoveries, then test your explorer thinking.",
+        "sourceRefs": [
+          "mushroom-source:basics",
+          "mushroom-source:kingdom",
+          "mushroom-source:spores"
+        ],
+        "cards": [
+          {
+            "id": "mushroom-fact:rings",
+            "title": "A ring with a reason",
+            "body": "Some mycelium grows outward in a circle. Mushrooms appearing around its edge can make a “fairy ring”.",
+            "sourceRefs": [
+              "mushroom-source:basics"
+            ]
+          },
+          {
+            "id": "mushroom-fact:catapult",
+            "title": "A tiny launch",
+            "body": "Many gilled mushrooms use a tiny drop of liquid to help launch each spore away from a gill.",
+            "sourceRefs": [
+              "mushroom-source:spores"
+            ]
+          },
+          {
+            "id": "mushroom-fact:relatives",
+            "title": "An unexpected relative",
+            "body": "Fungi are more closely related to animals than to plants. They still have their very own kingdom!",
+            "sourceRefs": [
+              "mushroom-source:kingdom"
+            ]
+          }
+        ],
+        "questions": [
+          {
+            "id": "mushroom-question:kingdom",
+            "prompt": "Where do fungi belong?",
+            "sourceRefs": [
+              "mushroom-source:kingdom"
+            ],
+            "choices": [
+              {
+                "id": "mushroom-answer:plants",
+                "label": "The plant kingdom",
+                "correct": false,
+                "feedback": "A good question to investigate! Fungi have their own kingdom."
+              },
+              {
+                "id": "mushroom-answer:fungi",
+                "label": "A kingdom of their own",
+                "correct": true,
+                "feedback": "You found it! Fungi belong to their own kingdom."
+              }
+            ]
+          },
+          {
+            "id": "mushroom-question:threads",
+            "prompt": "What is mycelium?",
+            "sourceRefs": [
+              "mushroom-source:mycelium"
+            ],
+            "choices": [
+              {
+                "id": "mushroom-answer:roots",
+                "label": "A plant’s roots",
+                "correct": false,
+                "feedback": "It can look root-like, but mycelium is part of a fungus."
+              },
+              {
+                "id": "mushroom-answer:network",
+                "label": "A network of fungal threads",
+                "correct": true,
+                "feedback": "Exactly! One thread is a hypha. A network of them is mycelium."
+              }
+            ]
+          },
+          {
+            "id": "mushroom-question:safety",
+            "prompt": "Can a mushroom’s colour tell us it is safe to eat?",
+            "sourceRefs": [
+              "mushroom-source:safety"
+            ],
+            "choices": [
+              {
+                "id": "mushroom-answer:colour",
+                "label": "Yes, bright ones are the dangerous ones",
+                "correct": false,
+                "feedback": "Colour cannot tell us. Safe and poisonous mushrooms can look very similar. Never taste a wild mushroom."
+              },
+              {
+                "id": "mushroom-answer:expert",
+                "label": "No. Colour is not a safety test.",
+                "correct": true,
+                "feedback": "That’s careful explorer thinking. Never taste a wild mushroom. Ask a trusted adult."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "mushroom-block:journal",
+        "type": "journal",
+        "eyebrow": "OUR CLASSROOM / 2026–2027",
+        "title": "Now it’s our turn to wonder.",
+        "intro": "Our growing story will live here: photographs, observations, and discoveries from the classroom.",
+        "sourceRefs": [],
+        "currentStage": null,
+        "entries": []
+      }
+    ]
+  }
+}

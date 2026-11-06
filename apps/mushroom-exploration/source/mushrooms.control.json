@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "mushroom-exploration/1.1.0",
+  "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
+  "editorRoute": "/mushrooms",
+  "editorLabel": "Mushinator",
+  "editorImplementation": "not-built",
+  "protectedFields": [
+    "schemaVersion",
+    "page",
+    "data.meta",
+    "data.sources",
+    "block.id",
+    "block.type",
+    "nested record IDs"
+  ],
+  "layout": {
+    "mode": "viewport-breakout",
+    "referenceViewport": {
+      "width": 1920,
+      "height": 911
+    }
+  },
+  "blocks": [
+    {
+      "type": "hero",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "media"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "family",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "cards"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "anatomy",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "media",
+        "hotspots"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "cutaway",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "media",
+        "views"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "lifecycle",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "steps"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "roles",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "cards"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "lab",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "experiments"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "facts",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "cards",
+        "questions"
+      ],
+      "identityField": "id"
+    },
+    {
+      "type": "journal",
+      "editableFields": [
+        "eyebrow",
+        "title",
+        "intro",
+        "sourceRefs",
+        "currentStage",
+        "entries"
+      ],
+      "identityField": "id"
+    }
+  ],
+  "journalImplementation": "reserved; entry authoring and publication are not implemented",
+  "publicationAvailable": false
+}
