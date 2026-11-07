@@ -1,6 +1,6 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.3 · November 6, 2026 · Music batch verified; real-player acceptance and final checks remain open.
+Version 1.4 · November 6, 2026 · Reading/access batch verified; three acceptance gates remain open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
@@ -8,10 +8,10 @@ It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the e
 document alone did not complete any fixes. All 46 items started open; checked items now
 have dated implementation evidence below.
 
-**Current status: 33 of 46 complete.** M01, M03–M32 and M34–M35 are checked. M02,
-M33 and M36–M46 remain open. M33 has a documented embedded candidate; in-page playback
-acceptance is blocked in the test browser. Continue with audience/access/narration/ownership
-checks and retain the teacher/pupil review gate. J01–J05 stay deferred.
+**Current status: 43 of 46 complete.** Only **M33, M41 and M46** remain open: actual
+embedded-video playback, real-voice/read-aloud acceptance, and the teacher/projector/pupil
+trial. Reading controls and the video candidate are implemented, with exact test-browser
+limits recorded below. J01–J05 (journal/content/Mushinator) stay deferred.
 
 ## Baseline and evidence
 
@@ -117,7 +117,7 @@ already within the requested scope.
   Reduce repeated placeholder shortcuts in station headers. Done when the first action opens
   a usable exhibit and journal availability is represented honestly.
 
-- [ ] **M02 — Edit the core explanations for this audience.**
+- [x] **M02 — Edit the core explanations for this audience.**
   Lead with plain meaning, usually two or three short sentences and one unfamiliar term at a
   time. Retain necessary some/many qualifiers and explain the difference between a mushroom
   and the wider fungus. Done when every core explanation has an age-appropriate main layer
@@ -330,31 +330,31 @@ already within the requested scope.
 
 ## E. Reading, access and user control
 
-- [ ] **M36 — Make essential reading and diagram labels legible.**
+- [x] **M36 — Make essential reading and diagram labels legible.**
   Use approximately 18–20 px explanatory text as a starting point, suitable line spacing and
   sturdy reading/control typography. Reduce competing tiny uppercase labels and prioritize
   the relevant visual. Done when essential labels/instructions are readable on tested screens;
   compact credits remain accessible and text is not clipped to preserve a fixed height.
 
-- [ ] **M37 — Verify contrast and distinguish interaction states.**
+- [x] **M37 — Verify contrast and distinguish interaction states.**
   Measure actual text/surface combinations: normal text at least 4.5:1, qualifying large text
   3:1, and applicable meaningful UI/focus cues 3:1 against adjacent colors. Check selected,
   hover, focus, feedback, image-overlay and gradient states. Done when the three palettes
   remain distinct and states use labels/shape/markers as well as hue. Record test limits.
 
-- [ ] **M38 — Meet the classroom touch-target goal.**
+- [x] **M38 — Meet the classroom touch-target goal.**
   Aim for at least 44 × 44 CSS px controls with separation, including anatomy points on small
   screens. This is the selected enhanced design target, not a claim about the blanket WCAG
   AA minimum. Done when touch alternatives work and labels, targets and neighbors remain
   usable at the narrow and zoomed test sizes without relying on hover.
 
-- [ ] **M39 — Preserve and verify keyboard semantics and focus.**
+- [x] **M39 — Preserve and verify keyboard semantics and focus.**
   Check tab roles/selection, arrows/Home/End where applicable, names/relationships, current
   chapter, focus visibility, dialog close/Escape and return to opener. Done when every
   activity is operable by keyboard, direct links reveal the correct view, and sticky
   navigation hides neither destination headings nor focused controls.
 
-- [ ] **M40 — Extend reduced-motion support into the runtime.**
+- [x] **M40 — Extend reduced-motion support into the runtime.**
   Honor system preference with informative stills or manual steps for JavaScript/WAAPI/rAF
   models as well as CSS motion. Provide a persistent Less motion preference if needed across
   exhibits. Done when movement remains intentional, Pause/Resume/Replay are usable, inactive
@@ -368,27 +368,27 @@ already within the requested scope.
 
 ## F. Content ownership, evidence and completion
 
-- [ ] **M42 — Put editable lesson content in the validated contract.**
+- [x] **M42 — Put editable lesson content in the validated contract.**
   Move revised explanations, activity titles, prompts, instructions, relevant safety/teacher
   notes and supported media choices out of hardcoded renderer strings. Extend the owning
   contract and regenerate control/schema documents together, preserving stable identities.
   Done when supported content can change without editing rendering code, unsafe/unknown
   fields still fail validation, and future Mushinator ownership is accurately documented.
 
-- [ ] **M43 — Verify research and register new assets.**
+- [x] **M43 — Verify research and register new assets.**
   Check new/revised claims against appropriate sources, with primary research/device
   documentation for technical explanations. Preserve per-asset sources, rights, changes,
   stable references and integrity metadata. Done when every new real example/recording has
   verified provenance and model/classroom/specimen labels are truthful. A source citation
   by itself does not establish permission to reuse its media or dataset.
 
-- [ ] **M44 — Run and extend meaningful automated checks.**
+- [x] **M44 — Run and extend meaningful automated checks.**
   Reuse `npm run check:mushrooms` and add coverage for changed contract/state behavior:
   compatible identities, activity/media binding, process ordering, controlled music data,
   replay/resume and cleanup. Done when relevant checks and the build pass and tests address
   actual regressions. Existing passing baseline tests alone do not verify the new lesson.
 
-- [ ] **M45 — Recheck every activity in the browser.**
+- [x] **M45 — Recheck every activity in the browser.**
   Exercise all revised views at 1920×911, 1366×768, 820×1180, 390×844 and 320×640, plus
   200% text/zoom, keyboard and touch-relevant behavior. Check overflow, media, focus, controls,
   default journey length and the journal shortcut. Done when `QA.md` records actual results,
@@ -619,7 +619,7 @@ Tree `24f325f4993a3a08a11002868234fde9fa591ca7` matches local implementation
   measurement and model distinction are present. M33 stays unchecked until the exhibit's
   embedded clip actually plays in a suitable browser/network and its content is accepted.
 
-### Shared verification and remaining work
+### Historical batch 3 verification and remaining work — superseded by batch 4
 
 - `npm run check:mushrooms`: **37 tests pass**, syntax checks, generated contract/schema
   consistency, original image/video integrity and standalone build. `git diff --check` passes.
@@ -638,6 +638,60 @@ Tree `24f325f4993a3a08a11002868234fde9fa591ca7` matches local implementation
   with sound paused. Narration, whole-exhibit access/contrast/copy/ownership review and real
   teacher/pupil feedback remain under M02/M36–M46. The source stays scaffold/research pending.
 
+## Implementation evidence — November 6, 2026, batch 4
+
+**Ten additional items complete:** M02, M36–M40 and M42–M45. Cumulative completion is
+**43/46**. **M33, M41 and M46 remain open.** No untested voice, embedded playback or actual
+classroom result is marked complete. J01–J05 remain deferred.
+
+Implementation: [aefb03b4736d005da66b2ad467870af8f43ced68](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/aefb03b4736d005da66b2ad467870af8f43ced68).
+Tree `768d19d3a16d677b47842e480fdc608b8e6b1182` matches local implementation/evidence commit
+`6a7c347697d5755efd63999dd5136fd4f548ec9e`. All rows below share this date and implementation.
+
+| Completed ID | Changed files | Acceptance evidence and limits |
+| --- | --- | --- |
+| M02 | Source and runtime bindings | Core title/introduction/body/observation layers were reviewed across nine blocks and eleven choices. Nutrients are introduced as materials used again; life stages use right conditions before optional detail; electrical explanation has three short sentences and a defined ion term. Some/many/may qualifiers, mushroom vs wider fungus, invented-pattern/real-example labels and empty-classroom framing remain. Technical interpretation stays in teacher notes. This is an editorial pass; pupil comprehension is still M46. |
+| M36 | `src/exhibit.css`, source | Essential captions, prompts, model/diagram labels, statuses, scale/time cues and explanations use 18 px text with 1.5 line spacing. Compact credits use 14 px and have larger link targets. Main copy uses sturdy UI type; miniature exhibit prefixes are secondary. Five-size and 200% checks found no overflow or forced clipping of explanations. |
+| M37 | CSS, `tools/audit-mushroom-contrast.mjs`, captured QA JSON | 203 computed text/style cases pass their 4.5:1 or qualifying-large 3:1 threshold. 39 hero/photo-label bounds over arbitrary black/white source-image extremes pass at five sizes. Selected instrument hover had competing background rules; its explicit warm background/dark text now passes, with actual :hover observed. Focus samples visibly used 3 px outlines and stayed below the sticky bar. Amber/cyan outlines exceed 3:1 across the audited base/selected/tray surfaces (conservative minima 3.73/4.30). Selections also use text weight, underlines/inset markers or named feedback. This is scoped design evidence, not WCAG certification. |
+| M38 | CSS and QA target records | Visible custom buttons, links, selects and summaries meet 44×44 px throughout all 55 activity/layout cases and 15 job/layout cases, plus all eleven choices at 200% zoom. Clickable checkbox labels supply their full 44 px target. Short photo-credit names and research-credit links were caught and enlarged. Native video controls have explicit larger custom alternatives; third-party/browser-owned controls are not claimed to meet this custom target. |
+| M39 | `src/runtime.js`, CSS, QA harness | Keyboard Enter selected all activities; tab arrows/Home/End, selected anatomy part and silent-note inspection were exercised. Image dialog Escape returned focus to its opener. Deep links lab→glow, lifecycle→launch, sound→music and journal/back→music worked. Destination/focused controls remained below navigation; default first heading y≈138 versus nav bottom 77. Focus correction avoids dialogs/native fullscreen. The QA iframe now explicitly allows fullscreen: native research video filled the review surface and returned to its prior geometry on Escape. No screen-reader certification is claimed. |
+| M40 | Runtime, process integration, CSS | Shared system/user motion preference now reaches root CSS transitions as well as finite clocks and music. In the browser, enabling Step-by-step view made root less-motion true and chapter transition duration 0 s; manual growth steps worked and music's moving Play disappeared while Next note remained. Preference changes suspend active activities without auto-resume. Existing injected-preference/storage-failure/clock-cleanup tests pass. |
+| M42 | Source, contract 1.8.0, runtime/labs, generated schema/control | Shared navigation, photo, science-word, journal-placeholder, reading and media labels are validated in data.ui. Activity labels are editable separately from stable identities. Revised context, prompts, process controls and supported registered media remain source-owned. editMushroomInterface rejects unknown fields/incomplete structures/broken template bindings and invalidates review. Current reading text is built from selected source records. Geometry/identities/provenance remain code/catalog owned. Mushinator itself is still not built. |
+| M43 | `RESEARCH.md`, source/catalog checks | New/revised claims retain primary science/device citations and correct scope. W3C contrast criteria and MDN speech lifecycle/voice enumeration were checked. Original six photos and both local research recordings pass provenance/integrity checks; no third-party recording, thumbnail, new specimen or classroom claim was introduced. Real PlantWave reuse remains official embed only, with unknown raw data/mapping/speed disclosed. Source publication/research flags remain conservative pending final acceptance. |
+| M44 | Tests/build/audit tool | `npm run check:mushrooms` passes 42 tests, syntax, generated schema/control consistency, original media integrity and standalone build. Five additions cover interface/template edits; fresh selected reading text; delayed/missing/failed voices; utterance ownership/cancellation/stale events/end/error/timeout/cleanup; and numerical contrast/alpha/gradient/image-mask bounds. No dependency was added. `git diff --check` passes. |
+| M45 | QA records and proof image | 55 activity/layout and 15 fungal-job/layout cases pass no-overflow, panel-count and custom-target checks. All eleven activities pass at actual 200% Chrome zoom (674 px document width), with keyboard silent-note inspection. Native research video play/pause/ready state and fullscreen were exercised. Deep links, history, dialog return, motion choice and source/word drawer behavior were checked. Exact geometry, failures and browser limits are recorded below and in QA.md. This is not physical-device/projector/screen-reader/pupil certification. |
+
+### Current open acceptance gates
+
+- **M33 — Real embedded video:** source, sensor, human musical choices, permitted official
+  embedding and fallback are implemented. Both privacy-enhanced and standard official
+  players rendered but remained at time 0/readyState 0 after Play in the cloud test browser.
+  Earlier creator-site playback in the connected browser did succeed. Actual in-exhibit
+  playback remains unaccepted; do not replace this gate with a synthetic-data success.
+- **M41 — Actual read-aloud:** reading controls, stop/voice selection, current-source text,
+  media/navigation coordination, errors and cleanup are implemented. This browser exposed
+  **zero English voices**. The visible unavailable message and injected tests passed, but no
+  actual audible reading or science-word pronunciation check was possible. Keep this open
+  until a target browser with a real voice is tested; written science-word help remains.
+- **M46 — Classroom trial:** Ms. Hughes/projector/pupil feedback has not been supplied. This
+  requires the real teacher-led check. J01–J05 (journal/content/Mushinator) remain deferred.
+
+### Reproducible evidence and geometry
+
+- `qa/batch-4-samples.json`: captured DOM text/style, image position and focus cases.
+- `qa/batch-4-contrast.json`: 203 text and 39 image-bound results, zero failures, CSS hash.
+- `qa/batch-4-verification.json`: all 55 layout, 15 job and 11 actual-zoom observations.
+- `qa/batch-4-reading.png`: real-photo station, larger copy and optional reading controls.
+- `node tools/audit-mushroom-contrast.mjs apps/mushroom-exploration/qa/batch-4-samples.json apps/mushroom-exploration/qa/batch-4-contrast.json`
+  reproduces the captured numerical report. These are dated records, not a live browser runner.
+- Default 1920×911: page **2736.94 px**, journal **y2382.95 px**, stations **904.23/868.39 px**.
+  Story access adds about **115 px** versus batch 3, for larger reading text, usable credits
+  and reading controls. Two learning stations and the direct journal shortcut remain; no
+  extra vertical exhibit was introduced. Smaller widths expand naturally without clipping.
+
+The source remains scaffold/research pending. No class kit, dates, photos, entries or outcomes
+are invented; no immutable release, live registry/Hub swap or Edublogs injection change occurs.
+
 ## Implementation map and source references
 
 | Concern | Owning files |
@@ -645,11 +699,11 @@ Tree `24f325f4993a3a08a11002868234fde9fa591ca7` matches local implementation
 | Authored lessons, claims and media references | `source/mushrooms.source.json`, `src/contract.js` |
 | Generated editor/schema descriptions | `source/mushrooms.control.json`, `schemas/mushroom-exploration.source.schema.json` |
 | Station navigation, anatomy, cutaway, gallery and binding | `src/runtime.js` |
-| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js`, `src/sound.js` |
+| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js`, `src/sound.js`, `src/narration.js` |
 | Scientific illustrations and connected specimen geometry | `src/art.js` |
 | Palettes, responsive layout, targets, labels and focus | `src/exhibit.css`, `src/host-compat.css` |
 | Registered photographs, footage and integrity | `src/photo-catalog.js`, `src/photos.js`, `src/video-assets.js`, `src/sound.js`, `src/assets/`, `source/mushrooms.assets.json` |
-| Regressions, preview build and actual QA | `tools/test-mushroom-exploration.mjs`, `tools/build-mushroom-exploration-preview.mjs`, `QA.md` |
+| Regressions, preview build, contrast and actual QA | `tools/test-mushroom-exploration.mjs`, `tools/build-mushroom-exploration-preview.mjs`, `tools/audit-mushroom-contrast.mjs`, `QA.md` |
 
 Paths are relative to this application unless prefixed `schemas/` or `tools/`, which are
 relative to the repository root. Keep generated files derived from their owning modules.

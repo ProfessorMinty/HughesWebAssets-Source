@@ -1,4 +1,84 @@
-# Current checks — music batch 3, 2026-11-06
+# Current checks — reading/access batch 4, 2026-11-06
+
+Implementation: [aefb03b4736d005da66b2ad467870af8f43ced68](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/aefb03b4736d005da66b2ad467870af8f43ced68).
+Tree `768d19d3a16d677b47842e480fdc608b8e6b1182` equals local
+`6a7c347697d5755efd63999dd5136fd4f548ec9e`. **43/46 fixes are complete.**
+Only M33 (embedded playback), M41 (actual voice/pronunciation acceptance) and M46
+(real teacher/projector/pupil trial) remain open; all are explicit acceptance gates.
+
+## Automated and numerical checks
+
+- `npm run check:mushrooms`: **42 tests pass**, syntax, generated contract/schema/control
+  consistency, original media integrity and standalone build. Five new tests cover source-owned
+  interface edits/templates, fresh selected narration text, voice capability/errors/late
+  arrival, utterance lifecycle/cleanup and contrast/alpha/gradient/image-mask calculations.
+- Contract **1.8.0** owns shared data.ui and editable block labels. No new dependency, third-party
+  audio clip, specimen image or classroom data was introduced. `git diff --check` passes.
+- **203 computed text/style cases** and **39 image-mask/overlay bounds** pass, using 4.5:1
+  for normal text and 3:1 for qualifying large text. Hero bounds use actual positions at
+  five sizes; photo overlays are checked against arbitrary black/white image extremes.
+  The selected-instrument hover rule was fixed and its actual :hover colors verified.
+- Actual visible focus samples used 3 px outlines. Conservative contrast across audited
+  base/tray/selected surfaces is at least 3.73:1 for amber, 4.30:1 for cyan. States retain
+  labels, weight, inset markers, underlines or named feedback. This is not WCAG certification.
+
+## Actual browser checks
+
+- All **55 activity/layout cases** and **15 job/layout cases** passed: no horizontal overflow,
+  one active block panel per station, all visible custom controls at least 44×44 CSS px.
+  Checkbox labels supply the larger clickable target. Short credit links were found and fixed.
+  Browser/third-party video controls are outside this custom-target claim; large custom
+  Play/Pause/Replay/Fullscreen alternatives remain.
+- Actual **200% Chrome zoom** was visually confirmed. All **eleven** activities passed
+  overflow/target checks at 674 px document width; keyboard Enter advanced silent music-note
+  inspection. Zoom returned to 100%. Small-screen content expands rather than being clipped.
+- Keyboard Enter, tab arrows/Home/End, anatomy part selection and selected/current cues were
+  exercised. Dialog Escape returned focus to the image opener. Header/focused-control positions
+  stayed below sticky navigation. Default first heading y137.83 versus nav bottom 77.
+- Direct legacy links lab→glow and lifecycle→launch, new sound→music, and journal/back→music
+  worked. Journal received focus and remained below navigation. History behavior is retained.
+- Motion choice made root less-motion true and CSS transition duration 0 s; growth remained
+  inspectable by steps and music kept its silent Next note while timed Play was hidden. Turning
+  motion back on did not auto-resume. System changes and storage failure remain unit tested.
+- Local microscope footage reached readyState 4 and played; Pause held it at 0.0505 s.
+  The QA iframe initially lacked fullscreen permission; that harness omission was fixed.
+  The native player then visibly filled the review surface (1363×936 versus 464.55×232.27
+  after Escape). Focus correction excludes fullscreen. Original low-resolution video detail
+  is unchanged. The cloud DOM bridge's element-identity equality did not report the visible
+  fullscreen state, so screenshot/geometry observations are the evidence for that check.
+- Optional reading correctly reported **zero English voices** and displayed a useful unavailable
+  message. Reading text follows current source/selected records and excludes credits/teacher
+  drawers. Injected speech tests pass; no actual audible reading or pronunciation pass is claimed.
+
+## Remaining gates and footprint
+
+M33 remains open: both official privacy-enhanced and standard creator players rendered in
+this cloud browser but stayed at time 0 / readyState 0 after Play. Earlier creator-site
+playback succeeded in the connected browser. The exhibit keeps source/device/artistic-choice
+explanations, disclosed unknown processing and a direct fallback. No media are downloaded.
+
+M41 remains open until a real available English voice is exercised and science-word speech
+is checked. M46 remains open until teacher/projector/pupil feedback is supplied. These limits
+do not certify physical devices, screen readers, listening quality or classroom comprehension.
+Source publication/research state remains scaffold/pending; journal authoring remains deferred.
+
+Default 1920×911: page **2736.94 px**, story **y2382.95 px**, stations **904.23/868.39 px**.
+The story moved about **115 px** versus batch 3, following larger text, usable credit targets
+and optional reading controls. The two-station structure and direct story shortcut remain.
+
+Evidence: `qa/batch-4-verification.json`, `qa/batch-4-samples.json`,
+`qa/batch-4-contrast.json`, [reading-station proof](qa/batch-4-reading.png).
+Reproduce the captured numerical audit with:
+
+```sh
+node tools/audit-mushroom-contrast.mjs apps/mushroom-exploration/qa/batch-4-samples.json apps/mushroom-exploration/qa/batch-4-contrast.json
+```
+
+These are dated captures; use a fresh browser pass after material layout/palette changes.
+
+---
+
+# Historical checks — music batch 3, 2026-11-06
 
 Implementation: [8cbfdc1666ea95ff4a1c15d356e3cee5608107eb](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/8cbfdc1666ea95ff4a1c15d356e3cee5608107eb).
 Tree `24f325f4993a3a08a11002868234fde9fa591ca7` equals local implementation
