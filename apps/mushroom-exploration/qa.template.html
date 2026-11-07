@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mushroom exhibit — viewport review</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; background:#dce3d6; font:14px/1.5 system-ui,sans-serif; color:#193d2e; }
+    header { padding:18px 24px; background:#f4f5ed; border-bottom:1px solid #bdc9b4; }
+    h1 { font-size:18px; margin:0 0 12px; }
+    nav { display:flex; flex-wrap:wrap; gap:10px; }
+    button { padding:9px 14px; font:inherit; border:1px solid #aab99d; border-radius:5px; background:white; color:inherit; cursor:pointer; }
+    button[aria-pressed="true"] { color:#f5ecd7; background:#234c3a; }
+    button:focus-visible { outline:3px solid #9c722c; outline-offset:3px; }
+    #report { display:block; margin-top:12px; font:12px/1.6 ui-monospace,monospace; white-space:pre-wrap; }
+    #stage { margin:24px auto; box-shadow:0 10px 40px #193d2e25; overflow:hidden; }
+    iframe { border:0; display:block; transform-origin:top left; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mushroom exhibit · internal screen-size check</h1>
+    <nav aria-label="Review viewport">
+      <button data-w="1920" data-h="911" aria-pressed="true">Desktop 1920 × 911</button>
+      <button data-w="1366" data-h="768" aria-pressed="false">Laptop 1366 × 768</button>
+      <button data-w="820" data-h="1180" aria-pressed="false">Tablet 820 × 1180</button>
+      <button data-w="390" data-h="844" aria-pressed="false">Phone 390 × 844</button>
+      <button data-w="320" data-h="640" aria-pressed="false">Small phone 320 × 640</button>
+    </nav>
+    <output id="report" aria-live="polite">Loading the exhibit preview…</output>
+  </header>
+  <div id="stage"><iframe id="exhibit" src="./index.html" title="Exhibit at the selected CSS viewport" allow="fullscreen" allowfullscreen></iframe></div>
+  <script>
+    const frame=document.getElementById("exhibit"), stage=document.getElementById("stage");
+    let width=1920,height=911;
+    function fit() {
+      const scale=Math.min(1,(document.documentElement.clientWidth-48)/width);
+      frame.style.width=width+"px"; frame.style.height=height+"px";
+      frame.style.transform="scale("+scale+")";
+      stage.style.width=width*scale+"px"; stage.style.height=height*scale+"px";
+    }
+    function measure() {
+      const doc=frame.contentDocument;
+      const root=doc&&doc.getElementById("hrv-mushroom-exploration-root");
+      if(!root)return;
+      const rect=root.getBoundingClientRect();
+      document.getElementById("report").textContent=
+        "CSS viewport: "+frame.contentWindow.innerWidth+" × "+frame.contentWindow.innerHeight+
+        " | State: "+root.dataset.hrvState+
+        " | Root: "+Math.round(rect.width)+"px / left "+Math.round(rect.left)+"px"+
+        " | Horizontal overflow: "+Math.max(0,doc.documentElement.scrollWidth-doc.documentElement.clientWidth)+"px"+
+        " | Stable sections: "+doc.querySelectorAll("[data-block-id]").length;
+    }
+    document.querySelectorAll("button[data-w]").forEach(function(button) {
+      button.addEventListener("click",function() {
+        width=Number(button.dataset.w);height=Number(button.dataset.h);
+        document.querySelectorAll("button[data-w]").forEach(function(item){item.setAttribute("aria-pressed",String(item===button));});
+        fit();requestAnimationFrame(function(){requestAnimationFrame(measure);});
+      });
+    });
+    frame.addEventListener("load",function() {
+      fit();requestAnimationFrame(function(){requestAnimationFrame(measure);});
+      new ResizeObserver(measure).observe(frame.contentDocument.documentElement);
+    });
+    window.addEventListener("resize",function(){fit();requestAnimationFrame(measure);});
+    fit();
+  </script>
+</body>
+</html>

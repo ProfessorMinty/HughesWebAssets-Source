@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-07",
+  "scope": "Real-video player hardening; M33/M41/M46 remain open",
+  "baseline": {
+    "localCommit": "4be72666f0a029b0cae8b8f02a3ac8687e95b949",
+    "remoteCommit": "49ffbc003851287c2dad22b1a0a55e8a996229b7",
+    "tree": "e600c7e444b18b1606bdcf078b3ad13479c333f8"
+  },
+  "automatedTests": {
+    "passed": 48,
+    "failed": 0
+  },
+  "playerLayouts": [
+    {
+      "viewport": "Small phone 320 \u00d7 640",
+      "closeHeight": 48,
+      "frame": {
+        "height": 200,
+        "width": 229
+      },
+      "overflow": 0,
+      "rootWidth": 305,
+      "statusFont": "18px",
+      "width": 305
+    },
+    {
+      "viewport": "Phone 390 \u00d7 844",
+      "closeHeight": 48,
+      "frame": {
+        "height": 200,
+        "width": 291
+      },
+      "overflow": 0,
+      "rootWidth": 375,
+      "statusFont": "18px",
+      "width": 375
+    },
+    {
+      "viewport": "Tablet 820 \u00d7 1180",
+      "closeHeight": 48,
+      "frame": {
+        "height": 400,
+        "width": 712
+      },
+      "overflow": 0,
+      "rootWidth": 805,
+      "statusFont": "18px",
+      "width": 805
+    },
+    {
+      "viewport": "Laptop 1366 \u00d7 768",
+      "closeHeight": 48,
+      "frame": {
+        "height": 403,
+        "width": 718
+      },
+      "overflow": 0,
+      "rootWidth": 1351,
+      "statusFont": "18px",
+      "width": 1351
+    },
+    {
+      "viewport": "Desktop 1920 \u00d7 911",
+      "closeHeight": 48,
+      "frame": {
+        "height": 403,
+        "width": 718
+      },
+      "overflow": 0,
+      "rootWidth": 1905,
+      "statusFont": "18px",
+      "width": 1905
+    }
+  ],
+  "playback": {
+    "providerReadyObserved": true,
+    "playAttemptState": "buffering",
+    "finalState": "timeout",
+    "reportedTime": 0,
+    "nativeCurrentTime": 0,
+    "nativeReadyState": 0,
+    "actualPlaybackAccepted": false
+  },
+  "recovery": {
+    "retryFrameCount": 1,
+    "retryState": "loading",
+    "retryTime": 0,
+    "closeFrameCount": 0,
+    "closeState": "closed",
+    "closeReturnedFocusTo": "Load the creator\u2019s video",
+    "activityChangeFrameCount": 0,
+    "activityChangeState": "closed"
+  },
+  "defaultDesktop": {
+    "viewport": [
+      1920,
+      911
+    ],
+    "documentClientWidth": 1905,
+    "pageScrollHeight": 2737,
+    "journalY": 2382.953125,
+    "stationHeights": [
+      904.234375,
+      868.390625
+    ],
+    "horizontalOverflow": 0
+  },
+  "speech": {
+    "cloudEnglishVoiceCount": 0,
+    "connectedBrowserEnglishVoiceAvailabilityObservedOn": "official MDN speak-easy-synthesis demo",
+    "connectedEnglishVoiceNames": [
+      "Google US English",
+      "Google UK English Female",
+      "Google UK English Male",
+      "Microsoft David - English (United States)",
+      "Microsoft Mark - English (United States)",
+      "Microsoft Zira - English (United States)"
+    ],
+    "exhibitSpeechOrPronunciationAccepted": false
+  },
+  "limits": [
+    "No successful embedded video playback in cloud browser",
+    "Voice availability on a separate MDN demo does not verify exhibit speech",
+    "No physical-device, listening-quality, screen-reader or teacher/projector/pupil acceptance",
+    "Screenshot shows ready player and its honest start prompt, not playback success"
+  ]
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Our mushroom-growing story · Hughes Room Views</title>
+  <meta name="description" content="Follow our classroom mushroom-growing journal. Explore more fungi science whenever you like.">
+  <style>
+    html { scroll-behavior:auto; }
+    body { margin:0; background:#e9ece5; }
+    .preview-tools { box-sizing:border-box; display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:10px; min-height:44px; padding:8px 20px; color:#d5dece; background:#11271f; font:12px/1.5 system-ui,sans-serif; border-bottom:1px solid #9aaa8750; }
+    .preview-tools strong { color:#f1d291; margin-right:12px; }
+    .preview-tools-controls { display:flex; align-items:center; flex-wrap:wrap; gap:14px; }
+    .preview-tools button { padding:5px 10px; border:1px solid #b8c89f60; border-radius:3px; background:transparent; color:#e3e8d7; font:inherit; cursor:pointer; }
+    .preview-tools button:focus-visible { outline:3px solid #e8c990; outline-offset:3px; }
+    .preview-tools button[aria-pressed="true"] { color:#192f24; background:#d6c18e; }
+    .preview-tools output { color:#aabda1; }
+    .preview-tools[hidden] { display:none; }
+    #page { min-height:100vh; }
+    #masthead { padding:60px; text-align:center; font:24px Georgia,serif; background:white; }
+    #content.site-content.container { width:1170px; max-width:calc(100% - 30px); margin:0 auto; }
+    #primary.content-area { width:100%; }
+    article.page { padding:45px; background:#fff; }
+    .entry-content { max-width:100%; }
+    .entry-header { padding:20px; }
+    #hrv-mushroom-exploration-root:not(.hrv-mushrooms) { padding:28px; font:18px/1.6 system-ui,sans-serif; background:#f0f1e8; color:#264836; }
+    @media (max-width:550px) { .preview-tools { padding:10px 18px; } .preview-tools .preview-target { display:none; } article.page { padding:28px; } }
+    __EXHIBIT_CSS__
+    __HOST_CSS__
+  </style>
+</head>
+<body>
+  <aside class="preview-tools" aria-label="Structure review tools" hidden>
+    <div><strong>EXHIBIT DRAFT</strong><span>Classroom journal first · optional science exhibits</span></div>
+    <div class="preview-tools-controls">
+      <span class="preview-target">Desktop reference: 1920 × 911</span>
+      <output id="preview-viewport" aria-label="Current viewport"></output>
+      <button type="button" id="preview-map" aria-pressed="false">Show editable blocks</button>
+    </div>
+  </aside>
+  <div id="page">
+    <header id="masthead" class="site-header">Amadeus host header — simulation only</header>
+    <div id="content" class="site-content container">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+          <article class="page">
+            <header class="entry-header">Native page title — simulation only</header>
+            <div class="entry-content">
+              <div id="hrv-mushroom-exploration-root" role="region" aria-label="Mushroom exploration exhibit">
+                <p>The mushroom exhibit is temporarily unavailable. Please check back soon.</p>
+              </div>
+            </div>
+          </article>
+        </main>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="mushroom-preview-source">__SOURCE_JSON__</script>
+  <script type="module">
+    __RUNTIME_MODULE__
+    const previewSource = JSON.parse(document.getElementById("mushroom-preview-source").textContent);
+    const previewRoot = document.getElementById("hrv-mushroom-exploration-root");
+    mountMushroomExhibit(previewRoot, previewSource, { allowDraft: true });
+    document.querySelector('.preview-tools').hidden = !new URLSearchParams(location.search).has('review');
+    const mapButton = document.getElementById("preview-map");
+    mapButton.addEventListener("click", function () {
+      const enabled = mapButton.getAttribute("aria-pressed") !== "true";
+      mapButton.setAttribute("aria-pressed", String(enabled));
+      previewRoot.dataset.showBlockMap = String(enabled);
+    });
+    function showViewport() {
+      document.getElementById("preview-viewport").textContent = window.innerWidth + " × " + window.innerHeight;
+    }
+    window.addEventListener("resize", showViewport); showViewport();
+  </script>
+</body>
+</html>
