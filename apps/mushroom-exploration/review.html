@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>The hidden world of fungi · Draft review</title>
+  <link rel="stylesheet" href="./src/exhibit.css">
+  <link rel="stylesheet" href="./src/host-compat.css">
+  <style>
+    body{margin:0;background:#092f29}
+    #content.site-content.container{width:1170px;max-width:calc(100% - 30px);margin:0 auto}
+    article.page{padding:45px}
+    #hrv-mushroom-exploration-root:not(.hrv-mushrooms){padding:28px;font:18px/1.6 system-ui,sans-serif;color:#f6e6c2}
+  </style>
+</head>
+<body>
+  <div id="page">
+    <div id="content" class="site-content container">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+          <article class="page"><div class="entry-content">
+            <div id="hrv-mushroom-exploration-root" role="region" aria-label="Mushroom exploration exhibit">
+              <p>Opening the mushroom exhibit…</p>
+            </div>
+          </div></article>
+        </main>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+    // Repository review entry point only. The live bootstrap still rejects draft source.
+    import { mountMushroomExhibit } from './src/runtime.js';
+    const root=document.getElementById('hrv-mushroom-exploration-root');
+    try {
+      const response=await fetch(new URL('./source/mushrooms.source.json',import.meta.url),{credentials:'omit',redirect:'error'});
+      if(!response.ok)throw new Error('Source unavailable');
+      const text=await response.text();
+      if(new TextEncoder().encode(text).byteLength>200000)throw new Error('Source exceeds review bound');
+      mountMushroomExhibit(root,JSON.parse(text),{allowDraft:true});
+    } catch {
+      root.dataset.hrvState='unavailable';
+      root.replaceChildren(Object.assign(document.createElement('p'),{textContent:'The mushroom exhibit could not open. Please try again later.'}));
+    }
+  </script>
+</body>
+</html>
