@@ -1346,7 +1346,7 @@
         "complete": "Reading finished.",
         "stopped": "Reading stopped.",
         "unavailable": "A reading voice is not available in this browser. You can still read every explanation.",
-        "error": "Reading could not start. Try again or read the text below.",
+        "error": "Reading did not finish. Try another reading voice, or read the text below.",
         "starting": "Getting the reading voice ready…",
         "none": "No English reading voice available",
         "voiceHelp": "Voices can sound different. Choose one you find easy to understand."

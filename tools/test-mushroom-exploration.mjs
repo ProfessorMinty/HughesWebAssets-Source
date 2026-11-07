@@ -359,3 +359,15 @@ test('YouTube loader releases failed loads and permits an explicit retry without
  const {loadMushroomYouTubeAPI}=await import('../apps/mushroom-exploration/src/demo.js'),h=youtubeLoaderHarness();const first=loadMushroomYouTubeAPI(h.win,h.doc);h.listeners.get('error')();await assert.rejects(first);assert.equal(Object.hasOwn(h.win,'onYouTubeIframeAPIReady'),false);assert.equal(h.scripts[0].removed,true);const second=loadMushroomYouTubeAPI(h.win,h.doc);assert.equal(h.scripts.length,2);[...h.timers.values()][0]();await assert.rejects(second);assert.equal(h.timers.size,0);assert.equal(h.listeners.size,0);
  const denied=youtubeLoaderHarness();denied.doc.head.append=()=>{throw new Error('CSP');};await assert.rejects(loadMushroomYouTubeAPI(denied.win,denied.doc));assert.equal(Object.hasOwn(denied.win,'onYouTubeIframeAPIReady'),false);assert.equal(denied.timers.size,0);
 });
+
+
+test('read-aloud refuses an end before start and an impossibly quick long-lesson end',async()=>{
+ const {createMushroomNarration}=await import('../apps/mushroom-exploration/src/narration.js'),h=narrationHarness([readingVoice]);let clock=0;const reader=createMushroomNarration({...h.options,now:()=>clock}),text='A mushroom is part of a fungus. Its threads spread through soil or wood and take in food. Some fungi make mushrooms that release tiny spores.';
+ reader.read(text,'one');h.spoken[0].onend({elapsedTime:0});assert.equal(reader.snapshot().state,'error');assert.equal(reader.snapshot().failure,'ended-before-start');
+ reader.read(text,'one');h.spoken[1].onstart();clock=10;h.spoken[1].onend({elapsedTime:0});assert.equal(reader.snapshot().state,'error');assert.equal(reader.snapshot().failure,'ended-too-soon');assert.equal(reader.snapshot().lastReading.characters,text.length);assert.equal(reader.snapshot().lastReading.elapsedMs,10);assert.equal(h.timers.size,0);reader.destroy();
+});
+test('read-aloud accepts real elapsed reading and does not impose a long-text duration on a short selection',async()=>{
+ const {createMushroomNarration}=await import('../apps/mushroom-exploration/src/narration.js'),h=narrationHarness([readingVoice]);let clock=0;const reader=createMushroomNarration({...h.options,now:()=>clock});
+ reader.read('A mushroom is part of a fungus. Its threads spread through soil or wood and take in food. Some fungi make mushrooms that release tiny spores.','one');h.spoken[0].onstart();clock=15000;h.spoken[0].onend({elapsedTime:15});assert.equal(reader.snapshot().state,'complete');assert.equal(reader.snapshot().failure,null);assert.equal(reader.snapshot().lastReading.providerElapsedSeconds,15);
+ reader.read('Spores.','one');h.spoken[1].onstart();clock=15200;h.spoken[1].onend();assert.equal(reader.snapshot().state,'complete');reader.destroy();
+});
