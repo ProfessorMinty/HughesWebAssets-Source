@@ -25,3 +25,36 @@ test('journal videos are intentional and pause when their day closes',async()=>s
  const changed=structuredClone(record);changed.media[0].kind='video';changed.media[0].url=url.replace('image.webp','video.mp4');
  const journal=createGrowingJournal(document.querySelector('#fallback'),{fetcher:async url=>new Response(JSON.stringify(url===MUSHROOM_JOURNAL_FEED?{schemaVersion:'1.0.0',entries:[entry]}:changed))});await journal.load();const day=document.querySelector('details');day.open=true;day.dispatchEvent(new dom.window.Event('toggle'));await settle();const video=document.querySelector('video');assert.equal(video.autoplay,false);assert.equal(video.preload,'none');assert.equal(video.controls,true);day.open=false;day.dispatchEvent(new dom.window.Event('toggle'));assert.ok(pauses()>0);journal.destroy();assert.equal(video.getAttribute('src'),null);
 }));
+
+test('a failed day retries directly without relying on coalesced details toggle events',async()=>setup(async dom=>{
+ let attempts=0;
+ const journal=createGrowingJournal(document.querySelector('#fallback'),{fetcher:async url=>{
+  if(url===MUSHROOM_JOURNAL_FEED)return new Response(JSON.stringify({schemaVersion:'1.0.0',entries:[entry]}));
+  attempts++;return attempts===1?new Response('',{status:503}):new Response(JSON.stringify(record));
+ }});
+ await journal.load();const day=document.querySelector('details');day.open=true;day.dispatchEvent(new dom.window.Event('toggle'));await settle();
+ document.querySelector('.mushroom-journal-day-body button').click();await settle();
+ assert.equal(attempts,2);assert.equal(day.dataset.loaded,'true');assert.equal(document.querySelectorAll('figure').length,1);journal.destroy();
+}));
+test('a failed index keeps the classroom fallback and exposes a functioning retry',async()=>setup(async()=>{
+ let attempts=0;
+ const journal=createGrowingJournal(document.querySelector('#fallback'),{fetcher:async()=>++attempts===1?new Response('',{status:503}):new Response(JSON.stringify({schemaVersion:'1.0.0',entries:[entry]}))});
+ await journal.load();assert.match(document.body.textContent,/journal could not open/);assert.ok(document.querySelector('#fallback'));
+ document.querySelector('#fallback button').click();await settle();assert.equal(document.querySelectorAll('.mushroom-journal-day').length,1);assert.equal(document.querySelector('#fallback'),null);journal.destroy();
+}));
+test('impossible calendar dates and duplicate identities never become published day frames',async()=>setup(async()=>{
+ for(const entries of [[{...entry,date:'2026-02-30'}],[entry,entry]]){
+  document.body.innerHTML='<div id="fallback">Our journal is getting ready.</div>';
+  const journal=createGrowingJournal(document.querySelector('#fallback'),{fetcher:async()=>new Response(JSON.stringify({schemaVersion:'1.0.0',entries}))});
+  await journal.load();assert.equal(document.querySelectorAll('.mushroom-journal-day').length,0);assert.match(document.body.textContent,/journal could not open/);journal.destroy();
+ }
+}));
+test('a stalled request is aborted and leaves a recoverable classroom journal',async()=>setup(async()=>{
+ let aborted=false;
+ const journal=createGrowingJournal(document.querySelector('#fallback'),{timeoutMs:15,fetcher:(_url,options)=>new Promise((_resolve,reject)=>options.signal.addEventListener('abort',()=>{aborted=true;reject(new DOMException('Aborted','AbortError'));},{once:true}))});
+ await journal.load();assert.equal(aborted,true);assert.match(document.body.textContent,/Try the journal again/);journal.destroy();
+}));
+test('day disclosure labels follow open and closed state',async()=>setup(async dom=>{
+ const journal=createGrowingJournal(document.querySelector('#fallback'),{fetcher:async()=>new Response(JSON.stringify({schemaVersion:'1.0.0',entries:[entry]}))});
+ await journal.load();const day=document.querySelector('details');day.open=true;day.dispatchEvent(new dom.window.Event('toggle'));assert.equal(day.querySelector('.mushroom-journal-toggle').textContent,'Close this day');day.open=false;day.dispatchEvent(new dom.window.Event('toggle'));assert.equal(day.querySelector('.mushroom-journal-toggle').textContent,'Open this day');journal.destroy();
+}));

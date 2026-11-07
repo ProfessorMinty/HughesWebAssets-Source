@@ -657,3 +657,21 @@ rendered browser checks above apply to the HTTPS source draft, whose journal fee
 No actual HEIC file was supplied, so real 15 MB+ HEIC conversion remains unverified.
 Existing M41 speech/pronunciation and M46 classroom/projector acceptance remain open; this
 layout change does not close them. Final Edublogs installation and the Hub swap remain pending.
+
+## Production handoff preparation — November 7, 2026
+
+The journal retry path no longer relies on two coalesced native details toggles. Requests
+have a 12-second abort deadline, index errors expose a real Retry, invalid dates are rejected,
+and Open/Close labels match the day state. New regressions cover these failures.
+
+Release tooling now stages a source-reviewed snapshot, bundles the existing modules and
+preserves source assets. The pinned bootstrap verifies all release bytes before mounting;
+the JS-field doorway creates one mount and preserves unrelated native content. Ten additional
+release tests exercise tampering, path traversal, missing entries, empty/mismatched journal
+publication, doorway idempotency and retry. These tests are code/DOM evidence, not a live
+publishing or rendered CDN acceptance claim.
+
+The exact current blockers and continuation are maintained in
+`docs/edublogs-integration/mushrooms-2026-2027/READINESS.md`. No token or credential was created;
+GitHub requires owner email verification. The latest file-upload attempt timed out, and the
+live draft still has no imported media. No Edublogs field or page was modified.
