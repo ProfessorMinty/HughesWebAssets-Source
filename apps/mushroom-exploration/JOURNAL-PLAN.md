@@ -1,7 +1,8 @@
 # Classroom growing journal — working plan
 
-November 7, 2026. New journal phase authorized by Arctic. Planning and supplied-media
-review at this point; the renderer/uploader below are not yet implemented. The prior
+November 7, 2026. New journal phase authorized by Arctic. The public reader and separate
+Lanternworks draft editor/upload implementation now exist. Live media conversion and the
+GitHub publishing connection still require completion. The prior
 museum checklist remains 44/46 with its two existing acceptance items open.
 
 ## Agreed requirements
@@ -187,3 +188,16 @@ This ZIP contains JPEGs, not HEIC, and does not test the requested 15 MB+ HEIC c
    adding/editing/reordering each optional card type, empty-section hiding, retries,
    edit/replace/reorder, draft recovery and publication. Record actual results and limitations.
 6. Prepare publication/manual Hub swap separately. Do not activate a live route from this plan.
+
+## Classroom-first design revision — November 7, 2026
+
+Poppet confirmed that the classroom project is the main purpose. The welcome is compact;
+Our growing story is chapter 01 and the first substantial section. Both science stations
+remain intact after the journal, inside an optional Explore more about fungi disclosure.
+Existing activity links automatically reveal the science. The default page no longer
+requires the visitor to pass through a fungi lesson to reach the class's work.
+
+This changes presentation, navigation and introductory copy, without inventing classroom
+notes or requiring a species. The four supplied day groups and all agreed card/media
+requirements above remain in force. Final public publication and the live Hub swap remain
+separate release work.

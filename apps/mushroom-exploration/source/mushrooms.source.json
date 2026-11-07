@@ -127,9 +127,9 @@
       {
         "id": "mushroom-block:welcome",
         "type": "hero",
-        "eyebrow": "HUGHES ROOM VIEWS · THE LIVING WORLD",
-        "title": "The hidden\nworld of fungi.",
-        "intro": "A mushroom is only part of the story. Step into a world of tiny spores, secret threads, and surprising science.",
+        "eyebrow": "HUGHES ROOM VIEWS · OUR MUSHROOM PROJECT",
+        "title": "Our classroom.\nOur growing story.",
+        "intro": "Come see our mushrooms grow! Follow our classroom journal, one day at a time.",
         "sourceRefs": [
           "mushroom-source:basics"
         ],
@@ -142,12 +142,12 @@
           "words": []
         },
         "entry": {
-          "exploreLabel": "Explore fungi",
-          "journalLabel": "Our class project · coming soon",
+          "exploreLabel": "Explore more about fungi",
+          "journalLabel": "Our growing story",
           "journalReadyLabel": "Our growing story",
-          "note": "Two exhibits to explore. Our classroom discoveries are coming next."
+          "note": "Curious about mushrooms? Open the exhibits for pictures, activities, and surprising science."
         },
-        "label": "The hidden world"
+        "label": "Our mushroom project"
       },
       {
         "id": "mushroom-block:kingdom",
@@ -1286,8 +1286,8 @@
         "id": "mushroom-block:journal",
         "type": "journal",
         "eyebrow": "OUR CLASSROOM / 2026–2027",
-        "title": "Now it’s our turn to wonder.",
-        "intro": "Our classroom photographs, observations, and discoveries will appear here when our journal is ready.",
+        "title": "Our mushroom-growing journal",
+        "intro": "Open a day to see our classroom photographs, videos, and what we noticed.",
         "sourceRefs": [],
         "currentStage": null,
         "entries": [],
@@ -1304,7 +1304,7 @@
     "ui": {
       "brand": "Hughes Room Views",
       "navLabel": "Mushroom exhibit navigation",
-      "skipLabel": "Skip to the mushroom exhibit",
+      "skipLabel": "Skip to our mushroom project",
       "noticePrefix": "Notice: ",
       "wordsTitle": "Science words & teacher notes",
       "sourcesTitle": "Explore the science sources",
@@ -1314,7 +1314,7 @@
       "photographLabel": "Photograph",
       "photoZoom": "Look closer",
       "photoChangeSuffix": "resized",
-      "heroArtworkLabel": "Imagined woodland artwork · the science starts below",
+      "heroArtworkLabel": "Imagined woodland artwork",
       "partGroup": "Mushroom parts",
       "partCountTemplate": "Part {index} of {total}",
       "partNameTemplate": "Part {index}: {name}",
@@ -1334,8 +1334,8 @@
       "quizEyebrow": "Your turn · explorer thinking",
       "footerLabel": "Hughes Room Views · Keep wondering.",
       "footerLink": "Back to Classroom Explorations",
-      "journalHeading": "The next chapter is ours.",
-      "journalBody": "Our classroom journal is getting ready. Come back for our growing story.",
+      "journalHeading": "Our growing story is getting ready.",
+      "journalBody": "Our classroom photos, videos, and notes will appear here when each day is ready to share.",
       "narration": {
         "read": "Read to me",
         "stop": "Stop reading",

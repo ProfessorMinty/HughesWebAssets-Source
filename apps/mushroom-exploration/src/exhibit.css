@@ -1,4 +1,4 @@
-/* Repository-owned viewport-breakout exhibit. Two learning stations, then the classroom story. */
+/* Repository-owned viewport-breakout exhibit. Classroom story first, optional science after. */
 .hrv-mushrooms,.hrv-mushrooms *,.hrv-mushrooms *::before,.hrv-mushrooms *::after{box-sizing:border-box}
 .hrv-mushrooms{--mushroom-entrance-image:url('./assets/entrance-v1.webp');--ink:#f2dec4;--muted:#c1cba9;--surface:#06443f;--tray:#032f2a;--forest:#01231b;--gold:#e1ad4d;--selected:#155d51;--glow:#2ad9c8;--moss:#769e53;--action-ink:#01231b;--panel:#073b36;--line:#779a81;--focus:#e1ad4d;--ui-font:'Segoe UI',system-ui,sans-serif;--gutter:clamp(24px,3vw,58px);isolation:isolate;background:var(--surface);color:var(--ink);font:18px/1.6 'Segoe UI',system-ui,sans-serif;text-align:left;overflow-wrap:break-word}
 .hrv-mushrooms :where(h1,h2,h3,p,figure){margin:0;padding:0;color:inherit}
@@ -572,3 +572,31 @@
 .hrv-mushrooms .mushroom-journal-note .mushroom-journal-author{font-size:15px;color:#e3d6b9}
 .hrv-mushrooms .mushroom-journal-note a{color:#f2d99d;display:inline-block;margin-top:12px}
 @media(max-width:800px){.hrv-mushrooms .mushroom-journal-days,.hrv-mushrooms .mushroom-journal-notes{grid-template-columns:1fr}.hrv-mushrooms .mushroom-journal-day>summary{grid-template-columns:90px 1fr;gap:15px;padding:16px}.hrv-mushrooms .mushroom-journal-cover{width:90px;height:105px}.hrv-mushrooms .mushroom-journal-toggle{grid-column:1/-1;text-align:center}.hrv-mushrooms .mushroom-journal-day-body{padding:16px}.hrv-mushrooms .mushroom-journal-summary-copy h3{font-size:25px}}
+
+/* Classroom-first entrance: the journal is visible before optional science. */
+.hrv-mushrooms .mushroom-section-hero>.mushroom-inner{min-height:0;padding-block:30px 34px}
+.hrv-mushrooms .mushroom-hero-copy{width:70%;max-width:940px}
+.hrv-mushrooms .mushroom-hero-title{font-size:clamp(36px,3.1vw,59px);margin-top:8px!important;line-height:1.06}
+.hrv-mushrooms .mushroom-hero-intro{max-width:56ch;font-size:19px;margin-top:12px!important;line-height:1.5}
+.hrv-mushrooms .mushroom-hero-actions{gap:22px;margin-top:18px}
+.hrv-mushrooms .mushroom-art-caption{font-size:12px;max-width:22ch}
+.hrv-mushrooms .mushroom-section-journal{padding-block:26px 32px}
+.hrv-mushrooms .mushroom-section-journal>.mushroom-inner{display:block}
+.hrv-mushrooms .mushroom-section-journal .mushroom-section-heading{display:block;max-width:100%;margin-bottom:22px}
+.hrv-mushrooms .mushroom-section-journal .mushroom-section-heading h2{font-size:clamp(29px,2.3vw,42px);margin-top:7px!important}
+.hrv-mushrooms .mushroom-section-journal .section-intro{max-width:70ch;margin-top:8px!important;font-size:19px}
+.hrv-mushrooms .mushroom-section-journal .mushroom-journal-placeholder{padding:22px 28px}
+.hrv-mushrooms .mushroom-section-journal .mushroom-journal-placeholder h3{font-size:28px}
+.hrv-mushrooms .mushroom-optional-exploration{background:#153d35;border-block:1px solid #729483;scroll-margin-top:calc(var(--mushroom-nav-height,124px) + 18px)}
+.hrv-mushrooms .mushroom-exploration-summary{position:relative;padding:25px calc(var(--gutter) + 44px) 25px var(--gutter);list-style:none;cursor:pointer;color:#fbf1d8}
+.hrv-mushrooms .mushroom-exploration-summary::-webkit-details-marker{display:none}
+.hrv-mushrooms .mushroom-exploration-summary::after{content:'+';position:absolute;right:var(--gutter);top:26px;font-size:32px;line-height:1;color:#f5d18d}
+.hrv-mushrooms .mushroom-optional-exploration[open]>.mushroom-exploration-summary::after{content:'−'}
+.hrv-mushrooms .mushroom-exploration-summary h2{font-size:clamp(26px,2vw,34px);line-height:1.25}
+.hrv-mushrooms .mushroom-exploration-summary p{font-size:18px;line-height:1.55;color:#d7e5d7;margin-top:8px!important;max-width:65ch}
+.hrv-mushrooms .mushroom-exploration-summary:hover{background:#214c40}
+.hrv-mushrooms .mushroom-exploration-summary:focus-visible{outline:3px solid #2ad9c8;outline-offset:-6px}
+.hrv-mushrooms .mushroom-journal-summary-copy{overflow-wrap:anywhere;min-width:0}
+.hrv-mushrooms .mushroom-journal-summary-copy h3{font-size:27px}
+@media(max-width:1100px){.hrv-mushrooms .mushroom-journal-day>summary{grid-template-columns:100px minmax(0,1fr);gap:16px}.hrv-mushrooms .mushroom-journal-cover{width:100px;height:115px}.hrv-mushrooms .mushroom-journal-toggle{grid-column:1/-1;text-align:center}}
+@media(max-width:700px){.hrv-mushrooms .mushroom-hero-copy{width:100%}.hrv-mushrooms .mushroom-section-hero>.mushroom-inner{padding-block:22px 30px}.hrv-mushrooms .mushroom-hero-title{font-size:36px}.hrv-mushrooms .mushroom-hero-intro{font-size:18px}.hrv-mushrooms .mushroom-art-caption{position:relative;right:auto;bottom:auto;max-width:none;padding:4px var(--gutter);background:#082c27}.hrv-mushrooms .mushroom-hero-actions{gap:14px}.hrv-mushrooms .mushroom-section-journal{padding-block:22px 28px}.hrv-mushrooms .mushroom-section-journal .section-intro{font-size:18px}.hrv-mushrooms .mushroom-exploration-summary{padding-block:22px}}

@@ -1,4 +1,4 @@
-# The hidden world of fungi — exhibit draft
+# Our mushroom-growing story — classroom journal and optional exhibits
 
 Unpublished 2026–2027 exhibit for second and third graders. Based on the verified active
 Hub workstream dc7237d3912746afbe9f15dc215dfd18aad6b31f, rather than the older default main.
@@ -14,6 +14,22 @@ The current follow-up scope is in [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-C
 46 stable fix IDs with acceptance criteria, baseline protections, execution order and separately
 deferred classroom/editor work. Completed items have dated evidence; unchecked items remain open.
 
+## Current continuation — November 7, 2026
+
+Poppet's classroom-first direction supersedes the earlier exhibit-first sequence and the
+prior instruction to make Explore fungi primary while the journal is empty. The compact
+welcome leads directly to the classroom journal; the two existing science stations follow
+inside an optional, initially closed “Explore more about fungi” disclosure. Header chapters
+follow that reading order. Existing science hashes open the disclosure and retain their
+activity selection. Empty journal/feed failures retain an honest classroom placeholder.
+
+The public day reader (`src/journal.js`) is implemented, with lazy day records and galleries,
+optional unnamed notes, and video cleanup. The index remains empty until actual classroom
+material is explicitly published. The separate Lanternworks `/mushrooms` editor is deployed;
+its existing Friday draft and disabled Publish day control were verified in the authenticated
+browser on November 7. Its GitHub writing connection remains missing. No classroom import,
+HEIC conversion, public publication or classroom acceptance is claimed by this layout pass.
+
 ## The page
 
 Viewport breakout is the only layout method. The reference viewport is 1920 × 911 CSS px.
@@ -21,12 +37,12 @@ Responsive styles recompose the same exhibit at smaller widths. Breakout uses av
 client width, excluding the vertical scrollbar. The preview supplies an Amadeus-like narrow
 ancestor chain to exercise the mount-scoped compatibility rules.
 
-The nine stable source blocks now render as a shorter journey: entrance → two full-width
-learning stations → classroom growing story. Station one contains kingdom, anatomy,
+The nine stable source blocks now render as a shorter journey: compact welcome → classroom growing story → optional full-width
+learning stations. Station one contains kingdom, anatomy,
 hidden threads and fungal jobs. Station two has seven direct choices: tiny launch, breeze,
 puffball cloud, life cycle, glowing fungi, mushroom music and explorer questions. Desktop
-tabs become a single native activity picker below 1100 px. The primary entrance starts
-the exhibit; the secondary journal destination says coming soon. The journal stays directly
+tabs become a single native activity picker below 1100 px. The primary entrance opens
+the classroom journal; the secondary action opens the optional science. The journal stays directly
 linked from the sticky navigation. A local Next action provides an optional guided path.
 Tabs retain all block IDs and content, support arrows/Home/End, and reveal direct hash links. Hands-on stations include five anatomy selections, a detailed mycelium
 cutaway, a drop-launch model beside real microscope footage, a separate wind model, photographic bioluminescence,
@@ -99,7 +115,7 @@ The new process labels, stages, status text, control names and recording message
 source-owned. Music chain copy, labels, controls, statuses, instruments and observation feedback
 are validated too. Shared navigation, photo, science-word, journal-placeholder and reading-control
 copy lives in data.ui, with editMushroomInterface as its validated edit operation. Activity labels
-are editable independently of stable block identities. The actual editor is not built. Data renders as text,
+are editable independently of stable block identities. The separate Mushinator journal editor is deployed; broader exhibit-copy editing remains future work. Data renders as text,
 never arbitrary HTML. Stable IDs, year, viewport method and reference size are protected.
 Content edits invalidate the document's research/publication review state. Add/remove
 operations for nested records remain a future explicit command.
@@ -110,11 +126,12 @@ separate field from its diagram, so selecting a photograph does not move diagram
 
 source/mushrooms.control.json and schemas/mushroom-exploration.source.schema.json are
 generated from src/contract.js; checks reject drift. These are the contract for the future
-Lanternworks /mushrooms module, named Mushinator. The editor, classroom media uploads,
-journal authoring and Lanternworks home button are not implemented in this phase.
+Lanternworks /mushrooms module, named Mushinator. The separate journal phase implements the Lanternworks editor, private media upload path,
+journal authoring and home button; its publication connection and real conversion checks remain open.
 
-The actual class kit/species, observation dates, photos and current growth stage remain
-unknown. No journal entries or classroom outcomes are invented. The journal block is reserved.
+The species remains optional and unconfirmed. Supplied media is grouped Friday October 30,
+Tuesday November 3, Wednesday November 4 and Thursday November 5; date assignments remain
+provisional from the folder labels and visible notes. No student words or classroom outcomes are invented.
 The edited source is marked researchStatus pending while the remaining model/music content
 receives its final cross-exhibit review. Publication state remains scaffold. Final review and an immutable
 release belong to the later publication phase.
@@ -142,7 +159,7 @@ to 2026–2027 Past and preserve the 2025–2026 archive.
 
 See RESEARCH.md for independent source review and QA.md for observed browser checks.
 
-## Two full-width learning stations
+## Earlier exhibit implementation evidence (before the classroom-first continuation)
 
 The current two-station implementation supersedes the earlier nine-section reading-rail
 layout. At 1920×911, the default stations are about 830 and 788 px tall; the classroom

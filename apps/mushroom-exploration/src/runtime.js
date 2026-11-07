@@ -93,7 +93,7 @@ export function mountMushroomExhibit(root,source,options){
     const brand=anchor(ui.brand,'https://rmhughes.edublogs.org/','mushroom-brand');
     const mark=element('span','mushroom-brand-mark');mark.setAttribute('aria-hidden','true');mark.append(artwork('<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 20L15 34H25L23 20" fill="currentColor"/><path d="M4 21Q20 -6 36 21Q20 29 4 21" fill="none" stroke="currentColor" stroke-width="2"/></svg>'));brand.prepend(mark);
     const links=element('div','mushroom-navigation-links'),chapterLinks=[];
-    [['01',source.data.blocks.find(b=>b.type==='family').station.title,'discover'],['02',source.data.blocks.find(b=>b.type==='lifecycle').station.title,'motion'],['03',source.data.blocks.find(b=>b.type==='journal').label,'journal']].forEach(([number,label,target])=>{
+    [['01',source.data.blocks.find(b=>b.type==='journal').label,'journal'],['02',source.data.blocks.find(b=>b.type==='family').station.title,'discover'],['03',source.data.blocks.find(b=>b.type==='lifecycle').station.title,'motion']].forEach(([number,label,target])=>{
       const link=anchor('','#mushrooms-'+target,'mushroom-chapter-link');
       const badge=element('span','chapter-number',number),arrow=element('span','chapter-arrow');badge.setAttribute('aria-hidden','true');arrow.setAttribute('aria-hidden','true');
       link.append(badge,element('span','chapter-label',label),arrow);links.append(link);chapterLinks.push(link);
@@ -106,8 +106,7 @@ export function mountMushroomExhibit(root,source,options){
         if(block.media){const custom=sourceImage(block.media,'mushroom-hero-custom');section.prepend(custom);}
         const copy=element('div','mushroom-hero-copy');const title=element('h1','mushroom-hero-title',block.title);title.id=section.id+'-title';
         copy.append(element('p','mushroom-eyebrow',block.eyebrow),title,element('p','mushroom-hero-intro',block.intro));
-        const journalReady=source.data.blocks.find(b=>b.type==='journal').entries.length>0;
-        const actions=element('div','mushroom-hero-actions');actions.append(anchor(block.entry.exploreLabel,'#mushrooms-discover','mushroom-button'),anchor(journalReady?block.entry.journalReadyLabel:block.entry.journalLabel,'#mushrooms-journal','mushroom-text-link'));copy.append(actions,element('p','mushroom-hero-note',block.entry.note));inner.append(copy);
+        const actions=element('div','mushroom-hero-actions');actions.append(anchor(block.entry.journalReadyLabel,'#mushrooms-journal','mushroom-button'),anchor(block.entry.exploreLabel,'#mushrooms-discover','mushroom-text-link'));copy.append(actions);inner.append(copy);
         section.append(element('p','mushroom-art-caption',block.media?.caption||ui.heroArtworkLabel));
         return;
       }
@@ -142,7 +141,7 @@ export function mountMushroomExhibit(root,source,options){
         const grid=element('div','mushroom-fact-grid');block.cards.forEach((fact,i)=>{const card=element('article','mushroom-fact');card.dataset.recordId=fact.id;const symbol=element('span','mushroom-fact-mark',String(i+1).padStart(2,'0'));symbol.setAttribute('aria-hidden','true');card.append(symbol,element('h3','',fact.title),element('p','',fact.body));grid.append(card);});inner.append(grid);attachLab(inner,createDiscoveryQuestions(block.questions,ui));
       }else if(block.type==='journal'){
         const notebook=element('div','mushroom-journal-placeholder');notebook.append(element('span','mushroom-journal-year',source.data.meta.schoolYear.replace('-', ' / ')),element('h3','',ui.journalHeading),element('p','',ui.journalBody));inner.append(notebook);
-        const journal=createGrowingJournal(notebook,{onPlay(){reader.stop();panelActivities.forEach(list=>list.forEach(lab=>lab.suspend?.()));},onReady(){const link=root.querySelector('.mushroom-hero-actions a[href="#mushrooms-journal"]');if(link)link.textContent=source.data.blocks.find(item=>item.type==='hero').entry.journalReadyLabel;}});cleanups.push(()=>journal.destroy());
+        const journal=createGrowingJournal(notebook,{onPlay(){reader.stop();panelActivities.forEach(list=>list.forEach(lab=>lab.suspend?.()));}});cleanups.push(()=>journal.destroy());
       }
       const notes=learningNotes(block.type==='roles'?{...block.learning,action:'',observe:'',words:[]}:block.learning);notes.dataset.blockNotes=block.type;inner.append(notes);const sources=sourcesFor(block);if(sources)inner.append(sources);
     });
@@ -197,8 +196,14 @@ export function mountMushroomExhibit(root,source,options){
       panels.forEach(panel=>content.append(panel));const stationActions=element('div','mushroom-station-actions');stationActions.append(next,readingToolbar(station));head.append(stationActions);wrap.append(head,tabs,pickerLabel,content);station.append(wrap);main.insertBefore(station,root.querySelector('#mushrooms-journal'));select(0);stationControllers.push({station,entries,select});
     }
     const familyBlock=source.data.blocks.find(b=>b.type==='family'),lifeBlock=source.data.blocks.find(b=>b.type==='lifecycle'),labBlock=source.data.blocks.find(b=>b.type==='lab');
-    learningStation('mushrooms-discover','01',familyBlock.station,['family','anatomy','cutaway','roles'].map(type=>({type,label:source.data.blocks.find(b=>b.type===type).label,target:'mushrooms-'+type})));
-    learningStation('mushrooms-motion','02',lifeBlock.station,[...lifeBlock.activities.map(activity=>({type:'lifecycle',view:activity.view,label:activity.label,target:'mushrooms-'+activity.view})),...labBlock.experiments.map(activity=>({type:'lab',view:activity.mode,label:activity.label,target:'mushrooms-'+activity.mode})),{type:'facts',label:source.data.blocks.find(b=>b.type==='facts').label,target:'mushrooms-facts'}]);
+    learningStation('mushrooms-discover','02',familyBlock.station,['family','anatomy','cutaway','roles'].map(type=>({type,label:source.data.blocks.find(b=>b.type===type).label,target:'mushrooms-'+type})));
+    learningStation('mushrooms-motion','03',lifeBlock.station,[...lifeBlock.activities.map(activity=>({type:'lifecycle',view:activity.view,label:activity.label,target:'mushrooms-'+activity.view})),...labBlock.experiments.map(activity=>({type:'lab',view:activity.mode,label:activity.label,target:'mushrooms-'+activity.mode})),{type:'facts',label:source.data.blocks.find(b=>b.type==='facts').label,target:'mushrooms-facts'}]);
+    // The class's work is the entrance. The existing science remains an optional visit.
+    const exploration=element('details','mushroom-optional-exploration'),exploreSummary=element('summary','mushroom-exploration-summary'),exploreCopy=source.data.blocks.find(b=>b.type==='hero').entry;
+    exploration.id='mushrooms-explore';exploreSummary.append(element('h2','',exploreCopy.exploreLabel),element('p','',exploreCopy.note));exploration.append(exploreSummary);
+    stationControllers.forEach(controller=>exploration.append(controller.station));
+    main.append(root.querySelector('#mushrooms-journal'),exploration);
+    listen(exploration,'toggle',()=>{if(!exploration.open){reader.stop();panelActivities.forEach(list=>list.forEach(lab=>lab.suspend?.()));}});
     function resolveDestination(hash){
       const value=hash.slice(1);
       for(const controller of stationControllers){
@@ -211,14 +216,14 @@ export function mountMushroomExhibit(root,source,options){
       if(panel)for(const controller of stationControllers){const index=controller.entries.findIndex(entry=>'mushrooms-'+entry.type===panel.id);if(index>=0)return {controller,index};}
       return null;
     }
-    function revealHash(){const destination=resolveDestination(location.hash);if(destination)destination.controller.select(destination.index);}
+    function revealHash(){const destination=resolveDestination(location.hash);if(destination){exploration.open=true;destination.controller.select(destination.index);}}
     function goTo(hash,push=true){
-      const destination=resolveDestination(hash);if(destination)destination.controller.select(destination.index);
+      const destination=resolveDestination(hash);if(destination){exploration.open=true;destination.controller.select(destination.index);}
       const target=destination?root.querySelector('#mushrooms-'+destination.controller.entries[destination.index].type):Array.from(root.querySelectorAll('[id]')).find(node=>'#'+node.id===hash);
-      if(!target)return;if(push&&location.hash!==hash)history.pushState(null,'',hash);target.tabIndex=target.tabIndex<0?-1:target.tabIndex;target.scrollIntoView({block:'start',behavior:'instant'});target.focus({preventScroll:true});scheduleChapter();
+      if(!target)return;if(exploration.contains(target))exploration.open=true;if(push&&location.hash!==hash)history.pushState(null,'',hash);target.tabIndex=target.tabIndex<0?-1:target.tabIndex;target.scrollIntoView({block:'start',behavior:'instant'});target.focus({preventScroll:true});scheduleChapter();
     }
     listen(window,'hashchange',()=>{revealHash();goTo(location.hash,false);});listen(window,'popstate',()=>{revealHash();goTo(location.hash,false);});
-    listen(root,'click',event=>{const link=event.target.closest('a[href]');if(!link)return;const url=new URL(link.href,location.href);if(url.origin!==location.origin||url.pathname!==location.pathname||url.search!==location.search||!url.hash)return;const known=resolveDestination(url.hash)||Array.from(root.querySelectorAll('[id]')).some(node=>'#'+node.id===url.hash);if(known){event.preventDefault();if(link.matches('.mushroom-hero-actions .mushroom-button'))stationControllers.find(c=>c.station.id==='mushrooms-discover').select(0);goTo(url.hash);}});
+    listen(root,'click',event=>{const link=event.target.closest('a[href]');if(!link)return;const url=new URL(link.href,location.href);if(url.origin!==location.origin||url.pathname!==location.pathname||url.search!==location.search||!url.hash)return;const known=resolveDestination(url.hash)||Array.from(root.querySelectorAll('[id]')).some(node=>'#'+node.id===url.hash);if(known){event.preventDefault();goTo(url.hash);}});
     revealHash();
     // Track the section at the reading edge without changing scroll position or history.
     const navObserver=new ResizeObserver(()=>root.style.setProperty('--mushroom-nav-height',Math.ceil(nav.getBoundingClientRect().height)+'px'));navObserver.observe(nav);cleanups.push(()=>navObserver.disconnect());
@@ -226,8 +231,9 @@ export function mountMushroomExhibit(root,source,options){
     function updateChapter(){
       chapterFrame=0;if(destroyed)return;
       const edge=nav.getBoundingClientRect().bottom+24;let current=-1;
-      chapters.forEach((section,index)=>{if(section.getBoundingClientRect().top<=edge)current=index;});
-      if(chapters.at(-1).getBoundingClientRect().top<window.innerHeight&&document.documentElement.getBoundingClientRect().bottom<=window.innerHeight+2)current=chapters.length-1;
+      const visible=chapters.map((section,index)=>({section,index})).filter(({section})=>section.getClientRects().length>0);
+      visible.forEach(({section,index})=>{if(section.getBoundingClientRect().top<=edge)current=index;});
+      const last=visible.at(-1);if(last&&last.section.getBoundingClientRect().top<window.innerHeight&&document.documentElement.getBoundingClientRect().bottom<=window.innerHeight+2)current=last.index;
       chapterLinks.forEach((link,index)=>{if(index===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
     }
     function scheduleChapter(){if(!chapterFrame)chapterFrame=requestAnimationFrame(updateChapter);}
