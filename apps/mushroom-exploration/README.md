@@ -27,8 +27,10 @@ The public day reader (`src/journal.js`) is implemented, with lazy day records a
 optional unnamed notes, and video cleanup. The index remains empty until actual classroom
 material is explicitly published. The separate Lanternworks `/mushrooms` editor is deployed;
 its existing Friday draft and disabled Publish day control were verified in the authenticated
-browser on November 7. Its GitHub writing connection remains missing. No classroom import,
+browser on November 7. Its GitHub writing connection remains missing. No live classroom import,
 HEIC conversion, public publication or classroom acceptance is claimed by this layout pass.
+A separate downloadable preview embeds all 12 supplied photos and 3 videos; its classroom
+media stays outside this public repository. See the current continuation in QA.md.
 
 ## The page
 

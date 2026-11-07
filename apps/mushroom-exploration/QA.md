@@ -611,3 +611,49 @@ The spore station has two model views and a real 5.35-second research clip. Its 
 metadata loaded without error; playback started and advanced, then paused on leaving view.
 At the smallest viewport, the retained wind controls and new life-cycle step selector
 worked. The final five-size breakout check again showed no horizontal overflow.
+
+
+## Classroom-first continuation — November 7, 2026
+
+Poppet's screenshot changes the primary purpose: classroom work first; optional science
+after. The draft now renders compact welcome → journal → initially closed science.
+All nine source block identities, both science stations and existing activity hashes remain.
+Chapter links follow the new order. A science link opens the disclosure before scrolling
+and selecting its destination; closing it suspends its activities. The keyboard skip link
+now targets the classroom journal. Hidden science does not become the current chapter.
+
+Validation for this continuation:
+
+- `npm run check:mushrooms`: **59/59** tests, syntax, generated consistency, source media
+  integrity and standalone build pass. `git diff --check` passes.
+- Connected Chrome at **1920×911**: journal starts at **y434.56 px**, versus the earlier
+  y2382.95 px. The science starts closed. No horizontal overflow. Life in motion navigation
+  opens science and lands at y95.03 px below the y77 px navigation edge.
+- Connected Chrome at actual **390×844** and **320×640**: no horizontal overflow, readable
+  recomposition, closed default science and functioning chapter disclosure. At 390×844 on
+  fresh load the journal starts at y537.5 px. At 320×640, selecting the native investigation
+  picker chooses Mushroom music and updates the hash; Back restores the prior location.
+  A requested tablet override did not become the tab's measured viewport, so **no tablet
+  result is claimed** for this pass. The override was reset at finish.
+- Authenticated deployed Mushinator: the existing Friday draft loads, optional species and
+  contributor fields are present, and Add to this day exposes Photo/video, Observation,
+  Fact, Teacher note and Student note. Publish day is disabled, accurately reporting the
+  missing repo publishing connection. No new live draft/media/publication was created.
+- Attempting the supplied-media upload was blocked before transfer: Chrome's ChatGPT
+  extension requires Allow access to file URLs. The permission was not changed.
+- A separate self-contained classroom preview embeds all **12 JPEG-derived images and
+  3 MOV-derived videos**, grouped into four supplied day folders. Image copies are oriented
+  and resized; videos are H.264/AAC MP4 with poster frames. Native conversion/ffprobe passed
+  for all three videos. Total display bytes: **10,378,065**, from **43,951,642** original bytes.
+  A DOM integration check mounts four day frames and expands all 15 inline media elements,
+  verifies the reading order, navigation/skip link, and absence of invented notes. It uses
+  geometry stubs for unrelated SVG models; it is **not rendered-browser or codec-playback
+  verification** of that downloadable preview. Its classroom media was not committed to
+  this public repository. The four date assignments remain provisional.
+
+The cloud browser could not reach the local standalone-preview server. The connected browser
+blocked the ChatGPT Library preview host; that route was not retried or bypassed. Therefore
+rendered browser checks above apply to the HTTPS source draft, whose journal feed is empty.
+No actual HEIC file was supplied, so real 15 MB+ HEIC conversion remains unverified.
+Existing M41 speech/pronunciation and M46 classroom/projector acceptance remain open; this
+layout change does not close them. Final Edublogs installation and the Hub swap remain pending.

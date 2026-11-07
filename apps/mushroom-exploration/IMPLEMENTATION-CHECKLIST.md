@@ -807,3 +807,22 @@ Key technical verification starting points, alongside the audit's S1–S18 and `
 | 01:59–02:05 | Four selectable stages without a visible cycle return: M26. |
 | 02:06–02:09 | Honest classroom placeholder: M01, deferred J01–J03. |
 | Not demonstrated | Live glow/music/questions, keyboard, mobile, zoom and sound quality: M27–M41, M44–M46. |
+
+
+## November 7 continuation — classroom-first direction
+
+Poppet's later screenshot supersedes M01's earlier instruction to prioritize Explore fungi
+while the journal is empty. The classroom project is now the main purpose: compact welcome,
+then Our growing story, then optional science. Existing M01 evidence remains historical.
+This is an explicit design revision, not a renumbering of the original 46 fixes.
+
+The public journal reader and separately deployed Mushinator editor now exist. J01/J04 have
+implementation evidence, but their full end-to-end publication acceptance is still open.
+The live Friday draft and Add to this day choices were verified. Real upload was blocked
+by the browser extension's file permission; automatic repo publishing still lacks its
+writing connection. The 12 supplied photos and 3 videos are included in a separate local
+classroom preview, not in this public repository or the live draft storage.
+
+Current verification and exact limits are in QA.md, Classroom-first continuation.
+The original museum checklist remains **44/46**: M41 and M46 still require their stated
+real speech and classroom observations. No production installation or Hub swap is claimed.

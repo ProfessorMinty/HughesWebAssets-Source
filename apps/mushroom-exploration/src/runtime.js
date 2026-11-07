@@ -88,7 +88,7 @@ export function mountMushroomExhibit(root,source,options){
   let focusFrame=0;listen(root,'focusin',event=>{cancelAnimationFrame(focusFrame);focusFrame=requestAnimationFrame(()=>{focusFrame=0;const target=event.target,nav=root.querySelector('.mushroom-navigation');if(!nav||document.fullscreenElement||nav.contains(target)||target.closest('dialog'))return;const box=target.getBoundingClientRect(),edge=nav.getBoundingClientRect().bottom+18;if(box.top<edge)window.scrollBy({top:box.top-edge,behavior:'instant'});else if(box.height<window.innerHeight-edge&&box.bottom>window.innerHeight-18)window.scrollBy({top:box.bottom-window.innerHeight+18,behavior:'instant'});});});cleanups.push(()=>cancelAnimationFrame(focusFrame));
   root.className='hrv-mushrooms';root.dataset.hrvState='loading';root.dataset.researchStatus=source.data.meta.researchStatus;root.replaceChildren();fitViewport();listen(window,'resize',fitViewport);
   try {
-    const skip=anchor(ui.skipLabel,'#mushrooms-family','mushroom-skip');
+    const skip=anchor(ui.skipLabel,'#mushrooms-journal','mushroom-skip');
     const nav=element('nav','mushroom-navigation');nav.setAttribute('aria-label',ui.navLabel);
     const brand=anchor(ui.brand,'https://rmhughes.edublogs.org/','mushroom-brand');
     const mark=element('span','mushroom-brand-mark');mark.setAttribute('aria-hidden','true');mark.append(artwork('<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 20L15 34H25L23 20" fill="currentColor"/><path d="M4 21Q20 -6 36 21Q20 29 4 21" fill="none" stroke="currentColor" stroke-width="2"/></svg>'));brand.prepend(mark);
