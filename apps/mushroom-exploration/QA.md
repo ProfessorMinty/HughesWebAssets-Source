@@ -1,4 +1,43 @@
-# Current checks — real-video resilience, 2026-11-07
+# Current checks — connected-browser acceptance, 2026-11-07
+
+**44/46 complete. M33 passes. M41 and M46 remain open.**
+
+The thin `review.html` entry point serves the existing source/modules/assets over HTTPS
+from the already-public repository. This permits a real connected-Chrome trial, independent
+of the cloud browser’s buffering and missing voices. It changes no live Edublogs route.
+The exact reviewed code is remote commit `f524e3ad026b4bbb6b84f2c6805a3db4be5ba098`, tree
+`ad60d02eada5d06e7483974682eee7a4da62da18`; identical to local `568d8a3`.
+
+- **Real in-exhibit video:** first trial reached native time 8.916314 s and Pause held at
+  20.825633 s. Second trial reported playing/time 9.65 in the app; native currentTime was
+  10.231616 s, readyState 4, duration 235.681 s, paused false and muted false. Pause reported
+  paused/time 27.44; native paused time was 27.887443 s. Changing to Glowing fungi removed
+  the player. The actual moving creator footage is pictured in `qa/batch-6-video-playing.png`.
+  Source/sensor/rights/artistic-choice/unknown-processing checks remain unchanged. **M33 passes.**
+  These observations do not certify auditory quality or school-network availability.
+- **Actual speech attempt:** six English voices appeared inside the exhibit. David, Google
+  US English and Zira each emitted end before start for a 515-character lesson. The previous
+  code misleadingly said finished. It now reports an error and suggests another voice or
+  the complete written lesson. An end before start and an implausibly fast long-lesson end
+  are refused; normal elapsed completion remains supported. DOM diagnostics capture the
+  actual event outcome; no speaker configuration, permission or OS setting is changed.
+  **M41 remains open:** no successful speech or actual science-word pronunciation is claimed.
+- **Classroom:** no real teacher/projector/pupil observations supplied. **M46 remains open.**
+- **Verification:** `npm run check:mushrooms` passes **50 tests**, syntax, generated files,
+  original media integrity and standalone build. New regressions catch premature speech
+  success and preserve normal long/short completion. `git diff --check` passes. Native
+  review width 1905 px, root 1905 px and zero horizontal overflow; the three default photos
+  loaded at 1600/720/1560 natural widths. Prior broad layout/contrast/zoom audits remain dated
+  evidence below; this pass does not claim a repeated full matrix.
+
+Current results and limits: `qa/batch-6-verification.json`. Proof: [playing real video](qa/batch-6-video-playing.png)
+and [truthful speech failure](qa/batch-6-reading-failure.png). Use [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md)
+for the exact HTTPS review and remaining teacher observations. Source remains draft/research
+pending. No kit, classroom photos, dates, entries or outcomes are invented.
+
+---
+
+# Historical checks — real-video resilience, 2026-11-07
 
 **43/46 fixes complete; M33, M41 and M46 remain open.** This follow-up strengthens the
 real creator-video player and supplies [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) for the

@@ -263,3 +263,25 @@ Chrome exposed six English voices on [MDN’s official speech demo](https://mdn.
 including local Microsoft and Google choices. This establishes voice availability in that
 browser only: the exhibit was not read aloud there and no pronunciation was certified.
 **M41 and the actual teacher/projector/pupil gate M46 remain open.**
+
+
+## Connected-browser review and premature speech — 2026-11-07
+
+GitHub metadata confirms HughesWebAssets-Source is already public. A thin draft review entry
+point reuses its source/modules/assets and keeps draft acceptance separate from the guarded
+live bootstrap. [The development CDN’s own documentation](https://raw.githack.com/) describes
+source-file delivery with correct content types. No account, new live Edublogs route or
+third-party media rehosting is introduced. The exact source commit is pinned in the review link.
+
+The real creator recording successfully played inside this exhibit in connected Chrome,
+with time progression, readyState 4, Pause and activity-change removal verified. This closes
+M33; the earlier cloud-only stall remains a recorded environment limitation.
+
+[MDN’s end-event reference](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance/end_event)
+defines end as finished speech, while [elapsedTime](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisEvent/elapsedTime)
+is seconds after speaking began. In the actual review, three voice choices emitted end
+without start for a 515-character lesson. Those events do not verify audible reading or
+pronunciation. The app now refuses end before start and an implausibly fast ≥20-word lesson
+completion, reports useful failure, and preserves the full written lesson. The one-second
+floor is an application sanity check, not an asserted reading-speed standard. M41 stays open.
+The real teacher-led classroom check M46 also remains open; no pupil response is invented.

@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-07",
+  "completion": {
+    "complete": 44,
+    "total": 46,
+    "newlyComplete": [
+      "M33"
+    ],
+    "open": [
+      "M41",
+      "M46"
+    ]
+  },
+  "review": {
+    "url": "https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/f524e3ad026b4bbb6b84f2c6805a3db4be5ba098/apps/mushroom-exploration/review.html",
+    "sourceCommit": "f524e3ad026b4bbb6b84f2c6805a3db4be5ba098",
+    "sourceTree": "ad60d02eada5d06e7483974682eee7a4da62da18",
+    "entryPoint": "apps/mushroom-exploration/review.html",
+    "delivery": "Existing public GitHub source through a development CDN; no live Edublogs route change"
+  },
+  "automated": {
+    "passed": 50,
+    "failed": 0
+  },
+  "layout": {
+    "clientWidth": 1905,
+    "rootWidth": 1905,
+    "horizontalOverflow": 0,
+    "visibleSpecimenNaturalWidths": [
+      1600,
+      720,
+      1560
+    ]
+  },
+  "video": {
+    "accepted": true,
+    "firstTrial": {
+      "playingReportedTime": 8.12,
+      "nativeTime": 8.916314,
+      "pausedTime": 20.825633
+    },
+    "secondTrial": {
+      "playingReportedTime": 9.65,
+      "nativeTime": 10.231616,
+      "nativeDuration": 235.681,
+      "nativeReadyState": 4,
+      "muted": false,
+      "pausedReportedTime": 27.44,
+      "nativePausedTime": 27.887443,
+      "nativePaused": true,
+      "frameCountAfterLeaving": 0
+    },
+    "auditoryQualityCertified": false
+  },
+  "speech": {
+    "accepted": false,
+    "voicesDiscovered": 6,
+    "trials": [
+      {
+        "voice": "Microsoft David - English (United States)",
+        "characters": 515,
+        "started": false,
+        "elapsedMs": 0,
+        "failure": "ended-before-start",
+        "state": "error"
+      },
+      {
+        "voice": "Google US English",
+        "characters": 515,
+        "started": false,
+        "elapsedMs": 0,
+        "failure": "ended-before-start",
+        "state": "error"
+      },
+      {
+        "voice": "Microsoft Zira - English (United States)",
+        "characters": 515,
+        "started": false,
+        "elapsedMs": 0,
+        "failure": "ended-before-start",
+        "state": "error"
+      }
+    ],
+    "newFailureHandling": "End before start, or an implausibly quick long-lesson end, reports error instead of finished.",
+    "pronunciationAccepted": false
+  },
+  "classroom": {
+    "accepted": false,
+    "teacherPupilObservationsSupplied": false
+  },
+  "proof": [
+    "qa/batch-6-video-playing.png",
+    "qa/batch-6-reading-failure.png"
+  ],
+  "limits": [
+    "Native playback is verified; sound quality was not independently heard or certified.",
+    "Voice availability and end callbacks do not establish successful speech.",
+    "M46 cannot be replaced with simulated teacher/pupil feedback.",
+    "No classroom photographs, dates, kit identity or journal entries invented."
+  ]
+}

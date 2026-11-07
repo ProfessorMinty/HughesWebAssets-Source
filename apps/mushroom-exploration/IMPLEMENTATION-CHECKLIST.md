@@ -1,6 +1,6 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.5 · November 7, 2026 · Video resilience follow-up verified; three acceptance gates remain open.
+Version 1.6 · November 7, 2026 · Real in-exhibit video verified; speech and classroom acceptance remain open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
@@ -8,10 +8,12 @@ It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the e
 document alone did not complete any fixes. All 46 items started open; checked items now
 have dated implementation evidence below.
 
-**Current status: 43 of 46 complete.** Only **M33, M41 and M46** remain open: actual
-embedded-video playback, real-voice/read-aloud acceptance, and the teacher/projector/pupil
-trial. Reading controls and the real-video candidate are implemented. The video has provider-state
-feedback, timeout/retry and a corrected minimum phone size; exact browser limits are recorded below. J01–J05 (journal/content/Mushinator) stay deferred.
+**Current status: 44 of 46 complete.** **M33 is now complete:** the real creator recording
+played inside this exhibit in connected Chrome over HTTPS, with advancing time, readyState 4,
+Pause and activity-change cleanup verified. **M41 and M46 remain open:** three available voice
+choices ended before reporting speech start, and actual teacher/pupil feedback is absent.
+The reader now reports this premature end as an error rather than falsely saying finished.
+J01–J05 (journal/content/Mushinator) remain deferred.
 
 ## Baseline and evidence
 
@@ -309,7 +311,7 @@ already within the requested scope.
   on leaving/hiding/unmounting. Done when controls, resume/replay, cleanup and unsupported-
   audio/load-error behavior are tested, with a useful visual lesson remaining when silent.
 
-- [ ] **M33 — Add a verified real-world mushroom-music example.**
+- [x] **M33 — Add a verified real-world mushroom-music example.**
   Source a short documented, permission-cleared demonstration. Identify its actual sensor
   measurement, sound mapping, artistic choices and any accelerated/selected/processed data.
   Done when provenance, permitted use and the explanation are verified. If unavailable, mark
@@ -661,7 +663,7 @@ Tree `768d19d3a16d677b47842e480fdc608b8e6b1182` matches local implementation/evi
 | M44 | Tests/build/audit tool | `npm run check:mushrooms` passes 42 tests, syntax, generated schema/control consistency, original media integrity and standalone build. Five additions cover interface/template edits; fresh selected reading text; delayed/missing/failed voices; utterance ownership/cancellation/stale events/end/error/timeout/cleanup; and numerical contrast/alpha/gradient/image-mask bounds. No dependency was added. `git diff --check` passes. |
 | M45 | QA records and proof image | 55 activity/layout and 15 fungal-job/layout cases pass no-overflow, panel-count and custom-target checks. All eleven activities pass at actual 200% Chrome zoom (674 px document width), with keyboard silent-note inspection. Native research video play/pause/ready state and fullscreen were exercised. Deep links, history, dialog return, motion choice and source/word drawer behavior were checked. Exact geometry, failures and browser limits are recorded below and in QA.md. This is not physical-device/projector/screen-reader/pupil certification. |
 
-### Current open acceptance gates
+### Open acceptance gates at the end of batch 4 — historical
 
 - **M33 — Real embedded video:** source, sensor, human musical choices, permitted official
   embedding and fallback are implemented. Both privacy-enhanced and standard official
@@ -716,6 +718,37 @@ This follow-up does not close an acceptance gate. **43/46 remain complete.**
   904.23/868.39 px and page height about 2737 px; the closed drawer adds no scroll length.
 - Current evidence: `qa/batch-5-verification.json`, `qa/batch-5-video-feedback.png`, and
   [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md). The screenshot shows ready/prompt, not playback.
+
+## Current acceptance evidence — November 7, 2026, batch 6
+
+**44/46 complete. M33 newly complete. M41 and M46 remain open.**
+
+- **M33:** A thin `review.html` entry point loads the exact repository source, styles and
+  modules over HTTPS. GitHub confirms this repository is already public; no account, new
+  production route or copied media is required. In connected Chrome, the actual embedded
+  PlantWave recording advanced from 0 to 8.92 seconds, and Pause held at 20.83 seconds.
+  A second trial reached 10.23 seconds with duration 235.681 s, readyState 4, paused false
+  and muted false. Pause then held at 27.89 s; leaving for Glowing fungi removed the frame.
+  The screenshot shows actual in-exhibit footage with the playing status, not a thumbnail.
+  Provenance, embed-only reuse, conductivity measurement, human sound choices and unknown
+  raw data/mapping/speed remain documented. Cloud-preview buffering is retained as history;
+  it does not negate this successful target-browser trial. Auditory quality is not certified.
+- **M41:** The exhibit itself discovered six English voices. Microsoft David, Google US
+  English and Microsoft Zira each emitted end before start for the 515-character lesson.
+  This cannot establish spoken playback or pronunciation. The reader now refuses end before
+  start, and refuses a ≥20-word lesson finishing in under one second, reporting a useful
+  recoverable error instead of claiming finished. Tests cover both premature events and
+  a normal timed completion. No actual voice/pronunciation pass is claimed.
+- **M46:** No teacher-led projector/pupil observations have been supplied. This remains
+  pending under its original acceptance rule; no simulated pupil feedback is substituted.
+- `npm run check:mushrooms` passes **50 tests**, syntax, generated files, original media
+  integrity and standalone build. `git diff --check` passes. No dependencies are added.
+  Native HTTPS review retained root width 1905 px with zero horizontal overflow and all
+  three default specimen photographs loaded at their registered natural widths.
+- Evidence: `qa/batch-6-verification.json`, `qa/batch-6-video-playing.png`, and
+  `qa/batch-6-reading-failure.png`. [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) links the exact
+  reviewed HTTPS source and the remaining human observations. Production bootstrap still
+  rejects draft source; the review entry point alone explicitly allows this draft.
 
 ## Implementation map and source references
 

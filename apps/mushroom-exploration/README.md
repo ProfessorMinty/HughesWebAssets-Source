@@ -4,6 +4,12 @@ Unpublished 2026–2027 exhibit for second and third graders. Based on the verif
 Hub workstream dc7237d3912746afbe9f15dc215dfd18aad6b31f, rather than the older default main.
 This branch does not activate a new Edublogs route, swap the Hub, or deploy Lanternworks.
 
+**Current acceptance: 44/46.** Real embedded-video playback is verified in connected Chrome.
+Actual speech/pronunciation and the teacher/projector/pupil trial remain open.
+[Open the exact reviewed HTTPS draft](https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/f524e3ad026b4bbb6b84f2c6805a3db4be5ba098/apps/mushroom-exploration/review.html) or use
+[REVIEW-HANDOFF.md](REVIEW-HANDOFF.md). `review.html` is a development entry point into the
+existing source; the live bootstrap retains its draft-publication guard.
+
 The current follow-up scope is in [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md):
 46 stable fix IDs with acceptance criteria, baseline protections, execution order and separately
 deferred classroom/editor work. Completed items have dated evidence; unchecked items remain open.
@@ -179,16 +185,18 @@ leaving by a link/activity, hidden/offscreen state and unmount all have cleanup 
 
 The real PlantWave demonstration has a registered external-media record in `src/sound.js`
 and the generated asset catalog, with source/device/permission/processing limits. Its
-creator-page playback was verified. The cloud-preview embed rendered but kept buffering,
-so **M33 remains open** for actual in-page playback acceptance. An on-request official API monitor now distinguishes ready, playing, paused, buffering,
+creator-page playback was verified. The cloud-preview embed rendered but kept buffering; the later connected-Chrome HTTPS
+review played the same recording inside the exhibit with advancing time, Pause and cleanup.
+**M33 is complete.** An on-request official API monitor now distinguishes ready, playing, paused, buffering,
 finished and recoverable failure states. A 12-second startup/buffering limit exposes an
 explicit retry; neither opening nor retrying autoplays. The actual HTTP(S) host origin is
 passed to the provider. The player retains a minimum 200×200 px client viewport on phones.
 Close, retry, leaving and unmount remove the old player and cancel its timers. A creator-page
-fallback remains visible. See [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) for the three remaining
-acceptance checks. M41 reading controls are implemented but acceptance is pending: this test browser has no
-English reading voices. The visible fallback and injected-speech tests are verified; actual
-speech and science-word pronunciation are not. Its start event suspends music through
+fallback remains visible. See [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) for the two remaining
+acceptance checks. M41 reading controls are implemented but acceptance is pending: the
+cloud browser had no English voices, while three available choices in connected Chrome
+ended before reporting speech start. The visible failure feedback and injected tests are
+verified; actual speech and science-word pronunciation are not. Its start event suspends music through
 `hrv-mushrooms-narration-start`, and it responds to `hrv-mushrooms-audio-start`.
 
 `src/sound.js` owns deterministic data, musical mapping, synthesis and the finite audio
@@ -212,7 +220,7 @@ and native fullscreen. The shared motion preference controls CSS transitions and
 JavaScript models. Base teal/bark/moss colors are preserved; image scrims and selected/hover
 states retain readable text.
 
-QA records 48 passing automated tests, 55 activity/layout cases, 15 job/layout cases and all
+QA records 50 passing automated tests, 55 activity/layout cases, 15 job/layout cases and all
 eleven choices at actual 200% zoom. The contrast report contains 203 computed-text cases and
 39 conservative image-mask/overlay bounds with no failures. Recalculate the captured report:
 
@@ -223,5 +231,6 @@ node tools/audit-mushroom-contrast.mjs apps/mushroom-exploration/qa/batch-4-samp
 These captures are dated evidence, not live browser automation or a WCAG certification. The
 default desktop story now starts around 2,383 px (about 115 px farther than batch 3), following
 larger reading text and touch targets. The two-station structure and direct journal shortcut
-remain. Current remaining items are M33 (embedded playback), M41 (actual voice acceptance)
-and M46 (teacher/projector/pupil trial). No classroom content or production release is created.
+remain. Current remaining items are M41 (actual voice/pronunciation acceptance) and M46
+(teacher/projector/pupil trial). Available native voices emitted end before start; the reader
+now reports premature completion as an error instead of falsely saying finished. No classroom content or production release is created.
