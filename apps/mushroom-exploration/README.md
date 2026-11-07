@@ -6,7 +6,7 @@ This branch does not activate a new Edublogs route, swap the Hub, or deploy Lant
 
 **Current acceptance: 44/46.** Real embedded-video playback is verified in connected Chrome.
 Actual speech/pronunciation and the teacher/projector/pupil trial remain open.
-[Open the exact reviewed HTTPS draft](https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/f524e3ad026b4bbb6b84f2c6805a3db4be5ba098/apps/mushroom-exploration/review.html) or use
+[Open the exact reviewed HTTPS draft](https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/ea261ba8a25984a026c36ae20381dd88942d5079/apps/mushroom-exploration/review.html) or use
 [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md). `review.html` is a development entry point into the
 existing source; the live bootstrap retains its draft-publication guard.
 
@@ -220,7 +220,7 @@ and native fullscreen. The shared motion preference controls CSS transitions and
 JavaScript models. Base teal/bark/moss colors are preserved; image scrims and selected/hover
 states retain readable text.
 
-QA records 50 passing automated tests, 55 activity/layout cases, 15 job/layout cases and all
+QA records 55 passing automated tests, 55 activity/layout cases, 15 job/layout cases and all
 eleven choices at actual 200% zoom. The contrast report contains 203 computed-text cases and
 39 conservative image-mask/overlay bounds with no failures. Recalculate the captured report:
 
@@ -234,3 +234,8 @@ larger reading text and touch targets. The two-station structure and direct jour
 remain. Current remaining items are M41 (actual voice/pronunciation acceptance) and M46
 (teacher/projector/pupil trial). Available native voices emitted end before start; the reader
 now reports premature completion as an error instead of falsely saying finished. No classroom content or production release is created.
+
+
+The latest [four-pass audit](FOUR-PASS-AUDIT-2026-11-07.md) fixes bounded review startup,
+complete reading teardown and selected-voice language. It verifies 55 tests, 55 layout
+cases, actual failures/remount and successful real video, while keeping M41/M46 open.

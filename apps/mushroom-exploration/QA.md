@@ -1,4 +1,29 @@
-# Current checks — connected-browser acceptance, 2026-11-07
+# Current checks — four-pass audit, 2026-11-07
+
+**44/46 complete. M41 and M46 remain open.** See
+[FOUR-PASS-AUDIT-2026-11-07.md](FOUR-PASS-AUDIT-2026-11-07.md) for the scope, findings,
+corrections, exact code revisions and limitations.
+
+- **55 automated tests pass**; syntax, generated contracts, original media integrity, build
+  and whitespace checks pass. Three GitHub CI workflows pass on the corrected code.
+- **55 activity/layout cases pass** across five sizes, plus five open-player measurements.
+  No page overflow or undersized visible custom targets. Desktop geometry remains unchanged.
+- Actual unmount clears six reading attributes and ready state; remount restores nine blocks
+  and two reading toolbars. Missing runtime and source pages show fallback and remove styles.
+  Tests also cover stylesheet failure, timeout, late resources and invalid/oversized source.
+- Connected-Chrome real video advanced to 19.117496 s at readyState 4; Pause later held at
+  47.110668 s. Leaving removed the frame. The UK voice still ended before speech start;
+  its error wraps without overflow at 320 px. The selected voice language is now preserved.
+
+Captures: `qa/four-pass-browser.json`, `qa/four-pass-verification.json`, and
+[playing-video proof](qa/four-pass-video-proof.jpg). Older screenshots’ .png names contain
+JPEG bytes; those historical files remain intact. New proof uses .jpg.
+This is not actual speech/pronunciation, projector/pupil, auditory-quality, physical-device
+or screen-reader acceptance. Previous zoom/contrast reports below remain dated prior evidence.
+
+---
+
+# Historical checks — connected-browser acceptance, 2026-11-07
 
 **44/46 complete. M33 passes. M41 and M46 remain open.**
 

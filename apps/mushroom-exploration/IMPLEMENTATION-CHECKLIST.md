@@ -1,6 +1,6 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.6 · November 7, 2026 · Real in-exhibit video verified; speech and classroom acceptance remain open.
+Version 1.7 · November 7, 2026 · Four-pass audit complete; three code issues corrected; M41/M46 remain open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
@@ -749,6 +749,18 @@ This follow-up does not close an acceptance gate. **43/46 remain complete.**
   `qa/batch-6-reading-failure.png`. [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) links the exact
   reviewed HTTPS source and the remaining human observations. Production bootstrap still
   rejects draft source; the review entry point alone explicitly allows this draft.
+
+## Four-pass audit — November 7, 2026
+
+[FOUR-PASS-AUDIT-2026-11-07.md](FOUR-PASS-AUDIT-2026-11-07.md) records requirements, code,
+actual-browser and saved-evidence passes. Three issues were corrected: review import/style/
+timeout fallback; reading-attribute teardown; and the selected voice’s language tag.
+**55 automated tests pass**, all **55 activity/layout cases pass**, five player sizes retain
+at least 200×200 px client area, and actual teardown/remount and startup failures pass.
+Connected Chrome again played/paused the real clip; all three CI workflows are green.
+Default page geometry is unchanged. Current proof is `qa/four-pass-video-proof.jpg`; detailed
+results are in `qa/four-pass-browser.json` and `qa/four-pass-verification.json`.
+**44/46 remains the correct count. M41 and M46 are not closed by this audit.**
 
 ## Implementation map and source references
 

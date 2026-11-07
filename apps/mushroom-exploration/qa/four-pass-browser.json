@@ -1,0 +1,509 @@
+{
+  "layoutCases": [
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Meet the kingdom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Inside a mushroom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Hidden threads",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Fungi at work",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Tiny launch",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Ride the breeze",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Spore cloud",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Life cycle",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Glowing fungi",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Mushroom music",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "activity": "Explorer questions",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1905
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Meet the kingdom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Inside a mushroom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Hidden threads",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Fungi at work",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Tiny launch",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Ride the breeze",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Spore cloud",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Life cycle",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Glowing fungi",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Mushroom music",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "activity": "Explorer questions",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 1351
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Meet the kingdom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Inside a mushroom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Hidden threads",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Fungi at work",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Tiny launch",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Ride the breeze",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Spore cloud",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Life cycle",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Glowing fungi",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Mushroom music",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "activity": "Explorer questions",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 805
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Meet the kingdom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Inside a mushroom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Hidden threads",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Fungi at work",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Tiny launch",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Ride the breeze",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Spore cloud",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Life cycle",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Glowing fungi",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Mushroom music",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "activity": "Explorer questions",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 375
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Meet the kingdom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Inside a mushroom",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Hidden threads",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Fungi at work",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Tiny launch",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Ride the breeze",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Spore cloud",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Life cycle",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Glowing fungi",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Mushroom music",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    },
+    {
+      "viewport": "Small phone 320 × 640",
+      "activity": "Explorer questions",
+      "overflow": 0,
+      "panels": 2,
+      "smallTargets": [],
+      "width": 305
+    }
+  ],
+  "playerLayouts": [
+    {
+      "viewport": "Small phone 320 × 640",
+      "height": 200,
+      "overflow": 0,
+      "width": 229
+    },
+    {
+      "viewport": "Phone 390 × 844",
+      "height": 200,
+      "overflow": 0,
+      "width": 291
+    },
+    {
+      "viewport": "Tablet 820 × 1180",
+      "height": 400,
+      "overflow": 0,
+      "width": 712
+    },
+    {
+      "viewport": "Laptop 1366 × 768",
+      "height": 403,
+      "overflow": 0,
+      "width": 718
+    },
+    {
+      "viewport": "Desktop 1920 × 911",
+      "height": 403,
+      "overflow": 0,
+      "width": 718
+    }
+  ],
+  "startupFailures": [
+    {
+      "path": "missing-runtime.html",
+      "activeStyles": 0,
+      "exhibit": false,
+      "state": "unavailable",
+      "text": "The mushroom exhibit could not open. Please try again later."
+    },
+    {
+      "path": "missing-source.html",
+      "activeStyles": 0,
+      "exhibit": false,
+      "state": "unavailable",
+      "text": "The mushroom exhibit could not open. Please try again later."
+    }
+  ],
+  "lifecycle": {
+    "readingAttributesBefore": 6,
+    "readingAttributesAfterUnmount": 0,
+    "stateAfterUnmount": null,
+    "remountState": "ready",
+    "remountBlocks": 9,
+    "remountReadingToolbars": 2,
+    "overflowAfterRemount": 0
+  },
+  "defaultDesktop": {
+    "pageHeight": 2737,
+    "journalY": 2382.953125,
+    "stationHeights": [
+      904.234375,
+      868.390625
+    ]
+  }
+}

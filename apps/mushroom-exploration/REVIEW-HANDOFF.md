@@ -2,7 +2,7 @@
 
 **44/46 complete. M33 now passes; M41 and M46 remain open.**
 
-[Open the exact reviewed HTTPS exhibit](https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/f524e3ad026b4bbb6b84f2c6805a3db4be5ba098/apps/mushroom-exploration/review.html).
+[Open the exact reviewed HTTPS exhibit](https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/ea261ba8a25984a026c36ae20381dd88942d5079/apps/mushroom-exploration/review.html).
 This loads the existing draft directly from its public repository through a development CDN.
 If the service asks to open the page, its destination should identify ProfessorMinty’s
 HughesWebAssets-Source repository and this review.html file. No local installation is needed.
