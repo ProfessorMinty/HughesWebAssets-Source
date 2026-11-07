@@ -1,6 +1,6 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
 import { MUSHROOM_VIDEOS } from "./video-assets.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.8.0";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.9.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media", "entry"],
@@ -24,7 +24,7 @@ const processStepCounts={growth:4,recycle:3,trade:2,dough:3,launch:3,wind:3};
 const recordingFields=['play','pause','replay','fullscreen','paused','playing','finished','error','retry','fullscreenError','silentMicroscope','silentPuffball'];
 const musicControls=['play','pause','resume','replay','stop','volume','previous','next','pattern','motion'];
 const musicMessages=['ready','playing','starting','paused','complete','error','silent','pattern','lessMotion'];
-const musicTexts=['instrumentTitle','detailsTitle','noteStripLabel','loadDemo','closeDemo','demoPlayerTitle','demoFallback','chainLabel','limits','exampleLabel','mapping','graphLabel','high','low','time','noteTemplate','observationTitle','demoTitle','demoBody','demoLinkLabel','demoNote'];
+const musicTexts=['demoRetry','demoLoading','demoReady','demoPlaying','demoPaused','demoEnded','demoBuffering','demoBlocked','demoError','demoTimeout','demoUnavailable','instrumentTitle','detailsTitle','noteStripLabel','loadDemo','closeDemo','demoPlayerTitle','demoFallback','chainLabel','limits','exampleLabel','mapping','graphLabel','high','low','time','noteTemplate','observationTitle','demoTitle','demoBody','demoLinkLabel','demoNote'];
 
 export const MUSHROOM_EDITOR_CONTRACT = {
   schemaVersion: MUSHROOM_CONTRACT_VERSION,

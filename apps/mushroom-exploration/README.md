@@ -82,7 +82,7 @@ Images were resized and converted for delivery without retouching or recolouring
 ## Source and future editing
 
 source/mushrooms.source.json separates content, source references, image references,
-captions, observation points and supported records from rendering. Contract 1.8.0 includes
+captions, observation points and supported records from rendering. Contract 1.9.0 includes
 authored activity titles/intros, action/observation prompts, safety/teacher notes, science-word
 definitions and checked written pronunciation. Entrance/station copy is also editable.
 These fields are validated; all nine blocks required by the renderer must be present.
@@ -180,8 +180,13 @@ leaving by a link/activity, hidden/offscreen state and unmount all have cleanup 
 The real PlantWave demonstration has a registered external-media record in `src/sound.js`
 and the generated asset catalog, with source/device/permission/processing limits. Its
 creator-page playback was verified. The cloud-preview embed rendered but kept buffering,
-so **M33 remains open** for actual in-page playback acceptance. A creator-page fallback
-remains visible. M41 reading controls are implemented but acceptance is pending: this test browser has no
+so **M33 remains open** for actual in-page playback acceptance. An on-request official API monitor now distinguishes ready, playing, paused, buffering,
+finished and recoverable failure states. A 12-second startup/buffering limit exposes an
+explicit retry; neither opening nor retrying autoplays. The actual HTTP(S) host origin is
+passed to the provider. The player retains a minimum 200×200 px client viewport on phones.
+Close, retry, leaving and unmount remove the old player and cancel its timers. A creator-page
+fallback remains visible. See [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) for the three remaining
+acceptance checks. M41 reading controls are implemented but acceptance is pending: this test browser has no
 English reading voices. The visible fallback and injected-speech tests are verified; actual
 speech and science-word pronunciation are not. Its start event suspends music through
 `hrv-mushrooms-narration-start`, and it responds to `hrv-mushrooms-audio-start`.
@@ -192,7 +197,7 @@ checklist and QA record define completion; this draft is not a classroom-tested 
 
 ## Reading and access — current draft
 
-The source owns the current lesson and interface copy under contract 1.8.0. Optional Read to
+The source owns the current lesson and interface copy under contract 1.9.0. Optional Read to
 me reads the selected part, job, activity or life-cycle stage from current source records,
 with its instruction/observation/safety context. It omits credits, source lists and technical
 teacher notes. Stop reading, voice selection, late voice discovery, startup failure and
@@ -207,7 +212,7 @@ and native fullscreen. The shared motion preference controls CSS transitions and
 JavaScript models. Base teal/bark/moss colors are preserved; image scrims and selected/hover
 states retain readable text.
 
-QA records 42 passing automated tests, 55 activity/layout cases, 15 job/layout cases and all
+QA records 48 passing automated tests, 55 activity/layout cases, 15 job/layout cases and all
 eleven choices at actual 200% zoom. The contrast report contains 203 computed-text cases and
 39 conservative image-mask/overlay bounds with no failures. Recalculate the captured report:
 

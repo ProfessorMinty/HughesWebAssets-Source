@@ -1156,7 +1156,18 @@
           "loadDemo": "Load the creator’s video",
           "closeDemo": "Close video",
           "demoPlayerTitle": "Mushroom Music with PlantWave at Kealia Forest Reserve",
-          "demoFallback": "If the player cannot load, open the creator’s demonstration below."
+          "demoFallback": "If the player cannot load, open the creator’s demonstration below.",
+          "demoRetry": "Try the video again",
+          "demoLoading": "Loading the real demonstration…",
+          "demoReady": "Press play inside the video when you are ready.",
+          "demoPlaying": "Playing the creator’s real demonstration.",
+          "demoPaused": "Video paused. Use its play button to continue.",
+          "demoEnded": "The demonstration has finished. You can replay it with the video controls.",
+          "demoBuffering": "The video is getting ready…",
+          "demoBlocked": "Press play inside the video to begin.",
+          "demoError": "The video could not play. Try again, or open the creator’s page below.",
+          "demoTimeout": "The video is taking too long. Try again, or open the creator’s page below.",
+          "demoUnavailable": "Use the video controls. If it will not play, open the creator’s page below."
         },
         "label": "Light and music"
       },

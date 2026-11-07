@@ -539,3 +539,6 @@
 .hrv-mushrooms :is(.mushroom-photo-credit a,.mushroom-film-credit a,.mushroom-music-details a){min-width:44px;min-height:44px;display:inline-flex;align-items:center}
 .hrv-mushrooms .mushroom-film-credit{font-size:14px!important;line-height:1.5}
 #mushrooms-motion .mushroom-instruments .mushroom-lab-button[aria-pressed=true]:hover:not(:disabled){background:#f1d396;color:#172c25}
+/* Provider minimum: both player dimensions stay at least 200 CSS px on phones. */
+.mushroom-demo-frame{min-width:202px;min-height:202px}
+.mushroom-demo-status{font-size:18px;line-height:1.5;margin-top:12px!important;color:var(--muted)!important}

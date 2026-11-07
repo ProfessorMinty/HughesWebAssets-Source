@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "mushroom-exploration/1.8.0",
+  "schemaVersion": "mushroom-exploration/1.9.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",

@@ -3304,6 +3304,17 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "demoRetry",
+                      "demoLoading",
+                      "demoReady",
+                      "demoPlaying",
+                      "demoPaused",
+                      "demoEnded",
+                      "demoBuffering",
+                      "demoBlocked",
+                      "demoError",
+                      "demoTimeout",
+                      "demoUnavailable",
                       "instrumentTitle",
                       "detailsTitle",
                       "noteStripLabel",
@@ -3333,6 +3344,50 @@
                       "demoSourceRef"
                     ],
                     "properties": {
+                      "demoRetry": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoLoading": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoReady": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoPlaying": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoPaused": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoEnded": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoBuffering": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoBlocked": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoError": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoTimeout": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoUnavailable": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
                       "instrumentTitle": {
                         "type": "string",
                         "maxLength": 600

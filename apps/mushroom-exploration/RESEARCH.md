@@ -239,3 +239,27 @@ measurement or classroom claim. Technical electrical interpretation stays in opt
 - All original six-photo and two-recording bytes and their provenance/catalog checks pass.
   No new specimen image, third-party audio clip, kit detail or classroom observation is added.
   This batch introduces code-owned controls/illustration labels and optional platform speech.
+
+
+## Real-player resilience follow-up — 2026-11-07
+
+[YouTube’s official IFrame API reference](https://developers.google.com/youtube/iframe_api_reference)
+requires a player viewport at least 200×200 px and documents enablejsapi, actual host origin,
+ready/state/error events and autoplay-blocked feedback. The earlier aspect-ratio-only frame
+could shrink below that minimum on phones. A 202 px border-box minimum now preserves a
+200 px inner client area. Five settled viewport checks verified the real client dimensions.
+
+The official API is requested only when the visitor loads the demonstration; autoplay is
+explicitly off. The app monitors provider states and actual reported playback time, reports
+a 12-second loading/buffering timeout and permits an explicit retry. Missing API, provider
+errors and blocked playback have useful source-owned feedback. Destroy/retry/close discard
+stale callbacks, player instances and timers. No third-party video, audio or thumbnail is
+downloaded or rehosted. Rendering a thumbnail or firing onReady is not a playback pass.
+
+In the current cloud trial, onReady fired, Play reported buffering, then timeout; actual
+currentTime remained zero and readyState remained zero. Retry produced one replacement
+player; Close and changing activities removed it. **M33 remains open.** The current connected
+Chrome exposed six English voices on [MDN’s official speech demo](https://mdn.github.io/dom-examples/web-speech-api/speak-easy-synthesis/),
+including local Microsoft and Google choices. This establishes voice availability in that
+browser only: the exhibit was not read aloud there and no pronunciation was certified.
+**M41 and the actual teacher/projector/pupil gate M46 remain open.**

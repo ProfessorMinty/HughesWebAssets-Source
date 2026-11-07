@@ -1,6 +1,6 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.4 · November 6, 2026 · Reading/access batch verified; three acceptance gates remain open.
+Version 1.5 · November 7, 2026 · Video resilience follow-up verified; three acceptance gates remain open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
@@ -10,8 +10,8 @@ have dated implementation evidence below.
 
 **Current status: 43 of 46 complete.** Only **M33, M41 and M46** remain open: actual
 embedded-video playback, real-voice/read-aloud acceptance, and the teacher/projector/pupil
-trial. Reading controls and the video candidate are implemented, with exact test-browser
-limits recorded below. J01–J05 (journal/content/Mushinator) stay deferred.
+trial. Reading controls and the real-video candidate are implemented. The video has provider-state
+feedback, timeout/retry and a corrected minimum phone size; exact browser limits are recorded below. J01–J05 (journal/content/Mushinator) stay deferred.
 
 ## Baseline and evidence
 
@@ -692,6 +692,31 @@ Tree `768d19d3a16d677b47842e480fdc608b8e6b1182` matches local implementation/evi
 The source remains scaffold/research pending. No class kit, dates, photos, entries or outcomes
 are invented; no immutable release, live registry/Hub swap or Edublogs injection change occurs.
 
+## Video resilience follow-up — November 7, 2026
+
+This follow-up does not close an acceptance gate. **43/46 remain complete.**
+
+- Contract 1.9.0 adds validated source-owned video status/retry labels. The official API is
+  loaded only after the visitor requests the video; actual origin, inline mode and explicit
+  autoplay-off are set. Ready is distinguished from real playing. Loading/buffering have a
+  12-second limit, a recoverable message and explicit retry. Close/leaving/retry/destroy
+  remove players and cancel timers; late callbacks cannot revive a closed player.
+- A 202 px border-box minimum corrects the phone player’s previously undersized viewport.
+  Actual client dimensions across small phone, phone, tablet, laptop and desktop were
+  229×200, 291×200, 712×400, 718×403 and 718×403 px. All five retained zero page overflow;
+  Close was 48 px tall. Retry was observed at 48 px tall. Status text is 18 px.
+- The official player reported ready; Play moved to buffering then timeout. It still had
+  time 0 / native readyState 0. Retry created one fresh frame at time 0; Close returned
+  focus to Load; leaving for Glowing fungi removed the frame. **M33 remains open.**
+- Connected Chrome exposed English voices on MDN’s official demo, but that does not verify
+  this exhibit’s speech or pronunciation. **M41 remains open. M46 needs the actual classroom.**
+- `npm run check:mushrooms` passes **48 tests**, including six new official-loader, status,
+  timeout, error, actual-origin/autoplay and stale-player/cleanup checks. No dependencies
+  or media bytes were added. The default desktop journal remains y2382.95 px, with stations
+  904.23/868.39 px and page height about 2737 px; the closed drawer adds no scroll length.
+- Current evidence: `qa/batch-5-verification.json`, `qa/batch-5-video-feedback.png`, and
+  [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md). The screenshot shows ready/prompt, not playback.
+
 ## Implementation map and source references
 
 | Concern | Owning files |
@@ -699,7 +724,7 @@ are invented; no immutable release, live registry/Hub swap or Edublogs injection
 | Authored lessons, claims and media references | `source/mushrooms.source.json`, `src/contract.js` |
 | Generated editor/schema descriptions | `source/mushrooms.control.json`, `schemas/mushroom-exploration.source.schema.json` |
 | Station navigation, anatomy, cutaway, gallery and binding | `src/runtime.js` |
-| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js`, `src/sound.js`, `src/narration.js` |
+| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js`, `src/sound.js`, `src/narration.js`, `src/demo.js` |
 | Scientific illustrations and connected specimen geometry | `src/art.js` |
 | Palettes, responsive layout, targets, labels and focus | `src/exhibit.css`, `src/host-compat.css` |
 | Registered photographs, footage and integrity | `src/photo-catalog.js`, `src/photos.js`, `src/video-assets.js`, `src/sound.js`, `src/assets/`, `source/mushrooms.assets.json` |

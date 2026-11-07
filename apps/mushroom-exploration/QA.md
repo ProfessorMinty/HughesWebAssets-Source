@@ -1,4 +1,42 @@
-# Current checks — reading/access batch 4, 2026-11-06
+# Current checks — real-video resilience, 2026-11-07
+
+**43/46 fixes complete; M33, M41 and M46 remain open.** This follow-up strengthens the
+real creator-video player and supplies [REVIEW-HANDOFF.md](REVIEW-HANDOFF.md) for the
+actual target-browser/teacher observations. It does not infer acceptance from unit tests.
+
+- `npm run check:mushrooms`: **48 pass, zero fail**, plus syntax, generated schema/control
+  consistency, unchanged local-media integrity and standalone build. Contract is **1.9.0**.
+  The six new tests exercise provider states/clock; buffering deadlines; recoverable errors;
+  retry/late-player/close/destroy ownership; actual-origin/autoplay-off URLs; singleton API
+  loading, existing callback preservation, and failed/timeout/CSP cleanup with explicit retry.
+- Official onReady was observed. After the visitor clicked Play, the API reported buffering
+  then timeout. It remained at currentTime 0 / readyState 0. The app showed the authored
+  timeout message and retry. This is an unresolved playback limitation in this browser,
+  not evidence of an unavailable creator recording or a bot-detection block. **M33 is open.**
+- Retry created exactly one fresh frame at time 0 and state loading. Close removed the frame,
+  set state closed and returned focus to Load. Changing to Glowing fungi removed the frame.
+  No automatic retries or autoplay are used. Provider events, errors and clock values are
+  observed through the official API; a thumbnail/onReady does not imply playback.
+- Five settled responsive layouts had zero page overflow. The iframe’s **client** sizes were
+  718×403 desktop/laptop, 712×400 tablet, 291×200 phone and 229×200 small phone. These include
+  the actual 200 px client-height minimum rather than counting its border. Close was 48 px
+  tall across five sizes; Retry was 48 px in the timeout state. Status text was 18 px.
+- Default desktop remained page 2737 px, journal y2382.95, stations 904.23/868.39 px. The
+  disclosure adds space only while open. The prior broad activity/zoom/contrast evidence
+  below remains dated evidence; this confined follow-up checked the expanded player at
+  five sizes rather than claiming a new full-matrix/contrast audit.
+- Connected Chrome showed six English choices on the official MDN speech demo. No exhibit
+  audio was played there; actual voice/pronunciation acceptance remains unverified. The
+  cloud browser still has zero English voices. **M41 is open.** No actual teacher, projector
+  or pupil observations have been supplied, so **M46 is open**.
+
+Evidence: `qa/batch-5-verification.json`, [player and honest ready prompt](qa/batch-5-video-feedback.png).
+No classroom data, new media, dependency, immutable release, live route/Hub swap or injection
+change was introduced. The preview and source remain draft/scaffold/research pending.
+
+---
+
+# Historical checks — reading/access batch 4, 2026-11-06
 
 Implementation: [aefb03b4736d005da66b2ad467870af8f43ced68](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/aefb03b4736d005da66b2ad467870af8f43ced68).
 Tree `768d19d3a16d677b47842e480fdc608b8e6b1182` equals local
