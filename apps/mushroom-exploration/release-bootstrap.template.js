@@ -11,12 +11,13 @@
   var expectedHash = script.getAttribute('data-release-sha256');
   var version = script.getAttribute('data-release-version');
   function notify(name) { window.dispatchEvent(new CustomEvent(name, { detail:{ pageId:'hrv-page:mushrooms-2026-2027' } })); }
-  function fail() {
+  function fail(reason) {
     if (settled) return;
     settled = true; clearTimeout(deadline); abort.abort(); controller?.destroy();
     styles.forEach(function (style) { style.remove(); });
     if (objectURL) URL.revokeObjectURL(objectURL);
     root.innerHTML = original; root.setAttribute('data-hrv-state', 'unavailable'); root.removeAttribute('data-mushroom-bootstrap');
+    root.setAttribute('data-mushroom-release-error', reason instanceof Error ? reason.message : 'Release startup failed');
     notify('hrv:mushrooms-error');
   }
   function sha256(bytes) { return crypto.subtle.digest('SHA-256', bytes).then(function (digest) { return Array.from(new Uint8Array(digest), function (byte) { return byte.toString(16).padStart(2, '0'); }).join(''); }); }

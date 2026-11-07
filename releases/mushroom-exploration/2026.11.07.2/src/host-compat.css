@@ -1,0 +1,14 @@
+/* The repository owns breakout. This matches only a ready mushroom mount.
+   The native shell and unavailable message survive a failed bootstrap. */
+body:has(#hrv-mushroom-exploration-root.hrv-mushrooms[data-hrv-state="ready"]) #page { overflow-x:clip !important; }
+body:has(#hrv-mushroom-exploration-root.hrv-mushrooms[data-hrv-state="ready"]) :is(#content.site-content.container,#primary.content-area,#main.site-main,.entry-content,article.page) {
+  width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important;
+  float:none !important; border:0 !important; background:transparent !important; box-shadow:none !important; overflow:visible !important;
+}
+body:has(#hrv-mushroom-exploration-root.hrv-mushrooms[data-hrv-state="ready"]) :is(#masthead.site-header,.entry-header,.entry-footer,#secondary,#sidebar-footer,.edit-link) { display:none !important; }
+#hrv-mushroom-exploration-root.hrv-mushrooms[data-hrv-state="ready"] {
+  display:block !important; position:relative !important; left:50% !important;
+  width:var(--mushroom-viewport-width,100%) !important; max-width:none !important;
+  margin:0 !important; margin-left:calc(var(--mushroom-viewport-width,100%) / -2) !important;
+  padding:0 !important; border:0 !important; transform:none !important;
+}
