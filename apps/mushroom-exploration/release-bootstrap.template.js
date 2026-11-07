@@ -7,7 +7,7 @@
   root.setAttribute('data-mushroom-bootstrap', 'started');
   var original = root.innerHTML, abort = new AbortController(), styles = [], controller, objectURL;
   var settled = false, deadline = setTimeout(function () { fail(new Error('Startup timed out')); }, 20000);
-  var base = new URL('./', script.src), manifestURL = new URL('../release.json', script.src);
+  var releaseRoot, base, manifestURL;
   var expectedHash = script.getAttribute('data-release-sha256');
   var version = script.getAttribute('data-release-version');
   function notify(name) { window.dispatchEvent(new CustomEvent(name, { detail:{ pageId:'hrv-page:mushrooms-2026-2027' } })); }
@@ -37,7 +37,9 @@
   }
   function pathSafe(path) { return typeof path === 'string' && /^[a-zA-Z0-9_./-]+$/.test(path) && !path.startsWith('/') && !path.split('/').some(function (part) { return !part || part === '.' || part === '..'; }); }
   async function start() {
-    if (base.protocol !== 'https:' || !/^[a-f0-9]{64}$/.test(expectedHash || '') || !/^\d{4}\.\d{2}\.\d{2}\.\d+$/.test(version || '')) throw new Error('Release pin required');
+    releaseRoot = new URL(script.getAttribute('data-release-root'));
+    base = new URL('src/', releaseRoot); manifestURL = new URL('release.json', releaseRoot);
+    if (releaseRoot.origin !== 'https://raw.githubusercontent.com' || !/^\/ProfessorMinty\/HughesWebAssets-Source\/[a-f0-9]{40}\/releases\/mushroom-exploration\/\d{4}\.\d{2}\.\d{2}\.\d+\/$/.test(releaseRoot.pathname) || releaseRoot.search || releaseRoot.hash || !releaseRoot.pathname.endsWith('/'+version+'/') || !/^[a-f0-9]{64}$/.test(expectedHash || '')) throw new Error('Release pin required');
     var manifestBytes = await bytes(manifestURL.href, 100000);
     if (await sha256(manifestBytes) !== expectedHash) throw new Error('Release manifest integrity failure');
     var text = new TextDecoder('utf-8', { fatal:true });
@@ -51,7 +53,7 @@
     if (total > 32000000 || !['runtime.js','exhibit.css','host-compat.css','mushrooms.source.json'].every(function (name) { return paths.has('src/' + name); })) throw new Error('Release entries missing');
     var verified = new Map();
     await Promise.all(manifest.files.map(async function (file) {
-      var data = await bytes(new URL('../' + file.path, script.src).href, file.bytes);
+      var data = await bytes(new URL(file.path, releaseRoot).href, file.bytes);
       if (data.byteLength !== file.bytes || await sha256(data) !== file.sha256) throw new Error('Release asset integrity failure');
       verified.set(file.path, data);
     }));

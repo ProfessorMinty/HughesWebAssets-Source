@@ -675,3 +675,10 @@ The exact current blockers and continuation are maintained in
 `docs/edublogs-integration/mushrooms-2026-2027/READINESS.md`. No token or credential was created;
 GitHub requires owner email verification. The latest file-upload attempt timed out, and the
 live draft still has no imported media. No Edublogs field or page was modified.
+
+The first browser release check failed safely because the raw.githack host redirects binary
+assets. A later jsDelivr request returned an explicit 403: package size exceeded 50 MB.
+The doorway now verifies the exact raw-repository bootstrap before executing a typed Blob;
+all other pinned assets are verified by that bootstrap. No unrelated existing site loader
+was changed to work around the new page's delivery boundary. The direct-delivery suite has
+75 passing tests, including refusal of modified bootstrap bytes before script creation.

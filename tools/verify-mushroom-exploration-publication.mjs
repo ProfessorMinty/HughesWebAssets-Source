@@ -49,7 +49,7 @@ export async function verifyRelease({directory,commit,version,fetcher=fetch,requ
  if(!/^[a-f0-9]{40}$/.test(commit||'')||!/^\d{4}\.\d{2}\.\d{2}\.\d+$/.test(version||''))throw new Error('An exact commit and release version are required');
  const manifestBytes=await readFile(resolve(directory,'release.json')),manifest=JSON.parse(manifestBytes);
  if(manifest.schemaVersion!=='1.0.0'||manifest.application!=='hrv-page:mushrooms-2026-2027'||manifest.version!==version||!Array.isArray(manifest.files)||manifest.files.length>80)throw new Error('Release manifest mismatch');
- const base=`https://cdn.jsdelivr.net/gh/${canonical}@${commit}/releases/mushroom-exploration/${version}/`,files=[];
+ const base=`https://raw.githubusercontent.com/${canonical}/${commit}/releases/mushroom-exploration/${version}/`,files=[];
  const expected=[{path:'release.json',bytes:manifestBytes.length,sha256:hash(manifestBytes)},...manifest.files];
  const bootstrap=await readFile(resolve(directory,'src/bootstrap.js'));expected.push({path:'src/bootstrap.js',bytes:bootstrap.length,sha256:hash(bootstrap)});
  const seen=new Set();

@@ -67,3 +67,17 @@ repository, account, WordPress or Cloudflare permissions are needed.
 The real teacher/projector/pupil trial is a post-install acceptance check. Optional native
 read-aloud still needs successful target-browser speech and pronunciation observations;
 neither is claimed from automated tests or from the presence of a voice menu.
+
+## Delivery verification finding
+
+The initial jsDelivr snapshot passed its byte comparison, but the next repository snapshot
+crossed jsDelivr's configured **50 MB package limit** and returned HTTP 403 for release
+assets. The raw.githack review host returns HTTP 301 for binary assets, which the strict
+loader intentionally refuses. Neither result is treated as successful page startup.
+
+The current loader instead reads exact-commit `raw.githubusercontent.com` release files.
+The JS doorway verifies bootstrap bytes before creating a typed script Blob; that bootstrap
+verifies the pinned manifest and all files before importing the typed runtime Blob and
+applying styles. Correct JavaScript/CSS MIME types from a third-party CDN are therefore not
+a dependency. Both executable code and styles remain owned by the repository. Earlier
+release candidates remain preserved; they are not silently overwritten or accepted.

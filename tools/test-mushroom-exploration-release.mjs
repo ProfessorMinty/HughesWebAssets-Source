@@ -14,7 +14,7 @@ async function rejection({manifest,expectedHash,assets={}}){
  const dom=new JSDOM('<main><div id="hrv-mushroom-exploration-root"><p>Our growing story will be back soon.</p></div></main>',{url:'https://rmhughes.edublogs.org/new-page/'});
  const bytes=Buffer.from(JSON.stringify(manifest));const script=dom.window.document.createElement('script');
  script.src='https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@'+'a'.repeat(40)+'/releases/mushroom-exploration/2026.11.07.1/src/bootstrap.js';
- script.setAttribute('data-release-version','2026.11.07.1');script.setAttribute('data-release-sha256',expectedHash||sha(bytes));
+ script.setAttribute('data-release-root','https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/'+'a'.repeat(40)+'/releases/mushroom-exploration/2026.11.07.1/');script.setAttribute('data-release-version','2026.11.07.1');script.setAttribute('data-release-sha256',expectedHash||sha(bytes));
  Object.defineProperty(dom.window.document,'currentScript',{value:script,configurable:true});
  let failures=0,finished,watch;const failed=new Promise(resolve=>{finished=resolve;});dom.window.addEventListener('hrv:mushrooms-error',()=>{failures++;finished();});
  const context=vm.createContext({document:dom.window.document,window:dom.window,URL,Blob,AbortController,TextDecoder,crypto:webcrypto,CustomEvent:dom.window.CustomEvent,setTimeout,clearTimeout,fetch:async url=>new Response(url.endsWith('/release.json')?bytes:assets[new URL(url).pathname.split('/').at(-1)]||'',{status:200})});
@@ -42,22 +42,33 @@ test('journal preflight checks record identity before trusting classroom media',
  const entries=[1,2,3,4].map(n=>({id:`00000000-0000-4000-8000-00000000000${n}`,date:'2026-11-04',revision:1,recordPath:`apps/mushroom-exploration/source/journal/days/00000000-0000-4000-8000-00000000000${n}-1-123456789abc.json`}));
  await assert.rejects(verifyClassroomJournal({fetcher:async url=>new Response(JSON.stringify(url===MUSHROOM_JOURNAL_FEED?{schemaVersion:'1.0.0',entries}:{schemaVersion:'1.0.0',id:'wrong',date:'2026-11-04',revision:1,media:[],cards:[]}))}),/day mismatch/);
 });
-function doorwayCode(){let code=template;for(const [token,value]of Object.entries({__BOOTSTRAP_URL__:'https://cdn.jsdelivr.net/example/src/bootstrap.js',__BOOTSTRAP_SRI__:'sha256-test',__RELEASE_SHA256__:'a'.repeat(64),__RELEASE_VERSION__:'2026.11.07.1'}))code=code.replace(token,value);return code;}
-test('JS-window doorway creates one mount while preserving unrelated native content',()=>{
- const dom=new JSDOM('<article class="page"><div class="entry-content"><p id="preserve">Teacher text</p></div></article>',{url:'https://rmhughes.edublogs.org/new-page/',runScripts:'outside-only'});
+const bootstrapFixture='/* verified bootstrap fixture */';
+function doorwayCode(){let code=template;for(const [token,value]of Object.entries({__BOOTSTRAP_URL__:'https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/'+'a'.repeat(40)+'/releases/mushroom-exploration/2026.11.07.1/src/bootstrap.js',__BOOTSTRAP_SHA256__:sha(Buffer.from(bootstrapFixture)),__RELEASE_ROOT__:'https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/'+'a'.repeat(40)+'/releases/mushroom-exploration/2026.11.07.1/',__RELEASE_SHA256__:'a'.repeat(64),__RELEASE_VERSION__:'2026.11.07.1'}))code=code.replace(token,value);return code;}
+function doorwayDom(body){const dom=new JSDOM(body,{url:'https://rmhughes.edublogs.org/new-page/',runScripts:'outside-only'});Object.defineProperty(dom.window,'crypto',{value:webcrypto});dom.window.fetch=async()=>new Response(bootstrapFixture);dom.window.URL.createObjectURL=()=> 'blob:https://rmhughes.edublogs.org/bootstrap';dom.window.URL.revokeObjectURL=()=>{};return dom;}
+async function until(dom,predicate){const end=Date.now()+1000;while(!predicate()){if(Date.now()>end)throw new Error('Expected doorway state did not arrive');await new Promise(resolve=>setTimeout(resolve,5));}}
+test('JS-window doorway creates one mount while preserving unrelated native content',async()=>{
+ const dom=doorwayDom('<article class="page"><div class="entry-content"><p id="preserve">Teacher text</p></div></article>');
  dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+ await until(dom,()=>dom.window.document.querySelector('script[src]'));
  assert.equal(dom.window.document.querySelectorAll('#hrv-mushroom-exploration-root').length,1);assert.equal(dom.window.document.querySelectorAll('script[src]').length,1);assert.equal(dom.window.document.querySelector('#preserve').textContent,'Teacher text');
  dom.window.dispatchEvent(new dom.window.CustomEvent('hrv:mushrooms-ready',{detail:{pageId:'hrv-page:mushrooms-2026-2027'}}));dom.window.close();
 });
-test('a failed doorway exposes a retry and handles a fresh successful startup',()=>{
- const dom=new JSDOM('<article class="page"><div class="entry-content"></div></article>',{url:'https://rmhughes.edublogs.org/new-page/',runScripts:'outside-only'});
+test('a failed doorway exposes a retry and handles a fresh successful startup',async()=>{
+ const dom=doorwayDom('<article class="page"><div class="entry-content"></div></article>');
  dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+ await until(dom,()=>dom.window.document.querySelector('script[src]'));
  dom.window.document.querySelector('script[src]').dispatchEvent(new dom.window.Event('error'));
  assert.equal(dom.window.document.querySelector('#hrv-mushroom-exploration-root').dataset.hrvState,'unavailable');
- dom.window.document.querySelector('.hrv-mushroom-retry').click();assert.equal(dom.window.document.querySelectorAll('script[src]').length,1);
+ dom.window.document.querySelector('.hrv-mushroom-retry').click();await until(dom,()=>dom.window.document.querySelector('script[src]'));
+ assert.equal(dom.window.document.querySelectorAll('script[src]').length,1);
  dom.window.dispatchEvent(new dom.window.CustomEvent('hrv:mushrooms-ready',{detail:{pageId:'hrv-page:mushrooms-2026-2027'}}));dom.window.close();
 });
+test('doorway refuses modified bootstrap bytes before creating an executable script',async()=>{
+ const dom=doorwayDom('<article class="page"><div class="entry-content"></div></article>');dom.window.fetch=async()=>new Response('changed executable');
+ dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));await until(dom,()=>dom.window.document.querySelector('.hrv-mushroom-retry'));
+ assert.equal(dom.window.document.querySelectorAll('script[src]').length,0);dom.window.close();
+});
 test('doorway does not guess between multiple page content mounts',()=>{
- const dom=new JSDOM('<article class="page"><div class="entry-content"></div><div class="entry-content"></div></article>',{runScripts:'outside-only'});
+ const dom=doorwayDom('<article class="page"><div class="entry-content"></div><div class="entry-content"></div></article>');
  dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));assert.equal(dom.window.document.querySelectorAll('script[src]').length,0);dom.window.close();
 });
