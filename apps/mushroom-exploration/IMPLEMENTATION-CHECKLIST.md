@@ -1,6 +1,6 @@
 # Mushroom exhibit — implementation checklist
 
-Version 1.2 · November 6, 2026 · Process batch verified; music and final checks remain open.
+Version 1.3 · November 6, 2026 · Music batch verified; real-player acceptance and final checks remain open.
 
 This is the current checklist for the classroom-content and interaction improvements.
 It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the exact
@@ -8,9 +8,10 @@ It consolidates Arctic's instructions, `Fungi-Website-Developer-Audit.md`, the e
 document alone did not complete any fixes. All 46 items started open; checked items now
 have dated implementation evidence below.
 
-**Current status: 26 of 46 complete.** M01 and M03–M27 are checked. M02 and M28–M46
-remain open. The next implementation batch is electrical activity and mushroom music
-(M28–M35), followed by remaining audience/access/ownership checks. J01–J05 stay deferred.
+**Current status: 33 of 46 complete.** M01, M03–M32 and M34–M35 are checked. M02,
+M33 and M36–M46 remain open. M33 has a documented embedded candidate; in-page playback
+acceptance is blocked in the test browser. Continue with audience/access/narration/ownership
+checks and retain the teacher/pupil review gate. J01–J05 stay deferred.
 
 ## Baseline and evidence
 
@@ -277,32 +278,32 @@ already within the requested scope.
   source records. Done when both are directly reachable and their visuals and controls are
   appropriate to their separate questions, without adding another vertical station.
 
-- [ ] **M28 — Explain electrical activity and its limits accurately.**
+- [x] **M28 — Explain electrical activity and its limits accurately.**
   Introduce charged particles/ions as part of living-cell work and explain that researchers
   study connections with growth, taking in food and responses. Distinguish established cell
   processes from unsettled interpretations of recorded spikes. Done when there are no claims
   of decoded language, feelings, heartbeat or a known universal purpose for every spike.
 
-- [ ] **M29 — Show the measurement-to-sound chain.**
+- [x] **M29 — Show the measurement-to-sound chain.**
   Use four clear illustrated stages: fungus, sensor, computer and speaker/instrument.
   Explain what is measured, the chosen mapping rule and who chooses the sound. Done when
   a child can follow the cause of the audible notes, with device-specific distinctions
   between voltage and conductivity/resistance available in teacher detail.
 
-- [ ] **M30 — Identify the data honestly beside playback.**
+- [x] **M30 — Identify the data honestly beside playback.**
   Keep synthetic/model, recorded and live states distinct. A synthetic activity must say
   Example pattern and must not claim its displayed numbers were measured from a mushroom.
   State the chosen mapping; document normalized/model values or real units, time scale,
   species, source and processing as applicable. Done when graph, labels and sound correspond
   and no unrelated audio is passed off as sonification of the displayed trace.
 
-- [ ] **M31 — Add a controlled instrument comparison.**
+- [x] **M31 — Add a controlled instrument comparison.**
   Provide two recognizable sounds, such as bell and piano/keys, using appropriately licensed
   assets or clearly described synthesis. Replay exactly the same values, timing and mapping
   when changing sound. Keep generating a new pattern separate from this comparison.
   Done when the instrument changes audibly while the displayed data and mapping stay fixed.
 
-- [ ] **M32 — Complete sound transport and coordination.**
+- [x] **M32 — Complete sound transport and coordination.**
   Provide intentional Play/Pause, Replay, Stop and Volume behavior. Keep the trace marker and
   note highlight on the same playback clock. Prevent narration/music overlap and stop sound
   on leaving/hiding/unmounting. Done when controls, resume/replay, cleanup and unsupported-
@@ -315,13 +316,13 @@ already within the requested scope.
   this item blocked with evidence and continue independent fixes; the synthetic model alone
   does not complete this real-world-example requirement.
 
-- [ ] **M34 — Keep chemical light distinct from sonification.**
+- [x] **M34 — Keep chemical light distinct from sonification.**
   Retain the real glowing-fungus photograph, chemical-reaction explanation, some-fungi scope
   and long-exposure context. Keep artistic thread highlights distinguishable from natural
   light. Done when the glow activity never implies that electrical signals normally appear
   as visible glowing threads or that bioluminescence and sonification are the same mechanism.
 
-- [ ] **M35 — Add an observation that tests the music lesson.**
+- [x] **M35 — Add an observation that tests the music lesson.**
   Ask what changed when the same pattern used another instrument, and show which sample/note
   is being represented. Keep instructions and a visual equivalent usable with sound off.
   Done when the activity invites a specific observation about data, mapping and instrument
@@ -560,7 +561,7 @@ Shared evidence:
   access remain. No new vertical learning chapter was added.
 - Screenshot: `qa/batch-2-cycle.png`. Full observations and limits are in `QA.md`.
 
-### Current open work after batch 2
+### Historical open work after batch 2 — superseded by batch 3
 
 - **M02:** finish audience wording as the electrical/music lesson is revised.
 - **M28–M35:** electrical activity, the measurement-to-sound chain, controlled instruments,
@@ -580,6 +581,63 @@ that diagram threads are enlarged/highlighted, not naturally glowing. This prese
 model/light distinction while M34 remains open for the full glow/music lesson. The copy-only
 caption change was validated/built after browser QA; no diagram geometry or default view changed.
 
+## Implementation evidence — November 6, 2026, batch 3
+
+**Seven additional items complete:** M28–M32, M34 and M35. Together with the earlier batches,
+this is **33/46**. M33 has an implementation candidate but remains **open/blocked on in-page
+playback acceptance**. M02 and M36–M46 remain open. J01–J05 stay deferred.
+
+Implementation commit: [8cbfdc1666ea95ff4a1c15d356e3cee5608107eb](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/8cbfdc1666ea95ff4a1c15d356e3cee5608107eb).
+Tree `24f325f4993a3a08a11002868234fde9fa591ca7` matches local implementation
+`9d44f1602c531f3669fc530be90bfaf2883fbe90`. All entries below share this date/implementation.
+
+| Completed ID | Changed files | Acceptance evidence and limits |
+| --- | --- | --- |
+| M28 | Source, contract, `RESEARCH.md` | Ion movement is introduced as cell work. Growth, food uptake and responses are research questions; spike interpretation remains unsettled. Teacher detail distinguishes extracellular voltage from conductivity/resistance measurements and sensor/environment effects. No decoded language, feelings, heartbeat or universal spike-purpose claim. Primary growth study and device specification are cited. |
+| M29 | `src/art.js`, `src/labs.js`, source/contract/CSS | Four connected illustrated stages show fungus, contacts/device, computer and instruments/speaker. The sensor explanation identifies ease of electrical movement between contacts; human mapping and sound choices are visible. The chain stacks vertically in order on phones and uses the full desktop width alongside graph/controls. |
+| M30 | `src/sound.js`, labs, source/contract | Persistent Example pattern disclosure says invented, not mushroom measurements. All sixteen graph points, current sample/value, note strip and scheduled notes use one event list. 0–1 values, 0.5-second spacing, eight-second duration and eight note bands are documented, with no biological units/species/time claim. Boundary mapping and shared event identity are tested. |
+| M31 | sound, labs, source/contract | Flute-like and bell-like are explicitly synthesized, with distinct harmonic/envelope choices. Instrument change resets to start while preserving all values, fundamental pitches and onsets. A separately labeled Make a new pattern action changes the data. Automated scheduling comparison verifies identical pitches/onsets and different envelopes. Browser selection resets the visible readout and selected state. No sampled instrument assets are used. |
+| M32 | sound, labs, source/contract/CSS, tests | Play/Pause/Resume, Replay, Stop and Volume work intentionally. AudioContext time drives the current sample marker and note. Manual inspection and shared Step-by-step view leave a usable silent lesson. Tests cover pause/resume, finite ending, replay, volume, stale callbacks, startup cancellation/errors, context interruption and destroy cleanup. Browser checks exercised playback, pause/resume, instrument reset, step mode, silent notes, media replacement and immediate chapter/activity exit. Visibility/offscreen cleanup listeners use the same halt path; this controlled browser kept document.hidden false during tab-switch inspection, so an end-to-end hidden-tab pass is not claimed. Narration coordination events exist; M41 read-aloud is not yet implemented or accepted. |
+| M34 | source, labs, research | Panellus retains its registered real photo, chemical-reaction explanation, some-fungi scope and over-eight-minute exposure caption. The separate sound activity makes no light-from-electricity claim. Existing enlarged/highlighted/not-naturally-glowing thread labels remain. Asset integrity checks pass. |
+| M35 | labs, source/contract | A specific two-choice observation asks what changed after swapping instruments. Feedback explains fixed values/notes/timing and changed sound. Current sample/value/note, a marked point and underlined/selected note cell provide the visual equivalent. Previous/Next note work without AudioContext, and keyboard Enter advanced the readout at 200% zoom. |
+
+### M33 — implemented candidate, acceptance blocked
+
+- Registered creator: Data Garden / PlantWave, Kealia Forest Reserve demonstration, YouTube
+  `w0tNEp4m5PY`. Source page documents conductivity measurements and a human-chosen Celestial
+  Being sound set (electric piano, bass, chimes, flute). Raw data, full mapping parameters,
+  species and playback-speed processing are not supplied; these limits are stated.
+- Reuse is restricted to the creator-enabled official YouTube embed under platform terms.
+  No media/thumbnail bytes are copied, downloaded, rehosted or relicensed. The asset catalog
+  records source, device, artistic choices, permission basis and unknown processing details.
+- The creator's original embedded recording played in the connected browser: time advanced
+  beyond 71 seconds, duration 235.681 seconds, readyState 4. The same clip's privacy-enhanced
+  player rendered inside our cloud preview but remained at time 0 / readyState 0 after Play.
+  This does **not** establish in-page playback acceptance or a permanent provider failure.
+- The optional player loads only on request. Closing its drawer/player, leaving the activity,
+  or starting the example removes it; a direct creator-page fallback is visible. Source,
+  measurement and model distinction are present. M33 stays unchecked until the exhibit's
+  embedded clip actually plays in a suitable browser/network and its content is accepted.
+
+### Shared verification and remaining work
+
+- `npm run check:mushrooms`: **37 tests pass**, syntax checks, generated contract/schema
+  consistency, original image/video integrity and standalone build. `git diff --check` passes.
+  Seven additions exercise the shared musical mapping/transport, failure/cleanup paths,
+  protected editable records and external-demo registration. No dependency was added.
+- **55 activity/layout combinations** across 1920×911, 1366×768, 820×1180, 390×844 and 320×640:
+  no horizontal overflow; two active block panels total, one per learning station. Music
+  buttons measured at least 44 px tall at all five sizes. The phone chain stays in order.
+- Actual Chrome **200%** zoom was visibly confirmed. Seven second-station choices had no
+  horizontal overflow at 674 px document width; keyboard Enter advanced silent note inspection.
+  Zoom returned to 100%. This batch does not claim a full screen-reader or physical-device trial.
+- Default 1920×911 footprint is unchanged from batch 2: page≈2602 px; story begins≈2268 px;
+  stations≈836/822 px. The optional music workbench is≈716 px tall at that width. On narrower
+  screens it grows naturally; no fixed-height clipping is used.
+- Screenshot: `qa/batch-3-music.png`, showing the bell-like instrument and sample 6 selected
+  with sound paused. Narration, whole-exhibit access/contrast/copy/ownership review and real
+  teacher/pupil feedback remain under M02/M36–M46. The source stays scaffold/research pending.
+
 ## Implementation map and source references
 
 | Concern | Owning files |
@@ -587,10 +645,10 @@ caption change was validated/built after browser QA; no diagram geometry or defa
 | Authored lessons, claims and media references | `source/mushrooms.source.json`, `src/contract.js` |
 | Generated editor/schema descriptions | `source/mushrooms.control.json`, `schemas/mushroom-exploration.source.schema.json` |
 | Station navigation, anatomy, cutaway, gallery and binding | `src/runtime.js` |
-| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js` |
+| Process, wind, video, life-cycle, quiz and sound behavior | `src/labs.js`, `src/process.js`, `src/sound.js` |
 | Scientific illustrations and connected specimen geometry | `src/art.js` |
 | Palettes, responsive layout, targets, labels and focus | `src/exhibit.css`, `src/host-compat.css` |
-| Registered photographs, footage and integrity | `src/photo-catalog.js`, `src/photos.js`, `src/video-assets.js`, `src/assets/`, `source/mushrooms.assets.json` |
+| Registered photographs, footage and integrity | `src/photo-catalog.js`, `src/photos.js`, `src/video-assets.js`, `src/sound.js`, `src/assets/`, `source/mushrooms.assets.json` |
 | Regressions, preview build and actual QA | `tools/test-mushroom-exploration.mjs`, `tools/build-mushroom-exploration-preview.mjs`, `QA.md` |
 
 Paths are relative to this application unless prefixed `schemas/` or `tools/`, which are

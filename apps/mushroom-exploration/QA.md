@@ -1,4 +1,55 @@
-# Current checks — process batch 2, 2026-11-06
+# Current checks — music batch 3, 2026-11-06
+
+Implementation: [8cbfdc1666ea95ff4a1c15d356e3cee5608107eb](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/8cbfdc1666ea95ff4a1c15d356e3cee5608107eb).
+Tree `24f325f4993a3a08a11002868234fde9fa591ca7` equals local implementation
+`9d44f1602c531f3669fc530be90bfaf2883fbe90`. **33/46 checklist items are complete.**
+M28–M32 and M34–M35 are newly checked. M33 remains open; see its exact limitation below.
+
+`npm run check:mushrooms` passes **37 tests**, syntax, generated contract/schema consistency,
+original media hashes and build. The seven additions cover shared sample/pitch/onset identity
+across timbres; distinct synthesis envelopes; pause/resume/end/replay/volume; silent inspection;
+unsupported/rejected/interrupted startup; stale callbacks/context interruption/destroy cleanup;
+protected editable music records; and registered embed-only external media. No dependency added.
+`git diff --check` passes. Contract is 1.7.0; asset catalog is 1.2.
+
+Actual browser checks:
+
+- All **55 activity/layout cases**, eleven choices at each of the five reference sizes,
+  had no horizontal overflow and one active block panel per station. All visible music
+  buttons were at least 44 px tall at every size. Phone chains follow stages 1→2→3→4 vertically.
+- Play entered playing; Pause held the current sample and Resume continued. Instrument
+  selection reset to zero with the same data. Replay/Stop, separate new-pattern generation,
+  silent Next note, observation feedback and shared Step-by-step view were exercised.
+  Correct SVG namespaces and all sixteen sample points were verified in the browser.
+- Starting the example removes a loaded real-demo iframe. Explicit close removes it.
+  Activity changes and chapter links stop the example; chapter-link cancellation is immediate.
+  Visibility/offscreen listeners and removal cleanup are implemented. This controlled browser
+  kept document.hidden false during tab-switch inspection, so hidden-tab behavior was not
+  certified end to end. Transport interruption/cleanup is covered by injected-clock tests.
+- Actual Chrome **200%** zoom was visibly confirmed; all seven second-station choices had
+  no overflow at 674 px document width. Keyboard Enter advanced silent note inspection.
+  Zoom was restored. No physical-device, screen-reader, listening-quality, projector or pupil
+  trial is claimed. M41 narration remains unbuilt; its media coordination events are in place.
+- Default 1920×911 footprint: page 2601.97 px; story y2267.98 px; stations 835.92/821.73 px.
+  These match batch 2. The optional desktop music workbench measured 716.06 px high. Its
+  height adapts to narrower widths; explanations are not clipped to force a screen height.
+
+**M33 limitation:** The original creator-page recording played in the connected browser,
+with advancing time, 235.681 s duration and readyState 4. In our cloud preview, the official
+privacy-enhanced embed rendered but stayed at time 0 / readyState 0 after Play. Source,
+conductivity measurement, human sound choices and embed-only permissions are documented;
+raw data, exact mapping, species and playback-speed processing are unavailable and explicitly
+qualified. A direct creator-page fallback remains visible. Actual in-page playback acceptance
+is still pending; this is not a claim that the clip is permanently unavailable.
+
+Proof: [music workbench](qa/batch-3-music.png). See `IMPLEMENTATION-CHECKLIST.md` batch 3 for
+requirement-level evidence. M02, M33 and M36–M46 are still open, including teacher/pupil review.
+Source state remains scaffold and research pending; this batch creates no classroom entries
+or production release.
+
+---
+
+# Historical checks — process batch 2, 2026-11-06
 
 Implementation: [f1fddbae950817a9cbcf260c9886312d9fc9e902](https://github.com/ProfessorMinty/HughesWebAssets-Source/commit/f1fddbae950817a9cbcf260c9886312d9fc9e902).
 Its tree `0b230e1a5c9318d124510519948793395d808002` matches local implementation
