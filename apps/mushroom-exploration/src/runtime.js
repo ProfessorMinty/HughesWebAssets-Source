@@ -15,6 +15,7 @@ export function mountMushroomExhibit(root,source,options){
   const existing=mushroomMounts.get(root);if(existing)return existing;
   const settings=options||{};validateMushroomSource(source,{allowDraft:settings.allowDraft===true});
   const original={html:root.innerHTML,className:root.className};const cleanups=[];let destroyed=false;
+  function restoreRoot(){root.innerHTML=original.html;root.className=original.className;for(const name of ['data-hrv-state','data-research-status','data-less-motion','data-narration-state','data-reading-voices','data-reading-failure','data-reading-started','data-reading-characters','data-reading-elapsed-ms'])root.removeAttribute(name);root.style.removeProperty('--mushroom-viewport-width');root.style.removeProperty('--mushroom-nav-height');}
   const idPrefix=root.id.replace(/[^a-z0-9-]/gi,'-'),ui=source.data.ui,readingTools=[];
   const reader=createMushroomNarration({synthesis:window.speechSynthesis,utteranceFactory:typeof window.SpeechSynthesisUtterance==='function'?text=>new SpeechSynthesisUtterance(text):null,onChange(state){root.dataset.narrationState=state.state;root.dataset.readingVoices=String(state.voices.length);root.dataset.readingFailure=state.failure||'';root.dataset.readingStarted=String(state.lastReading?.started||false);root.dataset.readingCharacters=String(state.lastReading?.characters||0);root.dataset.readingElapsedMs=String(state.lastReading?.elapsedMs||0);readingTools.forEach(tool=>tool.update(state));}});cleanups.push(()=>reader.destroy());
   function listen(target,name,handler,options){target.addEventListener(name,handler,options);cleanups.push(()=>target.removeEventListener(name,handler,options));}
@@ -233,7 +234,7 @@ export function mountMushroomExhibit(root,source,options){
     let initialFrame=requestAnimationFrame(()=>{if(location.hash)goTo(location.hash,false);});cleanups.push(()=>cancelAnimationFrame(initialFrame));
     const footer=element('footer','mushroom-footer');footer.append(element('span','',ui.footerLabel),anchor(ui.footerLink,'https://rmhughes.edublogs.org/hub/'));root.append(footer);
     const observer=new ResizeObserver(fitViewport);observer.observe(document.documentElement);cleanups.push(()=>observer.disconnect());root.dataset.hrvState='ready';
-  }catch(error){cleanups.forEach(f=>f());root.innerHTML=original.html;root.className=original.className;root.removeAttribute('data-hrv-state');root.removeAttribute('data-research-status');root.removeAttribute('data-less-motion');root.removeAttribute('data-narration-state');root.removeAttribute('data-reading-voices');root.style.removeProperty('--mushroom-viewport-width');root.style.removeProperty('--mushroom-nav-height');throw error;}
-  const controller={destroy(){if(destroyed)return;destroyed=true;cleanups.forEach(f=>f());root.innerHTML=original.html;root.className=original.className;root.removeAttribute('data-hrv-state');root.removeAttribute('data-research-status');root.removeAttribute('data-less-motion');root.removeAttribute('data-narration-state');root.removeAttribute('data-reading-voices');root.style.removeProperty('--mushroom-viewport-width');root.style.removeProperty('--mushroom-nav-height');mushroomMounts.delete(root);}};
+  }catch(error){cleanups.forEach(f=>f());restoreRoot();throw error;}
+  const controller={destroy(){if(destroyed)return;destroyed=true;cleanups.forEach(f=>f());restoreRoot();mushroomMounts.delete(root);}};
   mushroomMounts.set(root,controller);return controller;
 }

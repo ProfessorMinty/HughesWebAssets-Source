@@ -28,20 +28,41 @@
       </div>
     </div>
   </div>
-  <script type="module">
-    // Repository review entry point only. The live bootstrap still rejects draft source.
-    import { mountMushroomExhibit } from './src/runtime.js';
-    const root=document.getElementById('hrv-mushroom-exploration-root');
-    try {
-      const response=await fetch(new URL('./source/mushrooms.source.json',import.meta.url),{credentials:'omit',redirect:'error'});
-      if(!response.ok)throw new Error('Source unavailable');
-      const text=await response.text();
-      if(new TextEncoder().encode(text).byteLength>200000)throw new Error('Source exceeds review bound');
-      mountMushroomExhibit(root,JSON.parse(text),{allowDraft:true});
-    } catch {
-      root.dataset.hrvState='unavailable';
-      root.replaceChildren(Object.assign(document.createElement('p'),{textContent:'The mushroom exhibit could not open. Please try again later.'}));
-    }
+  <script>
+    (function(){
+      // Review entry only. The live bootstrap still refuses draft source.
+      const root=document.getElementById('hrv-mushroom-exploration-root');
+      const styles=Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+      const abort=new AbortController();let finished=false,controller;
+      function fail(){
+        if(finished)return;finished=true;clearTimeout(deadline);abort.abort();
+        controller?.destroy();styles.forEach(link=>link.remove());
+        root.dataset.hrvState='unavailable';
+        root.replaceChildren(Object.assign(document.createElement('p'),{textContent:'The mushroom exhibit could not open. Please try again later.'}));
+      }
+      const deadline=setTimeout(fail,12000);
+      function styleReady(link){
+        if(link.sheet)return Promise.resolve();
+        return new Promise((resolve,reject)=>{
+          function cleanup(){link.removeEventListener('load',loaded);link.removeEventListener('error',failed);abort.signal.removeEventListener('abort',failed);}
+          function loaded(){cleanup();resolve();}
+          function failed(){cleanup();reject(new Error('Review stylesheet unavailable'));}
+          link.addEventListener('load',loaded);link.addEventListener('error',failed);abort.signal.addEventListener('abort',failed,{once:true});
+        });
+      }
+      async function source(){
+        const response=await fetch(new URL('./source/mushrooms.source.json',location.href),{credentials:'omit',redirect:'error',signal:abort.signal});
+        if(!response.ok)throw new Error('Source unavailable');
+        const text=await response.text();
+        if(new TextEncoder().encode(text).byteLength>200000)throw new Error('Source exceeds review bound');
+        return JSON.parse(text);
+      }
+      Promise.all([import('./src/runtime.js'),source(),...styles.map(styleReady)]).then(([runtime,data])=>{
+        if(finished)return;
+        controller=runtime.mountMushroomExhibit(root,data,{allowDraft:true});
+        finished=true;clearTimeout(deadline);
+      }).catch(fail);
+    })();
   </script>
 </body>
 </html>

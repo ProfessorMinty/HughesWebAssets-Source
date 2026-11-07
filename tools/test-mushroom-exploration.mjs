@@ -371,3 +371,33 @@ test('read-aloud accepts real elapsed reading and does not impose a long-text du
  reader.read('A mushroom is part of a fungus. Its threads spread through soil or wood and take in food. Some fungi make mushrooms that release tiny spores.','one');h.spoken[0].onstart();clock=15000;h.spoken[0].onend({elapsedTime:15});assert.equal(reader.snapshot().state,'complete');assert.equal(reader.snapshot().failure,null);assert.equal(reader.snapshot().lastReading.providerElapsedSeconds,15);
  reader.read('Spores.','one');h.spoken[1].onstart();clock=15200;h.spoken[1].onend();assert.equal(reader.snapshot().state,'complete');reader.destroy();
 });
+
+
+test('an explicitly selected English voice keeps its own language tag',async()=>{
+ const {createMushroomNarration}=await import('../apps/mushroom-exploration/src/narration.js'),british={name:'English UK',lang:'en-GB',voiceURI:'uk-en',localService:false},h=narrationHarness([readingVoice,british]),reader=createMushroomNarration(h.options);reader.selectVoice('uk-en');reader.read('Mushrooms.','one');assert.equal(h.spoken[0].voice,british);assert.equal(h.spoken[0].lang,'en-GB');reader.destroy();
+});
+
+async function reviewHarness({runtime,fetchResponse,waitingStyles=false}={}){
+ const {runInNewContext}=await import('node:vm');
+ const html=await readFile(root+'/apps/mushroom-exploration/review.html','utf8');
+ const script=html.match(/<script>([\s\S]*?)<\/script>/)[1];assert.equal(script.split("import('./src/runtime.js')").length,2);
+ const target={dataset:{},replaceChildren(node){this.message=node.textContent;}},timers=new Map(),mounts=[];
+ const styles=[0,1].map(()=>{const node=new EventTarget();node.sheet=waitingStyles?null:{};node.remove=()=>{node.removed=true;};return node;});
+ let next=0;const native={mountMushroomExhibit(el,data,options){mounts.push({el,data,options});}};
+ const context={document:{getElementById:()=>target,querySelectorAll:()=>styles,createElement:()=>({})},location:{href:'https://review.example/review.html'},AbortController,TextEncoder,URL,setTimeout(fn,ms){const id=++next;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id),loadRuntime:()=>runtime?runtime():Promise.resolve(native),fetch:async()=>fetchResponse||{ok:true,text:async()=>JSON.stringify({lesson:'Current source'})}};
+ runInNewContext(script.replace("import('./src/runtime.js')","loadRuntime('./src/runtime.js')"),context);
+ return {target,timers,styles,mounts,flush:()=>new Promise(setImmediate)};
+}
+test('repository review waits for both styles and mounts only the current draft source',async()=>{
+ const h=await reviewHarness({waitingStyles:true});await h.flush();assert.equal(h.mounts.length,0);h.styles.forEach(link=>link.dispatchEvent(new Event('load')));await h.flush();assert.equal(h.mounts.length,1);assert.equal(h.mounts[0].data.lesson,'Current source');assert.equal(h.mounts[0].options.allowDraft,true);assert.equal(h.timers.size,0);assert.ok(h.styles.every(link=>!link.removed));
+});
+test('repository review catches runtime and stylesheet failures instead of leaving opening text',async()=>{
+ const h=await reviewHarness({runtime:()=>Promise.reject(new Error('Missing module'))});await h.flush();assert.equal(h.target.dataset.hrvState,'unavailable');assert.match(h.target.message,/could not open/);assert.equal(h.mounts.length,0);assert.equal(h.timers.size,0);assert.ok(h.styles.every(link=>link.removed));
+ const css=await reviewHarness({waitingStyles:true});css.styles[0].dispatchEvent(new Event('error'));await css.flush();assert.equal(css.target.dataset.hrvState,'unavailable');assert.equal(css.mounts.length,0);assert.equal(css.timers.size,0);
+});
+test('repository review times out once and late imports cannot revive a failed review',async()=>{
+ let resolve;const h=await reviewHarness({runtime:()=>new Promise(r=>{resolve=r;}),waitingStyles:true});const job=[...h.timers.values()][0];assert.equal(job.ms,12000);job.fn();await h.flush();assert.equal(h.target.dataset.hrvState,'unavailable');resolve({mountMushroomExhibit(){throw new Error('Late mount must not occur');}});h.styles.forEach(link=>link.dispatchEvent(new Event('load')));await h.flush();assert.equal(h.target.dataset.hrvState,'unavailable');assert.equal(h.mounts.length,0);assert.equal(h.timers.size,0);
+});
+test('repository review refuses failed, malformed and oversized source responses',async()=>{
+ for(const fetchResponse of [{ok:false},{ok:true,text:async()=>'{broken'},{ok:true,text:async()=>'x'.repeat(200001)}]){const h=await reviewHarness({fetchResponse});await h.flush();assert.equal(h.target.dataset.hrvState,'unavailable');assert.equal(h.mounts.length,0);assert.equal(h.timers.size,0);}
+});

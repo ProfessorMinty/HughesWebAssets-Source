@@ -29,7 +29,7 @@ export function createMushroomNarration({synthesis,utteranceFactory,onChange=()=
     if(!text.trim()){state='error';failure='empty-text';return report();}
     const ticket=generation,wordCount=text.trim().split(/\s+/u).length;let startedAt=null;lastReading={characters:text.length,started:false,elapsedMs:0,providerElapsedSeconds:null};state='starting';report();
     try{
-      utterance=utteranceFactory(text);utterance.lang='en-US';utterance.voice=voices.find(v=>key(v)===selected);utterance.rate=.88;utterance.pitch=1;utterance.volume=1;
+      utterance=utteranceFactory(text);utterance.voice=voices.find(v=>key(v)===selected);utterance.lang=utterance.voice?.lang||'en-US';utterance.rate=.88;utterance.pitch=1;utterance.volume=1;
       const valid=()=>!destroyed&&generation===ticket;
       utterance.onstart=()=>{if(!valid())return;startedAt=now();lastReading.started=true;if(timer!==null)unschedule(timer);timer=null;state='reading';report();};
       utterance.onend=event=>{if(!valid())return;lastReading.elapsedMs=startedAt===null?0:Math.max(0,now()-startedAt);lastReading.providerElapsedSeconds=Number.isFinite(event?.elapsedTime)?event.elapsedTime:null;failure=startedAt===null?'ended-before-start':wordCount>=20&&lastReading.elapsedMs<1000?'ended-too-soon':null;clear();state=failure?'error':'complete';report();};
