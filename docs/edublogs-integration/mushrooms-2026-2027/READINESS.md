@@ -17,7 +17,7 @@ Historical mushroom Page 413 remains separate.
   verified module and applying styles. Failures preserve the native page and friendly fallback.
 - The JS-field doorway creates its own semantic mount and minimal fallback styles. It does
   not require arbitrary layout code in the WordPress page body or overwrite unrelated content.
-- Production preflight verifies exact immutable CDN bytes, at least the supplied four days,
+- Production preflight verifies exact immutable repository bytes, at least the supplied four days,
   twelve photos and three videos, every day record, cover membership and public media files.
 - The final injection generator refuses to emit paste-ready code until both public delivery
   and the authenticated Mushinator publishing receipts pass. A staged candidate is not a
@@ -36,6 +36,17 @@ Historical mushroom Page 413 remains separate.
    The owner's authentication/credential entry must be completed in the browser, not pasted
    into chat, committed to source or included in deployment logs.
 
+The browser handoff is prepared: GitHub has the named 90-day fine-grained token template
+open; the owner still needs to select only `HughesWebAssets-Source`. Cloudflare's production
+Add environment variable dialog has the empty secret row `MUSHROOM_GITHUB_TOKEN` and
+the plain-text flag `MUSHROOM_PUBLISH_ENABLED=true`. Previews is unchecked. Nothing has
+been submitted or deployed from that dialog. The owner must enter the credential privately.
+
+All four private drafts now exist and survived a reload: Friday October 30, Tuesday November
+3, Wednesday November 4 and Thursday November 5. Their short titles/stages describe the
+supplied photo groups. Species and contributor names remain blank; no teacher/student
+quotes or classroom media have been added. The dates remain provisional.
+
 The intended least-privilege publishing connection is limited to
 `ProfessorMinty/HughesWebAssets-Source` with repository Contents read/write and required
 Metadata read, retained in Cloudflare as the encrypted `MUSHROOM_GITHUB_TOKEN`. No unrelated
@@ -46,7 +57,7 @@ repository, account, WordPress or Cloudflare permissions are needed.
 1. Verify the publishing credential and `MUSHROOM_PUBLISH_ENABLED=true` through the existing
    administrator session; confirm Publish day becomes available for a saved, ready-media day.
 2. Import the original supplied files into private `hrv-mushroom-journal`, using the existing
-   Friday draft and creating Tuesday/Wednesday/Thursday. Keep species and contributor names
+   four saved drafts. Keep species and contributor names
    optional. Use the supplied folder grouping, with provisional dates October 30 and November
    3–5; no teacher/student quotations are invented. Choose the inspected close-up covers.
 3. Verify JPEG and MOV conversion/upload, actual viewing copies/posters, save/reload,
@@ -54,12 +65,14 @@ repository, account, WordPress or Cloudflare permissions are needed.
    the prior synthetic 17 MiB transport test does not establish decoder success.
 4. Publish all four days from Mushinator. Record actual IDs, revisions and returned Git
    commits in private/public-safe live publisher evidence; original names/keys stay private.
-5. Stage and push an immutable release from the final tested code. Run:
+5. Use the already verified immutable candidate below if the code remains unchanged;
+   otherwise stage and push a new version from the final tested code. Run:
    `node tools/verify-mushroom-exploration-publication.mjs CANDIDATE_DIR EXACT_COMMIT VERSION EVIDENCE_JSON`.
    Compare live public day records and CDN assets with the editor and supplied media.
 6. Only after successful delivery and live publisher evidence, generate the final field:
    `node tools/generate-mushroom-exploration-doorway.mjs EXACT_COMMIT VERSION EVIDENCE_JSON PUBLISHER_JSON`.
-7. Browser-test the generated loader over HTTPS in the Amadeus-shaped host, including
+7. Complete the classroom-loaded browser test of the generated loader over HTTPS in the
+   Amadeus-shaped host, including
    classroom cards, optional science, small screens, retries, deep links and media cleanup.
 8. Stop with the complete `JAVASCRIPT-BOX.js`, `RELEASE-PIN.json` and successful preflight
    evidence. The next action belongs to the new Edublogs page's JavaScript edit window.
@@ -81,3 +94,23 @@ verifies the pinned manifest and all files before importing the typed runtime Bl
 applying styles. Correct JavaScript/CSS MIME types from a third-party CDN are therefore not
 a dependency. Both executable code and styles remain owned by the repository. Earlier
 release candidates remain preserved; they are not silently overwritten or accepted.
+
+## Verified candidate and remaining acceptance
+
+- Candidate `2026.11.07.3`, immutable commit
+  `c151050bf54c8ed5ebba48d1a701106ce9b008a6`: all **21** public release files returned HTTP
+  200 and matched local byte counts and SHA-256. The proof is stored in
+  `apps/mushroom-exploration/qa/release-v3-delivery-verification.json`. Its historical
+  `cdnVerified` property means delivery-byte verification; `classroomVerified` is false.
+- The exact JS-window doorway was exercised in the HTTPS review host at commit
+  `3899e6221c2f955bb429d6bdaf69d36c9dea359f`. Connected Chrome reached `ready`, loaded two
+  verified styles, kept the journal first and optional science closed, and showed no
+  horizontal overflow at the actual **1920×855** viewport. Fungi up close opened and all
+  three family photographs loaded; journal navigation returned and closed science.
+- `npm run check:mushrooms` passes **75** tests plus syntax, consistency, source integrity
+  and build checks. The push and pull-request Mushroom workflows and both affected Hub/
+  Archive PR workflows passed at the review-host commit. That does not prove a live journal
+  publish or an Edublogs installation.
+- The live public journal is still empty. Public classroom files, saved-media conversion/
+  playback and authenticated publishing receipts are mandatory gates before final injection
+  generation. No paste-ready `JAVASCRIPT-BOX.js` or ready-to-paste pin has been emitted.

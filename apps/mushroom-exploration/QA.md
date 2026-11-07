@@ -666,7 +666,7 @@ and Open/Close labels match the day state. New regressions cover these failures.
 
 Release tooling now stages a source-reviewed snapshot, bundles the existing modules and
 preserves source assets. The pinned bootstrap verifies all release bytes before mounting;
-the JS-field doorway creates one mount and preserves unrelated native content. Ten additional
+the JS-field doorway creates one mount and preserves unrelated native content. Eleven additional
 release tests exercise tampering, path traversal, missing entries, empty/mismatched journal
 publication, doorway idempotency and retry. These tests are code/DOM evidence, not a live
 publishing or rendered CDN acceptance claim.
@@ -676,9 +676,29 @@ The exact current blockers and continuation are maintained in
 GitHub requires owner email verification. The latest file-upload attempt timed out, and the
 live draft still has no imported media. No Edublogs field or page was modified.
 
+All four private day drafts subsequently saved and survived reload (October 30 and November
+3–5). The existing Friday draft was retained. No photographs, videos, invented quotations,
+species or contributor names were added. The prepared Cloudflare dialog remains unsubmitted
+with an empty token secret and the production-only publish flag; GitHub remains at owner
+verification. This supersedes the earlier single-Friday-draft observation, not the upload or
+publication blockers.
+
 The first browser release check failed safely because the raw.githack host redirects binary
 assets. A later jsDelivr request returned an explicit 403: package size exceeded 50 MB.
 The doorway now verifies the exact raw-repository bootstrap before executing a typed Blob;
 all other pinned assets are verified by that bootstrap. No unrelated existing site loader
 was changed to work around the new page's delivery boundary. The direct-delivery suite has
 75 passing tests, including refusal of modified bootstrap bytes before script creation.
+
+Candidate 2026.11.07.3 at c151050bf54c8ed5ebba48d1a701106ce9b008a6 passed exact HTTP 200,
+byte-count and SHA-256 comparison for all 21 release files. See
+`qa/release-v3-delivery-verification.json`. `classroomVerified` remains false; the live
+journal has zero published days. No publishing receipt or paste-ready injection is invented.
+
+The actual pinned JS-field doorway was exercised through HTTPS review-host commit
+3899e6221c2f955bb429d6bdaf69d36c9dea359f in connected Chrome at actual 1920×855. It reached
+ready, installed two verified styles, rendered the classroom journal first with optional
+science closed, and showed no horizontal overflow. Opening Fungi up close loaded the three
+family photos at natural widths 1600, 720 and 1560; returning to the journal and closing the
+optional disclosure worked. These are empty-feed release-loader checks, not classroom-media
+playback, target Edublogs DOM/CSP, speech/pronunciation or projector acceptance.
