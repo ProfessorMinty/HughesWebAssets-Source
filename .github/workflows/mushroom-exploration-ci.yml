@@ -5,12 +5,16 @@ on:
       - 'apps/mushroom-exploration/**'
       - 'schemas/mushroom-exploration.source.schema.json'
       - 'tools/*mushroom-exploration*.mjs'
+      - 'tools/test-mushroom-journal.mjs'
+      - 'package*.json'
       - '.github/workflows/mushroom-exploration-ci.yml'
   pull_request:
     paths:
       - 'apps/mushroom-exploration/**'
       - 'schemas/mushroom-exploration.source.schema.json'
       - 'tools/*mushroom-exploration*.mjs'
+      - 'tools/test-mushroom-journal.mjs'
+      - 'package*.json'
       - '.github/workflows/mushroom-exploration-ci.yml'
 permissions:
   contents: read
@@ -23,6 +27,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - run: npm ci
       - name: Validate editable source, publication guard, and standalone preview
         run: npm run check:mushrooms
       - name: Save standalone exhibit preview
