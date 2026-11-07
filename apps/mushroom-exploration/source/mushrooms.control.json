@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "mushroom-exploration/1.6.0",
+  "schemaVersion": "mushroom-exploration/1.7.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
@@ -118,6 +118,7 @@
         "intro",
         "sourceRefs",
         "experiments",
+        "music",
         "learning"
       ],
       "identityField": "id"

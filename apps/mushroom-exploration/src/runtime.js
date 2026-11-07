@@ -127,7 +127,7 @@ export function mountMushroomExhibit(root,source,options){
       }else if(block.type==='lifecycle'){
         attachLab(inner,createSporeLab(block,photoFigure,idPrefix));
 
-      }else if(block.type==='lab')attachLab(inner,createWonderLab(block.experiments,photoFigure,learningNotes));
+      }else if(block.type==='lab')attachLab(inner,createWonderLab(block,photoFigure,learningNotes,source.data.sources));
       else if(block.type==='facts'){
         const grid=element('div','mushroom-fact-grid');block.cards.forEach((fact,i)=>{const card=element('article','mushroom-fact');card.dataset.recordId=fact.id;const symbol=element('span','mushroom-fact-mark',String(i+1).padStart(2,'0'));symbol.setAttribute('aria-hidden','true');card.append(symbol,element('h3','',fact.title),element('p','',fact.body));grid.append(card);});inner.append(grid);attachLab(inner,createDiscoveryQuestions(block.questions));
       }else if(block.type==='journal'){

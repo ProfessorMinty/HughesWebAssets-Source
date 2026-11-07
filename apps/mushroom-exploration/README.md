@@ -40,8 +40,8 @@ Growth, trade, dough, launch and wind use finite teaching clocks with pause/resu
 replay/reset and manual checkpoints. System reduced motion defaults to manual steps; the
 Step-by-step view choice is shared across these models and persists when browser storage is
 available. If storage cannot be written, the choice still works for the current page.
-Changing the preference stops active model motion without auto-resuming it. The music cursor
-and remaining narration/access work are still covered by open M28–M45 items.
+Changing the preference stops active model motion without auto-resuming it. Music now shares
+the manual-step preference. Remaining narration/access work is tracked in the checklist.
 
 The woodland entrance supplies the forest, wood, moss, amber and cyan color families.
 Three distinct row surfaces provide wayfinding, with derived shades for each row's panels
@@ -82,7 +82,7 @@ Images were resized and converted for delivery without retouching or recolouring
 ## Source and future editing
 
 source/mushrooms.source.json separates content, source references, image references,
-captions, observation points and supported records from rendering. Contract 1.6.0 adds
+captions, observation points and supported records from rendering. Contract 1.7.0 includes
 authored activity titles/intros, action/observation prompts, safety/teacher notes, science-word
 definitions and checked written pronunciation. Entrance/station copy is also editable.
 These fields are validated; all nine blocks required by the renderer must be present.
@@ -90,7 +90,8 @@ The five anatomy parts have named selection buttons. On phones the diagram numbe
 static markers and the separate buttons provide full-size targets. The gill photograph is
 shown only for Gills, so it cannot be mistaken for a photograph of mycelium or spores.
 The new process labels, stages, status text, control names and recording messages are also
-source-owned. Remaining music/narration copy still needs M42; the actual editor is not built. Data renders as text,
+source-owned. Music chain copy, labels, controls, statuses, instruments and observation feedback
+are validated too; the broader M42 ownership review remains open. The actual editor is not built. Data renders as text,
 never arbitrary HTML. Stable IDs, year, viewport method and reference size are protected.
 Content edits invalidate the document's research/publication review state. Add/remove
 operations for nested records remain a future explicit command.
@@ -107,7 +108,7 @@ journal authoring and Lanternworks home button are not implemented in this phase
 The actual class kit/species, observation dates, photos and current growth stage remain
 unknown. No journal entries or classroom outcomes are invented. The journal block is reserved.
 The edited source is marked researchStatus pending while the remaining model/music content
-is revised and reviewed. Publication state remains scaffold. Final review and an immutable
+receives its final cross-exhibit review. Publication state remains scaffold. Final review and an immutable
 release belong to the later publication phase.
 
 ## Run and review
@@ -117,7 +118,9 @@ release belong to the later publication phase.
 - node tools/build-mushroom-exploration-preview.mjs --write-contracts — regenerate contracts after reviewing authority changes.
 
 The standalone index includes code, source, all six real photographs and WebP artwork; it requires no network to
-render or play its models. Research and navigation links go to external sites if followed.
+render or play its models. The optional real mushroom-music demonstration needs a network
+connection and loads only on request through the creator-enabled YouTube embed. No third-party
+video bytes or thumbnail are rehosted. Creator/research/navigation links lead to external sites.
 Open index.html directly in a modern browser. Both credited research videos are embedded. Optional ?review=1 reveals adult block-outline
 tools outside the exhibit. qa.html is an internal screen-size harness, not a contained page
 layout option or the user-facing preview.
@@ -161,3 +164,24 @@ The build verifies and embeds each MP4, poster and description. Contract version
 
 See QA.md for current measured checks, RESEARCH.md for sources, and the dated diagram
 audits for the earlier findings. Their earlier measurements are historical evidence.
+
+## Music lesson — current draft
+
+The illustrated fungus → conductivity sensor → computer rule → instrument chain separates
+measurement from artistic sound choices. A shared list of sixteen invented normalized values
+drives the graph, note readout and both synthesized timbres. Flute-like/bell-like selection
+resets to the beginning and preserves every value, pitch and onset; generating a new pattern
+is separate. Play/Pause/Resume, Replay, Stop, Volume and silent note inspection are available.
+Audio time drives the marker and note highlight. Manual-step preference pauses playback;
+leaving by a link/activity, hidden/offscreen state and unmount all have cleanup hooks.
+
+The real PlantWave demonstration has a registered external-media record in `src/sound.js`
+and the generated asset catalog, with source/device/permission/processing limits. Its
+creator-page playback was verified. The cloud-preview embed rendered but kept buffering,
+so **M33 remains open** for actual in-page playback acceptance. A creator-page fallback
+remains visible. M41 narration is still unbuilt; its start event must suspend music through
+`hrv-mushrooms-narration-start`, and it must respond to `hrv-mushrooms-audio-start`.
+
+`src/sound.js` owns deterministic data, musical mapping, synthesis and the finite audio
+transport. There are no sampled-instrument assets or added dependencies. The current
+checklist and QA record define completion; this draft is not a classroom-tested release.

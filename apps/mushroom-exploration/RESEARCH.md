@@ -170,3 +170,42 @@ licences and bytes remain unchanged and pass their integrity checks. All new les
 labels, stage explanations, controls and recording messages live in validated source fields
 under contract 1.6.0. Full source research/publication review remains pending for the unfinished
 music/electrical lesson and final release checks.
+
+## Electrical activity and music follow-up — 2026-11-06
+
+The child-facing account now begins with ion movement as part of cell work. Research links
+some recorded activity to growth; the exact origins/functions of spikes remain unsettled.
+No language, emotion, heartbeat or universal spike-purpose claim is made.
+
+- [Ablonczy et al. (2026)](https://link.springer.com/article/10.1557/s43579-026-01041-7)
+  used extracellular voltage measurements with a microelectrode array during mycelial growth,
+  optical growth tracking and uninoculated controls. This is evidence of growth-associated
+  activity, not proof that every spike has a decoded meaning.
+- [PlantWave's measurement specification](https://help.plantwave.com/en-US/what-exactly-is-being-measured-230414)
+  identifies conductivity changes between two contacts. This differs from extracellular
+  voltage recordings. Contacts, water and environment can affect readings; the music should
+  not be read as a precise account of fungal intentions.
+- [The creator's original mushroom demonstration](https://plantwave.com/blogs/blog/listen-to-mushroom-music)
+  documents fungi on a tree at Kealia Forest Reserve, sensor readings routed into the phone
+  app, and a chosen Celestial Being sound set (electric piano, bass, chimes, flute). Species,
+  raw readings, exact mapping parameters and playback-speed processing are not supplied.
+  The exhibit explicitly acknowledges those limits rather than reconstructing unseen data.
+- The official creator-enabled YouTube player is used on request only. The creator's page
+  embeds video `w0tNEp4m5PY` from the PlantWave channel; playback was observed in a real
+  browser (235.681 s duration, advancing time, readyState 4). The
+  [YouTube terms](https://www.youtube.com/static?template=terms), “Permissions and Restrictions”
+  and “License to Other Users,” permit platform-enabled embedding. This is **embed-only
+  permission**, not a download, rehosting or remix license. No video bytes, thumbnail or
+  musical recording are copied into this repository. The external player may be blocked by
+  a school network or changed by its owner; a direct creator-page link remains available.
+- Our example is entirely separate: sixteen deterministic invented values normalized to
+  0–1, spaced every 0.5 s over eight seconds. The displayed trace joins those exact samples.
+  Each sample selects `floor(value × 8)`, capped at band 7, from C4 D4 E4 G4 A4 C5 D5 E5.
+  Values 0 and 1 select C4 and E5. No species, measured voltage units or biological timescale
+  apply. One shared event list drives both the SVG points/note strip and audio scheduling.
+- Flute-like and bell-like sounds are explicitly synthesized from sine-wave harmonics.
+  Their fundamental frequencies and onsets are identical; their envelopes and harmonic
+  weights differ. Changing instruments resets to the beginning without changing the values.
+  Creating another example is a separate action. No sampled instrument licensing is needed.
+- Panellus light remains a chemical-reaction example with the real long-exposure photo.
+  The imaginary hero/thread highlights, fungal electricity and chemical glow are separate.

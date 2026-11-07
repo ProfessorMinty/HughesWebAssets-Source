@@ -438,3 +438,65 @@
 .mushroom-process-options .mushroom-motion-choice{margin-top:0}
 @media(min-width:1280px){.mushroom-catapult-panel .mushroom-process-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .hrv-mushrooms .mushroom-process-controls>.mushroom-lab-actions>[aria-pressed=true]{background:var(--selected);color:var(--ink);border-color:var(--glow);box-shadow:inset 0 -3px var(--glow)}
+
+/* Music workbench: a connected measurement chain, then one shared pattern. */
+.hrv-mushrooms .mushroom-sound-lab{display:block;padding:22px 26px;overflow:visible}
+.mushroom-music-intro{display:grid;grid-template-columns:.85fr 1.15fr;gap:32px;align-items:center;margin-bottom:14px}
+.mushroom-music-intro h3{font-size:30px!important;line-height:1.15;margin:0!important}
+.mushroom-music-intro p{font-size:18px;line-height:1.5}
+.hrv-mushrooms .mushroom-measurement-chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px;list-style:none;margin:0 0 22px;padding:0}
+.mushroom-measurement-chain li{position:relative;min-width:0;padding:0 16px 12px;border-bottom:2px solid var(--line)}
+.mushroom-measurement-chain li+li::before{content:'→';position:absolute;left:-25px;top:43px;font-size:30px;color:var(--gold)}
+.mushroom-measurement-chain svg{display:block;width:100%;height:100px}
+.mushroom-measurement-chain h4{font-family:inherit;font-size:19px;line-height:1.4;margin:4px 0!important;color:var(--gold)}
+.mushroom-measurement-chain p{font-size:17px;line-height:1.45}
+.mushroom-music-desk{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:start}
+.hrv-mushrooms .mushroom-signal-graph{position:relative;display:block;min-height:0;padding:18px 22px;border:1px solid var(--line);border-radius:5px;min-width:0}
+.hrv-mushrooms .mushroom-signal-graph svg{display:block;width:100%;height:auto;max-height:220px;margin:24px 0 0}
+.mushroom-example-label{color:var(--gold)!important;font-size:18px;line-height:1.45;font-weight:700}
+.hrv-mushrooms .mushroom-graph-high,.hrv-mushrooms .mushroom-graph-low{left:22px;right:auto;font-size:14px;line-height:1.3;position:static;display:block}
+.hrv-mushrooms .mushroom-graph-high{position:absolute;top:66px}
+.hrv-mushrooms .mushroom-graph-low{margin-top:-28px;position:relative;pointer-events:none}
+.mushroom-graph-time{font-size:14px;text-align:right;color:var(--muted)!important}
+.mushroom-music-rule{font-size:18px;line-height:1.5;margin-top:12px!important}
+.mushroom-note-readout{font-size:19px;color:var(--glow)!important;font-weight:700;margin-top:12px!important;font-variant-numeric:tabular-nums}
+.hrv-mushrooms .mushroom-note-strip{list-style:none;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px;margin:10px 0 0;padding:0}
+.mushroom-note-strip li{border:1px solid var(--line);border-radius:3px;font-size:15px;line-height:1.7;text-align:center;color:var(--muted)}
+.mushroom-note-strip li[aria-current]{color:#182b22;background:#a4d9ce;border:2px solid #e7f3d5;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.mushroom-music-controls{min-width:0}
+.hrv-mushrooms .mushroom-instruments{padding:0;border:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mushroom-instruments legend{font-size:18px;font-weight:700;margin-bottom:8px}
+.mushroom-instruments button{text-align:left;display:grid;gap:3px;min-height:64px}
+.mushroom-instruments button span{font-size:14px;font-weight:400;line-height:1.35}
+.hrv-mushrooms .mushroom-instruments button[aria-pressed=true]{background:#eac789;color:#172c25;border-color:#ffe2ac;box-shadow:inset 0 -4px #a3dfd2}
+.mushroom-music-controls>.mushroom-lab-actions{margin:12px 0 0;gap:8px}
+.mushroom-music-controls .mushroom-lab-button{min-height:48px;font-size:17px!important;padding:10px 14px}
+.mushroom-volume{display:flex;align-items:center;gap:16px;font-size:17px;margin-top:8px}
+.mushroom-volume input{accent-color:var(--gold);min-height:44px;flex:1;min-width:0}
+.mushroom-music-controls .mushroom-model-status{font-size:16px;min-height:2.8em;margin-top:6px!important;line-height:1.4}
+.mushroom-music-controls .mushroom-motion-choice{margin-top:10px;font-size:16px}
+.hrv-mushrooms .mushroom-music-observation{padding:0;border:0;border-top:1px solid var(--line);margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.mushroom-music-observation legend{font-size:18px;line-height:1.4;font-weight:700;padding-top:10px;margin-bottom:8px}
+.mushroom-music-observation .mushroom-answer-feedback{font-size:17px;min-height:0;margin:0;flex-basis:100%}
+.mushroom-music-observation .mushroom-answer-feedback:empty{display:none}
+.mushroom-music-details{font-size:17px;line-height:1.6;margin-top:18px}
+.mushroom-music-details h4{font-size:21px;margin-top:14px!important}
+.mushroom-music-details a{text-decoration:underline;text-underline-offset:3px}
+.mushroom-music-details summary{min-height:48px;cursor:pointer;padding-block:10px}
+@media(max-width:1100px){.hrv-mushrooms .mushroom-sound-lab{padding:20px}.mushroom-music-intro{display:block}.mushroom-music-intro p{margin-top:12px!important}.mushroom-music-desk{grid-template-columns:1fr}.hrv-mushrooms .mushroom-measurement-chain{grid-template-columns:1fr 1fr;gap:16px 26px}.mushroom-measurement-chain li:nth-child(3)::before{content:'↓';top:-27px;left:40%}.mushroom-measurement-chain li:nth-child(4)::before{content:'←'}.mushroom-measurement-chain li:nth-child(3){grid-column:2;grid-row:2}.mushroom-measurement-chain li:nth-child(4){grid-column:1;grid-row:2}.hrv-mushrooms .mushroom-graph-high{top:66px}}
+@media(max-width:550px){.hrv-mushrooms .mushroom-sound-lab{padding:16px}.mushroom-music-intro h3{font-size:28px!important}.hrv-mushrooms .mushroom-measurement-chain{grid-template-columns:1fr;gap:24px;margin-top:20px}.mushroom-measurement-chain li{display:grid;grid-template-columns:100px 1fr;gap:0 12px;padding:0 0 12px}.mushroom-measurement-chain svg{grid-row:1/span 2;height:90px}.mushroom-measurement-chain h4{font-size:18px}.mushroom-measurement-chain p{font-size:17px}.mushroom-measurement-chain li:nth-child(n){grid-column:auto;grid-row:auto}.mushroom-measurement-chain li+li::before{content:'↓';top:-29px;left:42px;font-size:25px}.hrv-mushrooms .mushroom-signal-graph{padding:16px 12px}.mushroom-example-label{font-size:17px}.hrv-mushrooms .mushroom-graph-high{position:static;margin-top:0;font-size:13px}.hrv-mushrooms .mushroom-signal-graph svg{margin-top:0}.hrv-mushrooms .mushroom-graph-low{margin-top:0;font-size:13px}.mushroom-graph-time{text-align:left}.hrv-mushrooms .mushroom-instruments{grid-template-columns:1fr}.mushroom-note-readout{font-size:17px}.mushroom-note-strip li{font-size:13px}.mushroom-music-rule{font-size:17px}}
+.mushroom-demo-frame{display:block;width:100%;max-width:720px;aspect-ratio:16/9;margin:16px 0;border:1px solid var(--line);background:#17221b}
+.mushroom-demo-host:empty{display:none}
+.mushroom-signal-graph>.mushroom-lab-button{margin-top:12px}
+@media(min-width:1600px){
+ .hrv-mushrooms .mushroom-sound-lab{display:grid;grid-template-columns:310px minmax(0,1fr);column-gap:28px;align-items:start}
+ .mushroom-music-intro{grid-column:1/-1}
+ .hrv-mushrooms .mushroom-measurement-chain{display:grid;grid-template-columns:1fr;gap:12px;grid-column:1;grid-row:2;margin:0}
+ .mushroom-measurement-chain li{display:grid;grid-template-columns:100px 1fr;column-gap:10px;padding:0 0 8px}
+ .mushroom-measurement-chain svg{grid-row:1/span 2;height:92px}
+ .mushroom-measurement-chain h4{font-size:18px;line-height:1.35}
+ .mushroom-measurement-chain p{font-size:17px;line-height:1.4}
+ .mushroom-measurement-chain li+li::before{content:'↓';left:40px;top:-22px;font-size:22px}
+ .mushroom-music-desk{grid-column:2;grid-row:2;gap:22px;grid-template-columns:1fr 1fr}
+ .mushroom-music-details{grid-column:1/-1;padding-block:0}
+}

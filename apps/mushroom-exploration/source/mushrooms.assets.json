@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.1",
+  "schemaVersion": "1.2",
   "photos": [
     {
       "id": "mushroom-photo:blue-mycena",
@@ -250,6 +250,23 @@
           "mime": "text/vtt"
         }
       ]
+    }
+  ],
+  "soundDemonstrations": [
+    {
+      "id": "mushroom-demo:plantwave-kealia",
+      "creator": "Data Garden / PlantWave",
+      "title": "Mushroom Music with PlantWave at Kealia Forest Reserve",
+      "source": "https://plantwave.com/blogs/blog/listen-to-mushroom-music",
+      "embed": "https://www.youtube-nocookie.com/embed/w0tNEp4m5PY?rel=0",
+      "watch": "https://www.youtube.com/watch?v=w0tNEp4m5PY",
+      "measurement": "Changes in conductivity between two contacts on mushrooms",
+      "artisticChoices": "Celestial Being sound set: electric piano, bass, chimes and flute",
+      "processing": "Raw readings, full mapping parameters and playback-speed statement not supplied by creator",
+      "permission": "Official creator-enabled YouTube embed only; no download, rehosting or remix license",
+      "permissionSource": "https://www.youtube.com/static?template=terms",
+      "checked": "2026-11-06",
+      "external": true
     }
   ]
 }

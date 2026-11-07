@@ -1,7 +1,8 @@
 // Interactive teaching models and separately credited, real research footage.
-import { catapultArtwork, sporeMushroomArtwork, roleArtwork, lifecycleStageArtwork, cutawayArtwork } from "./art.js";
+import { catapultArtwork, sporeMushroomArtwork, roleArtwork, lifecycleStageArtwork, cutawayArtwork, measurementChainArtwork } from "./art.js";
 import { mushroomVideoAsset, mushroomVideoURL } from "./video-assets.js";
-import { createTeachingTimeline, connectedGrowthProgress, doughRiseState, advanceWindParticle } from "./process.js";
+import { createTeachingTimeline, connectedGrowthProgress, doughRiseState, advanceWindParticle, browserMotionPreference } from "./process.js";
+import { createMushroomAudio, mushroomExamplePattern, MUSHROOM_MUSIC_DEMO } from "./sound.js";
 function labNode(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
 function labButton(label,action,cleanups,priority='primary'){const button=labNode('button','mushroom-lab-button',label);button.type='button';button.dataset.actionPriority=priority;button.addEventListener('click',action);cleanups.push(()=>button.removeEventListener('click',action));return button;}
 function labSVG(markup){const t=document.createElement('template');t.innerHTML=markup;return t.content;}
@@ -106,49 +107,54 @@ export function createRolesLab(block,photoRenderer,prefix,learningNotes){
     if(learningNotes)copy.append(learningNotes({...card.learning,words:[...card.learning.words,...learning.words]}));article.append(picture,copy);exhibits.push(article);const choose=labButton(card.title,()=>selectRole(index),cleanups);roleButtons.push(choose);roleSwitch.append(choose);node.append(article);
   });selectRole(0);return {node,suspend(){activities.forEach(a=>a.suspend());},destroy(){activities.forEach(a=>a.destroy());cleanups.forEach(fn=>fn());}};
 }
-export function modelSignalSample(x,seed=0){return .5+Math.sin(x*.052+seed)*.22+Math.sin(x*.127+seed*2)*.1;}
-export function createWonderLab(experiments, photoRenderer, learningNotes) {
-  const node=labNode('div','mushroom-wonder-labs'),cleanups=[];let audio=null,oscillators=[],raf=0,playing=false,destroyed=false,start=0,seed=0,run=0;
-  const glow=experiments.find(e=>e.mode==='glow'),sound=experiments.find(e=>e.mode==='sound');
+export function createWonderLab(block, photoRenderer, learningNotes, sources) {
+  const node=labNode('div','mushroom-wonder-labs'),cleanups=[];
+  const glow=block.experiments.find(e=>e.mode==='glow'),sound=block.experiments.find(e=>e.mode==='sound'),copy=block.music;
   const light=labNode('article','mushroom-light-lab');light.id='mushrooms-glow';light.dataset.recordId=glow.id;light.dataset.night='false';
   const lightCopy=labNode('div','mushroom-lab-copy');lightCopy.append(labNode('p','mushroom-eyebrow','LIGHT LAB'),labNode('h3','',glow.title),labNode('p','',glow.body));
-  if(glow.media && photoRenderer)light.append(photoRenderer(glow.media,'mushroom-lab-photo'));
-  light.append(lightCopy);
+  if(glow.media&&photoRenderer)light.append(photoRenderer(glow.media,'mushroom-lab-photo'));light.append(lightCopy);
   const music=labNode('article','mushroom-sound-lab');music.id='mushrooms-sound';music.dataset.recordId=sound.id;
-  const graph=labNode('div','mushroom-signal-graph');
-  graph.append(labSVG(`<svg viewBox='0 0 650 260' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='An invented changing pattern. The height of the line is mapped to a musical note. This is not fungal data.'><g fill='none' stroke='#8fc3ab' stroke-opacity='.22'><path d='M30 50H620M30 100H620M30 150H620M30 200H620M80 30V225M180 30V225M280 30V225M380 30V225M480 30V225M580 30V225'/></g><path class='model-signal-line' fill='none' stroke='#b6dca1' stroke-width='3'/><circle class='model-signal-cursor' r='7' fill='#f6d298' cx='30' cy='130'/></svg>`),labNode('span','mushroom-model-label','Invented pattern · not fungal data'),labNode('span','mushroom-graph-high','Higher note'),labNode('span','mushroom-graph-low','Lower note'));
-  const signal=graph.querySelector('.model-signal-line'),cursor=graph.querySelector('.model-signal-cursor');
-  function sample(x){return modelSignalSample(x,seed);}
-  function draw(){signal.setAttribute('d',Array.from({length:119},(_,i)=>`${i?'L':'M'}${30+i*5},${(220-sample(i*5)*180).toFixed(1)}`).join(' '));}
-  draw();
-  const musicCopy=labNode('div','mushroom-lab-copy');musicCopy.append(labNode('p','mushroom-eyebrow','SIGNAL → SOUND LAB'),labNode('h3','',sound.title),labNode('p','',sound.body));
-  const ion=labNode('details','mushroom-learn-more');ion.append(labNode('summary','','What makes electrical changes?'),labNode('p','','Living cells move charged particles called ions. This helps cells do their work. Scientists study how these movements relate to fungal growth and responses. They have not decoded a mushroom language.'));musicCopy.append(ion);
-  ion.append(labNode('p','mushroom-sound-explanation','People can turn sensor measurements into notes by choosing a musical rule. Here, a made-up pattern controls the pitch: higher line, higher note. This is a model of the conversion, not a mushroom’s voice.'));
-  const mapping=labNode('ol','mushroom-sound-mapping');['Fungus + sensors','Changing measurements','Notes chosen by a person'].forEach(label=>mapping.append(labNode('li','',label)));musicCopy.prepend(mapping);
-  const actions=labNode('div','mushroom-lab-actions'),status=labNode('p','mushroom-model-status','Sound is off. You choose when to listen.');status.setAttribute('aria-live','polite');
-  let play,stop;
-  function halt(){run++;playing=false;cancelAnimationFrame(raf);oscillators.forEach(o=>{try{o.stop();}catch{}o.disconnect();});oscillators=[];if(audio){const old=audio;audio=null;old.close().catch(()=>{});}if(play)play.disabled=false;if(stop)stop.disabled=true;status.textContent='Sound is off.';}
-  async function begin(){
-    if(playing||destroyed)return;
-    const Audio=window.AudioContext||window.webkitAudioContext;
-    if(!Audio){status.textContent='This browser cannot play the model sound. You can still explore the pattern.';return;}
-    play.disabled=true;playing=true;const ticket=++run;status.textContent='Starting the model sound…';
-    try{
-      audio=new Audio();const activeAudio=audio;await activeAudio.resume();if(destroyed||!playing||audio!==activeAudio||ticket!==run)return;
-      const notes=[261.63,293.66,329.63,392,440,523.25,587.33,659.25];const now=activeAudio.currentTime+.08;
-      for(let i=0;i<16;i++){const value=sample(i*590/16),o=activeAudio.createOscillator(),gain=activeAudio.createGain();o.type='sine';o.frequency.value=notes[Math.min(7,Math.floor(value*8))];gain.gain.setValueAtTime(0,now+i*.5);gain.gain.linearRampToValueAtTime(.035,now+i*.5+.03);gain.gain.exponentialRampToValueAtTime(.0001,now+i*.5+.43);o.connect(gain);gain.connect(activeAudio.destination);o.start(now+i*.5);o.stop(now+i*.5+.46);oscillators.push(o);}
-      start=now;stop.disabled=false;status.textContent='Playing an invented pattern for eight seconds. Higher line, higher note.';
-      function move(t){if(!playing||destroyed)return;const p=Math.max(0,Math.min((activeAudio.currentTime-start)/8,1)),x=p*590;cursor.setAttribute('cx',String(30+x));cursor.setAttribute('cy',String(220-sample(x)*180));if(p>=1){halt();status.textContent='Pattern finished. Try another pattern or listen again.';}else raf=requestAnimationFrame(move);}
-      raf=requestAnimationFrame(move);
-    }catch{if(ticket===run){halt();status.textContent='Sound could not start. Try Play model sound again.';}}
-  }
-  play=labButton('Play model sound',begin,cleanups);stop=labButton('Stop sound',halt,cleanups,'secondary');stop.disabled=true;
-  const another=labButton('Try another pattern',()=>{halt();seed=(seed+1)%9;draw();cursor.setAttribute('cx','30');cursor.setAttribute('cy',String(220-sample(0)*180));status.textContent='New invented pattern ready. Press Play to hear it.';},cleanups,'secondary');
-  actions.append(play,stop,another);musicCopy.append(actions,status);music.append(graph,musicCopy);node.append(light,music);
-  const hidden=()=>{if(document.hidden&&playing)halt();};document.addEventListener('visibilitychange',hidden);cleanups.push(()=>document.removeEventListener('visibilitychange',hidden));
-  const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting&&playing)halt();});observer.observe(music);cleanups.push(()=>observer.disconnect());
-  function select(view){if(playing)halt();light.hidden=view!=='glow';music.hidden=view!=='sound';node.dataset.activity=view;}select('glow');
-  return {node,select,suspend(){if(playing)halt();},destroy(){destroyed=true;halt();cleanups.forEach(f=>f());}};
+  const chain=labNode('ol','mushroom-measurement-chain');chain.setAttribute('aria-label',copy.chainLabel);
+  copy.chain.forEach(item=>{const li=labNode('li');li.dataset.recordId=item.id;li.append(labSVG(measurementChainArtwork(item.stage,'music-chain-'+item.stage)),labNode('h4','',item.title),labNode('p','',item.body));chain.append(li);});
+  const intro=labNode('div','mushroom-music-intro');intro.append(labNode('h3','',sound.title),labNode('p','',sound.body));
+  const graph=labNode('div','mushroom-signal-graph'),label=labNode('p','mushroom-example-label',copy.exampleLabel),mapping=labNode('p','mushroom-music-rule',copy.mapping);
+  const svg=labSVG(`<svg viewBox='0 0 650 265' xmlns='http://www.w3.org/2000/svg' role='img'><g fill='none' stroke='#b99f79' stroke-opacity='.25'><path d='M36 36H614M36 126H614M36 216H614M36 36V216M325 36V216M614 36V216'/></g><path class='model-signal-line' fill='none' stroke-width='3'/><g class='model-signal-samples'/><circle class='model-signal-cursor' r='8' cx='36' cy='126'/></svg>`);graph.append(label,svg,labNode('span','mushroom-graph-high',copy.high),labNode('span','mushroom-graph-low',copy.low),labNode('p','mushroom-graph-time',copy.time),mapping);
+  graph.querySelector('svg').setAttribute('aria-label',copy.graphLabel);
+  const line=graph.querySelector('.model-signal-line'),dots=graph.querySelector('.model-signal-samples'),cursor=graph.querySelector('.model-signal-cursor');
+  const noteReadout=labNode('p','mushroom-note-readout'),noteStrip=labNode('ol','mushroom-note-strip');noteStrip.setAttribute('aria-label',copy.noteStripLabel);
+  graph.append(noteReadout,noteStrip);
+  const controls=labNode('div','mushroom-music-controls'),instruments=labNode('fieldset','mushroom-instruments');instruments.append(labNode('legend','',copy.instrumentTitle));
+  const instrumentButtons=[];let engine,seed=0,lastIndex=-1,manual=false,demoFrame=null;
+  copy.instruments.forEach(item=>{const b=labButton('',()=>{manual=false;engine.selectInstrument(item.mode);},cleanups,'secondary');b.dataset.recordId=item.id;b.append(labNode('strong','',item.label),labNode('span','',item.description));b.setAttribute('aria-pressed',String(item.mode==='flute'));instrumentButtons.push(b);instruments.append(b);});
+  const transport=labNode('div','mushroom-lab-actions'),status=labNode('p','mushroom-model-status');status.setAttribute('aria-live','polite');
+  function coordinate(){closeDemo();const root=node.closest('.hrv-mushrooms');root?.querySelectorAll('video,audio').forEach(media=>media.pause());root?.dispatchEvent(new CustomEvent('hrv-mushrooms-audio-start',{bubbles:true,detail:{source:'example-music'}}));}
+  const play=labButton(copy.controls.play,()=>{manual=false;coordinate();engine.play();},cleanups),pause=labButton(copy.controls.pause,()=>engine.pause(),cleanups,'secondary'),replay=labButton(copy.controls.replay,()=>{manual=false;coordinate();engine.replay();},cleanups,'secondary'),stop=labButton(copy.controls.stop,()=>{manual=false;engine.stop();},cleanups,'secondary');transport.append(play,pause,replay,stop);
+  const volumeLabel=labNode('label','mushroom-volume',copy.controls.volume),volume=labNode('input');volume.type='range';volume.min='0';volume.max='100';volume.step='5';volume.value='25';volume.setAttribute('aria-label',copy.controls.volume);volumeLabel.append(volume);const changeVolume=()=>engine.setVolume(Number(volume.value)/100);volume.addEventListener('input',changeVolume);cleanups.push(()=>volume.removeEventListener('input',changeVolume));
+  const inspection=labNode('div','mushroom-lab-actions'),previous=labButton(copy.controls.previous,()=>inspect(-1),cleanups,'secondary'),next=labButton(copy.controls.next,()=>inspect(1),cleanups,'secondary');inspection.append(previous,next);
+  function inspect(direction){manual=true;engine.inspect(engine.snapshot().index+direction);status.textContent=noteReadout.textContent;}
+  const motionLabel=labNode('label','mushroom-motion-choice'),motion=labNode('input'),preference=browserMotionPreference(),motionNote=labNode('p','mushroom-motion-note',copy.messages.lessMotion);motion.type='checkbox';motion.checked=preference.matches;motionLabel.append(motion,document.createTextNode(copy.controls.motion));
+  const changeMotion=()=>preference.setMatches(motion.checked),updateMotion=()=>{motion.checked=preference.matches;engine.pause();update(engine.snapshot());};motion.addEventListener('change',changeMotion);preference.addEventListener('change',updateMotion);cleanups.push(()=>{motion.removeEventListener('change',changeMotion);preference.removeEventListener('change',updateMotion);});
+  const another=labButton(copy.controls.pattern,()=>{manual=false;seed=(seed+1)%9;engine.setPattern(mushroomExamplePattern(seed));draw();render(engine.snapshot());status.textContent=copy.messages.pattern;},cleanups,'secondary');
+  function noteText(event){return copy.noteTemplate.replace('{index}',String(event.index+1)).replace('{value}',event.value.toFixed(2)).replace('{note}',event.note);}
+  function position(event){return {x:36+event.index*578/15,y:216-event.value*180};}
+  function draw(){const events=engine.snapshot().events;line.setAttribute('d',events.map((e,i)=>{const p=position(e);return `${i?'L':'M'}${p.x.toFixed(2)},${p.y.toFixed(2)}`;}).join(' '));dots.replaceChildren();noteStrip.replaceChildren();for(const event of events){const p=position(event);const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');Object.entries({cx:p.x,cy:p.y,r:4,fill:'#a4d9ce','data-sample':event.index}).forEach(([key,value])=>dot.setAttribute(key,String(value)));dots.append(dot);const li=labNode('li','',event.note);li.setAttribute('aria-label',noteText(event));noteStrip.append(li);}lastIndex=-1;}
+  function render(value){music.dataset.audioState=value.state;music.dataset.audioTime=value.elapsed.toFixed(3);music.dataset.instrument=value.instrument;const event=value.events[value.index];if(lastIndex!==value.index){const p=position(event);cursor.setAttribute('cx',String(p.x));cursor.setAttribute('cy',String(p.y));noteReadout.textContent=noteText(event);noteStrip.querySelectorAll('li').forEach((li,i)=>{if(i===value.index)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});dots.querySelectorAll('circle').forEach((dot,i)=>dot.setAttribute('r',String(i===value.index?7:4)));lastIndex=value.index;}}
+  function update(value){render(value);const busy=['playing','starting'].includes(value.state),reduced=preference.matches;play.hidden=pause.hidden=replay.hidden=reduced;motionNote.hidden=!reduced;play.disabled=busy;play.textContent=value.state==='paused'?copy.controls.resume:copy.controls.play;pause.disabled=!busy;replay.disabled=value.state==='starting';stop.disabled=value.state==='ready';previous.disabled=value.index===0;next.disabled=value.index===15;instrumentButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(copy.instruments[i].mode===value.instrument)));status.textContent=manual?copy.messages.silent:copy.messages[value.state]||copy.messages.ready;}
+  engine=createMushroomAudio({onChange:update,onTick:render});draw();update(engine.snapshot());graph.append(another);
+  const question=labNode('fieldset','mushroom-music-observation'),feedback=labNode('p','mushroom-answer-feedback');feedback.setAttribute('aria-live','polite');question.append(labNode('legend','',copy.observationTitle));const answers=[];copy.answers.forEach(item=>{const b=labButton(item.label,()=>{answers.forEach(a=>a.setAttribute('aria-pressed',String(a===b)));feedback.textContent=item.feedback;},cleanups,'secondary');b.dataset.recordId=item.id;b.setAttribute('aria-pressed','false');answers.push(b);question.append(b);});question.append(feedback);
+  controls.append(instruments,transport,volumeLabel,status,inspection,motionLabel,motionNote,question);
+  const desk=labNode('div','mushroom-music-desk');desk.append(graph,controls);
+  const details=labNode('details','mushroom-learn-more mushroom-music-details');details.append(labNode('summary','',copy.detailsTitle),labNode('p','',copy.limits),labNode('h4','',copy.demoTitle),labNode('p','',copy.demoBody));const demo=labNode('a','',copy.demoLinkLabel);demo.href=sources.find(source=>source.id===copy.demoSourceRef).url;demo.target='_blank';demo.rel='noopener noreferrer';const demoHost=labNode('div','mushroom-demo-host'),demoActions=labNode('div','mushroom-lab-actions');
+  const loadDemo=labButton(copy.loadDemo,()=>{halt();node.closest('.hrv-mushrooms')?.querySelectorAll('video,audio').forEach(media=>media.pause());closeDemo();demoFrame=labNode('iframe','mushroom-demo-frame');demoFrame.title=copy.demoPlayerTitle;demoFrame.src=MUSHROOM_MUSIC_DEMO.embed;demoFrame.referrerPolicy='strict-origin-when-cross-origin';demoFrame.allow='encrypted-media; picture-in-picture; fullscreen';demoFrame.allowFullscreen=true;demoHost.append(demoFrame);loadDemo.disabled=true;closeDemoButton.hidden=false;},cleanups,'secondary');
+  const closeDemoButton=labButton(copy.closeDemo,()=>{closeDemo();loadDemo.focus();},cleanups,'secondary');closeDemoButton.hidden=true;
+  function closeDemo(){demoFrame?.remove();demoFrame=null;loadDemo.disabled=false;closeDemoButton.hidden=true;}
+  const closeDisclosure=()=>{if(!details.open)closeDemo();};details.addEventListener('toggle',closeDisclosure);cleanups.push(()=>details.removeEventListener('toggle',closeDisclosure));demoActions.append(loadDemo,closeDemoButton);details.append(demoActions,demoHost,labNode('p','',copy.demoFallback),demo,labNode('p','',copy.demoNote));
+  music.append(intro,chain,desk,details);node.append(light,music);
+  function halt(){closeDemo();if(['playing','starting'].includes(engine.snapshot().state)){manual=false;engine.stop();}}
+  const hidden=()=>{if(document.hidden)halt();},mediaStarted=event=>{if(event.target instanceof HTMLMediaElement)halt();},narration=()=>halt(),leavingLink=event=>{if(event.target instanceof Element&&event.target.closest('a[href]')?.closest('.hrv-mushrooms')===node.closest('.hrv-mushrooms'))halt();};document.addEventListener('click',leavingLink,true);document.addEventListener('visibilitychange',hidden);document.addEventListener('play',mediaStarted,true);document.addEventListener('hrv-mushrooms-narration-start',narration);cleanups.push(()=>{document.removeEventListener('click',leavingLink,true);document.removeEventListener('visibilitychange',hidden);document.removeEventListener('play',mediaStarted,true);document.removeEventListener('hrv-mushrooms-narration-start',narration);});
+  const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)halt();});observer.observe(music);cleanups.push(()=>observer.disconnect());
+  function select(view){halt();light.hidden=view!=='glow';music.hidden=view!=='sound';node.dataset.activity=view;}select('glow');
+  return {node,select,suspend:halt,destroy(){closeDemo();engine.destroy();cleanups.forEach(f=>f());}};
 }
 export function createDiscoveryQuestions(questions) {
   const node=labNode('div','mushroom-quiz'),cleanups=[];

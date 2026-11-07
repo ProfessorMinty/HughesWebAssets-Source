@@ -1,6 +1,6 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
 import { MUSHROOM_VIDEOS } from "./video-assets.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.6.0";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.7.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media", "entry"],
@@ -9,7 +9,7 @@ const fields = {
   cutaway: ["eyebrow", "title", "intro", "sourceRefs", "media", "views", "growth"],
   lifecycle: ["eyebrow", "title", "intro", "sourceRefs", "steps", "video", "plumeVideo", "activities", "station", "launch", "wind", "cycle", "recording"],
   roles: ["eyebrow", "title", "intro", "sourceRefs", "cards"],
-  lab: ["eyebrow", "title", "intro", "sourceRefs", "experiments"],
+  lab: ["eyebrow", "title", "intro", "sourceRefs", "experiments", "music"],
   facts: ["eyebrow", "title", "intro", "sourceRefs", "cards", "questions"],
   journal: ["eyebrow", "title", "intro", "sourceRefs", "currentStage", "entries"]
 };
@@ -18,6 +18,9 @@ export const MUSHROOM_ACTIVITY_VIEWS = ["launch", "wind", "puffball", "cycle"];
 const processLabels={growth:[],recycle:['material','threads','food','nutrients','evidence'],trade:['sunlight','root','threads','sugar','water','both'],dough:['outline','gas','bowl'],launch:['spore','drop','film','stalk'],wind:['breeze','left','still','right','left-state','right-state']};
 const processStepCounts={growth:4,recycle:3,trade:2,dough:3,launch:3,wind:3};
 const recordingFields=['play','pause','replay','fullscreen','paused','playing','finished','error','retry','fullscreenError','silentMicroscope','silentPuffball'];
+const musicControls=['play','pause','resume','replay','stop','volume','previous','next','pattern','motion'];
+const musicMessages=['ready','playing','starting','paused','complete','error','silent','pattern','lessMotion'];
+const musicTexts=['instrumentTitle','detailsTitle','noteStripLabel','loadDemo','closeDemo','demoPlayerTitle','demoFallback','chainLabel','limits','exampleLabel','mapping','graphLabel','high','low','time','noteTemplate','observationTitle','demoTitle','demoBody','demoLinkLabel','demoNote'];
 
 export const MUSHROOM_EDITOR_CONTRACT = {
   schemaVersion: MUSHROOM_CONTRACT_VERSION,
@@ -59,7 +62,13 @@ export function mushroomSourceJsonSchema() {
     cutaway: { growth:process('growth'),media: image, views: { ...list(obj({ ...research, label: short }), 2), minItems: 2 } },
     lifecycle: { station, launch:process('launch'),wind:process('wind'),cycle:obj({label:shortText(),returnLabel:shortText(),scopeNote:shortText()}),recording:obj(Object.fromEntries(recordingFields.map(key=>[key,shortText()]))), activities: {...list(obj({id:recordId,view:{enum:MUSHROOM_ACTIVITY_VIEWS},label:short,title:short,intro:{type:"string",maxLength:1600},learning,sourceRefs}),4),minItems:4}, steps: {...list(obj({ ...research, title: short, media: image }), 4),minItems:4}, video, plumeVideo: video },
     roles: { cards: list(obj({ ...research, title: short, visual: { enum: ["leaf", "tree", "bread"] }, media: image, learning,process:{oneOf:['recycle','trade','dough'].map(process)} }), 3) },
-    lab: { experiments: list(obj({ ...research, title: short, label: short, mode: { enum: ["glow", "sound"] }, media: image, learning }), 2) },
+    lab: { experiments: list(obj({ ...research, title: short, label: short, mode: { enum: ["glow", "sound"] }, media: image, learning }), 2),music:obj({
+      ...Object.fromEntries(musicTexts.map(key=>[key,shortText()])),
+      chain:{...list(obj({id:recordId,stage:{enum:['fungus','sensor','computer','instrument']},title:short,body:shortText()}),4),minItems:4},
+      instruments:{...list(obj({id:recordId,mode:{enum:['flute','bell']},label:short,description:shortText()}),2),minItems:2},
+      controls:obj(Object.fromEntries(musicControls.map(key=>[key,short]))),messages:obj(Object.fromEntries(musicMessages.map(key=>[key,shortText()]))),
+      answers:{...list(obj({id:recordId,label:short,correct:{type:'boolean'},feedback:shortText()}),2),minItems:2},demoSourceRef:{const:'mushroom-source:plantwave-demo'}
+    }) },
     facts: { cards: list(obj({ ...research, title: short }), 12), questions: list(obj({ id: recordId, prompt: short, sourceRefs: sourceRefs, choices: list(obj({ id: recordId, label: short, correct: { type: "boolean" }, feedback: { type: "string", minLength: 1, maxLength: 600 } }), 4) }), 6) },
     journal: { currentStage: { type: "null" }, entries: { type: "array", maxItems: 0 } }
   };
@@ -270,6 +279,20 @@ export function validateMushroomSource(source, options) {
       });
     }
     if (block.type === "lab") {
+      const music=block.music;object(music,[...musicTexts,'chain','instruments','controls','messages','answers','demoSourceRef'],'music lesson');
+      musicTexts.forEach(key=>text(music[key],'music '+key,600,true));
+      object(music.controls,musicControls,'music controls');Object.values(music.controls).forEach(value=>text(value,'music control',140,true));
+      object(music.messages,musicMessages,'music messages');Object.values(music.messages).forEach(value=>text(value,'music message',600,true));
+      for(const [key,kinds,prefix] of [['chain',['fungus','sensor','computer','instrument'],'mushroom-chain'],['instruments',['flute','bell'],'mushroom-instrument']]){
+        array(music[key],'music '+key,kinds.length);requireThat(music[key].length===kinds.length,'music records missing');music[key].forEach((item,index)=>{
+          object(item,key==='chain'?['id','stage','title','body']:['id','mode','label','description'],'music record');id(item.id,prefix);
+          requireThat(item.id===prefix+':'+kinds[index]&&item[key==='chain'?'stage':'mode']===kinds[index],'protected music record changed');
+          text(item[key==='chain'?'title':'label'],'music label',140,true);text(item[key==='chain'?'body':'description'],'music explanation',600,true);
+        });
+      }
+      array(music.answers,'music observations',2);requireThat(music.answers.length===2,'music observation missing');music.answers.forEach((answer,index)=>{object(answer,['id','label','correct','feedback'],'music answer');id(answer.id,'mushroom-answer');requireThat(answer.id===['mushroom-answer:instrument','mushroom-answer:music-pattern'][index]&&answer.correct===(index===0),'protected music answer changed');text(answer.label,'music answer',140,true);text(answer.feedback,'music feedback',600,true);});
+      requireThat(music.demoSourceRef==='mushroom-source:plantwave-demo'&&sourceIds.has(music.demoSourceRef),'unknown demonstration source');
+      requireThat(['{index}','{value}','{note}'].every(token=>music.noteTemplate.includes(token)),'music note template needs sample, value and note');
       array(block.experiments, "lab exhibits", 2);
       requireThat(block.experiments.length === 2 && new Set(block.experiments.map(function (item) { return item.mode; })).size === 2, "lab needs distinct light and sound exhibits");
       block.experiments.forEach(function (item) {

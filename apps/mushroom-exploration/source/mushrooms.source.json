@@ -106,6 +106,21 @@
         "id": "mushroom-source:puffball-safety",
         "title": "CDC · Respiratory illness associated with inhalation of mushroom spores (1994)",
         "url": "https://www.cdc.gov/Mmwr/preview/mmwrhtml/00032029.htm"
+      },
+      {
+        "id": "mushroom-source:growth-electricity",
+        "title": "Ablonczy and colleagues · Growth-associated fungal electrical activity (2026)",
+        "url": "https://link.springer.com/article/10.1557/s43579-026-01041-7"
+      },
+      {
+        "id": "mushroom-source:plantwave-demo",
+        "title": "Data Garden / PlantWave · Listen To Mushroom Music (2021)",
+        "url": "https://plantwave.com/blogs/blog/listen-to-mushroom-music"
+      },
+      {
+        "id": "mushroom-source:plantwave-sensor",
+        "title": "PlantWave · What exactly is being measured?",
+        "url": "https://help.plantwave.com/en-US/what-exactly-is-being-measured-230414"
       }
     ],
     "blocks": [
@@ -966,7 +981,10 @@
         "sourceRefs": [
           "mushroom-source:glow",
           "mushroom-source:electricity",
-          "mushroom-source:music"
+          "mushroom-source:music",
+          "mushroom-source:growth-electricity",
+          "mushroom-source:plantwave-demo",
+          "mushroom-source:plantwave-sensor"
         ],
         "experiments": [
           {
@@ -994,20 +1012,23 @@
           },
           {
             "id": "mushroom-lab:sound",
-            "title": "Can we hear a pattern?",
-            "body": "Scientists have measured electrical changes in fungi. What those changes do is still being studied. A change on a graph is not proof of a message.",
+            "title": "One pattern. Two musical costumes.",
+            "body": "Living cells move tiny charged particles called ions. This helps cells do their work. Researchers measure electrical changes in fungi and study how they connect with growth, taking in food and responses.",
             "sourceRefs": [
               "mushroom-source:electricity",
-              "mushroom-source:music"
+              "mushroom-source:music",
+              "mushroom-source:growth-electricity",
+              "mushroom-source:plantwave-sensor",
+              "mushroom-source:plantwave-demo"
             ],
             "mode": "sound",
             "media": null,
             "label": "Mushroom music",
             "learning": {
-              "action": "Play the example pattern.",
-              "observe": "What happens to the notes when the line is higher?",
+              "action": "Play the flute-like sound. Choose the bell-like sound, then play the same pattern again.",
+              "observe": "What changed: the pattern of high and low notes, or the sound of the instrument? With sound off, use Next note and follow the note names.",
               "safety": "",
-              "teacher": "This activity uses invented data to show a sound-mapping rule. It is not a recording of mushroom measurements. Measurements require careful control of sensor and environmental effects.",
+              "teacher": "Ion transport supports cell work. Studies associate some extracellular voltage recordings with growth, but origins and functions of particular spikes remain unsettled. This does not decode fungal words, emotions or a heartbeat. Voltage recordings and conductivity/resistance devices measure different things. Sensor contact, water, movement and equipment can affect readings; controls matter. Our invented example has 16 normalized values (0–1), one every 0.5 seconds for 8 seconds. Each value selects one of eight ascending note bands, C4 D4 E4 G4 A4 C5 D5 E5. The graph joins those same samples; audio uses exactly the displayed values and times. No species, biological voltage units, original measurement time or speed-up applies. Both timbres are synthesized here from sine-wave harmonics, not recordings of real instruments. Changing instruments resets playback to the start and preserves every value, note and onset. A new pattern is a separate action.",
               "words": [
                 {
                   "id": "mushroom-word:sonification",
@@ -1029,6 +1050,107 @@
           "safety": "",
           "teacher": "",
           "words": []
+        },
+        "music": {
+          "chain": [
+            {
+              "id": "mushroom-chain:fungus",
+              "stage": "fungus",
+              "title": "1 · Fungus",
+              "body": "Living cells have changing electrical properties."
+            },
+            {
+              "id": "mushroom-chain:sensor",
+              "stage": "sensor",
+              "title": "2 · Sensor",
+              "body": "A device measures how easily electricity moves between two contacts."
+            },
+            {
+              "id": "mushroom-chain:computer",
+              "stage": "computer",
+              "title": "3 · Computer",
+              "body": "A person chooses a rule to turn readings into notes."
+            },
+            {
+              "id": "mushroom-chain:instrument",
+              "stage": "instrument",
+              "title": "4 · Instrument",
+              "body": "A person chooses the sound. Speakers play the notes."
+            }
+          ],
+          "chainLabel": "How people turn fungal measurements into music",
+          "limits": "A spike on a graph does not tell us that a mushroom is talking or feeling something. Scientists are still investigating what different patterns mean.",
+          "exampleLabel": "Example pattern · invented, not mushroom measurements",
+          "mapping": "Higher value → higher note. The same 16 values make both sounds.",
+          "graphLabel": "Invented values from zero to one, read left to right over eight seconds. The selected point and note show the same sample.",
+          "high": "Higher note · 1",
+          "low": "Lower note · 0",
+          "time": "Example time · 0–8 seconds",
+          "instruments": [
+            {
+              "id": "mushroom-instrument:flute",
+              "mode": "flute",
+              "label": "Flute-like",
+              "description": "Synthesized · soft and airy"
+            },
+            {
+              "id": "mushroom-instrument:bell",
+              "mode": "bell",
+              "label": "Bell-like",
+              "description": "Synthesized · bright and ringing"
+            }
+          ],
+          "controls": {
+            "play": "Play",
+            "pause": "Pause",
+            "resume": "Resume",
+            "replay": "Replay",
+            "stop": "Stop",
+            "volume": "Volume",
+            "previous": "Previous note",
+            "next": "Next note",
+            "pattern": "Make a new pattern",
+            "motion": "Step-by-step view"
+          },
+          "messages": {
+            "ready": "Sound is off. Choose an instrument, then Play.",
+            "playing": "Playing the example for eight seconds. Follow the highlighted note.",
+            "starting": "Starting the example…",
+            "paused": "Paused. Resume keeps your place.",
+            "complete": "Finished. Choose the other instrument and replay the same pattern.",
+            "error": "Sound could not start. Try Play again, or explore with Next note.",
+            "silent": "Sound is off. Use Previous note and Next note to explore.",
+            "pattern": "New invented pattern ready. Both instruments will use these new values.",
+            "lessMotion": "Step-by-step view: inspect each note without moving playback. Turn this off to listen."
+          },
+          "noteTemplate": "Note {index} of 16 · value {value} → {note}",
+          "observationTitle": "What changed when you swapped instruments?",
+          "answers": [
+            {
+              "id": "mushroom-answer:instrument",
+              "label": "The sound of the instrument",
+              "correct": true,
+              "feedback": "Yes! The instrument changed. The values, note names and timing stayed the same."
+            },
+            {
+              "id": "mushroom-answer:music-pattern",
+              "label": "The high-and-low pattern",
+              "correct": false,
+              "feedback": "Look again: both instruments use exactly the same values and notes. Only their sound changes."
+            }
+          ],
+          "demoTitle": "A real mushroom-music example",
+          "demoBody": "In a forest recording, PlantWave measured changes in how easily electricity moved between two contacts on mushrooms. Its app turned the readings into notes. People chose a sound set with piano, bass, chimes and flute.",
+          "demoLinkLabel": "Teacher: open the creator’s demonstration",
+          "demoSourceRef": "mushroom-source:plantwave-demo",
+          "demoNote": "This is the creator’s recording, separate from our invented pattern. The app chooses notes from sensor readings; people choose the sound set. The creator does not publish the raw readings, full processing settings or a playback-speed statement. We cannot reconstruct its exact data-to-note mapping. This is not a microphone recording a mushroom singing.",
+          "instrumentTitle": "Choose the musical sound",
+          "detailsTitle": "How is real mushroom music made?",
+          "noteStripLabel": "The same sixteen notes for both instruments",
+          "loadDemo": "Load the creator’s video",
+          "closeDemo": "Close video",
+          "demoPlayerTitle": "Mushroom Music with PlantWave at Kealia Forest Reserve",
+          "demoFallback": "If the player cannot load, open the creator’s demonstration below."
         }
       },
       {

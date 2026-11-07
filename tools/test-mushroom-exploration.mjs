@@ -260,3 +260,50 @@ test('a user can request less motion even when preference storage cannot be writ
   const {browserMotionPreference,createTeachingTimeline}=await import('../apps/mushroom-exploration/src/process.js'),pref=browserMotionPreference(),observed=[];const listen=event=>observed.push(event.matches);pref.addEventListener('change',listen);assert.equal(pref.matches,false);pref.setMatches(true);assert.equal(pref.matches,true);assert.deepEqual(observed,[true]);
   const h=teachingHarness(),clock=createTeachingTimeline({duration:1,preference:pref,request:h.request,cancel:h.cancel});clock.play();assert.equal(h.pending.size,0);clock.destroy();pref.removeEventListener('change',listen);assert.equal(nativeListeners.size,0);assert.ok([...events.values()].every(set=>set.size===0));
 });
+
+function musicHarness(overrides={}){
+  let frameId=0;const frames=new Map(),contexts=[],changes=[],ticks=[];
+  const parameter=()=>({value:0,events:[],setValueAtTime(...a){this.events.push(['set',...a]);},linearRampToValueAtTime(...a){this.events.push(['linear',...a]);},exponentialRampToValueAtTime(...a){this.events.push(['exp',...a]);},setTargetAtTime(...a){this.events.push(['target',...a]);}});
+  function audioFactory(){const context={currentTime:0,state:'suspended',oscillators:[],gains:[],destination:{},async resume(){this.state='running';},async close(){this.state='closed';},createGain(){const gain={gain:parameter(),connect(){},disconnect(){}};this.gains.push(gain);return gain;},createOscillator(){const o={frequency:parameter(),connect(){},disconnect(){this.disconnected=true;},start(t){this.startTime=t;},stop(t){this.stopTime=t??this.stopTime;this.stopped=true;}};this.oscillators.push(o);return o;}};contexts.push(context);return context;}
+  return {contexts,frames,changes,ticks,options:{audioFactory,request(fn){const id=++frameId;frames.set(id,fn);return id;},cancel(id){frames.delete(id);},onChange:s=>changes.push(s),onTick:s=>ticks.push(s),...overrides},advance(t){contexts.at(-1).currentTime=t;const pending=[...frames.values()];frames.clear();pending.forEach(fn=>fn());}};
+}
+test('music graph samples and both synthesized timbres use the same values, note rule and clock',async()=>{
+  const {mushroomExamplePattern,mushroomNoteEvents,createMushroomAudio}=await import('../apps/mushroom-exploration/src/sound.js');
+  const values=mushroomExamplePattern(),events=mushroomNoteEvents(values),h=musicHarness(),engine=createMushroomAudio(h.options);
+  assert.equal(events.length,16);assert.ok(values.every(v=>v>=0&&v<=1));assert.equal(events[15].time,7.5);
+  assert.deepEqual(mushroomNoteEvents([0,1]).map(e=>e.note),['C4','E5']);
+  await engine.play();const flute=h.contexts[0];h.advance(1.1);assert.equal(engine.snapshot().index,2);assert.equal(h.ticks.at(-1).events[2].note,events[2].note);
+  engine.selectInstrument('bell');assert.equal(engine.snapshot().elapsed,0);assert.deepEqual(engine.snapshot().events,events);assert.equal(flute.state,'closed');
+  await engine.play();const bell=h.contexts[1];assert.deepEqual(bell.oscillators.map(o=>[o.frequency.value,o.startTime]),flute.oscillators.map(o=>[o.frequency.value,o.startTime]));
+  assert.notDeepEqual(bell.gains[1].gain.events,flute.gains[1].gain.events);engine.destroy();assert.equal(h.frames.size,0);
+});
+test('music pause/resume keeps elapsed time, stops old voices and finishes without looping',async()=>{
+  const {createMushroomAudio}=await import('../apps/mushroom-exploration/src/sound.js'),h=musicHarness(),engine=createMushroomAudio(h.options);
+  await engine.play();h.advance(1.3);engine.pause();const paused=engine.snapshot().elapsed;assert.equal(paused,1.25);assert.equal(h.frames.size,0);assert.ok(h.contexts[0].oscillators.every(o=>o.stopped&&o.disconnected));
+  await engine.play();h.advance(.55);assert.equal(engine.snapshot().elapsed,paused+.5);h.advance(9);assert.equal(engine.snapshot().state,'complete');assert.equal(engine.snapshot().index,15);assert.equal(h.frames.size,0);
+  await engine.replay();assert.equal(engine.snapshot().index,0);engine.stop();assert.equal(engine.snapshot().state,'ready');assert.equal(engine.snapshot().elapsed,0);assert.equal(h.frames.size,0);
+});
+test('music silent inspection and volume work independently of audio and preserve pattern',async()=>{
+  const {createMushroomAudio,mushroomExamplePattern}=await import('../apps/mushroom-exploration/src/sound.js'),h=musicHarness(),engine=createMushroomAudio(h.options);
+  engine.inspect(5);assert.equal(engine.snapshot().index,5);assert.equal(h.contexts.length,0);engine.inspect(99);assert.equal(engine.snapshot().index,15);engine.inspect(-1);assert.equal(engine.snapshot().index,0);
+  await engine.play();engine.setVolume(0);assert.equal(h.contexts[0].gains[0].gain.events.at(-1)[1],0);engine.setVolume(2);assert.equal(engine.snapshot().volume,1);
+  const old=engine.snapshot().events;engine.setPattern(mushroomExamplePattern(1));assert.notDeepEqual(engine.snapshot().events,old);assert.equal(engine.snapshot().elapsed,0);engine.destroy();
+});
+test('music unsupported audio, rejected startup and interrupted startup leave a usable silent lesson',async()=>{
+  const {createMushroomAudio}=await import('../apps/mushroom-exploration/src/sound.js');
+  for(const audioFactory of [()=>{throw new Error('unsupported');},()=>({resume:()=>Promise.reject(new Error('blocked')),close:()=>Promise.resolve()})]){const h=musicHarness({audioFactory}),e=createMushroomAudio(h.options);await e.play();assert.equal(e.snapshot().state,'error');e.inspect(4);assert.equal(e.snapshot().index,4);e.destroy();}
+  let resume;const h=musicHarness(),factory=h.options.audioFactory;h.options.audioFactory=()=>{const c=factory();c.resume=()=>new Promise(resolve=>{resume=resolve;});return c;};const e=createMushroomAudio(h.options),pending=e.play();e.stop();resume();await pending;assert.equal(e.snapshot().state,'ready');assert.equal(h.frames.size,0);assert.equal(h.contexts[0].oscillators.length,0);e.destroy();
+});
+test('music context interruption and stale callbacks cannot restart suspended or destroyed audio',async()=>{
+  const {createMushroomAudio}=await import('../apps/mushroom-exploration/src/sound.js'),h=musicHarness(),e=createMushroomAudio(h.options);await e.play();const stale=[...h.frames.values()][0],c=h.contexts[0];c.currentTime=.8;c.state='suspended';c.onstatechange();assert.equal(e.snapshot().state,'paused');assert.equal(h.frames.size,0);stale();assert.equal(h.frames.size,0);await e.play();e.destroy();stale();assert.equal(h.frames.size,0);assert.equal(h.contexts.at(-1).state,'closed');
+});
+test('music lesson text is editable while illustrated chain, instruments and observation identities stay protected',()=>{
+  const block=source.data.blocks.find(b=>b.type==='lab'),music=structuredClone(block.music);music.mapping='Follow the value to its note.';
+  assert.equal(editMushroomBlock(source,block.id,{music}).data.blocks.find(b=>b.type==='lab').music.mapping,music.mapping);
+  for(const mutate of [m=>m.chain[0].id='mushroom-chain:new',m=>m.instruments.reverse(),m=>m.answers[0].correct=false,m=>m.demoSourceRef='mushroom-source:missing',m=>m.noteTemplate='No samples']){const invalid=structuredClone(music);mutate(invalid);assert.throws(()=>editMushroomBlock(source,block.id,{music:invalid}));}
+});
+test('the real music demonstration is a registered creator embed, separate from invented pattern data',async()=>{
+  const {MUSHROOM_MUSIC_DEMO}=await import('../apps/mushroom-exploration/src/sound.js'),catalog=JSON.parse(await readFile(root+'/apps/mushroom-exploration/source/mushrooms.assets.json','utf8'));
+  assert.deepEqual(catalog.soundDemonstrations,[MUSHROOM_MUSIC_DEMO]);assert.equal(new URL(MUSHROOM_MUSIC_DEMO.embed).hostname,'www.youtube-nocookie.com');assert.match(MUSHROOM_MUSIC_DEMO.permission,/embed only/);assert.match(MUSHROOM_MUSIC_DEMO.processing,/not supplied/);assert.equal(MUSHROOM_MUSIC_DEMO.external,true);
+  const lesson=source.data.blocks.find(b=>b.type==='lab');assert.equal(source.data.sources.find(s=>s.id===lesson.music.demoSourceRef).url,MUSHROOM_MUSIC_DEMO.source);
+});
