@@ -500,3 +500,42 @@
  .mushroom-music-desk{grid-column:2;grid-row:2;gap:22px;grid-template-columns:1fr 1fr}
  .mushroom-music-details{grid-column:1/-1;padding-block:0}
 }
+
+/* Final reading and access pass: keep the row colors, strengthen reading and controls. */
+.hrv-mushrooms{--line:#91b5a1}
+#mushrooms-journal{--line:#c2cba6}
+.hrv-mushrooms :is(.mushroom-photo-caption,.mushroom-diagram-note,.mushroom-model-label,.mushroom-diagram-key,.mushroom-learning-notes,.mushroom-instruction,.mushroom-observe,.mushroom-safety-rule,.mushroom-science-words,.mushroom-film-caption,.mushroom-film-timing,.mushroom-model-status,.mushroom-cycle-scope,.mushroom-callout-row,.mushroom-measurement-chain p,.mushroom-music-rule,.mushroom-graph-high,.mushroom-graph-low,.mushroom-graph-time){font-size:18px!important;line-height:1.5}
+.hrv-mushrooms .mushroom-photo-credit{font-size:14px!important;line-height:1.5;display:flex;align-items:center;flex-wrap:wrap;gap:0 7px}
+.hrv-mushrooms :is(.mushroom-photo-credit a,.mushroom-sources a,.mushroom-footer a,.mushroom-text-link,.mushroom-brand){min-height:44px;display:inline-flex;align-items:center}
+.hrv-mushrooms summary{min-height:44px;font-size:18px;line-height:1.5;padding-block:8px}
+.hrv-mushrooms :is(input[type=range],.mushroom-motion-choice){min-height:44px}
+.hrv-mushrooms input[type=checkbox]{min-width:24px;min-height:24px;flex:none}
+.hrv-mushrooms :is(button,select){font-size:18px}
+.hrv-mushrooms .mushroom-hotspot{font-size:17px!important;min-width:44px;min-height:44px!important}
+.hrv-mushrooms :where(a,button,input,select,summary,[tabindex]){scroll-margin-top:calc(var(--mushroom-nav-height,124px) + 18px);scroll-margin-bottom:20px}
+.mushroom-navigation .chapter-number{color:#d7e2c8}
+.mushroom-chapter-link[aria-current=location] .chapter-number{color:#b9f4e7}
+.mushroom-music-observation button[aria-pressed=true]{box-shadow:inset 0 -3px var(--glow)!important;border-color:var(--glow)!important;font-weight:750}
+.mushroom-station-actions{display:flex;gap:12px;align-items:flex-start;max-width:530px}
+.mushroom-station-actions .mushroom-next{flex:1;min-width:140px}
+.mushroom-reading-tools{display:grid;grid-template-columns:auto auto;gap:0 12px;align-items:start;min-width:0}
+.mushroom-reading-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:start}
+.hrv-mushrooms :is(.mushroom-read-button,.mushroom-read-stop){min-height:48px;padding:10px 14px;border:1px solid var(--line);border-radius:4px;font-size:17px;white-space:nowrap;color:var(--ink);background:var(--tray)}
+.hrv-mushrooms .mushroom-read-button:hover{background:var(--selected)}
+.hrv-mushrooms .mushroom-read-stop{border-color:var(--glow)}
+.mushroom-voice-options{max-width:280px;min-width:0}
+.mushroom-voice-options summary{white-space:nowrap;font-size:16px;min-height:48px;padding:10px 0}
+.mushroom-voice-options label{font-size:17px;display:block;margin-top:10px}
+.mushroom-voice-options select{margin-top:8px}
+.mushroom-voice-options p{font-size:16px;line-height:1.5;margin-top:8px!important}
+.mushroom-reading-status{grid-column:1/-1;font-size:16px;line-height:1.5;max-width:38ch;margin-top:8px!important;color:var(--muted)!important}
+.hrv-mushrooms[data-less-motion=true] *,.hrv-mushrooms[data-less-motion=true] *::before,.hrv-mushrooms[data-less-motion=true] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(max-width:1500px){.mushroom-station-heading{grid-template-columns:1fr 1.2fr}.mushroom-station-actions{grid-column:1/-1;max-width:none;justify-content:space-between}.mushroom-station-actions .mushroom-next{flex:none;max-width:300px}.mushroom-reading-tools{grid-template-columns:auto auto;max-width:560px}}
+@media(max-width:700px){.mushroom-station-actions{display:block;margin-top:16px}.mushroom-station-actions .mushroom-next{margin-top:0!important;max-width:100%;width:100%}.mushroom-reading-tools{margin-top:10px;grid-template-columns:1fr 1fr}.mushroom-reading-actions{display:block}.mushroom-read-stop{margin-top:8px!important}.mushroom-voice-options summary{white-space:normal;font-size:17px}.mushroom-navigation .mushroom-brand{min-height:44px}.mushroom-navigation-links .mushroom-chapter-link{font-size:15px;min-height:76px}.mushroom-navigation .chapter-number{font-size:20px}}
+.mushroom-next{display:flex;align-items:center;gap:10px}.mushroom-next::after{flex:none;margin-left:auto}
+@media(min-width:1280px){.mushroom-section-hero::before{background-image:linear-gradient(90deg,#042925ed,#042925db 54%,#04292500 88%),var(--mushroom-entrance-image)}}
+@media(min-width:701px) and (max-width:1279px){.mushroom-section-hero::before{background-image:linear-gradient(90deg,#042925ed,#042925db 65%,#04292500 100%),var(--mushroom-entrance-image)}}
+@media(max-width:700px){.mushroom-section-hero::before{background-image:linear-gradient(180deg,#062d2a00 0%,#062d2a77 24%,#062d2aef 35%,#062d2a 58%),var(--mushroom-entrance-image)}}
+.hrv-mushrooms :is(.mushroom-photo-credit a,.mushroom-film-credit a,.mushroom-music-details a){min-width:44px;min-height:44px;display:inline-flex;align-items:center}
+.hrv-mushrooms .mushroom-film-credit{font-size:14px!important;line-height:1.5}
+#mushrooms-motion .mushroom-instruments .mushroom-lab-button[aria-pressed=true]:hover:not(:disabled){background:#f1d396;color:#172c25}

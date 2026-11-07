@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "mushroom-exploration/1.7.0",
+  "schemaVersion": "mushroom-exploration/1.8.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
@@ -33,7 +33,8 @@
         "sourceRefs",
         "media",
         "entry",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -46,7 +47,8 @@
         "sourceRefs",
         "cards",
         "station",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -60,7 +62,8 @@
         "media",
         "detailMedia",
         "hotspots",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -74,7 +77,8 @@
         "media",
         "views",
         "growth",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -94,7 +98,8 @@
         "wind",
         "cycle",
         "recording",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -106,7 +111,8 @@
         "intro",
         "sourceRefs",
         "cards",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -119,7 +125,8 @@
         "sourceRefs",
         "experiments",
         "music",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -132,7 +139,8 @@
         "sourceRefs",
         "cards",
         "questions",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     },
@@ -145,11 +153,67 @@
         "sourceRefs",
         "currentStage",
         "entries",
-        "learning"
+        "learning",
+        "label"
       ],
       "identityField": "id"
     }
   ],
   "journalImplementation": "reserved; entry authoring and publication are not implemented",
-  "publicationAvailable": false
+  "publicationAvailable": false,
+  "interface": {
+    "sourcePath": "data.ui",
+    "editableFields": [
+      "brand",
+      "navLabel",
+      "skipLabel",
+      "noticePrefix",
+      "wordsTitle",
+      "sourcesTitle",
+      "photoClose",
+      "photoFallbackTitle",
+      "photoEnlargeTemplate",
+      "photographLabel",
+      "photoZoom",
+      "photoChangeSuffix",
+      "heroArtworkLabel",
+      "partGroup",
+      "partCountTemplate",
+      "partNameTemplate",
+      "anatomyModelNote",
+      "chooseActivity",
+      "chooseActivityTemplate",
+      "nextTemplate",
+      "exhibitPrefix",
+      "jobPrefix",
+      "roleGroup",
+      "cutawayGroup",
+      "realFootage",
+      "captionTrack",
+      "bridgeCap",
+      "bridgeGill",
+      "bridgeSpore",
+      "quizEyebrow",
+      "footerLabel",
+      "footerLink",
+      "journalHeading",
+      "journalBody",
+      "narration"
+    ],
+    "narrationFields": [
+      "read",
+      "stop",
+      "options",
+      "voiceLabel",
+      "ready",
+      "reading",
+      "complete",
+      "stopped",
+      "unavailable",
+      "error",
+      "starting",
+      "none",
+      "voiceHelp"
+    ]
+  }
 }

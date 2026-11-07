@@ -209,3 +209,33 @@ No language, emotion, heartbeat or universal spike-purpose claim is made.
   Creating another example is a separate action. No sampled instrument licensing is needed.
 - Panellus light remains a chemical-reaction example with the real long-exposure photo.
   The imaginary hero/thread highlights, fungal electricity and chemical glow are separate.
+
+## Reading, contrast and speech follow-up — 2026-11-06
+
+The age-focused editorial pass keeps the main layer short, explains nutrients as materials
+that can be used again, and uses “right conditions” before technical detail. Some/many/may
+qualifiers and the mushroom/wider-fungus distinction remain. It changes no real specimen,
+measurement or classroom claim. Technical electrical interpretation stays in optional notes.
+
+- [W3C contrast guidance](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+  supplies the 4.5:1 normal-text and 3:1 qualifying-large-text criteria used in the numerical
+  report. Relative luminance and alpha composition are calculated by the checked audit tool.
+  Image labels are bounded over black/white source imagery; hero bounds use the actual text
+  positions and authored scrims at five viewports. These are design checks, not certification.
+- [MDN SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)
+  and [getVoices](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/getVoices)
+  document voice enumeration, voiceschanged, speak and cancel. The optional reader chooses
+  an available English voice, prefers local/en-US options, uses fresh source text and cancels
+  work as the selected content or media changes. No voice is assumed to exist.
+- This test browser returned zero English voices. The unavailable message and complete text
+  lesson were verified. Injected tests cover delayed voices, selection, actual queued text,
+  cancellation, stale callbacks, end/error, startup timeout and cleanup. **No successful
+  audible reading or science-word pronunciation trial is claimed. M41 remains open.** Written
+  pronunciation help remains available; the browser's actual spoken rendition needs review.
+- A second in-page trial used the creator's standard YouTube embed as well as the existing
+  privacy-enhanced player. Both rendered but remained at readyState 0/time 0 in this cloud
+  browser after Play. The earlier creator-page playback remains valid evidence for the real
+  example; in-exhibit playback acceptance remains pending under M33. No media were downloaded.
+- All original six-photo and two-recording bytes and their provenance/catalog checks pass.
+  No new specimen image, third-party audio clip, kit detail or classroom observation is added.
+  This batch introduces code-owned controls/illustration labels and optional platform speech.

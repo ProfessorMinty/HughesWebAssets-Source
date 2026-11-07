@@ -37,11 +37,264 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "ui",
         "meta",
         "sources",
         "blocks"
       ],
       "properties": {
+        "ui": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "brand",
+            "navLabel",
+            "skipLabel",
+            "noticePrefix",
+            "wordsTitle",
+            "sourcesTitle",
+            "photoClose",
+            "photoFallbackTitle",
+            "photoEnlargeTemplate",
+            "photographLabel",
+            "photoZoom",
+            "photoChangeSuffix",
+            "heroArtworkLabel",
+            "partGroup",
+            "partCountTemplate",
+            "partNameTemplate",
+            "anatomyModelNote",
+            "chooseActivity",
+            "chooseActivityTemplate",
+            "nextTemplate",
+            "exhibitPrefix",
+            "jobPrefix",
+            "roleGroup",
+            "cutawayGroup",
+            "realFootage",
+            "captionTrack",
+            "bridgeCap",
+            "bridgeGill",
+            "bridgeSpore",
+            "quizEyebrow",
+            "footerLabel",
+            "footerLink",
+            "journalHeading",
+            "journalBody",
+            "narration"
+          ],
+          "properties": {
+            "brand": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "navLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "skipLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "noticePrefix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "wordsTitle": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "sourcesTitle": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoClose": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoFallbackTitle": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoEnlargeTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photographLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoZoom": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoChangeSuffix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "heroArtworkLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "partGroup": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "partCountTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "partNameTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "anatomyModelNote": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "chooseActivity": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "chooseActivityTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "nextTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "exhibitPrefix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "jobPrefix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "roleGroup": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "cutawayGroup": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "realFootage": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "captionTrack": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "bridgeCap": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "bridgeGill": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "bridgeSpore": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "quizEyebrow": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "footerLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "footerLink": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "journalHeading": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "journalBody": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "narration": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "read",
+                "stop",
+                "options",
+                "voiceLabel",
+                "ready",
+                "reading",
+                "complete",
+                "stopped",
+                "unavailable",
+                "error",
+                "starting",
+                "none",
+                "voiceHelp"
+              ],
+              "properties": {
+                "read": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "stop": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "options": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "voiceLabel": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "ready": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "reading": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "complete": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "stopped": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "unavailable": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "error": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "starting": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "none": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "voiceHelp": {
+                  "type": "string",
+                  "maxLength": 600
+                }
+              }
+            }
+          }
+        },
         "meta": {
           "type": "object",
           "additionalProperties": false,
@@ -130,6 +383,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -145,6 +399,11 @@
                   },
                   "type": {
                     "const": "hero"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -326,6 +585,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -341,6 +601,11 @@
                   },
                   "type": {
                     "const": "family"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -558,6 +823,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -574,6 +840,11 @@
                   },
                   "type": {
                     "const": "anatomy"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -822,6 +1093,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -838,6 +1110,11 @@
                   },
                   "type": {
                     "const": "cutaway"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -1172,6 +1449,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -1194,6 +1472,11 @@
                   },
                   "type": {
                     "const": "lifecycle"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -2001,6 +2284,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -2015,6 +2299,11 @@
                   },
                   "type": {
                     "const": "roles"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -2727,6 +3016,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -2742,6 +3032,11 @@
                   },
                   "type": {
                     "const": "lab"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -3363,6 +3658,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -3378,6 +3674,11 @@
                   },
                   "type": {
                     "const": "facts"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",
@@ -3579,6 +3880,7 @@
                 "required": [
                   "id",
                   "type",
+                  "label",
                   "eyebrow",
                   "title",
                   "intro",
@@ -3594,6 +3896,11 @@
                   },
                   "type": {
                     "const": "journal"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
                   },
                   "eyebrow": {
                     "type": "string",

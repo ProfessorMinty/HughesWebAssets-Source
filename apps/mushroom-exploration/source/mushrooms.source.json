@@ -146,7 +146,8 @@
           "journalLabel": "Our class project · coming soon",
           "journalReadyLabel": "Our growing story",
           "note": "Two exhibits to explore. Our classroom discoveries are coming next."
-        }
+        },
+        "label": "The hidden world"
       },
       {
         "id": "mushroom-block:kingdom",
@@ -224,7 +225,8 @@
         "station": {
           "title": "Fungi up close",
           "intro": "Meet real fungi. Peek under a cap. Follow the hidden threads."
-        }
+        },
+        "label": "Meet the kingdom"
       },
       {
         "id": "mushroom-block:anatomy",
@@ -331,7 +333,8 @@
               ]
             }
           ]
-        }
+        },
+        "label": "Inside a mushroom"
       },
       {
         "id": "mushroom-block:below",
@@ -423,7 +426,8 @@
             }
           ],
           "labels": []
-        }
+        },
+        "label": "Hidden threads"
       },
       {
         "id": "mushroom-block:lifecycle",
@@ -441,7 +445,7 @@
           {
             "id": "mushroom-step:spore",
             "title": "A spore lands",
-            "body": "In a suitable place, a spore can start growing a tiny thread.",
+            "body": "In a place where it can grow, a spore may start a tiny thread.",
             "sourceRefs": [
               "mushroom-source:mycelium"
             ],
@@ -459,7 +463,7 @@
           {
             "id": "mushroom-step:fruit",
             "title": "A mushroom grows",
-            "body": "With suitable conditions, the fungus may grow a mushroom. Not every spore gets this far!",
+            "body": "When conditions are right, this fungus may grow a mushroom. Many spores never get this far!",
             "sourceRefs": [
               "mushroom-source:basics"
             ],
@@ -574,7 +578,7 @@
             "view": "cycle",
             "label": "Life cycle",
             "title": "From a spore to more spores.",
-            "intro": "Explore four stages of a mushroom-making fungus. A spore needs suitable conditions to grow. Many never grow into mushrooms.",
+            "intro": "Follow four stages of a mushroom-making fungus. A spore needs the right conditions to grow. Many never grow into mushrooms.",
             "learning": {
               "action": "Choose a stage. Follow the arrows back to a spore.",
               "observe": "Where could the story start again?",
@@ -721,7 +725,8 @@
           "fullscreenError": "Use the video’s own full-screen control if this browser supports it.",
           "silentMicroscope": "Silent microscope recording · extreme slow motion",
           "silentPuffball": "Silent recording · slowed five times"
-        }
+        },
+        "label": "Life in motion"
       },
       {
         "id": "mushroom-block:roles",
@@ -736,7 +741,7 @@
           {
             "id": "mushroom-role:recyclers",
             "title": "The recyclers",
-            "body": "Some fungi break down dead wood and leaves. Nutrients return to the environment and can be used again.",
+            "body": "Some fungi break down dead wood and leaves. Materials called nutrients return to the surroundings and can be used again.",
             "sourceRefs": [
               "mushroom-source:roles"
             ],
@@ -970,7 +975,8 @@
               ]
             }
           ]
-        }
+        },
+        "label": "Fungi at work"
       },
       {
         "id": "mushroom-block:lab",
@@ -1013,7 +1019,7 @@
           {
             "id": "mushroom-lab:sound",
             "title": "One pattern. Two musical costumes.",
-            "body": "Living cells move tiny charged particles called ions. This helps cells do their work. Researchers measure electrical changes in fungi and study how they connect with growth, taking in food and responses.",
+            "body": "Living cells use tiny charged particles called ions to do their work. Scientists measure electrical changes in fungi and study links with growing, feeding and responses. They are still exploring what different patterns mean.",
             "sourceRefs": [
               "mushroom-source:electricity",
               "mushroom-source:music",
@@ -1151,7 +1157,8 @@
           "closeDemo": "Close video",
           "demoPlayerTitle": "Mushroom Music with PlantWave at Kealia Forest Reserve",
           "demoFallback": "If the player cannot load, open the creator’s demonstration below."
-        }
+        },
+        "label": "Light and music"
       },
       {
         "id": "mushroom-block:discoveries",
@@ -1261,7 +1268,8 @@
           "safety": "Look closely outdoors, but never taste a wild mushroom. Pictures and colors cannot tell us it is safe to eat. Leave moldy food to an adult.",
           "teacher": "",
           "words": []
-        }
+        },
+        "label": "Explorer questions"
       },
       {
         "id": "mushroom-block:journal",
@@ -1278,8 +1286,60 @@
           "safety": "",
           "teacher": "",
           "words": []
-        }
+        },
+        "label": "Our growing story"
       }
-    ]
+    ],
+    "ui": {
+      "brand": "Hughes Room Views",
+      "navLabel": "Mushroom exhibit navigation",
+      "skipLabel": "Skip to the mushroom exhibit",
+      "noticePrefix": "Notice: ",
+      "wordsTitle": "Science words & teacher notes",
+      "sourcesTitle": "Explore the science sources",
+      "photoClose": "Back to the exhibit",
+      "photoFallbackTitle": "A closer look",
+      "photoEnlargeTemplate": "Enlarge the photograph: {name}",
+      "photographLabel": "Photograph",
+      "photoZoom": "Look closer",
+      "photoChangeSuffix": "resized",
+      "heroArtworkLabel": "Imagined woodland artwork · the science starts below",
+      "partGroup": "Mushroom parts",
+      "partCountTemplate": "Part {index} of {total}",
+      "partNameTemplate": "Part {index}: {name}",
+      "anatomyModelNote": "A model of a gilled mushroom · not a guide for identifying mushrooms",
+      "chooseActivity": "Choose an investigation",
+      "chooseActivityTemplate": "Choose an investigation in {title}",
+      "nextTemplate": "Next: {title}",
+      "exhibitPrefix": "Exhibit",
+      "jobPrefix": "Job",
+      "roleGroup": "Fungal job",
+      "cutawayGroup": "Cutaway view",
+      "realFootage": "Real research footage",
+      "captionTrack": "English description",
+      "bridgeCap": "Under the cap",
+      "bridgeGill": "Along a gill",
+      "bridgeSpore": "One spore, magnified",
+      "quizEyebrow": "Your turn · explorer thinking",
+      "footerLabel": "Hughes Room Views · Keep wondering.",
+      "footerLink": "Back to Classroom Explorations",
+      "journalHeading": "The next chapter is ours.",
+      "journalBody": "Our classroom journal is getting ready. Come back for our growing story.",
+      "narration": {
+        "read": "Read to me",
+        "stop": "Stop reading",
+        "options": "Reading voice",
+        "voiceLabel": "Choose a reading voice",
+        "ready": "",
+        "reading": "Reading this investigation.",
+        "complete": "Reading finished.",
+        "stopped": "Reading stopped.",
+        "unavailable": "A reading voice is not available in this browser. You can still read every explanation.",
+        "error": "Reading could not start. Try again or read the text below.",
+        "starting": "Getting the reading voice ready…",
+        "none": "No English reading voice available",
+        "voiceHelp": "Voices can sound different. Choose one you find easy to understand."
+      }
+    }
   }
 }

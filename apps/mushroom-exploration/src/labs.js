@@ -20,10 +20,10 @@ function processControls(owner,copy,{duration,checkpoints,render,beforePlay=()=>
   const observer=new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)timeline.suspend();});observer.observe(owner);cleanups.push(()=>observer.disconnect());
   return {node,timeline,status,suspend:timeline.suspend,destroy(){timeline.destroy();cleanups.forEach(fn=>fn());}};
 }
-export function createGrowthLab(block,prefix,photoRenderer){
-  const copy=block.growth,node=labNode('div','mushroom-cutaway-panel'),cleanups=[],illustration=labNode('div','mushroom-cutaway-illustration');illustration.append(labSVG(cutawayArtwork(prefix+'-cutaway')));
+export function createGrowthLab(block,prefix,photoRenderer,ui){
+  const copy=block.growth,node=labNode('div','mushroom-cutaway-panel'),cleanups=[],illustration=labNode('div','mushroom-cutaway-illustration');illustration.append(labSVG(cutawayArtwork(prefix+'-cutaway')));illustration.querySelector('svg').setAttribute('aria-label',copy.label);
   const controls=labNode('div','mushroom-cutaway-controls'),switcher=labNode('div','mushroom-view-switch'),explanation=labNode('div','mushroom-cutaway-copy'),viewButtons=[];let process;
-  switcher.setAttribute('role','group');switcher.setAttribute('aria-label','Cutaway view');
+  switcher.setAttribute('role','group');switcher.setAttribute('aria-label',ui.cutawayGroup);
   function chooseView(index){node.dataset.view=index===0?'surface':'below';viewButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));explanation.replaceChildren(labNode('h3','',block.views[index].label),labNode('p','',block.views[index].body));if(index===0)process?.suspend();}
   block.views.forEach((view,i)=>{const b=labButton(view.label,()=>chooseView(i),cleanups,'secondary');viewButtons.push(b);switcher.append(b);});
   const paths=[...illustration.querySelectorAll('.cutaway-network path')],ending=Math.max(...paths.map(path=>Number(path.dataset.growthStart)+Number(path.dataset.growthDuration)));
@@ -35,14 +35,14 @@ export function sporeLaunchState(seconds){const time=Math.max(0,Math.min(3.8,Num
 function createCatapultLab(copy,prefix){
   const node=labNode('div','mushroom-catapult-panel'),stage=labNode('div','mushroom-catapult-stage'),diagram=labNode('div','mushroom-callout-diagram');
   const top=labNode('div','mushroom-callout-row'),bottom=labNode('div','mushroom-callout-row');['spore','film'].forEach(key=>top.append(labNode('span','catapult-name-'+key,processLabel(copy,key))));['drop','stalk'].forEach(key=>bottom.append(labNode('span','catapult-name-'+key,processLabel(copy,key))));
-  diagram.append(labSVG(catapultArtwork(prefix)));stage.append(labNode('p','mushroom-model-label',copy.label),top,diagram,bottom);
+  diagram.append(labSVG(catapultArtwork(prefix)));diagram.querySelector('svg').setAttribute('aria-label',copy.label);stage.append(labNode('p','mushroom-model-label',copy.label),top,diagram,bottom);
   const moving=diagram.querySelector('.catapult-moving-spore'),drop=diagram.querySelector('.catapult-drop'),merged=diagram.querySelector('.catapult-merged');
   const process=processControls(node,copy,{duration:3.8,checkpoints:[0,1.7,3.8],render(time){const state=sporeLaunchState(time);drop.setAttribute('r',String(state.dropRadius));drop.setAttribute('opacity',String(state.dropOpacity));merged.setAttribute('opacity',String(state.mergedOpacity));moving.setAttribute('transform',`translate(${state.x} 0)`);diagram.querySelector('.catapult-drop-label').setAttribute('opacity',state.phase===2?'0':'1');diagram.querySelector('.catapult-leader-drop').setAttribute('opacity',state.phase===2?'0':'1');diagram.querySelector('.catapult-leader-spore').setAttribute('d',`M150 20L220 62L${329+state.x} 126`);diagram.querySelector('.catapult-leader-film').setAttribute('d',`M510 20L450 65L${386+state.x} 130`);node.dataset.launchPhase=String(state.phase);},selectedIndex:({time})=>sporeLaunchState(time).phase},prefix);
   node.append(stage,process.node);return {node,suspend:process.suspend,destroy:process.destroy};
 }
 function createWindLab(copy,prefix){
   const node=labNode('div','mushroom-wind-panel'),cleanups=[],stage=labNode('div','mushroom-wind-stage');stage.append(labSVG(sporeMushroomArtwork(prefix)),labNode('p','mushroom-model-label',copy.label));
-  const controls=labNode('div','mushroom-wind-controls'),label=labNode('label','mushroom-wind-label',processLabel(copy,'breeze')),range=labNode('input');range.type='range';range.min='-100';range.max='100';range.value='35';range.step='5';range.setAttribute('aria-label',processLabel(copy,'breeze'));label.append(range);
+  stage.querySelector('svg').setAttribute('aria-label',copy.label);const controls=labNode('div','mushroom-wind-controls'),label=labNode('label','mushroom-wind-label',processLabel(copy,'breeze')),range=labNode('input');range.type='range';range.min='-100';range.max='100';range.value='35';range.step='5';range.setAttribute('aria-label',processLabel(copy,'breeze'));label.append(range);
   const output=labNode('output','mushroom-wind-output'),directions=labNode('div','mushroom-breeze-directions');directions.setAttribute('role','group');directions.setAttribute('aria-label',processLabel(copy,'breeze'));const directionButtons=[];
   function update(){const value=Number(range.value),description=value===0?processLabel(copy,'still'):processLabel(copy,value<0?'left-state':'right-state');output.textContent=description;range.setAttribute('aria-valuetext',description);directionButtons.forEach(([button,direction])=>button.setAttribute('aria-pressed',String(direction===Math.sign(value))));}
   for(const [key,value] of [['left',-70],['still',0],['right',70]]){const b=labButton(processLabel(copy,key),()=>{range.value=String(value);update();},cleanups,'secondary');directionButtons.push([b,Math.sign(value)]);directions.append(b);}range.addEventListener('input',update);cleanups.push(()=>range.removeEventListener('input',update));update();
@@ -52,11 +52,11 @@ function createWindLab(copy,prefix){
   controls.append(label,output,directions,process.node);node.append(stage,controls);return {node,suspend:process.suspend,destroy(){process.destroy();cleanups.forEach(fn=>fn());particles=[];}};
 }
 export function recordingPlaybackState({failed,ended,paused},copy){return {disabled:failed,button:ended?copy.replay:paused?copy.play:copy.pause,priority:paused?'primary':'secondary',retry:failed,status:failed?copy.error:ended?copy.finished:paused?copy.paused:copy.playing};}
-function recordingPanel(reference,prefix,cleanups,copy,safety=''){
+function recordingPanel(reference,prefix,cleanups,copy,ui,safety=''){
   const asset=mushroomVideoAsset(reference.url);if(!asset)throw new Error('Unregistered research recording.');
-  const node=labNode('article','mushroom-spore-film'),video=labNode('video','mushroom-research-video');node.append(labNode('p','mushroom-eyebrow','REAL RESEARCH FOOTAGE'),labNode('h3','',reference.title));
+  const node=labNode('article','mushroom-spore-film'),video=labNode('video','mushroom-research-video');node.append(labNode('p','mushroom-eyebrow',ui.realFootage),labNode('h3','',reference.title));
   video.src=mushroomVideoURL(asset.file);video.poster=mushroomVideoURL(asset.poster);video.controls=true;video.preload='metadata';video.playsInline=true;video.muted=true;video.width=asset.width;video.height=asset.height;video.setAttribute('aria-label',reference.title);
-  const track=labNode('track');track.kind='captions';track.srclang='en';track.label='English description';track.src=mushroomVideoURL(asset.captions);video.append(track);
+  const track=labNode('track');track.kind='captions';track.srclang='en';track.label=ui.captionTrack;track.src=mushroomVideoURL(asset.captions);video.append(track);
   const text=labNode('div','mushroom-film-description'),caption=labNode('p','mushroom-film-caption',reference.caption);caption.id=prefix+'-description';const timing=labNode('p','mushroom-film-timing',asset.slowdownFactor===5?copy.silentPuffball:copy.silentMicroscope);timing.id=prefix+'-timing';text.append(caption,timing);if(safety)text.append(labNode('p','mushroom-safety-rule',safety));video.setAttribute('aria-describedby',caption.id+' '+timing.id);
   let failed=false,disposed=false;const status=labNode('p','mushroom-model-status',copy.paused);status.setAttribute('aria-live','polite');
   const actions=labNode('div','mushroom-film-actions'),play=labButton(copy.play,()=>{if(video.paused){if(video.ended)video.currentTime=0;video.play().catch(error=>{if(disposed)return;if(error.name==='AbortError')update();else{failed=true;update();}});}else video.pause();},cleanups),fullscreen=labButton(copy.fullscreen,()=>video.requestFullscreen().catch(()=>{status.textContent=copy.fullscreenError;}),cleanups,'secondary'),retry=labButton(copy.retry,()=>{failed=false;video.load();update();},cleanups,'secondary');fullscreen.hidden=typeof video.requestFullscreen!=='function';
@@ -75,22 +75,22 @@ function createLifecycleLab(block,prefix,photoRenderer){
   return {node,destroy(){cleanups.forEach(fn=>fn());}};
 }
 export function sporeActivityState(view){if(!['launch','wind','puffball','cycle'].includes(view))throw new Error('Unknown spore activity.');return {comparison:view==='launch'||view==='wind',launch:view==='launch',wind:view==='wind',puffball:view==='puffball',cycle:view==='cycle',launchFilm:view==='launch'};}
-export function createSporeLab(block,photoRenderer,prefix='mushroom'){
-  const node=labNode('div','mushroom-spore-lab'),cleanups=[],comparison=labNode('div','mushroom-spore-comparison'),model=labNode('div','mushroom-spore-model'),bridge=labNode('div','mushroom-scale-bridge');bridge.append(labNode('span','','Under the cap'),labNode('span','','Along a gill'),labNode('strong','','One spore, magnified'));model.append(bridge);
+export function createSporeLab(block,photoRenderer,prefix='mushroom',ui){
+  const node=labNode('div','mushroom-spore-lab'),cleanups=[],comparison=labNode('div','mushroom-spore-comparison'),model=labNode('div','mushroom-spore-model'),bridge=labNode('div','mushroom-scale-bridge');bridge.append(labNode('span','',ui.bridgeCap),labNode('span','',ui.bridgeGill),labNode('strong','',ui.bridgeSpore));model.append(bridge);
   const catapult=createCatapultLab(block.launch,prefix+'-launch'),wind=createWindLab(block.wind,prefix+'-wind');catapult.node.id='mushrooms-launch';wind.node.id='mushrooms-wind';model.append(catapult.node,wind.node);comparison.append(model);const films=[];let launchFilm;
-  if(block.video){launchFilm=recordingPanel(block.video,prefix+'-micro',cleanups,block.recording);comparison.append(launchFilm.node);films.push(launchFilm);}
-  const cloud=labNode('div','mushroom-cloud-workbench');cloud.id='mushrooms-puffball';if(block.plumeVideo){const film=recordingPanel(block.plumeVideo,prefix+'-cloud',cleanups,block.recording,block.activities.find(a=>a.view==='puffball').learning.safety);cloud.append(film.node);films.push(film);}
+  if(block.video){launchFilm=recordingPanel(block.video,prefix+'-micro',cleanups,block.recording,ui);comparison.append(launchFilm.node);films.push(launchFilm);}
+  const cloud=labNode('div','mushroom-cloud-workbench');cloud.id='mushrooms-puffball';if(block.plumeVideo){const film=recordingPanel(block.plumeVideo,prefix+'-cloud',cleanups,block.recording,ui,block.activities.find(a=>a.view==='puffball').learning.safety);cloud.append(film.node);films.push(film);}
   const life=createLifecycleLab(block,prefix,photoRenderer);life.node.id='mushrooms-cycle';
   function suspend(){catapult.suspend();wind.suspend();films.forEach(f=>f.suspend());}
   function select(view){const state=sporeActivityState(view);suspend();node.dataset.activity=view;comparison.hidden=!state.comparison;catapult.node.hidden=!state.launch;wind.node.hidden=!state.wind;cloud.hidden=!state.puffball;life.node.hidden=!state.cycle;bridge.hidden=!state.launch;if(launchFilm)launchFilm.node.hidden=!state.launchFilm;}
   node.append(comparison,cloud,life.node);select('launch');const hidden=()=>{if(document.hidden)suspend();};document.addEventListener('visibilitychange',hidden);cleanups.push(()=>document.removeEventListener('visibilitychange',hidden));
   return {node,select,suspend,destroy(){catapult.destroy();wind.destroy();life.destroy();films.forEach(f=>f.destroy());cleanups.forEach(fn=>fn());}};
 }
-export function createRolesLab(block,photoRenderer,prefix,learningNotes){
-  const {cards,learning}=block,node=labNode('div','mushroom-role-labs'),cleanups=[],activities=[],exhibits=[],roleButtons=[],roleSwitch=labNode('div','mushroom-role-switch');roleSwitch.setAttribute('role','group');roleSwitch.setAttribute('aria-label','Fungal job');node.append(roleSwitch);
+export function createRolesLab(block,photoRenderer,prefix,learningNotes,ui){
+  const {cards,learning}=block,node=labNode('div','mushroom-role-labs'),cleanups=[],activities=[],exhibits=[],roleButtons=[],roleSwitch=labNode('div','mushroom-role-switch');roleSwitch.setAttribute('role','group');roleSwitch.setAttribute('aria-label',ui.roleGroup);node.append(roleSwitch);
   function selectRole(index){activities.forEach(a=>a.suspend?.());exhibits.forEach((exhibit,i)=>{exhibit.hidden=i!==index;roleButtons[i].setAttribute('aria-pressed',String(i===index));});}
   cards.forEach((card,index)=>{
-    const spec=card.process,article=labNode('article','mushroom-role-exhibit'),picture=labNode('div','mushroom-role-picture'),copy=labNode('div','mushroom-role-copy');article.dataset.recordId=card.id;article.dataset.role=card.visual;picture.append(labSVG(roleArtwork(card.visual,prefix+'-role-'+index)),labNode('p','mushroom-model-label',spec.label));copy.append(labNode('p','mushroom-eyebrow','JOB / '+String(index+1).padStart(2,'0')),labNode('h3','',card.title),labNode('p','',card.body));
+    const spec=card.process,article=labNode('article','mushroom-role-exhibit'),picture=labNode('div','mushroom-role-picture'),copy=labNode('div','mushroom-role-copy');article.dataset.recordId=card.id;article.dataset.role=card.visual;picture.append(labSVG(roleArtwork(card.visual,prefix+'-role-'+index)),labNode('p','mushroom-model-label',spec.label));picture.querySelector('svg').setAttribute('aria-label',spec.label);copy.append(labNode('p','mushroom-eyebrow',ui.jobPrefix+' / '+String(index+1).padStart(2,'0')),labNode('h3','',card.title),labNode('p','',card.body));
     if(card.visual==='leaf'){
       picture.append(modelKey(spec,['material','threads','food','nutrients']));if(card.media){const evidence=labNode('details','mushroom-role-evidence');evidence.append(labNode('summary','',processLabel(spec,'evidence')),photoRenderer(card.media,'mushroom-role-photo'));picture.append(evidence);}
       const sequence=labNode('ol','mushroom-process-steps'),status=labNode('p','mushroom-model-status',spec.initial);status.setAttribute('aria-live','polite');let stage=-1;const buttons=[];
@@ -111,7 +111,7 @@ export function createWonderLab(block, photoRenderer, learningNotes, sources) {
   const node=labNode('div','mushroom-wonder-labs'),cleanups=[];
   const glow=block.experiments.find(e=>e.mode==='glow'),sound=block.experiments.find(e=>e.mode==='sound'),copy=block.music;
   const light=labNode('article','mushroom-light-lab');light.id='mushrooms-glow';light.dataset.recordId=glow.id;light.dataset.night='false';
-  const lightCopy=labNode('div','mushroom-lab-copy');lightCopy.append(labNode('p','mushroom-eyebrow','LIGHT LAB'),labNode('h3','',glow.title),labNode('p','',glow.body));
+  const lightCopy=labNode('div','mushroom-lab-copy');lightCopy.append(labNode('p','mushroom-eyebrow',glow.label),labNode('h3','',glow.title),labNode('p','',glow.body));
   if(glow.media&&photoRenderer)light.append(photoRenderer(glow.media,'mushroom-lab-photo'));light.append(lightCopy);
   const music=labNode('article','mushroom-sound-lab');music.id='mushrooms-sound';music.dataset.recordId=sound.id;
   const chain=labNode('ol','mushroom-measurement-chain');chain.setAttribute('aria-label',copy.chainLabel);
@@ -156,9 +156,9 @@ export function createWonderLab(block, photoRenderer, learningNotes, sources) {
   function select(view){halt();light.hidden=view!=='glow';music.hidden=view!=='sound';node.dataset.activity=view;}select('glow');
   return {node,select,suspend:halt,destroy(){closeDemo();engine.destroy();cleanups.forEach(f=>f());}};
 }
-export function createDiscoveryQuestions(questions) {
+export function createDiscoveryQuestions(questions,ui) {
   const node=labNode('div','mushroom-quiz'),cleanups=[];
-  node.append(labNode('p','mushroom-eyebrow','YOUR TURN / EXPLORER THINKING'));
+  node.append(labNode('p','mushroom-eyebrow',ui.quizEyebrow));
   questions.forEach((question,i)=>{
     const field=labNode('fieldset','mushroom-question');field.dataset.recordId=question.id;field.append(labNode('legend','',`${i+1}. ${question.prompt}`));
     const choices=labNode('div','mushroom-answer-options'),feedback=labNode('p','mushroom-answer-feedback');feedback.setAttribute('aria-live','polite');const buttons=[];

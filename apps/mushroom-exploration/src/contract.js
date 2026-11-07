@@ -1,6 +1,6 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
 import { MUSHROOM_VIDEOS } from "./video-assets.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.7.0";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.8.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media", "entry"],
@@ -13,7 +13,11 @@ const fields = {
   facts: ["eyebrow", "title", "intro", "sourceRefs", "cards", "questions"],
   journal: ["eyebrow", "title", "intro", "sourceRefs", "currentStage", "entries"]
 };
-Object.values(fields).forEach(list => list.push("learning"));
+Object.values(fields).forEach(list => list.push("learning","label"));
+export const MUSHROOM_UI_FIELDS = ['brand','navLabel','skipLabel','noticePrefix','wordsTitle','sourcesTitle','photoClose','photoFallbackTitle','photoEnlargeTemplate','photographLabel','photoZoom','photoChangeSuffix','heroArtworkLabel','partGroup','partCountTemplate','partNameTemplate','anatomyModelNote','chooseActivity','chooseActivityTemplate','nextTemplate','exhibitPrefix','jobPrefix','roleGroup','cutawayGroup','realFootage','captionTrack','bridgeCap','bridgeGill','bridgeSpore','quizEyebrow','footerLabel','footerLink','journalHeading','journalBody'];
+const narrationFields=['read','stop','options','voiceLabel','ready','reading','complete','stopped','unavailable','error','starting','none','voiceHelp'];
+const uiTemplates={photoEnlargeTemplate:['name'],partCountTemplate:['index','total'],partNameTemplate:['index','name'],chooseActivityTemplate:['title'],nextTemplate:['title']};
+export function mushroomCopy(template,values){return template.replace(/\{([a-z]+)\}/g,(match,key)=>Object.hasOwn(values,key)?String(values[key]):match);}
 export const MUSHROOM_ACTIVITY_VIEWS = ["launch", "wind", "puffball", "cycle"];
 const processLabels={growth:[],recycle:['material','threads','food','nutrients','evidence'],trade:['sunlight','root','threads','sugar','water','both'],dough:['outline','gas','bowl'],launch:['spore','drop','film','stalk'],wind:['breeze','left','still','right','left-state','right-state']};
 const processStepCounts={growth:4,recycle:3,trade:2,dough:3,launch:3,wind:3};
@@ -38,6 +42,7 @@ export const MUSHROOM_EDITOR_CONTRACT = {
   journalImplementation: "reserved; entry authoring and publication are not implemented",
   publicationAvailable: false
 };
+MUSHROOM_EDITOR_CONTRACT.interface={sourcePath:'data.ui',editableFields:[...MUSHROOM_UI_FIELDS,'narration'],narrationFields};
 
 export function mushroomSourceJsonSchema() {
   const short = { type: "string", maxLength: 140, minLength: 1 };
@@ -80,10 +85,11 @@ export function mushroomSourceJsonSchema() {
       schemaVersion: { const: "1.0" },
       page: obj({ id: { const: "hrv-page:mushrooms-2026-2027" }, type: { const: "mushroom-exploration" }, routeRef: { const: "hrv-route:mushrooms-2026-2027" } }),
       data: obj({
+        ui:obj({...Object.fromEntries(MUSHROOM_UI_FIELDS.map(key=>[key,shortText()])),narration:obj(Object.fromEntries(narrationFields.map(key=>[key,shortText()])))}),
         meta: obj({ schoolYear: { const: "2026-2027" }, state: { enum: ["scaffold", "review-ready"] }, researchStatus: { enum: ["pending", "reviewed"] }, layout: { const: "viewport-breakout" }, designViewport: obj({ width: { const: 1920 }, height: { const: 911 } }) }),
         sources: list(obj({ id: { type: "string", pattern: "^mushroom-source:" }, title: { type: "string", minLength: 1, maxLength: 300 }, url: { type: "string", format: "uri", pattern: "^https://" } }), 80),
         blocks: { type: "array", minItems: 9, maxItems: 12, items: { oneOf: Object.keys(fields).map(function (type) {
-          return obj({ id: recordId, type: { const: type }, eyebrow: { type: "string", minLength: 1, maxLength: 100 }, title: short, intro: { type: "string", maxLength: 1600 }, sourceRefs: sourceRefs, learning, ...shapes[type] });
+          return obj({ id: recordId, type: { const: type }, label:short, eyebrow: { type: "string", minLength: 1, maxLength: 100 }, title: short, intro: { type: "string", maxLength: 1600 }, sourceRefs: sourceRefs, learning, ...shapes[type] });
         }) } }
       })
     })
@@ -129,7 +135,11 @@ export function validateMushroomSource(source, options) {
   requireThat(source.page.id === "hrv-page:mushrooms-2026-2027" &&
     source.page.type === "mushroom-exploration" &&
     source.page.routeRef === "hrv-route:mushrooms-2026-2027", "protected page identity changed");
-  object(source.data, ["meta", "sources", "blocks"], "data");
+  object(source.data, ["meta", "sources", "blocks", "ui"], "data");
+  object(source.data.ui,[...MUSHROOM_UI_FIELDS,'narration'],'interface copy');
+  MUSHROOM_UI_FIELDS.forEach(key=>text(source.data.ui[key],'interface '+key,600,true));
+  object(source.data.ui.narration,narrationFields,'narration copy');narrationFields.forEach(key=>text(source.data.ui.narration[key],'narration '+key,600,key!=='ready'));
+  Object.entries(uiTemplates).forEach(([key,tokens])=>requireThat(tokens.every(token=>source.data.ui[key].includes('{'+token+'}'))&&[...source.data.ui[key].matchAll(/\{([^}]+)\}/g)].every(match=>tokens.includes(match[1])),'interface template tokens changed'));
   const meta = source.data.meta;
   object(meta, ["schoolYear", "state", "researchStatus", "layout", "designViewport"], "meta");
   object(meta.designViewport, ["width", "height"], "designViewport");
@@ -187,7 +197,7 @@ export function validateMushroomSource(source, options) {
     text(block.eyebrow, "eyebrow", 100, true);
     text(block.title, "title", 140, true);
     text(block.intro, "introduction", 1600, !allowDraft && block.type !== "journal");
-    lesson(block.learning);
+    lesson(block.learning);text(block.label,'activity label',140,true);
     if(block.type==='hero'){
       object(block.entry,["exploreLabel","journalLabel","journalReadyLabel","note"],"entrance copy");
       ["exploreLabel","journalLabel","journalReadyLabel"].forEach(key=>text(block.entry[key],key,140,true));text(block.entry.note,"entrance note",600,false);
@@ -343,4 +353,11 @@ export function editMushroomBlock(source, blockId, patch) {
   next.data.meta.researchStatus = "pending";
   validateMushroomSource(next, { allowDraft: true });
   return next;
+}
+
+export function editMushroomInterface(source,patch){
+  validateMushroomSource(source,{allowDraft:true});
+  requireThat(patch&&typeof patch==='object'&&!Array.isArray(patch),'interface patch must be an object');
+  requireThat(Object.keys(patch).every(key=>[...MUSHROOM_UI_FIELDS,'narration'].includes(key)),'protected or unsupported interface field');
+  const next=structuredClone(source);Object.assign(next.data.ui,structuredClone(patch));next.data.meta.state='scaffold';next.data.meta.researchStatus='pending';validateMushroomSource(next,{allowDraft:true});return next;
 }
