@@ -25,19 +25,24 @@ Historical mushroom Page 413 remains separate.
 
 ## Account handoffs currently blocking completion
 
-1. Chrome's ChatGPT extension previously refused the supplied-file upload because **Allow
-   access to file URLs** was disabled. The latest attempt timed out and no media appeared in
-   the live Friday draft. Do not bypass the extension or authentication boundary.
+1. **Upload permission is now confirmed working.** The owner enabled Allow access to file
+   URLs, and the browser chooser successfully selected both original Friday JPEGs. Mushinator
+   then displayed `Invalid input` for each file before either appeared in the gallery. This
+   is an application upload failure requiring investigation, not the earlier browser-permission
+   gate. No successful original storage, conversion or gallery import is claimed from selection.
 2. The deployed Mushinator still reports the missing repo connection and disables Publish day.
    Cloudflare's visible variable/secret table has no `MUSHROOM_GITHUB_TOKEN` or enabled
    `MUSHROOM_PUBLISH_ENABLED`. The existing deployment token is not a repo writing credential.
-3. The GitHub token-setup page requires the signed-in owner's **Confirm access / Verify via
-   email** step. No verification email was triggered and no token was created or copied.
-   The owner's authentication/credential entry must be completed in the browser, not pasted
-   into chat, committed to source or included in deployment logs.
+3. GitHub owner verification has completed. At the latest inspection, the creation form
+   still had Only select repositories checked but its picker/selected repository had disappeared.
+   Toggling the draft selection restored the picker; HughesWebAssets-Source was reselected and
+   Contents read/write plus required Metadata read were restored and visibly verified. The
+   agent did not submit Generate token or create/copy a credential. Whether this repair resolves
+   the owner's scroll-without-token symptom still requires the owner's next Generate attempt.
+   Private credential entry/submission remains in the owner's browser.
 
 The browser handoff is prepared: GitHub has the named 90-day fine-grained token template
-open; the owner still needs to select only `HughesWebAssets-Source`. Cloudflare's production
+open with only `HughesWebAssets-Source` selected and the two permissions verified. Cloudflare's production
 Add environment variable dialog has the empty secret row `MUSHROOM_GITHUB_TOKEN` and
 the plain-text flag `MUSHROOM_PUBLISH_ENABLED=true`. Previews is unchecked. Nothing has
 been submitted or deployed from that dialog. The owner must enter the credential privately.
@@ -56,7 +61,8 @@ repository, account, WordPress or Cloudflare permissions are needed.
 
 1. Verify the publishing credential and `MUSHROOM_PUBLISH_ENABLED=true` through the existing
    administrator session; confirm Publish day becomes available for a saved, ready-media day.
-2. Import the original supplied files into private `hrv-mushroom-journal`, using the existing
+2. Trace and resolve the observed `Invalid input` upload failure without assuming its cause.
+   Then import the original supplied files into private `hrv-mushroom-journal`, using the existing
    four saved drafts. Keep species and contributor names
    optional. Use the supplied folder grouping, with provisional dates October 30 and November
    3–5; no teacher/student quotations are invented. Choose the inspected close-up covers.
