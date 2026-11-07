@@ -1,11 +1,11 @@
 {
-  "schemaVersion": "mushroom-exploration/1.9.0",
+  "schemaVersion": "mushroom-exploration/1.10.0",
   "sourceDocument": "apps/mushroom-exploration/source/mushrooms.source.json",
   "photoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "videoCatalog": "apps/mushroom-exploration/source/mushrooms.assets.json",
   "editorRoute": "/mushrooms",
   "editorLabel": "Mushinator",
-  "editorImplementation": "not-built",
+  "editorImplementation": "journal-editor-built; deployment verification pending",
   "protectedFields": [
     "schemaVersion",
     "page",
@@ -159,7 +159,20 @@
       "identityField": "id"
     }
   ],
-  "journalImplementation": "reserved; entry authoring and publication are not implemented",
+  "journalImplementation": "separate versioned journal index and day records; private Mushinator drafts; credential-gated repo publisher",
+  "journalContract": {
+    "schemaVersion": "1.0.0",
+    "indexDocument": "apps/mushroom-exploration/source/journal/index.json",
+    "recordsDirectory": "apps/mushroom-exploration/source/journal/days/",
+    "cardTypes": [
+      "observation",
+      "fact",
+      "teacher-note",
+      "student-note"
+    ],
+    "authorRequired": false,
+    "mushroomTypeRequired": false
+  },
   "publicationAvailable": false,
   "interface": {
     "sourcePath": "data.ui",

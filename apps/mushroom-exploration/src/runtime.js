@@ -4,6 +4,7 @@ import { createSporeLab, createWonderLab, createDiscoveryQuestions, createRolesL
 import { mushroomPhotoAsset, mushroomPhotoURL } from "./photos.js";
 import { browserMotionPreference } from "./process.js";
 import { createMushroomNarration, mushroomReadingText } from "./narration.js";
+import { createGrowingJournal } from "./journal.js";
 const mushroomMounts=new WeakMap();
 function element(tag,className,value){const result=document.createElement(tag);if(className)result.className=className;if(value!==undefined)result.textContent=value;return result;}
 function anchor(text,href,className){const result=element('a',className,text);result.href=href;return result;}
@@ -141,6 +142,7 @@ export function mountMushroomExhibit(root,source,options){
         const grid=element('div','mushroom-fact-grid');block.cards.forEach((fact,i)=>{const card=element('article','mushroom-fact');card.dataset.recordId=fact.id;const symbol=element('span','mushroom-fact-mark',String(i+1).padStart(2,'0'));symbol.setAttribute('aria-hidden','true');card.append(symbol,element('h3','',fact.title),element('p','',fact.body));grid.append(card);});inner.append(grid);attachLab(inner,createDiscoveryQuestions(block.questions,ui));
       }else if(block.type==='journal'){
         const notebook=element('div','mushroom-journal-placeholder');notebook.append(element('span','mushroom-journal-year',source.data.meta.schoolYear.replace('-', ' / ')),element('h3','',ui.journalHeading),element('p','',ui.journalBody));inner.append(notebook);
+        const journal=createGrowingJournal(notebook,{onPlay(){reader.stop();panelActivities.forEach(list=>list.forEach(lab=>lab.suspend?.()));},onReady(){const link=root.querySelector('.mushroom-hero-actions a[href="#mushrooms-journal"]');if(link)link.textContent=source.data.blocks.find(item=>item.type==='hero').entry.journalReadyLabel;}});cleanups.push(()=>journal.destroy());
       }
       const notes=learningNotes(block.type==='roles'?{...block.learning,action:'',observe:'',words:[]}:block.learning);notes.dataset.blockNotes=block.type;inner.append(notes);const sources=sourcesFor(block);if(sources)inner.append(sources);
     });

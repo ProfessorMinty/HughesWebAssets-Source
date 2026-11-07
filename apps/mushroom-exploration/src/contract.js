@@ -1,6 +1,6 @@
 import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
 import { MUSHROOM_VIDEOS } from "./video-assets.js";
-export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.9.0";
+export const MUSHROOM_CONTRACT_VERSION = "mushroom-exploration/1.10.0";
 
 const fields = {
   hero: ["eyebrow", "title", "intro", "sourceRefs", "media", "entry"],
@@ -33,13 +33,14 @@ export const MUSHROOM_EDITOR_CONTRACT = {
   videoCatalog: "apps/mushroom-exploration/source/mushrooms.assets.json",
   editorRoute: "/mushrooms",
   editorLabel: "Mushinator",
-  editorImplementation: "not-built",
+  editorImplementation: "journal-editor-built; deployment verification pending",
   protectedFields: ["schemaVersion", "page", "data.meta", "data.sources", "block.id", "block.type", "nested record IDs", "process mode and phase/label IDs"],
   layout: { mode: "viewport-breakout", referenceViewport: { width: 1920, height: 911 } },
   blocks: Object.entries(fields).map(function (entry) {
     return { type: entry[0], editableFields: entry[1], identityField: "id" };
   }),
-  journalImplementation: "reserved; entry authoring and publication are not implemented",
+  journalImplementation: "separate versioned journal index and day records; private Mushinator drafts; credential-gated repo publisher",
+  journalContract: { schemaVersion:"1.0.0", indexDocument:"apps/mushroom-exploration/source/journal/index.json", recordsDirectory:"apps/mushroom-exploration/source/journal/days/", cardTypes:["observation","fact","teacher-note","student-note"], authorRequired:false, mushroomTypeRequired:false },
   publicationAvailable: false
 };
 MUSHROOM_EDITOR_CONTRACT.interface={sourcePath:'data.ui',editableFields:[...MUSHROOM_UI_FIELDS,'narration'],narrationFields};

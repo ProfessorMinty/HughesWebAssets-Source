@@ -187,7 +187,9 @@ test('new content retains all old nested IDs and leaves classroom publication re
   assert.ok(facts.questions.flatMap(q=>q.choices).some(choice=>choice.id==='mushroom-answer:colour'));
   const journal=source.data.blocks.find(b=>b.type==='journal');
   assert.equal(journal.currentStage,null);assert.deepEqual(journal.entries,[]);
-  assert.equal(MUSHROOM_EDITOR_CONTRACT.editorImplementation,'not-built');
+  assert.match(MUSHROOM_EDITOR_CONTRACT.editorImplementation,/journal-editor-built/);
+  assert.equal(MUSHROOM_EDITOR_CONTRACT.journalContract.authorRequired,false);
+  assert.equal(MUSHROOM_EDITOR_CONTRACT.journalContract.mushroomTypeRequired,false);
   assert.equal(MUSHROOM_EDITOR_CONTRACT.publicationAvailable,false);
 });
 
