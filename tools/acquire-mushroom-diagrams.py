@@ -40,13 +40,17 @@ for item in catalog:
         rendered = raw
     image = Image.open(io.BytesIO(rendered)).convert('RGBA')
     image.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
+    if image.getchannel('A').getextrema()[0] < 255:
+        paper = Image.new('RGBA', image.size, 'white')
+        paper.alpha_composite(image)
+        image = paper.convert('RGB')
     destination = app / 'src/assets' / ('diagram-' + item['id'] + '.webp')
     image.save(destination, 'WEBP', lossless=True, method=6)
     data = destination.read_bytes()
     receipt.append({**item, 'file': './assets/' + destination.name, 'width': image.width, 'height': image.height,
                     'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest(),
                     'originalBytes': len(raw), 'originalSha256': hashlib.sha256(raw).hexdigest(),
-                    'changes': 'Converted to lossless WebP and resized to at most 1800 pixels. No redrawing, relabelling, cropping or recolouring.'})
+                    'changes': 'Converted to lossless WebP and resized to at most 1800 pixels. Transparent backgrounds composited on white for legibility. No redrawing, relabelling, cropping or subject recolouring.'})
     print(item['id'], image.size, len(data))
     if '--saved-originals' not in sys.argv:
         time.sleep(3)

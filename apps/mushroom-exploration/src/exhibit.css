@@ -619,7 +619,7 @@
 .hrv-mushrooms .mushroom-published-steps button{width:100%;min-height:46px;text-align:left;white-space:normal}
 .hrv-mushrooms .mushroom-cycle-map{min-width:0;padding:0;background:transparent}
 .hrv-mushrooms .mushroom-cycle-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px;padding:0;list-style:none}
-.hrv-mushrooms .mushroom-cycle-stage{display:block;min-height:50px;padding:14px;font-size:18px!important;text-align:left;white-space:normal}
+.hrv-mushrooms .mushroom-cycle-stage{display:block;min-height:50px!important;padding:14px;font-size:18px!important;text-align:left;white-space:normal}
 .hrv-mushrooms .mushroom-wind-stage{display:block;min-height:0;padding:0;background:transparent}
 .hrv-mushrooms .mushroom-wind-stage .mushroom-published-figure .mushroom-photo-image{max-height:300px}
 .hrv-mushrooms .mushroom-airflow-field{position:relative;height:180px;overflow:hidden;border:1px solid #8baea3;border-radius:16px;background:#0a302e}
@@ -638,3 +638,5 @@
 .hrv-mushrooms .mushroom-credits-body a{color:#f5d58c;text-decoration:underline}
 @media(max-width:1100px){.hrv-mushrooms .mushroom-catapult-panel{grid-template-columns:1fr}}
 @media(max-width:600px){.hrv-mushrooms .mushroom-cycle-overview{grid-template-columns:1fr}.hrv-mushrooms .mushroom-credits{width:calc(100% - 24px)}.hrv-mushrooms .mushroom-published-figure .mushroom-photo-inspect{padding:6px}}
+
+.hrv-mushrooms .mushroom-cycle-overview li::before,.hrv-mushrooms .mushroom-cycle-overview li::after{display:none}
