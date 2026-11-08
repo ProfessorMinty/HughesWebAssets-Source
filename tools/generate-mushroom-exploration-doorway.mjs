@@ -23,5 +23,9 @@ for(const [token,value]of Object.entries({__BOOTSTRAP_URL__:base+'src/bootstrap.
 new vm.Script(code);
 const out=resolve(root,'docs/edublogs-integration/mushrooms-2026-2027');await mkdir(out,{recursive:true});
 await writeFile(resolve(out,'JAVASCRIPT-BOX.js'),code);
-await writeFile(resolve(out,'RELEASE-PIN.json'),JSON.stringify({pageId:'hrv-page:mushrooms-2026-2027',routeRef:'hrv-route:mushrooms-2026-2027',releaseCommit:commit,version,bootstrapUrl:base+'src/bootstrap.js',bootstrapSri:evidence.bootstrapSri,releaseSha256:evidence.releaseSha256,journal:evidence.journal.indexURL,injectionSha256:hash(Buffer.from(code)),readyForNewPageJavaScriptWindow:true,edublogsModified:false,wordpressPageId:null,wordpressPath:null},null,2)+'\n');
+const html=await readFile(resolve(root,'apps/mushroom-exploration/doorway.template.html'),'utf8');
+const css=await readFile(resolve(root,'apps/mushroom-exploration/doorway.template.css'),'utf8');
+await writeFile(resolve(out,'HTML-BOX.html'),html);
+await writeFile(resolve(out,'CSS-BOX.css'),css);
+await writeFile(resolve(out,'RELEASE-PIN.json'),JSON.stringify({pageId:'hrv-page:mushrooms-2026-2027',routeRef:'hrv-route:mushrooms-2026-2027',releaseCommit:commit,version,bootstrapUrl:base+'src/bootstrap.js',bootstrapSri:evidence.bootstrapSri,releaseSha256:evidence.releaseSha256,journal:evidence.journal.indexURL,injectionSha256:hash(Buffer.from(code)),htmlSha256:hash(Buffer.from(html)),cssSha256:hash(Buffer.from(css)),doorwayFormat:'three-fields-with-static-outage',readyForNewPageJavaScriptWindow:true,edublogsModified:false,wordpressPageId:null,wordpressPath:null},null,2)+'\n');
 console.log(JSON.stringify({readyForNewPageJavaScriptWindow:true,file:resolve(out,'JAVASCRIPT-BOX.js'),edublogsModified:false}));

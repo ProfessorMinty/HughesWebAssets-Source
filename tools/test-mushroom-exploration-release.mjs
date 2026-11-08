@@ -8,6 +8,7 @@ import {safeReleasePath,verifyClassroomJournal,hash} from './verify-mushroom-exp
 import {MUSHROOM_JOURNAL_FEED} from '../apps/mushroom-exploration/src/journal.js';
 const bootstrap=await readFile(new URL('../apps/mushroom-exploration/release-bootstrap.template.js',import.meta.url),'utf8');
 const template=await readFile(new URL('../apps/mushroom-exploration/doorway.template.js',import.meta.url),'utf8');
+const staticDoorway=await readFile(new URL('../apps/mushroom-exploration/doorway.template.html',import.meta.url),'utf8');
 const settle=async()=>{for(let i=0;i<8;i++)await new Promise(r=>setImmediate(r));};
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 async function rejection({manifest,expectedHash,assets={}}){
@@ -71,4 +72,43 @@ test('doorway refuses modified bootstrap bytes before creating an executable scr
 test('doorway does not guess between multiple page content mounts',()=>{
  const dom=doorwayDom('<article class="page"><div class="entry-content"></div><div class="entry-content"></div></article>');
  dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));assert.equal(dom.window.document.querySelectorAll('script[src]').length,0);dom.window.close();
+});
+test('three-field doorway keeps a readable outage and illustration with no JavaScript or external asset',()=>{
+ const dom=doorwayDom(staticDoorway),notice=dom.window.document.querySelector('[data-hrv-outage-notice]');
+ assert.equal(notice.hidden,false);assert.match(notice.textContent,/temporarily unavailable/);
+ assert.match(notice.querySelector('[aria-hidden=true]').textContent,/🍄/);
+ assert.equal(notice.querySelectorAll('img,script,link,iframe').length,0);
+ assert.equal(notice.querySelector('button').hidden,true);
+ assert.equal(notice.parentNode,dom.window.document.querySelector('#hrv-mushroom-exploration-root').parentNode);
+ dom.window.close();
+});
+test('three-field doorway survives a network failure and exposes one working retry',async()=>{
+ const dom=doorwayDom(staticDoorway);dom.window.fetch=async()=>{throw new Error('Offline');};
+ dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+ const notice=dom.window.document.querySelector('[data-hrv-outage-notice]'),root=dom.window.document.querySelector('#hrv-mushroom-exploration-root');
+ await until(dom,()=>root.dataset.hrvState==='unavailable');
+ assert.equal(notice.hidden,false);assert.equal(root.hidden,true);assert.equal(notice.querySelector('button').hidden,false);
+ dom.window.fetch=async()=>new Response(bootstrapFixture);notice.querySelector('button').click();
+ await until(dom,()=>dom.window.document.querySelector('script[src]'));
+ assert.equal(root.hidden,false);assert.match(notice.textContent,/Opening our classroom/);
+ dom.window.dispatchEvent(new dom.window.CustomEvent('hrv:mushrooms-ready',{detail:{pageId:'different-page'}}));assert.equal(notice.hidden,false);
+ root.dataset.hrvState='ready';dom.window.dispatchEvent(new dom.window.CustomEvent('hrv:mushrooms-ready',{detail:{pageId:'hrv-page:mushrooms-2026-2027'}}));
+ assert.equal(notice.hidden,true);assert.equal(root.hasAttribute('aria-busy'),false);dom.window.close();
+});
+test('three-field outage remains outside partial app content after a runtime error',async()=>{
+ const dom=doorwayDom(staticDoorway);dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));
+ await until(dom,()=>dom.window.document.querySelector('script[src]'));
+ const root=dom.window.document.querySelector('#hrv-mushroom-exploration-root');root.innerHTML='<p>Partial app</p>';
+ dom.window.dispatchEvent(new dom.window.CustomEvent('hrv:mushrooms-error',{detail:{pageId:'hrv-page:mushrooms-2026-2027'}}));
+ assert.equal(root.childElementCount,0);assert.equal(root.hidden,true);
+ const notice=dom.window.document.querySelector('[data-hrv-outage-notice]');assert.equal(notice.hidden,false);assert.match(notice.textContent,/taking a little rest/);
+ dom.window.close();
+});
+test('three-field doorway timeout exposes the static outage and ignores late success',()=>{
+ const dom=doorwayDom(staticDoorway);dom.window.fetch=()=>new Promise(()=>{});
+ let deadline;dom.window.setTimeout=(callback)=>{deadline=callback;return 1;};dom.window.clearTimeout=()=>{};
+ dom.window.eval(doorwayCode());dom.window.document.dispatchEvent(new dom.window.Event('DOMContentLoaded'));deadline();
+ const notice=dom.window.document.querySelector('[data-hrv-outage-notice]');assert.equal(notice.hidden,false);assert.equal(notice.querySelector('button').hidden,false);
+ dom.window.dispatchEvent(new dom.window.CustomEvent('hrv:mushrooms-ready',{detail:{pageId:'hrv-page:mushrooms-2026-2027'}}));assert.equal(notice.hidden,false);
+ dom.window.close();
 });

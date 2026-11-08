@@ -15,7 +15,19 @@
       root.setAttribute('role', 'region'); root.setAttribute('aria-label', 'Our classroom mushroom-growing story'); hosts[0].prepend(root);
     }
     if (root.getAttribute('data-mushroom-doorway') === 'started' || root.getAttribute('data-hrv-state') === 'ready') return;
-    if (!document.getElementById('hrv-mushroom-fallback-style')) {
+    var doorway = document.getElementById('hrv-mushroom-doorway');
+    var notice = doorway && doorway.querySelector('[data-hrv-outage-notice]');
+    var noticeRetry = notice && notice.querySelector('.hrv-mushroom-retry');
+    function updateNotice(loading) {
+      if (!notice) return;
+      notice.hidden = false;
+      notice.querySelector('.hrv-mushroom-outage__eyebrow').textContent = loading ? 'A little growth. A big story.' : 'A little pause along the woodland path';
+      notice.querySelector('.hrv-mushroom-outage__title').textContent = loading ? 'Opening our classroom growing story…' : 'Our mushroom story is taking a little rest.';
+      notice.querySelector('.hrv-mushroom-outage__copy').textContent = loading ? 'Gathering our classroom photographs, videos, and discoveries.' : 'This page is temporarily unavailable. Please try again in a moment.';
+      if (noticeRetry) noticeRetry.hidden = loading;
+    }
+    if (noticeRetry) noticeRetry.addEventListener('click', install);
+    if (!notice && !document.getElementById('hrv-mushroom-fallback-style')) {
       var style = document.createElement('style'); style.id = 'hrv-mushroom-fallback-style';
       style.textContent = '#'+MOUNT_ID+':not([data-hrv-state="ready"]){box-sizing:border-box;padding:28px;background:#183b31;color:#fff1cf;border:1px solid #859765;border-radius:6px;font:18px/1.6 system-ui,sans-serif;}#'+MOUNT_ID+' .hrv-mushroom-retry{min-height:48px;margin-top:16px;padding:10px 20px;border:1px solid #e8c481;border-radius:4px;background:#e8c481;color:#183b31;font:inherit;cursor:pointer;}';
       document.head.appendChild(style);
@@ -23,9 +35,15 @@
     var settled = false, timer, bootstrap, blobURL, abort = new AbortController();
     function cleanup() { clearTimeout(timer); window.removeEventListener('hrv:mushrooms-ready', ready); window.removeEventListener('hrv:mushrooms-error', failed); if(blobURL){URL.revokeObjectURL(blobURL);blobURL=null;} }
     function matches(event) { return event.detail?.pageId === 'hrv-page:mushrooms-2026-2027'; }
-    function ready(event) { if (!matches(event) || settled) return; settled = true; cleanup(); }
+    function ready(event) {
+      if (!matches(event) || settled) return;
+      settled = true; cleanup(); root.removeAttribute('aria-busy');
+      if (notice) notice.hidden = true;
+    }
     function showFallback() {
       root.setAttribute('data-hrv-state','unavailable'); root.removeAttribute('data-mushroom-doorway'); root.removeAttribute('data-mushroom-bootstrap');
+      root.removeAttribute('aria-busy');
+      if (notice) { root.replaceChildren(); root.hidden = true; updateNotice(false); return; }
       var title = document.createElement('h2'); title.textContent = 'Our mushroom story is taking a little rest.';
       var copy = document.createElement('p'); copy.textContent = 'Please try opening our growing story again in a moment.';
       var retry = document.createElement('button'); retry.type = 'button'; retry.className = 'hrv-mushroom-retry'; retry.textContent = 'Try again'; retry.addEventListener('click',install,{once:true});
@@ -33,7 +51,9 @@
     }
     function failed(event) { if (event && !matches(event) || settled) return; settled = true; abort.abort(); cleanup(); bootstrap?.remove(); showFallback(); }
     root.setAttribute('data-mushroom-doorway','started'); root.setAttribute('data-hrv-state','loading');
-    var loading = document.createElement('p'); loading.textContent = 'Opening our classroom growing story…'; root.replaceChildren(loading);
+    root.hidden = false; root.setAttribute('aria-busy','true');
+    if (notice) { root.replaceChildren(); updateNotice(true); }
+    else { var loading = document.createElement('p'); loading.textContent = 'Opening our classroom growing story…'; root.replaceChildren(loading); }
     window.addEventListener('hrv:mushrooms-ready',ready); window.addEventListener('hrv:mushrooms-error',failed);
     timer = setTimeout(function(){failed();},25000);
     async function open() {
