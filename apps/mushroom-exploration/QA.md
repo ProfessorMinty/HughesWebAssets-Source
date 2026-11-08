@@ -1,5 +1,14 @@
 # Current integration checks — classroom journal, 2026-11-07
 
+The host handoff now uses **HTML + CSS + JS**, matching the Hub's static-outage pattern.
+The HTML notice and its dependency-free mushroom guide live outside the replaceable app
+mount. CSS is scoped to this doorway, and the JS keeps the card available on failure,
+hides it on successful startup and wires Retry without duplicate initialization.
+The expanded source check passes **79 tests**. Added cases cover JavaScript absence,
+network failure/retry, runtime failure after partial markup, timeout and late/wrong-page
+success notifications. The immutable runtime and the already-published classroom media
+remain unchanged. The earlier JS-only review and evidence remain historical records.
+
 The authenticated Mushinator imported all **15 supplied originals (43,951,642 bytes)**.
 Every saved size and versioned chunk fingerprint matched the supplied file. Twelve JPEGs
 have viewing copies and all three MOVs now have MP4 viewing copies and poster frames.

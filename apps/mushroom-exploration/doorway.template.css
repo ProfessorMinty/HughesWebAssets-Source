@@ -115,3 +115,21 @@
   outline: 3px solid #fff1cf;
   outline-offset: 4px;
 }
+
+@media (max-width: 480px) {
+  #hrv-mushroom-doorway .hrv-mushroom-outage {
+    width: 100%;
+    min-height: 0;
+    margin: 24px auto;
+    padding: 20px 14px;
+    border-radius: 20px;
+  }
+
+  #hrv-mushroom-doorway .hrv-mushroom-outage__scene {
+    width: min(160px, 100%);
+  }
+
+  #hrv-mushroom-doorway .hrv-mushroom-outage__title {
+    font-size: clamp(23px, 7vw, 30px);
+  }
+}

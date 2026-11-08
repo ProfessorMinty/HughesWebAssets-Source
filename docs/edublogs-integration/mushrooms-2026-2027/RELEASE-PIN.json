@@ -9,7 +9,7 @@
   "journal": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/feature/mushroom-exhibit-scaffold/apps/mushroom-exploration/source/journal/index.json",
   "injectionSha256": "08603b0413283bd054fcff7ee24e76f71d92ca9530df63e1b3fa6c26dfc1d17f",
   "htmlSha256": "acef255c39693ce8cb80b495c5b12436736f64eed085ea0efdefdf0674406262",
-  "cssSha256": "937306086203071d3d119e89085ee181d9caa824de384f51725091fcae46f055",
+  "cssSha256": "7c3a9e69ff8aa4569e0637134dfd73761869c21ea1df4a39d9f111257f030a7b",
   "doorwayFormat": "three-fields-with-static-outage",
   "readyForNewPageJavaScriptWindow": true,
   "edublogsModified": false,

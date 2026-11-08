@@ -3,9 +3,13 @@
 ## Current handoff — ready for the new page's JavaScript window
 
 All preparation is complete for the supplied classroom gallery. **Stop before writing into
-Edublogs**, as authorized. The next action is to paste the complete `JAVASCRIPT-BOX.js` into
-the new page's JavaScript edit field. It creates its own mount; this handoff does not assign
-a WordPress page ID, slug, parent or Hub destination. Historical Page 413 remains separate.
+Edublogs**, as authorized. Use all three matching fields: `HTML-BOX.html`, `CSS-BOX.css` and
+`JAVASCRIPT-BOX.js`. This supersedes the earlier JS-only handoff. The HTML owns a static
+outage notice outside the application mount, so it survives absent JavaScript, unavailable
+repository files and partial application startup. Its mushroom guide uses a local emoji;
+it does not need an illustration server or web font. The retry button appears only when
+JavaScript can handle it. This handoff does not assign a WordPress page ID, slug, parent
+or Hub destination. Historical Page 413 remains separate.
 
 - Four days published through authenticated Mushinator: Friday revision 9, Tuesday 6,
   Wednesday 7 and Thursday 8. Saved and published revisions match after reloading.
@@ -27,7 +31,7 @@ a WordPress page ID, slug, parent or Hub destination. Historical Page 413 remain
   to 8.698483 seconds with no error; closing its day paused it. Journal remains first and
   optional science starts closed. Desktop, 390 px and 320 px checks showed no horizontal
   overflow. Detailed observations: `qa/populated-browser-verification.json`.
-- The final source check passes all 75 tests plus syntax, source integrity and build checks.
+- The final source check passes all 79 tests plus syntax, source integrity and build checks.
   Four applicable Source CI runs passed at the final classroom-publication commit.
 
 Public branch-file caching briefly returned older indexes during publication. The complete
