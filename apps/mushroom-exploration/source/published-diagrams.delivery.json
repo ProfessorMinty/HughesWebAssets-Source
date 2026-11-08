@@ -93,8 +93,8 @@
     "file": "./assets/diagram-partnership.webp",
     "width": 1600,
     "height": 1319,
-    "bytes": 416304,
-    "sha256": "54e79a029fb2f221155dc8218337bfe66ae1e708a2ff29199191e855fb0ab879",
+    "bytes": 433796,
+    "sha256": "aaefaff0731244a42ade170b8a32c50a7e4bb619385607a968ab1c94e6216dc2",
     "originalBytes": 610438,
     "originalSha256": "27c8e0d4c90aa0f0ed34ddb3b00ddd4fc29916cb452fa0ef9ea8cf9075968e3e",
     "changes": "Converted to lossless WebP and resized to at most 1800 pixels. No redrawing, relabelling, cropping or recolouring."

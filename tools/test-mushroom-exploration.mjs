@@ -304,10 +304,10 @@ test('music lesson text is editable while illustrated chain, instruments and obs
   assert.equal(editMushroomBlock(source,block.id,{music}).data.blocks.find(b=>b.type==='lab').music.mapping,music.mapping);
   for(const mutate of [m=>m.chain[0].id='mushroom-chain:new',m=>m.instruments.reverse(),m=>m.answers[0].correct=false,m=>m.demoSourceRef='mushroom-source:missing',m=>m.noteTemplate='No samples']){const invalid=structuredClone(music);mutate(invalid);assert.throws(()=>editMushroomBlock(source,block.id,{music:invalid}));}
 });
-test('the real music demonstration is a registered creator embed, separate from invented pattern data',async()=>{
-  const {MUSHROOM_MUSIC_DEMO}=await import('../apps/mushroom-exploration/src/sound.js'),catalog=JSON.parse(await readFile(root+'/apps/mushroom-exploration/source/mushrooms.assets.json','utf8'));
-  assert.deepEqual(catalog.soundDemonstrations,[MUSHROOM_MUSIC_DEMO]);assert.equal(new URL(MUSHROOM_MUSIC_DEMO.embed).hostname,'www.youtube-nocookie.com');assert.match(MUSHROOM_MUSIC_DEMO.permission,/embed only/);assert.match(MUSHROOM_MUSIC_DEMO.processing,/not supplied/);assert.equal(MUSHROOM_MUSIC_DEMO.external,true);
-  const lesson=source.data.blocks.find(b=>b.type==='lab');assert.equal(source.data.sources.find(s=>s.id===lesson.music.demoSourceRef).url,MUSHROOM_MUSIC_DEMO.source);
+test('the music section registers the Reuters documentary instead of synthesized demonstrations',async()=>{
+  const {MUSHROOM_MUSIC_DOCUMENTARY}=await import('../apps/mushroom-exploration/src/video-assets.js'),catalog=JSON.parse(await readFile(root+'/apps/mushroom-exploration/source/mushrooms.assets.json','utf8'));
+  assert.deepEqual(catalog.documentaries,[MUSHROOM_MUSIC_DOCUMENTARY]);assert.equal(catalog.soundDemonstrations,undefined);assert.equal(new URL(MUSHROOM_MUSIC_DOCUMENTARY.embed).hostname,'www.youtube-nocookie.com');assert.equal(MUSHROOM_MUSIC_DOCUMENTARY.creator,'Reuters');
+  const lesson=source.data.blocks.find(b=>b.type==='lab').experiments.find(e=>e.mode==='sound');assert.ok(lesson.sourceRefs.includes('mushroom-source:reuters-music'));assert.match(lesson.learning.action,/Watch the documentary/);
 });
 
 test('shared interface copy and activity labels are editable while template bindings and identities are protected',async()=>{

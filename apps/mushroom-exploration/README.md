@@ -1,36 +1,34 @@
 # Our mushroom-growing story — classroom journal and optional exhibits
 
-Unpublished 2026–2027 exhibit for second and third graders. Based on the verified active
-Hub workstream dc7237d3912746afbe9f15dc215dfd18aad6b31f, rather than the older default main.
-This branch does not activate a new Edublogs route, swap the Hub, or deploy Lanternworks.
+## Current implementation — November 8, 2026
 
-**Current acceptance: 44/46.** Real embedded-video playback is verified in connected Chrome.
-Actual speech/pronunciation and the teacher/projector/pupil trial remain open.
-[Open the exact reviewed HTTPS draft](https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/ea261ba8a25984a026c36ae20381dd88942d5079/apps/mushroom-exploration/review.html) or use
-[REVIEW-HANDOFF.md](REVIEW-HANDOFF.md). `review.html` is a development entry point into the
-existing source; the live bootstrap retains its draft-publication guard.
+The classroom-first page is live at https://rmhughes.edublogs.org/hub/mushrooms/
+(WordPress Page 2662). Its four published growing days contain 12 photographs and three
+converted videos. Lanternworks Mushinator is deployed and can publish journal changes.
+The Hub features Mushrooms; Zinnias is in the 2026–2027 past explorations. Historical
+Mushroom Page 413 is a separate page.
 
-The current follow-up scope is in [IMPLEMENTATION-CHECKLIST.md](IMPLEMENTATION-CHECKLIST.md):
-46 stable fix IDs with acceptance criteria, baseline protections, execution order and separately
-deferred classroom/editor work. Completed items have dated evidence; unchecked items remain open.
+The November 8 revision replaces the custom science SVGs with seven existing published
+illustrations. Creators, original pages, licences and unchanged-original hashes are in
+`source/published-diagrams.json`, `source/published-diagrams.delivery.json` and
+`src/diagram-catalog.js`; the originals are preserved in `source-assets/published-diagrams`.
+All pictures can be enlarged. One initially collapsed **Credits & sources** drawer follows
+the optional science section and credits illustrations, photographs, videos and research.
 
-## Current continuation — November 7, 2026
+The synthetic music lesson is removed from the renderer and delivery bundle. Its replacement
+is the official 94-second Reuters film **Musical Mushrooms: Fungi play instruments via electric
+sensors** (`PVzPD4U-Lno`). The film opens on request with autoplay disabled. Closing, switching
+activities, leaving the view and hiding the page remove its player. The brief explanation
+separates mushroom measurements from the musical choices made by equipment and artists.
+Legacy `art.js`, `sound.js` and their contract fields remain as historical/editor compatibility
+source; neither legacy module is shipped by the current release builder.
 
-Poppet's classroom-first direction supersedes the earlier exhibit-first sequence and the
-prior instruction to make Explore fungi primary while the journal is empty. The compact
-welcome leads directly to the classroom journal; the two existing science stations follow
-inside an optional, initially closed “Explore more about fungi” disclosure. Header chapters
-follow that reading order. Existing science hashes open the disclosure and retain their
-activity selection. Empty journal/feed failures retain an honest classroom placeholder.
-
-The public day reader (`src/journal.js`) is implemented, with lazy day records and galleries,
-optional unnamed notes, and video cleanup. The index remains empty until actual classroom
-material is explicitly published. The separate Lanternworks `/mushrooms` editor is deployed;
-its existing Friday draft and disabled Publish day control were verified in the authenticated
-browser on November 7. Its GitHub writing connection remains missing. No live classroom import,
-HEIC conversion, public publication or classroom acceptance is claimed by this layout pass.
-A separate downloadable preview embeds all 12 supplied photos and 3 videos; its classroom
-media stays outside this public repository. See the current continuation in QA.md.
+`npm run check:mushrooms` passes 83 tests, source/asset integrity, syntax and preview build.
+The current release and live installation receipt are recorded in
+`docs/edublogs-integration/mushrooms-2026-2027/RELEASE-PIN.json` and `QA.md`.
+The dated checks below preserve earlier development evidence; they do not override this
+current state. Teacher/projector use and optional read-aloud pronunciation remain acceptance
+observations, not missing implementation.
 
 ## The page
 
@@ -46,9 +44,8 @@ puffball cloud, life cycle, glowing fungi, mushroom music and explorer questions
 tabs become a single native activity picker below 1100 px. The primary entrance opens
 the classroom journal; the secondary action opens the optional science. The journal stays directly
 linked from the sticky navigation. A local Next action provides an optional guided path.
-Tabs retain all block IDs and content, support arrows/Home/End, and reveal direct hash links. Hands-on stations include five anatomy selections, a detailed mycelium
-cutaway, a drop-launch model beside real microscope footage, a separate wind model, photographic bioluminescence,
-an invented signal-to-sound model, and three discovery questions. Animations and audio start on request; spore movement, network growth and dough rise can be paused.
+Tabs retain all block IDs and content, support arrows/Home/End, and reveal direct hash links. Hands-on stations include five anatomy selections, published mushroom structure and spore-release illustrations beside real microscope footage, a separate wind experiment, photographic bioluminescence,
+a short Reuters documentary, and three discovery questions. Wind movement and videos start on request; wind movement can be paused.
 Changing an exhibit suspends its active media. Sound starts only on a button press and stops on demand, when
 its exhibit leaves view, when the document becomes hidden, or when unmounted.
 
@@ -192,7 +189,7 @@ The build verifies and embeds each MP4, poster and description. Contract version
 See QA.md for current measured checks, RESEARCH.md for sources, and the dated diagram
 audits for the earlier findings. Their earlier measurements are historical evidence.
 
-## Music lesson — current draft
+## Historical music lesson — superseded November 8, 2026
 
 The illustrated fungus → conductivity sensor → computer rule → instrument chain separates
 measurement from artistic sound choices. A shared list of sixteen invented normalized values

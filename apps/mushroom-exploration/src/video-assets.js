@@ -1,4 +1,15 @@
 // Source-verified research footage; no synthetic or interpolated frames.
+export const MUSHROOM_MUSIC_DOCUMENTARY = {
+  id:'mushroom-documentary:reuters-music',
+  creator:'Reuters',
+  title:'Musical Mushrooms: Fungi play instruments via electric sensors',
+  watch:'https://www.youtube.com/watch?v=PVzPD4U-Lno',
+  embed:'https://www.youtube-nocookie.com/embed/PVzPD4U-Lno?rel=0',
+  page:'https://www.youtube.com/watch?v=PVzPD4U-Lno',
+  license:'Official YouTube embed; copyright Reuters',
+  licenseUrl:'https://www.youtube.com/static?template=terms',
+  changes:'Linked and embedded from the official Reuters channel. No video download, rehosting or editing.'
+};
 export const MUSHROOM_VIDEOS = [
   {
     "id": "mushroom-video:armillaria-release",

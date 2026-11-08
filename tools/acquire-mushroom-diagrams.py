@@ -1,8 +1,7 @@
 """Reproduce delivery images from the explicitly reviewed published illustrations."""
 from pathlib import Path
-import hashlib, io, json, urllib.request, urllib.error, time
+import hashlib, io, json, urllib.request, urllib.error, time, subprocess, sys
 from PIL import Image
-import cairosvg
 
 root = Path(__file__).resolve().parents[1]
 app = root / 'apps/mushroom-exploration'
@@ -11,8 +10,15 @@ originals.mkdir(parents=True, exist_ok=True)
 catalog = json.loads((app / 'source/published-diagrams.json').read_text())
 receipt = []
 for item in catalog:
+    original = originals / (item['id'] + item['originalExtension'])
+    if '--saved-originals' in sys.argv:
+        raw = original.read_bytes()
+    else:
+        raw = None
     request = urllib.request.Request(item['originalUrl'], headers={'User-Agent': 'HughesRoomViews/1.0 (educational image acquisition)'})
     for attempt in range(4):
+        if raw is not None:
+            break
         try:
             with urllib.request.urlopen(request, timeout=90) as response:
                 raw = response.read(12_000_001)
@@ -23,9 +29,15 @@ for item in catalog:
             if error.code not in (429, 500, 502, 503, 504) or attempt == 3:
                 raise
             time.sleep(min(60, 15 * (attempt + 1)))
-    original = originals / (item['id'] + item['originalExtension'])
     original.write_bytes(raw)
-    rendered = cairosvg.svg2png(bytestring=raw, output_width=1600) if item['originalExtension'] == '.svg' else raw
+    if item['originalExtension'] == '.svg':
+        # Inkscape preserves this existing illustration's SVG filters and text.
+        rendered_path = originals / (item['id'] + '.rendered.png')
+        subprocess.run(['inkscape', str(original), '--export-type=png', '--export-width=1600', '--export-filename=' + str(rendered_path)], check=True)
+        rendered = rendered_path.read_bytes()
+        rendered_path.unlink()
+    else:
+        rendered = raw
     image = Image.open(io.BytesIO(rendered)).convert('RGBA')
     image.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
     destination = app / 'src/assets' / ('diagram-' + item['id'] + '.webp')
@@ -36,7 +48,8 @@ for item in catalog:
                     'originalBytes': len(raw), 'originalSha256': hashlib.sha256(raw).hexdigest(),
                     'changes': 'Converted to lossless WebP and resized to at most 1800 pixels. No redrawing, relabelling, cropping or recolouring.'})
     print(item['id'], image.size, len(data))
-    time.sleep(3)
+    if '--saved-originals' not in sys.argv:
+        time.sleep(3)
 (app / 'source/published-diagrams.delivery.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
 registry = [{**item, 'id': 'mushroom-diagram:' + item['id'], 'type': 'Published diagram', 'subject': item['caption'], 'fit': 'contain'} for item in receipt]
 (app / 'src/diagram-catalog.js').write_text('// Published illustrations: creator, source, licence and byte provenance.\nexport const MUSHROOM_DIAGRAMS = ' + json.dumps(registry, ensure_ascii=False, indent=2) + ';\n')

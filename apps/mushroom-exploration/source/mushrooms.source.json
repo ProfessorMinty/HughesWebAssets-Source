@@ -121,6 +121,11 @@
         "id": "mushroom-source:plantwave-sensor",
         "title": "PlantWave · What exactly is being measured?",
         "url": "https://help.plantwave.com/en-US/what-exactly-is-being-measured-230414"
+      },
+      {
+        "id": "mushroom-source:reuters-music",
+        "title": "Reuters: Musical Mushrooms — fungi play instruments via electric sensors",
+        "url": "https://www.youtube.com/watch?v=PVzPD4U-Lno"
       }
     ],
     "blocks": [
@@ -233,7 +238,7 @@
         "type": "anatomy",
         "eyebrow": "02 / THE SPECIMEN TABLE",
         "title": "There’s more under that cap.",
-        "intro": "Choose a number to find a part. This model shows a mushroom with gills. Other mushrooms can look different.",
+        "intro": "Explore the labelled mushroom diagram. Choose a part to learn what it does.",
         "sourceRefs": [
           "mushroom-source:basics"
         ],
@@ -297,10 +302,10 @@
           "caption": "A real example of gills: the ridges under a mushroom cap. This photograph stays the same as you explore the model."
         },
         "learning": {
-          "action": "Choose a numbered part.",
+          "action": "Choose a part beside the diagram.",
           "observe": "Which part makes spores? Which part is a network of threads?",
           "safety": "",
-          "teacher": "This is one model of a gilled mushroom. It is not a mushroom identification guide.",
+          "teacher": "This published illustration shows one gilled mushroom. A ring or volva is not present on every mushroom; it is not an identification guide.",
           "words": [
             {
               "id": "mushroom-word:mycelium",
@@ -370,10 +375,10 @@
           }
         ],
         "learning": {
-          "action": "Switch views, then grow the threads.",
+          "action": "Compare the mushroom bodies and their branching threads. Choose a step to explore.",
           "observe": "Where do new branches begin? Follow them back to a mushroom.",
           "safety": "",
-          "teacher": "The fruiting body and mycelium are connected parts of a fungus. The highlighted threads are enlarged and growth is greatly sped up.",
+          "teacher": "The published diagram shows connected fruiting bodies and fungal threads. It is an illustration, not a time-lapse recording.",
           "words": [
             {
               "id": "mushroom-word:fruiting-body",
@@ -434,7 +439,7 @@
         "type": "lifecycle",
         "eyebrow": "04 / THE SPORE LAUNCH LAB",
         "title": "A tiny drop. An incredible launch.",
-        "intro": "Compare the model with a real microscope recording. Then follow the spores into the breeze.",
+        "intro": "Compare a published research figure with a real microscope recording, then follow spores into moving air.",
         "sourceRefs": [
           "mushroom-source:spores",
           "mushroom-source:mycelium",
@@ -525,12 +530,12 @@
             "view": "launch",
             "label": "Tiny launch",
             "title": "A tiny drop. An incredible launch.",
-            "intro": "How can a water drop help a spore leave a gill? Compare the model with a real microscope recording.",
+            "intro": "How can a tiny water drop help launch a spore? Look at the published figure, then watch the microscope recording.",
             "learning": {
-              "action": "Watch the launch or use Next step. Then compare it with the microscope video.",
+              "action": "Choose a step, then compare the figure with the microscope video.",
               "observe": "What joins just before the spore moves?",
               "safety": "",
-              "teacher": "Many gilled fungi use this surface-tension mechanism. The model enlarges and slows it; the recording is a real microscope view.",
+              "teacher": "The published research figure combines a droplet photograph, a drawing of short paths between gills and successive microscope frames. The video shows a real launch; the illustrations are not animations.",
               "words": []
             },
             "sourceRefs": [
@@ -578,12 +583,12 @@
             "view": "cycle",
             "label": "Life cycle",
             "title": "From a spore to more spores.",
-            "intro": "Follow four stages of a mushroom-making fungus. A spore needs the right conditions to grow. Many never grow into mushrooms.",
+            "intro": "Follow a mushroom life-cycle diagram. Use the four simple stage buttons to explore the story.",
             "learning": {
               "action": "Choose a stage. Follow the arrows back to a spore.",
               "observe": "Where could the story start again?",
               "safety": "",
-              "teacher": "This is a simplified cycle. For many mushroom-forming fungi, compatible threads must join before a mushroom can form.",
+              "teacher": "The published Agaricus diagram also includes magnified cells and scientific labels. The four stage descriptions give a simpler route through the same cycle; compatible threads must join before a mushroom can form.",
               "words": []
             },
             "sourceRefs": [
@@ -753,7 +758,7 @@
               "caption": "A real fungus spreading over wood. Look for its fine branching threads."
             },
             "learning": {
-              "action": "",
+              "action": "Choose a step to explore the picture.",
               "observe": "What happens before the fungus takes in food?",
               "safety": "",
               "teacher": "Fungi release enzymes outside their threads. These break down complex material into smaller molecules that can be absorbed. Nutrients are recycled through decomposition.",
@@ -828,7 +833,7 @@
             "visual": "tree",
             "media": null,
             "learning": {
-              "action": "",
+              "action": "Choose a step to explore the picture.",
               "observe": "What does the plant give? What does the fungus help it get?",
               "safety": "",
               "teacher": "This model shows a mycorrhizal partnership found in some plants and fungi. Green leaves make sugars using light; the fungal partner helps gather water and mineral nutrients. Arrows are qualitative teaching models, not measurements of flow or exchange rate.",
@@ -901,7 +906,7 @@
             "visual": "bread",
             "media": null,
             "learning": {
-              "action": "",
+              "action": "Choose a step to explore the picture.",
               "observe": "What happens to the dough as the gas pockets grow?",
               "safety": "",
               "teacher": "The gas is carbon dioxide. This is a sped-up model of fermentation, with enlarged gas pockets, not yeast cells.",
@@ -1018,23 +1023,24 @@
           },
           {
             "id": "mushroom-lab:sound",
-            "title": "One pattern. Two musical costumes.",
-            "body": "Living cells use tiny charged particles called ions to do their work. Scientists measure electrical changes in fungi and study links with growing, feeding and responses. They are still exploring what different patterns mean.",
+            "title": "How artists make mushroom music",
+            "body": "Artists can connect sensors to mushrooms and use the measured electrical changes to control musical instruments. Watch this short Reuters film about Jon Ross and Andy Kidd. The equipment and the artists turn those measurements into the music you hear.",
             "sourceRefs": [
               "mushroom-source:electricity",
               "mushroom-source:music",
               "mushroom-source:growth-electricity",
               "mushroom-source:plantwave-sensor",
-              "mushroom-source:plantwave-demo"
+              "mushroom-source:plantwave-demo",
+              "mushroom-source:reuters-music"
             ],
             "mode": "sound",
             "media": null,
             "label": "Mushroom music",
             "learning": {
-              "action": "Play the flute-like sound. Choose the bell-like sound, then play the same pattern again.",
-              "observe": "What changed: the pattern of high and low notes, or the sound of the instrument? With sound off, use Next note and follow the note names.",
+              "action": "Watch the documentary.",
+              "observe": "What connects the mushrooms to the instruments? What choices do the artists make?",
               "safety": "",
-              "teacher": "Ion transport supports cell work. Studies associate some extracellular voltage recordings with growth, but origins and functions of particular spikes remain unsettled. This does not decode fungal words, emotions or a heartbeat. Voltage recordings and conductivity/resistance devices measure different things. Sensor contact, water, movement and equipment can affect readings; controls matter. Our invented example has 16 normalized values (0–1), one every 0.5 seconds for 8 seconds. Each value selects one of eight ascending note bands, C4 D4 E4 G4 A4 C5 D5 E5. The graph joins those same samples; audio uses exactly the displayed values and times. No species, biological voltage units, original measurement time or speed-up applies. Both timbres are synthesized here from sine-wave harmonics, not recordings of real instruments. Changing instruments resets playback to the start and preserves every value, note and onset. A new pattern is a separate action.",
+              "teacher": "This is sonification: measured changes are mapped to musical controls. It is not a recording of a mushroom singing or proof that the fungus chooses a melody. This news feature demonstrates an artistic use of sensors, not a decoded fungal language.",
               "words": [
                 {
                   "id": "mushroom-word:sonification",
@@ -1310,7 +1316,7 @@
       "sourcesTitle": "Explore the science sources",
       "photoClose": "Back to the exhibit",
       "photoFallbackTitle": "A closer look",
-      "photoEnlargeTemplate": "Enlarge the photograph: {name}",
+      "photoEnlargeTemplate": "Enlarge: {name}",
       "photographLabel": "Photograph",
       "photoZoom": "Look closer",
       "photoChangeSuffix": "resized",
@@ -1318,7 +1324,7 @@
       "partGroup": "Mushroom parts",
       "partCountTemplate": "Part {index} of {total}",
       "partNameTemplate": "Part {index}: {name}",
-      "anatomyModelNote": "A model of a gilled mushroom · not a guide for identifying mushrooms",
+      "anatomyModelNote": "A published diagram of one gilled mushroom. Other mushrooms can have different parts. This is not an identification guide.",
       "chooseActivity": "Choose an investigation",
       "chooseActivityTemplate": "Choose an investigation in {title}",
       "nextTemplate": "Next: {title}",
