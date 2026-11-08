@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "1.0.0",
+  "application": "hrv-page:mushrooms-2026-2027",
+  "version": "2026.11.08.1",
+  "sourceCommit": "11f61ddb3d5f5d1702ab1d9000571b0516dd94cc",
+  "contentReview": "Existing sourced science and classroom-first copy reviewed; teacher/projector and optional native-speech acceptance remain post-install checks.",
+  "journal": {
+    "repository": "ProfessorMinty/HughesWebAssets-Source",
+    "branch": "feature/mushroom-exhibit-scaffold",
+    "indexPath": "apps/mushroom-exploration/source/journal/index.json",
+    "schemaVersion": "1.0.0"
+  },
+  "files": [
+    {
+      "path": "src/assets/PHOTO-CREDITS.md",
+      "bytes": 2376,
+      "sha256": "12ec8873cc0e3a1aab823847b5241bb5fee50b64baf2acb6fcbb141871f90d08"
+    },
+    {
+      "path": "src/assets/VIDEO-CREDITS.md",
+      "bytes": 2173,
+      "sha256": "adb071eaf55bb97847b38fc03e8c315b24ea0175a99584ab3fd08951822a1fec"
+    },
+    {
+      "path": "src/assets/armillaria-description.vtt",
+      "bytes": 125,
+      "sha256": "9a7f3a0eb661344367414bda5cd263bc445024e1eeaf83f380a2312f53c6cfad"
+    },
+    {
+      "path": "src/assets/armillaria-poster.webp",
+      "bytes": 1494,
+      "sha256": "8a3c8740e038fdb9357aba2ee94fcdcb2a7d1c580488977a93060cc54ffdd880"
+    },
+    {
+      "path": "src/assets/armillaria-spore-launch.mp4",
+      "bytes": 35676,
+      "sha256": "6b43c51f92e4030dd33e89dcbea36e0b181444a865028d03322f32f2cb2f5f14"
+    },
+    {
+      "path": "src/assets/blue-mycena.webp",
+      "bytes": 296744,
+      "sha256": "37a20c75a02153df418a199b43925dd07472c8fd18d48e40dafed01f80f742b3"
+    },
+    {
+      "path": "src/assets/diagram-anatomy.webp",
+      "bytes": 394920,
+      "sha256": "bb29915ae88d01d2043d8cfec2f0a3217d436bacae6fc2f9e793afc05c7c19f3"
+    },
+    {
+      "path": "src/assets/diagram-cycle.webp",
+      "bytes": 325716,
+      "sha256": "a6fa14719bb8c1fee0013cafda6a50b51d7a9ad6ac63e0d59bc1d17b4e299fc9"
+    },
+    {
+      "path": "src/assets/diagram-digestion.webp",
+      "bytes": 92732,
+      "sha256": "7b8aef693c45e95a0e85c79656f457ad97247627c08241d28cd9d22b2cdc63dd"
+    },
+    {
+      "path": "src/assets/diagram-mushroom.webp",
+      "bytes": 254124,
+      "sha256": "a5c4e4cd82b764e6776ce13b06e312b7e54b6a5895a34955ce261c02ce2695ca"
+    },
+    {
+      "path": "src/assets/diagram-partnership.webp",
+      "bytes": 433796,
+      "sha256": "aaefaff0731244a42ade170b8a32c50a7e4bb619385607a968ab1c94e6216dc2"
+    },
+    {
+      "path": "src/assets/diagram-spore-release.webp",
+      "bytes": 455020,
+      "sha256": "a0fc1d878b8718467fe053cbd9472fc3c2dfb6a004bc5edb2b2dfd868f5603ad"
+    },
+    {
+      "path": "src/assets/diagram-structure.webp",
+      "bytes": 242698,
+      "sha256": "5f90b79b6ab878e588379573abd60d338fe1d3d0969b3c1bdbe8d1d55664787c"
+    },
+    {
+      "path": "src/assets/entrance-v1.webp",
+      "bytes": 285228,
+      "sha256": "1a94183e24550502558fbf50d79486b4f758b9cdc76771ac54b0d195af12a011"
+    },
+    {
+      "path": "src/assets/gill-macro.webp",
+      "bytes": 148350,
+      "sha256": "e36087371a774fcda88eebb3b4bb069ef35a994f6349cb3b79a0a1bb64390d34"
+    },
+    {
+      "path": "src/assets/glowing-panellus.webp",
+      "bytes": 160234,
+      "sha256": "318e162d31ac9d7f0253a649b0b8c5074d07a3d43e1bf8cf55008a677795a1c7"
+    },
+    {
+      "path": "src/assets/mycelium-wood.webp",
+      "bytes": 210042,
+      "sha256": "fb89a7ee1af06622718e404fe39a6730bb242efd9677a4470a150e99964a82c0"
+    },
+    {
+      "path": "src/assets/puffball-cloud-poster.webp",
+      "bytes": 22268,
+      "sha256": "a61c5881635adae003123ea258c9ce8f8bcb5e0460cd2856a068e9f15da52ef9"
+    },
+    {
+      "path": "src/assets/puffball-description.vtt",
+      "bytes": 222,
+      "sha256": "811b7dd14fc299a5542e9be3e06cd83ce2f00c4c95478a325b6728612d740255"
+    },
+    {
+      "path": "src/assets/puffball-spore-cloud.mp4",
+      "bytes": 742745,
+      "sha256": "ddb7b075aefbb14392a3ccf0b5616485197b8c8b5a79211d6d37f9e23d01607b"
+    },
+    {
+      "path": "src/assets/rhizopus-macro.webp",
+      "bytes": 76166,
+      "sha256": "ae8bb6008d0ca94b28c79ce97700be2ee61d1dcd3588e14c2055627044ba9eb4"
+    },
+    {
+      "path": "src/assets/yeast-dic.webp",
+      "bytes": 80758,
+      "sha256": "4acb94e0948059fb1a19f5981ae6da1e6d6b186d9c1234ba5cbc7f84707dc22d"
+    },
+    {
+      "path": "src/exhibit.css",
+      "bytes": 92326,
+      "sha256": "ff982a42a12d6e03fef6ca74a85f0036524d4a99fd2254ff9c2852eb2f2a347c"
+    },
+    {
+      "path": "src/host-compat.css",
+      "bytes": 1288,
+      "sha256": "db33cc04222b75f6c34ce4b78523f08655f75287e739368c1a460615a5a72a6b"
+    },
+    {
+      "path": "src/mushrooms.source.json",
+      "bytes": 56914,
+      "sha256": "d83ef0fd5fc5160fa5afc8ef3104b256ff96e38e20ab9f6fc49cbd9c00469131"
+    },
+    {
+      "path": "src/runtime.js",
+      "bytes": 134476,
+      "sha256": "bf28fd904ba8b37e3ad037947c51bfbdd792b274fca3da6188bd8ab13b7f73c0"
+    }
+  ]
+}
