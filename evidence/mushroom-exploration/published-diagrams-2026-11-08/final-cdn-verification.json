@@ -1,0 +1,459 @@
+{
+  "verifier": "mushroom-exploration-publication",
+  "schemaVersion": "1.0.0",
+  "repository": "ProfessorMinty/HughesWebAssets-Source",
+  "releaseCommit": "003bdf6f207c04781da1b386bca0aa43535b6bb3",
+  "version": "2026.11.08.2",
+  "releaseSha256": "d6f6f6bdae2dd4fc6457f52bb05168f32fb661a7a26ee87caf907c56bc643994",
+  "bootstrapSri": "sha256-5KBNI+RllC1RjwM+i3tXrMBnVa84dINMP9bpd0VYv1c=",
+  "files": [
+    {
+      "path": "release.json",
+      "bytes": 4894,
+      "sha256": "d6f6f6bdae2dd4fc6457f52bb05168f32fb661a7a26ee87caf907c56bc643994",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/release.json",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/PHOTO-CREDITS.md",
+      "bytes": 2376,
+      "sha256": "12ec8873cc0e3a1aab823847b5241bb5fee50b64baf2acb6fcbb141871f90d08",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/PHOTO-CREDITS.md",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/VIDEO-CREDITS.md",
+      "bytes": 2173,
+      "sha256": "adb071eaf55bb97847b38fc03e8c315b24ea0175a99584ab3fd08951822a1fec",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/VIDEO-CREDITS.md",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/armillaria-description.vtt",
+      "bytes": 125,
+      "sha256": "9a7f3a0eb661344367414bda5cd263bc445024e1eeaf83f380a2312f53c6cfad",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/armillaria-description.vtt",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/armillaria-poster.webp",
+      "bytes": 1494,
+      "sha256": "8a3c8740e038fdb9357aba2ee94fcdcb2a7d1c580488977a93060cc54ffdd880",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/armillaria-poster.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/armillaria-spore-launch.mp4",
+      "bytes": 35676,
+      "sha256": "6b43c51f92e4030dd33e89dcbea36e0b181444a865028d03322f32f2cb2f5f14",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/armillaria-spore-launch.mp4",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/blue-mycena.webp",
+      "bytes": 296744,
+      "sha256": "37a20c75a02153df418a199b43925dd07472c8fd18d48e40dafed01f80f742b3",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/blue-mycena.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-anatomy.webp",
+      "bytes": 394920,
+      "sha256": "bb29915ae88d01d2043d8cfec2f0a3217d436bacae6fc2f9e793afc05c7c19f3",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-anatomy.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-cycle.webp",
+      "bytes": 325716,
+      "sha256": "a6fa14719bb8c1fee0013cafda6a50b51d7a9ad6ac63e0d59bc1d17b4e299fc9",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-cycle.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-digestion.webp",
+      "bytes": 88676,
+      "sha256": "292c5ddc28023186b57ec633da26aedcb708c12d4fc1b09a430c5e117137c4ab",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-digestion.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-mushroom.webp",
+      "bytes": 254124,
+      "sha256": "a5c4e4cd82b764e6776ce13b06e312b7e54b6a5895a34955ce261c02ce2695ca",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-mushroom.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-partnership.webp",
+      "bytes": 400722,
+      "sha256": "ae1788bbf639fef3c20dc4885e0ae2aae5e832358e556ceaaca8260efdca1e9b",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-partnership.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-spore-release.webp",
+      "bytes": 455020,
+      "sha256": "a0fc1d878b8718467fe053cbd9472fc3c2dfb6a004bc5edb2b2dfd868f5603ad",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-spore-release.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/diagram-structure.webp",
+      "bytes": 242698,
+      "sha256": "5f90b79b6ab878e588379573abd60d338fe1d3d0969b3c1bdbe8d1d55664787c",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/diagram-structure.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/entrance-v1.webp",
+      "bytes": 285228,
+      "sha256": "1a94183e24550502558fbf50d79486b4f758b9cdc76771ac54b0d195af12a011",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/entrance-v1.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/gill-macro.webp",
+      "bytes": 148350,
+      "sha256": "e36087371a774fcda88eebb3b4bb069ef35a994f6349cb3b79a0a1bb64390d34",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/gill-macro.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/glowing-panellus.webp",
+      "bytes": 160234,
+      "sha256": "318e162d31ac9d7f0253a649b0b8c5074d07a3d43e1bf8cf55008a677795a1c7",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/glowing-panellus.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/mycelium-wood.webp",
+      "bytes": 210042,
+      "sha256": "fb89a7ee1af06622718e404fe39a6730bb242efd9677a4470a150e99964a82c0",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/mycelium-wood.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/puffball-cloud-poster.webp",
+      "bytes": 22268,
+      "sha256": "a61c5881635adae003123ea258c9ce8f8bcb5e0460cd2856a068e9f15da52ef9",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/puffball-cloud-poster.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/puffball-description.vtt",
+      "bytes": 222,
+      "sha256": "811b7dd14fc299a5542e9be3e06cd83ce2f00c4c95478a325b6728612d740255",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/puffball-description.vtt",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/puffball-spore-cloud.mp4",
+      "bytes": 742745,
+      "sha256": "ddb7b075aefbb14392a3ccf0b5616485197b8c8b5a79211d6d37f9e23d01607b",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/puffball-spore-cloud.mp4",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/rhizopus-macro.webp",
+      "bytes": 76166,
+      "sha256": "ae8bb6008d0ca94b28c79ce97700be2ee61d1dcd3588e14c2055627044ba9eb4",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/rhizopus-macro.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/assets/yeast-dic.webp",
+      "bytes": 80758,
+      "sha256": "4acb94e0948059fb1a19f5981ae6da1e6d6b186d9c1234ba5cbc7f84707dc22d",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/assets/yeast-dic.webp",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/exhibit.css",
+      "bytes": 92452,
+      "sha256": "253e0ca86231476bc1ef6297d5a0fd3d458da8ab07b3b8b7af3735bcbd2ebe40",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/exhibit.css",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/host-compat.css",
+      "bytes": 1288,
+      "sha256": "db33cc04222b75f6c34ce4b78523f08655f75287e739368c1a460615a5a72a6b",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/host-compat.css",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/mushrooms.source.json",
+      "bytes": 56922,
+      "sha256": "b644f54f3052c7586be88c958857bc265e02009845ab8c04d5ecd7c9a903f031",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/mushrooms.source.json",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/runtime.js",
+      "bytes": 134610,
+      "sha256": "cc44f54b6114e01612182f450c849e0c5e3f317ae4e8514bcd0cc1fbc1cf72a3",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/runtime.js",
+      "httpStatus": 200
+    },
+    {
+      "path": "src/bootstrap.js",
+      "bytes": 5811,
+      "sha256": "e4a04d23e465942d518f033e8b7b57acc06755af3874834c3fd6e9774558bf57",
+      "url": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/bootstrap.js",
+      "httpStatus": 200
+    }
+  ],
+  "journal": {
+    "indexURL": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/feature/mushroom-exhibit-scaffold/apps/mushroom-exploration/source/journal/index.json",
+    "indexSha256": "5011fc211801c7e09ef8cb4420f94c4c9020edaae26921f4ec34fa79c51908d3",
+    "days": 4,
+    "photos": 12,
+    "videos": 3,
+    "records": [
+      {
+        "id": "789fd220-0b86-47ff-acc9-9e8fdb7f2af3",
+        "date": "2026-10-30",
+        "revision": 9,
+        "path": "apps/mushroom-exploration/source/journal/days/789fd220-0b86-47ff-acc9-9e8fdb7f2af3-9-f2657ee7afca.json",
+        "sha256": "d4f962cfe957d8c235774435841061981a6b903f1a0c28aebb45674710524110"
+      },
+      {
+        "id": "94c67abb-01be-4641-97fe-2922244455cd",
+        "date": "2026-11-03",
+        "revision": 6,
+        "path": "apps/mushroom-exploration/source/journal/days/94c67abb-01be-4641-97fe-2922244455cd-6-17e3e56a81f9.json",
+        "sha256": "4c80361f2f9f1f4b1a0693425ca992a8f2de18a14b898342a1e6e5427100001a"
+      },
+      {
+        "id": "b123a632-2ffc-4432-85a0-6f4ab45705d6",
+        "date": "2026-11-04",
+        "revision": 7,
+        "path": "apps/mushroom-exploration/source/journal/days/b123a632-2ffc-4432-85a0-6f4ab45705d6-7-b3e9d783fd45.json",
+        "sha256": "2668fd33d5c2643a01489875a10610c499453998ce64dc54fc3f5c812a01df19"
+      },
+      {
+        "id": "230c3843-65bb-428a-be21-1e0063b23a95",
+        "date": "2026-11-05",
+        "revision": 8,
+        "path": "apps/mushroom-exploration/source/journal/days/230c3843-65bb-428a-be21-1e0063b23a95-8-0d79a620d5b2.json",
+        "sha256": "5f7eee28f6120502d6ceb25501daf2f58fc3db68f2ce124909148fd3f0378cfd"
+      }
+    ],
+    "media": [
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/789fd220-0b86-47ff-acc9-9e8fdb7f2af3/816ea70c-6eca-4c75-8851-3bf4f225717f/c05bda43-c717-478d-9085-7d611d7652f6",
+        "bytes": 294410,
+        "mime": "image/webp",
+        "sha256": "aabf76f15b07b7870c80ba7ce7fe32358748d6656a53ba011601fdce6044d6c3",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/789fd220-0b86-47ff-acc9-9e8fdb7f2af3/816ea70c-6eca-4c75-8851-3bf4f225717f/e5515039-2a5e-4117-910d-2d80cae4042f",
+        "bytes": 67458,
+        "mime": "image/webp",
+        "sha256": "5c9311ba362afe3025b7d928302f46a5d460cb3011e494ac8917881978e0fd16",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/789fd220-0b86-47ff-acc9-9e8fdb7f2af3/e98fd8ff-478d-400b-816c-99b3c5d78602/c35ffe74-6927-40b5-8143-2b0cbbbc9ac4",
+        "bytes": 348536,
+        "mime": "image/webp",
+        "sha256": "30f1e55090570b43f818fbf3eb2090af6156f4ba7bbae86dbf68f8ae0c723421",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/789fd220-0b86-47ff-acc9-9e8fdb7f2af3/e98fd8ff-478d-400b-816c-99b3c5d78602/f0291300-6ff0-4e83-a7b0-893cf1bd5177",
+        "bytes": 60746,
+        "mime": "image/webp",
+        "sha256": "6369d076f51a0cc0e170455c2e96876a042bda2f575d7819f1a3d6ac58c601d6",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/f41b49c5-b6eb-487f-9a03-8b5e266b0300/7420e8e0-577d-4340-9709-32663550e7b7",
+        "bytes": 400650,
+        "mime": "image/webp",
+        "sha256": "f50c428b60611ab36ef7a2a238faf05b8bf694f4b5c62209ff59ec08f7a01932",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/f41b49c5-b6eb-487f-9a03-8b5e266b0300/14bf7e14-a702-4e92-a99b-7819a2dffc0c",
+        "bytes": 85158,
+        "mime": "image/webp",
+        "sha256": "f7c42eeee2f5ed73489f404fe1f460527978a9f5f15b8f0cc8b935b57969c216",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/35f63ff7-dd53-4c50-aa28-8843cb9a6e68/0749def9-bb9f-44bd-96db-8dac3f8b2abb",
+        "bytes": 313874,
+        "mime": "image/webp",
+        "sha256": "8b1dd4893a277525230b3a59a6913b79c901f818d5b93ccf63439e0e3d32c713",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/35f63ff7-dd53-4c50-aa28-8843cb9a6e68/a40eed71-0739-4aa6-aa4a-72243e62183d",
+        "bytes": 89812,
+        "mime": "image/webp",
+        "sha256": "7917b094eac9304fe9bd5d65e03363d04333f0d8a64cc4f34c9b20b720c7ddff",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/2683d35e-85d4-4a8f-b0e4-be21e7e434d0/a5583236-f88a-4bfb-9f2d-51d6d3b14295",
+        "bytes": 441434,
+        "mime": "image/webp",
+        "sha256": "1739bcd7109367b18c47302e7d34e433c8fc4ff025f9f65ca140b4587b46aa2c",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/2683d35e-85d4-4a8f-b0e4-be21e7e434d0/a2238969-0983-482e-a540-4521ab97a969",
+        "bytes": 97584,
+        "mime": "image/webp",
+        "sha256": "0e549eadc89765b5887c358e5015225eb65cc331459871b4c2d2efd058aed26f",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/a27db1f2-e7eb-4999-a8dc-40021668d122/e129f9af-304f-433a-bbe5-c610c47be18f",
+        "bytes": 278750,
+        "mime": "image/webp",
+        "sha256": "a6b2ba9b18e258b149e41cb535dd136e76905b909262e725a094dc2f60bdddb4",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/a27db1f2-e7eb-4999-a8dc-40021668d122/c639117d-8013-4f40-9fc1-dda967b82552",
+        "bytes": 82202,
+        "mime": "image/webp",
+        "sha256": "051b45add82f8683af64d1f979dd9b07e14fc95505a052834592e95c826b9b9a",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/4426c8f1-eaba-428f-974d-ca2c91e41e4a/7f7aed75-68bf-487c-8cdf-33b74ee84366",
+        "bytes": 253032,
+        "mime": "image/webp",
+        "sha256": "923b1c2102c6a4215acc33d2297df14074780926eec5bda06a9b4fb32e59b13f",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/4426c8f1-eaba-428f-974d-ca2c91e41e4a/a6d67c4f-38aa-44d0-bfdd-cf4cddeadc82",
+        "bytes": 57304,
+        "mime": "image/webp",
+        "sha256": "9bea81e0ae8463b790fe0f1f55b64c0ac602b5a997346938ce252fc7717d95a2",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/7ea13b32-fcce-4be7-84f7-cf13839d6894/633db6ac-eed2-4db6-8d9e-8371066d6654",
+        "bytes": 317174,
+        "mime": "image/webp",
+        "sha256": "f5fccf4a38f6163e1681bef5742d7d9f581a24640e7ebfb719bd7909c8f919c8",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/7ea13b32-fcce-4be7-84f7-cf13839d6894/e496f2f4-c824-48c7-870f-1dd09c47071b",
+        "bytes": 70694,
+        "mime": "image/webp",
+        "sha256": "a7908a378129b5efde46ee20172d8aa95ab3e0df32171f2b7ed5400814dd9e78",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/120867ec-4c64-4d94-ab60-997ad16756ad/334d7e72-970d-405c-88e0-3c4064f54e8f",
+        "bytes": 135736,
+        "mime": "image/webp",
+        "sha256": "705028a984e4a43b33d17f68b7e7397ee2fc5963a7e127c96aea4b6eca83cedd",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/120867ec-4c64-4d94-ab60-997ad16756ad/adaf487e-7c4e-4562-8fc3-3cc668e5a85d",
+        "bytes": 33568,
+        "mime": "image/webp",
+        "sha256": "06652c8bb56797e048bac613b2007cd8d8f024123155454c84192fb2413a4936",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/2d3b1ffd-112b-494f-958d-6d35955579ca/e2407faa-b5d2-4908-9008-9c54c99a2561",
+        "bytes": 3082311,
+        "mime": "video/mp4",
+        "sha256": "2ca6aa1d63fc0035c9b310b0f1b791d120eff4767f622cfea02b9b26bf2ac2f3",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/2d3b1ffd-112b-494f-958d-6d35955579ca/c35a9cb6-a0d3-4aef-a77d-dd6fdc7fbb06",
+        "bytes": 78414,
+        "mime": "image/jpeg",
+        "sha256": "d57e9d0be58798ab63a6910a4eb7566b95fc6dea15cf5b309b76e151e4447c13",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/3666cace-e66a-42f8-aece-d63da89e55ea/37c6e245-cb32-43df-8b9e-94eae8f3fc21",
+        "bytes": 278598,
+        "mime": "image/webp",
+        "sha256": "f732102a798486087056f21d8c834129c331e9f6b6bca7af9ac5d5e8b350f94f",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/3666cace-e66a-42f8-aece-d63da89e55ea/3cc214dc-b44c-4aca-9a52-1efa54a07ebc",
+        "bytes": 81826,
+        "mime": "image/webp",
+        "sha256": "18df2e50517b26924d8a1ec447f5175d80cd84a2098361910f90cadef8c5fe3f",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51/1366a7b9-7c77-4632-b85c-868e11987b1b",
+        "bytes": 409138,
+        "mime": "image/webp",
+        "sha256": "e1b1036d613b8897630bb42dfba3e5d7aed347a186dbdbce3d76da29f7fa42f6",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51/e708a8c1-21dc-42be-b188-7fbacb6d993e",
+        "bytes": 86292,
+        "mime": "image/webp",
+        "sha256": "72b77b2a06041204926e1b04cb01502df96a38f77982a9cba9cd6964a520621d",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5191ab04-e91d-44ae-901c-96eff9641b22/ba3c0011-a51e-4472-ac5d-63fdd29e4d50",
+        "bytes": 481118,
+        "mime": "image/webp",
+        "sha256": "372037d6b07623970830d689e0ecf98d5b6fe901ecfab9da6caa5ae5dcd1e059",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5191ab04-e91d-44ae-901c-96eff9641b22/65b92f0c-2bc0-4cf3-9462-afe202b4aa29",
+        "bytes": 98524,
+        "mime": "image/webp",
+        "sha256": "35866a9a8cef339f8608b6d2e1f9c764afa885897f2d335a0f027d6cd457da33",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e/f85efaf8-4ce5-43fc-af73-5ea6003dca8e",
+        "bytes": 5069656,
+        "mime": "video/mp4",
+        "sha256": "24895f9b8443a0e38baf9c360dd5566472d8f3dca60e60da67b28ce42d5e78e4",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e/0588fa48-b73d-40c3-a102-2ef1f9696e9d",
+        "bytes": 40860,
+        "mime": "image/jpeg",
+        "sha256": "844960fabb46f5af6255e523dbdc9c0cdb7596729420718dec187a975f7db16f",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/dceb148f-7b0c-4592-aa5e-0aa97f089726/f5fbd876-5492-4566-9e10-d8b41ecedb66",
+        "bytes": 5139272,
+        "mime": "video/mp4",
+        "sha256": "5d9792011145d960cd0395e554e6eb80edee426151b065d1b97cc29ecd0ee7b0",
+        "httpStatus": 200
+      },
+      {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/dceb148f-7b0c-4592-aa5e-0aa97f089726/badcfbe0-d8c3-4c83-b224-a3413b80200e",
+        "bytes": 79450,
+        "mime": "image/jpeg",
+        "sha256": "db066a91c8e7d0e154b52828947402836d1b208a39655adb1625af5151c4f0bc",
+        "httpStatus": 200
+      }
+    ]
+  },
+  "cdnVerified": true,
+  "classroomVerified": true,
+  "checkedAt": "2026-11-08T09:37:46.498Z"
+}

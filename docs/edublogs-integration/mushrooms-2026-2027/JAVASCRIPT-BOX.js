@@ -1,11 +1,11 @@
 (function () {
   'use strict';
   var MOUNT_ID = 'hrv-mushroom-exploration-root';
-  var BOOTSTRAP_URL = 'https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/c151050bf54c8ed5ebba48d1a701106ce9b008a6/releases/mushroom-exploration/2026.11.07.3/src/bootstrap.js';
+  var BOOTSTRAP_URL = 'https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/src/bootstrap.js';
   var BOOTSTRAP_SHA256 = 'e4a04d23e465942d518f033e8b7b57acc06755af3874834c3fd6e9774558bf57';
-  var RELEASE_ROOT = 'https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/c151050bf54c8ed5ebba48d1a701106ce9b008a6/releases/mushroom-exploration/2026.11.07.3/';
-  var RELEASE_SHA256 = 'a2caea57ea684b527b52a9444c39ce3e6de05f10c66ce8a644441f4bfdb9fb76';
-  var RELEASE_VERSION = '2026.11.07.3';
+  var RELEASE_ROOT = 'https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/003bdf6f207c04781da1b386bca0aa43535b6bb3/releases/mushroom-exploration/2026.11.08.2/';
+  var RELEASE_SHA256 = 'd6f6f6bdae2dd4fc6457f52bb05168f32fb661a7a26ee87caf907c56bc643994';
+  var RELEASE_VERSION = '2026.11.08.2';
   function install() {
     var root = document.getElementById(MOUNT_ID);
     if (!root) {

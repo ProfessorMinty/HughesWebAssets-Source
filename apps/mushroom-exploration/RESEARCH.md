@@ -1,3 +1,26 @@
+# Current visual and documentary sources — November 8, 2026
+
+The custom science drawings have been replaced with seven existing published illustrations.
+`source/published-diagrams.json` records each creator, source page and licence; the retained
+originals, conversion receipt and `src/diagram-catalog.js` record the actual delivery bytes.
+The sources include Commons educational illustrations, Meike Piepenbring's Agaricus cycle,
+and Figure 1 of Stolze-Rybczynski et al. (2009), *Adaptation of the Spore Discharge Mechanism
+in the Basidiomycota*, https://doi.org/10.1371/journal.pone.0004163.
+
+The music section now embeds the official Reuters feature **Musical Mushrooms: Fungi play
+instruments via electric sensors**, https://www.youtube.com/watch?v=PVzPD4U-Lno.
+Its 94-second transcript was reviewed in full: Jon Ross and Andy Kidd explain sensors,
+MIDI and motor-driven instruments. The page distinguishes measurements from artistic
+mapping; no synthetic player, invented signal graph or instrument controls are rendered.
+The film stays hosted by Reuters/YouTube. This source selection does not assert that a
+school or district has formally approved this particular video.
+
+All borrowed images, research recordings and this film are credited in one initially
+collapsed Credits & sources section at the bottom. Earlier research below is historical
+where it describes the replaced music demonstration or our former drawings.
+
+---
+
 # Independent science/content review — 2026-11-06
 
 The two supplied research handoffs were treated as leads, then checked against the sources

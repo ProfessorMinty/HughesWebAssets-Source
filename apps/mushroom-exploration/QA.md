@@ -11,7 +11,16 @@ which preserves its filters/text; CairoSVG produced visible corruption and is no
 Reuters footage remains on its official YouTube channel and is embedded without downloading.
 The legacy synthesized-sound and custom-art modules are excluded from the release bundle.
 
-Release/CDN and live installation observations for this revision follow in the dated receipt.
+Release `2026.11.08.2` at `003bdf6f207c04781da1b386bca0aa43535b6bb3` is saved on
+WordPress Page 2662. All 28 immutable files, four journal records and 30 classroom viewing
+files passed publication verification. The editor was reloaded: existing HTML/CSS were
+preserved and JS matches the generated pin except for its final newline. Live Reuters
+playback advanced beyond 12 seconds without error, then Close removed the iframe. The
+page reports ready, four classroom days and zero science SVGs. Desktop, 390 px and 320 px
+layouts fit their client widths. Credits start closed and contain all seven diagrams.
+Evidence: `evidence/mushroom-exploration/published-diagrams-2026-11-08/`.
+The two illustrations with transparency have a recorded white matte, keeping their labels
+legible under dark-mode browser extensions. Optional science still starts closed.
 The earlier integration and acceptance evidence below is retained as history.
 
 ---
