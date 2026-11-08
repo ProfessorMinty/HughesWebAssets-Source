@@ -1,0 +1,67 @@
+{
+  "installedAt": "2026-11-07T22:22:14.307826-05:00",
+  "wordpressPageId": 17,
+  "url": "https://rmhughes.edublogs.org/hub/",
+  "assetCommit": "56623f31610fb964421989e172dd49f0b7b8c9cb",
+  "runtimeVersion": "2026.11.07.3",
+  "publicationId": "pub-2026-11-07-003",
+  "savedAndReloadedEditor": true,
+  "htmlPreserved": true,
+  "cssPreserved": true,
+  "savedJavaScriptMatchesPrepared": true,
+  "liveRootState": "ready",
+  "videoId": "7IZ-Fek2kzE",
+  "featuredPage": {
+    "id": 2662,
+    "url": "https://rmhughes.edublogs.org/hub/mushrooms/",
+    "clickedThrough": true,
+    "rootState": "ready",
+    "journalDays": 4
+  },
+  "pastExplorations": [
+    {
+      "title": "Summer Bloom Adoption Project",
+      "schoolYear": "2026-2027",
+      "url": "https://rmhughes.edublogs.org/hub/exploration-zinnia-page/"
+    }
+  ],
+  "editorFields": {
+    "before": {
+      "html": {
+        "bytes": 917,
+        "sha256": "75dddbe8f1c2b13a8837ab1ab30e973a58c3e216758887fbf2fb12131e9d258a"
+      },
+      "css": {
+        "bytes": 3836,
+        "sha256": "8fce3247526888e61ed5e58088ceef67b57a5c5d1c5519e4ab9d900e54de39f6"
+      },
+      "js": {
+        "bytes": 2879,
+        "sha256": "a77a9e8289431855ea5dcf38c2e0b8527ba59ca270d04d8c92d9219681a4be86"
+      }
+    },
+    "after": {
+      "html": {
+        "bytes": 917,
+        "sha256": "75dddbe8f1c2b13a8837ab1ab30e973a58c3e216758887fbf2fb12131e9d258a"
+      },
+      "css": {
+        "bytes": 3836,
+        "sha256": "8fce3247526888e61ed5e58088ceef67b57a5c5d1c5519e4ab9d900e54de39f6"
+      },
+      "js": {
+        "bytes": 2879,
+        "sha256": "1d7cfa30dccece6a5d8e02f97703a388310ae23c432229e400c9c9518a4ed2cf"
+      }
+    }
+  },
+  "screenshots": [
+    "live-desktop.jpg",
+    "live-past.jpg"
+  ],
+  "browserVerificationSession": "Authenticated Chrome at the public Hub URL",
+  "anonymousHttpProbe": {
+    "httpStatus": 403,
+    "result": "CLI request blocked; anonymous browser rendering not separately verified"
+  }
+}

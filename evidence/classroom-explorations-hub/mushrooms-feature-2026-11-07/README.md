@@ -1,8 +1,8 @@
 # Mushroom Hub feature update
 
-Status on 2026-11-08: ready for installation; **Edublogs has not been modified**. The Page 17 editor redirects to WordPress sign-in. Authentication is the remaining handoff.
+Status: **installed and live-verified on 2026-11-07 (America/New_York; 2026-11-08 UTC)**. The user completed WordPress sign-in, and the verified JavaScript was saved to Page 17. The prior sign-in handoff is resolved.
 
-| Slot | Prepared value |
+| Slot | Installed value |
 | --- | --- |
 | Current school year | 2026–2027 |
 | Current Exploration | Mushroom Explorations |
@@ -33,11 +33,13 @@ The longer title exposed a narrow-phone layout limitation. Flexible columns now 
 
 The asset-delivery branch retains the previous production delivery tree plus added immutable releases, with the approved source in its ancestry. The full canonical Source tree is preserved separately. This keeps the delivery snapshot below jsDelivr's repository size limit; it is not a canonical cleanup.
 
-## Installation remaining
+## Completed installation
 
-1. Complete WordPress sign-in in the existing Page 17 edit tab.
-2. Capture the actual current HTML, CSS and JavaScript fields. `previous-release-JAVASCRIPT-BOX.js` is the prepared rollback reference from the last observed release, not a new authenticated editor capture.
-3. Replace only Page 17's JavaScript field with the generated production `JAVASCRIPT-BOX.js`. HTML/CSS bytes are unchanged. Save normally.
-4. Reload the public Hub and verify `ready`, the new pin, Mushroom feature/link, correct video, and Zinnias in this year's Past Explorations. Record the save receipt and live result before marking installed.
+1. Captured the actual authenticated HTML, CSS and JavaScript fields before editing. `page17-editor-capture.json` preserves the exact before/after values; individual files are included for restoration. `previous-release-JAVASCRIPT-BOX.js` remains the earlier prepared rollback reference.
+2. Replaced only the JavaScript field. Before applying, verified that the prepared code differs from the actual prior code in only the three immutable release pins (plus its trailing newline). Applied the dialog Update, then the normal page Save.
+3. Reloaded the authenticated editor and reopened all three code fields. HTML and CSS match their pre-update values exactly. The saved JavaScript matches the generated package after ignoring its trailing newline.
+4. Opened the public Hub URL and observed `ready` with the exact new bootstrap/publication URLs. The Mushroom cover loaded, the fungi iframe/thumbnail matched video `7IZ-Fek2kzE`, and Past Explorations showed Zinnias with the 2026–2027 badge and original link. Clicked Explore Now and verified Page 2662 reached `ready` with all four journal days, then returned to the Hub.
+
+`live-installation.json` contains the installation receipt and field digests. `live-desktop.jpg` and `live-past.jpg` show the actual Edublogs Hub. Earlier `preview-*.jpg` images remain candidate-preview evidence.
 
 Lanternworks production publishing remains disabled. No publishing gate, historical exhibit page, Zinnia content, or Mushroom page injection was changed during this Hub update.
