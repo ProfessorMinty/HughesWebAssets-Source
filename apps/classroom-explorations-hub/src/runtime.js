@@ -24,6 +24,7 @@ const SUBJECT_CLASS = new Map([
   ["summer-bloom-adoption-project", "subject-zinnia"],
   ["great-barrier-reef", "subject-reef"],
   ["mushrooms", "subject-mushrooms"],
+  ["mushrooms-2026-2027", "subject-mushrooms"],
   ["butterflies-in-the-classroom", "subject-caterpillars"],
   ["botany-lets-talk-about-tubers", "subject-tubers"],
   ["traditions-of-russian-winter", "subject-winter"],
@@ -993,7 +994,7 @@ class HubController {
     );
     visual.append(
       mediaStage,
-      node("figcaption", "current-caption", "Zinnia Greenhouse • Current Exhibit")
+      node("figcaption", "current-caption", `${item.title} • Current Exhibit`)
     );
 
     card.append(copyColumn, visual);

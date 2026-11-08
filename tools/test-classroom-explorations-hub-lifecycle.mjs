@@ -65,8 +65,9 @@ const addMount = () => {
 
 const canonicalMount = addMount();
 runtime.mountClassroomExplorationsHub(canonicalMount, canonicalManifest);
-assert.equal(canonicalMount.querySelectorAll('.gallery-search, .gallery-count').length, 0);
-assert.equal(canonicalMount.querySelectorAll('.gallery-empty-state').length, 2);
+assert.equal(canonicalMount.querySelectorAll('.gallery-search, .gallery-count').length, 2);
+assert.equal(canonicalMount.querySelectorAll('.gallery-empty-state').length, 1);
+assert.equal(canonicalMount.querySelector('.past-explorations-section a').href, 'https://rmhughes.edublogs.org/hub/exploration-zinnia-page/');
 assert.equal(canonicalMount.querySelectorAll('a.archive-door').length, 1);
 runtime.unmountClassroomExplorationsHub(canonicalMount);
 canonicalMount.remove();
