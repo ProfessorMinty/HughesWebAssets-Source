@@ -23,7 +23,46 @@ Historical mushroom Page 413 remains separate.
   and the authenticated Mushinator publishing receipts pass. A staged candidate is not a
   successful live import or a production-readiness claim.
 
-## Account handoffs currently blocking completion
+## Current checkpoint — November 8, 2026 (UTC)
+
+The owner supplied the real Windows source folder. Using those paths resolved the earlier
+`Invalid input` problem without changing application code.
+
+- Friday: two JPEGs imported, ready and saved; image descriptions saved.
+- Tuesday: three JPEGs imported, ready and saved; image descriptions saved.
+- Wednesday: four JPEGs imported, ready and saved; the MOV original is saved, but its
+  viewing conversion failed with `Failed to fetch`. All five descriptions were saved.
+- Thursday: three JPEGs imported, ready and saved; their descriptions were saved. Both MOVs
+  were then selected successfully in the browser chooser. The browser connection was lost
+  before their completed storage/conversion could be inspected, so those two outcomes remain
+  unverified.
+- All twelve supplied photos were therefore confirmed imported. Thirteen originals were
+  confirmed stored; the final two originals must be checked rather than blindly reuploaded.
+- Publishing configuration remains verified. No day has been published and no GitHub
+  publication receipt has been claimed. No Edublogs page or injection was changed.
+- The MOV converter's exact failure is not diagnosed yet. Its pinned jsDelivr core JS and
+  WASM URLs returned HTTP 200 from the shell, which does not prove browser download success.
+  Inspect the actual browser result and use the existing Retry conversion control before
+  proposing a code or infrastructure change.
+- The stale editor and completed Cloudflare settings tabs were closed. The replacement
+  editor tab was 234350509 at the authenticated Mushinator URL. Browser access then reported
+  that the originating browser context is required; further browser work cannot be verified
+  until that connection is restored.
+
+Continue by inspecting Thursday's saved media and conversion outcomes, then Wednesday's
+pending MOV. Preserve existing attachments and descriptions. Verify ready copies and native
+playback, publish all four days, collect actual commit receipts, run the publication verifier,
+and generate the final JS field only after its existing evidence checks pass. Dates remain
+provisional; species and contributor names remain blank. No classroom quotations were invented.
+
+The supplied intake contains JPEG and MOV files, with no real HEIC sample. A separate HEIC
+decoder acceptance check remains unverified; it is not an added prerequisite for finishing
+this supplied classroom gallery tonight.
+
+The previous checkpoint below is preserved as history. Its empty-gallery and missing-folder
+statements have been superseded by this current checkpoint.
+
+## Historical checkpoint — account and upload handoffs
 
 1. **Upload permission is now confirmed working.** The owner enabled Allow access to file
    URLs, and the browser chooser successfully selected both original Friday JPEGs. Mushinator
