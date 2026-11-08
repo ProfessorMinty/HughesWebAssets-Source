@@ -763,11 +763,14 @@ try {
         const box = element.getBoundingClientRect();
         return { left: box.left, top: box.top, right: box.right, bottom: box.bottom, width: box.width, height: box.height };
       };
+      const containmentFailures = [];
       const contains = (outerSelector, innerSelectors) => {
         const outer = rect(outerSelector);
         return Boolean(outer) && innerSelectors.every((selector) => {
           const inner = rect(selector);
-          return Boolean(inner) && inner.left >= outer.left - 1 && inner.right <= outer.right + 1 && inner.top >= outer.top - 1 && inner.bottom <= outer.bottom + 1;
+          const contained = Boolean(inner) && inner.left >= outer.left - 1 && inner.right <= outer.right + 1 && inner.top >= outer.top - 1 && inner.bottom <= outer.bottom + 1;
+          if (!contained) containmentFailures.push({outerSelector,selector,outer,inner});
+          return contained;
         });
       };
       const overflow = (selector) => {
@@ -851,6 +854,7 @@ try {
           contains('.welcome-theater-card', ['.welcome-heading', '.welcome-screen']) &&
           contains('.current-exploration-card', ['.current-copy', '.current-visual']) &&
           contains('.current-twwl-card', ['.current-twwl-copy', '.current-twwl-visual']),
+        containmentFailures,
         mediaContained,
         primaryCardOverflow: {
           welcome: overflow('.welcome-theater-card'),
@@ -879,7 +883,7 @@ try {
     assert.ok(metrics.documentOverflowX <= 1, `${entry.label}: document must not overflow horizontally.`);
     assert.ok(metrics.bodyOverflowX <= 1, `${entry.label}: body must not overflow horizontally.`);
     assert.ok(metrics.mountOverflowX <= 1, `${entry.label}: Hub mount must not overflow horizontally.`);
-    assert.ok(metrics.cardsContained, `${entry.label}: primary card content must stay inside its owning card.`);
+    assert.ok(metrics.cardsContained, `${entry.label}: primary card content must stay inside its owning card. ${JSON.stringify(metrics.containmentFailures)}`);
     assert.ok(metrics.mediaContained, `${entry.label}: media stages must stay inside their visual viewports.`);
     assert.ok(
       Object.values(metrics.primaryCardOverflow).every((value) => value && value.x <= 1 && value.y <= 1),
