@@ -887,7 +887,7 @@ try {
     assert.ok(metrics.mediaContained, `${entry.label}: media stages must stay inside their visual viewports.`);
     assert.ok(
       Object.values(metrics.primaryCardOverflow).every((value) => value && value.x <= 1 && value.y <= 1),
-      `${entry.label}: primary cards must not conceal scroll overflow.`
+      `${entry.label}: primary cards must not conceal scroll overflow. ${JSON.stringify(metrics.primaryCardOverflow)}`
     );
     assert.ok(metrics.minimumMainControlHeight >= 43, `${entry.label}: main controls must retain a 44px target within rendering tolerance.`);
     assert.equal(metrics.navLinkCount, 7, `${entry.label}: all seven global navigation links must render.`);
