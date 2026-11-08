@@ -12,6 +12,18 @@
         "url": "https://cdn.nlightlabs.com/hrv/mushrooms/789fd220-0b86-47ff-acc9-9e8fdb7f2af3/816ea70c-6eca-4c75-8851-3bf4f225717f/e5515039-2a5e-4117-910d-2d80cae4042f",
         "alt": "The bagged mushroom-growing block in its cardboard box between two jars, with a digital meter above."
       }
+    },
+    {
+      "id": "b123a632-2ffc-4432-85a0-6f4ab45705d6",
+      "date": "2026-11-04",
+      "title": "Look—little mushrooms!",
+      "stage": "Small mushrooms are visible",
+      "revision": 7,
+      "recordPath": "apps/mushroom-exploration/source/journal/days/b123a632-2ffc-4432-85a0-6f4ab45705d6-7-b3e9d783fd45.json",
+      "cover": {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/a27db1f2-e7eb-4999-a8dc-40021668d122/c639117d-8013-4f40-9fc1-dda967b82552",
+        "alt": "Small brown mushroom caps emerging through the opening in the bagged growing block."
+      }
     }
   ]
 }

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "b123a632-2ffc-4432-85a0-6f4ab45705d6",
+  "date": "2026-11-04",
+  "title": "Look—little mushrooms!",
+  "stage": "Small mushrooms are visible",
+  "mushroomType": "",
+  "coverMediaId": "a27db1f2-e7eb-4999-a8dc-40021668d122",
+  "mediaIds": [
+    "a27db1f2-e7eb-4999-a8dc-40021668d122",
+    "4426c8f1-eaba-428f-974d-ca2c91e41e4a",
+    "7ea13b32-fcce-4be7-84f7-cf13839d6894",
+    "120867ec-4c64-4d94-ab60-997ad16756ad",
+    "2d3b1ffd-112b-494f-958d-6d35955579ca"
+  ],
+  "cards": [],
+  "mediaDetails": {
+    "a27db1f2-e7eb-4999-a8dc-40021668d122": {
+      "caption": "",
+      "alt": "Small brown mushroom caps emerging through the opening in the bagged growing block."
+    },
+    "4426c8f1-eaba-428f-974d-ca2c91e41e4a": {
+      "caption": "",
+      "alt": "The growing block in its cardboard box between two jars, with a digital meter above."
+    },
+    "7ea13b32-fcce-4be7-84f7-cf13839d6894": {
+      "caption": "",
+      "alt": "The bagged growing block with small mushroom caps near the bottom and a dated paper note above."
+    },
+    "120867ec-4c64-4d94-ab60-997ad16756ad": {
+      "caption": "",
+      "alt": "A close view of pale patches and the opening in the plastic around the growing block."
+    },
+    "2d3b1ffd-112b-494f-958d-6d35955579ca": {
+      "caption": "",
+      "alt": "A short classroom video showing the mushroom-growing block."
+    }
+  },
+  "media": [
+    {
+      "id": "a27db1f2-e7eb-4999-a8dc-40021668d122",
+      "kind": "image",
+      "caption": "",
+      "alt": "Small brown mushroom caps emerging through the opening in the bagged growing block.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/a27db1f2-e7eb-4999-a8dc-40021668d122/e129f9af-304f-433a-bbe5-c610c47be18f",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/a27db1f2-e7eb-4999-a8dc-40021668d122/c639117d-8013-4f40-9fc1-dda967b82552"
+    },
+    {
+      "id": "4426c8f1-eaba-428f-974d-ca2c91e41e4a",
+      "kind": "image",
+      "caption": "",
+      "alt": "The growing block in its cardboard box between two jars, with a digital meter above.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/4426c8f1-eaba-428f-974d-ca2c91e41e4a/7f7aed75-68bf-487c-8cdf-33b74ee84366",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/4426c8f1-eaba-428f-974d-ca2c91e41e4a/a6d67c4f-38aa-44d0-bfdd-cf4cddeadc82"
+    },
+    {
+      "id": "7ea13b32-fcce-4be7-84f7-cf13839d6894",
+      "kind": "image",
+      "caption": "",
+      "alt": "The bagged growing block with small mushroom caps near the bottom and a dated paper note above.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/7ea13b32-fcce-4be7-84f7-cf13839d6894/633db6ac-eed2-4db6-8d9e-8371066d6654",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/7ea13b32-fcce-4be7-84f7-cf13839d6894/e496f2f4-c824-48c7-870f-1dd09c47071b"
+    },
+    {
+      "id": "120867ec-4c64-4d94-ab60-997ad16756ad",
+      "kind": "image",
+      "caption": "",
+      "alt": "A close view of pale patches and the opening in the plastic around the growing block.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/120867ec-4c64-4d94-ab60-997ad16756ad/334d7e72-970d-405c-88e0-3c4064f54e8f",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/120867ec-4c64-4d94-ab60-997ad16756ad/adaf487e-7c4e-4562-8fc3-3cc668e5a85d"
+    },
+    {
+      "id": "2d3b1ffd-112b-494f-958d-6d35955579ca",
+      "kind": "video",
+      "caption": "",
+      "alt": "A short classroom video showing the mushroom-growing block.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/2d3b1ffd-112b-494f-958d-6d35955579ca/e2407faa-b5d2-4908-9008-9c54c99a2561",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/2d3b1ffd-112b-494f-958d-6d35955579ca/c35a9cb6-a0d3-4aef-a77d-dd6fdc7fbb06"
+    }
+  ],
+  "revision": 7
+}
