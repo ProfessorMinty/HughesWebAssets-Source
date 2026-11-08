@@ -1,4 +1,17 @@
 {
   "schemaVersion": "1.0.0",
-  "entries": []
+  "entries": [
+    {
+      "id": "789fd220-0b86-47ff-acc9-9e8fdb7f2af3",
+      "date": "2026-10-30",
+      "title": "Our growing station",
+      "stage": "Watching our growing block",
+      "revision": 9,
+      "recordPath": "apps/mushroom-exploration/source/journal/days/789fd220-0b86-47ff-acc9-9e8fdb7f2af3-9-f2657ee7afca.json",
+      "cover": {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/789fd220-0b86-47ff-acc9-9e8fdb7f2af3/816ea70c-6eca-4c75-8851-3bf4f225717f/e5515039-2a5e-4117-910d-2d80cae4042f",
+        "alt": "The bagged mushroom-growing block in its cardboard box between two jars, with a digital meter above."
+      }
+    }
+  ]
 }
