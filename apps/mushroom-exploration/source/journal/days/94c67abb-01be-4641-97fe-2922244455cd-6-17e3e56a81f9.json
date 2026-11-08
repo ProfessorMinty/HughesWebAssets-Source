@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "94c67abb-01be-4641-97fe-2922244455cd",
+  "date": "2026-11-03",
+  "title": "Looking closer",
+  "stage": "Detailed views of our growing block",
+  "mushroomType": "",
+  "coverMediaId": "f41b49c5-b6eb-487f-9a03-8b5e266b0300",
+  "mediaIds": [
+    "f41b49c5-b6eb-487f-9a03-8b5e266b0300",
+    "35f63ff7-dd53-4c50-aa28-8843cb9a6e68",
+    "2683d35e-85d4-4a8f-b0e4-be21e7e434d0"
+  ],
+  "cards": [],
+  "mediaDetails": {
+    "f41b49c5-b6eb-487f-9a03-8b5e266b0300": {
+      "caption": "",
+      "alt": "The bagged mushroom-growing block standing inside a cardboard box, with a digital meter above it."
+    },
+    "35f63ff7-dd53-4c50-aa28-8843cb9a6e68": {
+      "caption": "",
+      "alt": "A close view of the growing block through clear plastic, showing pale patches and a slit in the bag."
+    },
+    "2683d35e-85d4-4a8f-b0e4-be21e7e434d0": {
+      "caption": "",
+      "alt": "A closer view of the lower part of the bagged growing block inside its cardboard box."
+    }
+  },
+  "media": [
+    {
+      "id": "f41b49c5-b6eb-487f-9a03-8b5e266b0300",
+      "kind": "image",
+      "caption": "",
+      "alt": "The bagged mushroom-growing block standing inside a cardboard box, with a digital meter above it.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/f41b49c5-b6eb-487f-9a03-8b5e266b0300/7420e8e0-577d-4340-9709-32663550e7b7",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/f41b49c5-b6eb-487f-9a03-8b5e266b0300/14bf7e14-a702-4e92-a99b-7819a2dffc0c"
+    },
+    {
+      "id": "35f63ff7-dd53-4c50-aa28-8843cb9a6e68",
+      "kind": "image",
+      "caption": "",
+      "alt": "A close view of the growing block through clear plastic, showing pale patches and a slit in the bag.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/35f63ff7-dd53-4c50-aa28-8843cb9a6e68/0749def9-bb9f-44bd-96db-8dac3f8b2abb",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/35f63ff7-dd53-4c50-aa28-8843cb9a6e68/a40eed71-0739-4aa6-aa4a-72243e62183d"
+    },
+    {
+      "id": "2683d35e-85d4-4a8f-b0e4-be21e7e434d0",
+      "kind": "image",
+      "caption": "",
+      "alt": "A closer view of the lower part of the bagged growing block inside its cardboard box.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/2683d35e-85d4-4a8f-b0e4-be21e7e434d0/a5583236-f88a-4bfb-9f2d-51d6d3b14295",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/94c67abb-01be-4641-97fe-2922244455cd/2683d35e-85d4-4a8f-b0e4-be21e7e434d0/a2238969-0983-482e-a540-4521ab97a969"
+    }
+  ],
+  "revision": 6
+}
