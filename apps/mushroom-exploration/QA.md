@@ -1,32 +1,4 @@
-# November 8 revision — published diagrams and music documentary
-
-The source check passes **83 tests**. Four added regression cases verify published-image
-hashes and provenance, rendered anatomy/life-cycle selections, the single collapsed bottom
-credit drawer, and on-request Reuters loading/close/activity cleanup. The science panels
-contain no custom SVG diagrams. Classroom-first ordering and the published journal remain.
-
-The seven existing illustrations are rendered on white, contained at their original aspect
-ratios, with full-image enlargement. The existing mycorrhizal SVG is rasterized with Inkscape,
-which preserves its filters/text; CairoSVG produced visible corruption and is no longer used.
-Reuters footage remains on its official YouTube channel and is embedded without downloading.
-The legacy synthesized-sound and custom-art modules are excluded from the release bundle.
-
-Release `2026.11.08.2` at `003bdf6f207c04781da1b386bca0aa43535b6bb3` is saved on
-WordPress Page 2662. All 28 immutable files, four journal records and 30 classroom viewing
-files passed publication verification. The editor was reloaded: existing HTML/CSS were
-preserved and JS matches the generated pin except for its final newline. Live Reuters
-playback advanced beyond 12 seconds without error, then Close removed the iframe. The
-page reports ready, four classroom days and zero science SVGs. Desktop, 390 px and 320 px
-layouts fit their client widths. Credits start closed and contain all seven diagrams.
-Evidence: `evidence/mushroom-exploration/published-diagrams-2026-11-08/`.
-The two illustrations with transparency have a recorded white matte, keeping their labels
-legible under dark-mode browser extensions. Optional science still starts closed.
-The earlier integration and acceptance evidence below is retained as history.
-
----
-
-# Historical integration checks — classroom journal, 2026-11-07
-
+# Current integration checks — classroom journal, 2026-11-07
 
 The host handoff now uses **HTML + CSS + JS**, matching the Hub's static-outage pattern.
 The HTML notice and its dependency-free mushroom guide live outside the replaceable app

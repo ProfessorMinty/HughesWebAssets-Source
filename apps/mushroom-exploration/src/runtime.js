@@ -1,9 +1,7 @@
 import { validateMushroomSource, mushroomCopy } from "./contract.js";
-import { MUSHROOM_DIAGRAMS } from "./diagram-catalog.js";
-import { MUSHROOM_PHOTOS } from "./photo-catalog.js";
-import { MUSHROOM_VIDEOS, MUSHROOM_MUSIC_DOCUMENTARY } from "./video-assets.js";
+import { anatomyArtwork, cutawayArtwork } from "./art.js";
 import { createSporeLab, createWonderLab, createDiscoveryQuestions, createRolesLab, createGrowthLab } from "./labs.js";
-import { mushroomPhotoAsset, mushroomPhotoURL, mushroomDiagramReference } from "./photos.js";
+import { mushroomPhotoAsset, mushroomPhotoURL } from "./photos.js";
 import { browserMotionPreference } from "./process.js";
 import { createMushroomNarration, mushroomReadingText } from "./narration.js";
 import { createGrowingJournal } from "./journal.js";
@@ -75,7 +73,7 @@ export function mountMushroomExhibit(root,source,options){
       }
     }else inspect.append(image,type);
     inspect.append(element('span','mushroom-photo-zoom',ui.photoZoom));
-    const caption=element('figcaption','mushroom-photo-caption',reference.caption);figure.append(inspect,caption);
+    const caption=element('figcaption','mushroom-photo-caption',reference.caption);figure.append(inspect,caption);if(photo)caption.append(creditLine(photo));
     return figure;
   }
   function sourcesFor(block){
@@ -124,12 +122,15 @@ export function mountMushroomExhibit(root,source,options){
       }else if(block.type==='roles'){
         attachLab(inner,createRolesLab(block,photoFigure,idPrefix,learningNotes,ui));
       }else if(block.type==='anatomy'){
-        const layout=element('div','mushroom-anatomy-layout'),diagram=element('div','mushroom-diagram');diagram.append(photoFigure(block.media||mushroomDiagramReference('anatomy'),'mushroom-published-figure'));
-        const detail=element('div','mushroom-observation-card');detail.id=idPrefix+'-observation';detail.setAttribute('aria-live','polite');const partButtons=[],gillPhoto=block.detailMedia?photoFigure(block.detailMedia,'mushroom-anatomy-photo'):null;
+        const layout=element('div','mushroom-anatomy-layout'),diagram=element('div','mushroom-diagram');
+        diagram.append(block.media?sourceImage(block.media,'mushroom-diagram-image'):artwork(anatomyArtwork(idPrefix+'-anatomy')));
+        const detail=element('div','mushroom-observation-card');detail.id=idPrefix+'-observation';diagram.querySelector('svg')?.setAttribute('aria-label',ui.anatomyModelNote);diagram.querySelector('svg')?.setAttribute('aria-describedby',detail.id);detail.setAttribute('aria-live','polite');const markers=[],partButtons=[],mapNumbers=[],gillPhoto=block.detailMedia?photoFigure(block.detailMedia,'mushroom-anatomy-photo'):null;
         const partList=element('div','mushroom-anatomy-parts');partList.setAttribute('role','group');partList.setAttribute('aria-label',ui.partGroup);
-        function choose(point,index){detail.replaceChildren(element('p','mushroom-eyebrow',mushroomCopy(ui.partCountTemplate,{index:String(index+1).padStart(2,'0'),total:block.hotspots.length})),element('h3','',point.label),element('p','',point.body));partButtons.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));if(gillPhoto)gillPhoto.hidden=point.id!=='mushroom-point:gills';diagram.dataset.selected=point.id.split(':')[1];}
-        block.hotspots.forEach((point,index)=>{const named=button(String(index+1).padStart(2,'0')+' · '+point.label,()=>choose(point,index),'mushroom-part-button');named.setAttribute('aria-controls',detail.id);named.dataset.recordId=point.id;partButtons.push(named);partList.append(named);});choose(block.hotspots[0],0);
-        const desk=element('div','mushroom-specimen-desk');desk.append(diagram,element('p','mushroom-diagram-note',ui.anatomyModelNote));const aside=element('div','mushroom-anatomy-aside');aside.append(partList,detail);if(gillPhoto)aside.append(gillPhoto);layout.append(desk,aside);inner.append(layout);
+        function choose(point,index){detail.replaceChildren(element('p','mushroom-eyebrow',mushroomCopy(ui.partCountTemplate,{index:String(index+1).padStart(2,'0'),total:block.hotspots.length})),element('h3','',point.label),element('p','',point.body));[markers,partButtons].forEach(list=>list.forEach((b,i)=>b.setAttribute('aria-pressed',String(index===i))));mapNumbers.forEach((mark,i)=>mark.dataset.selected=String(i===index));if(gillPhoto)gillPhoto.hidden=point.id!=='mushroom-point:gills';diagram.dataset.selected=point.id.split(':')[1];}
+        block.hotspots.forEach((point,index)=>{const b=button(String(index+1).padStart(2,'0'),()=>choose(point,index),'mushroom-hotspot');b.style.left=point.x+'%';b.style.top=point.y+'%';b.setAttribute('aria-label',mushroomCopy(ui.partNameTemplate,{index:index+1,name:point.label}));b.setAttribute('aria-controls',detail.id);b.dataset.recordId=point.id;markers.push(b);diagram.append(b);const mapNumber=element('span','mushroom-map-number',String(index+1).padStart(2,'0'));mapNumber.setAttribute('aria-hidden','true');mapNumber.style.left=point.x+'%';mapNumber.style.top=point.y+'%';mapNumbers.push(mapNumber);diagram.append(mapNumber);const named=button(String(index+1).padStart(2,'0')+' · '+point.label,()=>choose(point,index),'mushroom-part-button');named.setAttribute('aria-controls',detail.id);partButtons.push(named);partList.append(named);});choose(block.hotspots[0],0);
+        const desk=element('div','mushroom-specimen-desk');desk.append(diagram,element('p','mushroom-diagram-note',ui.anatomyModelNote));
+        const aside=element('div','mushroom-anatomy-aside');aside.append(partList,detail);if(gillPhoto)aside.append(gillPhoto);
+        layout.append(desk,aside);inner.append(layout);
       }else if(block.type==='cutaway'){
         attachLab(inner,createGrowthLab(block,idPrefix,photoFigure,ui));
       }else if(block.type==='lifecycle'){
@@ -142,7 +143,7 @@ export function mountMushroomExhibit(root,source,options){
         const notebook=element('div','mushroom-journal-placeholder');notebook.append(element('span','mushroom-journal-year',source.data.meta.schoolYear.replace('-', ' / ')),element('h3','',ui.journalHeading),element('p','',ui.journalBody));inner.append(notebook);
         const journal=createGrowingJournal(notebook,{onPlay(){reader.stop();panelActivities.forEach(list=>list.forEach(lab=>lab.suspend?.()));}});cleanups.push(()=>journal.destroy());
       }
-      const notes=learningNotes(block.type==='roles'?{...block.learning,action:'',observe:'',words:[]}:block.learning);notes.dataset.blockNotes=block.type;inner.append(notes);
+      const notes=learningNotes(block.type==='roles'?{...block.learning,action:'',observe:'',words:[]}:block.learning);notes.dataset.blockNotes=block.type;inner.append(notes);const sources=sourcesFor(block);if(sources)inner.append(sources);
     });
     function readingToolbar(station){
       const tools=element('div','mushroom-reading-tools'),actions=element('div','mushroom-reading-actions'),message=element('p','mushroom-reading-status');message.setAttribute('aria-live','polite');
@@ -239,9 +240,6 @@ export function mountMushroomExhibit(root,source,options){
     listen(window,'scroll',scheduleChapter);listen(window,'resize',scheduleChapter);listen(window,'hashchange',scheduleChapter);
     const chapterObserver=new ResizeObserver(scheduleChapter);chapterObserver.observe(main);cleanups.push(()=>{chapterObserver.disconnect();cancelAnimationFrame(chapterFrame);});scheduleChapter();
     let initialFrame=requestAnimationFrame(()=>{if(location.hash)goTo(location.hash,false);});cleanups.push(()=>cancelAnimationFrame(initialFrame));
-    const credits=element('details','mushroom-credits');credits.id='mushrooms-credits';credits.append(element('summary','','Credits & sources'));const creditBody=element('div','mushroom-credits-body');
-    for(const [heading,items] of [['Published diagrams',MUSHROOM_DIAGRAMS],['Photographs',MUSHROOM_PHOTOS],['Videos',[...MUSHROOM_VIDEOS,MUSHROOM_MUSIC_DOCUMENTARY]]]){creditBody.append(element('h3','',heading));const list=element('ul');items.forEach(item=>{const li=element('li');li.append(anchor(item.name||item.title,item.page),element('p','',item.creator),anchor(item.license,item.licenseUrl),element('p','',item.changes));list.append(li);});creditBody.append(list);}
-    creditBody.append(element('h3','','Science sources'));const references=element('ul');source.data.sources.forEach(item=>{const li=element('li');li.append(anchor(item.title,item.url));references.append(li);});creditBody.append(references);credits.append(creditBody);root.append(credits);
     const footer=element('footer','mushroom-footer');footer.append(element('span','',ui.footerLabel),anchor(ui.footerLink,'https://rmhughes.edublogs.org/hub/'));root.append(footer);
     const observer=new ResizeObserver(fitViewport);observer.observe(document.documentElement);cleanups.push(()=>observer.disconnect());root.dataset.hrvState='ready';
   }catch(error){cleanups.forEach(f=>f());restoreRoot();throw error;}

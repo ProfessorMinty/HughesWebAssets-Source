@@ -9,7 +9,7 @@ export function mushroomReadingText(block,{view,recordId,partId,stage=0,status='
   if(block.type==='anatomy'){const item=block.hotspots.find(item=>item.id===partId)||block.hotspots[0];parts.push(item.label,item.body);}
   if(block.type==='cutaway'){const item=block.views[view==='below'?1:0];parts.push(item.label,item.body);}
   if(block.type==='lifecycle'&&view==='cycle'){const item=block.steps[stage];parts.push(item.title,item.body);}
-  if(block.type==='lab'&&view==='sound')parts.push('The equipment and the artist turn measurements into music.');
+  if(block.type==='lab'&&view==='sound')parts.push(block.music.mapping,block.music.limits);
   if(block.type==='facts')block.cards.forEach(item=>parts.push(item.title,item.body));
   if(status)parts.push(status);
   const learning=record.learning||block.learning;parts.push(learning.action,learning.observe,learning.safety);

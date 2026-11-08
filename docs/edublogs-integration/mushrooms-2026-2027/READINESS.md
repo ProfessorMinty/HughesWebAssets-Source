@@ -1,24 +1,6 @@
-# Mushroom page — current installation and historical checkpoints
+# Mushroom page — pre-injection checkpoint
 
-## Current installation — November 8, 2026
-
-The page is installed and live at https://rmhughes.edublogs.org/hub/mushrooms/.
-WordPress Page **2662**, parent **17**, now uses release **2026.11.08.2**, immutable commit
-`003bdf6f207c04781da1b386bca0aa43535b6bb3`. The existing HTML and CSS were preserved;
-only the JavaScript release pin was updated. The reloaded editor confirms those fields.
-The source, seven published diagrams, collapsed credits and Reuters music documentary
-are implemented. All 83 checks and the final code CI runs pass. All 28 release files,
-four classroom records and 30 public media files passed byte/hash/publication checks.
-The live loader reports ready; its journal remains first with four published days.
-
-See `evidence/mushroom-exploration/published-diagrams-2026-11-08/` for before/after fields,
-release verification, live observations and screenshots. `RELEASE-PIN.json` records the
-actual page, route and installed commit. The Hub already features Mushrooms and keeps
-Zinnias in 2026–2027 past explorations. The older instruction below to stop before the
-initial installation is historical and has been superseded by the authorized live work.
-
-
-## Historical handoff — before the initial installation
+## Current handoff — ready for the new page's JavaScript window
 
 All preparation is complete for the supplied classroom gallery. **Stop before writing into
 Edublogs**, as authorized. Use all three matching fields: `HTML-BOX.html`, `CSS-BOX.css` and

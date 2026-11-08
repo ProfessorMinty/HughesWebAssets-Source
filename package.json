@@ -41,7 +41,7 @@
     "check:hub": "npm run test:hub && npm run build:hub && npm run test:hub:browser && npm run test:hub:publication",
     "test:hub:publication": "node tools/test-classroom-explorations-hub-publication.mjs",
     "build:mushrooms": "node tools/build-mushroom-exploration-preview.mjs",
-    "test:mushrooms": "node --test tools/test-mushroom-exploration.mjs tools/test-mushroom-exploration-diagrams.mjs tools/test-mushroom-journal.mjs tools/test-mushroom-exploration-release.mjs",
+    "test:mushrooms": "node --test tools/test-mushroom-exploration.mjs tools/test-mushroom-journal.mjs tools/test-mushroom-exploration-release.mjs",
     "check:mushrooms": "node --check apps/mushroom-exploration/src/journal.js && node --check apps/mushroom-exploration/release-bootstrap.template.js && node --check apps/mushroom-exploration/doorway.template.js && node --check apps/mushroom-exploration/src/bootstrap.js && node --check apps/mushroom-exploration/src/runtime.js && node --check apps/mushroom-exploration/src/contract.js && node --check apps/mushroom-exploration/src/art.js && node --check apps/mushroom-exploration/src/labs.js && node --check apps/mushroom-exploration/src/process.js && node --check apps/mushroom-exploration/src/sound.js && node --check apps/mushroom-exploration/src/narration.js && node --check apps/mushroom-exploration/src/demo.js && node --check apps/mushroom-exploration/src/photos.js && node --check apps/mushroom-exploration/src/photo-catalog.js && node --check apps/mushroom-exploration/src/video-assets.js && npm run test:mushrooms && npm run build:mushrooms",
     "stage:mushrooms": "node tools/stage-mushroom-exploration-release.mjs",
     "verify:mushrooms:publication": "node tools/verify-mushroom-exploration-publication.mjs",
