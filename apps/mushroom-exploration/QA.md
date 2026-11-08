@@ -1,4 +1,44 @@
-# Current checks — four-pass audit, 2026-11-07
+# Current integration checks — classroom journal, 2026-11-07
+
+The authenticated Mushinator imported all **15 supplied originals (43,951,642 bytes)**.
+Every saved size and versioned chunk fingerprint matched the supplied file. Twelve JPEGs
+have viewing copies and all three MOVs now have MP4 viewing copies and poster frames.
+The saved originals remain private; published files are optimized viewing copies.
+
+The deployed application's CSP had blocked its pinned converter download and WebAssembly
+startup. Private app commit `68ea296d6c37602c661adf46b86bde1856d292dd` permits that exact
+converter path, local Blob modules/workers, and WebAssembly without enabling general
+JavaScript eval or inline scripts. All **104 worker + 22 client tests**, type checks and
+production build passed. Deployment run `42431535455` succeeded while retaining existing
+bindings, routes and encrypted configuration. Retrying the existing saved MOVs succeeded.
+
+Native editor playback was observed for all three converted classroom videos: Wednesday
+advanced to 0.487355 s (720 px video width); Thursday's first clip advanced to 0.32432 s
+(1280 px), and its second to 9.399308 s (720 px), with no media errors. This establishes
+actual playback, not an auditory-quality or school-network acceptance claim.
+
+All four days published through the editor. A fresh authenticated snapshot reported all
+15 media ready and matching saved/published revisions: Friday 9, Tuesday 6, Wednesday 7,
+Thursday 8. Actual full commit receipts are recorded in `qa/live-publisher-verification.json`.
+Descriptions and inspected covers were saved. Species/contributors stay blank, dates remain
+provisional, and no teacher/student quotations were invented.
+
+The final page check passes **75 tests**, source-media integrity, syntax and build checks.
+The four applicable Source CI runs passed at publication commit `3762649b22568b2742d5448ec4edb62222352651`.
+Public branch-file caching temporarily served older journal indexes even after the GitHub
+Contents API and exact publication commit exposed all four days. The final public verifier
+now passes all 21 release assets, four day records and 30 public media files: see
+`qa/publication-ready-verification.json`. The real loader opened all four days with 12
+loaded photographs and three videos. Public CDN playback advanced to 8.698483 s without
+error; closing the day paused it. Desktop, 390 px and 320 px layouts showed no horizontal
+overflow. See `qa/populated-browser-verification.json`. The generated JS field exactly
+matches the tested doorway and its pin reports ready for the new page's JS window.
+No Edublogs write has occurred. No real HEIC sample was supplied; its decoder acceptance
+remains unverified. Teacher/projector/pupil and optional speech acceptance remain post-install.
+
+---
+
+# Historical checks — four-pass audit, 2026-11-07
 
 **44/46 complete. M41 and M46 remain open.** See
 [FOUR-PASS-AUDIT-2026-11-07.md](FOUR-PASS-AUDIT-2026-11-07.md) for the scope, findings,

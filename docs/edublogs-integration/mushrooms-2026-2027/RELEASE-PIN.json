@@ -1,0 +1,15 @@
+{
+  "pageId": "hrv-page:mushrooms-2026-2027",
+  "routeRef": "hrv-route:mushrooms-2026-2027",
+  "releaseCommit": "c151050bf54c8ed5ebba48d1a701106ce9b008a6",
+  "version": "2026.11.07.3",
+  "bootstrapUrl": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/c151050bf54c8ed5ebba48d1a701106ce9b008a6/releases/mushroom-exploration/2026.11.07.3/src/bootstrap.js",
+  "bootstrapSri": "sha256-5KBNI+RllC1RjwM+i3tXrMBnVa84dINMP9bpd0VYv1c=",
+  "releaseSha256": "a2caea57ea684b527b52a9444c39ce3e6de05f10c66ce8a644441f4bfdb9fb76",
+  "journal": "https://raw.githubusercontent.com/ProfessorMinty/HughesWebAssets-Source/feature/mushroom-exhibit-scaffold/apps/mushroom-exploration/source/journal/index.json",
+  "injectionSha256": "0ace040b2db79255bb34ff317da46f8aa2193c738d8ebcafa5bca23ff9ce3bf5",
+  "readyForNewPageJavaScriptWindow": true,
+  "edublogsModified": false,
+  "wordpressPageId": null,
+  "wordpressPath": null
+}

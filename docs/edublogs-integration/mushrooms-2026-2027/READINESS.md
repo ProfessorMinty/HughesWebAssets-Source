@@ -1,5 +1,48 @@
 # Mushroom page — pre-injection checkpoint
 
+## Current handoff — ready for the new page's JavaScript window
+
+All preparation is complete for the supplied classroom gallery. **Stop before writing into
+Edublogs**, as authorized. The next action is to paste the complete `JAVASCRIPT-BOX.js` into
+the new page's JavaScript edit field. It creates its own mount; this handoff does not assign
+a WordPress page ID, slug, parent or Hub destination. Historical Page 413 remains separate.
+
+- Four days published through authenticated Mushinator: Friday revision 9, Tuesday 6,
+  Wednesday 7 and Thursday 8. Saved and published revisions match after reloading.
+- All 15 originals were saved privately and match the supplied bytes and fingerprints.
+  The public gallery contains **12 photos and 3 converted MP4 videos**, with covers and
+  image descriptions. No species, names or classroom quotations were invented. Dates remain
+  provisional: October 30 and November 3–5, 2026.
+- The converter's production CSP conflict was fixed and deployed. All 126 app tests,
+  type checks and build passed; all three saved videos then converted and played.
+- Immutable release `2026.11.07.3` at
+  `c151050bf54c8ed5ebba48d1a701106ce9b008a6` passed all 21 delivery-file byte/hash checks.
+  The publication verifier also checked all four live day records and 30 public media files.
+  `qa/publication-ready-verification.json` reports both delivery and classroom verification.
+- The final generator accepted actual editor commit receipts from
+  `qa/live-publisher-verification.json`. `RELEASE-PIN.json` reports
+  `readyForNewPageJavaScriptWindow:true` and `edublogsModified:false`.
+- The generated code exactly matches the HTTPS browser-tested review doorway. All four
+  days opened with 12 loaded photos and 3 native videos. Public CDN video playback advanced
+  to 8.698483 seconds with no error; closing its day paused it. Journal remains first and
+  optional science starts closed. Desktop, 390 px and 320 px checks showed no horizontal
+  overflow. Detailed observations: `qa/populated-browser-verification.json`.
+- The final source check passes all 75 tests plus syntax, source integrity and build checks.
+  Four applicable Source CI runs passed at the final classroom-publication commit.
+
+Public branch-file caching briefly returned older indexes during publication. The complete
+four-day index is now visible through the real public loader; no stale response was accepted
+as successful delivery. A later journal edit may need normal cache propagation.
+
+Broader post-install acceptance remains separate: real teacher/projector/pupil use and
+optional read-aloud pronunciation have not been observed. No real HEIC sample was supplied,
+so HEIC decoder acceptance is not claimed. Those are not added blockers for this supplied
+JPEG/MOV gallery. No Edublogs page, injection, Hub swap, slug or parent was modified.
+
+---
+
+## Historical preparation checkpoints
+
 November 7, 2026. **Not ready to paste into Edublogs yet.** Arctic authorized completing
 all preparation and stopping immediately before writing the new page's JavaScript field.
 No new Edublogs page, injection, slug, parent relationship or Hub swap has been written.

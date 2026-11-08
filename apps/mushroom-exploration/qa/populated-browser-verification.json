@@ -1,0 +1,34 @@
+{
+  "application": "hrv-page:mushrooms-2026-2027",
+  "reviewURL": "https://raw.githack.com/ProfessorMinty/HughesWebAssets-Source/3899e6221c2f955bb429d6bdaf69d36c9dea359f/apps/mushroom-exploration/release-review.html",
+  "releaseCommit": "c151050bf54c8ed5ebba48d1a701106ce9b008a6",
+  "version": "2026.11.07.3",
+  "generatedDoorwayExactlyMatchesReview": true,
+  "runtimeState": "ready",
+  "days": 4,
+  "expandedGalleryCounts": [
+    {"photos": 2, "videos": 0},
+    {"photos": 3, "videos": 0},
+    {"photos": 4, "videos": 1},
+    {"photos": 3, "videos": 2}
+  ],
+  "allTwelveClassroomPhotosLoaded": true,
+  "publicVideo": {
+    "currentTime": 8.698483,
+    "duration": 9.827586,
+    "videoWidth": 1280,
+    "pausedWhilePlaying": false,
+    "error": null,
+    "pausedAfterDayClosed": true
+  },
+  "layouts": [
+    {"width": 1920, "height": 911, "scrollWidth": 1905},
+    {"width": 390, "height": 844, "scrollWidth": 375},
+    {"width": 320, "height": 640, "scrollWidth": 305}
+  ],
+  "journalFirst": true,
+  "optionalScienceInitiallyClosed": true,
+  "temporaryViewportReset": true,
+  "edublogsModified": false,
+  "limitations": ["Dates remain provisional", "No physical classroom or projector trial", "No successful speech pronunciation acceptance", "No real HEIC supplied"]
+}
