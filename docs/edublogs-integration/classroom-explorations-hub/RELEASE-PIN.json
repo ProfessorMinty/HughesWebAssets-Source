@@ -1,15 +1,15 @@
 {
   "wordpressPageId": 17,
   "targetUrl": "https://rmhughes.edublogs.org/hub/",
-  "assetCommit": "d819f5c1493e725624a09adcbf0de258aa88bd8f",
-  "runtimeVersion": "2026.10.10.3",
-  "publicationId": "pub-2026-10-10-003",
-  "sourceRevision": "be5836526e02212dd693a13cf9abc6a53b8501e0",
-  "previousKnownGoodPublication": "pub-2026-10-10-002",
+  "assetCommit": "56623f31610fb964421989e172dd49f0b7b8c9cb",
+  "runtimeVersion": "2026.11.07.3",
+  "publicationId": "pub-2026-11-07-003",
+  "sourceRevision": "a97a838751611b8e98f714f307c933467af6606e",
+  "previousKnownGoodPublication": "pub-2026-10-10-003",
   "bootstrapSri": "sha256-hscJ+SVHkYhKUv6AMaji0j0ppqYdNJZO6LOVlONvwVk=",
-  "bootstrapUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/runtime/2026.10.10.3/bootstrap.js",
-  "publicationUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@d819f5c1493e725624a09adcbf0de258aa88bd8f/releases/classroom-explorations-hub/publications/pub-2026-10-10-003/publication.json",
-  "cdnEvidencePath": "evidence/classroom-explorations-hub/page17-migration-2026-10-10/cdn-verification.json",
+  "bootstrapUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@56623f31610fb964421989e172dd49f0b7b8c9cb/releases/classroom-explorations-hub/runtime/2026.11.07.3/bootstrap.js",
+  "publicationUrl": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@56623f31610fb964421989e172dd49f0b7b8c9cb/releases/classroom-explorations-hub/publications/pub-2026-11-07-003/publication.json",
+  "cdnEvidencePath": "evidence/classroom-explorations-hub/mushrooms-feature-2026-11-07/cdn-verification.json",
   "fields": {
     "HTML-BOX.html": {
       "bytes": 959,
@@ -21,7 +21,7 @@
     },
     "JAVASCRIPT-BOX.js": {
       "bytes": 2880,
-      "sha256": "312af81e672ab180d5ff91f920a4f0107809259a91f02e44af06acdac0cc2a4a"
+      "sha256": "ba9aec642806cbf56173ce033b07f0147135bd79235b3806b07954578788e71f"
     }
   }
 }
