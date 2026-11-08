@@ -27,12 +27,15 @@ Historical mushroom Page 413 remains separate.
 
 1. **Upload permission is now confirmed working.** The owner enabled Allow access to file
    URLs, and the browser chooser successfully selected both original Friday JPEGs. Mushinator
-   then displayed `Invalid input` for each file before either appeared in the gallery. This
-   is an application upload failure requiring investigation, not the earlier browser-permission
-   gate. No successful original storage, conversion or gallery import is claimed from selection.
-2. The deployed Mushinator still reports the missing repo connection and disables Publish day.
-   Cloudflare's visible variable/secret table has no `MUSHROOM_GITHUB_TOKEN` or enabled
-   `MUSHROOM_PUBLISH_ENABLED`. The existing deployment token is not a repo writing credential.
+   then displayed `Invalid input` for each file before either appeared in the gallery. The
+   cause is not yet established. The attempted file paths belong to the Linux workspace,
+   whereas the connected Chrome selects files from the owner's Windows computer. Real local
+   file availability must be verified before attributing the rejection to the application.
+   No successful original storage, conversion or gallery import is claimed from selection.
+2. **Publishing configuration is now applied and verified.** Cloudflare production shows
+   `MUSHROOM_GITHUB_TOKEN` encrypted and `MUSHROOM_PUBLISH_ENABLED=true`. A fresh authenticated
+   `/api/mushrooms/snapshot` navigation returned `publisherReady:true`, four saved days and zero
+   media. This establishes installed configuration, not a successful GitHub publication receipt.
 3. GitHub owner verification has completed. At the latest inspection, the creation form
    still had Only select repositories checked but its picker/selected repository had disappeared.
    Toggling the draft selection restored the picker; HughesWebAssets-Source was reselected and
@@ -41,11 +44,10 @@ Historical mushroom Page 413 remains separate.
    the owner's scroll-without-token symptom still requires the owner's next Generate attempt.
    Private credential entry/submission remains in the owner's browser.
 
-The browser handoff is prepared: GitHub has the named 90-day fine-grained token template
-open with only `HughesWebAssets-Source` selected and the two permissions verified. Cloudflare's production
-Add environment variable dialog has the empty secret row `MUSHROOM_GITHUB_TOKEN` and
-the plain-text flag `MUSHROOM_PUBLISH_ENABLED=true`. Previews is unchecked. Nothing has
-been submitted or deployed from that dialog. The owner must enter the credential privately.
+The GitHub credential was subsequently created by the owner. Using the explicitly authorized
+existing credential, the agent completed the Cloudflare production secret/flag submission.
+The dialog closed and the token row displayed Value encrypted. No credential is included in
+repository files or this checkpoint. Earlier blank-dialog and owner-generation notes are history.
 
 All four private drafts now exist and survived a reload: Friday October 30, Tuesday November
 3, Wednesday November 4 and Thursday November 5. Their short titles/stages describe the
@@ -59,9 +61,12 @@ repository, account, WordPress or Cloudflare permissions are needed.
 
 ## Exact continuation after the handoffs
 
-1. Verify the publishing credential and `MUSHROOM_PUBLISH_ENABLED=true` through the existing
-   administrator session; confirm Publish day becomes available for a saved, ready-media day.
-2. Trace and resolve the observed `Invalid input` upload failure without assuming its cause.
+1. Publishing presence is verified. Confirm real repo writing by publishing only after the
+   supplied classroom media is imported, ready, saved and previewed.
+2. Obtain the actual Windows path to the extracted original Pics folder. The browser download
+   route to ChatGPT is blocked by browser host policy; do not retry it through another host or
+   surface. Select real local originals through the existing browser chooser, then trace the
+   `Invalid input` failure further only if it persists with valid nonempty local files.
    Then import the original supplied files into private `hrv-mushroom-journal`, using the existing
    four saved drafts. Keep species and contributor names
    optional. Use the supplied folder grouping, with provisional dates October 30 and November
