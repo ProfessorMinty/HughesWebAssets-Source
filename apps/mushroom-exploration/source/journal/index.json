@@ -24,6 +24,18 @@
         "url": "https://cdn.nlightlabs.com/hrv/mushrooms/b123a632-2ffc-4432-85a0-6f4ab45705d6/a27db1f2-e7eb-4999-a8dc-40021668d122/c639117d-8013-4f40-9fc1-dda967b82552",
         "alt": "Small brown mushroom caps emerging through the opening in the bagged growing block."
       }
+    },
+    {
+      "id": "230c3843-65bb-428a-be21-1e0063b23a95",
+      "date": "2026-11-05",
+      "title": "Growing bigger!",
+      "stage": "More developed caps are visible",
+      "revision": 8,
+      "recordPath": "apps/mushroom-exploration/source/journal/days/230c3843-65bb-428a-be21-1e0063b23a95-8-0d79a620d5b2.json",
+      "cover": {
+        "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/3666cace-e66a-42f8-aece-d63da89e55ea/3cc214dc-b44c-4aca-9a52-1efa54a07ebc",
+        "alt": "A close view of several brown mushroom caps growing from the opening in the bag."
+      }
     }
   ]
 }
