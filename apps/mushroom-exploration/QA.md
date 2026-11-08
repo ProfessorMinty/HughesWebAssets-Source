@@ -8,6 +8,11 @@ The expanded source check passes **79 tests**. Added cases cover JavaScript abse
 network failure/retry, runtime failure after partial markup, timeout and late/wrong-page
 success notifications. The immutable runtime and the already-published classroom media
 remain unchanged. The earlier JS-only review and evidence remain historical records.
+Connected Chrome verified the three-field review at commit
+`71c927c6a71a6c9105a15e39e1e2f85805cab4b6`: successful startup hides the outage and opens
+all four days with no horizontal overflow. The separate static outage review contains zero
+scripts; at 320×640 its scroll width was 305 px and the complete notice stayed visible and
+readable. The temporary viewport was reset and the temporary review tab was closed.
 
 The authenticated Mushinator imported all **15 supplied originals (43,951,642 bytes)**.
 Every saved size and versioned chunk fingerprint matched the supplied file. Twelve JPEGs

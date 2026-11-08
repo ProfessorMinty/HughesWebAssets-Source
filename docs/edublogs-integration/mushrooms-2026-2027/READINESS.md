@@ -30,7 +30,9 @@ or Hub destination. Historical Page 413 remains separate.
   days opened with 12 loaded photos and 3 native videos. Public CDN video playback advanced
   to 8.698483 seconds with no error; closing its day paused it. Journal remains first and
   optional science starts closed. Desktop, 390 px and 320 px checks showed no horizontal
-  overflow. Detailed observations: `qa/populated-browser-verification.json`.
+  overflow. The earlier populated-gallery observations remain in
+  `qa/populated-browser-verification.json`; the current three-field/no-JavaScript browser
+  follow-up is recorded at the top of `apps/mushroom-exploration/QA.md`.
 - The final source check passes all 79 tests plus syntax, source integrity and build checks.
   Four applicable Source CI runs passed at the final classroom-publication commit.
 
