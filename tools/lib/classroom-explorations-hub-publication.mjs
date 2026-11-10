@@ -49,3 +49,11 @@ export function buildHubPublication({documents,sourceCommit,publicationId,previo
  const reference=validateHubPublicationRef({id:publicationId,url:base+'publication.json',sha256:sha256Text(publicationText),snapshotId:manifest.snapshotId,sourceCommit,documentsUrl:base+'documents.json',documentsSha256:sha256Text(documentsText),stateSha256:hubDocumentHash(documents)});
  return {reference,manifest,publication,files:[{key:prefix+'documents.json',text:documentsText},{key:prefix+'manifest.json',text:manifestText},{key:prefix+'publication.json',text:publicationText}].map(f=>({...f,sha256:sha256Text(f.text)}))};
 }
+
+/** Complete isolated preview; the runtime remains owned and pinned by Source. */
+export function hubPreviewHtml(documents, previewScript, previewScriptSha256) {
+ validateHubDocuments(documents.source,documents.routes);
+ requireValue(sha256Text(previewScript)===previewScriptSha256,'Preview script digest mismatch');
+ const data=JSON.stringify({manifest:projectHubRuntime(documents.source,documents.routes),runtime:runtimeProfile}).replace(/</g,'\\u003c');
+ return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hub change preview</title></head><body><div id="hrv-classroom-explorations-root">Loading Hub preview…</div><script id="hub-preview-data" type="application/json">'+data+'</script><script>'+previewScript+'</script></body></html>';
+}
