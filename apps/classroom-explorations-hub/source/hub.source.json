@@ -161,6 +161,28 @@
           "Ocean Habitats",
           "Marine Life"
         ]
+      },
+      {
+        "id": "mushrooms-2026-2027",
+        "schoolYear": "2026-2027",
+        "title": "Mushroom Explorations",
+        "summary": "Follow our classroom mushroom-growing journal through photographs and videos, then explore more about fungi.",
+        "routeRef": "hrv-route:mushrooms-2026-2027",
+        "image": {
+          "kind": "external-url",
+          "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/3666cace-e66a-42f8-aece-d63da89e55ea/3cc214dc-b44c-4aca-9a52-1efa54a07ebc",
+          "alt": "A close view of several brown mushroom caps growing from the opening in the bag."
+        },
+        "learningPoints": [
+          "Look closely at our classroom growing block",
+          "Compare photographs and videos from different days",
+          "Explore fungi, mushroom structures, and life cycles"
+        ],
+        "tags": [
+          "Mushrooms",
+          "Classroom Journal",
+          "Observation"
+        ]
       }
     ],
     "twwl": [
@@ -259,18 +281,30 @@
         "association": {
           "kind": "hub"
         }
+      },
+      {
+        "id": "mushrooms-2026-2027-feature-video",
+        "kind": "youtube",
+        "sourceUrl": "https://youtu.be/7IZ-Fek2kzE",
+        "title": "The life of the forest. Fungi",
+        "association": {
+          "kind": "exploration",
+          "contentId": "mushrooms-2026-2027"
+        }
       }
     ],
     "composition": {
       "nodeId": "hub-node:composition",
       "currentSchoolYear": "2026-2027",
-      "currentExplorationId": "summer-bloom-adoption-project",
+      "currentExplorationId": "mushrooms-2026-2027",
       "currentTwwl": {
         "id": "hub-slot:current-twwl",
         "state": "coming-soon"
       },
-      "featuredMediaId": "welcome-classroom-explorations",
-      "pastExplorationIds": [],
+      "featuredMediaId": "mushrooms-2026-2027-feature-video",
+      "pastExplorationIds": [
+        "summer-bloom-adoption-project"
+      ],
       "pastTwwlIds": [],
       "previousYears": [
         {

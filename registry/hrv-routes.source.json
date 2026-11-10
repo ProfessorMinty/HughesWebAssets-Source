@@ -120,6 +120,15 @@
       "path": "/exploration-cats-in-the-classroom/",
       "kind": "exploration",
       "state": "published"
+    },
+    {
+      "ref": "hrv-route:mushrooms-2026-2027",
+      "wordpressPageId": 2662,
+      "wordpressParentPageId": 17,
+      "slug": "mushrooms",
+      "path": "/hub/mushrooms/",
+      "kind": "exploration",
+      "state": "published"
     }
   ]
 }
