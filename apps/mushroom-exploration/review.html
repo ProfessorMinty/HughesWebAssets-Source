@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Our mushroom-growing story · Draft review</title>
+  <link rel="stylesheet" href="./src/exhibit.css">
+  <link rel="stylesheet" href="./src/host-compat.css">
+  <style>
+    body{margin:0;background:#092f29}
+    #content.site-content.container{width:1170px;max-width:calc(100% - 30px);margin:0 auto}
+    article.page{padding:45px}
+    #hrv-mushroom-exploration-root:not(.hrv-mushrooms){padding:28px;font:18px/1.6 system-ui,sans-serif;color:#f6e6c2}
+  </style>
+</head>
+<body>
+  <div id="page">
+    <div id="content" class="site-content container">
+      <div id="primary" class="content-area">
+        <main id="main" class="site-main">
+          <article class="page"><div class="entry-content">
+            <div id="hrv-mushroom-exploration-root" role="region" aria-label="Mushroom exploration exhibit">
+              <p>Opening the mushroom exhibit…</p>
+            </div>
+          </div></article>
+        </main>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      // Review entry only. The live bootstrap still refuses draft source.
+      const root=document.getElementById('hrv-mushroom-exploration-root');
+      const styles=Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+      const abort=new AbortController();let finished=false,controller;
+      function fail(){
+        if(finished)return;finished=true;clearTimeout(deadline);abort.abort();
+        controller?.destroy();styles.forEach(link=>link.remove());
+        root.dataset.hrvState='unavailable';
+        root.replaceChildren(Object.assign(document.createElement('p'),{textContent:'The mushroom exhibit could not open. Please try again later.'}));
+      }
+      const deadline=setTimeout(fail,12000);
+      function styleReady(link){
+        if(link.sheet)return Promise.resolve();
+        return new Promise((resolve,reject)=>{
+          function cleanup(){link.removeEventListener('load',loaded);link.removeEventListener('error',failed);abort.signal.removeEventListener('abort',failed);}
+          function loaded(){cleanup();resolve();}
+          function failed(){cleanup();reject(new Error('Review stylesheet unavailable'));}
+          link.addEventListener('load',loaded);link.addEventListener('error',failed);abort.signal.addEventListener('abort',failed,{once:true});
+        });
+      }
+      async function source(){
+        const response=await fetch(new URL('./source/mushrooms.source.json',location.href),{credentials:'omit',redirect:'error',signal:abort.signal});
+        if(!response.ok)throw new Error('Source unavailable');
+        const text=await response.text();
+        if(new TextEncoder().encode(text).byteLength>200000)throw new Error('Source exceeds review bound');
+        return JSON.parse(text);
+      }
+      Promise.all([import('./src/runtime.js'),source(),...styles.map(styleReady)]).then(([runtime,data])=>{
+        if(finished)return;
+        controller=runtime.mountMushroomExhibit(root,data,{allowDraft:true});
+        finished=true;clearTimeout(deadline);
+      }).catch(fail);
+    })();
+  </script>
+</body>
+</html>

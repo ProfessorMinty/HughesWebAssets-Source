@@ -76,7 +76,8 @@ const expectedManagedChildren = [
   ["hrv-route:russian-winter", 6, 1043, "twwl-traditions-of-russian-winter", "/hub/twwl-traditions-of-russian-winter/", "twwl"],
   ["hrv-route:tubers", 7, 2392, "twwl-botany-tubers", "/hub/twwl-botany-tubers/", "twwl"],
   ["hrv-route:zinnia", 8, 2463, "exploration-zinnia-page", "/hub/exploration-zinnia-page/", "exploration"],
-  ["hrv-route:archive-2025-2026", 9, 2627, "archive-2025-2026", "/hub/archive-2025-2026/", "archive"]
+  ["hrv-route:archive-2025-2026", 9, 2627, "archive-2025-2026", "/hub/archive-2025-2026/", "archive"],
+  ["hrv-route:mushrooms-2026-2027", undefined, 2662, "mushrooms", "/hub/mushrooms/", "exploration"]
 ];
 
 for (const [ref, order, pageId, slug, routePath, kind] of expectedManagedChildren) {

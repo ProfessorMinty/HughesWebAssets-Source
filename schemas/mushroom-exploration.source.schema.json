@@ -1,0 +1,4066 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mushroom exhibit source scaffold",
+  "description": "Generated from the owning runtime contract. Semantic/publication guards also run in validateMushroomSource.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "page",
+    "data"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "routeRef"
+      ],
+      "properties": {
+        "id": {
+          "const": "hrv-page:mushrooms-2026-2027"
+        },
+        "type": {
+          "const": "mushroom-exploration"
+        },
+        "routeRef": {
+          "const": "hrv-route:mushrooms-2026-2027"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ui",
+        "meta",
+        "sources",
+        "blocks"
+      ],
+      "properties": {
+        "ui": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "brand",
+            "navLabel",
+            "skipLabel",
+            "noticePrefix",
+            "wordsTitle",
+            "sourcesTitle",
+            "photoClose",
+            "photoFallbackTitle",
+            "photoEnlargeTemplate",
+            "photographLabel",
+            "photoZoom",
+            "photoChangeSuffix",
+            "heroArtworkLabel",
+            "partGroup",
+            "partCountTemplate",
+            "partNameTemplate",
+            "anatomyModelNote",
+            "chooseActivity",
+            "chooseActivityTemplate",
+            "nextTemplate",
+            "exhibitPrefix",
+            "jobPrefix",
+            "roleGroup",
+            "cutawayGroup",
+            "realFootage",
+            "captionTrack",
+            "bridgeCap",
+            "bridgeGill",
+            "bridgeSpore",
+            "quizEyebrow",
+            "footerLabel",
+            "footerLink",
+            "journalHeading",
+            "journalBody",
+            "narration"
+          ],
+          "properties": {
+            "brand": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "navLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "skipLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "noticePrefix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "wordsTitle": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "sourcesTitle": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoClose": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoFallbackTitle": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoEnlargeTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photographLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoZoom": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "photoChangeSuffix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "heroArtworkLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "partGroup": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "partCountTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "partNameTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "anatomyModelNote": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "chooseActivity": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "chooseActivityTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "nextTemplate": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "exhibitPrefix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "jobPrefix": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "roleGroup": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "cutawayGroup": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "realFootage": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "captionTrack": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "bridgeCap": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "bridgeGill": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "bridgeSpore": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "quizEyebrow": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "footerLabel": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "footerLink": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "journalHeading": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "journalBody": {
+              "type": "string",
+              "maxLength": 600
+            },
+            "narration": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "read",
+                "stop",
+                "options",
+                "voiceLabel",
+                "ready",
+                "reading",
+                "complete",
+                "stopped",
+                "unavailable",
+                "error",
+                "starting",
+                "none",
+                "voiceHelp"
+              ],
+              "properties": {
+                "read": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "stop": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "options": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "voiceLabel": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "ready": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "reading": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "complete": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "stopped": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "unavailable": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "error": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "starting": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "none": {
+                  "type": "string",
+                  "maxLength": 600
+                },
+                "voiceHelp": {
+                  "type": "string",
+                  "maxLength": 600
+                }
+              }
+            }
+          }
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "schoolYear",
+            "state",
+            "researchStatus",
+            "layout",
+            "designViewport"
+          ],
+          "properties": {
+            "schoolYear": {
+              "const": "2026-2027"
+            },
+            "state": {
+              "enum": [
+                "scaffold",
+                "review-ready"
+              ]
+            },
+            "researchStatus": {
+              "enum": [
+                "pending",
+                "reviewed"
+              ]
+            },
+            "layout": {
+              "const": "viewport-breakout"
+            },
+            "designViewport": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "width",
+                "height"
+              ],
+              "properties": {
+                "width": {
+                  "const": 1920
+                },
+                "height": {
+                  "const": 911
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 80,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "title",
+              "url"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^mushroom-source:"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              }
+            }
+          }
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 12,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "media",
+                  "entry"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "hero"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "media": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "alt",
+                          "caption"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "image"
+                          },
+                          "url": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
+                          },
+                          "alt": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "caption": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "entry": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "exploreLabel",
+                      "journalLabel",
+                      "journalReadyLabel",
+                      "note"
+                    ],
+                    "properties": {
+                      "exploreLabel": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "journalLabel": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "journalReadyLabel": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "note": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "station",
+                  "cards"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "family"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "station": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "title",
+                      "intro"
+                    ],
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "intro": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "cards": {
+                    "type": "array",
+                    "maxItems": 6,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "title",
+                        "visual",
+                        "media"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "visual": {
+                          "enum": [
+                            "mushroom",
+                            "mould",
+                            "yeast",
+                            "leaf",
+                            "tree",
+                            "bread"
+                          ]
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "media",
+                  "detailMedia",
+                  "hotspots"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "anatomy"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "media": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "alt",
+                          "caption"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "image"
+                          },
+                          "url": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
+                          },
+                          "alt": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "caption": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "detailMedia": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "alt",
+                          "caption"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "image"
+                          },
+                          "url": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
+                          },
+                          "alt": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "caption": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "hotspots": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "label",
+                        "x",
+                        "y"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "label": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "x": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100
+                        },
+                        "y": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "growth",
+                  "media",
+                  "views"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "cutaway"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "growth": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "mode",
+                      "label",
+                      "initial",
+                      "playing",
+                      "finished",
+                      "lessMotion",
+                      "controls",
+                      "steps",
+                      "labels"
+                    ],
+                    "properties": {
+                      "id": {
+                        "const": "mushroom-process:growth"
+                      },
+                      "mode": {
+                        "const": "growth"
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "initial": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "lessMotion": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "replay",
+                          "pause",
+                          "resume",
+                          "step",
+                          "reset",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "step": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "reset": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "steps": {
+                        "type": "array",
+                        "maxItems": 4,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 4
+                      },
+                      "labels": {
+                        "type": "array",
+                        "maxItems": 0,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "text"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "text": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "minItems": 0
+                      }
+                    }
+                  },
+                  "media": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "alt",
+                          "caption"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "image"
+                          },
+                          "url": {
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "format": "uri",
+                                "pattern": "^https://"
+                              },
+                              {
+                                "enum": [
+                                  "asset:mushroom-photo:blue-mycena",
+                                  "asset:mushroom-photo:rhizopus-macro",
+                                  "asset:mushroom-photo:yeast-dic",
+                                  "asset:mushroom-photo:gill-macro",
+                                  "asset:mushroom-photo:mycelium-wood",
+                                  "asset:mushroom-photo:glowing-panellus"
+                                ]
+                              }
+                            ]
+                          },
+                          "alt": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 500
+                          },
+                          "caption": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "views": {
+                    "type": "array",
+                    "maxItems": 2,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "label"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "label": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        }
+                      }
+                    },
+                    "minItems": 2
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "station",
+                  "launch",
+                  "wind",
+                  "cycle",
+                  "recording",
+                  "activities",
+                  "steps",
+                  "video",
+                  "plumeVideo"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "lifecycle"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "station": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "title",
+                      "intro"
+                    ],
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "maxLength": 140,
+                        "minLength": 1
+                      },
+                      "intro": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "launch": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "mode",
+                      "label",
+                      "initial",
+                      "playing",
+                      "finished",
+                      "lessMotion",
+                      "controls",
+                      "steps",
+                      "labels"
+                    ],
+                    "properties": {
+                      "id": {
+                        "const": "mushroom-process:launch"
+                      },
+                      "mode": {
+                        "const": "launch"
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "initial": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "lessMotion": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "replay",
+                          "pause",
+                          "resume",
+                          "step",
+                          "reset",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "step": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "reset": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "steps": {
+                        "type": "array",
+                        "maxItems": 3,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 3
+                      },
+                      "labels": {
+                        "type": "array",
+                        "maxItems": 4,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "text"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "text": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "minItems": 4
+                      }
+                    }
+                  },
+                  "wind": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "id",
+                      "mode",
+                      "label",
+                      "initial",
+                      "playing",
+                      "finished",
+                      "lessMotion",
+                      "controls",
+                      "steps",
+                      "labels"
+                    ],
+                    "properties": {
+                      "id": {
+                        "const": "mushroom-process:wind"
+                      },
+                      "mode": {
+                        "const": "wind"
+                      },
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "initial": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "lessMotion": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "replay",
+                          "pause",
+                          "resume",
+                          "step",
+                          "reset",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "step": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "reset": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "steps": {
+                        "type": "array",
+                        "maxItems": 3,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 3
+                      },
+                      "labels": {
+                        "type": "array",
+                        "maxItems": 6,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "text"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "text": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            }
+                          }
+                        },
+                        "minItems": 6
+                      }
+                    }
+                  },
+                  "cycle": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "label",
+                      "returnLabel",
+                      "scopeNote"
+                    ],
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "returnLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "scopeNote": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "recording": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "play",
+                      "pause",
+                      "replay",
+                      "fullscreen",
+                      "paused",
+                      "playing",
+                      "finished",
+                      "error",
+                      "retry",
+                      "fullscreenError",
+                      "silentMicroscope",
+                      "silentPuffball"
+                    ],
+                    "properties": {
+                      "play": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "pause": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "replay": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "fullscreen": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "paused": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "playing": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "finished": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "error": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "retry": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "fullscreenError": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "silentMicroscope": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "silentPuffball": {
+                        "type": "string",
+                        "maxLength": 600
+                      }
+                    }
+                  },
+                  "activities": {
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "view",
+                        "label",
+                        "title",
+                        "intro",
+                        "learning",
+                        "sourceRefs"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "view": {
+                          "enum": [
+                            "launch",
+                            "wind",
+                            "puffball",
+                            "cycle"
+                          ]
+                        },
+                        "label": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "intro": {
+                          "type": "string",
+                          "maxLength": 1600
+                        },
+                        "learning": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "action",
+                            "observe",
+                            "safety",
+                            "teacher",
+                            "words"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "observe": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "safety": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "teacher": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "words": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                  "id",
+                                  "term",
+                                  "pronunciation",
+                                  "body",
+                                  "sourceRefs"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                  },
+                                  "term": {
+                                    "type": "string",
+                                    "maxLength": 140,
+                                    "minLength": 1
+                                  },
+                                  "pronunciation": {
+                                    "type": "string",
+                                    "maxLength": 120
+                                  },
+                                  "body": {
+                                    "type": "string",
+                                    "maxLength": 6000
+                                  },
+                                  "sourceRefs": {
+                                    "type": "array",
+                                    "maxItems": 12,
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "minItems": 4
+                  },
+                  "steps": {
+                    "type": "array",
+                    "maxItems": 4,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "title",
+                        "media"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "minItems": 4
+                  },
+                  "video": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "title",
+                          "caption",
+                          "sourceRefs"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "video"
+                          },
+                          "url": {
+                            "enum": [
+                              "asset:mushroom-video:armillaria-release",
+                              "asset:mushroom-video:puffball-cloud"
+                            ]
+                          },
+                          "title": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "caption": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 600
+                          },
+                          "sourceRefs": {
+                            "type": "array",
+                            "maxItems": 12,
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "plumeVideo": {
+                    "anyOf": [
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "kind",
+                          "url",
+                          "title",
+                          "caption",
+                          "sourceRefs"
+                        ],
+                        "properties": {
+                          "kind": {
+                            "const": "video"
+                          },
+                          "url": {
+                            "enum": [
+                              "asset:mushroom-video:armillaria-release",
+                              "asset:mushroom-video:puffball-cloud"
+                            ]
+                          },
+                          "title": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "caption": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 600
+                          },
+                          "sourceRefs": {
+                            "type": "array",
+                            "maxItems": 12,
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "cards"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "roles"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "cards": {
+                    "type": "array",
+                    "maxItems": 3,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "title",
+                        "visual",
+                        "media",
+                        "learning",
+                        "process"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "visual": {
+                          "enum": [
+                            "leaf",
+                            "tree",
+                            "bread"
+                          ]
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "learning": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "action",
+                            "observe",
+                            "safety",
+                            "teacher",
+                            "words"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "observe": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "safety": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "teacher": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "words": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                  "id",
+                                  "term",
+                                  "pronunciation",
+                                  "body",
+                                  "sourceRefs"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                  },
+                                  "term": {
+                                    "type": "string",
+                                    "maxLength": 140,
+                                    "minLength": 1
+                                  },
+                                  "pronunciation": {
+                                    "type": "string",
+                                    "maxLength": 120
+                                  },
+                                  "body": {
+                                    "type": "string",
+                                    "maxLength": 6000
+                                  },
+                                  "sourceRefs": {
+                                    "type": "array",
+                                    "maxItems": 12,
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "process": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "id",
+                                "mode",
+                                "label",
+                                "initial",
+                                "playing",
+                                "finished",
+                                "lessMotion",
+                                "controls",
+                                "steps",
+                                "labels"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "const": "mushroom-process:recycle"
+                                },
+                                "mode": {
+                                  "const": "recycle"
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "initial": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "playing": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "finished": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "lessMotion": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "controls": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "required": [
+                                    "play",
+                                    "replay",
+                                    "pause",
+                                    "resume",
+                                    "step",
+                                    "reset",
+                                    "motion"
+                                  ],
+                                  "properties": {
+                                    "play": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "replay": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "pause": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "resume": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "reset": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "motion": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    }
+                                  }
+                                },
+                                "steps": {
+                                  "type": "array",
+                                  "maxItems": 3,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "label",
+                                      "body"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "maxLength": 600
+                                      }
+                                    }
+                                  },
+                                  "minItems": 3
+                                },
+                                "labels": {
+                                  "type": "array",
+                                  "maxItems": 5,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "text"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      }
+                                    }
+                                  },
+                                  "minItems": 5
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "id",
+                                "mode",
+                                "label",
+                                "initial",
+                                "playing",
+                                "finished",
+                                "lessMotion",
+                                "controls",
+                                "steps",
+                                "labels"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "const": "mushroom-process:trade"
+                                },
+                                "mode": {
+                                  "const": "trade"
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "initial": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "playing": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "finished": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "lessMotion": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "controls": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "required": [
+                                    "play",
+                                    "replay",
+                                    "pause",
+                                    "resume",
+                                    "step",
+                                    "reset",
+                                    "motion"
+                                  ],
+                                  "properties": {
+                                    "play": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "replay": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "pause": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "resume": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "reset": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "motion": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    }
+                                  }
+                                },
+                                "steps": {
+                                  "type": "array",
+                                  "maxItems": 2,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "label",
+                                      "body"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "maxLength": 600
+                                      }
+                                    }
+                                  },
+                                  "minItems": 2
+                                },
+                                "labels": {
+                                  "type": "array",
+                                  "maxItems": 6,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "text"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      }
+                                    }
+                                  },
+                                  "minItems": 6
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "id",
+                                "mode",
+                                "label",
+                                "initial",
+                                "playing",
+                                "finished",
+                                "lessMotion",
+                                "controls",
+                                "steps",
+                                "labels"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "const": "mushroom-process:dough"
+                                },
+                                "mode": {
+                                  "const": "dough"
+                                },
+                                "label": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "initial": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "playing": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "finished": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "lessMotion": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                },
+                                "controls": {
+                                  "type": "object",
+                                  "additionalProperties": false,
+                                  "required": [
+                                    "play",
+                                    "replay",
+                                    "pause",
+                                    "resume",
+                                    "step",
+                                    "reset",
+                                    "motion"
+                                  ],
+                                  "properties": {
+                                    "play": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "replay": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "pause": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "resume": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "step": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "reset": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    },
+                                    "motion": {
+                                      "type": "string",
+                                      "maxLength": 140,
+                                      "minLength": 1
+                                    }
+                                  }
+                                },
+                                "steps": {
+                                  "type": "array",
+                                  "maxItems": 3,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "label",
+                                      "body"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "label": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      },
+                                      "body": {
+                                        "type": "string",
+                                        "maxLength": 600
+                                      }
+                                    }
+                                  },
+                                  "minItems": 3
+                                },
+                                "labels": {
+                                  "type": "array",
+                                  "maxItems": 3,
+                                  "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "required": [
+                                      "id",
+                                      "text"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                      },
+                                      "text": {
+                                        "type": "string",
+                                        "maxLength": 140,
+                                        "minLength": 1
+                                      }
+                                    }
+                                  },
+                                  "minItems": 3
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "experiments",
+                  "music"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "lab"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "experiments": {
+                    "type": "array",
+                    "maxItems": 2,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "title",
+                        "label",
+                        "mode",
+                        "media",
+                        "learning"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "label": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "mode": {
+                          "enum": [
+                            "glow",
+                            "sound"
+                          ]
+                        },
+                        "media": {
+                          "anyOf": [
+                            {
+                              "type": "null"
+                            },
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "kind",
+                                "url",
+                                "alt",
+                                "caption"
+                              ],
+                              "properties": {
+                                "kind": {
+                                  "const": "image"
+                                },
+                                "url": {
+                                  "anyOf": [
+                                    {
+                                      "type": "string",
+                                      "format": "uri",
+                                      "pattern": "^https://"
+                                    },
+                                    {
+                                      "enum": [
+                                        "asset:mushroom-photo:blue-mycena",
+                                        "asset:mushroom-photo:rhizopus-macro",
+                                        "asset:mushroom-photo:yeast-dic",
+                                        "asset:mushroom-photo:gill-macro",
+                                        "asset:mushroom-photo:mycelium-wood",
+                                        "asset:mushroom-photo:glowing-panellus"
+                                      ]
+                                    }
+                                  ]
+                                },
+                                "alt": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 500
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "maxLength": 600
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "learning": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "action",
+                            "observe",
+                            "safety",
+                            "teacher",
+                            "words"
+                          ],
+                          "properties": {
+                            "action": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "observe": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "safety": {
+                              "type": "string",
+                              "maxLength": 600
+                            },
+                            "teacher": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "words": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": [
+                                  "id",
+                                  "term",
+                                  "pronunciation",
+                                  "body",
+                                  "sourceRefs"
+                                ],
+                                "properties": {
+                                  "id": {
+                                    "type": "string",
+                                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                                  },
+                                  "term": {
+                                    "type": "string",
+                                    "maxLength": 140,
+                                    "minLength": 1
+                                  },
+                                  "pronunciation": {
+                                    "type": "string",
+                                    "maxLength": 120
+                                  },
+                                  "body": {
+                                    "type": "string",
+                                    "maxLength": 6000
+                                  },
+                                  "sourceRefs": {
+                                    "type": "array",
+                                    "maxItems": 12,
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "music": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "demoRetry",
+                      "demoLoading",
+                      "demoReady",
+                      "demoPlaying",
+                      "demoPaused",
+                      "demoEnded",
+                      "demoBuffering",
+                      "demoBlocked",
+                      "demoError",
+                      "demoTimeout",
+                      "demoUnavailable",
+                      "instrumentTitle",
+                      "detailsTitle",
+                      "noteStripLabel",
+                      "loadDemo",
+                      "closeDemo",
+                      "demoPlayerTitle",
+                      "demoFallback",
+                      "chainLabel",
+                      "limits",
+                      "exampleLabel",
+                      "mapping",
+                      "graphLabel",
+                      "high",
+                      "low",
+                      "time",
+                      "noteTemplate",
+                      "observationTitle",
+                      "demoTitle",
+                      "demoBody",
+                      "demoLinkLabel",
+                      "demoNote",
+                      "chain",
+                      "instruments",
+                      "controls",
+                      "messages",
+                      "answers",
+                      "demoSourceRef"
+                    ],
+                    "properties": {
+                      "demoRetry": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoLoading": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoReady": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoPlaying": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoPaused": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoEnded": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoBuffering": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoBlocked": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoError": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoTimeout": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoUnavailable": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "instrumentTitle": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "detailsTitle": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "noteStripLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "loadDemo": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "closeDemo": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoPlayerTitle": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoFallback": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "chainLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "limits": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "exampleLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "mapping": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "graphLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "high": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "low": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "time": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "noteTemplate": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observationTitle": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoTitle": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoBody": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoLinkLabel": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "demoNote": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "chain": {
+                        "type": "array",
+                        "maxItems": 4,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "stage",
+                            "title",
+                            "body"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "stage": {
+                              "enum": [
+                                "fungus",
+                                "sensor",
+                                "computer",
+                                "instrument"
+                              ]
+                            },
+                            "title": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 4
+                      },
+                      "instruments": {
+                        "type": "array",
+                        "maxItems": 2,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "mode",
+                            "label",
+                            "description"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "mode": {
+                              "enum": [
+                                "flute",
+                                "bell"
+                              ]
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "description": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 2
+                      },
+                      "controls": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "play",
+                          "pause",
+                          "resume",
+                          "replay",
+                          "stop",
+                          "volume",
+                          "previous",
+                          "next",
+                          "pattern",
+                          "motion"
+                        ],
+                        "properties": {
+                          "play": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pause": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "resume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "replay": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "stop": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "volume": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "previous": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "next": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "pattern": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          },
+                          "motion": {
+                            "type": "string",
+                            "maxLength": 140,
+                            "minLength": 1
+                          }
+                        }
+                      },
+                      "messages": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "ready",
+                          "playing",
+                          "starting",
+                          "paused",
+                          "complete",
+                          "error",
+                          "silent",
+                          "pattern",
+                          "lessMotion"
+                        ],
+                        "properties": {
+                          "ready": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "playing": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "starting": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "paused": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "complete": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "error": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "silent": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "pattern": {
+                            "type": "string",
+                            "maxLength": 600
+                          },
+                          "lessMotion": {
+                            "type": "string",
+                            "maxLength": 600
+                          }
+                        }
+                      },
+                      "answers": {
+                        "type": "array",
+                        "maxItems": 2,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "label",
+                            "correct",
+                            "feedback"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "label": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "correct": {
+                              "type": "boolean"
+                            },
+                            "feedback": {
+                              "type": "string",
+                              "maxLength": 600
+                            }
+                          }
+                        },
+                        "minItems": 2
+                      },
+                      "demoSourceRef": {
+                        "const": "mushroom-source:plantwave-demo"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "cards",
+                  "questions"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "facts"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "cards": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "body",
+                        "sourceRefs",
+                        "title"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "body": {
+                          "type": "string",
+                          "maxLength": 6000
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "title": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  },
+                  "questions": {
+                    "type": "array",
+                    "maxItems": 6,
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "id",
+                        "prompt",
+                        "sourceRefs",
+                        "choices"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                        },
+                        "prompt": {
+                          "type": "string",
+                          "maxLength": 140,
+                          "minLength": 1
+                        },
+                        "sourceRefs": {
+                          "type": "array",
+                          "maxItems": 12,
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "choices": {
+                          "type": "array",
+                          "maxItems": 4,
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                              "id",
+                              "label",
+                              "correct",
+                              "feedback"
+                            ],
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                              },
+                              "label": {
+                                "type": "string",
+                                "maxLength": 140,
+                                "minLength": 1
+                              },
+                              "correct": {
+                                "type": "boolean"
+                              },
+                              "feedback": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 600
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "type",
+                  "label",
+                  "eyebrow",
+                  "title",
+                  "intro",
+                  "sourceRefs",
+                  "learning",
+                  "currentStage",
+                  "entries"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                  },
+                  "type": {
+                    "const": "journal"
+                  },
+                  "label": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "eyebrow": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  },
+                  "title": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "minLength": 1
+                  },
+                  "intro": {
+                    "type": "string",
+                    "maxLength": 1600
+                  },
+                  "sourceRefs": {
+                    "type": "array",
+                    "maxItems": 12,
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "action",
+                      "observe",
+                      "safety",
+                      "teacher",
+                      "words"
+                    ],
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "observe": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "safety": {
+                        "type": "string",
+                        "maxLength": 600
+                      },
+                      "teacher": {
+                        "type": "string",
+                        "maxLength": 6000
+                      },
+                      "words": {
+                        "type": "array",
+                        "maxItems": 12,
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "id",
+                            "term",
+                            "pronunciation",
+                            "body",
+                            "sourceRefs"
+                          ],
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "pattern": "^mushroom-[a-z]+:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                            },
+                            "term": {
+                              "type": "string",
+                              "maxLength": 140,
+                              "minLength": 1
+                            },
+                            "pronunciation": {
+                              "type": "string",
+                              "maxLength": 120
+                            },
+                            "body": {
+                              "type": "string",
+                              "maxLength": 6000
+                            },
+                            "sourceRefs": {
+                              "type": "array",
+                              "maxItems": 12,
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "currentStage": {
+                    "type": "null"
+                  },
+                  "entries": {
+                    "type": "array",
+                    "maxItems": 0
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

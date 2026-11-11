@@ -695,6 +695,7 @@
   z-index: 2;
   grid-row: 1;
   grid-column: 2;
+  min-width: 0;
   max-width: 700px;
 }
 
@@ -735,6 +736,7 @@
 
 .hrv-classroom-hub .current-title {
   margin: 1.28px 0 8px;
+  overflow-wrap: anywhere;
   color: #f8fff9;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(48px, 3.15vw, 56.8px);
@@ -1886,7 +1888,7 @@
   .hrv-classroom-hub .welcome-theater-card,
   .hrv-classroom-hub .current-exploration-card,
   .hrv-classroom-hub .current-twwl-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .hrv-classroom-hub .hub-hero-card,
@@ -3763,7 +3765,7 @@
   .hrv-classroom-hub {
     --text-heading-small: clamp(28px, 8.2vw, 32px);
     --text-heading-medium: clamp(36px, 11vw, 46px);
-    --text-heading-large: clamp(42px, 12.4vw, 48px);
+    --text-heading-large: clamp(36px, 10.4vw, 48px);
   }
 }
 

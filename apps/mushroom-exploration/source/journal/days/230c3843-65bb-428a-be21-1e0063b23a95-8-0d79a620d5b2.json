@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "230c3843-65bb-428a-be21-1e0063b23a95",
+  "date": "2026-11-05",
+  "title": "Growing bigger!",
+  "stage": "More developed caps are visible",
+  "mushroomType": "",
+  "coverMediaId": "3666cace-e66a-42f8-aece-d63da89e55ea",
+  "mediaIds": [
+    "3666cace-e66a-42f8-aece-d63da89e55ea",
+    "8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51",
+    "5191ab04-e91d-44ae-901c-96eff9641b22",
+    "5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e",
+    "dceb148f-7b0c-4592-aa5e-0aa97f089726"
+  ],
+  "cards": [],
+  "mediaDetails": {
+    "3666cace-e66a-42f8-aece-d63da89e55ea": {
+      "caption": "",
+      "alt": "A close view of several brown mushroom caps growing from the opening in the bag."
+    },
+    "8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51": {
+      "caption": "",
+      "alt": "The growing block standing in its cardboard box, with mushroom caps visible near the bottom."
+    },
+    "5191ab04-e91d-44ae-901c-96eff9641b22": {
+      "caption": "",
+      "alt": "The lower part of the bagged growing block, with a cluster of brown mushroom caps."
+    },
+    "5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e": {
+      "caption": "",
+      "alt": "A short classroom video of the mushroom-growing block and its developing mushrooms."
+    },
+    "dceb148f-7b0c-4592-aa5e-0aa97f089726": {
+      "caption": "",
+      "alt": "Another short classroom video of the growing mushrooms."
+    }
+  },
+  "media": [
+    {
+      "id": "3666cace-e66a-42f8-aece-d63da89e55ea",
+      "kind": "image",
+      "caption": "",
+      "alt": "A close view of several brown mushroom caps growing from the opening in the bag.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/3666cace-e66a-42f8-aece-d63da89e55ea/37c6e245-cb32-43df-8b9e-94eae8f3fc21",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/3666cace-e66a-42f8-aece-d63da89e55ea/3cc214dc-b44c-4aca-9a52-1efa54a07ebc"
+    },
+    {
+      "id": "8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51",
+      "kind": "image",
+      "caption": "",
+      "alt": "The growing block standing in its cardboard box, with mushroom caps visible near the bottom.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51/1366a7b9-7c77-4632-b85c-868e11987b1b",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/8ca77de0-e1bd-48ce-b4ea-f3f1aff1da51/e708a8c1-21dc-42be-b188-7fbacb6d993e"
+    },
+    {
+      "id": "5191ab04-e91d-44ae-901c-96eff9641b22",
+      "kind": "image",
+      "caption": "",
+      "alt": "The lower part of the bagged growing block, with a cluster of brown mushroom caps.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5191ab04-e91d-44ae-901c-96eff9641b22/ba3c0011-a51e-4472-ac5d-63fdd29e4d50",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5191ab04-e91d-44ae-901c-96eff9641b22/65b92f0c-2bc0-4cf3-9462-afe202b4aa29"
+    },
+    {
+      "id": "5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e",
+      "kind": "video",
+      "caption": "",
+      "alt": "A short classroom video of the mushroom-growing block and its developing mushrooms.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e/f85efaf8-4ce5-43fc-af73-5ea6003dca8e",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/5cae1a5a-4e26-4239-8d71-ca82a8b5ad4e/0588fa48-b73d-40c3-a102-2ef1f9696e9d"
+    },
+    {
+      "id": "dceb148f-7b0c-4592-aa5e-0aa97f089726",
+      "kind": "video",
+      "caption": "",
+      "alt": "Another short classroom video of the growing mushrooms.",
+      "url": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/dceb148f-7b0c-4592-aa5e-0aa97f089726/f5fbd876-5492-4566-9e10-d8b41ecedb66",
+      "thumbnailUrl": "https://cdn.nlightlabs.com/hrv/mushrooms/230c3843-65bb-428a-be21-1e0063b23a95/dceb148f-7b0c-4592-aa5e-0aa97f089726/badcfbe0-d8c3-4c83-b224-a3413b80200e"
+    }
+  ],
+  "revision": 8
+}

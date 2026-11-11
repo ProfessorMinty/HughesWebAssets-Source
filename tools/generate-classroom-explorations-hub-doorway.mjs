@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import { projectHubRuntime } from './lib/classroom-explorations-hub-contract.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const [commit, runtime, publicationId, evidencePath, target = 'review', ...extra] = process.argv.slice(2);
@@ -66,10 +67,9 @@ if (target === 'production') {
   const manifestUrl = new URL(publication.content.manifest.path, `${base}publications/${publicationId}/publication.json`).href;
   assert.ok(manifestUrl.startsWith(base));
   const manifest = JSON.parse(committedFile(`${prefix}${manifestUrl.slice(base.length)}`));
-  assert.equal(manifest.page.currentSchoolYear, '2026-2027');
-  assert.deepEqual(manifest.galleries.pastExplorations, []);
-  assert.deepEqual(manifest.galleries.pastTwwl, []);
-  assert.equal(manifest.archives.length, 1);
+  const source = JSON.parse(await readFile(resolve(root, 'apps/classroom-explorations-hub/source/hub.source.json'), 'utf8'));
+  const routes = JSON.parse(await readFile(resolve(root, 'registry/hrv-routes.source.json'), 'utf8'));
+  assert.deepEqual(manifest, projectHubRuntime(source, routes), 'The production publication must exactly match the current approved authoring and routes.');
   const beforeRoot = resolve(root, 'evidence/classroom-explorations-hub/page17-migration-2026-10-10');
   const preservation = JSON.parse(await readFile(resolve(beforeRoot, 'page17-preservation.json'), 'utf8'));
   assert.equal(preservation.wordpressPageId, 17);

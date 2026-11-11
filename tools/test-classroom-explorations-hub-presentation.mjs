@@ -44,12 +44,12 @@ const originalFramePaths = {
   frameBottomRight: "apps/classroom-explorations-hub/source-assets/banner-frame-originals/BottomRightHubBannerFrame.png"
 };
 
-assert.equal(sha256(sourcePath), "19a25e5da4ee5479a764315de9860318529f022e5812cc864c764c2f73ca63d9");
-assert.equal(sha256(routesPath), "29ab9bc8262b128b2222d4a115b3906701f0d5747f6d3ebcab059680204c1a73");
+assert.equal(sha256(sourcePath), "e4233a9ce5c6728bb45b2238adba573a4dfce5c3c67466415a2b2a679bd7c0fa");
+assert.equal(sha256(routesPath), "c3e2a56c1d38d811f4dcf91090445b92f85f8a404cfaf244bd908df9da9a95a7");
 assert.equal(sha256(controlPath), "79a36da2221553e28a559d68d710b2cd33556b3f71e31e92dde71046cb8d0880");
 assert.equal(sha256(bootstrapPath), "86c709f9254791884a52fe8031a8e2d23d29a6a61d34964ee8b39594e36fc159");
-assert.equal(sha256(runtimePath), "d7242540de3b9f248d9d2f188a9a7256ff16ba3d89e1e7bd8886c6a5581f1081");
-assert.equal(sha256(cssPath), "4878f856ca379a7b9771a0fc6cdd4ffca1a18808221d49c494f3fbed8e85e940");
+assert.equal(sha256(runtimePath), "1634ed8c9e596b42bc534538c5cfd5966906f40ec191b4400835e074dc43b662");
+assert.equal(sha256(cssPath), "3b7e12239c8ba5be2962a04d5ce86addb7381d53c00999e1fe2a0539950daae2");
 assert.equal(sha256(hostCompatPath), "77f631c75050e5215b01b3c79d929427891b77dd150efe4237066eb6226905ce");
 assert.deepEqual(
   Object.fromEntries(Object.entries(artworkPaths).map(([key, relativePath]) => [key, sha256(relativePath)])),
@@ -1058,6 +1058,14 @@ runtime.unmountClassroomExplorationsHub(mount);
 assert.equal(mount.children.length, 0);
 runtime.mountClassroomExplorationsHub(mount, manifest, runtimeAssets);
 assert.equal(mount.querySelectorAll(".hub-museum").length, 1);
+runtime.unmountClassroomExplorationsHub(mount);
+
+const currentManifest = projectHubRuntime(source, routes);
+runtime.mountClassroomExplorationsHub(mount, currentManifest, runtimeAssets);
+assert.equal(mount.querySelector('.current-caption').textContent, 'Mushroom Explorations • Current Exhibit');
+assert.equal(mount.querySelector('.exploration-action').href, 'https://rmhughes.edublogs.org/hub/mushrooms/');
+assert.deepEqual(currentManifest.galleries.pastExplorations.map(item=>item.id), ['summer-bloom-adoption-project']);
+assert.equal(currentManifest.current.featuredMedia.embedUrl, 'https://www.youtube-nocookie.com/embed/7IZ-Fek2kzE');
 runtime.unmountClassroomExplorationsHub(mount);
 
 console.log("[hub presentation] preserved source/routes/control hashes passed");

@@ -162,6 +162,8 @@ const expectedManagedChildren = [
   ]
 ];
 
+expectedManagedChildren.push(["hrv-route:mushrooms-2026-2027", undefined, 2662, "mushrooms", "/hub/mushrooms/", "exploration"]);
+
 for (const [ref, order, pageId, slug, routePath, kind] of
   expectedManagedChildren) {
   const route = routes.routes.find((item) => item.ref === ref);
