@@ -321,6 +321,21 @@ export function validateHubSemantics(source, registry) {
 
   validateGallery(comp.pastTwwlIds, twwl, "twwl");
 
+  // Only visible stories become visitor links. Historical catalog entries can
+  // retain their recorded routes when their destination is retired.
+  const visibleStories = [...comp.pastTwwlIds];
+  if (comp.currentTwwl.state === "published") visibleStories.push(comp.currentTwwl.contentId);
+  const hubPageId = routes.get(source.page.routeRef).wordpressPageId;
+  for (const id of visibleStories) {
+    const route = routes.get(twwl.get(id).routeRef);
+    if (route.kind !== "twwl" || route.state !== "published" || route.wordpressParentPageId !== hubPageId) {
+      throw new HubContractError("HUB_TWWL_ROUTE_INVALID", `Story ${id} needs a published TWWL page under the Hub.`);
+    }
+    if (registry.routes.some(other => other.ref !== route.ref && other.path === route.path)) {
+      throw new HubContractError("HUB_TWWL_ROUTE_AMBIGUOUS", `Story ${id} links to a path assigned to multiple pages.`);
+    }
+  }
+
   const relationshipIds = [comp.currentTwwl.id, ...comp.previousYears.map((item) => item.id)];
   if (new Set(relationshipIds).size !== relationshipIds.length) {
     throw new HubContractError("HUB_RELATIONSHIP_ID_DUPLICATE", "Hub relationship IDs must be stable and unique.");

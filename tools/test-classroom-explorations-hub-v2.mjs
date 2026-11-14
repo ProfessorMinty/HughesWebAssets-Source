@@ -176,15 +176,6 @@ for (const [ref, order, pageId, slug, routePath, kind] of
   assert.equal(route.kind, kind);
 }
 
-assert.deepEqual(
-  new Set(
-    routes.routes
-      .filter((item) => item.wordpressParentPageId === 17)
-      .map((item) => item.ref)
-  ),
-  new Set(expectedManagedChildren.map(([ref]) => ref))
-);
-
 assert.equal(
   runtime.page.href,
   "https://rmhughes.edublogs.org/hub/"

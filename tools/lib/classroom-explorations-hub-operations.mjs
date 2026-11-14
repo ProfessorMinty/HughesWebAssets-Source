@@ -101,6 +101,7 @@ export function updateTwwl(source, registry, id, patch) {
   const item = findById(next.data.twwl, id);
   if (!item) throw new Error(`Unknown TWWL ${id}`);
   Object.assign(item, clone(patch));
+  if (patch.image === null) delete item.image;
   validateHubSemantics(next, registry);
   return next;
 }

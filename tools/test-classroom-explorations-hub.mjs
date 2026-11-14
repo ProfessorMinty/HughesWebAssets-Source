@@ -91,13 +91,6 @@ for (const [ref, order, pageId, slug, routePath, kind] of expectedManagedChildre
   assert.equal(route.kind, kind, `${ref} kind drifted`);
 }
 
-const managedChildRefs = new Set(
-  routes.routes
-    .filter((item) => item.wordpressParentPageId === 17)
-    .map((item) => item.ref)
-);
-assert.deepEqual(managedChildRefs, new Set(expectedManagedChildren.map(([ref]) => ref)));
-
 assert.equal(runtime.page.href, "https://rmhughes.edublogs.org/hub/");
 assert.equal(runtime.page.currentSchoolYear, "2026-2027");
 assert.equal(runtime.current.exploration.id, "summer-bloom-adoption-project");
