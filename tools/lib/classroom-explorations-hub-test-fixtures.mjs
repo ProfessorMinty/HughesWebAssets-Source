@@ -9,6 +9,7 @@ export function historicalGalleryFixture(source) {
   const fixture = structuredClone(source);
   fixture.data.composition.currentExplorationId = 'summer-bloom-adoption-project';
   fixture.data.composition.featuredMediaId = 'welcome-classroom-explorations';
+  fixture.data.composition.currentTwwl = { id: fixture.data.composition.currentTwwl.id, state: 'coming-soon' };
   fixture.data.composition.pastExplorationIds = [...archive.data.composition.explorationIds];
   fixture.data.composition.pastTwwlIds = [...archive.data.composition.twwlIds];
   return fixture;
@@ -27,6 +28,11 @@ export function assertCanonicalCurrentYearCollections(source, routes) {
   assert.deepEqual(manifest.galleries.pastExplorations.map(item => item.id), composition.pastExplorationIds);
   assert.ok(!composition.pastExplorationIds.includes(selected.id));
   assert.deepEqual(manifest.galleries.pastTwwl.map(item => item.id), composition.pastTwwlIds);
+  assert.equal(manifest.current.twwl.state, composition.currentTwwl.state);
+  if (composition.currentTwwl.state === 'published') {
+    assert.equal(manifest.current.twwl.content.id, composition.currentTwwl.contentId);
+    assert.ok(!composition.pastTwwlIds.includes(composition.currentTwwl.contentId));
+  }
   assert.equal(routes.routes.find(item=>item.ref==='hrv-route:mushrooms').wordpressPageId, 413);
   assert.equal(manifest.archives.length, 1);
   assert.equal(source.data.explorations.filter(item => item.schoolYear === '2025-2026').length, 3);

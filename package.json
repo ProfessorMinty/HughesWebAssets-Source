@@ -22,7 +22,7 @@
     "preview": "vite preview --config vite.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:hub": "node --check apps/classroom-explorations-hub/src/bootstrap.js && node --check apps/classroom-explorations-hub/src/runtime.js && node tools/test-classroom-explorations-hub.mjs && node tools/test-classroom-explorations-hub-v2.mjs && node tools/test-classroom-explorations-hub-lifecycle.mjs && node tools/test-classroom-explorations-hub-presentation.mjs && node tools/test-classroom-explorations-hub-host-compat.mjs",
+    "test:hub": "node --check apps/classroom-explorations-hub/src/bootstrap.js && node --check apps/classroom-explorations-hub/src/runtime.js && node tools/test-classroom-explorations-hub.mjs && node tools/test-classroom-explorations-hub-v2.mjs && node tools/test-classroom-explorations-hub-twwl.mjs && node tools/test-classroom-explorations-hub-lifecycle.mjs && node tools/test-classroom-explorations-hub-presentation.mjs && node tools/test-classroom-explorations-hub-host-compat.mjs",
     "test:hub:browser": "node tools/test-classroom-explorations-hub-browser.mjs",
     "test:archive:contract": "node tools/test-classroom-explorations-archive.mjs",
     "test:archive:presentation": "node tools/test-classroom-explorations-archive-presentation.mjs",

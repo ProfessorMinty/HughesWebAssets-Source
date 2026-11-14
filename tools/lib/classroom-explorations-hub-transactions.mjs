@@ -233,12 +233,6 @@ function registerOptionalExploration(source, registry, exploration) {
   return registerExploration(source, registry, exploration);
 }
 
-function registerOptionalTwwl(source, registry, item) {
-  if (!item) return source;
-  if (source.data.twwl.some((entry) => entry.id === item.id)) return source;
-  return registerTwwl(source, registry, item);
-}
-
 function rollSchoolYear(source, routes, payload) {
   const nextSource = clone(source);
   let nextRoutes = routes;
@@ -328,13 +322,23 @@ export function applyHubCommand({ source, routes, control, command }) {
     }
 
     case "hub.set-current-twwl": {
-      nextRoutes = registerOptionalRoute(nextRoutes, payload.route);
-      nextSource = registerOptionalTwwl(nextSource, nextRoutes, payload.twwl);
       const contentId = ensureString(
         payload.contentId,
         "HUB_COMMAND_PAYLOAD_INVALID",
         "set-current-twwl requires contentId."
       );
+      const existing = nextSource.data.twwl.find(item => item.id === contentId);
+      if (payload.twwl && payload.twwl.id !== contentId) {
+        throw new HubTransactionError("HUB_COMMAND_PAYLOAD_INVALID", "The new story ID must match contentId.");
+      }
+      if (payload.twwl && existing && canonicalJson(existing) !== canonicalJson(payload.twwl)) {
+        throw new HubTransactionError("HUB_CONTENT_ID_DUPLICATE", `A different story already uses ID ${contentId}.`);
+      }
+      if (payload.route && payload.route.ref !== (payload.twwl ?? existing)?.routeRef) {
+        throw new HubTransactionError("HUB_COMMAND_PAYLOAD_INVALID", "The new route must belong to the selected story.");
+      }
+      nextRoutes = registerOptionalRoute(nextRoutes, payload.route);
+      if (payload.twwl && !existing) nextSource = registerTwwl(nextSource, nextRoutes, payload.twwl);
       nextSource = setCurrentTwwl(nextSource, nextRoutes, contentId, {
         archiveOutgoing: payload.archiveOutgoing !== false
       });
