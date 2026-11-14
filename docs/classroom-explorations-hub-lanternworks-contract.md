@@ -155,13 +155,13 @@ An actionable production route must do more than resolve by ID: at the exact rou
 
 Once the presentation policies exist, transaction review, approval, immutable publication, and browser evidence must bind the common-policy and Hub-profile IDs, versions, and hashes. Fit-warning acknowledgements must bind the warning code, pointer, normalized-value hash, both canonical document revisions, both policy identities, actor, and time; they cannot float across later content, route, or policy changes.
 
-The review page may load the branch-backed source directly for visual review. Page `17` must never use the review channel.
+The Hub selector validates the immutable publication and runtime selected for its channel. Page `17` must use the production channel; Page `2589` uses review.
 
 ## Host safety
 
 The control manifest encodes two distinct hosts:
 
-- Page `17` is the frozen production doorway and has `mayPublish: false` during this review phase.
-- Page `2589` is the review doorway and has `mayPublish: true` for branch-backed testing.
+- Page `17` authorizes publication to the production channel through `hosts.canonical.mayPublish`.
+- Page `2589` authorizes publication to the review channel through `hosts.review.mayPublish`.
 
-No ordinary Hub command changes either WordPress page. WordPress integration is a separate, explicit publisher responsibility.
+An approved publication changes the selected content on its target channel. Each WordPress page requires a one-time installation of its channel-specific selector. Changing the control file alone does not install a doorway.
