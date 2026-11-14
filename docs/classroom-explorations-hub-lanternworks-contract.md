@@ -148,7 +148,7 @@ A successful projection is not a publication. The production publisher must stil
 3. mint an immutable browser content snapshot;
 4. bind it to an exact immutable runtime;
 5. verify hashes and public retrieval;
-6. update only the approved Edublogs doorway;
+6. activate the verified publication on the approved channel using the expected current selection;
 7. record the publication and rollback target.
 
 An actionable production route must do more than resolve by ID: at the exact route-registry revision it must be unique, published, of the kind expected by the card, and compatible with the Hub hierarchy. Review-only, draft, wrong-kind, or hierarchy-incompatible entries may not become visitor links. A `coming-soon` relationship must eventually be schema-bound to either `routeRef: null` or a deliberately dormant route with a recorded rationale; the current contract does not yet encode that conditional rule.
@@ -164,4 +164,4 @@ The control manifest encodes two distinct hosts:
 - Page `17` authorizes publication to the production channel through `hosts.canonical.mayPublish`.
 - Page `2589` authorizes publication to the review channel through `hosts.review.mayPublish`.
 
-An approved publication changes the selected content on its target channel. Each WordPress page requires a one-time installation of its channel-specific selector. Changing the control file alone does not install a doorway.
+Each WordPress page has a pinned selector installed for its channel. An approved publication changes the channel selection. Use Lanternworks Publication history to prepare, approve, and publish a restoration. [Studio Hub Swapper runbook](https://github.com/ProfessorMinty/lanternworks-hrv-studio/blob/feature/hub-live-production-2026-11-14/docs/HUB-SWAPPER-PUBLICATIONS.md). [November 14 live publication receipt](https://github.com/ProfessorMinty/lanternworks-hrv-studio/blob/feature/hub-live-production-2026-11-14/ops/hub-swapper/2026-11-14/live-publication.json).

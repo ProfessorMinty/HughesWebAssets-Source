@@ -4,13 +4,13 @@ The Classroom Explorations Hub uses the clean repository-owned page architecture
 
 ## Ownership
 
-Edublogs page 17 owns the stable public doorway only. Its HTML provides one semantic mount and a friendly unavailable state; its CSS styles only that state; its JavaScript injects one exact immutable repository bootstrap and publication URL. The repository owns application markup, host compatibility, renderer, effects, accessibility behavior, diagnostics, source contracts, validation, content projection, and immutable publication artifacts.
+Edublogs Page 17 owns the public doorway. Its HTML provides one semantic mount and an unavailable state. Its CSS styles that state. Its JavaScript loads a pinned selector that verifies the production channel's immutable publication and runtime. The repository owns application markup, host compatibility, renderer, effects, accessibility behavior, diagnostics, source contracts, validation, content projection, and immutable publication artifacts. See the [current Hub production state](../README.md#current-hub-production-state).
 
 ## Authoring contract
 
 `apps/classroom-explorations-hub/source/hub.source.json` is the friendly source of truth. It uses the common page envelope and Hub-specific data contract. Content catalog entities are stable; placement lives under `composition`. Current TWWL `coming-soon` is a slot state, not fake content. Previous-year doorways are composition relationships, not content records.
 
-The approved composition currently keeps selected recovered 2025–2026 material available through the Past-history dialogs while each record retains its true `schoolYear`. The semantic validator permits a visible Past record only when its year is either the current school year or an explicitly declared `previousYears` relationship. This is a temporary content-placement choice, not a mutation of classroom history. Moving older material into its school-year archive remains a separate composition operation.
+The `composition` in the authoring source defines the current exhibit and its ordered Past galleries. Each record retains its own `schoolYear`. The semantic validator permits a visible Past record only when its year is either the current school year or an explicitly declared `previousYears` relationship. The 2025–2026 catalog is available through its school-year archive.
 
 `registry/hrv-routes.source.json` separates HRV route identity from WordPress page ID and current slug/path. The historical page-691 Cats/Caterpillars anomaly is preserved as recovered evidence rather than silently rewritten.
 
@@ -46,7 +46,7 @@ The historical implementation architecture is not reused. What survives is the s
 
 The modernization adds a repository-owned full-viewport museum environment around that furniture: midnight/indigo architecture, aurora and exhibit light, luminous glass, warm brass/gold accents, responsive layouts, deliberate motion, subject-specific gallery effects, stronger contrast, operating-system reduced-motion safety, and a true viewport breakout below the normal Edublogs navigation. There is intentionally no Hub-local effects toggle.
 
-Current Zinnia is the dominant living greenhouse exhibit. Current TWWL remains truthfully Coming Soon inside the purple Learning Lantern family. The recovered Great Barrier Reef, Mushrooms, Caterpillars-labelled page-691 destination, Tubers, Russian Winter, Owls, Bats, and Spiders remain visible during visual review with truthful 2025–2026 labels.
+The historical visual review used Zinnia as Current, Coming Soon in the purple Learning Lantern, and entries from 2025–2026 to exercise the gallery layout.
 
 ## Presentation-safe authoring
 

@@ -30,7 +30,8 @@ repository bootstrap + renderer + scoped CSS + host compatibility
 
 immutable runtime + immutable content
   -> immutable publication record
-  -> exact pinned Edublogs handoff
+  -> approved channel selection
+  -> pinned selector installed on the Edublogs page
 ```
 
 The Hub source separates stable content entities from Hub composition. Current/Past placement, the Current TWWL slot, featured media, gallery order, and previous-year relationships do not rewrite content identity.
@@ -41,7 +42,9 @@ Normal Hub content changes do not require rebuilding browser JS/CSS while the ru
 
 ## Current Hub production state
 
-The approved panoramic Hub is installed on Page 17 at `/hub/` and HUB TEST, using immutable publication `pub-2026-10-10-003`, runtime `2026.10.10.3`, and asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`. Current-year history is genuinely empty; the 2025–2026 catalog remains behind the installed dedicated archive. Four stale historical returns are repaired. CI, exact CDN bytes, saved-editor readback and live browser evidence are in [the completed cutover](docs/classroom-explorations-page17-cutover-2026-10-10.md). Lanternworks production writes remain disabled; PR 22 is not merged.
+Page 17 at `/hub/` follows the production selector. HUB TEST (Page 2589) follows the review selector. Use Lanternworks to preview an edit, publish the approved change to review, and promote it to the live Hub. To restore content, select the earlier publication in Publication history and review and publish the restoration. [Studio Hub Swapper runbook](https://github.com/ProfessorMinty/lanternworks-hrv-studio/blob/feature/hub-live-production-2026-11-14/docs/HUB-SWAPPER-PUBLICATIONS.md).
+
+On November 14, 2026, the live swap placed Summer Bloom Adoption Project (Zinnias) in Current and Mushrooms in Past Explorations. The restore returned Mushrooms to Current, restored its featured video, and returned Zinnias to Past Explorations at production generation 3. [November 14 live publication receipt](https://github.com/ProfessorMinty/lanternworks-hrv-studio/blob/feature/hub-live-production-2026-11-14/ops/hub-swapper/2026-11-14/live-publication.json).
 
 ## Historical August Hub visual-review state
 
@@ -122,6 +125,4 @@ For a repository-owned application page:
 3. Failure before successful mount leaves the small truthful Edublogs unavailable state intact.
 4. Edublogs integration code must not know internal repository component selectors or duplicate current content.
 
-Hub integration source lives under `docs/edublogs-integration/classroom-explorations-hub/`. The checked-in JavaScript box is pinned to the immutable `.3` review package by exact Git commit and browser SRI. Source does not install or modify Edublogs by itself.
-
-See `docs/classroom-explorations-hub.md` for the permanent Hub baseline and `docs/classroom-explorations-hub-page17-review-handoff-2026-08-14.md` for the current direct page-17 review process.
+The checked-in [October doorway files](docs/edublogs-integration/classroom-explorations-hub/README.md) and [August Page 17 handoff](docs/classroom-explorations-hub-page17-review-handoff-2026-08-14.md) document earlier installations. For current operation, use the installed selector and the production workflow above. The [Hub baseline](docs/classroom-explorations-hub.md) describes ownership, rendering and validation.

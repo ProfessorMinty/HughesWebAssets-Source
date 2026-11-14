@@ -1,13 +1,15 @@
 # Classroom Explorations Hub approved responsive doorway
 
-Publication 003 is now installed and verified on both HUB TEST and production Page 17. The current source has no previous-year placeholders in current-year dialogs; historical release sections below are retained as checkpoints.
+HUB TEST (Page 2589) reads the Lanternworks review channel. Use the [Studio Hub Swapper runbook](https://github.com/ProfessorMinty/lanternworks-hrv-studio/blob/feature/hub-live-production-2026-11-14/docs/HUB-SWAPPER-PUBLICATIONS.md) to publish an approved proposal to review and verify it before live promotion.
+
+## Historical October and August installations
 
 This directory contains the Edublogs doorway blocks for the review page:
 
 - Public review URL: `https://rmhughes.edublogs.org/hub-test/`
 - WordPress page ID: `2589`
 
-The current generated package is `pub-2026-10-10-003`, asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`, runtime `2026.10.10.3`. It clears the temporary previous-year placements while retaining the historical catalog and archive. See [the cutover record](../../classroom-explorations-page17-cutover-2026-10-10.md) for live status and Page 17 migration. The earlier installation record and release section below describe publication 002, not this regenerated package.
+The October 10 package was `pub-2026-10-10-003`, asset commit `d819f5c1493e725624a09adcbf0de258aa88bd8f`, runtime `2026.10.10.3`. It cleared temporary previous-year placements while retaining the catalog and archive. The [October cutover record](../../classroom-explorations-page17-cutover-2026-10-10.md) covers that release on both pages. The earlier installation record below describes publication 002.
 
 ## Earlier October installation — publication 002
 
@@ -17,7 +19,7 @@ Asset commit `f2381f5b9e284e87e17c3b45b25f381a55663c1c`; source `4e1631c45aefcd3
 
 Push Hub CI `38081902272` and pull-request Hub CI `38081905400` passed, including Linux geometry and Windows native zoom. Archive CI `38081905343` passed. Exact GET-and-byte proof for all 16 dependency files is `evidence/classroom-explorations-hub/release-2026-10-10/cdn-byte-verification.json`. The September repair and October portability notes describe the changes; the historical measurements below are not measurements of this release.
 
-Regenerate the current JavaScript and release pin with:
+To reproduce the archived October 002 JavaScript and release pin:
 
 ```text
 node tools/generate-classroom-explorations-hub-doorway.mjs f2381f5b9e284e87e17c3b45b25f381a55663c1c 2026.10.10.2 pub-2026-10-10-002 evidence/classroom-explorations-hub/release-2026-10-10/cdn-byte-verification.json
@@ -25,7 +27,7 @@ node tools/generate-classroom-explorations-hub-doorway.mjs f2381f5b9e284e87e17c3
 
 This release requires the current HTML, CSS, and generated JavaScript fields together on Page 2589: its host fallback CSS now uses pixel sizing so it cannot be distorted by Amadeus's 10px root. Preserve/restore the exact prior editor capture in `evidence/classroom-explorations-hub/pre-install-2026-10-10/`. WordPress may reorder HTML attributes, serialize empty attributes, and strip the trailing field newline; compare normalized HTML structure and exact CSS/JavaScript after that known trailing-newline normalization. Installation and live acceptance are recorded separately from repository/CI/CDN proof.
 
-Page 17 remains untouched. Do not paste the `.template.js` file.
+The October 002 review installation covered Page 2589.
 
 ## Historical August responsive publication
 
@@ -103,7 +105,7 @@ Runtime `2026.08.31.1` and publication `pub-2026-08-31-001` remain immutable int
 
 ## Editor update boundary
 
-The August JS-only update boundary below has been superseded by the explicitly authorized October all-three-field Page 2589 installation. Page 17 is still excluded.
+The October installation on Page 2589 replaced all three editor fields. The earlier August installation had replaced only JavaScript.
 
 ## Failure behavior
 
