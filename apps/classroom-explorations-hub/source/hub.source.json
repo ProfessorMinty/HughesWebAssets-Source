@@ -296,14 +296,14 @@
     "composition": {
       "nodeId": "hub-node:composition",
       "currentSchoolYear": "2026-2027",
-      "currentExplorationId": "summer-bloom-adoption-project",
+      "currentExplorationId": "mushrooms-2026-2027",
       "currentTwwl": {
         "id": "hub-slot:current-twwl",
         "state": "coming-soon"
       },
-      "featuredMediaId": "welcome-classroom-explorations",
+      "featuredMediaId": "mushrooms-2026-2027-feature-video",
       "pastExplorationIds": [
-        "mushrooms-2026-2027"
+        "summer-bloom-adoption-project"
       ],
       "pastTwwlIds": [],
       "previousYears": [
