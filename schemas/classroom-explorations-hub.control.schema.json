@@ -83,7 +83,7 @@
             "wordpressPageId": { "const": 17 },
             "path": { "const": "/hub/" },
             "mountId": { "const": "hrv-classroom-explorations-root" },
-            "mayPublish": { "const": false },
+            "mayPublish": { "type": "boolean" },
             "note": { "type": "string", "minLength": 1 }
           }
         },

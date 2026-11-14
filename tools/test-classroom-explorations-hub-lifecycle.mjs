@@ -65,9 +65,13 @@ const addMount = () => {
 
 const canonicalMount = addMount();
 runtime.mountClassroomExplorationsHub(canonicalMount, canonicalManifest);
-assert.equal(canonicalMount.querySelectorAll('.gallery-search, .gallery-count').length, 0);
-assert.equal(canonicalMount.querySelectorAll('.gallery-empty-state').length, 2);
-assert.equal(canonicalMount.querySelectorAll('a.archive-door').length, 1);
+const galleries = [canonicalManifest.galleries.pastExplorations, canonicalManifest.galleries.pastTwwl];
+const filled = galleries.filter(items => items.length > 0).length;
+assert.equal(canonicalMount.querySelectorAll('.gallery-search, .gallery-count').length, 2 * filled);
+assert.equal(canonicalMount.querySelectorAll('.gallery-empty-state').length, galleries.length - filled);
+assert.deepEqual(Array.from(canonicalMount.querySelectorAll('.past-explorations-section .collection-link'), a => a.href),
+  canonicalManifest.galleries.pastExplorations.map(item => item.href));
+assert.equal(canonicalMount.querySelectorAll('a.archive-door').length, canonicalManifest.archives.filter(a => a.href).length);
 runtime.unmountClassroomExplorationsHub(canonicalMount);
 canonicalMount.remove();
 

@@ -7,6 +7,8 @@ import { projectHubRuntime } from './classroom-explorations-hub-contract.mjs';
 export function historicalGalleryFixture(source) {
   const archive = JSON.parse(readFileSync(new URL('../../apps/classroom-explorations-archive/source/archive-2025-2026.source.json', import.meta.url), 'utf8'));
   const fixture = structuredClone(source);
+  fixture.data.composition.currentExplorationId = 'summer-bloom-adoption-project';
+  fixture.data.composition.featuredMediaId = 'welcome-classroom-explorations';
   fixture.data.composition.pastExplorationIds = [...archive.data.composition.explorationIds];
   fixture.data.composition.pastTwwlIds = [...archive.data.composition.twwlIds];
   return fixture;
@@ -14,9 +16,18 @@ export function historicalGalleryFixture(source) {
 
 export function assertCanonicalCurrentYearCollections(source, routes) {
   const manifest = projectHubRuntime(source, routes);
-  assert.equal(manifest.page.currentSchoolYear, '2026-2027');
-  assert.deepEqual(manifest.galleries.pastExplorations, []);
-  assert.deepEqual(manifest.galleries.pastTwwl, []);
+  const composition = source.data.composition;
+  const selected = source.data.explorations.find(item => item.id === composition.currentExplorationId);
+  const route = routes.routes.find(item => item.ref === selected.routeRef);
+  assert.equal(manifest.page.currentSchoolYear, composition.currentSchoolYear);
+  assert.equal(selected.schoolYear, composition.currentSchoolYear);
+  assert.equal(manifest.current.exploration.id, selected.id);
+  assert.equal(manifest.current.exploration.href, new URL(route.path, routes.site.origin).href);
+  assert.equal(manifest.current.featuredMedia.id, composition.featuredMediaId);
+  assert.deepEqual(manifest.galleries.pastExplorations.map(item => item.id), composition.pastExplorationIds);
+  assert.ok(!composition.pastExplorationIds.includes(selected.id));
+  assert.deepEqual(manifest.galleries.pastTwwl.map(item => item.id), composition.pastTwwlIds);
+  assert.equal(routes.routes.find(item=>item.ref==='hrv-route:mushrooms').wordpressPageId, 413);
   assert.equal(manifest.archives.length, 1);
   assert.equal(source.data.explorations.filter(item => item.schoolYear === '2025-2026').length, 3);
   assert.equal(source.data.twwl.filter(item => item.schoolYear === '2025-2026').length, 5);

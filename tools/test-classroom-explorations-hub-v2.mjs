@@ -66,7 +66,7 @@ assert.equal(source.page.type, "classroom-explorations-hub");
 assert.equal(control.target.pageId, source.page.id);
 assert.equal(control.target.pageType, source.page.type);
 assert.equal(control.hosts.canonical.wordpressPageId, 17);
-assert.equal(control.hosts.canonical.mayPublish, false);
+assert.equal(control.hosts.canonical.mayPublish, true);
 assert.equal(control.hosts.review.wordpressPageId, 2589);
 assert.equal(control.hosts.review.path, "/hub-test/");
 assert.equal(control.hosts.review.mayPublish, true);
@@ -161,6 +161,8 @@ const expectedManagedChildren = [
     "archive"
   ]
 ];
+
+expectedManagedChildren.push(["hrv-route:mushrooms-2026-2027", undefined, 2662, "mushrooms", "/hub/mushrooms/", "exploration"]);
 
 for (const [ref, order, pageId, slug, routePath, kind] of
   expectedManagedChildren) {

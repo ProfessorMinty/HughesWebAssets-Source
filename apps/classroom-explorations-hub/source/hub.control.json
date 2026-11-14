@@ -28,8 +28,8 @@
       "wordpressPageId": 17,
       "path": "/hub/",
       "mountId": "hrv-classroom-explorations-root",
-      "mayPublish": false,
-      "note": "Production doorway. Manual Page 17 cutover authorized on 2026-10-10; Lanternworks production publishing remains disabled pending its own activation gate."
+      "mayPublish": true,
+      "note": "Lanternworks can activate approved Hub publications on the production channel for Page 17."
     },
     "review": {
       "wordpressPageId": 2589,
