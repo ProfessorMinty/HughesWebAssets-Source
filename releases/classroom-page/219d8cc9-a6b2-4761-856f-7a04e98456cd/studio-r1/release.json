@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "application": "classroom-page",
+  "releaseId": "studio-r1",
+  "repository": "ProfessorMinty/HughesWebAssets-Source",
+  "pageId": "hrv-page:classroom-219d8cc9-a6b2-4761-856f-7a04e98456cd",
+  "routeRef": "hrv-route:classroom-219d8cc9-a6b2-4761-856f-7a04e98456cd",
+  "artifacts": [
+    {
+      "path": "bootstrap.js",
+      "bytes": 4524,
+      "sha256": "23e528482626351cc2eacd77ae618e2e3a5b3657791886e15b8f310fae39354f"
+    },
+    {
+      "path": "page.css",
+      "bytes": 1260,
+      "sha256": "70ccb53494fa4e5c12cd5faa4332a7701bf56c0d197468baf0a3ac1908605977"
+    },
+    {
+      "path": "source.json",
+      "bytes": 509,
+      "sha256": "ee1f570ededa901c71c9d98d4b87bd667149d75b95c7f5263cc00469bef42e37"
+    }
+  ]
+}

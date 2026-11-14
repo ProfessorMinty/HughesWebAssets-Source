@@ -1,0 +1,39 @@
+/* Keep the Edublogs navigation. Only the ancestors of this mounted page break out. */
+body.page :is(#content.site-content, #primary, #main, article.page, .entry-content):has([data-hrv-classroom-ready]) {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+  float: none !important;
+}
+body.page article.page:has([data-hrv-classroom-ready]) > .entry-header .entry-title {
+  display: none;
+}
+[data-hrv-classroom-ready] {
+  box-sizing: border-box;
+  background: #f7f5ee;
+  color: #1b302e;
+  padding: clamp(2rem, 6vw, 6rem) clamp(1.25rem, 6vw, 6rem);
+  overflow-wrap: anywhere;
+}
+[data-hrv-classroom-ready] .hrv-classroom-content {
+  width: min(100%, 46rem);
+  margin-inline: auto;
+  font: 1.1rem/1.65 Georgia, serif;
+}
+[data-hrv-classroom-ready] .hrv-classroom-content :is(h1, h2, p) {
+  margin: 0;
+  color: inherit;
+  white-space: pre-line;
+}
+[data-hrv-classroom-ready] .hrv-classroom-content h1 {
+  font: 600 clamp(2rem, 5vw, 3.75rem)/1.12 Georgia, serif;
+}
+[data-hrv-classroom-ready] .hrv-classroom-content h2 {
+  margin-top: 2em;
+  font: 600 clamp(1.35rem, 3vw, 2rem)/1.22 Georgia, serif;
+}
+[data-hrv-classroom-ready] .hrv-classroom-content p {
+  margin-top: 1em;
+}

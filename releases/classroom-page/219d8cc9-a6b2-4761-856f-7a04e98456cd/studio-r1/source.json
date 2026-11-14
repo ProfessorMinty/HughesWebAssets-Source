@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "page": {
+    "id": "hrv-page:classroom-219d8cc9-a6b2-4761-856f-7a04e98456cd",
+    "type": "classroom-page",
+    "routeRef": "hrv-route:classroom-219d8cc9-a6b2-4761-856f-7a04e98456cd"
+  },
+  "data": {
+    "schemaVersion": "1.0",
+    "title": "Repository Page verification",
+    "sections": [
+      {
+        "id": "3303cdbd-011a-42d2-9d0d-0ef19003c6dd",
+        "type": "paragraph",
+        "text": "This synthetic paragraph is rendered from the repository."
+      }
+    ]
+  }
+}
