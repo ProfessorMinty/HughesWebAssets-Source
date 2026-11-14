@@ -16,14 +16,18 @@ export function historicalGalleryFixture(source) {
 
 export function assertCanonicalCurrentYearCollections(source, routes) {
   const manifest = projectHubRuntime(source, routes);
-  assert.equal(manifest.page.currentSchoolYear, '2026-2027');
-  assert.equal(manifest.current.exploration.id, 'mushrooms-2026-2027');
-  assert.equal(manifest.current.exploration.href, 'https://rmhughes.edublogs.org/hub/mushrooms/');
-  assert.equal(manifest.current.featuredMedia.embedUrl, 'https://www.youtube-nocookie.com/embed/7IZ-Fek2kzE');
-  assert.deepEqual(manifest.galleries.pastExplorations.map(item=>item.id), ['summer-bloom-adoption-project']);
-  assert.equal(manifest.galleries.pastExplorations[0].schoolYear, '2026-2027');
+  const composition = source.data.composition;
+  const selected = source.data.explorations.find(item => item.id === composition.currentExplorationId);
+  const route = routes.routes.find(item => item.ref === selected.routeRef);
+  assert.equal(manifest.page.currentSchoolYear, composition.currentSchoolYear);
+  assert.equal(selected.schoolYear, composition.currentSchoolYear);
+  assert.equal(manifest.current.exploration.id, selected.id);
+  assert.equal(manifest.current.exploration.href, new URL(route.path, routes.site.origin).href);
+  assert.equal(manifest.current.featuredMedia.id, composition.featuredMediaId);
+  assert.deepEqual(manifest.galleries.pastExplorations.map(item => item.id), composition.pastExplorationIds);
+  assert.ok(!composition.pastExplorationIds.includes(selected.id));
+  assert.deepEqual(manifest.galleries.pastTwwl.map(item => item.id), composition.pastTwwlIds);
   assert.equal(routes.routes.find(item=>item.ref==='hrv-route:mushrooms').wordpressPageId, 413);
-  assert.deepEqual(manifest.galleries.pastTwwl, []);
   assert.equal(manifest.archives.length, 1);
   assert.equal(source.data.explorations.filter(item => item.schoolYear === '2025-2026').length, 3);
   assert.equal(source.data.twwl.filter(item => item.schoolYear === '2025-2026').length, 5);
