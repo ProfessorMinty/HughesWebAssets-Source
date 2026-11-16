@@ -138,6 +138,15 @@
       "state": "published",
       "path": "/hub/lanternworks-sample-exploration/",
       "slug": "lanternworks-sample-exploration"
+    },
+    {
+      "ref": "hrv-route:twwl-2ee6b4f8-de79-4359-b74e-432c81c9e356",
+      "wordpressPageId": 2684,
+      "wordpressParentPageId": 17,
+      "kind": "twwl",
+      "state": "published",
+      "path": "/hub/lanternworks-sample-learning-story/",
+      "slug": "lanternworks-sample-learning-story"
     }
   ]
 }
