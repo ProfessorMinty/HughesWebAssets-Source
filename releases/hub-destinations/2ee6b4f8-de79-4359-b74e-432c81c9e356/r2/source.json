@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "storyId": "2ee6b4f8-de79-4359-b74e-432c81c9e356",
+  "revision": 2,
+  "document": {
+    "kind": "twwl",
+    "slug": "lanternworks-sample-learning-story",
+    "title": "Lanternworks Sample Learning Story",
+    "summary": "A temporary sample of the weekly learning story for the Hub Swapper check.",
+    "theme": "notebook",
+    "sections": [
+      {
+        "id": "68c631a5-f68a-4c30-8563-1c78059dd5db",
+        "title": "A question for the week",
+        "body": "What changes can you spot on the same tree over a week? Draw one observation and compare it with your next drawing."
+      }
+    ]
+  },
+  "rendererVersion": 2,
+  "sha256": "23be9247c3f4acf5c5662fef28b8896f0e07d394390e74d7c9c677bf5a7d283c"
+}
