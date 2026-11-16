@@ -1,0 +1,27 @@
+{
+  "application": "classroom-page",
+  "artifacts": [
+    {
+      "bytes": 11336,
+      "path": "source.json",
+      "sha256": "e894ca69e0e93d8b6b9187593d08d49db91567a9e4013bd576300975c138aa50"
+    },
+    {
+      "bytes": 31809,
+      "path": "index.html",
+      "sha256": "c7bb82d88ac87aaa3714c8fbb47159d673543c4e17c6e3ce5d5713669ff7985e"
+    },
+    {
+      "bytes": 31500,
+      "path": "story.html",
+      "sha256": "dff1ccf5e02706713c3160acb60b55d84c84642f6176b35c1a06d74122cd0eff"
+    }
+  ],
+  "fragmentSha256": "dff1ccf5e02706713c3160acb60b55d84c84642f6176b35c1a06d74122cd0eff",
+  "hostId": "f857f2ad-b6f9-4c13-ac10-252dd5282de5",
+  "pageId": "hrv-page:classroom-73c66b8a-7c4f-4d31-971a-ab1e19a24965",
+  "releaseId": "studio-r1",
+  "revision": 1,
+  "routeRef": "hrv-route:classroom-73c66b8a-7c4f-4d31-971a-ab1e19a24965",
+  "schemaVersion": "2.0"
+}
