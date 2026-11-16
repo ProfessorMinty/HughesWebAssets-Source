@@ -129,6 +129,15 @@
       "path": "/hub/mushrooms/",
       "kind": "exploration",
       "state": "published"
+    },
+    {
+      "ref": "hrv-route:exploration-f857f2ad-b6f9-4c13-ac10-252dd5282de5",
+      "wordpressPageId": 2682,
+      "wordpressParentPageId": 17,
+      "kind": "exploration",
+      "state": "published",
+      "path": "/hub/lanternworks-sample-exploration/",
+      "slug": "lanternworks-sample-exploration"
     }
   ]
 }
