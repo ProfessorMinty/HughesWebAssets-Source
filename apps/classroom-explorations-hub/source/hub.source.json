@@ -183,20 +183,6 @@
           "Classroom Journal",
           "Observation"
         ]
-      },
-      {
-        "id": "exploration-f857f2ad-b6f9-4c13-ac10-252dd5282de5",
-        "schoolYear": "2026-2027",
-        "routeRef": "hrv-route:exploration-f857f2ad-b6f9-4c13-ac10-252dd5282de5",
-        "title": "Lanternworks Sample Exploration",
-        "summary": "A temporary sample for checking Hub Swapper. Mushroom Explorations will return after the check.",
-        "tags": [],
-        "image": {
-          "kind": "external-url",
-          "url": "https://cdn.jsdelivr.net/gh/ProfessorMinty/HughesWebAssets-Source@692f4fa0ba477624c298e0e01aff0321fdb189c4/apps/classroom-explorations-hub/src/assets/history/past-explorations.webp",
-          "alt": "Illustrated Classroom Explorations gallery"
-        },
-        "learningPoints": []
       }
     ],
     "twwl": [
@@ -310,15 +296,14 @@
     "composition": {
       "nodeId": "hub-node:composition",
       "currentSchoolYear": "2026-2027",
-      "currentExplorationId": "exploration-f857f2ad-b6f9-4c13-ac10-252dd5282de5",
+      "currentExplorationId": "mushrooms-2026-2027",
       "currentTwwl": {
         "id": "hub-slot:current-twwl",
         "state": "coming-soon"
       },
-      "featuredMediaId": "welcome-classroom-explorations",
+      "featuredMediaId": "mushrooms-2026-2027-feature-video",
       "pastExplorationIds": [
-        "summer-bloom-adoption-project",
-        "mushrooms-2026-2027"
+        "summer-bloom-adoption-project"
       ],
       "pastTwwlIds": [],
       "previousYears": [
