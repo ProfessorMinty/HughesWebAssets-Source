@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "storyId": "f857f2ad-b6f9-4c13-ac10-252dd5282de5",
+  "revision": 1,
+  "document": {
+    "kind": "exploration",
+    "slug": "lanternworks-sample-exploration",
+    "title": "Lanternworks Sample Exploration",
+    "summary": "A temporary sample for checking Hub Swapper. Mushroom Explorations will return after the check.",
+    "theme": "woodland",
+    "sections": [
+      {
+        "id": "187e2829-e834-4af8-97f5-2c1e3bee9b2d",
+        "title": "Look closely at a leaf",
+        "body": "Trace the main vein from the stem to the tip. Look for the smaller veins that branch away from it."
+      }
+    ]
+  },
+  "sha256": "0be1f9d9d0c92fa91ca82e82a0d2e3f34fa1f2c003ff9b562a591b60f80235a8"
+}
