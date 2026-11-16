@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "storyId": "f857f2ad-b6f9-4c13-ac10-252dd5282de5",
+  "revision": 3,
+  "document": {
+    "kind": "exploration",
+    "slug": "lanternworks-sample-exploration",
+    "title": "Lanternworks Sample Exploration",
+    "summary": "A temporary sample for checking Hub Swapper. Mushroom Explorations will return after the check.",
+    "theme": "woodland",
+    "sections": [
+      {
+        "id": "187e2829-e834-4af8-97f5-2c1e3bee9b2d",
+        "title": "Look closely at a leaf",
+        "body": "Compare the two sides of the same leaf. Sketch one difference you notice."
+      }
+    ]
+  },
+  "rendererVersion": 2,
+  "sha256": "1624fe66e712c407753d441817d6a1c65f4492c25d246b246583e0b619838207"
+}
