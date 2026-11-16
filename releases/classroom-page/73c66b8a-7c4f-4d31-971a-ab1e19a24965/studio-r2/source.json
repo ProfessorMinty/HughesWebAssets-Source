@@ -1,0 +1,238 @@
+{
+  "data": {
+    "kind": "exhibit",
+    "magic": "calm",
+    "palette": "space",
+    "photoLayout": "framed",
+    "schemaVersion": "2.0",
+    "sections": [
+      {
+        "id": "f4372827-d6dd-8c75-8797-4dfde07b119f",
+        "text": "Start with first quarter. Compare its bright half with the full Moon.",
+        "type": "paragraph"
+      },
+      {
+        "id": "45e94792-f0dd-8a99-aed5-67df91d70234",
+        "text": "Turn through a lunar month",
+        "type": "heading"
+      },
+      {
+        "citation": {
+          "attribution": "NASA Science",
+          "title": "Moon phases",
+          "url": "https://science.nasa.gov/moon/moon-phases/"
+        },
+        "id": "68adf387-c2b6-8131-abb1-622f4ffe49d1",
+        "text": "Moonlight is sunlight bouncing off the Moon. As the Moon travels around Earth, we see different amounts of its lit half. From one new Moon to the next takes about 29½ days.",
+        "type": "paragraph"
+      },
+      {
+        "credit": {
+          "creator": "NASA Science",
+          "license": "NASA educational media use",
+          "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "modifications": "Shown at a responsive size; original composition retained.",
+          "sourceUrl": "https://science.nasa.gov/moon/moon-phases/",
+          "title": "Lunar phase views"
+        },
+        "id": "743d4df9-b1c8-8825-985a-2225421fa281",
+        "prompt": "Choose a stage. Compare its bright edge with the stage before it.",
+        "stages": [
+          {
+            "description": "The sunlit half faces away from Earth. The Moon is usually invisible to us at this stage.",
+            "imageAlt": "Dark lunar disk at new Moon.",
+            "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/366/new-moon.jpg?w=400",
+            "label": "New Moon"
+          },
+          {
+            "description": "A bright sliver appears. Over the next few nights we see more of the sunlit half.",
+            "imageAlt": "Thin curved sliver of the lunar disk illuminated.",
+            "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/368/waxing-crescent.jpg?w=400",
+            "label": "Waxing crescent"
+          },
+          {
+            "description": "About a quarter of the cycle has passed. The bright area fills half the disk we see.",
+            "imageAlt": "Half of the visible lunar disk is bright.",
+            "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/367/first-quarter.jpg?w=400",
+            "label": "First quarter"
+          },
+          {
+            "description": "More than half the disk looks bright, and the bright part is still growing.",
+            "imageAlt": "A mostly bright disk with a narrow dark edge.",
+            "imageUrl": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/365/waxing-gibbous.jpg?w=400",
+            "label": "Waxing gibbous"
+          },
+          {
+            "description": "Earth faces nearly the entire sunlit half. A full Moon rises around sunset.",
+            "imageAlt": "Round, bright lunar disk.",
+            "imageUrl": "https://science.nasa.gov/wp-content/uploads/2023/08/full.jpg",
+            "label": "Full Moon"
+          },
+          {
+            "description": "More than half the disk still looks bright. Now the bright part grows smaller each night.",
+            "imageAlt": "A mostly illuminated Moon after full.",
+            "imageUrl": "https://science.nasa.gov/wp-content/uploads/2023/08/waning-gibbous.jpg",
+            "label": "Waning gibbous"
+          },
+          {
+            "description": "Half of the disk looks bright again. Compare the bright side with first quarter.",
+            "imageAlt": "Half-lit disk with the opposite side bright from first quarter.",
+            "imageUrl": "https://science.nasa.gov/wp-content/uploads/2023/08/third-quarter.jpg",
+            "label": "Third quarter"
+          },
+          {
+            "description": "Only a thin sliver looks bright before the next new Moon.",
+            "imageAlt": "Thin crescent of sunlight before new Moon.",
+            "imageUrl": "https://science.nasa.gov/wp-content/uploads/2023/08/waning-crescent.jpg",
+            "label": "Waning crescent"
+          }
+        ],
+        "text": "Follow the Moon through eight phases",
+        "type": "explorer"
+      },
+      {
+        "id": "25191a37-0e8a-8dbe-ab0d-425128d476f8",
+        "text": "Look from two directions",
+        "type": "heading"
+      },
+      {
+        "alt": "Diagram of sunlight reaching the Moon at eight positions around Earth, with the matching view from Earth.",
+        "credit": {
+          "creator": "NASA/JPL-Caltech",
+          "license": "NASA Space Place and JPL image-use policies",
+          "licenseUrl": "https://spaceplace.nasa.gov/image-use/en/",
+          "modifications": "Shown at a responsive size; original composition retained.",
+          "sourceUrl": "https://spaceplace.nasa.gov/moon-phases/en/",
+          "title": "Moon phases diagram"
+        },
+        "id": "738223ab-9cb9-85a3-a732-52857f70e1a8",
+        "text": "Find sunlight entering the diagram. Compare the Moon’s position in its orbit with the shape a person on Earth sees.",
+        "type": "image",
+        "url": "https://spaceplace.nasa.gov/review/moon-phases/moon-phases.en.png"
+      },
+      {
+        "citation": {
+          "attribution": "NASA Space Place",
+          "title": "What are the Moon’s phases?",
+          "url": "https://spaceplace.nasa.gov/moon-phases/en/"
+        },
+        "id": "7c738de2-f4f7-863f-8a2d-2059f5d58cf2",
+        "text": "Six words for a Moon watcher\nOrbit — a path around another object.\nPhase — the shape of the bright part we see.\nCrescent — a curved sliver.\nGibbous — more than half of the disk looks bright.\nWaxing — the bright part is growing.\nWaning — the bright part is shrinking.",
+        "type": "paragraph"
+      },
+      {
+        "citations": [
+          {
+            "title": "NASA Space Place diagram",
+            "url": "https://spaceplace.nasa.gov/moon-phases/en/"
+          }
+        ],
+        "id": "181351bc-04d2-8a79-9be4-e28b86acb9e2",
+        "text": "Trace the Moon’s path in the diagram with your finger. Stop twice where the disk looks half bright. What changes between the two views?",
+        "type": "activity"
+      },
+      {
+        "id": "80ef100c-984f-8745-a5dd-0eac72c1eab6",
+        "text": "A crescent above the Pacific",
+        "type": "heading"
+      },
+      {
+        "alt": "A slender crescent Moon above the blue and orange bands of Earth’s horizon.",
+        "credit": {
+          "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+          "license": "NASA educational media use",
+          "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "modifications": "Shown at a responsive size; original composition retained.",
+          "sourceUrl": "https://science.nasa.gov/resource/crescent-moon-from-the-international-space-station/",
+          "title": "Crescent Moon from the International Space Station · ISS066-E-086969"
+        },
+        "id": "ca199566-0dbe-85be-8dbd-59d31ca7f38c",
+        "text": "An International Space Station photograph taken above the Pacific, east of New Zealand. A thin portion of the Moon’s sunlit half faces the camera.",
+        "type": "image",
+        "url": "https://assets.science.nasa.gov/content/dam/science/psd/lunar-science/2023/08/iss066e086969.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg"
+      },
+      {
+        "id": "e763d972-6211-84a3-b865-5c7350ac2534",
+        "text": "A full Moon from orbit",
+        "type": "heading"
+      },
+      {
+        "alt": "Bright round full Moon photographed from the International Space Station.",
+        "credit": {
+          "creator": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center",
+          "license": "NASA educational media use",
+          "licenseUrl": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+          "modifications": "Shown at a responsive size; original composition retained.",
+          "sourceUrl": "https://images.nasa.gov/details/iss042e097549",
+          "title": "Full Moon from the International Space Station · ISS042-E-097549"
+        },
+        "id": "915ad751-8c1f-8718-9f07-fee8aa9f06ac",
+        "text": "Astronauts photographed this full Moon from the International Space Station on January 3, 2015.",
+        "type": "image",
+        "url": "https://images-assets.nasa.gov/image/iss042e097549/iss042e097549~medium.jpg"
+      },
+      {
+        "citations": [
+          {
+            "title": "NASA astronaut photograph",
+            "url": "https://images.nasa.gov/details/iss042e097549"
+          }
+        ],
+        "id": "499e33bf-6cb5-8ade-9c46-726369a2bf15",
+        "text": "Sketch the outline of this Moon. Mark its brightest and darkest areas. Which details could help someone recognize the photograph?",
+        "type": "activity"
+      },
+      {
+        "id": "25c4d170-693b-8e82-bc3f-ee00405da504",
+        "text": "Watch the orbit",
+        "type": "heading"
+      },
+      {
+        "credit": {
+          "creator": "NASA eClips",
+          "license": "Publisher-hosted video embed",
+          "sourceUrl": "https://science.nasa.gov/eclips/videos/moon-phases/",
+          "title": "Our World: Moon Phases"
+        },
+        "description": "Watch how the Sun, Earth and Moon line up. Pause the animation where you would see a quarter Moon.",
+        "id": "ff936d8b-245d-884a-80da-f60613511e3b",
+        "text": "Our World: Moon Phases",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=kP0sLRHjKyg"
+      },
+      {
+        "id": "dbaa6f55-f014-86b3-8ba2-80f205854356",
+        "text": "Model the view from space",
+        "type": "heading"
+      },
+      {
+        "credit": {
+          "creator": "NASA Johnson Space Center",
+          "license": "Publisher-hosted video embed",
+          "sourceUrl": "https://www.nasa.gov/stem-content/stemonstrations-moon-phases/",
+          "title": "STEMonstrations: Moon Phases"
+        },
+        "description": "Astronaut Anne McClain demonstrates lunar phases aboard the space station. Compare her model with the shapes you saw in the observatory.",
+        "id": "f7a6cb0e-33ad-8b03-9a47-43d06ae0e1c8",
+        "text": "STEMonstrations: Moon Phases",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=SDhlPEMkiOo"
+      },
+      {
+        "attribution": "NASA Science",
+        "description": "Have you ever wondered when the next full Moon will be?",
+        "id": "087a786c-fe52-8dba-8706-a7187254f882",
+        "text": "Make a Moon Phases Calendar and Calculator",
+        "type": "resource",
+        "url": "https://science.nasa.gov/resource/make-a-moon-phases-calendar-and-calculator/"
+      }
+    ],
+    "title": "Moon Phases Observatory"
+  },
+  "page": {
+    "id": "hrv-page:classroom-73c66b8a-7c4f-4d31-971a-ab1e19a24965",
+    "routeRef": "hrv-route:classroom-73c66b8a-7c4f-4d31-971a-ab1e19a24965",
+    "type": "classroom-page"
+  },
+  "schemaVersion": "1.0"
+}
