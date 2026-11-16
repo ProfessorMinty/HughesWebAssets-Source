@@ -1,0 +1,2 @@
+# Preserve content-addressed browser bundles byte-for-byte.
+releases/*/bridge.js binary

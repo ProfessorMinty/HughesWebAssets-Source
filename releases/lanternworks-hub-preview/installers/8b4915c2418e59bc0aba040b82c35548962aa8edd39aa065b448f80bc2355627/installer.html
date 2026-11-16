@@ -1,0 +1,23 @@
+<!-- wp:html -->
+<style data-wp-block-html="css">
+#lanternworks-hub-preview > p { margin: 1rem; padding: .75rem; }
+</style>
+
+<script data-wp-block-html="js">
+(function () {
+  function start() {
+    if (!document.getElementById('lanternworks-hub-preview') || document.getElementById('lanternworks-preview-loader')) return;
+    var script = document.createElement('script');
+    script.id = 'lanternworks-preview-loader';
+    script.src = 'https://cdn.nlightlabs.com/hrv/hub-preview/bootstrap/3d076c6775767037ae18a4cdbfc2d1847455e354ea85182f759c1af68fa40d0e/bootstrap.js';
+    script.integrity = 'sha256-PQdsZ3V2cDeuGKTNv8LRhHRV41TqhRgvdZwa9o+kDQ4=';
+    script.crossOrigin = 'anonymous';
+    document.head.appendChild(script);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once:true});
+  else start();
+})();
+</script>
+
+<div id="lanternworks-hub-preview"><p role="status">The classroom preview is temporarily unavailable. Please return to Hub Swapper and try again.</p></div>
+<!-- /wp:html -->

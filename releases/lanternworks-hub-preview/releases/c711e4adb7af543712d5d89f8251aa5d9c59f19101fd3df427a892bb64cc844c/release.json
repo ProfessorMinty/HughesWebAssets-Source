@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "component": "Lanternworks private Edublogs preview helper",
+  "protocol": "lanternworks-hub-host-v2",
+  "build": {
+    "repository": "ProfessorMinty/lanternworks-hrv-studio",
+    "commit": "a7a0073df68f79a65c2133c0b85b77602ba000bc",
+    "entry": "src/modules/hub-destinations/preview-host.ts",
+    "nodeVersion": "24.22.1",
+    "esbuildVersion": "0.27.3",
+    "packageLockSha256": "0186fa7aa0894141617d843522afee6d92d7a6ba2c5722b6c265e4e538909a74",
+    "command": "node tools/build-hub-production-preview-helper.mjs OUTPUT_DIRECTORY"
+  },
+  "bootstrap": {
+    "sourcePath": "releases/lanternworks-hub-preview/bootstrap/3d076c6775767037ae18a4cdbfc2d1847455e354ea85182f759c1af68fa40d0e/bootstrap.js",
+    "sha256": "3d076c6775767037ae18a4cdbfc2d1847455e354ea85182f759c1af68fa40d0e",
+    "bytes": 2614,
+    "r2Key": "hrv/hub-preview/bootstrap/3d076c6775767037ae18a4cdbfc2d1847455e354ea85182f759c1af68fa40d0e/bootstrap.js",
+    "integrity": "sha256-PQdsZ3V2cDeuGKTNv8LRhHRV41TqhRgvdZwa9o+kDQ4="
+  },
+  "bridge": {
+    "sourcePath": "releases/lanternworks-hub-preview/releases/c711e4adb7af543712d5d89f8251aa5d9c59f19101fd3df427a892bb64cc844c/bridge.js",
+    "sha256": "c711e4adb7af543712d5d89f8251aa5d9c59f19101fd3df427a892bb64cc844c",
+    "bytes": 342914,
+    "r2Key": "hrv/hub-preview/releases/c711e4adb7af543712d5d89f8251aa5d9c59f19101fd3df427a892bb64cc844c/bridge.js",
+    "integrity": "sha256-xxHkrbevVDcS1difglGqXZxZ8ZEB/T30J6iSu2TMhEw="
+  },
+  "edublogs": {
+    "path": "/lanternworks-hub-preview/",
+    "visibility": "private",
+    "installer": {
+      "sourcePath": "releases/lanternworks-hub-preview/installers/8b4915c2418e59bc0aba040b82c35548962aa8edd39aa065b448f80bc2355627/installer.html",
+      "sha256": "8b4915c2418e59bc0aba040b82c35548962aa8edd39aa065b448f80bc2355627",
+      "bytes": 1045
+    }
+  },
+  "releaseSelector": {
+    "r2Key": "hrv/hub-preview/current.json",
+    "candidate": {
+      "schemaVersion": 1,
+      "sha256": "c711e4adb7af543712d5d89f8251aa5d9c59f19101fd3df427a892bb64cc844c"
+    },
+    "sha256": "de2d1e70011189cd8469dd42d3375047e6eff0a7e1da484d7b50132efe779c69"
+  }
+}
