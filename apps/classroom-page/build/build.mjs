@@ -14865,7 +14865,7 @@ function buildCreatorReleaseFromSource(input2, revision, hostId2) {
   const html = renderCreatorSource(source, revision, binding);
   const title = source.data.title.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
   const standalone = '<!doctype html><html lang="en" data-creator-frame="' + pageId + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + "</title><style>html,body{margin:0;min-width:0}</style></head><body><main>" + html + "</main></body></html>\n";
-  const content = { "source.json": jsonFile(source), "index.html": standalone };
+  const content = { "source.json": jsonFile(source), "index.html": standalone, "story.html": html };
   const manifest = {
     schemaVersion: "2.0",
     application: "classroom-page",
