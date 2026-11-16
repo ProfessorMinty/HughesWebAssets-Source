@@ -270,14 +270,6 @@
           "Webs",
           "Observation"
         ]
-      },
-      {
-        "id": "twwl-2ee6b4f8-de79-4359-b74e-432c81c9e356",
-        "schoolYear": "2026-2027",
-        "routeRef": "hrv-route:twwl-2ee6b4f8-de79-4359-b74e-432c81c9e356",
-        "title": "Lanternworks Sample Learning Story",
-        "summary": "A temporary sample of the weekly learning story for the Hub Swapper check.",
-        "tags": []
       }
     ],
     "media": [
@@ -307,8 +299,7 @@
       "currentExplorationId": "mushrooms-2026-2027",
       "currentTwwl": {
         "id": "hub-slot:current-twwl",
-        "state": "published",
-        "contentId": "twwl-2ee6b4f8-de79-4359-b74e-432c81c9e356"
+        "state": "coming-soon"
       },
       "featuredMediaId": "mushrooms-2026-2027-feature-video",
       "pastExplorationIds": [
