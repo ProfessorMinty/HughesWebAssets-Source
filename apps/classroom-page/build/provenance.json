@@ -1,61 +1,71 @@
 {
   "schemaVersion": 1,
   "status": "review-candidate-not-published",
-  "generatedAt": "2026-11-20T19:42:46.803373+00:00",
+  "generatedAt": "2026-11-20T20:04:15.133811+00:00",
   "sourceRepository": "ProfessorMinty/HughesWebAssets-Source",
   "sourceBaseCommit": "7f99eeb0eb253300482bebb4e5072dfc5d07257c",
   "sourceBaseRef": "lanternworks-classroom-pages",
   "studioRepository": "ProfessorMinty/lanternworks-hrv-studio",
   "studioBaseCommit": "0fab67669dc8295401d0d69fabccb9508dcfcbd0",
-  "studioCandidateCommit": "8c76d0ef81de4be11b2afe43ed3c6ca28fd5061c",
-  "studioCandidateIdentification": "Exact verified application candidate commit; maintained input hashes below were rechecked against the local files whose Git blobs match that commit.",
+  "studioCandidateCommit": "505fa5bfc58a9f87d435ad5c40a2ed9b4cfae01f",
+  "studioCandidateIdentification": "All ten maintained inputs independently matched their Git blob IDs in this exact remote application commit.",
   "command": "node tools/classroom-page-builder/package.mjs <Source>/apps/classroom-page/build/build.mjs",
   "nodeVersion": "v24.22.3",
   "builder": {
     "path": "apps/classroom-page/build/build.mjs",
-    "bytes": 886609,
-    "sha256": "6847e9251aec3e3076f7a25170175df36a9acade3e585c8264dd032734d83def"
+    "bytes": 1099813,
+    "sha256": "5b0b253f3188added08633091e84eb44d6c66bc601059c992dd704e4611cddbd"
   },
   "maintainedInputs": [
     {
       "path": "src/modules/page-drafts/creator-source-build.ts",
-      "sha256": "d4a91783969f14141cccbb7539d04a7b222198d3dface0dd8055dc6227b9bac8"
+      "sha256": "d4a91783969f14141cccbb7539d04a7b222198d3dface0dd8055dc6227b9bac8",
+      "gitBlobSha": "6187ca1dfcd15cbb457007fdf6b5d340ea352a41"
     },
     {
       "path": "src/modules/page-drafts/creator-public-render.ts",
-      "sha256": "8842469d20327f287063371ebaca1c49b552c669b3f58c0f1774b5d2e27d3fb3"
+      "sha256": "8842469d20327f287063371ebaca1c49b552c669b3f58c0f1774b5d2e27d3fb3",
+      "gitBlobSha": "0da0bc9b0cf816a1a90e1c316fa76720cd55f74e"
     },
     {
       "path": "src/modules/page-drafts/creator-content.ts",
-      "sha256": "b8435d1cda131a79dda4ea174e97451ef0ab2081bb7d34f1ba3754727ac4f57f"
+      "sha256": "b8435d1cda131a79dda4ea174e97451ef0ab2081bb7d34f1ba3754727ac4f57f",
+      "gitBlobSha": "f95ef4147fb948b6263fbb74ab922b313f07048f"
     },
     {
       "path": "src/modules/page-drafts/creator-experience.ts",
-      "sha256": "1612afa14c374d26892b6869a63784cb28de4d7520b640eea2dc52720d180144"
+      "sha256": "1612afa14c374d26892b6869a63784cb28de4d7520b640eea2dc52720d180144",
+      "gitBlobSha": "b5ea52a3276d061d2a18bdefe269dce768df39bd"
     },
     {
       "path": "src/modules/page-drafts/creator-museum-render.ts",
-      "sha256": "f650c0f4d167a99db121f10521958194559576ba34c75589a5657abe671964a8"
+      "sha256": "f650c0f4d167a99db121f10521958194559576ba34c75589a5657abe671964a8",
+      "gitBlobSha": "79edef1c8e972b5ae988193d01f5d349b2562532"
     },
     {
       "path": "src/modules/page-drafts/creator-interactive.ts",
-      "sha256": "cf833b8fb8c149e2687e4495d00feed94a07583e53eab004ddef9e4b2ccc8de7"
+      "sha256": "cf833b8fb8c149e2687e4495d00feed94a07583e53eab004ddef9e4b2ccc8de7",
+      "gitBlobSha": "126ecb3d5cf3848788fbbc300e5a77aa0484082d"
     },
     {
       "path": "src/platform/json.ts",
-      "sha256": "160b8e8e0c2de1efb25318f096941e70e746750bda8dbd285505048b35dffeca"
+      "sha256": "160b8e8e0c2de1efb25318f096941e70e746750bda8dbd285505048b35dffeca",
+      "gitBlobSha": "f8dee800c89a91820bed40e14ac2bd196b4b2a2c"
     },
     {
       "path": "tools/classroom-page-builder/cli.mjs",
-      "sha256": "44777eb238890127e4a3b209eda889f45d679142d6386eb6708f18ad5f4f462a"
+      "sha256": "44777eb238890127e4a3b209eda889f45d679142d6386eb6708f18ad5f4f462a",
+      "gitBlobSha": "cbd0e3d4c81175651c5b2ae034d2a47e00acbbb4"
     },
     {
       "path": "tools/classroom-page-builder/package.mjs",
-      "sha256": "229a6d3de917aae941004b2904f571bf9442fec272d876b11db93c51bfd0dc1f"
+      "sha256": "229a6d3de917aae941004b2904f571bf9442fec272d876b11db93c51bfd0dc1f",
+      "gitBlobSha": "158ed7384c75e9799d733e01de7b9c45d663fac0"
     },
     {
       "path": "package-lock.json",
-      "sha256": "e6dad2fb1d5634a8f10c9e88a999dc93807a6a605c8286971be656a470e47ada"
+      "sha256": "6424b23c31844832d824f1e185f3222f7eeee67ab87977e65aead88e01866192",
+      "gitBlobSha": "e4e7e131336c57c31db43e8ce7f34a596bcad687"
     }
   ],
   "verification": {
@@ -120,8 +130,22 @@
   "browserSmoke": {
     "script": "apps/classroom-page/browser-smoke.mjs",
     "workflow": ".github/workflows/classroom-page-renderer-ci.yml",
-    "status": "prepared-not-executed",
+    "status": "pending-for-refreshed-builder",
     "scope": "Synthetic Page/Post fixtures only; fresh profile; no model, signed-in host or deployment.",
-    "manualVisualReview": "pending"
+    "manualVisualReview": "pending-for-refreshed-builder"
+  },
+  "dependencyRefresh": {
+    "sourceParentCommit": "8a1e0d0c207b8c2558dc740256bbbaf02299cedc",
+    "sourceRef": "feature/classroom-renderer-independent-2026-11-20",
+    "applicationDependencies": {
+      "hono": "4.13.18",
+      "zod": "4.6.6"
+    },
+    "bundledValidationDependency": {
+      "zod": "4.6.6"
+    },
+    "lockSha256": "6424b23c31844832d824f1e185f3222f7eeee67ab87977e65aead88e01866192",
+    "allFourLegacyFilesUnchanged": true,
+    "allThreeFixtureReleaseDigestsUnchanged": true
   }
 }
