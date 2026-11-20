@@ -1,0 +1,29 @@
+name: Year archive candidate
+
+on:
+  pull_request:
+    paths:
+      - 'apps/classroom-explorations-archive-v2/**'
+      - 'tools/lib/classroom-year-archive-*.mjs'
+      - 'tools/build-classroom-year-archive-candidate.mjs'
+      - 'tools/verify-classroom-year-archive-candidate.mjs'
+      - 'tools/test-classroom-year-archive-v2.mjs'
+      - '.github/workflows/year-archive-candidate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  candidate-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node --test tools/test-classroom-year-archive-v2.mjs

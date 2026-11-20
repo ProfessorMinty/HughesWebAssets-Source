@@ -1,10 +1,11 @@
 /*
  * Hughes Room Views — permanent global site shell
- * Version: 2026.08.15.1
+ * Version: 2026.11.20.1
  *
  * Scope law:
  * - shared Amadeus header/navigation presentation
  * - global suppression of duplicate native WordPress page titles
+ * - one persistent global Reduced Effects control and shared navigation motion
  * - no page/application typography, cards, forms, buttons, widgets, or rescue CSS
  * - no Hub/Photo Album/Home/Posts/Zinnia/Contact/Library/Bat selectors
  * - retired floating helper/fairy navigation does not return
@@ -15,6 +16,59 @@
   --hrv-shell-accent-2: #90e0ef;
   --hrv-shell-ink: #0b3e4e;
   --hrv-shell-ink-hover: #003049;
+}
+
+/* Shell-owned control only. Application motion is controlled by each consumer. */
+.hrv-shell-effects {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.6rem 1rem;
+  color: #143a4a;
+  font: 600 14px/1.4 system-ui, sans-serif;
+}
+.hrv-shell-effects-toggle {
+  min-height: 44px;
+  padding: 0.55rem 0.85rem;
+  border: 2px solid #143a4a;
+  border-radius: 999px;
+  color: #143a4a;
+  background: #ffffff;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.hrv-shell-effects-toggle[aria-pressed="true"] {
+  color: #ffffff;
+  background: #143a4a;
+}
+.hrv-shell-effects-toggle:focus-visible {
+  outline: 3px solid #143a4a;
+  outline-offset: 4px;
+}
+.hrv-shell-effects-help {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.hrv-shell-effects-notice:not([hidden]) {
+  display: block;
+  flex-basis: 100%;
+  max-width: 45rem;
+  text-align: center;
+}
+html[data-hrv-effects="reduced"] .main-navigation ul li > a,
+html[data-hrv-effects="reduced"] #site-navigation ul li > a,
+html[data-hrv-effects="reduced"] .nav-primary .menu li > a,
+html[data-hrv-effects="reduced"] .menu-primary li > a {
+  transition: none;
+  transform: none;
 }
 
 /* Shared Amadeus site-header treatment. */
