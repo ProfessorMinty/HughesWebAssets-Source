@@ -22610,6 +22610,111 @@ var classroomBlock = external_exports.discriminatedUnion("type", [
   external_exports.object({ ...credited, type: external_exports.literal("explorer"), prompt: external_exports.string().trim().min(1).max(800), stages: external_exports.array(exhibitStage).min(2).max(12) }).strict()
 ]);
 
+// src/modules/page-drafts/creator-experience.ts
+var stationLayouts = ["spotlight", "gallery", "workbench", "story"];
+var creatorExperience = external_exports.object({
+  version: external_exports.literal(1),
+  // Plain decorative symbols only. They never stand in for educational illustrations.
+  tokens: external_exports.array(external_exports.string().trim().min(1).max(16).refine((value) => !/[<>\u0000-\u001f\u007f]/.test(value))).min(1).max(6),
+  opener: external_exports.boolean(),
+  stations: external_exports.array(external_exports.object({ headingId: external_exports.string().uuid(), layout: external_exports.enum(stationLayouts) }).strict()).max(64)
+}).strict().refine(
+  (value) => new Set(value.stations.map((station) => station.headingId)).size === value.stations.length,
+  "Choose one presentation for each station."
+);
+
+// src/modules/page-drafts/creator-museum-render.ts
+var escaped = (text) => text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+var layouts = ["spotlight", "gallery", "workbench", "story"];
+function museumCollection(blocks, experience, root, id, magic, render, credits) {
+  const groups = [];
+  for (const block of blocks) {
+    if (!groups.length || block.type === "heading") groups.push([]);
+    groups[groups.length - 1].push(block);
+  }
+  const tokens = experience.tokens.map(escaped);
+  const decorative = (className, index) => '<span aria-hidden="true" class="' + className + '">' + tokens[index % tokens.length] + "</span>";
+  const dividers = (index) => '<div class="lw-museum-divider" aria-hidden="true"><span class="lw-divider-track"></span>' + decorative("lw-divider-orbit", index + 1) + decorative("lw-divider-center", index) + decorative("lw-divider-satellite", index + 2) + "</div>";
+  const stations = groups.map((group, index) => {
+    const heading = group[0]?.type === "heading" && group[0].text.trim() ? group[0] : void 0;
+    const layout = experience.stations.find((station) => station.headingId === heading?.id)?.layout ?? layouts[index % layouts.length];
+    const header = heading ? render([heading]) : "";
+    return '<section class="lw-museum-station lw-station-' + layout + '" data-station-layout="' + layout + '"' + (heading ? ' aria-labelledby="lw-chapter-' + heading.id + '"' : "") + '><span class="lw-station-glint" aria-hidden="true"></span><span class="lw-station-trace" aria-hidden="true"></span><div class="lw-station-heading">' + decorative("lw-station-stamp", index) + header + '</div><div class="lw-station-content">' + render(heading ? group.slice(1) : group) + "</div>" + credits(group) + "</section>" + dividers(index);
+  }).join("\n");
+  const parade = '<div class="lw-museum-parade" aria-hidden="true"><div>' + Array.from({ length: 12 }, (_, i) => decorative("lw-parade-token", i)).join("") + "</div></div>";
+  const opener = magic === "legendary" && experience.opener ? '<div class="lw-museum-opener" aria-hidden="true">' + decorative("lw-opener-symbol", 0) + '</div><a class="lw-opener-skip" href="#lw-museum-content-' + id + '">Skip opening</a>' : "";
+  const html = opener + '<div class="lw-museum-world" aria-hidden="true"><i></i><i></i></div>' + parade + '<div class="lw-museum-collection" id="lw-museum-content-' + id + '">' + stations + "</div>";
+  const css = `
+${root}[data-experience="museum-v1"]{position:relative;overflow:hidden;isolation:isolate;background:var(--ink);}
+${root} .lw-title{z-index:1;border-bottom:0;}
+${root} .lw-museum-collection{position:relative;z-index:1;display:grid;gap:0;padding:clamp(22px,5vw,64px);max-width:1440px;margin:auto;}
+${root} .lw-museum-station{position:relative;isolation:isolate;overflow:hidden;min-width:0;background:var(--paper);border:2px solid var(--accent);border-radius:28px;box-shadow:0 22px 48px #0003;padding:clamp(22px,4vw,52px);}
+${root} .lw-station-heading{position:relative;z-index:1;display:flex;align-items:center;gap:18px;}
+${root} .lw-station-heading h2{font-size:clamp(1.8rem,4vw,3.5rem);margin:0 0 .5em;max-width:22ch;}
+${root} .lw-station-stamp{display:grid;place-items:center;flex:0 0 64px;width:64px;height:64px;border:1px solid currentColor;border-radius:50%;background:var(--tint);font-size:32px;}
+${root} .lw-station-content{position:relative;z-index:1;min-width:0;line-height:1.7;}
+${root} .lw-station-content p{white-space:pre-line;max-width:68ch;}
+${root} .lw-station-content figure{margin:18px 0;}
+${root} .lw-station-content img{display:block;max-width:100%;height:auto;}
+${root}>.lw-sources{position:relative;z-index:1;background:var(--paper);padding-top:24px;border-radius:24px;margin-bottom:32px;}
+${root} .lw-museum-station>.lw-sources{padding:12px 0 0;}
+${root} .lw-station-spotlight{border-radius:42px 14px 42px 14px;border-top:10px solid var(--accent);}
+${root} .lw-station-spotlight .lw-station-heading{justify-content:center;text-align:center;}
+${root} .lw-station-spotlight .lw-station-content{max-width:920px;margin:auto;font-size:1.08em;}
+${root} .lw-station-gallery{display:grid;grid-template-columns:minmax(170px,1fr) minmax(0,2fr);gap:clamp(20px,4vw,50px);border-left:16px solid var(--accent);}
+${root} .lw-station-gallery .lw-station-heading{align-items:start;flex-direction:column;}
+${root} .lw-station-gallery>.lw-sources{grid-column:1/-1;}
+${root} .lw-station-workbench{border-style:dashed;border-radius:12px;background-image:linear-gradient(90deg,transparent 28px,var(--tint) 29px,transparent 30px);}
+${root} .lw-station-workbench .lw-station-content{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+${root} .lw-station-workbench .lw-station-content>p,${root} .lw-station-workbench .lw-station-content>.lw-photos{grid-column:1/-1;}
+${root} .lw-station-story{border-radius:4px 34px 34px 4px;border-left:12px double var(--accent);box-shadow:12px 12px 0 var(--tint),0 22px 48px #0003;}
+${root} .lw-station-story .lw-station-content{max-width:780px;margin:auto;padding-left:24px;border-left:2px solid var(--accent);font-family:Georgia,serif;font-size:1.12em;}
+${root} .lw-station-glint{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 25%,#ffffff30 42%,transparent 60%);transform:translateX(-110%);}
+${root} .lw-station-trace{position:absolute;left:0;top:0;width:25%;height:5px;background:var(--ink);opacity:.6;}
+${root} .lw-museum-divider{position:relative;display:grid;place-items:center;height:120px;color:var(--accent);overflow:hidden;}
+${root} .lw-divider-track{position:absolute;top:50%;left:10%;right:10%;height:3px;border-top:3px dotted currentColor;}
+${root} .lw-divider-center{position:relative;z-index:1;display:grid;place-items:center;width:68px;height:68px;background:var(--paper);border-radius:50%;border:5px double var(--accent);font-size:34px;}
+${root} .lw-divider-orbit,${root} .lw-divider-satellite{position:absolute;left:calc(50% - 112px);top:27px;font-size:32px;}
+${root} .lw-divider-satellite{left:calc(50% + 78px);top:56px;font-size:22px;}
+${root} .lw-museum-parade{position:relative;z-index:1;overflow:hidden;border-block:1px solid #ffffff42;padding:18px 0;color:var(--accent);background:#ffffff0d;}
+${root} .lw-museum-parade>div{display:flex;width:max-content;gap:clamp(30px,6vw,90px);padding-inline:35px;}
+${root} .lw-parade-token{display:inline-block;font-size:32px;}
+${root} .lw-museum-world{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+${root} .lw-museum-world i:first-child{position:absolute;inset:-15%;background:radial-gradient(ellipse at 20% 10%,var(--accent),transparent 42%),radial-gradient(ellipse at 80% 80%,var(--tint),transparent 40%);opacity:.18;}
+${root} .lw-museum-world i:last-child{position:absolute;inset:-5%;background-image:radial-gradient(circle,#ffffff8c 1px,transparent 2px);background-size:61px 79px;opacity:.3;}
+${root} .lw-museum-opener{position:absolute;inset:0 0 auto;height:min(620px,85vh);z-index:8;display:grid;place-items:center;background:var(--ink);pointer-events:none;animation:lwMuseumOpen 1.8s ease forwards;}
+${root} .lw-opener-symbol{display:grid;place-items:center;width:160px;height:160px;border-radius:50%;border:8px double var(--accent);font-size:96px;box-shadow:0 0 0 28px #ffffff0c,0 0 100px var(--accent);}
+${root} .lw-opener-skip{position:absolute;z-index:9;right:20px;top:20px;color:var(--ink);background:var(--paper);border:2px solid var(--accent);border-radius:24px;padding:8px 16px;animation:lwMuseumOpen 1.8s ease forwards;}
+${root}:has(.lw-museum-collection:target) .lw-museum-opener,${root}:has(.lw-museum-collection:target) .lw-opener-skip{display:none;}
+${root}[data-magic="joyful"] .lw-station-stamp{animation:lwMuseumFloat 5s ease-in-out infinite;}
+${root}[data-magic="joyful"] .lw-divider-center{animation:lwMuseumBob 6s ease-in-out infinite;}
+${root}[data-magic="legendary"] .lw-station-stamp{animation:lwMuseumFloat 4s ease-in-out infinite;}
+${root}[data-magic="legendary"] .lw-station-glint{animation:lwMuseumShimmer 10s ease-in-out infinite;}
+${root}[data-magic="legendary"] .lw-station-trace{animation:lwMuseumTrace 9s ease-in-out infinite alternate;}
+${root}[data-magic="legendary"] .lw-divider-center{animation:lwMuseumBob 4s ease-in-out infinite;}
+${root}[data-magic="legendary"] .lw-divider-orbit{animation:lwMuseumOrbit 7s ease-in-out infinite;}
+${root}[data-magic="legendary"] .lw-divider-satellite{animation:lwMuseumOrbit 9s ease-in-out infinite reverse;}
+${root}[data-magic="legendary"] .lw-museum-parade>div{animation:lwMuseumParade 26s linear infinite alternate;}
+${root}[data-magic="legendary"] .lw-museum-world i:first-child{animation:lwMuseumDrift 22s ease-in-out infinite alternate;}
+${root}[data-magic="legendary"] .lw-museum-world i:last-child{animation:lwMuseumGlow 14s ease-in-out infinite alternate;}
+${root}[data-magic="calm"] .lw-station-glint,${root}[data-magic="calm"] .lw-station-trace{display:none;}
+${root} :focus-visible{outline:3px solid var(--ink);outline-offset:4px;}
+@keyframes lwMuseumOpen{0%,25%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+@keyframes lwMuseumFloat{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(5deg) translateY(-5px)}}
+@keyframes lwMuseumShimmer{0%,60%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
+@keyframes lwMuseumTrace{from{left:0}to{left:75%}}
+@keyframes lwMuseumBob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-9px) rotate(4deg)}}
+@keyframes lwMuseumOrbit{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(15px,-10px) rotate(12deg)}}
+@keyframes lwMuseumParade{from{transform:translateX(0)}to{transform:translateX(-25%)}}
+@keyframes lwMuseumDrift{from{transform:translate(-3%,0) rotate(-3deg)}to{transform:translate(3%,4%) rotate(3deg)}}
+@keyframes lwMuseumGlow{from{opacity:.2;transform:translateY(0)}to{opacity:.45;transform:translateY(-28px)}}
+@media(max-width:799px){${root} .lw-station-gallery{display:block;border-left-width:7px;}${root} .lw-station-gallery .lw-station-heading{flex-direction:row;align-items:center;}${root} .lw-station-workbench .lw-station-content{display:block;}${root} .lw-museum-divider{height:90px;}${root} .lw-divider-orbit,${root} .lw-divider-satellite{font-size:20px;}${root} .lw-museum-collection{padding:20px 14px;}${root} .lw-station-story{box-shadow:5px 5px 0 var(--tint);}${root} .lw-station-stamp{width:46px;height:46px;flex-basis:46px;font-size:25px;}${root} .lw-museum-parade{padding-block:10px;}}
+html[data-hrv-effects="reduced"] ${root} .lw-museum-collection *,html[data-hrv-effects="reduced"] ${root} .lw-museum-world *,html[data-hrv-effects="reduced"] ${root} .lw-museum-parade *{animation:none!important;transition:none!important;}
+html[data-hrv-effects="reduced"] ${root} .lw-museum-opener,html[data-hrv-effects="reduced"] ${root} .lw-opener-skip,html[data-hrv-effects="reduced"] ${root} .lw-station-glint{display:none!important;}
+`;
+  return { html, css };
+}
+
 // src/modules/page-drafts/creator-public-render.ts
 var palettes = {
   discovery: ["#243e44", "#f6f1df", "#e7eadc", "#edcb83"],
@@ -22628,16 +22733,23 @@ var palettes = {
 var packs = ["discovery", "science", "habitats", "polar", "ocean", "garden", "geography", "space", "patterns", "building", "arts", "festival"];
 var classroomSource = external_exports.object({
   schemaVersion: external_exports.literal("1.0"),
-  page: external_exports.object({ id: external_exports.string(), type: external_exports.literal("classroom-page"), routeRef: external_exports.string() }).strict(),
+  page: external_exports.object({ id: external_exports.string(), type: external_exports.literal("classroom-page"), routeRef: external_exports.string(), nativeKind: external_exports.literal("post").optional() }).strict(),
   data: external_exports.object({
-    schemaVersion: external_exports.literal("2.0"),
+    schemaVersion: external_exports.enum(["2.0", "3.0"]),
     title: external_exports.string().max(180),
     kind: external_exports.enum(pageKinds),
     palette: external_exports.enum(packs),
+    experience: creatorExperience.optional(),
     magic: external_exports.enum(["calm", "joyful", "legendary"]),
     photoLayout: external_exports.enum(["keep", "grid", "wall", "framed"]),
     sections: external_exports.array(classroomBlock).max(64)
-  }).strict()
+  }).strict().refine(
+    (data) => data.schemaVersion === "3.0" === !!data.experience,
+    "The museum presentation requires the explicit version 3 source format."
+  ).refine(
+    (data) => !data.experience || data.experience.stations.every((station) => data.sections.some((block) => block.id === station.headingId && block.type === "heading")),
+    "Station presentation must refer to a saved heading."
+  )
 }).strict().refine((s) => {
   const key = s.page.id.slice("hrv-page:classroom-".length);
   return s.page.id === "hrv-page:classroom-" + key && external_exports.string().uuid().safeParse(key).success && key === key.toLowerCase() && s.page.routeRef === "hrv-route:classroom-" + key && new Set(s.data.sections.map((b) => b.id)).size === s.data.sections.length;
@@ -22766,8 +22878,17 @@ function renderCreatorSource(input2, revision, hostId2) {
   const root = 'article[data-hrv-classroom-page="' + id + '"]';
   const host = ":has(" + root + ")";
   const [ink, paper, tint, accent] = palettes[data.palette];
+  const museum = data.experience && museumCollection(
+    data.sections,
+    data.experience,
+    root,
+    id,
+    data.magic,
+    (blocks) => renderChapter(blocks, data.photoLayout),
+    sourcesFooter
+  );
   const css = [
-    "body.page #content.site-content.container" + host + ",body.page #primary.fullwidth" + host + ",body.page #main.site-main" + host + ",body.page .hentry" + host + ",body.page .entry-content" + host + "{box-sizing:border-box;width:100%;max-width:none;min-width:0;padding-inline:0;margin-inline:0;border-inline:0;}",
+    page.nativeKind === "post" ? "" : "body.page #content.site-content.container" + host + ",body.page #primary.fullwidth" + host + ",body.page #main.site-main" + host + ",body.page .hentry" + host + ",body.page .entry-content" + host + "{box-sizing:border-box;width:100%;max-width:none;min-width:0;padding-inline:0;margin-inline:0;border-inline:0;}",
     root + "{--ink:" + ink + ";--paper:" + paper + ";--tint:" + tint + ";--accent:" + accent + ";box-sizing:border-box;isolation:isolate;inline-size:100%;max-inline-size:none;min-inline-size:0;margin:0;padding:0;background:var(--paper);color:var(--ink);font:normal 17px/1.65 system-ui,sans-serif;text-align:start;overflow-wrap:anywhere;}",
     root + " *{box-sizing:border-box;min-inline-size:0;}",
     root + " .lw-title{position:relative;isolation:isolate;overflow:hidden;margin:0;background:var(--ink);color:var(--paper);padding:clamp(34px,6.5vw,104px) max(22px,calc((100% - 1160px)/2));border-block-end:8px solid var(--accent);}",
@@ -22841,7 +22962,7 @@ function renderCreatorSource(input2, revision, hostId2) {
     "@media(max-width:760px){" + root + '[data-kind="guide"] .lw-body:has(.lw-guide-index){display:block;}' + root + " .lw-guide-index{margin-block-end:2em;}}",
     "@media(max-width:600px){" + root + " .lw-body{padding:24px 18px;}" + root + " .lw-diagram ol{display:grid;gap:.6em;}" + root + " .lw-title{padding:34px 20px;}}"
   ].join("\n");
-  return "<style>" + css + '</style><article data-hrv-story="' + mountId + '" data-revision="' + revision + '" data-hrv-classroom-page="' + id + '" data-kind="' + data.kind + '" data-palette="' + data.palette + '" data-magic="' + data.magic + '"><header class="lw-title"><p class="lw-kicker">' + kindLabels[data.kind] + "</p><h1>" + safeText(data.title) + "</h1></header>" + collection(data.sections, data.photoLayout, data.kind) + sourcesFooter(data.sections) + "</article>";
+  return "<style>" + css + (museum?.css ?? "") + '</style><article data-hrv-story="' + mountId + '" data-revision="' + revision + (page.nativeKind === "post" ? '" data-native-kind="post' : "") + (museum ? '" data-experience="museum-v1' : "") + '" data-hrv-classroom-page="' + id + '" data-kind="' + data.kind + '" data-palette="' + data.palette + '" data-magic="' + data.magic + '"><header class="lw-title"><p class="lw-kicker">' + kindLabels[data.kind] + "</p><h1>" + safeText(data.title) + "</h1></header>" + (museum?.html ?? collection(data.sections, data.photoLayout, data.kind)) + sourcesFooter(data.sections) + "</article>";
 }
 
 // src/modules/page-drafts/creator-source-build.ts
@@ -22858,10 +22979,11 @@ function buildCreatorReleaseFromSource(input2, revision, hostId2) {
   const standalone = '<!doctype html><html lang="en" data-creator-frame="' + pageId + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + title + "</title><style>html,body{margin:0;min-width:0}</style></head><body><main>" + html + "</main></body></html>\n";
   const content = { "source.json": jsonFile(source), "index.html": standalone, "story.html": html };
   const manifest = {
-    schemaVersion: "2.0",
+    schemaVersion: source.data.experience ? "3.0" : "2.0",
     application: "classroom-page",
     releaseId: "studio-r" + revision,
     revision,
+    ...source.page.nativeKind === "post" ? { nativeKind: "post" } : {},
     pageId: source.page.id,
     routeRef: source.page.routeRef,
     hostId: binding,

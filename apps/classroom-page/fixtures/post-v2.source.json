@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0",
+  "page": {
+    "id": "hrv-page:classroom-be2e6166-46bc-4949-89d2-6f066c0b148a",
+    "type": "classroom-page",
+    "routeRef": "hrv-route:classroom-be2e6166-46bc-4949-89d2-6f066c0b148a",
+    "nativeKind": "post"
+  },
+  "data": {
+    "schemaVersion": "2.0",
+    "title": "Classroom renderer compatibility fixture",
+    "kind": "exhibit",
+    "palette": "garden",
+    "magic": "calm",
+    "photoLayout": "keep",
+    "sections": [
+      {
+        "id": "ba975660-5da2-4ef6-9a74-000000000000",
+        "type": "heading",
+        "text": "Look closely"
+      },
+      {
+        "id": "c09b42dd-b15d-412f-9c70-000000000000",
+        "type": "paragraph",
+        "text": "Synthetic compatibility fixture: exact classroom wording 1. No research or live AI is claimed."
+      },
+      {
+        "id": "ba975660-5da2-4ef6-9a74-000000000001",
+        "type": "heading",
+        "text": "Compare what we noticed"
+      },
+      {
+        "id": "c09b42dd-b15d-412f-9c70-000000000001",
+        "type": "paragraph",
+        "text": "Synthetic compatibility fixture: exact classroom wording 2. No research or live AI is claimed."
+      },
+      {
+        "id": "ba975660-5da2-4ef6-9a74-000000000002",
+        "type": "heading",
+        "text": "Try a careful sort"
+      },
+      {
+        "id": "c09b42dd-b15d-412f-9c70-000000000002",
+        "type": "paragraph",
+        "text": "Synthetic compatibility fixture: exact classroom wording 3. No research or live AI is claimed."
+      }
+    ]
+  }
+}
