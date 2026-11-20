@@ -1,0 +1,48 @@
+name: Classroom Page renderer compatibility
+
+on:
+  pull_request:
+    paths:
+      - 'apps/classroom-page/**'
+      - '.github/workflows/classroom-page-renderer-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-renderer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - name: Verify immutable legacy bytes and new source formats
+        run: |
+          node --check apps/classroom-page/build/build.mjs
+          node --check apps/classroom-page/browser-smoke.mjs
+          node apps/classroom-page/verify-build.mjs > classroom-renderer-verification.json
+      - name: Install the existing pinned CI browser
+        id: chrome
+        uses: browser-actions/setup-chrome@48ad923757ca74d66703209fe939badbdf80f2f4
+        with:
+          chrome-version: 155.0.8059.39
+      - name: Render synthetic Page and Post fixtures
+        run: node apps/classroom-page/browser-smoke.mjs
+        env:
+          CLASSROOM_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CLASSROOM_BROWSER_OUTPUT: artifacts/classroom-page-browser
+      - name: Preserve browser screenshots and verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: classroom-page-renderer-evidence
+          path: |
+            classroom-renderer-verification.json
+            artifacts/classroom-page-browser/
+          if-no-files-found: warn
+          retention-days: 7

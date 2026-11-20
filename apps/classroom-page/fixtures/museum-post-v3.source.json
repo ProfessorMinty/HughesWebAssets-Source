@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0",
+  "page": {
+    "id": "hrv-page:classroom-766ff143-5d0b-4a82-882f-381ae3d6bc82",
+    "type": "classroom-page",
+    "routeRef": "hrv-route:classroom-766ff143-5d0b-4a82-882f-381ae3d6bc82",
+    "nativeKind": "post"
+  },
+  "data": {
+    "schemaVersion": "3.0",
+    "title": "Classroom renderer compatibility fixture",
+    "kind": "exhibit",
+    "palette": "garden",
+    "magic": "legendary",
+    "photoLayout": "keep",
+    "sections": [
+      {
+        "id": "ba975660-5da2-4ef6-9a74-000000000000",
+        "type": "heading",
+        "text": "Look closely"
+      },
+      {
+        "id": "c09b42dd-b15d-412f-9c70-000000000000",
+        "type": "paragraph",
+        "text": "Synthetic compatibility fixture: exact classroom wording 1. No research or live AI is claimed.",
+        "citation": {
+          "title": "Synthetic fixture source record",
+          "url": "https://example.org/renderer-fixture",
+          "attribution": "Test data only; not a learning source."
+        },
+        "credit": {
+          "title": "Synthetic fixture composition",
+          "creator": "Renderer test fixture",
+          "sourceUrl": "https://example.org/renderer-fixture",
+          "license": "Test fixture, not classroom publication"
+        }
+      },
+      {
+        "id": "ba975660-5da2-4ef6-9a74-000000000001",
+        "type": "heading",
+        "text": "Compare what we noticed"
+      },
+      {
+        "id": "c09b42dd-b15d-412f-9c70-000000000001",
+        "type": "paragraph",
+        "text": "Synthetic compatibility fixture: exact classroom wording 2. No research or live AI is claimed."
+      },
+      {
+        "id": "4ad450bc-2ac6-42bc-8867-b0120f8844d5",
+        "type": "explorer",
+        "text": "Synthetic comparison control",
+        "prompt": "Choose either test panel to check the native control. These are interface test labels, not scientific facts.",
+        "stages": [
+          {
+            "label": "Test panel one",
+            "description": "First synthetic panel: the starting comparison state."
+          },
+          {
+            "label": "Test panel two",
+            "description": "Second synthetic panel: selected with the labelled native control."
+          }
+        ]
+      },
+      {
+        "id": "ba975660-5da2-4ef6-9a74-000000000002",
+        "type": "heading",
+        "text": "Try a careful sort"
+      },
+      {
+        "id": "c09b42dd-b15d-412f-9c70-000000000002",
+        "type": "paragraph",
+        "text": "Synthetic compatibility fixture: exact classroom wording 3. No research or live AI is claimed."
+      },
+      {
+        "id": "eea53c76-f85b-4bc0-9a15-3996fc8edf98",
+        "type": "interactive",
+        "text": "",
+        "code": {
+          "html": "<details><summary>Open the synthetic observation</summary><p>The saved observation stays visible after opening this native disclosure.</p></details>",
+          "css": "details{padding:20px;border:1px solid #244535;border-radius:12px}summary{font-weight:700}"
+        },
+        "citations": [
+          {
+            "title": "Synthetic fixture source record",
+            "url": "https://example.org/renderer-fixture",
+            "attribution": "Test data only; not a learning source."
+          }
+        ]
+      }
+    ],
+    "experience": {
+      "version": 1,
+      "tokens": [
+        "🍃",
+        "🌱",
+        "✦"
+      ],
+      "opener": true,
+      "stations": []
+    }
+  }
+}
